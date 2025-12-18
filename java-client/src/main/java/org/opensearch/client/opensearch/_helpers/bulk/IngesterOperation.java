@@ -1,0 +1,271 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
+package org.opensearch.client.opensearch._helpers.bulk;
+
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.opensearch.core.bulk.BulkOperation;
+import org.opensearch.client.opensearch.core.bulk.BulkOperationBase;
+import org.opensearch.client.opensearch.core.bulk.CreateOperation;
+import org.opensearch.client.opensearch.core.bulk.DeleteOperation;
+import org.opensearch.client.opensearch.core.bulk.IndexOperation;
+import org.opensearch.client.opensearch.core.bulk.UpdateOperation;
+import org.opensearch.client.util.BinaryData;
+import org.opensearch.client.util.NoCopyByteArrayOutputStream;
+
+/**
+ * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
+ * <p>
+ * This class wraps a {@link RetryableBulkOperation} and calculates the estimated byte size that the operation
+ * will occupy in the bulk request payload. For operations with documents (create, index, update), the document
+ * content is converted to {@link BinaryData} to enable efficient size calculation and avoid re-serialization.
+ * <p>
+ * This is an internal utility class used by {@link BulkIngester} to track buffered operation sizes.
+ */
+class IngesterOperation {
+    private final RetryableBulkOperation repeatableOp;
+    private final long size;
+
+    IngesterOperation(RetryableBulkOperation repeatableOp, long size) {
+        this.repeatableOp = repeatableOp;
+        this.size = size;
+    }
+
+    /**
+     * Create an IngesterOperation from a retryable bulk operation, calculating its size.
+     *
+     * @param repeatableOp the retryable bulk operation to wrap
+     * @param mapper       the JSON mapper for serialization
+     * @return an IngesterOperation with calculated size
+     */
+    public static IngesterOperation of(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        switch (repeatableOp.operation()._kind()) {
+            case Create:
+                return createOperation(repeatableOp, mapper);
+            case Index:
+                return indexOperation(repeatableOp, mapper);
+            case Update:
+                return updateOperation(repeatableOp, mapper);
+            case Delete:
+                return deleteOperation(repeatableOp);
+            default:
+                throw new IllegalStateException("Unknown bulk operation type " + repeatableOp.operation()._kind());
+        }
+    }
+
+    /**
+     * Get the wrapped retryable bulk operation.
+     *
+     * @return the retryable bulk operation
+     */
+    public RetryableBulkOperation repeatableOperation() {
+        return this.repeatableOp;
+    }
+
+    /**
+     * Get the estimated size in bytes of this operation.
+     *
+     * @return the operation size in bytes
+     */
+    public long size() {
+        return this.size;
+    }
+
+    private static IngesterOperation createOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        CreateOperation<?> create = repeatableOp.operation().create();
+        RetryableBulkOperation newOperation;
+
+        long size = basePropertiesSize(create);
+
+        if (create.document() instanceof BinaryData) {
+            newOperation = repeatableOp;
+            size += ((BinaryData) create.document()).size();
+
+        } else {
+            BinaryData binaryDoc = BinaryData.of(create.document(), mapper);
+            size += binaryDoc.size();
+            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.create(idx -> {
+                copyCreateProperties(create, idx);
+                return idx.document(binaryDoc);
+            })), repeatableOp.context(), repeatableOp.retries());
+        }
+
+        return new IngesterOperation(newOperation, size);
+    }
+
+    private static IngesterOperation indexOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        IndexOperation<?> index = repeatableOp.operation().index();
+        RetryableBulkOperation newOperation;
+
+        long size = basePropertiesSize(index);
+
+        if (index.document() instanceof BinaryData) {
+            newOperation = repeatableOp;
+            size += ((BinaryData) index.document()).size();
+
+        } else {
+            BinaryData binaryDoc = BinaryData.of(index.document(), mapper);
+            size += binaryDoc.size();
+            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.index(idx -> {
+                copyIndexProperties(index, idx);
+                return idx.document(binaryDoc);
+            })), repeatableOp.context(), repeatableOp.retries());
+        }
+
+        return new IngesterOperation(newOperation, size);
+    }
+
+    private static IngesterOperation updateOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        UpdateOperation<?> update = repeatableOp.operation().update();
+
+        // UpdateOperation implements NdJsonpSerializable, which means it serializes as two separate JSON objects:
+        // 1. The metadata line (with base properties, requireAlias, retryOnConflict)
+        // 2. The data line (UpdateOperationData with document, script, upsert, etc.)
+        //
+        // We calculate the size by serializing both parts to measure their actual byte size.
+        // This is more accurate than estimation and handles all fields (doc, upsert, script, etc.)
+        long size = 0;
+
+        // Serialize both the metadata and data parts using _serializables()
+        try {
+            NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
+            jakarta.json.stream.JsonGenerator generator = mapper.jsonProvider().createGenerator(out);
+
+            // UpdateOperation._serializables() returns an iterator with [metadata, data]
+            // Serialize each part (both are PlainJsonSerializable)
+            java.util.Iterator<?> serializables = update._serializables();
+            while (serializables.hasNext()) {
+                Object serializable = serializables.next();
+                if (serializable instanceof org.opensearch.client.json.PlainJsonSerializable) {
+                    ((org.opensearch.client.json.PlainJsonSerializable) serializable).serialize(generator, mapper);
+                    generator.flush();
+                }
+            }
+
+            generator.close();
+            size = out.size();
+
+        } catch (Exception e) {
+            // If serialization fails for any reason, fall back to conservative estimate
+            // This shouldn't happen in normal operation, but provides a safety net
+            size = basePropertiesSize(update) + size("retry_on_conflict", update.retryOnConflict()) + size(
+                "require_alias",
+                update.requireAlias()
+            ) + 300; // Fallback estimate for data
+        }
+
+        return new IngesterOperation(repeatableOp, size);
+    }
+
+    private static IngesterOperation deleteOperation(RetryableBulkOperation repeatableOp) {
+        DeleteOperation delete = repeatableOp.operation().delete();
+        return new IngesterOperation(repeatableOp, basePropertiesSize(delete));
+    }
+
+    private static void copyBaseProperties(BulkOperationBase op, BulkOperationBase.AbstractBuilder<?> builder) {
+        builder.id(op.id())
+            .index(op.index())
+            .ifPrimaryTerm(op.ifPrimaryTerm())
+            .ifSeqNo(op.ifSeqNo())
+            .routing(op.routing())
+            .version(op.version())
+            .versionType(op.versionType());
+    }
+
+    private static void copyIndexProperties(IndexOperation<?> op, IndexOperation.Builder<?> builder) {
+        copyBaseProperties(op, builder);
+        builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
+    }
+
+    private static void copyCreateProperties(CreateOperation<?> op, CreateOperation.Builder<?> builder) {
+        copyBaseProperties(op, builder);
+        builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
+    }
+
+    private static int size(String name, @Nullable Boolean value) {
+        if (value != null) {
+            return name.length() + 12; // 12 added chars for "name":"false",
+        } else {
+            return 0;
+        }
+    }
+
+    private static int size(String name, @Nullable String value) {
+        if (value != null) {
+            return name.length() + value.length() + 6; // 6 added chars for "name":"value",
+        } else {
+            return 0;
+        }
+    }
+
+    private static int size(String name, @Nullable Long value) {
+        if (value != null) {
+            // Borrowed from Long.toUnsignedString0, shift = 3 (base 10 is closer to 3 than 4)
+            int mag = Integer.SIZE - Long.numberOfLeadingZeros(value);
+            int chars = Math.max(((mag + (3 - 1)) / 3), 1);
+            return name.length() + chars + 4; // 4 added chars for "name":,
+        } else {
+            return 0;
+        }
+    }
+
+    private static int size(String name, @Nullable Integer value) {
+        if (value != null) {
+            // Borrowed from Integer.toUnsignedString0, shift = 3 (base 10 is closer to 3 than 4)
+            int mag = Integer.SIZE - Integer.numberOfLeadingZeros(value);
+            int chars = Math.max(((mag + (3 - 1)) / 3), 1);
+            return name.length() + chars + 4;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int size(String name, @Nullable JsonEnum value) {
+        if (value != null) {
+            return name.length() + value.jsonValue().length() + 6;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int basePropertiesSize(BulkOperationBase op) {
+        return size("id", op.id()) + size("index", op.index()) + size("if_primary_term", op.ifPrimaryTerm()) + size(
+            "if_seq_no",
+            op.ifSeqNo()
+        ) + size("routing", op.routing()) + size("version", op.version()) + size("version_type", op.versionType()) + 4; // Open/closing
+                                                                                                                        // brace, 2 newlines
+    }
+}
