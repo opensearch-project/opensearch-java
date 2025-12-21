@@ -39,6 +39,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Objects;
 
 class JsonDataImpl implements JsonData {
     private final Object value;
@@ -158,5 +159,20 @@ class JsonDataImpl implements JsonData {
         generator.close();
 
         return mapper.jsonProvider().createParser(new StringReader(sw.toString()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JsonDataImpl jsonDataImpl = (JsonDataImpl) o;
+        // Compare only 'value'. Because 'mapper' is a processing utility, not part of the data identity
+        return Objects.equals(value, jsonDataImpl.value);
+    }
+
+    @Override
+    public int hashCode() {
+        // Use Objects.hashCode for a single field to avoid the array creation overhead of Objects.hash
+        return Objects.hashCode(value);
     }
 }
