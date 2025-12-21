@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
 - Bump `com.github.jk1.dependency-license-report` from 2.9 to 3.0.1 ([#1779](https://github.com/opensearch-project/opensearch-java/pull/1779), [#1781](https://github.com/opensearch-project/opensearch-java/pull/1781))
 - Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
+- Added equals and hashCode implementation to JsonDataImpl ([#1803](https://github.com/opensearch-project/opensearch-java/pull/1838))
 
 ## [Unreleased 3.x]
 ### Added

@@ -40,6 +40,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
@@ -88,5 +89,44 @@ public class JsonDataTest extends Assert {
 
         assertEquals(JsonValue.ValueType.STRING, value.getValueType());
         assertEquals("foo", ((JsonString) value).getString());
+    }
+
+    @Test
+    public void testEqualsAndHashcodeSameInstance() {
+        JsonData data = JsonData.of("value");
+
+        assertEquals(data, data);
+    }
+
+    @Test
+    public void testEqualsAndHashcodeLogicalEquality() {
+        String value = "value";
+        JsonData data1 = JsonData.of(value);
+        JsonData data2 = JsonData.of(value);
+
+        assertEquals(data1, data2);
+        assertEquals(data1.hashCode(), data2.hashCode());
+    }
+
+    @Test
+    public void testEqualsAndHashcodeRegardlessOfMapper() {
+        JacksonJsonpMapper mapper1 = new JacksonJsonpMapper();
+        JsonbJsonpMapper mapper2 = new JsonbJsonpMapper();
+
+        String value = "value";
+        JsonData data1 = JsonData.of(value, mapper1);
+        JsonData data2 = JsonData.of(value, mapper2);
+
+        assertEquals(data1, data2);
+        assertEquals(data1.hashCode(), data2.hashCode());
+    }
+
+    @Test
+    public void testEqualsAndHashcodeDifferentValues() {
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        JsonData data1 = JsonData.of("value1", mapper);
+        JsonData data2 = JsonData.of("value2", mapper);
+
+        assertNotEquals(data1, data2);
     }
 }
