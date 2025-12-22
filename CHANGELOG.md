@@ -10,11 +10,15 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.4 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733), [#1815](https://github.com/opensearch-project/opensearch-java/pull/1815))
 - Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.9 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742), [#1754](https://github.com/opensearch-project/opensearch-java/pull/1754), [#1765](https://github.com/opensearch-project/opensearch-java/pull/1765), [#1796](https://github.com/opensearch-project/opensearch-java/pull/1796))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1740](https://github.com/opensearch-project/opensearch-java/pull/1740))
-- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
-- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
 - Bump `com.github.jk1.dependency-license-report` from 2.9 to 3.0.1 ([#1779](https://github.com/opensearch-project/opensearch-java/pull/1779), [#1781](https://github.com/opensearch-project/opensearch-java/pull/1781))
-- Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
+
+### Added
+- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
 - Added equals and hashCode implementation to JsonDataImpl ([#1803](https://github.com/opensearch-project/opensearch-java/pull/1838))
+
+### Fixed
+- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
+- Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
 
 ## [Unreleased 3.x]
 ### Added
