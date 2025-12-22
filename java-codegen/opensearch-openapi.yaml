@@ -48860,6 +48860,7 @@ components:
           description: Return documents using a template query contains placeholders that are resolved by search request processors during query execution.
           type: object
           additionalProperties: true
+          x-protobuf-excluded: true
         term:
           description: |-
             Returns documents that contain an exact term in a provided field.
@@ -51638,6 +51639,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/_core.search___HitsMetadata'
             - type: object
+              x-protobuf-excluded: true
               properties:
                 hits:
                   type: array
