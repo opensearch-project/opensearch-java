@@ -33,6 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix incorrect SortOptions.Kind mapping in ScoreSort ([#1492](https://github.com/opensearch-project/opensearch-java/pull/1847))
 
 ### Security
 
