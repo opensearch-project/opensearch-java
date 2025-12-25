@@ -12,6 +12,8 @@
     - [Searching for a document](#searching-for-a-document)
     - [Deleting a document](#deleting-a-document)
   - [Deleting an index](#deleting-an-index)
+  - [Metrics](#metrics)  
+      - [Using Micrometer](#using-micrometer)
   - [Advanced Features](#advanced-features)
   - [Plugins](#plugins)
 
@@ -190,6 +192,57 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 ```
 
 You can find a working sample of the above code in [IndexingBasics.java](./samples/src/main/java/org/opensearch/client/samples/IndexingBasics.java).
+
+## Metrics
+
+OpenSearch Java Client is built on top of Apache HttpClient 5/4 family and as such, could be instrumented (metrics, tracing, ...) by any available intrumentation library that supports Apache HttpClient 5/4 (depending on the [transport](#creating-a-client) being used).
+
+### Using Micrometer
+
+Make sure to include `micrometer-observation` dependency that matches the version your stack is using.
+
+```xml
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-observation</artifactId>
+    <version>...</version>
+</dependency>
+
+```
+
+During `OpenSearchTransport` construction, add `ObservationExecChainHandler` using the `ApacheHttpClient5TransportBuilder::setHttpClientConfigCallback` extension point.
+
+```java
+final ObservationRegistry observationRegistry = ...;
+final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
+  .builder(hosts)
+  .setHttpClientConfigCallback(httpClientBuilder -> {
+      return httpClientBuilder.addExecInterceptorAfter(
+        ChainElement.RETRY.name(), "micrometer", 
+          new ObservationExecChainHandler(observationRegistry));
+  })
+  .build();
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+The instrumentation of the `RestClientTransport` (deprecated) looks very similar.
+
+```java
+final ObservationRegistry observationRegistry = ...;
+final RestClient restClient = RestClient
+  .builder(hosts)
+  .setHttpClientConfigCallback(httpClientBuilder -> {
+      return httpClientBuilder.addExecInterceptorAfter(
+        ChainElement.RETRY.name(), "micrometer", 
+          new ObservationExecChainHandler(observationRegistry));
+      })
+  .build();
+
+OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+For more elaborate and advanced instrumentation options, check [official Micrometer documentation](https://docs.micrometer.io/micrometer/reference/reference/httpcomponents.html) please.
 
 ## Advanced Features
 
