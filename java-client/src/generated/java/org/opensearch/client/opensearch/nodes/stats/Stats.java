@@ -44,7 +44,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -122,7 +121,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
     private final RemoteStoreStats remoteStore;
 
     @Nonnull
-    private final List<JsonData> repositories;
+    private final List<RepositoryStatsSnapshot> repositories;
 
     @Nonnull
     private final Map<String, ShardResourceUsageStatsDetail> resourceUsageStats;
@@ -377,7 +376,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
      * API name: {@code repositories}
      */
     @Nonnull
-    public final List<JsonData> repositories() {
+    public final List<RepositoryStatsSnapshot> repositories() {
         return this.repositories;
     }
 
@@ -629,7 +628,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         if (ApiTypeHelper.isDefined(this.repositories)) {
             generator.writeKey("repositories");
             generator.writeStartArray();
-            for (JsonData item0 : this.repositories) {
+            for (RepositoryStatsSnapshot item0 : this.repositories) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -776,7 +775,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         @Nullable
         private RemoteStoreStats remoteStore;
         @Nullable
-        private List<JsonData> repositories;
+        private List<RepositoryStatsSnapshot> repositories;
         @Nullable
         private Map<String, ShardResourceUsageStatsDetail> resourceUsageStats;
         @Nullable
@@ -1316,7 +1315,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
          * </p>
          */
         @Nonnull
-        public final Builder repositories(List<JsonData> list) {
+        public final Builder repositories(List<RepositoryStatsSnapshot> list) {
             this.repositories = _listAddAll(this.repositories, list);
             return this;
         }
@@ -1329,9 +1328,21 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
          * </p>
          */
         @Nonnull
-        public final Builder repositories(JsonData value, JsonData... values) {
+        public final Builder repositories(RepositoryStatsSnapshot value, RepositoryStatsSnapshot... values) {
             this.repositories = _listAdd(this.repositories, value, values);
             return this;
+        }
+
+        /**
+         * API name: {@code repositories}
+         *
+         * <p>
+         * Adds a value to <code>repositories</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder repositories(Function<RepositoryStatsSnapshot.Builder, ObjectBuilder<RepositoryStatsSnapshot>> fn) {
+            return repositories(fn.apply(new RepositoryStatsSnapshot.Builder()).build());
         }
 
         /**
@@ -1669,7 +1680,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         op.add(Builder::os, OperatingSystem._DESERIALIZER, "os");
         op.add(Builder::process, Process._DESERIALIZER, "process");
         op.add(Builder::remoteStore, RemoteStoreStats._DESERIALIZER, "remote_store");
-        op.add(Builder::repositories, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "repositories");
+        op.add(Builder::repositories, JsonpDeserializer.arrayDeserializer(RepositoryStatsSnapshot._DESERIALIZER), "repositories");
         op.add(
             Builder::resourceUsageStats,
             JsonpDeserializer.stringMapDeserializer(ShardResourceUsageStatsDetail._DESERIALIZER),

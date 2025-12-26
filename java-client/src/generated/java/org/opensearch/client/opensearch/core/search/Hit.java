@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -92,6 +93,9 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     @Nonnull
     private final List<String> matchedQueries;
 
+    @Nonnull
+    private final Map<String, JsonData> metaFields;
+
     @Nullable
     private final NestedIdentity nested;
 
@@ -137,6 +141,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         this.index = builder.index;
         this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
         this.matchedQueries = ApiTypeHelper.unmodifiable(builder.matchedQueries);
+        this.metaFields = ApiTypeHelper.unmodifiable(builder.metaFields);
         this.nested = builder.nested;
         this.node = builder.node;
         this.primaryTerm = builder.primaryTerm;
@@ -224,6 +229,14 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     @Nonnull
     public final List<String> matchedQueries() {
         return this.matchedQueries;
+    }
+
+    /**
+     * Contains metadata values for the documents.
+     */
+    @Nonnull
+    public final Map<String, JsonData> metaFields() {
+        return this.metaFields;
     }
 
     /**
@@ -325,6 +338,10 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        for (Map.Entry<String, JsonData> item0 : this.metaFields.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
+        }
         if (this.explanation != null) {
             generator.writeKey("_explanation");
             this.explanation.serialize(generator, mapper);
@@ -501,6 +518,8 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private List<String> matchedQueries;
         @Nullable
+        private Map<String, JsonData> metaFields;
+        @Nullable
         private NestedIdentity nested;
         @Nullable
         private String node;
@@ -535,6 +554,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             this.index = o.index;
             this.innerHits = _mapCopy(o.innerHits);
             this.matchedQueries = _listCopy(o.matchedQueries);
+            this.metaFields = _mapCopy(o.metaFields);
             this.nested = o.nested;
             this.node = o.node;
             this.primaryTerm = o.primaryTerm;
@@ -558,6 +578,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             this.index = o.index;
             this.innerHits = _mapCopy(o.innerHits);
             this.matchedQueries = _listCopy(o.matchedQueries);
+            this.metaFields = _mapCopy(o.metaFields);
             this.nested = o.nested;
             this.node = o.node;
             this.primaryTerm = o.primaryTerm;
@@ -781,6 +802,32 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * Contains metadata values for the documents.
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metaFields</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TDocument> metaFields(Map<String, JsonData> map) {
+            this.metaFields = _mapPutAll(this.metaFields, map);
+            return this;
+        }
+
+        /**
+         * Contains metadata values for the documents.
+         *
+         * <p>
+         * Adds an entry to <code>metaFields</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TDocument> metaFields(String key, JsonData value) {
+            this.metaFields = _mapPut(this.metaFields, key, value);
+            return this;
+        }
+
+        /**
          * API name: {@code _nested}
          */
         @Nonnull
@@ -973,6 +1020,12 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "sort");
         op.add(Builder::source, tDocumentDeserializer, "_source");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            if (builder.metaFields == null) {
+                builder.metaFields = new HashMap<>();
+            }
+            builder.metaFields.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+        });
     }
 
     @Override
@@ -987,6 +1040,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.innerHits);
         result = 31 * result + Objects.hashCode(this.matchedQueries);
+        result = 31 * result + Objects.hashCode(this.metaFields);
         result = 31 * result + Objects.hashCode(this.nested);
         result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + Objects.hashCode(this.primaryTerm);
@@ -1014,6 +1068,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             && Objects.equals(this.index, other.index)
             && Objects.equals(this.innerHits, other.innerHits)
             && Objects.equals(this.matchedQueries, other.matchedQueries)
+            && Objects.equals(this.metaFields, other.metaFields)
             && Objects.equals(this.nested, other.nested)
             && Objects.equals(this.node, other.node)
             && Objects.equals(this.primaryTerm, other.primaryTerm)

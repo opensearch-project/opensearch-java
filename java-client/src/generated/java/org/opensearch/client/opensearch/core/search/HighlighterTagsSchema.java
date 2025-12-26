@@ -45,6 +45,8 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum HighlighterTagsSchema implements JsonEnum {
+    Default("default"),
+
     Styled("styled");
 
     private final String jsonValue;

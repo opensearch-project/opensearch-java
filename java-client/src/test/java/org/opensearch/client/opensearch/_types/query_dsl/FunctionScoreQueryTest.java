@@ -9,6 +9,7 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class FunctionScoreQueryTest extends ModelTestCase {
@@ -37,10 +38,10 @@ public class FunctionScoreQueryTest extends ModelTestCase {
     @Test
     public void canSupportFunctionVariant() {
         Query functionScoreQuery = FunctionScoreQuery.of(
-            fs -> fs.functions(f -> f.weight(3f).linear(l -> l.field("field").placement(p -> p.decay(8.0))))
+            fs -> fs.functions(f -> f.weight(3f).linear(l -> l.field("field").placement(p -> p.decay(8.0).scale(JsonData.of("{}")))))
         ).toQuery();
 
-        String json = "{\"function_score\":{\"functions\":[{\"weight\":3.0,\"linear\":{\"field\":{\"decay\":8.0}}}]}}";
+        String json = "{\"function_score\":{\"functions\":[{\"weight\":3.0,\"linear\":{\"field\":{\"decay\":8.0,\"scale\":\"{}\"}}}]}}";
 
         assertEquals(json, toJson(functionScoreQuery));
 
