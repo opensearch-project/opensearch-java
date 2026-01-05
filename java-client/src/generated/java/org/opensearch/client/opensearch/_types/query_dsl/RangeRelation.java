@@ -37,11 +37,29 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- * Base interface for {@link PinnedQuery} variants.
- */
+// typedef: _types.query_dsl.RangeRelation
+
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public interface PinnedQueryVariant {
-    PinnedQuery.Kind _pinnedQueryKind();
+public enum RangeRelation implements JsonEnum {
+    Contains("contains"),
+
+    Intersects("intersects"),
+
+    Within("within");
+
+    private final String jsonValue;
+
+    RangeRelation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<RangeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(RangeRelation.values());
 }

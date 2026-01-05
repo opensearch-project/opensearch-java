@@ -66,15 +66,11 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
     @Nullable
     private final String format;
 
-    @Nullable
-    private final Boolean includeUnmapped;
-
     // ---------------------------------------------------------------------------------------------
 
     private FieldAndFormat(Builder builder) {
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.format = builder.format;
-        this.includeUnmapped = builder.includeUnmapped;
     }
 
     public static FieldAndFormat of(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
@@ -101,14 +97,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * API name: {@code include_unmapped}
-     */
-    @Nullable
-    public final Boolean includeUnmapped() {
-        return this.includeUnmapped;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -125,11 +113,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
         if (this.format != null) {
             generator.writeKey("format");
             generator.write(this.format);
-        }
-
-        if (this.includeUnmapped != null) {
-            generator.writeKey("include_unmapped");
-            generator.write(this.includeUnmapped);
         }
     }
 
@@ -153,21 +136,17 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
         private String field;
         @Nullable
         private String format;
-        @Nullable
-        private Boolean includeUnmapped;
 
         public Builder() {}
 
         private Builder(FieldAndFormat o) {
             this.field = o.field;
             this.format = o.format;
-            this.includeUnmapped = o.includeUnmapped;
         }
 
         private Builder(Builder o) {
             this.field = o.field;
             this.format = o.format;
-            this.includeUnmapped = o.includeUnmapped;
         }
 
         @Override
@@ -198,15 +177,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * API name: {@code include_unmapped}
-         */
-        @Nonnull
-        public final Builder includeUnmapped(@Nullable Boolean value) {
-            this.includeUnmapped = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link FieldAndFormat}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -233,7 +203,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupFieldAndFormatDeserializer(ObjectDeserializer<FieldAndFormat.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-        op.add(Builder::includeUnmapped, JsonpDeserializer.booleanDeserializer(), "include_unmapped");
 
         op.shortcutProperty("field");
     }
@@ -243,7 +212,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
         int result = 17;
         result = 31 * result + this.field.hashCode();
         result = 31 * result + Objects.hashCode(this.format);
-        result = 31 * result + Objects.hashCode(this.includeUnmapped);
         return result;
     }
 
@@ -252,8 +220,6 @@ public class FieldAndFormat implements PlainJsonSerializable, ToCopyableBuilder<
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         FieldAndFormat other = (FieldAndFormat) o;
-        return this.field.equals(other.field)
-            && Objects.equals(this.format, other.format)
-            && Objects.equals(this.includeUnmapped, other.includeUnmapped);
+        return this.field.equals(other.field) && Objects.equals(this.format, other.format);
     }
 }

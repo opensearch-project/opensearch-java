@@ -57,10 +57,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: core.search.HitsMetadata
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder<HitsMetadata.Builder<T>, HitsMetadata<T>> {
+public class HitsMetadata<TDocument>
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<HitsMetadata.Builder<TDocument>, HitsMetadata<TDocument>> {
 
     @Nonnull
-    private final List<Hit<T>> hits;
+    private final List<Hit<TDocument>> hits;
 
     @Nullable
     private final Float maxScore;
@@ -70,13 +73,15 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
 
     // ---------------------------------------------------------------------------------------------
 
-    private HitsMetadata(Builder<T> builder) {
+    private HitsMetadata(Builder<TDocument> builder) {
         this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
         this.maxScore = builder.maxScore;
         this.total = builder.total;
     }
 
-    public static <T> HitsMetadata<T> of(Function<HitsMetadata.Builder<T>, ObjectBuilder<HitsMetadata<T>>> fn) {
+    public static <TDocument> HitsMetadata<TDocument> of(
+        Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn
+    ) {
         return fn.apply(new Builder<>()).build();
     }
 
@@ -84,7 +89,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
      * Required - API name: {@code hits}
      */
     @Nonnull
-    public final List<Hit<T>> hits() {
+    public final List<Hit<TDocument>> hits() {
         return this.hits;
     }
 
@@ -120,7 +125,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("hits");
         generator.writeStartArray();
-        for (Hit<T> item0 : this.hits) {
+        for (Hit<TDocument> item0 : this.hits) {
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();
@@ -140,20 +145,22 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
 
     @Override
     @Nonnull
-    public Builder<T> toBuilder() {
+    public Builder<TDocument> toBuilder() {
         return new Builder<>(this);
     }
 
     @Nonnull
-    public static <T> Builder builder() {
+    public static <TDocument> Builder builder() {
         return new Builder<>();
     }
 
     /**
      * Builder for {@link HitsMetadata}.
      */
-    public static class Builder<T> extends ObjectBuilderBase implements CopyableBuilder<Builder<T>, HitsMetadata<T>> {
-        private List<Hit<T>> hits;
+    public static class Builder<TDocument> extends ObjectBuilderBase
+        implements
+            CopyableBuilder<Builder<TDocument>, HitsMetadata<TDocument>> {
+        private List<Hit<TDocument>> hits;
         @Nullable
         private Float maxScore;
         @Nullable
@@ -161,13 +168,13 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
 
         public Builder() {}
 
-        private Builder(HitsMetadata<T> o) {
+        private Builder(HitsMetadata<TDocument> o) {
             this.hits = _listCopy(o.hits);
             this.maxScore = o.maxScore;
             this.total = o.total;
         }
 
-        private Builder(Builder<T> o) {
+        private Builder(Builder<TDocument> o) {
             this.hits = _listCopy(o.hits);
             this.maxScore = o.maxScore;
             this.total = o.total;
@@ -175,7 +182,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
 
         @Override
         @Nonnull
-        public Builder<T> copy() {
+        public Builder<TDocument> copy() {
             return new Builder<>(this);
         }
 
@@ -187,7 +194,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder<T> hits(List<Hit<T>> list) {
+        public final Builder<TDocument> hits(List<Hit<TDocument>> list) {
             this.hits = _listAddAll(this.hits, list);
             return this;
         }
@@ -200,7 +207,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder<T> hits(Hit<T> value, Hit<T>... values) {
+        public final Builder<TDocument> hits(Hit<TDocument> value, Hit<TDocument>... values) {
             this.hits = _listAdd(this.hits, value, values);
             return this;
         }
@@ -213,15 +220,15 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
-            return hits(fn.apply(new Hit.Builder<T>()).build());
+        public final Builder<TDocument> hits(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
+            return hits(fn.apply(new Hit.Builder<TDocument>()).build());
         }
 
         /**
          * API name: {@code max_score}
          */
         @Nonnull
-        public final Builder<T> maxScore(@Nullable Float value) {
+        public final Builder<TDocument> maxScore(@Nullable Float value) {
             this.maxScore = value;
             return this;
         }
@@ -233,7 +240,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder<T> total(@Nullable TotalHits value) {
+        public final Builder<TDocument> total(@Nullable TotalHits value) {
             this.total = value;
             return this;
         }
@@ -245,7 +252,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
+        public final Builder<TDocument> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
             return total(fn.apply(new TotalHits.Builder()).build());
         }
 
@@ -256,7 +263,7 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
          */
         @Override
         @Nonnull
-        public HitsMetadata<T> build() {
+        public HitsMetadata<TDocument> build() {
             _checkSingleUse();
 
             return new HitsMetadata<>(this);
@@ -268,18 +275,20 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
     /**
      * Create a JSON deserializer for HitsMetadata.
      */
-    public static <T> JsonpDeserializer<HitsMetadata<T>> createHitsMetadataDeserializer(JsonpDeserializer<T> tDeserializer) {
+    public static <TDocument> JsonpDeserializer<HitsMetadata<TDocument>> createHitsMetadataDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
         return ObjectBuilderDeserializer.createForObject(
-            Builder<T>::new,
-            op -> HitsMetadata.setupHitsMetadataDeserializer(op, tDeserializer)
+            Builder<TDocument>::new,
+            op -> HitsMetadata.setupHitsMetadataDeserializer(op, tDocumentDeserializer)
         );
     }
 
-    protected static <T> void setupHitsMetadataDeserializer(
-        ObjectDeserializer<HitsMetadata.Builder<T>> op,
-        JsonpDeserializer<T> tDeserializer
+    protected static <TDocument> void setupHitsMetadataDeserializer(
+        ObjectDeserializer<HitsMetadata.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDeserializer)), "hits");
+        op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDocumentDeserializer)), "hits");
         op.add(Builder::maxScore, JsonpDeserializer.floatDeserializer(), "max_score");
         op.add(Builder::total, TotalHits._DESERIALIZER, "total");
     }

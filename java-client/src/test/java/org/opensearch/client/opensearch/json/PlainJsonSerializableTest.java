@@ -23,7 +23,7 @@ public class PlainJsonSerializableTest extends Assert {
     public void testIndexResponse() {
 
         String expectedStringValue =
-            "{\"_id\":\"id\",\"_index\":\"index\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":2,\"_shards\":{\"failed\":1,\"failures\":[{\"index\":\"index\",\"node\":\"node\",\"reason\":{\"reason\":\"Failed to create query.\",\"type\":\"query_shard_exception\"},\"shard\":1,\"status\":\"Failed\"}],\"skipped\":1,\"successful\":1,\"total\":3},\"_version\":3}";
+            "{\"_id\":\"id\",\"_index\":\"index\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":2,\"_shards\":{\"failed\":1,\"failures\":[{\"index\":\"index\",\"node\":\"node\",\"primary\":true,\"reason\":{\"reason\":\"Failed to create query.\",\"type\":\"query_shard_exception\"},\"shard\":1,\"status\":\"Failed\"}],\"skipped\":1,\"successful\":1,\"total\":3},\"_version\":3}";
         IndexResponse indexResponse = IndexResponse.of(
             response -> response.result(Result.Created)
                 .index("index")
@@ -42,6 +42,7 @@ public class PlainJsonSerializableTest extends Assert {
                                 .shard(1)
                                 .status("Failed")
                                 .reason(cause -> cause.type("query_shard_exception").reason("Failed to create query."))
+                                .primary(true)
                         )
                 )
         );

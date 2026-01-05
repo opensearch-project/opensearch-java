@@ -90,17 +90,14 @@ public class TermsAggregation extends BucketAggregationBase
     @Nullable
     private final FieldValue missing;
 
-    @Nullable
-    private final Boolean missingBucket;
-
-    @Nullable
-    private final MissingOrder missingOrder;
-
     @Nonnull
     private final List<Map<String, SortOrder>> order;
 
     @Nullable
     private final Script script;
+
+    @Nullable
+    private final Integer shardMinDocCount;
 
     @Nullable
     private final Integer shardSize;
@@ -126,10 +123,9 @@ public class TermsAggregation extends BucketAggregationBase
         this.include = builder.include;
         this.minDocCount = builder.minDocCount;
         this.missing = builder.missing;
-        this.missingBucket = builder.missingBucket;
-        this.missingOrder = builder.missingOrder;
         this.order = ApiTypeHelper.unmodifiable(builder.order);
         this.script = builder.script;
+        this.shardMinDocCount = builder.shardMinDocCount;
         this.shardSize = builder.shardSize;
         this.showTermDocCountError = builder.showTermDocCountError;
         this.size = builder.size;
@@ -216,22 +212,6 @@ public class TermsAggregation extends BucketAggregationBase
     }
 
     /**
-     * API name: {@code missing_bucket}
-     */
-    @Nullable
-    public final Boolean missingBucket() {
-        return this.missingBucket;
-    }
-
-    /**
-     * API name: {@code missing_order}
-     */
-    @Nullable
-    public final MissingOrder missingOrder() {
-        return this.missingOrder;
-    }
-
-    /**
      * API name: {@code order}
      */
     @Nonnull
@@ -245,6 +225,17 @@ public class TermsAggregation extends BucketAggregationBase
     @Nullable
     public final Script script() {
         return this.script;
+    }
+
+    /**
+     * The minimum number of documents in a bucket on each shard for it to be returned.
+     * <p>
+     * API name: {@code shard_min_doc_count}
+     * </p>
+     */
+    @Nullable
+    public final Integer shardMinDocCount() {
+        return this.shardMinDocCount;
     }
 
     /**
@@ -335,16 +326,6 @@ public class TermsAggregation extends BucketAggregationBase
             this.missing.serialize(generator, mapper);
         }
 
-        if (this.missingBucket != null) {
-            generator.writeKey("missing_bucket");
-            generator.write(this.missingBucket);
-        }
-
-        if (this.missingOrder != null) {
-            generator.writeKey("missing_order");
-            this.missingOrder.serialize(generator, mapper);
-        }
-
         if (ApiTypeHelper.isDefined(this.order)) {
             generator.writeKey("order");
             generator.writeStartArray();
@@ -364,6 +345,11 @@ public class TermsAggregation extends BucketAggregationBase
         if (this.script != null) {
             generator.writeKey("script");
             this.script.serialize(generator, mapper);
+        }
+
+        if (this.shardMinDocCount != null) {
+            generator.writeKey("shard_min_doc_count");
+            generator.write(this.shardMinDocCount);
         }
 
         if (this.shardSize != null) {
@@ -423,13 +409,11 @@ public class TermsAggregation extends BucketAggregationBase
         @Nullable
         private FieldValue missing;
         @Nullable
-        private Boolean missingBucket;
-        @Nullable
-        private MissingOrder missingOrder;
-        @Nullable
         private List<Map<String, SortOrder>> order;
         @Nullable
         private Script script;
+        @Nullable
+        private Integer shardMinDocCount;
         @Nullable
         private Integer shardSize;
         @Nullable
@@ -451,10 +435,9 @@ public class TermsAggregation extends BucketAggregationBase
             this.include = o.include;
             this.minDocCount = o.minDocCount;
             this.missing = o.missing;
-            this.missingBucket = o.missingBucket;
-            this.missingOrder = o.missingOrder;
             this.order = _listCopy(o.order);
             this.script = o.script;
+            this.shardMinDocCount = o.shardMinDocCount;
             this.shardSize = o.shardSize;
             this.showTermDocCountError = o.showTermDocCountError;
             this.size = o.size;
@@ -471,10 +454,9 @@ public class TermsAggregation extends BucketAggregationBase
             this.include = o.include;
             this.minDocCount = o.minDocCount;
             this.missing = o.missing;
-            this.missingBucket = o.missingBucket;
-            this.missingOrder = o.missingOrder;
             this.order = _listCopy(o.order);
             this.script = o.script;
+            this.shardMinDocCount = o.shardMinDocCount;
             this.shardSize = o.shardSize;
             this.showTermDocCountError = o.showTermDocCountError;
             this.size = o.size;
@@ -593,24 +575,6 @@ public class TermsAggregation extends BucketAggregationBase
         }
 
         /**
-         * API name: {@code missing_bucket}
-         */
-        @Nonnull
-        public final Builder missingBucket(@Nullable Boolean value) {
-            this.missingBucket = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code missing_order}
-         */
-        @Nonnull
-        public final Builder missingOrder(@Nullable MissingOrder value) {
-            this.missingOrder = value;
-            return this;
-        }
-
-        /**
          * API name: {@code order}
          *
          * <p>
@@ -651,6 +615,18 @@ public class TermsAggregation extends BucketAggregationBase
         @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
             return script(fn.apply(new Script.Builder()).build());
+        }
+
+        /**
+         * The minimum number of documents in a bucket on each shard for it to be returned.
+         * <p>
+         * API name: {@code shard_min_doc_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder shardMinDocCount(@Nullable Integer value) {
+            this.shardMinDocCount = value;
+            return this;
         }
 
         /**
@@ -737,14 +713,13 @@ public class TermsAggregation extends BucketAggregationBase
         op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
         op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
         op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
-        op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
-        op.add(Builder::missingOrder, MissingOrder._DESERIALIZER, "missing_order");
         op.add(
             Builder::order,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(SortOrder._DESERIALIZER)),
             "order"
         );
         op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::shardMinDocCount, JsonpDeserializer.integerDeserializer(), "shard_min_doc_count");
         op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
         op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
@@ -762,10 +737,9 @@ public class TermsAggregation extends BucketAggregationBase
         result = 31 * result + Objects.hashCode(this.include);
         result = 31 * result + Objects.hashCode(this.minDocCount);
         result = 31 * result + Objects.hashCode(this.missing);
-        result = 31 * result + Objects.hashCode(this.missingBucket);
-        result = 31 * result + Objects.hashCode(this.missingOrder);
         result = 31 * result + Objects.hashCode(this.order);
         result = 31 * result + Objects.hashCode(this.script);
+        result = 31 * result + Objects.hashCode(this.shardMinDocCount);
         result = 31 * result + Objects.hashCode(this.shardSize);
         result = 31 * result + Objects.hashCode(this.showTermDocCountError);
         result = 31 * result + Objects.hashCode(this.size);
@@ -789,10 +763,9 @@ public class TermsAggregation extends BucketAggregationBase
             && Objects.equals(this.include, other.include)
             && Objects.equals(this.minDocCount, other.minDocCount)
             && Objects.equals(this.missing, other.missing)
-            && Objects.equals(this.missingBucket, other.missingBucket)
-            && Objects.equals(this.missingOrder, other.missingOrder)
             && Objects.equals(this.order, other.order)
             && Objects.equals(this.script, other.script)
+            && Objects.equals(this.shardMinDocCount, other.shardMinDocCount)
             && Objects.equals(this.shardSize, other.shardSize)
             && Objects.equals(this.showTermDocCountError, other.showTermDocCountError)
             && Objects.equals(this.size, other.size)
