@@ -40591,9 +40591,6 @@ components:
           const: external_gte
           description: The version number must be greater than or equal to the current version.
         - type: string
-          const: force
-          description: The version number is forced to be the given value.
-        - type: string
           const: internal
           description: The version number is managed internally by OpenSearch.
     _common___Void:
@@ -51178,9 +51175,19 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/_core.search___InnerHitsResult'
         matched_queries:
-          type: array
-          items:
-            type: string
+          description: The names of queries that matched the document. When `include_named_queries_score` is false (default), returns an array of query names. When true, returns an object mapping query names to their scores.
+          oneOf:
+            - title: names
+              description: An array of matched query names (default behavior when `include_named_queries_score` is false).
+              type: array
+              items:
+                type: string
+            - title: scores
+              description: A map of matched query names to their scores (when `include_named_queries_score` is true).
+              type: object
+              additionalProperties:
+                type: number
+                format: double
         _nested:
           $ref: '#/components/schemas/_core.search___NestedIdentity'
         _ignored:
@@ -51659,9 +51666,6 @@ components:
             $ref: '#/components/schemas/_common.aggregations___Aggregate'
         _clusters:
           $ref: '#/components/schemas/_common___ClusterStatistics'
-        fields:
-          type: object
-          additionalProperties: true
         num_reduce_phases:
           type: integer
           format: int32

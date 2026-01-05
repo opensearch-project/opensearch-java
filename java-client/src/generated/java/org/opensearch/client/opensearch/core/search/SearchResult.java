@@ -70,9 +70,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     private final ClusterStatistics clusters;
 
     @Nonnull
-    private final Map<String, JsonData> fields;
-
-    @Nonnull
     private final HitsMetadata<TDocument> hits;
 
     @Nullable
@@ -111,7 +108,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     protected SearchResult(AbstractBuilder<TDocument, ?> builder) {
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.clusters = builder.clusters;
-        this.fields = ApiTypeHelper.unmodifiable(builder.fields);
         this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
         this.numReducePhases = builder.numReducePhases;
         this.phaseTook = builder.phaseTook;
@@ -140,14 +136,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     @Nullable
     public final ClusterStatistics clusters() {
         return this.clusters;
-    }
-
-    /**
-     * API name: {@code fields}
-     */
-    @Nonnull
-    public final Map<String, JsonData> fields() {
-        return this.fields;
     }
 
     /**
@@ -265,16 +253,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
             this.clusters.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.fields)) {
-            generator.writeKey("fields");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-
         generator.writeKey("hits");
         this.hits.serialize(generator, mapper);
 
@@ -340,8 +318,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         private Map<String, Aggregate> aggregations;
         @Nullable
         private ClusterStatistics clusters;
-        @Nullable
-        private Map<String, JsonData> fields;
         private HitsMetadata<TDocument> hits;
         @Nullable
         private Integer numReducePhases;
@@ -368,7 +344,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         protected AbstractBuilder(SearchResult<TDocument> o) {
             this.aggregations = _mapCopy(o.aggregations);
             this.clusters = o.clusters;
-            this.fields = _mapCopy(o.fields);
             this.hits = o.hits;
             this.numReducePhases = o.numReducePhases;
             this.phaseTook = o.phaseTook;
@@ -386,7 +361,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         protected AbstractBuilder(AbstractBuilder<TDocument, BuilderT> o) {
             this.aggregations = _mapCopy(o.aggregations);
             this.clusters = o.clusters;
-            this.fields = _mapCopy(o.fields);
             this.hits = o.hits;
             this.numReducePhases = o.numReducePhases;
             this.phaseTook = o.phaseTook;
@@ -457,32 +431,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         @Nonnull
         public final BuilderT clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
             return clusters(fn.apply(new ClusterStatistics.Builder()).build());
-        }
-
-        /**
-         * API name: {@code fields}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>fields</code>.
-         * </p>
-         */
-        @Nonnull
-        public final BuilderT fields(Map<String, JsonData> map) {
-            this.fields = _mapPutAll(this.fields, map);
-            return self();
-        }
-
-        /**
-         * API name: {@code fields}
-         *
-         * <p>
-         * Adds an entry to <code>fields</code>.
-         * </p>
-         */
-        @Nonnull
-        public final BuilderT fields(String key, JsonData value) {
-            this.fields = _mapPut(this.fields, key, value);
-            return self();
         }
 
         /**
@@ -680,7 +628,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     ) {
         op.add(AbstractBuilder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
         op.add(AbstractBuilder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
-        op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
         op.add(AbstractBuilder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
         op.add(AbstractBuilder::numReducePhases, JsonpDeserializer.integerDeserializer(), "num_reduce_phases");
         op.add(AbstractBuilder::phaseTook, PhaseTook._DESERIALIZER, "phase_took");
@@ -708,7 +655,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.aggregations);
         result = 31 * result + Objects.hashCode(this.clusters);
-        result = 31 * result + Objects.hashCode(this.fields);
         result = 31 * result + this.hits.hashCode();
         result = 31 * result + Objects.hashCode(this.numReducePhases);
         result = 31 * result + Objects.hashCode(this.phaseTook);
@@ -731,7 +677,6 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         SearchResult<?> other = (SearchResult<?>) o;
         return Objects.equals(this.aggregations, other.aggregations)
             && Objects.equals(this.clusters, other.clusters)
-            && Objects.equals(this.fields, other.fields)
             && this.hits.equals(other.hits)
             && Objects.equals(this.numReducePhases, other.numReducePhases)
             && Objects.equals(this.phaseTook, other.phaseTook)
