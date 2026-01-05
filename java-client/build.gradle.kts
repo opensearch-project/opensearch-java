@@ -176,11 +176,11 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.0.0-SNAPSHOT"
+val opensearchVersion = "3.5.0-SNAPSHOT"
 
 dependencies {
-    val jacksonVersion = "2.18.3"
-    val jacksonDatabindVersion = "2.18.3"
+    val jacksonVersion = "2.20.1"
+    val jacksonDatabindVersion = "2.20.1"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.5")
@@ -191,7 +191,7 @@ dependencies {
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.5.1") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.6") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
     api("org.apache.httpcomponents.core5:httpcore5:5.4")
@@ -250,6 +250,10 @@ dependencies {
     testImplementation("junit", "junit" , "4.13.2") {
         exclude(group = "org.hamcrest")
     }
+    
+    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
+    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
+    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
 }
 
 licenseReport {
@@ -399,10 +403,4 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     testClassesDirs += java21.output.classesDirs
     classpath = sourceSets["java21"].runtimeClasspath
  }
-} else {
-  dependencies {
-    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
-    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
-    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
-  }
 }
