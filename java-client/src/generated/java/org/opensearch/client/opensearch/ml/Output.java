@@ -59,7 +59,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
 
     private Output(Builder builder) {
         this.byteBuffer = builder.byteBuffer;
-        this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
+        this.data = ApiTypeHelper.unmodifiable(builder.data);
         this.dataType = builder.dataType;
         this.name = builder.name;
         this.result = builder.result;
@@ -79,7 +79,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     }
 
     /**
-     * Required - API name: {@code data}
+     * API name: {@code data}
      */
     @Nonnull
     public final List<Double> data() {
@@ -140,12 +140,14 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
             this.byteBuffer.serialize(generator, mapper);
         }
 
-        generator.writeKey("data");
-        generator.writeStartArray();
-        for (Double item0 : this.data) {
-            generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.data)) {
+            generator.writeKey("data");
+            generator.writeStartArray();
+            for (Double item0 : this.data) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
         if (this.dataType != null) {
             generator.writeKey("data_type");
@@ -191,6 +193,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Output> {
         @Nullable
         private ByteBuffer byteBuffer;
+        @Nullable
         private List<Double> data;
         @Nullable
         private MlResultDataType dataType;
@@ -245,7 +248,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         }
 
         /**
-         * Required - API name: {@code data}
+         * API name: {@code data}
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>data</code>.
@@ -258,7 +261,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         }
 
         /**
-         * Required - API name: {@code data}
+         * API name: {@code data}
          *
          * <p>
          * Adds one or more values to <code>data</code>.
@@ -366,7 +369,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.byteBuffer);
-        result = 31 * result + this.data.hashCode();
+        result = 31 * result + Objects.hashCode(this.data);
         result = 31 * result + Objects.hashCode(this.dataType);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.result);
@@ -380,7 +383,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         if (o == null || this.getClass() != o.getClass()) return false;
         Output other = (Output) o;
         return Objects.equals(this.byteBuffer, other.byteBuffer)
-            && this.data.equals(other.data)
+            && Objects.equals(this.data, other.data)
             && Objects.equals(this.dataType, other.dataType)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.result, other.result)

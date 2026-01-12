@@ -66,6 +66,8 @@ public class CodeGenerator {
                         "search_agents",
                         "search_connectors",
                         "search_memory",
+                        "search_memory_container",
+                        "search_agentic_memory",
                         "search_message",
                         "search_model_group",
                         "search_models",
