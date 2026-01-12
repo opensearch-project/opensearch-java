@@ -5960,6 +5960,234 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_ml/memory_containers/_create:
+    post:
+      operationId: ml.create_memory_container.0
+      x-operation-group: ml.create_memory_container
+      x-version-added: '3.3'
+      description: Create a memory container.
+      requestBody:
+        $ref: '#/components/requestBodies/ml.create_memory_container'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.create_memory_container___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_ml/memory_containers/_search:
+    get:
+      operationId: ml.search_memory_container.1
+      x-operation-group: ml.search_memory_container
+      x-version-added: '3.3'
+      description: Search memory containers.
+      requestBody:
+        $ref: '#/components/requestBodies/ml.search_memory_container'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.search_memory_container___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    post:
+      operationId: ml.search_memory_container.0
+      x-operation-group: ml.search_memory_container
+      x-version-added: '3.3'
+      description: Search memory containers.
+      requestBody:
+        $ref: '#/components/requestBodies/ml.search_memory_container'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.search_memory_container___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_ml/memory_containers/{memory_container_id}:
+    delete:
+      operationId: ml.delete_memory_container.0
+      x-operation-group: ml.delete_memory_container
+      x-version-added: '3.3'
+      description: Delete a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_memory_container___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.delete_memory_container___query.delete_all_memories'
+        - $ref: '#/components/parameters/ml.delete_memory_container___query.delete_memories'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_memory_container___200'
+    get:
+      operationId: ml.get_memory_container.0
+      x-operation-group: ml.get_memory_container
+      x-version-added: '3.3'
+      description: Get a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.get_memory_container___path.memory_container_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_memory_container___200'
+    put:
+      operationId: ml.update_memory_container.0
+      x-operation-group: ml.update_memory_container
+      x-version-added: '3.3'
+      description: Update a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.update_memory_container___path.memory_container_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.update_memory_container'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.update_memory_container___200'
+  /_plugins/_ml/memory_containers/{memory_container_id}/memories:
+    post:
+      operationId: ml.add_agentic_memory.0
+      x-operation-group: ml.add_agentic_memory
+      x-version-added: '3.3'
+      description: Add agentic memory to a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.add_agentic_memory___path.memory_container_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.add_agentic_memory'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.add_agentic_memory___200'
+  /_plugins/_ml/memory_containers/{memory_container_id}/memories/{type}/_delete_by_query:
+    post:
+      operationId: ml.delete_agentic_memory_query.0
+      x-operation-group: ml.delete_agentic_memory_query
+      x-version-added: '3.3'
+      description: Delete multiple memories using a query to match specific criteria.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_agentic_memory_query___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.delete_agentic_memory_query___path.type'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.delete_agentic_memory_query'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_agentic_memory_query___200'
+  /_plugins/_ml/memory_containers/{memory_container_id}/memories/{type}/_search:
+    get:
+      operationId: ml.search_agentic_memory.0
+      x-operation-group: ml.search_agentic_memory
+      x-version-added: '3.3'
+      description: Search for memories of a specific type within a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.search_agentic_memory___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.search_agentic_memory___path.type'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.search_agentic_memory'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.search_agentic_memory___200'
+  /_plugins/_ml/memory_containers/{memory_container_id}/memories/{type}/{id}:
+    delete:
+      operationId: ml.delete_agentic_memory.0
+      x-operation-group: ml.delete_agentic_memory
+      x-version-added: '3.3'
+      description: Delete a specific memory by its type and ID.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_agentic_memory___path.id'
+        - $ref: '#/components/parameters/ml.delete_agentic_memory___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.delete_agentic_memory___path.type'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_agentic_memory___200'
+    get:
+      operationId: ml.get_agentic_memory.0
+      x-operation-group: ml.get_agentic_memory
+      x-version-added: '3.3'
+      description: Get a specific memory by its type and ID.
+      parameters:
+        - $ref: '#/components/parameters/ml.get_agentic_memory___path.id'
+        - $ref: '#/components/parameters/ml.get_agentic_memory___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.get_agentic_memory___path.type'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_agentic_memory___200'
+    put:
+      operationId: ml.update_agentic_memory.0
+      x-operation-group: ml.update_agentic_memory
+      x-version-added: '3.3'
+      description: Update a specific memory by its type and ID.
+      parameters:
+        - $ref: '#/components/parameters/ml.update_agentic_memory___path.id'
+        - $ref: '#/components/parameters/ml.update_agentic_memory___path.memory_container_id'
+        - $ref: '#/components/parameters/ml.update_agentic_memory___path.type'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.update_agentic_memory'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.update_agentic_memory___200'
+  /_plugins/_ml/memory_containers/{memory_container_id}/memories/sessions:
+    post:
+      operationId: ml.create_memory_container_session.0
+      x-operation-group: ml.create_memory_container_session
+      x-version-added: '3.3'
+      description: Create session in a memory container.
+      parameters:
+        - $ref: '#/components/parameters/ml.create_memory_container_session___path.memory_container_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.create_memory_container_session'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.create_memory_container_session___200'
   /_plugins/_ml/memory/_search:
     get:
       operationId: ml.search_memory.0
@@ -6773,6 +7001,24 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_ml/tools/_execute/{tool_name}:
+    post:
+      operationId: ml.execute_tool.0
+      x-operation-group: ml.execute_tool
+      x-version-added: '3.3'
+      description: Execute a tool.
+      parameters:
+        - $ref: '#/components/parameters/ml.execute_tool___path.tool_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.execute_tool'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.execute_tool___200'
   /_plugins/_ml/tools/{tool_name}:
     get:
       operationId: ml.get_tool.0
@@ -25995,6 +26241,12 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Fields'
       style: form
+    ml.add_agentic_memory___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
     ml.chunk_model___path.chunk_number:
       name: chunk_number
       in: path
@@ -26014,6 +26266,12 @@ components:
       required: true
       schema:
         type: string
+    ml.create_memory_container_session___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
     ml.create_message___path.memory_id:
       name: memory_id
       in: path
@@ -26026,6 +26284,36 @@ components:
       required: true
       schema:
         type: string
+    ml.delete_agentic_memory_query___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.delete_agentic_memory_query___path.type:
+      name: type
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ml._common___MemoryType'
+    ml.delete_agentic_memory___path.id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.delete_agentic_memory___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.delete_agentic_memory___path.type:
+      name: type
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ml._common___MemoryType'
     ml.delete_connector___path.connector_id:
       name: connector_id
       in: path
@@ -26038,6 +26326,25 @@ components:
       required: true
       schema:
         type: string
+    ml.delete_memory_container___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.delete_memory_container___query.delete_all_memories:
+      name: delete_all_memories
+      in: query
+      schema:
+        type: boolean
+        default: false
+    ml.delete_memory_container___query.delete_memories:
+      name: delete_memories
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/ml._common___MemoryType'
     ml.delete_memory___path.memory_id:
       name: memory_id
       in: path
@@ -26080,12 +26387,36 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/ml._common___FunctionName'
+    ml.execute_tool___path.tool_name:
+      name: tool_name
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ml._common___ToolName'
     ml.get_agent___path.agent_id:
       name: agent_id
       in: path
       required: true
       schema:
         type: string
+    ml.get_agentic_memory___path.id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.get_agentic_memory___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.get_agentic_memory___path.type:
+      name: type
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ml._common___MemoryType'
     ml.get_all_memories___query.max_results:
       name: max_results
       in: query
@@ -26130,6 +26461,12 @@ components:
         type: string
     ml.get_controller___path.model_id:
       name: model_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.get_memory_container___path.memory_container_id:
+      name: memory_container_id
       in: path
       required: true
       schema:
@@ -26242,6 +26579,18 @@ components:
       required: true
       schema:
         type: string
+    ml.search_agentic_memory___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.search_agentic_memory___path.type:
+      name: type
+      in: path
+      required: true
+      schema:
+        type: string
     ml.search_message___path.memory_id:
       name: memory_id
       in: path
@@ -26272,6 +26621,24 @@ components:
       required: true
       schema:
         type: string
+    ml.update_agentic_memory___path.id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.update_agentic_memory___path.memory_container_id:
+      name: memory_container_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.update_agentic_memory___path.type:
+      name: type
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ml._common___MemoryType'
     ml.update_connector___path.connector_id:
       name: connector_id
       in: path
@@ -26280,6 +26647,12 @@ components:
         type: string
     ml.update_controller___path.model_id:
       name: model_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.update_memory_container___path.memory_container_id:
+      name: memory_container_id
       in: path
       required: true
       schema:
@@ -31065,6 +31438,35 @@ components:
                 $ref: '#/components/schemas/_common___Ids'
             description: Document identifiers; can be either `docs` (containing full document information) or `ids` (when index is provided in the URL.
       required: true
+    ml.add_agentic_memory:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ml._common___Message'
+              structured_data:
+                type: object
+                additionalProperties: true
+              binary_data:
+                type: string
+                description: Binary data content encoded as Base64 string.
+              payload_type:
+                type: string
+                description: The type of payload.
+              namespace:
+                $ref: '#/components/schemas/ml._common___Namespace'
+              metadata:
+                $ref: '#/components/schemas/ml._common___Metadata'
+              tags:
+                type: object
+                additionalProperties: true
+              infer:
+                type: boolean
+                description: Whether to use LLM to extract key information.
     ml.chunk_model:
       content:
         application/json:
@@ -31126,6 +31528,37 @@ components:
             properties:
               name:
                 $ref: '#/components/schemas/_common___Name'
+    ml.create_memory_container:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/_common___Name'
+              description:
+                type: string
+              configuration:
+                $ref: '#/components/schemas/ml._common___MemoryContainerConfiguration'
+            required:
+              - configuration
+              - name
+    ml.create_memory_container_session:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              session_id:
+                type: string
+                description: Custom session ID.
+              summary:
+                type: string
+                description: Session summary or description.
+              metadata:
+                $ref: '#/components/schemas/ml._common___Metadata'
+              namespace:
+                $ref: '#/components/schemas/ml._common___Namespace'
     ml.create_message:
       content:
         application/json:
@@ -31185,6 +31618,14 @@ components:
               - name
               - total_chunks
               - version
+    ml.delete_agentic_memory_query:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query:
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
     ml.execute_agent:
       content:
         application/json:
@@ -31250,6 +31691,14 @@ components:
                   items:
                     type: number
                 description: The metrics input.
+    ml.execute_tool:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              parameters:
+                $ref: '#/components/schemas/ml._common___Parameters'
     ml.get_profile:
       content:
         application/json:
@@ -31432,6 +31881,20 @@ components:
               - name
               - total_chunks
               - version
+    ml.search_agentic_memory:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query:
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+              size:
+                type: integer
+                format: int64
+                description: The number of memory containers to return.
+              sort:
+                $ref: '#/components/schemas/_common___Sort'
     ml.search_agents:
       content:
         application/json:
@@ -31477,6 +31940,20 @@ components:
               sort:
                 $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
+    ml.search_memory_container:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query:
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+              size:
+                type: integer
+                format: int64
+                description: The number of memory containers to return.
+              sort:
+                $ref: '#/components/schemas/_common___Sort'
     ml.search_message:
       content:
         application/json:
@@ -31597,6 +32074,38 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/_common___Id'
+    ml.update_agentic_memory:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              additional_info:
+                $ref: '#/components/schemas/ml._common___AdditionalInfo'
+              agents:
+                type: object
+                additionalProperties: true
+              binary_data:
+                type: object
+                additionalProperties: true
+              memory:
+                type: string
+                description: The updated memory content.
+              messages:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ml._common___Message'
+              metadata:
+                $ref: '#/components/schemas/ml._common___Metadata'
+              structured_data:
+                type: object
+                additionalProperties: true
+              summary:
+                type: string
+                description: The summary of the session.
+              tags:
+                type: object
+                additionalProperties: true
     ml.update_connector:
       content:
         application/json:
@@ -31650,6 +32159,18 @@ components:
             properties:
               name:
                 $ref: '#/components/schemas/_common___Name'
+    ml.update_memory_container:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/_common___Name'
+              description:
+                type: string
+              configuration:
+                $ref: '#/components/schemas/ml._common___MemoryContainerConfiguration'
     ml.update_message:
       content:
         application/json:
@@ -35352,6 +35873,19 @@ components:
             required:
               - docs
       description: ''
+    ml.add_agentic_memory___200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              session_id:
+                type: string
+                description: Session ID associated with the memory.
+              working_memory_id:
+                type: string
+                description: The ID for the creating working memory entry.
+      description: ''
     ml.chunk_model___200:
       content:
         application/json:
@@ -35383,6 +35917,30 @@ components:
                 $ref: '#/components/schemas/_common___Name'
               status:
                 $ref: '#/components/schemas/ml._common___Status'
+      description: ''
+    ml.create_memory_container_session___200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              session_id:
+                type: string
+                description: The ID of the created session.
+              status:
+                type: string
+                description: Satus of the creation operation.
+      description: ''
+    ml.create_memory_container___200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              memory_container_id:
+                type: string
       description: ''
     ml.create_memory___200:
       content:
@@ -35426,6 +35984,18 @@ components:
           schema:
             $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
+    ml.delete_agentic_memory_query___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___DeleteAgenticMemoryResponse'
+      description: ''
+    ml.delete_agentic_memory___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+      description: ''
     ml.delete_connector___200:
       content:
         application/json:
@@ -35433,6 +36003,12 @@ components:
             $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     ml.delete_controller___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+      description: ''
+    ml.delete_memory_container___200:
       content:
         application/json:
           schema:
@@ -35496,11 +36072,23 @@ components:
           schema:
             $ref: '#/components/schemas/ml._common___ExecuteAlgorithmResponse'
       description: ''
+    ml.execute_tool___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___ExecuteToolResponse'
+      description: ''
     ml.get_agent___200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ml._common___GetAgentResponse'
+      description: ''
+    ml.get_agentic_memory___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___GetAgenticMemoryResponse'
       description: ''
     ml.get_all_memories___200:
       content:
@@ -35562,6 +36150,12 @@ components:
                   $ref: '#/components/schemas/ml._common___RateLimiter'
               model_id:
                 $ref: '#/components/schemas/_common___Name'
+      description: ''
+    ml.get_memory_container___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___GetMemoryContainerResponse'
       description: ''
     ml.get_memory___200:
       content:
@@ -35713,6 +36307,12 @@ components:
               - status
               - task_id
       description: ''
+    ml.search_agentic_memory___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___SearchResponse'
+      description: ''
     ml.search_agents___200:
       content:
         application/json:
@@ -35724,6 +36324,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ml._common___SearchConnectorsResponse'
+      description: ''
+    ml.search_memory_container___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___SearchResponse'
       description: ''
     ml.search_memory___200:
       content:
@@ -35779,6 +36385,12 @@ components:
           schema:
             $ref: '#/components/schemas/ml._common___UnloadModelResponse'
       description: ''
+    ml.update_agentic_memory___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+      description: ''
     ml.update_connector___200:
       content:
         application/json:
@@ -35786,6 +36398,12 @@ components:
             $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     ml.update_controller___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+      description: ''
+    ml.update_memory_container___200:
       content:
         application/json:
           schema:
@@ -61676,6 +62294,13 @@ components:
           type: string
         post_process_function:
           type: string
+    ml._common___ActionType:
+      type: string
+      description: The type of operation.
+      enum:
+        - ADD
+        - DELETE
+        - UPDATE
     ml._common___AdditionalConfig:
       type: object
       properties:
@@ -61797,6 +62422,14 @@ components:
       enum:
         - aws_sigv4
         - http
+    ml._common___Content:
+      type: object
+      properties:
+        text:
+          type: string
+        type:
+          type: string
+      additionalProperties: true
     ml._common___Credential:
       type: object
       properties:
@@ -61807,6 +62440,66 @@ components:
         session_token:
           type: string
       additionalProperties: true
+    ml._common___DeleteAgenticMemoryResponse:
+      type: object
+      properties:
+        took:
+          type: integer
+          format: int64
+          description: Time taken to execute the request.
+        timed_out:
+          type: boolean
+          description: Whether the request timed out.
+        total:
+          type: integer
+          format: int64
+          description: Total number of documents processed.
+        updated:
+          type: integer
+          format: int64
+          description: Number of documents updated.
+        created:
+          type: integer
+          format: int64
+          description: Number of documents created.
+        deleted:
+          type: integer
+          format: int64
+          description: Number of documents deleted.
+        batches:
+          type: integer
+          format: int64
+          description: Number of batches processed.
+        version_conflicts:
+          type: integer
+          format: int64
+          description: Number of version conflicts encountered.
+        noops:
+          type: integer
+          format: int64
+          description: Number of no-operation updates.
+        result:
+          type: string
+          description: The result of delete operation.
+        retries:
+          $ref: '#/components/schemas/_common___Retries'
+        throttled_millis:
+          type: integer
+          format: int64
+          description: Time that the request was throttled.
+        requests_per_second:
+          type: number
+          format: float
+          description: Number of requests processed per second.
+        throttled_until_millis:
+          type: integer
+          format: int64
+          description: Time until throttling is lifted.
+        failures:
+          type: array
+          description: Any failures occurred during the operation.
+          items:
+            $ref: '#/components/schemas/_common___BulkByScrollFailure'
     ml._common___Entity:
       type: object
       properties:
@@ -61848,6 +62541,13 @@ components:
         result:
           type: number
           description: The result.
+    ml._common___ExecuteToolResponse:
+      type: object
+      properties:
+        inference_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___InferenceResults'
     ml._common___FunctionName:
       type: string
       description: The function name.
@@ -61890,6 +62590,68 @@ components:
         - text_embedding
         - TEXT_SIMILARITY
         - text_similarity
+    ml._common___GetAgenticMemoryResponse:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/ml._common___ActionType'
+        after:
+          type: object
+          additionalProperties: true
+        before:
+          type: object
+          additionalProperties: true
+        created_time:
+          type: integer
+          format: int64
+          description: The created time.
+        infer:
+          type: boolean
+          description: Whether inference was enabled.
+        last_updated_time:
+          type: integer
+          format: int64
+          description: The last updated time.
+        memory:
+          type: string
+          description: The extracted long-term memory fact.
+        memory_embedding:
+          type: array
+          items:
+            type: number
+            format: double
+            description: The output data.
+        memory_id:
+          type: string
+          description: The ID of the memory.
+        memory_container_id:
+          type: string
+          description: The ID of the memory container.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Message'
+        metadata:
+          $ref: '#/components/schemas/ml._common___Metadata'
+        namespace:
+          $ref: '#/components/schemas/ml._common___Namespace'
+        namespace_size:
+          type: integer
+          format: int64
+          description: The number of namespaces.
+        owner_id:
+          type: string
+          description: The ID of the memory owner.
+        payload_type:
+          $ref: '#/components/schemas/ml._common___PayloadType'
+        strategy_id:
+          type: string
+          description: The ID for the strategy instance.
+        strategy_type:
+          $ref: '#/components/schemas/ml._common___StrategyType'
+        tags:
+          type: object
+          additionalProperties: true
     ml._common___GetAgentResponse:
       type: object
       properties:
@@ -61941,6 +62703,26 @@ components:
           type: integer
           format: int64
           description: The last updated time.
+    ml._common___GetMemoryContainerResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/_common___Name'
+        description:
+          type: string
+          description: The memory container description.
+        owner:
+          $ref: '#/components/schemas/ml._common___Owner'
+        created_time:
+          type: integer
+          format: int64
+          description: The created time.
+        last_updated_time:
+          type: integer
+          format: int64
+          description: The last updated time.
+        configuration:
+          $ref: '#/components/schemas/ml._common___MemoryContainerConfiguration'
     ml._common___GetProfileResponse:
       type: object
       properties:
@@ -62040,6 +62822,28 @@ components:
       required:
         - relation
         - value
+    ml._common___Index:
+      type: object
+      properties:
+        number_of_shards:
+          type: string
+          description: The number of shards.
+        number_of_replicas:
+          type: string
+          description: The number of replicas.
+      additionalProperties: true
+    ml._common___IndexSettings:
+      type: object
+      properties:
+        session_index:
+          $ref: '#/components/schemas/ml._common___MemoryIndexSettings'
+        short_term_memory_index:
+          $ref: '#/components/schemas/ml._common___MemoryIndexSettings'
+        long_term_memory_index:
+          $ref: '#/components/schemas/ml._common___MemoryIndexSettings'
+        long_term_memory_history_index:
+          $ref: '#/components/schemas/ml._common___MemoryIndexSettings'
+      additionalProperties: true
     ml._common___InferenceResults:
       type: object
       properties:
@@ -62102,6 +62906,58 @@ components:
           description: The username of the user.
         additional_info:
           $ref: '#/components/schemas/ml._common___AdditionalInfo'
+    ml._common___MemoryContainerConfiguration:
+      type: object
+      properties:
+        embedding_model_type:
+          type: string
+          description: The embedding model type.
+        embedding_model_id:
+          type: string
+          description: The embedding model ID.
+        embedding_dimension:
+          type: integer
+          format: int64
+          description: The embedding dimension.
+        llm_id:
+          type: string
+          description: The LLM ID.
+        index_prefix:
+          type: string
+          description: Custom prefix for memory indices.
+        use_system_index:
+          type: boolean
+          description: Whether to use system indices.
+        disable_history:
+          type: boolean
+          description: Whether history will be persisted.
+        disable_session:
+          type: boolean
+          description: Whether session will be persisted.
+        max_infer_size:
+          type: integer
+          format: int64
+          description: The maximum number of similar memories retrieved during consolidation.
+        index_settings:
+          $ref: '#/components/schemas/ml._common___IndexSettings'
+        strategies:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Strategy'
+        parameters:
+          $ref: '#/components/schemas/ml._common___Parameters'
+    ml._common___MemoryIndexSettings:
+      type: object
+      properties:
+        index:
+          $ref: '#/components/schemas/ml._common___Index'
+    ml._common___MemoryType:
+      type: string
+      enum:
+        - history
+        - long-term
+        - sessions
+        - working
     ml._common___Message:
       type: object
       properties:
@@ -62144,6 +63000,16 @@ components:
           type: integer
           format: int64
           description: The trace number.
+        role:
+          type: string
+          description: The role of the message.
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Content'
+    ml._common___Metadata:
+      type: object
+      additionalProperties: true
     ml._common___MlIndexStatus:
       type: string
       enum:
@@ -62385,6 +63251,9 @@ components:
           type: integer
           format: int64
           description: The executing task count.
+    ml._common___Namespace:
+      type: object
+      additionalProperties: true
     ml._common___Node:
       type: object
       properties:
@@ -62456,8 +63325,6 @@ components:
         result:
           type: string
           description: The output result.
-      required:
-        - data
     ml._common___Owner:
       type: object
       properties:
@@ -62483,11 +63350,20 @@ components:
             - 'null'
             - string
           description: The user requested tenant.
+        user_requested_tenant_access:
+          type: string
+          description: The user requested tenant access.
       required:
         - name
     ml._common___Parameters:
       type: object
       additionalProperties: true
+    ml._common___PayloadType:
+      type: string
+      description: The type of payload.
+      enum:
+        - conversational
+        - data
     ml._common___PredictionResult:
       type: object
       properties:
@@ -62906,6 +63782,22 @@ components:
         error:
           type: string
           description: The error message.
+        configuration:
+          $ref: '#/components/schemas/ml._common___MemoryContainerConfiguration'
+        payload_type:
+          $ref: '#/components/schemas/ml._common___PayloadType'
+        metadata:
+          $ref: '#/components/schemas/ml._common___Metadata'
+        namespace:
+          $ref: '#/components/schemas/ml._common___Namespace'
+        namespace_size:
+          type: integer
+          format: int64
+          description: The number of namespaces.
+        owner_id:
+          type: string
+          description: The ID of the memory owner.
+      additionalProperties: true
     ml._common___Status:
       type: string
       description: The status.
@@ -62916,6 +63808,43 @@ components:
         - CREATED
         - FAILED
         - RUNNING
+    ml._common___Strategy:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ml._common___StrategyType'
+        namespace:
+          type: array
+          items:
+            type: string
+          description: The namespace.
+        configuration:
+          $ref: '#/components/schemas/ml._common___StrategyConfiguration'
+        enabled:
+          type: boolean
+          description: Whether to enable the strategy.
+        id:
+          type: string
+          description: The strategy ID.
+    ml._common___StrategyConfiguration:
+      type: object
+      properties:
+        llm_result_path:
+          type: string
+          description: JSONPath expression for extracting LLM results from responses.
+        system_prompt:
+          type: string
+          description: Custom system prompt to override default strategy prompt.
+        llm_id:
+          type: string
+          description: The LLM ID for strategy.
+    ml._common___StrategyType:
+      type: string
+      description: The strategy type.
+      enum:
+        - SEMANTIC
+        - SUMMARY
+        - USER_PREFERENCE
     ml._common___Task:
       type: object
       properties:
@@ -63015,7 +63944,9 @@ components:
         - MLModelTool
         - NeuralSparseSearchTool
         - PPLTool
+        - QueryPlanningTool
         - RAGTool
+        - ReadFromScratchPadTool
         - SearchAlertsTool
         - SearchAnomalyDetectorsTool
         - SearchAnomalyResultsTool
@@ -63023,6 +63954,7 @@ components:
         - SearchMonitorsTool
         - VectorDBTool
         - VisualizationTool
+        - WriteToScratchPadTool
     ml._common___TrainParameters:
       type: object
       properties:

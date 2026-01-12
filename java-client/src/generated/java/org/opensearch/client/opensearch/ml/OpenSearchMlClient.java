@@ -40,6 +40,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return new OpenSearchMlClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.add_agentic_memory
+
+    /**
+     * Add agentic memory to a memory container.
+     */
+    public AddAgenticMemoryResponse addAgenticMemory(AddAgenticMemoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, AddAgenticMemoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Add agentic memory to a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link AddAgenticMemoryRequest}
+     */
+    public final AddAgenticMemoryResponse addAgenticMemory(
+        Function<AddAgenticMemoryRequest.Builder, ObjectBuilder<AddAgenticMemoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return addAgenticMemory(fn.apply(new AddAgenticMemoryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.create_connector
 
     /**
@@ -105,6 +125,48 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return createMemory(new CreateMemoryRequest.Builder().build());
     }
 
+    // ----- Endpoint: ml.create_memory_container
+
+    /**
+     * Create a memory container.
+     */
+    public CreateMemoryContainerResponse createMemoryContainer(CreateMemoryContainerRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, CreateMemoryContainerRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Create a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateMemoryContainerRequest}
+     */
+    public final CreateMemoryContainerResponse createMemoryContainer(
+        Function<CreateMemoryContainerRequest.Builder, ObjectBuilder<CreateMemoryContainerRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createMemoryContainer(fn.apply(new CreateMemoryContainerRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.create_memory_container_session
+
+    /**
+     * Create session in a memory container.
+     */
+    public CreateMemoryContainerSessionResponse createMemoryContainerSession(CreateMemoryContainerSessionRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateMemoryContainerSessionRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Create session in a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateMemoryContainerSessionRequest}
+     */
+    public final CreateMemoryContainerSessionResponse createMemoryContainerSession(
+        Function<CreateMemoryContainerSessionRequest.Builder, ObjectBuilder<CreateMemoryContainerSessionRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createMemoryContainerSession(fn.apply(new CreateMemoryContainerSessionRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.create_message
 
     /**
@@ -164,6 +226,47 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return deleteAgent(fn.apply(new DeleteAgentRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.delete_agentic_memory
+
+    /**
+     * Delete a specific memory by its type and ID.
+     */
+    public DeleteAgenticMemoryResponse deleteAgenticMemory(DeleteAgenticMemoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteAgenticMemoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete a specific memory by its type and ID.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAgenticMemoryRequest}
+     */
+    public final DeleteAgenticMemoryResponse deleteAgenticMemory(
+        Function<DeleteAgenticMemoryRequest.Builder, ObjectBuilder<DeleteAgenticMemoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAgenticMemory(fn.apply(new DeleteAgenticMemoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_agentic_memory_query
+
+    /**
+     * Delete multiple memories using a query to match specific criteria.
+     */
+    public DeleteAgenticMemoryQueryResponse deleteAgenticMemoryQuery(DeleteAgenticMemoryQueryRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, DeleteAgenticMemoryQueryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete multiple memories using a query to match specific criteria.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAgenticMemoryQueryRequest}
+     */
+    public final DeleteAgenticMemoryQueryResponse deleteAgenticMemoryQuery(
+        Function<DeleteAgenticMemoryQueryRequest.Builder, ObjectBuilder<DeleteAgenticMemoryQueryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAgenticMemoryQuery(fn.apply(new DeleteAgenticMemoryQueryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.delete_connector
 
     /**
@@ -220,6 +323,27 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final DeleteMemoryResponse deleteMemory(Function<DeleteMemoryRequest.Builder, ObjectBuilder<DeleteMemoryRequest>> fn)
         throws IOException, OpenSearchException {
         return deleteMemory(fn.apply(new DeleteMemoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_memory_container
+
+    /**
+     * Delete a memory container.
+     */
+    public DeleteMemoryContainerResponse deleteMemoryContainer(DeleteMemoryContainerRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, DeleteMemoryContainerRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteMemoryContainerRequest}
+     */
+    public final DeleteMemoryContainerResponse deleteMemoryContainer(
+        Function<DeleteMemoryContainerRequest.Builder, ObjectBuilder<DeleteMemoryContainerRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteMemoryContainer(fn.apply(new DeleteMemoryContainerRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.delete_model
@@ -318,6 +442,25 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return executeAgent(fn.apply(new ExecuteAgentRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.execute_tool
+
+    /**
+     * Execute a tool.
+     */
+    public ExecuteToolResponse executeTool(ExecuteToolRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExecuteToolRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Execute a tool.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExecuteToolRequest}
+     */
+    public final ExecuteToolResponse executeTool(Function<ExecuteToolRequest.Builder, ObjectBuilder<ExecuteToolRequest>> fn)
+        throws IOException, OpenSearchException {
+        return executeTool(fn.apply(new ExecuteToolRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.get_agent
 
     /**
@@ -335,6 +478,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final GetAgentResponse getAgent(Function<GetAgentRequest.Builder, ObjectBuilder<GetAgentRequest>> fn) throws IOException,
         OpenSearchException {
         return getAgent(fn.apply(new GetAgentRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.get_agentic_memory
+
+    /**
+     * Get a specific memory by its type and ID.
+     */
+    public GetAgenticMemoryResponse getAgenticMemory(GetAgenticMemoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetAgenticMemoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get a specific memory by its type and ID.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetAgenticMemoryRequest}
+     */
+    public final GetAgenticMemoryResponse getAgenticMemory(
+        Function<GetAgenticMemoryRequest.Builder, ObjectBuilder<GetAgenticMemoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getAgenticMemory(fn.apply(new GetAgenticMemoryRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.get_all_memories
@@ -463,6 +626,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final GetMemoryResponse getMemory(Function<GetMemoryRequest.Builder, ObjectBuilder<GetMemoryRequest>> fn) throws IOException,
         OpenSearchException {
         return getMemory(fn.apply(new GetMemoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.get_memory_container
+
+    /**
+     * Get a memory container.
+     */
+    public GetMemoryContainerResponse getMemoryContainer(GetMemoryContainerRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetMemoryContainerRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetMemoryContainerRequest}
+     */
+    public final GetMemoryContainerResponse getMemoryContainer(
+        Function<GetMemoryContainerRequest.Builder, ObjectBuilder<GetMemoryContainerRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getMemoryContainer(fn.apply(new GetMemoryContainerRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.get_message
@@ -839,6 +1022,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return unloadModel(new UnloadModelRequest.Builder().build());
     }
 
+    // ----- Endpoint: ml.update_agentic_memory
+
+    /**
+     * Update a specific memory by its type and ID.
+     */
+    public UpdateAgenticMemoryResponse updateAgenticMemory(UpdateAgenticMemoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, UpdateAgenticMemoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Update a specific memory by its type and ID.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpdateAgenticMemoryRequest}
+     */
+    public final UpdateAgenticMemoryResponse updateAgenticMemory(
+        Function<UpdateAgenticMemoryRequest.Builder, ObjectBuilder<UpdateAgenticMemoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return updateAgenticMemory(fn.apply(new UpdateAgenticMemoryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.update_connector
 
     /**
@@ -895,6 +1098,27 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final UpdateMemoryResponse updateMemory(Function<UpdateMemoryRequest.Builder, ObjectBuilder<UpdateMemoryRequest>> fn)
         throws IOException, OpenSearchException {
         return updateMemory(fn.apply(new UpdateMemoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.update_memory_container
+
+    /**
+     * Update a memory container.
+     */
+    public UpdateMemoryContainerResponse updateMemoryContainer(UpdateMemoryContainerRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, UpdateMemoryContainerRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Update a memory container.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpdateMemoryContainerRequest}
+     */
+    public final UpdateMemoryContainerResponse updateMemoryContainer(
+        Function<UpdateMemoryContainerRequest.Builder, ObjectBuilder<UpdateMemoryContainerRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return updateMemoryContainer(fn.apply(new UpdateMemoryContainerRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.update_message

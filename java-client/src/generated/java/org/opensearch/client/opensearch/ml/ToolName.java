@@ -41,7 +41,11 @@ public enum ToolName implements JsonEnum {
 
     PplTool("PPLTool"),
 
+    QueryPlanningTool("QueryPlanningTool"),
+
     RagTool("RAGTool"),
+
+    ReadFromScratchPadTool("ReadFromScratchPadTool"),
 
     SearchAlertsTool("SearchAlertsTool"),
 
@@ -55,7 +59,9 @@ public enum ToolName implements JsonEnum {
 
     VectorDbTool("VectorDBTool"),
 
-    VisualizationTool("VisualizationTool");
+    VisualizationTool("VisualizationTool"),
+
+    WriteToScratchPadTool("WriteToScratchPadTool");
 
     private final String jsonValue;
 
