@@ -3,13 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
-- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
-- Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
-- Added BulkIngester helper for efficient bulk operations with buffering, retries, and backpressure. Ported from elasticsearch-java (commit e7120d4) ([#1809](https://github.com/opensearch-project/opensearch-java/pull/1809))
-- Added equals and hashCode implementation to JsonDataImpl ([#1803](https://github.com/opensearch-project/opensearch-java/pull/1838))
 
 ### Dependencies
-- Bump `com.github.jk1.dependency-license-report` from 2.9 to 3.0.1 ([#1779](https://github.com/opensearch-project/opensearch-java/pull/1779), [#1781](https://github.com/opensearch-project/opensearch-java/pull/1781))
 
 ### Changed
 
@@ -25,6 +20,26 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.5.0] - 01/15/2026
+### Added
+- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
+- Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
+- Added BulkIngester helper for efficient bulk operations with buffering, retries, and backpressure. Ported from elasticsearch-java (commit e7120d4) ([#1809](https://github.com/opensearch-project/opensearch-java/pull/1809))
+- Added equals and hashCode implementation to JsonDataImpl ([#1803](https://github.com/opensearch-project/opensearch-java/pull/1838))
+
+### Dependencies
+- Bump `com.github.jk1.dependency-license-report` from 2.9 to 3.0.1 ([#1779](https://github.com/opensearch-project/opensearch-java/pull/1779), [#1781](https://github.com/opensearch-project/opensearch-java/pull/1781))
 
 ### Changed
 
@@ -602,8 +617,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.4.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.1.0...v3.2.0
