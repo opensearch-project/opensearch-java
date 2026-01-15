@@ -56,7 +56,6 @@ import org.apache.hc.client5.http.auth.Credentials;
 import org.apache.hc.client5.http.auth.CredentialsProvider;
 import org.apache.hc.client5.http.classic.methods.HttpHead;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
-import org.apache.hc.client5.http.entity.GzipDecompressingEntity;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.auth.BasicAuthCache;
 import org.apache.hc.client5.http.impl.auth.BasicScheme;
@@ -303,12 +302,6 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final WarningsHandler warningsHandler
     ) throws IOException {
         int statusCode = httpResponse.getCode();
-
-        Optional.ofNullable(httpResponse.getEntity())
-            .map(HttpEntity::getContentEncoding)
-            .filter("gzip"::equalsIgnoreCase)
-            .map(gzipHeaderValue -> new GzipDecompressingEntity(httpResponse.getEntity()))
-            .ifPresent(httpResponse::setEntity);
 
         Response response = new Response(new RequestLine(request), node.getHost(), httpResponse);
         Set<Integer> ignoreErrorCodes = getIgnoreErrorCodes("400,401,403,404,405", request.getMethod());

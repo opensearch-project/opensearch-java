@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.6 [#1844](https://github.com/opensearch-project/opensearch-java/pull/1844)
 
 ### Changed
 
