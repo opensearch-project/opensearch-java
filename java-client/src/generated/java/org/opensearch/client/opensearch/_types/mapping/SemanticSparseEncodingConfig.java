@@ -34,61 +34,67 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types.query_dsl;
+package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.query_dsl.PinnedDoc
+// typedef: _types.mapping.SemanticSparseEncodingConfig
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PinnedDoc implements PlainJsonSerializable, ToCopyableBuilder<PinnedDoc.Builder, PinnedDoc> {
+public class SemanticSparseEncodingConfig
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SemanticSparseEncodingConfig.Builder, SemanticSparseEncodingConfig> {
 
-    @Nonnull
-    private final String id;
+    @Nullable
+    private final Number pruneRatio;
 
-    @Nonnull
-    private final String index;
+    @Nullable
+    private final String pruneType;
 
     // ---------------------------------------------------------------------------------------------
 
-    private PinnedDoc(Builder builder) {
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+    private SemanticSparseEncodingConfig(Builder builder) {
+        this.pruneRatio = builder.pruneRatio;
+        this.pruneType = builder.pruneType;
     }
 
-    public static PinnedDoc of(Function<PinnedDoc.Builder, ObjectBuilder<PinnedDoc>> fn) {
+    public static SemanticSparseEncodingConfig of(
+        Function<SemanticSparseEncodingConfig.Builder, ObjectBuilder<SemanticSparseEncodingConfig>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code _id}
+     * API name: {@code prune_ratio}
      */
-    @Nonnull
-    public final String id() {
-        return this.id;
+    @Nullable
+    public final Number pruneRatio() {
+        return this.pruneRatio;
     }
 
     /**
-     * Required - API name: {@code _index}
+     * API name: {@code prune_type}
      */
-    @Nonnull
-    public final String index() {
-        return this.index;
+    @Nullable
+    public final String pruneType() {
+        return this.pruneType;
     }
 
     /**
@@ -102,11 +108,15 @@ public class PinnedDoc implements PlainJsonSerializable, ToCopyableBuilder<Pinne
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("_id");
-        generator.write(this.id);
+        if (this.pruneRatio != null) {
+            generator.writeKey("prune_ratio");
+            generator.write(this.pruneRatio.doubleValue());
+        }
 
-        generator.writeKey("_index");
-        generator.write(this.index);
+        if (this.pruneType != null) {
+            generator.writeKey("prune_type");
+            generator.write(this.pruneType);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -123,22 +133,24 @@ public class PinnedDoc implements PlainJsonSerializable, ToCopyableBuilder<Pinne
     }
 
     /**
-     * Builder for {@link PinnedDoc}.
+     * Builder for {@link SemanticSparseEncodingConfig}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PinnedDoc> {
-        private String id;
-        private String index;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SemanticSparseEncodingConfig> {
+        @Nullable
+        private Number pruneRatio;
+        @Nullable
+        private String pruneType;
 
         public Builder() {}
 
-        private Builder(PinnedDoc o) {
-            this.id = o.id;
-            this.index = o.index;
+        private Builder(SemanticSparseEncodingConfig o) {
+            this.pruneRatio = o.pruneRatio;
+            this.pruneType = o.pruneType;
         }
 
         private Builder(Builder o) {
-            this.id = o.id;
-            this.index = o.index;
+            this.pruneRatio = o.pruneRatio;
+            this.pruneType = o.pruneType;
         }
 
         @Override
@@ -148,57 +160,57 @@ public class PinnedDoc implements PlainJsonSerializable, ToCopyableBuilder<Pinne
         }
 
         /**
-         * Required - API name: {@code _id}
+         * API name: {@code prune_ratio}
          */
         @Nonnull
-        public final Builder id(String value) {
-            this.id = value;
+        public final Builder pruneRatio(@Nullable Number value) {
+            this.pruneRatio = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code _index}
+         * API name: {@code prune_type}
          */
         @Nonnull
-        public final Builder index(String value) {
-            this.index = value;
+        public final Builder pruneType(@Nullable String value) {
+            this.pruneType = value;
             return this;
         }
 
         /**
-         * Builds a {@link PinnedDoc}.
+         * Builds a {@link SemanticSparseEncodingConfig}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public PinnedDoc build() {
+        public SemanticSparseEncodingConfig build() {
             _checkSingleUse();
 
-            return new PinnedDoc(this);
+            return new SemanticSparseEncodingConfig(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link PinnedDoc}
+     * Json deserializer for {@link SemanticSparseEncodingConfig}
      */
-    public static final JsonpDeserializer<PinnedDoc> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SemanticSparseEncodingConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        PinnedDoc::setupPinnedDocDeserializer
+        SemanticSparseEncodingConfig::setupSemanticSparseEncodingConfigDeserializer
     );
 
-    protected static void setupPinnedDocDeserializer(ObjectDeserializer<PinnedDoc.Builder> op) {
-        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+    protected static void setupSemanticSparseEncodingConfigDeserializer(ObjectDeserializer<SemanticSparseEncodingConfig.Builder> op) {
+        op.add(Builder::pruneRatio, JsonpDeserializer.numberDeserializer(), "prune_ratio");
+        op.add(Builder::pruneType, JsonpDeserializer.stringDeserializer(), "prune_type");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.id.hashCode();
-        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.pruneRatio);
+        result = 31 * result + Objects.hashCode(this.pruneType);
         return result;
     }
 
@@ -206,7 +218,7 @@ public class PinnedDoc implements PlainJsonSerializable, ToCopyableBuilder<Pinne
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        PinnedDoc other = (PinnedDoc) o;
-        return this.id.equals(other.id) && this.index.equals(other.index);
+        SemanticSparseEncodingConfig other = (SemanticSparseEncodingConfig) o;
+        return Objects.equals(this.pruneRatio, other.pruneRatio) && Objects.equals(this.pruneType, other.pruneType);
     }
 }

@@ -103,6 +103,10 @@ public class Overrides {
                     schema("_common", "SortOptions"),
                     so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("SortOptions"))
                 )
+                .with(
+                    schema("_common", "SortCombinations"),
+                    so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("SortOptions"))
+                )
 
                 .with(
                     schema("_common", "GetStats"),
@@ -111,6 +115,10 @@ public class Overrides {
                     )
                 )
                 .with(schema("_common", "PhaseTook"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(
+                    schema("_common", "FieldSort"),
+                    so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("FieldSort"))
+                )
 
                 .with(schema("_common.aggregations", "Aggregate"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))

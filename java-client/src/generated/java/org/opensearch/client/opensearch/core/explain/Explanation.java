@@ -67,8 +67,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     @Nonnull
     private final List<Explanation> details;
 
-    @Nonnull
-    private final Number value;
+    private final float value;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -101,8 +100,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     /**
      * Required - API name: {@code value}
      */
-    @Nonnull
-    public final Number value() {
+    public final float value() {
         return this.value;
     }
 
@@ -130,7 +128,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         }
 
         generator.writeKey("value");
-        generator.write(this.value.doubleValue());
+        generator.write(this.value);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -153,7 +151,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         private String description;
         @Nullable
         private List<Explanation> details;
-        private Number value;
+        private Float value;
 
         public Builder() {}
 
@@ -226,7 +224,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
          * Required - API name: {@code value}
          */
         @Nonnull
-        public final Builder value(Number value) {
+        public final Builder value(float value) {
             this.value = value;
             return this;
         }
@@ -258,7 +256,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     protected static void setupExplanationDeserializer(ObjectDeserializer<Explanation.Builder> op) {
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::details, JsonpDeserializer.arrayDeserializer(Explanation._DESERIALIZER), "details");
-        op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+        op.add(Builder::value, JsonpDeserializer.floatDeserializer(), "value");
     }
 
     @Override
@@ -266,7 +264,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         int result = 17;
         result = 31 * result + this.description.hashCode();
         result = 31 * result + Objects.hashCode(this.details);
-        result = 31 * result + this.value.hashCode();
+        result = 31 * result + Float.hashCode(this.value);
         return result;
     }
 
@@ -275,6 +273,6 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Explanation other = (Explanation) o;
-        return this.description.equals(other.description) && Objects.equals(this.details, other.details) && this.value.equals(other.value);
+        return this.description.equals(other.description) && Objects.equals(this.details, other.details) && this.value == other.value;
     }
 }
