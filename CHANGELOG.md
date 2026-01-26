@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bump `gradle-wrapper` from 9.2.0 to 9.3.0 ([#1862](https://github.com/opensearch-project/opensearch-java/pull/1862))
 
 ### Changed
 
