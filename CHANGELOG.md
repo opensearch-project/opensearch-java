@@ -5,6 +5,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bump `de.undercouch.download` from 5.6.0 to 5.7.0 ([#1867](https://github.com/opensearch-project/opensearch-java/pull/1867))
+- Bump `org.owasp.dependencycheck` from 12.1.2 to 12.2.0 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742), [#1754](https://github.com/opensearch-project/opensearch-java/pull/1754), [#1765](https://github.com/opensearch-project/opensearch-java/pull/1765), [#1796](https://github.com/opensearch-project/opensearch-java/pull/1796), [#1854](https://github.com/opensearch-project/opensearch-java/pull/1854))
 - Bump `gradle-wrapper` from 9.3.0 to 9.3.1 ([#1864](https://github.com/opensearch-project/opensearch-java/pull/1864))
 - Bump `gradle-wrapper` from 9.2.0 to 9.3.0 ([#1862](https://github.com/opensearch-project/opensearch-java/pull/1862))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.6 [#1844](https://github.com/opensearch-project/opensearch-java/pull/1844)
