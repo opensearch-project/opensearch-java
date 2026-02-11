@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bump `gradle-wrapper` from 9.2.0 to 9.3.0 ([#1862](https://github.com/opensearch-project/opensearch-java/pull/1862))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.6 [#1844](https://github.com/opensearch-project/opensearch-java/pull/1844)
 
 ### Changed
 
