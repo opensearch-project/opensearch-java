@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bump `org.apache.httpcomponents.core5:httpcore5` from 5.4 to 5.4.1 ([#1883](https://github.com/opensearch-project/opensearch-java/pull/1883))
 
 ### Changed
 
