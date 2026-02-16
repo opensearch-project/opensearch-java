@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.4 to 5.4.1 ([#1883](https://github.com/opensearch-project/opensearch-java/pull/1883))
+- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.3 to 2.8.4 ([#1882](https://github.com/opensearch-project/opensearch-java/pull/1882))
 
 ### Changed
 
