@@ -220,16 +220,25 @@ public class ApacheHttpClient5Options implements TransportOptions {
     }
 
     static ApacheHttpClient5Options of(TransportOptions options) {
+        if (options == null) return DEFAULT;
+
         if (options instanceof ApacheHttpClient5Options) {
             return (ApacheHttpClient5Options) options;
-
-        } else {
-            final Builder builder = new Builder(DEFAULT.toBuilder());
-            options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
-            options.queryParameters().forEach(builder::setParameter);
-            builder.onWarnings(options.onWarnings());
-            return builder.build();
         }
+
+        final Builder builder = new Builder(DEFAULT.toBuilder());
+        final Collection<Entry<String, String>> headers = options.headers();
+        if (headers != null && !headers.isEmpty()) {
+            headers.forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
+        }
+
+        final Map<String, String> parameters = options.queryParameters();
+        if (parameters != null && !parameters.isEmpty()) {
+            parameters.forEach(builder::setParameter);
+        }
+
+        builder.onWarnings(options.onWarnings());
+        return builder.build();
     }
 
     /**
