@@ -4,29 +4,32 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.entry.os }}
     strategy:
       fail-fast: false
       matrix:
         entry:
-          - { opensearch_version: 1.0.1, java: 21 }
-          - { opensearch_version: 1.1.0, java: 21 }
-          - { opensearch_version: 1.2.4, java: 21 }
-          - { opensearch_version: 1.3.20, java: 21 }
-          - { opensearch_version: 2.0.1, java: 21 }
-          - { opensearch_version: 2.2.1, java: 21 }
-          - { opensearch_version: 2.4.1, java: 21 }
-          - { opensearch_version: 2.6.0, java: 21 }
-          - { opensearch_version: 2.8.0, java: 21 }
-          - { opensearch_version: 2.10.0, java: 21 }
-          - { opensearch_version: 2.12.0, java: 21 }
-          - { opensearch_version: 2.14.0, java: 21 }
-          - { opensearch_version: 2.16.0, java: 21 }
-          - { opensearch_version: 2.18.0, java: 21 }
-          - { opensearch_version: 2.19.2, java: 21 }
-          - { opensearch_version: 3.0.0, java: 21 }
-          - { opensearch_version: 3.2.0, java: 21 }
-          - { opensearch_version: 3.2.0, java: 25 }
+          - { opensearch_version: 1.0.1, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 1.1.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 1.2.4, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 1.3.20, java: 21, os: ubuntu-latest }
+          # Fixing the Docker version due to regression on container startup for some JDKs: 
+          #   Could not reconfigure JMX java.lang.NullPointerException: Cannot invoke 
+          #     "jdk.internal.platform.CgroupInfo.getMountPoint()" because "anyController" is null
+          - { opensearch_version: 2.0.1, java: 21, os: ubuntu-22.04 }
+          - { opensearch_version: 2.2.1, java: 21, os: ubuntu-22.04 }
+          - { opensearch_version: 2.4.1, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.6.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.8.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.10.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.12.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.14.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.16.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.18.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 2.19.2, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 3.0.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 3.2.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 3.2.0, java: 25, os: ubuntu-latest }
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@v6
@@ -37,10 +40,10 @@ jobs:
           java-version: ${{ matrix.entry.java }}
           distribution: 'temurin'
           cache: 'gradle'
-
       - name: Run Docker
         run: |
           echo "PASSWORD=admin" >> $GITHUB_ENV
+          docker info
           docker compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           docker compose --project-directory .ci/opensearch up -d
           sleep 60
