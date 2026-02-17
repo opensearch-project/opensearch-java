@@ -30,6 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix NPEs while converting transport options when null options, headers, or query parameters are provided ([#1887](https://github.com/opensearch-project/opensearch-java/pull/1888))
 
 ### Security
 
