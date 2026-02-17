@@ -38,51 +38,53 @@ package org.opensearch.client.opensearch.search_relevance;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_relevance.get_judgments.Request
+// typedef: search_relevance.delete_scheduled_experiments.Request
 
 /**
- * Gets judgments.
+ * Deletes a specified scheduled experiment.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class GetJudgmentsRequest extends RequestBase implements ToCopyableBuilder<GetJudgmentsRequest.Builder, GetJudgmentsRequest> {
+public final class DeleteScheduledExperimentsRequest extends RequestBase
+    implements
+        ToCopyableBuilder<DeleteScheduledExperimentsRequest.Builder, DeleteScheduledExperimentsRequest> {
 
-    @Nullable
-    private final String judgmentId;
+    @Nonnull
+    private final String experimentId;
 
     // ---------------------------------------------------------------------------------------------
 
-    private GetJudgmentsRequest(Builder builder) {
+    private DeleteScheduledExperimentsRequest(Builder builder) {
         super(builder);
-        this.judgmentId = builder.judgmentId;
+        this.experimentId = ApiTypeHelper.requireNonNull(builder.experimentId, this, "experimentId");
     }
 
-    public static GetJudgmentsRequest of(Function<GetJudgmentsRequest.Builder, ObjectBuilder<GetJudgmentsRequest>> fn) {
+    public static DeleteScheduledExperimentsRequest of(
+        Function<DeleteScheduledExperimentsRequest.Builder, ObjectBuilder<DeleteScheduledExperimentsRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The judgment id
+     * Required - The experiment id
      * <p>
-     * API name: {@code judgment_id}
+     * API name: {@code experiment_id}
      * </p>
      */
-    @Nullable
-    public final String judgmentId() {
-        return this.judgmentId;
+    @Nonnull
+    public final String experimentId() {
+        return this.experimentId;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -99,22 +101,23 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Builder for {@link GetJudgmentsRequest}.
+     * Builder for {@link DeleteScheduledExperimentsRequest}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetJudgmentsRequest> {
-        @Nullable
-        private String judgmentId;
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteScheduledExperimentsRequest> {
+        private String experimentId;
 
         public Builder() {}
 
-        private Builder(GetJudgmentsRequest o) {
+        private Builder(DeleteScheduledExperimentsRequest o) {
             super(o);
-            this.judgmentId = o.judgmentId;
+            this.experimentId = o.experimentId;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.judgmentId = o.judgmentId;
+            this.experimentId = o.experimentId;
         }
 
         @Override
@@ -130,84 +133,62 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * The judgment id
+         * Required - The experiment id
          * <p>
-         * API name: {@code judgment_id}
+         * API name: {@code experiment_id}
          * </p>
          */
         @Nonnull
-        public final Builder judgmentId(@Nullable String value) {
-            this.judgmentId = value;
+        public final Builder experimentId(String value) {
+            this.experimentId = value;
             return this;
         }
 
         /**
-         * Builds a {@link GetJudgmentsRequest}.
+         * Builds a {@link DeleteScheduledExperimentsRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GetJudgmentsRequest build() {
+        public DeleteScheduledExperimentsRequest build() {
             _checkSingleUse();
 
-            return new GetJudgmentsRequest(this);
+            return new DeleteScheduledExperimentsRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code search_relevance.get_judgments}".
+     * Endpoint "{@code search_relevance.delete_scheduled_experiments}".
      */
-    public static final SimpleEndpoint<GetJudgmentsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
-        // Request method
-        request -> "GET",
-        // Request path
-        request -> {
-            final int _judgmentId = 1 << 0;
-
-            int propsSet = 0;
-
-            if (request.judgmentId() != null) propsSet |= _judgmentId;
-
-            if (propsSet == 0) {
-                return "/_plugins/_search_relevance/judgments";
-            }
-            if (propsSet == (_judgmentId)) {
+    public static final Endpoint<DeleteScheduledExperimentsRequest, DeleteScheduledExperimentsResponse, ErrorResponse> _ENDPOINT =
+        new SimpleEndpoint<>(
+            // Request method
+            request -> "DELETE",
+            // Request path
+            request -> {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_plugins/_search_relevance/judgments/");
-                SimpleEndpoint.pathEncode(request.judgmentId, buf);
+                buf.append("/_plugins/_search_relevance/experiments/schedule/");
+                SimpleEndpoint.pathEncode(request.experimentId, buf);
                 return buf.toString();
-            }
-
-            throw SimpleEndpoint.noPathTemplateFound("path");
-        },
-        // Request parameters
-        request -> {
-            Map<String, String> params = new HashMap<>();
-            request.applyQueryParameters(params);
-            return params;
-        },
-        SimpleEndpoint.emptyMap(),
-        false,
-        GetJudgmentsResponse._DESERIALIZER
-    );
-
-    /**
-     * Create an "{@code search_relevance.get_judgments}" endpoint.
-     */
-    public static <
-        TDocument> Endpoint<GetJudgmentsRequest, GetJudgmentsResponse<TDocument>, ErrorResponse> createSearchRelevanceGetJudgmentsEndpoint(
-            JsonpDeserializer<TDocument> tDocumentDeserializer
-        ) {
-        return _ENDPOINT.withResponseDeserializer(GetJudgmentsResponse.createGetJudgmentsResponseDeserializer(tDocumentDeserializer));
-    }
+            },
+            // Request parameters
+            request -> {
+                Map<String, String> params = new HashMap<>();
+                request.applyQueryParameters(params);
+                return params;
+            },
+            SimpleEndpoint.emptyMap(),
+            false,
+            DeleteScheduledExperimentsResponse._DESERIALIZER
+        );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.judgmentId);
+        result = 31 * result + this.experimentId.hashCode();
         return result;
     }
 
@@ -215,7 +196,7 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetJudgmentsRequest other = (GetJudgmentsRequest) o;
-        return Objects.equals(this.judgmentId, other.judgmentId);
+        DeleteScheduledExperimentsRequest other = (DeleteScheduledExperimentsRequest) o;
+        return this.experimentId.equals(other.experimentId);
     }
 }
