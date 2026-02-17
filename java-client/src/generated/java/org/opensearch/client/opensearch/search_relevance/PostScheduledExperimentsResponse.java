@@ -53,46 +53,48 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_relevance.put_experiments.Response
+// typedef: search_relevance.post_scheduled_experiments.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutExperimentsResponse
+public class PostScheduledExperimentsResponse
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<PutExperimentsResponse.Builder, PutExperimentsResponse> {
+        ToCopyableBuilder<PostScheduledExperimentsResponse.Builder, PostScheduledExperimentsResponse> {
 
     @Nullable
-    private final String experimentId;
+    private final String jobId;
 
     @Nullable
-    private final String experimentResult;
+    private final String jobResult;
 
     // ---------------------------------------------------------------------------------------------
 
-    private PutExperimentsResponse(Builder builder) {
-        this.experimentId = builder.experimentId;
-        this.experimentResult = builder.experimentResult;
+    private PostScheduledExperimentsResponse(Builder builder) {
+        this.jobId = builder.jobId;
+        this.jobResult = builder.jobResult;
     }
 
-    public static PutExperimentsResponse of(Function<PutExperimentsResponse.Builder, ObjectBuilder<PutExperimentsResponse>> fn) {
+    public static PostScheduledExperimentsResponse of(
+        Function<PostScheduledExperimentsResponse.Builder, ObjectBuilder<PostScheduledExperimentsResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code experiment_id}
+     * API name: {@code job_id}
      */
     @Nullable
-    public final String experimentId() {
-        return this.experimentId;
+    public final String jobId() {
+        return this.jobId;
     }
 
     /**
-     * API name: {@code experiment_result}
+     * API name: {@code job_result}
      */
     @Nullable
-    public final String experimentResult() {
-        return this.experimentResult;
+    public final String jobResult() {
+        return this.jobResult;
     }
 
     /**
@@ -106,14 +108,14 @@ public class PutExperimentsResponse
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.experimentId != null) {
-            generator.writeKey("experiment_id");
-            generator.write(this.experimentId);
+        if (this.jobId != null) {
+            generator.writeKey("job_id");
+            generator.write(this.jobId);
         }
 
-        if (this.experimentResult != null) {
-            generator.writeKey("experiment_result");
-            generator.write(this.experimentResult);
+        if (this.jobResult != null) {
+            generator.writeKey("job_result");
+            generator.write(this.jobResult);
         }
     }
 
@@ -131,24 +133,24 @@ public class PutExperimentsResponse
     }
 
     /**
-     * Builder for {@link PutExperimentsResponse}.
+     * Builder for {@link PostScheduledExperimentsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutExperimentsResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PostScheduledExperimentsResponse> {
         @Nullable
-        private String experimentId;
+        private String jobId;
         @Nullable
-        private String experimentResult;
+        private String jobResult;
 
         public Builder() {}
 
-        private Builder(PutExperimentsResponse o) {
-            this.experimentId = o.experimentId;
-            this.experimentResult = o.experimentResult;
+        private Builder(PostScheduledExperimentsResponse o) {
+            this.jobId = o.jobId;
+            this.jobResult = o.jobResult;
         }
 
         private Builder(Builder o) {
-            this.experimentId = o.experimentId;
-            this.experimentResult = o.experimentResult;
+            this.jobId = o.jobId;
+            this.jobResult = o.jobResult;
         }
 
         @Override
@@ -158,57 +160,59 @@ public class PutExperimentsResponse
         }
 
         /**
-         * API name: {@code experiment_id}
+         * API name: {@code job_id}
          */
         @Nonnull
-        public final Builder experimentId(@Nullable String value) {
-            this.experimentId = value;
+        public final Builder jobId(@Nullable String value) {
+            this.jobId = value;
             return this;
         }
 
         /**
-         * API name: {@code experiment_result}
+         * API name: {@code job_result}
          */
         @Nonnull
-        public final Builder experimentResult(@Nullable String value) {
-            this.experimentResult = value;
+        public final Builder jobResult(@Nullable String value) {
+            this.jobResult = value;
             return this;
         }
 
         /**
-         * Builds a {@link PutExperimentsResponse}.
+         * Builds a {@link PostScheduledExperimentsResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public PutExperimentsResponse build() {
+        public PostScheduledExperimentsResponse build() {
             _checkSingleUse();
 
-            return new PutExperimentsResponse(this);
+            return new PostScheduledExperimentsResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link PutExperimentsResponse}
+     * Json deserializer for {@link PostScheduledExperimentsResponse}
      */
-    public static final JsonpDeserializer<PutExperimentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<PostScheduledExperimentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        PutExperimentsResponse::setupPutExperimentsResponseDeserializer
+        PostScheduledExperimentsResponse::setupPostScheduledExperimentsResponseDeserializer
     );
 
-    protected static void setupPutExperimentsResponseDeserializer(ObjectDeserializer<PutExperimentsResponse.Builder> op) {
-        op.add(Builder::experimentId, JsonpDeserializer.stringDeserializer(), "experiment_id");
-        op.add(Builder::experimentResult, JsonpDeserializer.stringDeserializer(), "experiment_result");
+    protected static void setupPostScheduledExperimentsResponseDeserializer(
+        ObjectDeserializer<PostScheduledExperimentsResponse.Builder> op
+    ) {
+        op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+        op.add(Builder::jobResult, JsonpDeserializer.stringDeserializer(), "job_result");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.experimentId);
-        result = 31 * result + Objects.hashCode(this.experimentResult);
+        result = 31 * result + Objects.hashCode(this.jobId);
+        result = 31 * result + Objects.hashCode(this.jobResult);
         return result;
     }
 
@@ -216,7 +220,7 @@ public class PutExperimentsResponse
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        PutExperimentsResponse other = (PutExperimentsResponse) o;
-        return Objects.equals(this.experimentId, other.experimentId) && Objects.equals(this.experimentResult, other.experimentResult);
+        PostScheduledExperimentsResponse other = (PostScheduledExperimentsResponse) o;
+        return Objects.equals(this.jobId, other.jobId) && Objects.equals(this.jobResult, other.jobResult);
     }
 }

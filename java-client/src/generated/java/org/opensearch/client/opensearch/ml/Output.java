@@ -44,6 +44,9 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     private final List<Double> data;
 
     @Nullable
+    private final DataAsMap dataAsMap;
+
+    @Nullable
     private final MlResultDataType dataType;
 
     @Nullable
@@ -60,6 +63,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     private Output(Builder builder) {
         this.byteBuffer = builder.byteBuffer;
         this.data = ApiTypeHelper.unmodifiable(builder.data);
+        this.dataAsMap = builder.dataAsMap;
         this.dataType = builder.dataType;
         this.name = builder.name;
         this.result = builder.result;
@@ -84,6 +88,14 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     @Nonnull
     public final List<Double> data() {
         return this.data;
+    }
+
+    /**
+     * API name: {@code dataAsMap}
+     */
+    @Nullable
+    public final DataAsMap dataAsMap() {
+        return this.dataAsMap;
     }
 
     /**
@@ -149,6 +161,11 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
             generator.writeEnd();
         }
 
+        if (this.dataAsMap != null) {
+            generator.writeKey("dataAsMap");
+            this.dataAsMap.serialize(generator, mapper);
+        }
+
         if (this.dataType != null) {
             generator.writeKey("data_type");
             this.dataType.serialize(generator, mapper);
@@ -196,6 +213,8 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         @Nullable
         private List<Double> data;
         @Nullable
+        private DataAsMap dataAsMap;
+        @Nullable
         private MlResultDataType dataType;
         @Nullable
         private String name;
@@ -209,6 +228,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         private Builder(Output o) {
             this.byteBuffer = o.byteBuffer;
             this.data = _listCopy(o.data);
+            this.dataAsMap = o.dataAsMap;
             this.dataType = o.dataType;
             this.name = o.name;
             this.result = o.result;
@@ -218,6 +238,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         private Builder(Builder o) {
             this.byteBuffer = o.byteBuffer;
             this.data = _listCopy(o.data);
+            this.dataAsMap = o.dataAsMap;
             this.dataType = o.dataType;
             this.name = o.name;
             this.result = o.result;
@@ -271,6 +292,23 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         public final Builder data(Double value, Double... values) {
             this.data = _listAdd(this.data, value, values);
             return this;
+        }
+
+        /**
+         * API name: {@code dataAsMap}
+         */
+        @Nonnull
+        public final Builder dataAsMap(@Nullable DataAsMap value) {
+            this.dataAsMap = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code dataAsMap}
+         */
+        @Nonnull
+        public final Builder dataAsMap(Function<DataAsMap.Builder, ObjectBuilder<DataAsMap>> fn) {
+            return dataAsMap(fn.apply(new DataAsMap.Builder()).build());
         }
 
         /**
@@ -359,6 +397,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     protected static void setupOutputDeserializer(ObjectDeserializer<Output.Builder> op) {
         op.add(Builder::byteBuffer, ByteBuffer._DESERIALIZER, "byte_buffer");
         op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "data");
+        op.add(Builder::dataAsMap, DataAsMap._DESERIALIZER, "dataAsMap");
         op.add(Builder::dataType, MlResultDataType._DESERIALIZER, "data_type");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::result, JsonpDeserializer.stringDeserializer(), "result");
@@ -370,6 +409,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         int result = 17;
         result = 31 * result + Objects.hashCode(this.byteBuffer);
         result = 31 * result + Objects.hashCode(this.data);
+        result = 31 * result + Objects.hashCode(this.dataAsMap);
         result = 31 * result + Objects.hashCode(this.dataType);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.result);
@@ -384,6 +424,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         Output other = (Output) o;
         return Objects.equals(this.byteBuffer, other.byteBuffer)
             && Objects.equals(this.data, other.data)
+            && Objects.equals(this.dataAsMap, other.dataAsMap)
             && Objects.equals(this.dataType, other.dataType)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.result, other.result)

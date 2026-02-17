@@ -64,7 +64,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
     private final int failed;
 
     @Nonnull
-    private final List<ShardFailure> failures;
+    private final List<ShardSearchFailure> failures;
 
     @Nullable
     private final Integer skipped;
@@ -98,7 +98,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
      * API name: {@code failures}
      */
     @Nonnull
-    public final List<ShardFailure> failures() {
+    public final List<ShardSearchFailure> failures() {
         return this.failures;
     }
 
@@ -141,7 +141,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
             generator.writeStartArray();
-            for (ShardFailure item0 : this.failures) {
+            for (ShardSearchFailure item0 : this.failures) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -178,7 +178,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardStatistics> {
         private Integer failed;
         @Nullable
-        private List<ShardFailure> failures;
+        private List<ShardSearchFailure> failures;
         @Nullable
         private Integer skipped;
         private Integer successful;
@@ -225,7 +225,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder failures(List<ShardFailure> list) {
+        public final Builder failures(List<ShardSearchFailure> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
         }
@@ -238,7 +238,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder failures(ShardFailure value, ShardFailure... values) {
+        public final Builder failures(ShardSearchFailure value, ShardSearchFailure... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
         }
@@ -251,8 +251,8 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-            return failures(fn.apply(new ShardFailure.Builder()).build());
+        public final Builder failures(Function<ShardSearchFailure.Builder, ObjectBuilder<ShardSearchFailure>> fn) {
+            return failures(fn.apply(new ShardSearchFailure.Builder()).build());
         }
 
         /**
@@ -308,7 +308,7 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
 
     protected static void setupShardStatisticsDeserializer(ObjectDeserializer<ShardStatistics.Builder> op) {
         op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
-        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
+        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardSearchFailure._DESERIALIZER), "failures");
         op.add(Builder::skipped, JsonpDeserializer.integerDeserializer(), "skipped");
         op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");

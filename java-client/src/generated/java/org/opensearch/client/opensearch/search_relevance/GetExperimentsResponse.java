@@ -44,13 +44,23 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.ClusterStatistics;
+import org.opensearch.client.opensearch._types.PhaseTook;
+import org.opensearch.client.opensearch._types.ShardStatistics;
+import org.opensearch.client.opensearch._types.aggregations.Aggregate;
+import org.opensearch.client.opensearch.core.search.HitsMetadata;
+import org.opensearch.client.opensearch.core.search.ProcessorExecutionDetail;
+import org.opensearch.client.opensearch.core.search.Profile;
+import org.opensearch.client.opensearch.core.search.Suggest;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -61,174 +71,184 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetExperimentsResponse
+public class GetExperimentsResponse<TDocument>
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<GetExperimentsResponse.Builder, GetExperimentsResponse> {
+        ToCopyableBuilder<GetExperimentsResponse.Builder<TDocument>, GetExperimentsResponse<TDocument>> {
 
     @Nonnull
-    private final Map<String, JsonData> hits;
+    private final Map<String, Aggregate> aggregations;
 
     @Nullable
-    private final String id;
+    private final ClusterStatistics clusters;
 
     @Nonnull
-    private final List<String> judgmentList;
+    private final HitsMetadata<TDocument> hits;
 
     @Nullable
-    private final String querySetId;
+    private final Integer numReducePhases;
+
+    @Nullable
+    private final PhaseTook phaseTook;
+
+    @Nullable
+    private final String pitId;
 
     @Nonnull
-    private final Map<String, JsonData> results;
+    private final List<ProcessorExecutionDetail> processorResults;
+
+    @Nullable
+    private final Profile profile;
+
+    @Nullable
+    private final String scrollId;
 
     @Nonnull
-    private final List<String> searchConfigurationList;
+    private final ShardStatistics shards;
 
     @Nonnull
-    private final Map<String, JsonData> shards;
+    private final Map<String, List<Suggest<JsonData>>> suggest;
 
     @Nullable
-    private final Integer size;
+    private final Boolean terminatedEarly;
 
-    @Nullable
-    private final String status;
+    private final boolean timedOut;
 
-    @Nullable
-    private final Boolean timedOut;
-
-    @Nullable
-    private final String timestamp;
-
-    @Nullable
-    private final Integer took;
-
-    @Nullable
-    private final String type;
+    private final long took;
 
     // ---------------------------------------------------------------------------------------------
 
-    private GetExperimentsResponse(Builder builder) {
-        this.hits = ApiTypeHelper.unmodifiable(builder.hits);
-        this.id = builder.id;
-        this.judgmentList = ApiTypeHelper.unmodifiable(builder.judgmentList);
-        this.querySetId = builder.querySetId;
-        this.results = ApiTypeHelper.unmodifiable(builder.results);
-        this.searchConfigurationList = ApiTypeHelper.unmodifiable(builder.searchConfigurationList);
-        this.shards = ApiTypeHelper.unmodifiable(builder.shards);
-        this.size = builder.size;
-        this.status = builder.status;
-        this.timedOut = builder.timedOut;
-        this.timestamp = builder.timestamp;
-        this.took = builder.took;
-        this.type = builder.type;
+    private GetExperimentsResponse(Builder<TDocument> builder) {
+        this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+        this.clusters = builder.clusters;
+        this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+        this.numReducePhases = builder.numReducePhases;
+        this.phaseTook = builder.phaseTook;
+        this.pitId = builder.pitId;
+        this.processorResults = ApiTypeHelper.unmodifiable(builder.processorResults);
+        this.profile = builder.profile;
+        this.scrollId = builder.scrollId;
+        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+        this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
+        this.terminatedEarly = builder.terminatedEarly;
+        this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
     }
 
-    public static GetExperimentsResponse of(Function<GetExperimentsResponse.Builder, ObjectBuilder<GetExperimentsResponse>> fn) {
-        return fn.apply(new Builder()).build();
+    public static <TDocument> GetExperimentsResponse<TDocument> of(
+        Function<GetExperimentsResponse.Builder<TDocument>, ObjectBuilder<GetExperimentsResponse<TDocument>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
     }
 
     /**
-     * API name: {@code hits}
+     * API name: {@code aggregations}
      */
     @Nonnull
-    public final Map<String, JsonData> hits() {
+    public final Map<String, Aggregate> aggregations() {
+        return this.aggregations;
+    }
+
+    /**
+     * API name: {@code _clusters}
+     */
+    @Nullable
+    public final ClusterStatistics clusters() {
+        return this.clusters;
+    }
+
+    /**
+     * Required - API name: {@code hits}
+     */
+    @Nonnull
+    public final HitsMetadata<TDocument> hits() {
         return this.hits;
     }
 
     /**
-     * API name: {@code id}
+     * API name: {@code num_reduce_phases}
      */
     @Nullable
-    public final String id() {
-        return this.id;
+    public final Integer numReducePhases() {
+        return this.numReducePhases;
     }
 
     /**
-     * API name: {@code judgmentList}
-     */
-    @Nonnull
-    public final List<String> judgmentList() {
-        return this.judgmentList;
-    }
-
-    /**
-     * API name: {@code querySetId}
+     * API name: {@code phase_took}
      */
     @Nullable
-    public final String querySetId() {
-        return this.querySetId;
+    public final PhaseTook phaseTook() {
+        return this.phaseTook;
     }
 
     /**
-     * API name: {@code results}
+     * API name: {@code pit_id}
      */
-    @Nonnull
-    public final Map<String, JsonData> results() {
-        return this.results;
+    @Nullable
+    public final String pitId() {
+        return this.pitId;
     }
 
     /**
-     * API name: {@code searchConfigurationList}
+     * API name: {@code processor_results}
      */
     @Nonnull
-    public final List<String> searchConfigurationList() {
-        return this.searchConfigurationList;
+    public final List<ProcessorExecutionDetail> processorResults() {
+        return this.processorResults;
     }
 
     /**
-     * API name: {@code _shards}
+     * API name: {@code profile}
+     */
+    @Nullable
+    public final Profile profile() {
+        return this.profile;
+    }
+
+    /**
+     * API name: {@code _scroll_id}
+     */
+    @Nullable
+    public final String scrollId() {
+        return this.scrollId;
+    }
+
+    /**
+     * Required - API name: {@code _shards}
      */
     @Nonnull
-    public final Map<String, JsonData> shards() {
+    public final ShardStatistics shards() {
         return this.shards;
     }
 
     /**
-     * API name: {@code size}
+     * API name: {@code suggest}
      */
-    @Nullable
-    public final Integer size() {
-        return this.size;
+    @Nonnull
+    public final Map<String, List<Suggest<JsonData>>> suggest() {
+        return this.suggest;
     }
 
     /**
-     * API name: {@code status}
+     * API name: {@code terminated_early}
      */
     @Nullable
-    public final String status() {
-        return this.status;
+    public final Boolean terminatedEarly() {
+        return this.terminatedEarly;
     }
 
     /**
-     * API name: {@code timed_out}
+     * Required - API name: {@code timed_out}
      */
-    @Nullable
-    public final Boolean timedOut() {
+    public final boolean timedOut() {
         return this.timedOut;
     }
 
     /**
-     * API name: {@code timestamp}
+     * Required - API name: {@code took}
      */
-    @Nullable
-    public final String timestamp() {
-        return this.timestamp;
-    }
-
-    /**
-     * API name: {@code took}
-     */
-    @Nullable
-    public final Integer took() {
+    public final long took() {
         return this.took;
-    }
-
-    /**
-     * API name: {@code type}
-     */
-    @Nullable
-    public final String type() {
-        return this.type;
     }
 
     /**
@@ -242,378 +262,399 @@ public class GetExperimentsResponse
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.hits)) {
-            generator.writeKey("hits");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.hits.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+        if (ApiTypeHelper.isDefined(this.aggregations)) {
+            generator.writeKey("aggregations");
+            ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
         }
 
-        if (this.id != null) {
-            generator.writeKey("id");
-            generator.write(this.id);
+        if (this.clusters != null) {
+            generator.writeKey("_clusters");
+            this.clusters.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.judgmentList)) {
-            generator.writeKey("judgmentList");
+        generator.writeKey("hits");
+        this.hits.serialize(generator, mapper);
+
+        if (this.numReducePhases != null) {
+            generator.writeKey("num_reduce_phases");
+            generator.write(this.numReducePhases);
+        }
+
+        if (this.phaseTook != null) {
+            generator.writeKey("phase_took");
+            this.phaseTook.serialize(generator, mapper);
+        }
+
+        if (this.pitId != null) {
+            generator.writeKey("pit_id");
+            generator.write(this.pitId);
+        }
+
+        if (ApiTypeHelper.isDefined(this.processorResults)) {
+            generator.writeKey("processor_results");
             generator.writeStartArray();
-            for (String item0 : this.judgmentList) {
-                generator.write(item0);
+            for (ProcessorExecutionDetail item0 : this.processorResults) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
 
-        if (this.querySetId != null) {
-            generator.writeKey("querySetId");
-            generator.write(this.querySetId);
+        if (this.profile != null) {
+            generator.writeKey("profile");
+            this.profile.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.results)) {
-            generator.writeKey("results");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.results.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+        if (this.scrollId != null) {
+            generator.writeKey("_scroll_id");
+            generator.write(this.scrollId);
         }
 
-        if (ApiTypeHelper.isDefined(this.searchConfigurationList)) {
-            generator.writeKey("searchConfigurationList");
-            generator.writeStartArray();
-            for (String item0 : this.searchConfigurationList) {
-                generator.write(item0);
-            }
-            generator.writeEnd();
+        generator.writeKey("_shards");
+        this.shards.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.suggest)) {
+            generator.writeKey("suggest");
+            ExternallyTaggedUnion.serializeTypedKeysArray(this.suggest, generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.shards)) {
-            generator.writeKey("_shards");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.shards.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+        if (this.terminatedEarly != null) {
+            generator.writeKey("terminated_early");
+            generator.write(this.terminatedEarly);
         }
 
-        if (this.size != null) {
-            generator.writeKey("size");
-            generator.write(this.size);
-        }
+        generator.writeKey("timed_out");
+        generator.write(this.timedOut);
 
-        if (this.status != null) {
-            generator.writeKey("status");
-            generator.write(this.status);
-        }
-
-        if (this.timedOut != null) {
-            generator.writeKey("timed_out");
-            generator.write(this.timedOut);
-        }
-
-        if (this.timestamp != null) {
-            generator.writeKey("timestamp");
-            generator.write(this.timestamp);
-        }
-
-        if (this.took != null) {
-            generator.writeKey("took");
-            generator.write(this.took);
-        }
-
-        if (this.type != null) {
-            generator.writeKey("type");
-            generator.write(this.type);
-        }
+        generator.writeKey("took");
+        generator.write(this.took);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Override
     @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
     }
 
     @Nonnull
-    public static Builder builder() {
-        return new Builder();
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
     }
 
     /**
      * Builder for {@link GetExperimentsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetExperimentsResponse> {
+    public static class Builder<TDocument> extends ObjectBuilderBase
+        implements
+            CopyableBuilder<Builder<TDocument>, GetExperimentsResponse<TDocument>> {
         @Nullable
-        private Map<String, JsonData> hits;
+        private Map<String, Aggregate> aggregations;
         @Nullable
-        private String id;
+        private ClusterStatistics clusters;
+        private HitsMetadata<TDocument> hits;
         @Nullable
-        private List<String> judgmentList;
+        private Integer numReducePhases;
         @Nullable
-        private String querySetId;
+        private PhaseTook phaseTook;
         @Nullable
-        private Map<String, JsonData> results;
+        private String pitId;
         @Nullable
-        private List<String> searchConfigurationList;
+        private List<ProcessorExecutionDetail> processorResults;
         @Nullable
-        private Map<String, JsonData> shards;
+        private Profile profile;
         @Nullable
-        private Integer size;
+        private String scrollId;
+        private ShardStatistics shards;
         @Nullable
-        private String status;
+        private Map<String, List<Suggest<JsonData>>> suggest;
         @Nullable
+        private Boolean terminatedEarly;
         private Boolean timedOut;
-        @Nullable
-        private String timestamp;
-        @Nullable
-        private Integer took;
-        @Nullable
-        private String type;
+        private Long took;
 
         public Builder() {}
 
-        private Builder(GetExperimentsResponse o) {
-            this.hits = _mapCopy(o.hits);
-            this.id = o.id;
-            this.judgmentList = _listCopy(o.judgmentList);
-            this.querySetId = o.querySetId;
-            this.results = _mapCopy(o.results);
-            this.searchConfigurationList = _listCopy(o.searchConfigurationList);
-            this.shards = _mapCopy(o.shards);
-            this.size = o.size;
-            this.status = o.status;
+        private Builder(GetExperimentsResponse<TDocument> o) {
+            this.aggregations = _mapCopy(o.aggregations);
+            this.clusters = o.clusters;
+            this.hits = o.hits;
+            this.numReducePhases = o.numReducePhases;
+            this.phaseTook = o.phaseTook;
+            this.pitId = o.pitId;
+            this.processorResults = _listCopy(o.processorResults);
+            this.profile = o.profile;
+            this.scrollId = o.scrollId;
+            this.shards = o.shards;
+            this.suggest = _mapCopy(o.suggest);
+            this.terminatedEarly = o.terminatedEarly;
             this.timedOut = o.timedOut;
-            this.timestamp = o.timestamp;
             this.took = o.took;
-            this.type = o.type;
         }
 
-        private Builder(Builder o) {
-            this.hits = _mapCopy(o.hits);
-            this.id = o.id;
-            this.judgmentList = _listCopy(o.judgmentList);
-            this.querySetId = o.querySetId;
-            this.results = _mapCopy(o.results);
-            this.searchConfigurationList = _listCopy(o.searchConfigurationList);
-            this.shards = _mapCopy(o.shards);
-            this.size = o.size;
-            this.status = o.status;
+        private Builder(Builder<TDocument> o) {
+            this.aggregations = _mapCopy(o.aggregations);
+            this.clusters = o.clusters;
+            this.hits = o.hits;
+            this.numReducePhases = o.numReducePhases;
+            this.phaseTook = o.phaseTook;
+            this.pitId = o.pitId;
+            this.processorResults = _listCopy(o.processorResults);
+            this.profile = o.profile;
+            this.scrollId = o.scrollId;
+            this.shards = o.shards;
+            this.suggest = _mapCopy(o.suggest);
+            this.terminatedEarly = o.terminatedEarly;
             this.timedOut = o.timedOut;
-            this.timestamp = o.timestamp;
             this.took = o.took;
-            this.type = o.type;
         }
 
         @Override
         @Nonnull
-        public Builder copy() {
-            return new Builder(this);
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
         }
 
         /**
-         * API name: {@code hits}
+         * API name: {@code aggregations}
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>hits</code>.
+         * Adds all elements of <code>map</code> to <code>aggregations</code>.
          * </p>
          */
         @Nonnull
-        public final Builder hits(Map<String, JsonData> map) {
-            this.hits = _mapPutAll(this.hits, map);
+        public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
+            this.aggregations = _mapPutAll(this.aggregations, map);
             return this;
         }
 
         /**
-         * API name: {@code hits}
+         * API name: {@code aggregations}
          *
          * <p>
-         * Adds an entry to <code>hits</code>.
+         * Adds an entry to <code>aggregations</code>.
          * </p>
          */
         @Nonnull
-        public final Builder hits(String key, JsonData value) {
-            this.hits = _mapPut(this.hits, key, value);
+        public final Builder<TDocument> aggregations(String key, Aggregate value) {
+            this.aggregations = _mapPut(this.aggregations, key, value);
             return this;
         }
 
         /**
-         * API name: {@code id}
-         */
-        @Nonnull
-        public final Builder id(@Nullable String value) {
-            this.id = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code judgmentList}
+         * API name: {@code aggregations}
          *
          * <p>
-         * Adds all elements of <code>list</code> to <code>judgmentList</code>.
+         * Adds a value to <code>aggregations</code> using a builder lambda.
          * </p>
          */
         @Nonnull
-        public final Builder judgmentList(List<String> list) {
-            this.judgmentList = _listAddAll(this.judgmentList, list);
+        public final Builder<TDocument> aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+            return aggregations(key, fn.apply(new Aggregate.Builder()).build());
+        }
+
+        /**
+         * API name: {@code _clusters}
+         */
+        @Nonnull
+        public final Builder<TDocument> clusters(@Nullable ClusterStatistics value) {
+            this.clusters = value;
             return this;
         }
 
         /**
-         * API name: {@code judgmentList}
+         * API name: {@code _clusters}
+         */
+        @Nonnull
+        public final Builder<TDocument> clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+            return clusters(fn.apply(new ClusterStatistics.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code hits}
+         */
+        @Nonnull
+        public final Builder<TDocument> hits(HitsMetadata<TDocument> value) {
+            this.hits = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code hits}
+         */
+        @Nonnull
+        public final Builder<TDocument> hits(Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
+            return hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
+        }
+
+        /**
+         * API name: {@code num_reduce_phases}
+         */
+        @Nonnull
+        public final Builder<TDocument> numReducePhases(@Nullable Integer value) {
+            this.numReducePhases = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code phase_took}
+         */
+        @Nonnull
+        public final Builder<TDocument> phaseTook(@Nullable PhaseTook value) {
+            this.phaseTook = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code phase_took}
+         */
+        @Nonnull
+        public final Builder<TDocument> phaseTook(Function<PhaseTook.Builder, ObjectBuilder<PhaseTook>> fn) {
+            return phaseTook(fn.apply(new PhaseTook.Builder()).build());
+        }
+
+        /**
+         * API name: {@code pit_id}
+         */
+        @Nonnull
+        public final Builder<TDocument> pitId(@Nullable String value) {
+            this.pitId = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code processor_results}
          *
          * <p>
-         * Adds one or more values to <code>judgmentList</code>.
+         * Adds all elements of <code>list</code> to <code>processorResults</code>.
          * </p>
          */
         @Nonnull
-        public final Builder judgmentList(String value, String... values) {
-            this.judgmentList = _listAdd(this.judgmentList, value, values);
+        public final Builder<TDocument> processorResults(List<ProcessorExecutionDetail> list) {
+            this.processorResults = _listAddAll(this.processorResults, list);
             return this;
         }
 
         /**
-         * API name: {@code querySetId}
-         */
-        @Nonnull
-        public final Builder querySetId(@Nullable String value) {
-            this.querySetId = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code results}
+         * API name: {@code processor_results}
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>results</code>.
+         * Adds one or more values to <code>processorResults</code>.
          * </p>
          */
         @Nonnull
-        public final Builder results(Map<String, JsonData> map) {
-            this.results = _mapPutAll(this.results, map);
+        public final Builder<TDocument> processorResults(ProcessorExecutionDetail value, ProcessorExecutionDetail... values) {
+            this.processorResults = _listAdd(this.processorResults, value, values);
             return this;
         }
 
         /**
-         * API name: {@code results}
+         * API name: {@code processor_results}
          *
          * <p>
-         * Adds an entry to <code>results</code>.
+         * Adds a value to <code>processorResults</code> using a builder lambda.
          * </p>
          */
         @Nonnull
-        public final Builder results(String key, JsonData value) {
-            this.results = _mapPut(this.results, key, value);
+        public final Builder<TDocument> processorResults(
+            Function<ProcessorExecutionDetail.Builder, ObjectBuilder<ProcessorExecutionDetail>> fn
+        ) {
+            return processorResults(fn.apply(new ProcessorExecutionDetail.Builder()).build());
+        }
+
+        /**
+         * API name: {@code profile}
+         */
+        @Nonnull
+        public final Builder<TDocument> profile(@Nullable Profile value) {
+            this.profile = value;
             return this;
         }
 
         /**
-         * API name: {@code searchConfigurationList}
+         * API name: {@code profile}
+         */
+        @Nonnull
+        public final Builder<TDocument> profile(Function<Profile.Builder, ObjectBuilder<Profile>> fn) {
+            return profile(fn.apply(new Profile.Builder()).build());
+        }
+
+        /**
+         * API name: {@code _scroll_id}
+         */
+        @Nonnull
+        public final Builder<TDocument> scrollId(@Nullable String value) {
+            this.scrollId = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code _shards}
+         */
+        @Nonnull
+        public final Builder<TDocument> shards(ShardStatistics value) {
+            this.shards = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code _shards}
+         */
+        @Nonnull
+        public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
+        }
+
+        /**
+         * API name: {@code suggest}
          *
          * <p>
-         * Adds all elements of <code>list</code> to <code>searchConfigurationList</code>.
+         * Adds all elements of <code>map</code> to <code>suggest</code>.
          * </p>
          */
         @Nonnull
-        public final Builder searchConfigurationList(List<String> list) {
-            this.searchConfigurationList = _listAddAll(this.searchConfigurationList, list);
+        public final Builder<TDocument> suggest(Map<String, List<Suggest<JsonData>>> map) {
+            this.suggest = _mapPutAll(this.suggest, map);
             return this;
         }
 
         /**
-         * API name: {@code searchConfigurationList}
+         * API name: {@code suggest}
          *
          * <p>
-         * Adds one or more values to <code>searchConfigurationList</code>.
+         * Adds an entry to <code>suggest</code>.
          * </p>
          */
         @Nonnull
-        public final Builder searchConfigurationList(String value, String... values) {
-            this.searchConfigurationList = _listAdd(this.searchConfigurationList, value, values);
+        public final Builder<TDocument> suggest(String key, List<Suggest<JsonData>> value) {
+            this.suggest = _mapPut(this.suggest, key, value);
             return this;
         }
 
         /**
-         * API name: {@code _shards}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>shards</code>.
-         * </p>
+         * API name: {@code terminated_early}
          */
         @Nonnull
-        public final Builder shards(Map<String, JsonData> map) {
-            this.shards = _mapPutAll(this.shards, map);
+        public final Builder<TDocument> terminatedEarly(@Nullable Boolean value) {
+            this.terminatedEarly = value;
             return this;
         }
 
         /**
-         * API name: {@code _shards}
-         *
-         * <p>
-         * Adds an entry to <code>shards</code>.
-         * </p>
+         * Required - API name: {@code timed_out}
          */
         @Nonnull
-        public final Builder shards(String key, JsonData value) {
-            this.shards = _mapPut(this.shards, key, value);
-            return this;
-        }
-
-        /**
-         * API name: {@code size}
-         */
-        @Nonnull
-        public final Builder size(@Nullable Integer value) {
-            this.size = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code status}
-         */
-        @Nonnull
-        public final Builder status(@Nullable String value) {
-            this.status = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code timed_out}
-         */
-        @Nonnull
-        public final Builder timedOut(@Nullable Boolean value) {
+        public final Builder<TDocument> timedOut(boolean value) {
             this.timedOut = value;
             return this;
         }
 
         /**
-         * API name: {@code timestamp}
+         * Required - API name: {@code took}
          */
         @Nonnull
-        public final Builder timestamp(@Nullable String value) {
-            this.timestamp = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code took}
-         */
-        @Nonnull
-        public final Builder took(@Nullable Integer value) {
+        public final Builder<TDocument> took(long value) {
             this.took = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code type}
-         */
-        @Nonnull
-        public final Builder type(@Nullable String value) {
-            this.type = value;
             return this;
         }
 
@@ -624,59 +665,75 @@ public class GetExperimentsResponse
          */
         @Override
         @Nonnull
-        public GetExperimentsResponse build() {
+        public GetExperimentsResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new GetExperimentsResponse(this);
+            return new GetExperimentsResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GetExperimentsResponse}
+     * Create a JSON deserializer for GetExperimentsResponse.
      */
-    public static final JsonpDeserializer<GetExperimentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        GetExperimentsResponse::setupGetExperimentsResponseDeserializer
+    public static <TDocument> JsonpDeserializer<GetExperimentsResponse<TDocument>> createGetExperimentsResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            Builder<TDocument>::new,
+            op -> GetExperimentsResponse.setupGetExperimentsResponseDeserializer(op, tDocumentDeserializer)
+        );
+    }
+
+    /**
+     * Json deserializer for {@link GetExperimentsResponse} based on named deserializers provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<GetExperimentsResponse<Object>> _DESERIALIZER = createGetExperimentsResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:search_relevance.get_experiments.TDocument")
     );
 
-    protected static void setupGetExperimentsResponseDeserializer(ObjectDeserializer<GetExperimentsResponse.Builder> op) {
-        op.add(Builder::hits, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "hits");
-        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-        op.add(Builder::judgmentList, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "judgmentList");
-        op.add(Builder::querySetId, JsonpDeserializer.stringDeserializer(), "querySetId");
-        op.add(Builder::results, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "results");
+    protected static <TDocument> void setupGetExperimentsResponseDeserializer(
+        ObjectDeserializer<GetExperimentsResponse.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
+        op.add(Builder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
+        op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
+        op.add(Builder::numReducePhases, JsonpDeserializer.integerDeserializer(), "num_reduce_phases");
+        op.add(Builder::phaseTook, PhaseTook._DESERIALIZER, "phase_took");
+        op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
+        op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(ProcessorExecutionDetail._DESERIALIZER), "processor_results");
+        op.add(Builder::profile, Profile._DESERIALIZER, "profile");
+        op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
+        op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(
-            Builder::searchConfigurationList,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-            "searchConfigurationList"
+            Builder::suggest,
+            ExternallyTaggedUnion.arrayDeserializer(Suggest.createSuggestDeserializer(JsonData._DESERIALIZER)),
+            "suggest"
         );
-        op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_shards");
-        op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-        op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+        op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
         op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-        op.add(Builder::took, JsonpDeserializer.integerDeserializer(), "took");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.hits);
-        result = 31 * result + Objects.hashCode(this.id);
-        result = 31 * result + Objects.hashCode(this.judgmentList);
-        result = 31 * result + Objects.hashCode(this.querySetId);
-        result = 31 * result + Objects.hashCode(this.results);
-        result = 31 * result + Objects.hashCode(this.searchConfigurationList);
-        result = 31 * result + Objects.hashCode(this.shards);
-        result = 31 * result + Objects.hashCode(this.size);
-        result = 31 * result + Objects.hashCode(this.status);
-        result = 31 * result + Objects.hashCode(this.timedOut);
-        result = 31 * result + Objects.hashCode(this.timestamp);
-        result = 31 * result + Objects.hashCode(this.took);
-        result = 31 * result + Objects.hashCode(this.type);
+        result = 31 * result + Objects.hashCode(this.aggregations);
+        result = 31 * result + Objects.hashCode(this.clusters);
+        result = 31 * result + this.hits.hashCode();
+        result = 31 * result + Objects.hashCode(this.numReducePhases);
+        result = 31 * result + Objects.hashCode(this.phaseTook);
+        result = 31 * result + Objects.hashCode(this.pitId);
+        result = 31 * result + Objects.hashCode(this.processorResults);
+        result = 31 * result + Objects.hashCode(this.profile);
+        result = 31 * result + Objects.hashCode(this.scrollId);
+        result = 31 * result + this.shards.hashCode();
+        result = 31 * result + Objects.hashCode(this.suggest);
+        result = 31 * result + Objects.hashCode(this.terminatedEarly);
+        result = 31 * result + Boolean.hashCode(this.timedOut);
+        result = 31 * result + Long.hashCode(this.took);
         return result;
     }
 
@@ -684,19 +741,20 @@ public class GetExperimentsResponse
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetExperimentsResponse other = (GetExperimentsResponse) o;
-        return Objects.equals(this.hits, other.hits)
-            && Objects.equals(this.id, other.id)
-            && Objects.equals(this.judgmentList, other.judgmentList)
-            && Objects.equals(this.querySetId, other.querySetId)
-            && Objects.equals(this.results, other.results)
-            && Objects.equals(this.searchConfigurationList, other.searchConfigurationList)
-            && Objects.equals(this.shards, other.shards)
-            && Objects.equals(this.size, other.size)
-            && Objects.equals(this.status, other.status)
-            && Objects.equals(this.timedOut, other.timedOut)
-            && Objects.equals(this.timestamp, other.timestamp)
-            && Objects.equals(this.took, other.took)
-            && Objects.equals(this.type, other.type);
+        GetExperimentsResponse<?> other = (GetExperimentsResponse<?>) o;
+        return Objects.equals(this.aggregations, other.aggregations)
+            && Objects.equals(this.clusters, other.clusters)
+            && this.hits.equals(other.hits)
+            && Objects.equals(this.numReducePhases, other.numReducePhases)
+            && Objects.equals(this.phaseTook, other.phaseTook)
+            && Objects.equals(this.pitId, other.pitId)
+            && Objects.equals(this.processorResults, other.processorResults)
+            && Objects.equals(this.profile, other.profile)
+            && Objects.equals(this.scrollId, other.scrollId)
+            && this.shards.equals(other.shards)
+            && Objects.equals(this.suggest, other.suggest)
+            && Objects.equals(this.terminatedEarly, other.terminatedEarly)
+            && this.timedOut == other.timedOut
+            && this.took == other.took;
     }
 }

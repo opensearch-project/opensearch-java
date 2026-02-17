@@ -42,9 +42,12 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -128,6 +131,27 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
         return deleteQuerySets(fn.apply(new DeleteQuerySetsRequest.Builder()).build());
     }
 
+    // ----- Endpoint: search_relevance.delete_scheduled_experiments
+
+    /**
+     * Deletes a specified scheduled experiment.
+     */
+    public CompletableFuture<DeleteScheduledExperimentsResponse> deleteScheduledExperiments(DeleteScheduledExperimentsRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteScheduledExperimentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a specified scheduled experiment.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteScheduledExperimentsRequest}
+     */
+    public final CompletableFuture<DeleteScheduledExperimentsResponse> deleteScheduledExperiments(
+        Function<DeleteScheduledExperimentsRequest.Builder, ObjectBuilder<DeleteScheduledExperimentsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteScheduledExperiments(fn.apply(new DeleteScheduledExperimentsRequest.Builder()).build());
+    }
+
     // ----- Endpoint: search_relevance.delete_search_configurations
 
     /**
@@ -154,8 +178,22 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
     /**
      * Gets experiments.
      */
-    public CompletableFuture<GetExperimentsResponse> getExperiments(GetExperimentsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, GetExperimentsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> CompletableFuture<GetExperimentsResponse<TDocument>> getExperiments(
+        GetExperimentsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetExperimentsRequest, GetExperimentsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetExperimentsRequest,
+            GetExperimentsResponse<TDocument>,
+            ErrorResponse>) GetExperimentsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.get_experiments.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -163,17 +201,11 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
      *
      * @param fn a function that initializes a builder to create the {@link GetExperimentsRequest}
      */
-    public final CompletableFuture<GetExperimentsResponse> getExperiments(
-        Function<GetExperimentsRequest.Builder, ObjectBuilder<GetExperimentsRequest>> fn
+    public final <TDocument> CompletableFuture<GetExperimentsResponse<TDocument>> getExperiments(
+        Function<GetExperimentsRequest.Builder, ObjectBuilder<GetExperimentsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return getExperiments(fn.apply(new GetExperimentsRequest.Builder()).build());
-    }
-
-    /**
-     * Gets experiments.
-     */
-    public final CompletableFuture<GetExperimentsResponse> getExperiments() throws IOException, OpenSearchException {
-        return getExperiments(new GetExperimentsRequest.Builder().build());
+        return getExperiments(fn.apply(new GetExperimentsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_relevance.get_judgments
@@ -181,8 +213,22 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
     /**
      * Gets judgments.
      */
-    public CompletableFuture<GetJudgmentsResponse> getJudgments(GetJudgmentsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, GetJudgmentsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> CompletableFuture<GetJudgmentsResponse<TDocument>> getJudgments(
+        GetJudgmentsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetJudgmentsRequest, GetJudgmentsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetJudgmentsRequest,
+            GetJudgmentsResponse<TDocument>,
+            ErrorResponse>) GetJudgmentsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.get_judgments.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -190,17 +236,11 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
      *
      * @param fn a function that initializes a builder to create the {@link GetJudgmentsRequest}
      */
-    public final CompletableFuture<GetJudgmentsResponse> getJudgments(
-        Function<GetJudgmentsRequest.Builder, ObjectBuilder<GetJudgmentsRequest>> fn
+    public final <TDocument> CompletableFuture<GetJudgmentsResponse<TDocument>> getJudgments(
+        Function<GetJudgmentsRequest.Builder, ObjectBuilder<GetJudgmentsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return getJudgments(fn.apply(new GetJudgmentsRequest.Builder()).build());
-    }
-
-    /**
-     * Gets judgments.
-     */
-    public final CompletableFuture<GetJudgmentsResponse> getJudgments() throws IOException, OpenSearchException {
-        return getJudgments(new GetJudgmentsRequest.Builder().build());
+        return getJudgments(fn.apply(new GetJudgmentsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_relevance.get_node_stats
@@ -228,8 +268,22 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
     /**
      * Lists the current query sets available.
      */
-    public CompletableFuture<GetQuerySetsResponse> getQuerySets(GetQuerySetsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, GetQuerySetsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> CompletableFuture<GetQuerySetsResponse<TDocument>> getQuerySets(
+        GetQuerySetsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetQuerySetsRequest, GetQuerySetsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetQuerySetsRequest,
+            GetQuerySetsResponse<TDocument>,
+            ErrorResponse>) GetQuerySetsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.get_query_sets.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -237,17 +291,46 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
      *
      * @param fn a function that initializes a builder to create the {@link GetQuerySetsRequest}
      */
-    public final CompletableFuture<GetQuerySetsResponse> getQuerySets(
-        Function<GetQuerySetsRequest.Builder, ObjectBuilder<GetQuerySetsRequest>> fn
+    public final <TDocument> CompletableFuture<GetQuerySetsResponse<TDocument>> getQuerySets(
+        Function<GetQuerySetsRequest.Builder, ObjectBuilder<GetQuerySetsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return getQuerySets(fn.apply(new GetQuerySetsRequest.Builder()).build());
+        return getQuerySets(fn.apply(new GetQuerySetsRequest.Builder()).build(), tDocumentClass);
+    }
+
+    // ----- Endpoint: search_relevance.get_scheduled_experiments
+
+    /**
+     * Gets the scheduled experiments.
+     */
+    public <TDocument> CompletableFuture<GetScheduledExperimentsResponse<TDocument>> getScheduledExperiments(
+        GetScheduledExperimentsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetScheduledExperimentsRequest, GetScheduledExperimentsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetScheduledExperimentsRequest,
+            GetScheduledExperimentsResponse<TDocument>,
+            ErrorResponse>) GetScheduledExperimentsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.get_scheduled_experiments.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
-     * Lists the current query sets available.
+     * Gets the scheduled experiments.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetScheduledExperimentsRequest}
      */
-    public final CompletableFuture<GetQuerySetsResponse> getQuerySets() throws IOException, OpenSearchException {
-        return getQuerySets(new GetQuerySetsRequest.Builder().build());
+    public final <TDocument> CompletableFuture<GetScheduledExperimentsResponse<TDocument>> getScheduledExperiments(
+        Function<GetScheduledExperimentsRequest.Builder, ObjectBuilder<GetScheduledExperimentsRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return getScheduledExperiments(fn.apply(new GetScheduledExperimentsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_relevance.get_search_configurations
@@ -255,9 +338,22 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
     /**
      * Gets the search configurations.
      */
-    public CompletableFuture<GetSearchConfigurationsResponse> getSearchConfigurations(GetSearchConfigurationsRequest request)
-        throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, GetSearchConfigurationsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> CompletableFuture<GetSearchConfigurationsResponse<TDocument>> getSearchConfigurations(
+        GetSearchConfigurationsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetSearchConfigurationsRequest, GetSearchConfigurationsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetSearchConfigurationsRequest,
+            GetSearchConfigurationsResponse<TDocument>,
+            ErrorResponse>) GetSearchConfigurationsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.get_search_configurations.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -265,17 +361,11 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
      *
      * @param fn a function that initializes a builder to create the {@link GetSearchConfigurationsRequest}
      */
-    public final CompletableFuture<GetSearchConfigurationsResponse> getSearchConfigurations(
-        Function<GetSearchConfigurationsRequest.Builder, ObjectBuilder<GetSearchConfigurationsRequest>> fn
+    public final <TDocument> CompletableFuture<GetSearchConfigurationsResponse<TDocument>> getSearchConfigurations(
+        Function<GetSearchConfigurationsRequest.Builder, ObjectBuilder<GetSearchConfigurationsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return getSearchConfigurations(fn.apply(new GetSearchConfigurationsRequest.Builder()).build());
-    }
-
-    /**
-     * Gets the search configurations.
-     */
-    public final CompletableFuture<GetSearchConfigurationsResponse> getSearchConfigurations() throws IOException, OpenSearchException {
-        return getSearchConfigurations(new GetSearchConfigurationsRequest.Builder().build());
+        return getSearchConfigurations(fn.apply(new GetSearchConfigurationsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_relevance.get_stats
@@ -329,6 +419,34 @@ public class OpenSearchSearchRelevanceAsyncClient extends ApiClient<OpenSearchTr
      */
     public final CompletableFuture<PostQuerySetsResponse> postQuerySets() throws IOException, OpenSearchException {
         return postQuerySets(new PostQuerySetsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: search_relevance.post_scheduled_experiments
+
+    /**
+     * Creates a scheduled experiment.
+     */
+    public CompletableFuture<PostScheduledExperimentsResponse> postScheduledExperiments(PostScheduledExperimentsRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PostScheduledExperimentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a scheduled experiment.
+     *
+     * @param fn a function that initializes a builder to create the {@link PostScheduledExperimentsRequest}
+     */
+    public final CompletableFuture<PostScheduledExperimentsResponse> postScheduledExperiments(
+        Function<PostScheduledExperimentsRequest.Builder, ObjectBuilder<PostScheduledExperimentsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return postScheduledExperiments(fn.apply(new PostScheduledExperimentsRequest.Builder()).build());
+    }
+
+    /**
+     * Creates a scheduled experiment.
+     */
+    public final CompletableFuture<PostScheduledExperimentsResponse> postScheduledExperiments() throws IOException, OpenSearchException {
+        return postScheduledExperiments(new PostScheduledExperimentsRequest.Builder().build());
     }
 
     // ----- Endpoint: search_relevance.put_experiments
