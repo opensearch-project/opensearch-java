@@ -40139,7 +40139,8 @@ components:
         primary:
           type: boolean
       required:
-        - primary
+        # NOTE: Manually removed as part of #1878 to fix regression in parsing shard failure search response
+        # - primary
         - reason
         - shard
     _common___ShardInfo:

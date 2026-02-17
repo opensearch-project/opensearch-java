@@ -56,6 +56,16 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ShardFailure
 
+/**
+ * <b>NOTE</b> This generated class is used to parse ShardFailure response from two different Opensearch APIs.
+ * <ul>
+ *     <li><b>ClusterStatistics</b> - as reponse to a search request. Field 'primary' is not in use</li>
+ *     <li><b>ShardInfo</b> - Here 'primary' is supposed to be required</li>
+ * </ul>>
+ * 
+ * In v4.x the spec will be changed to use a new generated class 'ShardSearchFailure' to parse response as part of
+ * ClusterStatistics. But as this is a breaking change, we are keeping the old class for 3.x, making 'primary' not required.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<ShardFailure.Builder, ShardFailure> {
@@ -66,7 +76,8 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     @Nullable
     private final String node;
 
-    private final boolean primary;
+    @Nullable
+    private final Boolean primary;
 
     @Nonnull
     private final ErrorCause reason;
@@ -81,7 +92,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     private ShardFailure(Builder builder) {
         this.index = builder.index;
         this.node = builder.node;
-        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.primary = builder.primary;
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
         this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
         this.status = builder.status;
@@ -108,9 +119,10 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * Required - API name: {@code primary}
+     * API name: {@code primary}
      */
-    public final boolean primary() {
+    @Nullable
+    public final Boolean primary() {
         return this.primary;
     }
 
@@ -158,8 +170,10 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
             generator.write(this.node);
         }
 
-        generator.writeKey("primary");
-        generator.write(this.primary);
+        if (this.primary != null) {
+            generator.writeKey("primary");
+            generator.write(this.primary);
+        }
 
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
@@ -194,6 +208,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         private String index;
         @Nullable
         private String node;
+        @Nullable
         private Boolean primary;
         private ErrorCause reason;
         private Integer shard;
@@ -245,10 +260,10 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * Required - API name: {@code primary}
+         * API name: {@code primary}
          */
         @Nonnull
-        public final Builder primary(boolean value) {
+        public final Builder primary(@Nullable Boolean value) {
             this.primary = value;
             return this;
         }
@@ -326,7 +341,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         int result = 17;
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.node);
-        result = 31 * result + Boolean.hashCode(this.primary);
+        result = 31 * result + Objects.hashCode(this.primary);
         result = 31 * result + this.reason.hashCode();
         result = 31 * result + Integer.hashCode(this.shard);
         result = 31 * result + Objects.hashCode(this.status);
@@ -340,7 +355,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         ShardFailure other = (ShardFailure) o;
         return Objects.equals(this.index, other.index)
             && Objects.equals(this.node, other.node)
-            && this.primary == other.primary
+            && Objects.equals(this.primary, other.primary)
             && this.reason.equals(other.reason)
             && this.shard == other.shard
             && Objects.equals(this.status, other.status);

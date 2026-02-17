@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed deserialization regression when parsing `failed_shards` in a search result ([#1878](https://github.com/opensearch-project/opensearch-java/pull/1878))
 
 ### Security
 
