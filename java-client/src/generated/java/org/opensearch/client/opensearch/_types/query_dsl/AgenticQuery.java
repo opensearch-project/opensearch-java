@@ -59,22 +59,22 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<AgenticQuery.Builder, AgenticQuery> {
 
-    @Nonnull
-    private final String queryText;
+    @Nullable
+    private final String memoryId;
 
     @Nonnull
     private final List<String> queryFields;
 
-    @Nullable
-    private final String memoryId;
+    @Nonnull
+    private final String queryText;
 
     // ---------------------------------------------------------------------------------------------
 
     private AgenticQuery(Builder builder) {
         super(builder);
-        this.queryText = ApiTypeHelper.requireNonNull(builder.queryText, this, "queryText");
-        this.queryFields = ApiTypeHelper.unmodifiable(builder.queryFields);
         this.memoryId = builder.memoryId;
+        this.queryFields = ApiTypeHelper.unmodifiable(builder.queryFields);
+        this.queryText = ApiTypeHelper.requireNonNull(builder.queryText, this, "queryText");
     }
 
     public static AgenticQuery of(Function<AgenticQuery.Builder, ObjectBuilder<AgenticQuery>> fn) {
@@ -90,14 +90,14 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
     }
 
     /**
-     * Required - The natural language question.
+     * Memory ID for conversational context.
      * <p>
-     * API name: {@code query_text}
+     * API name: {@code memory_id}
      * </p>
      */
-    @Nonnull
-    public final String queryText() {
-        return this.queryText;
+    @Nullable
+    public final String memoryId() {
+        return this.memoryId;
     }
 
     /**
@@ -112,20 +112,22 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
     }
 
     /**
-     * Memory ID for conversational context.
+     * Required - The natural language question.
      * <p>
-     * API name: {@code memory_id}
+     * API name: {@code query_text}
      * </p>
      */
-    @Nullable
-    public final String memoryId() {
-        return this.memoryId;
+    @Nonnull
+    public final String queryText() {
+        return this.queryText;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
-        generator.writeKey("query_text");
-        generator.write(this.queryText);
+        if (this.memoryId != null) {
+            generator.writeKey("memory_id");
+            generator.write(this.memoryId);
+        }
 
         if (ApiTypeHelper.isDefined(this.queryFields)) {
             generator.writeKey("query_fields");
@@ -136,10 +138,8 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
             generator.writeEnd();
         }
 
-        if (this.memoryId != null) {
-            generator.writeKey("memory_id");
-            generator.write(this.memoryId);
-        }
+        generator.writeKey("query_text");
+        generator.write(this.queryText);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -159,26 +159,26 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
      * Builder for {@link AgenticQuery}.
      */
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AgenticQuery> {
-        private String queryText;
-        @Nullable
-        private List<String> queryFields;
         @Nullable
         private String memoryId;
+        @Nullable
+        private List<String> queryFields;
+        private String queryText;
 
         public Builder() {}
 
         private Builder(AgenticQuery o) {
             super(o);
-            this.queryText = o.queryText;
-            this.queryFields = _listCopy(o.queryFields);
             this.memoryId = o.memoryId;
+            this.queryFields = _listCopy(o.queryFields);
+            this.queryText = o.queryText;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.queryText = o.queryText;
-            this.queryFields = _listCopy(o.queryFields);
             this.memoryId = o.memoryId;
+            this.queryFields = _listCopy(o.queryFields);
+            this.queryText = o.queryText;
         }
 
         @Override
@@ -194,14 +194,14 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
         }
 
         /**
-         * Required - The natural language question.
+         * Memory ID for conversational context.
          * <p>
-         * API name: {@code query_text}
+         * API name: {@code memory_id}
          * </p>
          */
         @Nonnull
-        public final Builder queryText(String value) {
-            this.queryText = value;
+        public final Builder memoryId(@Nullable String value) {
+            this.memoryId = value;
             return this;
         }
 
@@ -238,14 +238,14 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
         }
 
         /**
-         * Memory ID for conversational context.
+         * Required - The natural language question.
          * <p>
-         * API name: {@code memory_id}
+         * API name: {@code query_text}
          * </p>
          */
         @Nonnull
-        public final Builder memoryId(@Nullable String value) {
-            this.memoryId = value;
+        public final Builder queryText(String value) {
+            this.queryText = value;
             return this;
         }
 
@@ -275,17 +275,17 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
 
     protected static void setupAgenticQueryDeserializer(ObjectDeserializer<AgenticQuery.Builder> op) {
         setupQueryBaseDeserializer(op);
-        op.add(Builder::queryText, JsonpDeserializer.stringDeserializer(), "query_text");
-        op.add(Builder::queryFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "query_fields");
         op.add(Builder::memoryId, JsonpDeserializer.stringDeserializer(), "memory_id");
+        op.add(Builder::queryFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "query_fields");
+        op.add(Builder::queryText, JsonpDeserializer.stringDeserializer(), "query_text");
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + this.queryText.hashCode();
-        result = 31 * result + Objects.hashCode(this.queryFields);
         result = 31 * result + Objects.hashCode(this.memoryId);
+        result = 31 * result + Objects.hashCode(this.queryFields);
+        result = 31 * result + this.queryText.hashCode();
         return result;
     }
 
@@ -297,8 +297,8 @@ public class AgenticQuery extends QueryBase implements QueryVariant, ToCopyableB
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         AgenticQuery other = (AgenticQuery) o;
-        return this.queryText.equals(other.queryText)
+        return Objects.equals(this.memoryId, other.memoryId)
             && Objects.equals(this.queryFields, other.queryFields)
-            && Objects.equals(this.memoryId, other.memoryId);
+            && this.queryText.equals(other.queryText);
     }
 }
