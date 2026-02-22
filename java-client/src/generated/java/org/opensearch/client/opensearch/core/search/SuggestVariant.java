@@ -30,14 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
+
+/**
+ * Base interface for {@link Suggest} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public interface SuggestVariant {
+    Suggest.Kind _suggestKind();
 
-    Suggest.Kind _suggestionKind();
-
-    default Suggest _toSuggestion() {
+    default Suggest toSuggest() {
         return new Suggest(this);
     }
-
 }

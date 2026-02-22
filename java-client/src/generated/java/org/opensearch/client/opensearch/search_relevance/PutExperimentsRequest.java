@@ -38,7 +38,6 @@ package org.opensearch.client.opensearch.search_relevance;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -56,7 +55,6 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
@@ -73,8 +71,8 @@ public final class PutExperimentsRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<PutExperimentsRequest.Builder, PutExperimentsRequest> {
 
-    @Nonnull
-    private final List<String> judgmentList;
+    @Nullable
+    private final JsonData judgmentList;
 
     @Nullable
     private final String querySetId;
@@ -92,7 +90,7 @@ public final class PutExperimentsRequest extends RequestBase
 
     private PutExperimentsRequest(Builder builder) {
         super(builder);
-        this.judgmentList = ApiTypeHelper.unmodifiable(builder.judgmentList);
+        this.judgmentList = builder.judgmentList;
         this.querySetId = builder.querySetId;
         this.searchConfigurationList = builder.searchConfigurationList;
         this.size = builder.size;
@@ -106,8 +104,8 @@ public final class PutExperimentsRequest extends RequestBase
     /**
      * API name: {@code judgmentList}
      */
-    @Nonnull
-    public final List<String> judgmentList() {
+    @Nullable
+    public final JsonData judgmentList() {
         return this.judgmentList;
     }
 
@@ -154,13 +152,9 @@ public final class PutExperimentsRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.judgmentList)) {
+        if (this.judgmentList != null) {
             generator.writeKey("judgmentList");
-            generator.writeStartArray();
-            for (String item0 : this.judgmentList) {
-                generator.write(item0);
-            }
-            generator.writeEnd();
+            this.judgmentList.serialize(generator, mapper);
         }
 
         if (this.querySetId != null) {
@@ -202,7 +196,7 @@ public final class PutExperimentsRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutExperimentsRequest> {
         @Nullable
-        private List<String> judgmentList;
+        private JsonData judgmentList;
         @Nullable
         private String querySetId;
         @Nullable
@@ -216,7 +210,7 @@ public final class PutExperimentsRequest extends RequestBase
 
         private Builder(PutExperimentsRequest o) {
             super(o);
-            this.judgmentList = _listCopy(o.judgmentList);
+            this.judgmentList = o.judgmentList;
             this.querySetId = o.querySetId;
             this.searchConfigurationList = o.searchConfigurationList;
             this.size = o.size;
@@ -225,7 +219,7 @@ public final class PutExperimentsRequest extends RequestBase
 
         private Builder(Builder o) {
             super(o);
-            this.judgmentList = _listCopy(o.judgmentList);
+            this.judgmentList = o.judgmentList;
             this.querySetId = o.querySetId;
             this.searchConfigurationList = o.searchConfigurationList;
             this.size = o.size;
@@ -246,27 +240,10 @@ public final class PutExperimentsRequest extends RequestBase
 
         /**
          * API name: {@code judgmentList}
-         *
-         * <p>
-         * Adds all elements of <code>list</code> to <code>judgmentList</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder judgmentList(List<String> list) {
-            this.judgmentList = _listAddAll(this.judgmentList, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code judgmentList}
-         *
-         * <p>
-         * Adds one or more values to <code>judgmentList</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder judgmentList(String value, String... values) {
-            this.judgmentList = _listAdd(this.judgmentList, value, values);
+        public final Builder judgmentList(@Nullable JsonData value) {
+            this.judgmentList = value;
             return this;
         }
 
@@ -331,7 +308,7 @@ public final class PutExperimentsRequest extends RequestBase
     );
 
     protected static void setupPutExperimentsRequestDeserializer(ObjectDeserializer<PutExperimentsRequest.Builder> op) {
-        op.add(Builder::judgmentList, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "judgmentList");
+        op.add(Builder::judgmentList, JsonData._DESERIALIZER, "judgmentList");
         op.add(Builder::querySetId, JsonpDeserializer.stringDeserializer(), "querySetId");
         op.add(Builder::searchConfigurationList, JsonData._DESERIALIZER, "searchConfigurationList");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

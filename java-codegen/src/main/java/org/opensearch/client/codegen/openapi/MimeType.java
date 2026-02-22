@@ -14,6 +14,7 @@ import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Strings;
 
 public enum MimeType {
+    Sse("text/event-stream"),
     Cbor("application/cbor"),
     Json("application/json"),
     NdJson("application/x-ndjson"),

@@ -5766,6 +5766,24 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ml.execute_agent___200'
+  /_plugins/_ml/agents/{agent_id}/_execute/stream:
+    post:
+      operationId: ml.execute_agent_stream.0
+      x-operation-group: ml.execute_agent_stream
+      x-version-added: '3.3'
+      description: Execute an agent in streaming mode.
+      parameters:
+        - $ref: '#/components/parameters/ml.execute_agent_stream___path.agent_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.execute_agent_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.execute_agent_stream___200'
   /_plugins/_ml/connectors/_create:
     post:
       operationId: ml.create_connector.0
@@ -6479,6 +6497,24 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ml.predict_model___200'
+  /_plugins/_ml/models/{model_id}/_predict/stream:
+    post:
+      operationId: ml.predict_model_stream.0
+      x-operation-group: ml.predict_model_stream
+      x-version-added: '3.3'
+      description: Predicts a model in streaming mode.
+      parameters:
+        - $ref: '#/components/parameters/ml.predict_model_stream___path.model_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.predict_model_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.predict_model_stream___200'
   /_plugins/_ml/models/{model_id}/_undeploy:
     post:
       operationId: ml.undeploy_model.0
@@ -7833,6 +7869,68 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/search_relevance.get_experiments___200'
+  /_plugins/_search_relevance/experiments/schedule:
+    get:
+      operationId: search_relevance.get_scheduled_experiments.0
+      x-operation-group: search_relevance.get_scheduled_experiments
+      x-version-added: '3.4'
+      description: Gets the scheduled experiments.
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_scheduled_experiments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    post:
+      operationId: search_relevance.post_scheduled_experiments.0
+      x-operation-group: search_relevance.post_scheduled_experiments
+      x-version-added: '3.4'
+      description: Creates a scheduled experiment.
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.post_scheduled_experiments'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.post_scheduled_experiments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_search_relevance/experiments/schedule/{experiment_id}:
+    delete:
+      operationId: search_relevance.delete_scheduled_experiments.0
+      x-operation-group: search_relevance.delete_scheduled_experiments
+      x-version-added: '3.4'
+      description: Deletes a specified scheduled experiment.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.delete_scheduled_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.delete_scheduled_experiments___200'
+    get:
+      operationId: search_relevance.get_scheduled_experiments.1
+      x-operation-group: search_relevance.get_scheduled_experiments
+      x-version-added: '3.4'
+      description: Gets the scheduled experiments.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.get_scheduled_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_scheduled_experiments___200'
   /_plugins/_search_relevance/judgments:
     get:
       operationId: search_relevance.get_judgments.0
@@ -26068,6 +26166,12 @@ components:
       required: true
       schema:
         type: string
+    ml.execute_agent_stream___path.agent_id:
+      name: agent_id
+      in: path
+      required: true
+      schema:
+        type: string
     ml.execute_agent___path.agent_id:
       name: agent_id
       in: path
@@ -26219,6 +26323,12 @@ components:
       schema:
         $ref: '#/components/schemas/ml._common___ToolName'
     ml.load_model___path.model_id:
+      name: model_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.predict_model_stream___path.model_id:
       name: model_id
       in: path
       required: true
@@ -27621,6 +27731,13 @@ components:
       description: The query set id
       schema:
         type: string
+    search_relevance.delete_scheduled_experiments___path.experiment_id:
+      name: experiment_id
+      in: path
+      required: true
+      description: The experiment id
+      schema:
+        type: string
     search_relevance.delete_search_configurations___path.search_configuration_id:
       name: search_configuration_id
       in: path
@@ -27696,6 +27813,13 @@ components:
       in: path
       required: true
       description: The query set id
+      schema:
+        type: string
+    search_relevance.get_scheduled_experiments___path.experiment_id:
+      name: experiment_id
+      in: path
+      required: true
+      description: The experiment id
       schema:
         type: string
     search_relevance.get_search_configurations___path.search_configuration_id:
@@ -31198,6 +31322,16 @@ components:
                 description: Whether to provide verbose output.
             required:
               - parameters
+    ml.execute_agent_stream:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              parameters:
+                $ref: '#/components/schemas/ml._common___Parameters'
+            required:
+              - parameters
     ml.execute_algorithm:
       content:
         application/json:
@@ -31307,6 +31441,16 @@ components:
                 description: The text documents.
             required:
               - text_docs
+    ml.predict_model_stream:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              parameters:
+                $ref: '#/components/schemas/ml._common___Parameters'
+            required:
+              - parameters
     ml.register_agents:
       content:
         application/json:
@@ -32217,137 +32361,38 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-              description:
-                type: string
-              sampling:
-                type: string
-              querySetSize:
-                type: integer
+            $ref: '#/components/schemas/search_relevance._common___PostQuerySetsRequest'
+    search_relevance.post_scheduled_experiments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___PostScheduledExperimentsRequest'
     search_relevance.put_experiments:
       content:
         application/json:
           schema:
             anyOf:
-              - type: object
-                description: The schema for a pointwise and hybrid optimizer experiment
-                properties:
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  judgmentList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  type:
-                    type: string
-              - type: object
-                description: The schema for a pairwise experiment
-                properties:
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  type:
-                    type: string
+              - $ref: '#/components/schemas/search_relevance._common___PutHybridOptimizerExperimentRequest'
+              - $ref: '#/components/schemas/search_relevance._common___PutPointwiseExperimentRequest'
+              - $ref: '#/components/schemas/search_relevance._common___PutPairwiseExperimentRequest'
     search_relevance.put_judgments:
       content:
         application/json:
           schema:
             oneOf:
-              - type: object
-                description: The schema for a LLM judgment
-                properties:
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  type:
-                    type: string
-                  modelId:
-                    type: string
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  ignoreFailure:
-                    type: boolean
-                  contextFields:
-                    type: array
-                    items:
-                      type: string
-              - type: object
-                description: The schema for a UBI judgment
-                properties:
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  type:
-                    type: string
-                  clickModel:
-                    type: string
-                  maxRank:
-                    type: integer
-              - type: object
-                description: The schema for an import judgment
-                properties:
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  type:
-                    type: string
-                  judgmentRatings:
-                    type: array
-                    items:
-                      type: object
+              - $ref: '#/components/schemas/search_relevance._common___PutLLMJudgmentsRequest'
+              - $ref: '#/components/schemas/search_relevance._common___PutUBIJudgmentsRequest'
+              - $ref: '#/components/schemas/search_relevance._common___PutImportJudgmentsRequest'
     search_relevance.put_query_sets:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-              description:
-                type: string
-              sampling:
-                type: string
-              querySetQueries:
-                type: array
-                items:
-                  type: object
+            $ref: '#/components/schemas/search_relevance._common___PutQuerySetsRequest'
     search_relevance.put_search_configurations:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-              index:
-                type: string
-              query:
-                type: string
-              searchPipeline:
-                type: string
+            $ref: '#/components/schemas/search_relevance._common___PutSearchConfigurationRequest'
     search_shards:
       content:
         application/json:
@@ -35484,6 +35529,12 @@ components:
               - status
               - task_id
       description: ''
+    ml.execute_agent_stream___200:
+      content:
+        text/event-stream:
+          schema:
+            $ref: '#/components/schemas/ml._common___PredictResponse'
+      description: ''
     ml.execute_agent___200:
       content:
         application/json:
@@ -35655,6 +35706,12 @@ components:
               - status
               - task_id
               - task_type
+      description: ''
+    ml.predict_model_stream___200:
+      content:
+        text/event-stream:
+          schema:
+            $ref: '#/components/schemas/ml._common___PredictResponse'
       description: ''
     ml.predict_model___200:
       content:
@@ -36434,117 +36491,135 @@ components:
       content:
         application/json:
           schema:
-            type: object
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     search_relevance.delete_judgments___200:
       content:
         application/json:
           schema:
-            type: object
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     search_relevance.delete_query_sets___200:
       content:
         application/json:
           schema:
-            type: object
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+      description: ''
+    search_relevance.delete_scheduled_experiments___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     search_relevance.delete_search_configurations___200:
       content:
         application/json:
           schema:
-            type: object
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     search_relevance.get_experiments___200:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/search_relevance._common___Experiment'
-              - $ref: '#/components/schemas/search_relevance._common___GenericObject'
+            $ref: '#/components/schemas/_core.search___SearchResult'
       description: ''
     search_relevance.get_judgments___200:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/search_relevance._common___Judgment'
-              - $ref: '#/components/schemas/search_relevance._common___GenericObject'
+            $ref: '#/components/schemas/_core.search___SearchResult'
       description: ''
     search_relevance.get_node_stats___200:
       content:
         application/json:
           schema:
-            type: object
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  info:
+                    type: object
+                  all_nodes:
+                    type: object
+                  nodes:
+                    type: object
+                required:
+                  - nodes
       description: ''
     search_relevance.get_query_sets___200:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/search_relevance._common___QuerySet'
-              - $ref: '#/components/schemas/search_relevance._common___GenericObject'
+            $ref: '#/components/schemas/_core.search___SearchResult'
+      description: ''
+    search_relevance.get_scheduled_experiments___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_core.search___SearchResult'
       description: ''
     search_relevance.get_search_configurations___200:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/search_relevance._common___SearchConfiguration'
-              - $ref: '#/components/schemas/search_relevance._common___GenericObject'
+            $ref: '#/components/schemas/_core.search___SearchResult'
       description: ''
     search_relevance.get_stats___200:
       content:
         application/json:
           schema:
-            type: object
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  info:
+                    type: object
+                  all_nodes:
+                    type: object
+                  nodes:
+                    type: object
+                required:
+                  - nodes
       description: ''
     search_relevance.post_query_sets___200:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              query_set_id:
-                type: string
-              query_set_result:
-                type: string
+            $ref: '#/components/schemas/search_relevance._common___PostQuerySetsResponse'
+      description: ''
+    search_relevance.post_scheduled_experiments___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_relevance._common___PostScheduledExperimentsResponse'
       description: ''
     search_relevance.put_experiments___200:
       content:
         application/json:
           schema:
-            type: object
+            $ref: '#/components/schemas/search_relevance._common___PutExperimentResponse'
       description: ''
     search_relevance.put_judgments___200:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              judgment_id:
-                type: string
+            $ref: '#/components/schemas/search_relevance._common___PutJudgmentsResponse'
       description: ''
     search_relevance.put_query_sets___200:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              query_set_id:
-                type: string
-              query_set_result:
-                type: string
+            $ref: '#/components/schemas/search_relevance._common___PutQuerySetsResponse'
       description: ''
     search_relevance.put_search_configurations___200:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              search_configuration_id:
-                type: string
-              search_configuration_result:
-                type: string
+            $ref: '#/components/schemas/search_relevance._common___PutSearchConfigurationResponse'
       description: ''
     search_shards___200:
       content:
@@ -40159,6 +40234,24 @@ components:
         - failed
         - successful
         - total
+    _common___ShardSearchFailure:
+      type: object
+      description: Represents a failure to search on a specific shard. Used in search responses.
+      properties:
+        shard:
+          type: integer
+          description: The shard id where the failure occurred.
+        index:
+          type: string
+          description: The index name where the failure occurred.
+        node:
+          type: string
+          description: The node id where the failure occurred.
+        reason:
+          $ref: '#/components/schemas/_common___ErrorCause'
+      required:
+        - reason
+        - shard
     _common___ShardsOperationResponseBase:
       description: The base response for operations involving shards.
       type: object
@@ -40179,7 +40272,7 @@ components:
         failures:
           type: array
           items:
-            $ref: '#/components/schemas/_common___ShardFailure'
+            $ref: '#/components/schemas/_common___ShardSearchFailure'
         skipped:
           $ref: '#/components/schemas/_common___uint'
       required:
@@ -61780,6 +61873,75 @@ components:
         session_token:
           type: string
       additionalProperties: true
+    ml._common___DataAsMap:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The streaming content chunk.
+        is_last:
+          type: boolean
+          description: Whether this is the last chunk.
+    ml._common___DeleteAgenticMemoryResponse:
+      type: object
+      properties:
+        took:
+          type: integer
+          format: int64
+          description: Time taken to execute the request.
+        timed_out:
+          type: boolean
+          description: Whether the request timed out.
+        total:
+          type: integer
+          format: int64
+          description: Total number of documents processed.
+        updated:
+          type: integer
+          format: int64
+          description: Number of documents updated.
+        created:
+          type: integer
+          format: int64
+          description: Number of documents created.
+        deleted:
+          type: integer
+          format: int64
+          description: Number of documents deleted.
+        batches:
+          type: integer
+          format: int64
+          description: Number of batches processed.
+        version_conflicts:
+          type: integer
+          format: int64
+          description: Number of version conflicts encountered.
+        noops:
+          type: integer
+          format: int64
+          description: Number of no-operation updates.
+        result:
+          type: string
+          description: The result of delete operation.
+        retries:
+          $ref: '#/components/schemas/_common___Retries'
+        throttled_millis:
+          type: integer
+          format: int64
+          description: Time that the request was throttled.
+        requests_per_second:
+          type: number
+          format: float
+          description: Number of requests processed per second.
+        throttled_until_millis:
+          type: integer
+          format: int64
+          description: Time until throttling is lifted.
+        failures:
+          type: array
+          description: Any failures occurred during the operation.
+          items:
+            $ref: '#/components/schemas/_common___BulkByScrollFailure'
     ml._common___Entity:
       type: object
       properties:
@@ -62422,15 +62584,15 @@ components:
           type: array
           items:
             type: number
-            format: double
+            format: double  
             description: The output data.
         byte_buffer:
           $ref: '#/components/schemas/ml._common___ByteBuffer'
         result:
           type: string
           description: The output result.
-      required:
-        - data
+        dataAsMap:
+          $ref: '#/components/schemas/ml._common___DataAsMap'
     ml._common___Owner:
       type: object
       properties:
@@ -67622,17 +67784,53 @@ components:
           format: int32
         context_prefix:
           type: string
-    search_relevance._common___Experiment:
+    search_relevance._common___PostQuerySetsRequest:
+      type: object
+      description: The schema for creating a query set.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        sampling:
+          type: string
+        querySetSize:
+          type: integer
+    search_relevance._common___PostQuerySetsResponse:
       type: object
       properties:
-        id:
+        query_set_id:
           type: string
-        timestamp:
+        query_set_result:
           type: string
-        type:
+    search_relevance._common___PostScheduledExperimentsRequest:
+      type: object
+      description: The schema for scheduling experiments.
+      properties:
+        experimentId:
+        target_size:
+          type: integer
+          format: int32
+        context_prefix:
           type: string
-        status:
+    search_relevance._common___PostScheduledExperimentsResponse:
+      type: object
+      properties:
+        job_id:
           type: string
+        job_result:
+          type: string
+    search_relevance._common___PutExperimentResponse:
+      type: object
+      properties:
+        experiment_id:
+          type: string
+        experiment_result:
+          type: string
+    search_relevance._common___PutHybridOptimizerExperimentRequest:
+      type: object
+      description: The schema for a hybrid optimizer experiment.
+      properties:
         querySetId:
           type: string
         searchConfigurationList:
@@ -67645,59 +67843,110 @@ components:
             type: string
         size:
           type: integer
-        results:
-          type: object
-    search_relevance._common___GenericObject:
-      type: object
-      properties:
-        took:
-          type: integer
-        timed_out:
-          type: boolean
-        _shards:
-          type: object
-        hits:
-          type: object
-    search_relevance._common___Judgment:
-      type: object
-      properties:
-        id:
+        type:
           type: string
-        timestamp:
-          type: string
+    search_relevance._common___PutImportJudgmentsRequest:
+      type: object
+      description: The schema for an import judgment.
+      properties:
         name:
           type: string
-        status:
+        description:
           type: string
         type:
           type: string
-        metadata:
-          type: object
-        judgmentScores:
-          type: object
-    search_relevance._common___QuerySet:
+        judgmentRatings:
+          type: array
+          items:
+            type: object
+    search_relevance._common___PutJudgmentsResponse:
       type: object
       properties:
-        id:
+        judgment_id:
           type: string
+    search_relevance._common___PutLLMJudgmentsRequest:
+      type: object
+      description: The schema for a LLM judgment.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        modelId:
+          type: string
+        querySetId:
+          type: string
+        searchConfigurationList:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+        ignoreFailure:
+          type: boolean
+        contextFields:
+          type: array
+          items:
+            type: string
+    search_relevance._common___PutPairwiseExperimentRequest:
+      type: object
+      description: The schema for a pairwise experiment.
+      properties:
+        querySetId:
+          type: string
+        searchConfigurationList:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+        type:
+          type: string
+    search_relevance._common___PutPointwiseExperimentRequest:
+      type: object
+      description: The schema for a pointwise experiment.
+      properties:
+        querySetId:
+          type: string
+        searchConfigurationList:
+          type: array
+          items:
+            type: string
+        judgmentList:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+        type:
+          type: string
+    search_relevance._common___PutQuerySetsRequest:
+      type: object
+      description: The schema for updating a query set.
+      properties:
         name:
           type: string
         description:
           type: string
         sampling:
           type: string
-        timestamp:
-          type: string
         querySetQueries:
-          type: object
-    search_relevance._common___SearchConfiguration:
+          type: array
+          items:
+            type: object
+    search_relevance._common___PutQuerySetsResponse:
       type: object
       properties:
-        id:
+        query_set_id:
           type: string
+        query_set_result:
+          type: string
+    search_relevance._common___PutSearchConfigurationRequest:
+      type: object
+      properties:
         name:
-          type: string
-        timestamp:
           type: string
         index:
           type: string
@@ -67705,6 +67954,27 @@ components:
           type: string
         searchPipeline:
           type: string
+    search_relevance._common___PutSearchConfigurationResponse:
+      type: object
+      properties:
+        search_configuration_id:
+          type: string
+        search_configuration_result:
+          type: string
+    search_relevance._common___PutUBIJudgmentsRequest:
+      type: object
+      description: The schema for a UBI judgment.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        clickModel:
+          type: string
+        maxRank:
+          type: integer
     security_analytics.alerts___ActionExecutionResult:
       type: object
       properties:

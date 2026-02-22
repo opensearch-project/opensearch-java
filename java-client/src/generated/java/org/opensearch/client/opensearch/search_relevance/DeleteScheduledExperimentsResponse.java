@@ -48,21 +48,23 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_relevance.delete_query_sets.Response
+// typedef: search_relevance.delete_scheduled_experiments.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteQuerySetsResponse extends WriteResponseBase
+public class DeleteScheduledExperimentsResponse extends WriteResponseBase
     implements
-        ToCopyableBuilder<DeleteQuerySetsResponse.Builder, DeleteQuerySetsResponse> {
+        ToCopyableBuilder<DeleteScheduledExperimentsResponse.Builder, DeleteScheduledExperimentsResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteQuerySetsResponse(Builder builder) {
+    private DeleteScheduledExperimentsResponse(Builder builder) {
         super(builder);
     }
 
-    public static DeleteQuerySetsResponse of(Function<DeleteQuerySetsResponse.Builder, ObjectBuilder<DeleteQuerySetsResponse>> fn) {
+    public static DeleteScheduledExperimentsResponse of(
+        Function<DeleteScheduledExperimentsResponse.Builder, ObjectBuilder<DeleteScheduledExperimentsResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -80,15 +82,15 @@ public class DeleteQuerySetsResponse extends WriteResponseBase
     }
 
     /**
-     * Builder for {@link DeleteQuerySetsResponse}.
+     * Builder for {@link DeleteScheduledExperimentsResponse}.
      */
     public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
         implements
-            CopyableBuilder<Builder, DeleteQuerySetsResponse> {
+            CopyableBuilder<Builder, DeleteScheduledExperimentsResponse> {
 
         public Builder() {}
 
-        private Builder(DeleteQuerySetsResponse o) {
+        private Builder(DeleteScheduledExperimentsResponse o) {
             super(o);
         }
 
@@ -109,30 +111,32 @@ public class DeleteQuerySetsResponse extends WriteResponseBase
         }
 
         /**
-         * Builds a {@link DeleteQuerySetsResponse}.
+         * Builds a {@link DeleteScheduledExperimentsResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public DeleteQuerySetsResponse build() {
+        public DeleteScheduledExperimentsResponse build() {
             _checkSingleUse();
 
-            return new DeleteQuerySetsResponse(this);
+            return new DeleteScheduledExperimentsResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DeleteQuerySetsResponse}
+     * Json deserializer for {@link DeleteScheduledExperimentsResponse}
      */
-    public static final JsonpDeserializer<DeleteQuerySetsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DeleteScheduledExperimentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DeleteQuerySetsResponse::setupDeleteQuerySetsResponseDeserializer
+        DeleteScheduledExperimentsResponse::setupDeleteScheduledExperimentsResponseDeserializer
     );
 
-    protected static void setupDeleteQuerySetsResponseDeserializer(ObjectDeserializer<DeleteQuerySetsResponse.Builder> op) {
+    protected static void setupDeleteScheduledExperimentsResponseDeserializer(
+        ObjectDeserializer<DeleteScheduledExperimentsResponse.Builder> op
+    ) {
         setupWriteResponseBaseDeserializer(op);
     }
 

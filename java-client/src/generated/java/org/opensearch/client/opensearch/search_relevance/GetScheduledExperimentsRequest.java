@@ -52,37 +52,41 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_relevance.get_judgments.Request
+// typedef: search_relevance.get_scheduled_experiments.Request
 
 /**
- * Gets judgments.
+ * Gets the scheduled experiments.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class GetJudgmentsRequest extends RequestBase implements ToCopyableBuilder<GetJudgmentsRequest.Builder, GetJudgmentsRequest> {
+public final class GetScheduledExperimentsRequest extends RequestBase
+    implements
+        ToCopyableBuilder<GetScheduledExperimentsRequest.Builder, GetScheduledExperimentsRequest> {
 
     @Nullable
-    private final String judgmentId;
+    private final String experimentId;
 
     // ---------------------------------------------------------------------------------------------
 
-    private GetJudgmentsRequest(Builder builder) {
+    private GetScheduledExperimentsRequest(Builder builder) {
         super(builder);
-        this.judgmentId = builder.judgmentId;
+        this.experimentId = builder.experimentId;
     }
 
-    public static GetJudgmentsRequest of(Function<GetJudgmentsRequest.Builder, ObjectBuilder<GetJudgmentsRequest>> fn) {
+    public static GetScheduledExperimentsRequest of(
+        Function<GetScheduledExperimentsRequest.Builder, ObjectBuilder<GetScheduledExperimentsRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The judgment id
+     * The experiment id
      * <p>
-     * API name: {@code judgment_id}
+     * API name: {@code experiment_id}
      * </p>
      */
     @Nullable
-    public final String judgmentId() {
-        return this.judgmentId;
+    public final String experimentId() {
+        return this.experimentId;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -99,22 +103,24 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Builder for {@link GetJudgmentsRequest}.
+     * Builder for {@link GetScheduledExperimentsRequest}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetJudgmentsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, GetScheduledExperimentsRequest> {
         @Nullable
-        private String judgmentId;
+        private String experimentId;
 
         public Builder() {}
 
-        private Builder(GetJudgmentsRequest o) {
+        private Builder(GetScheduledExperimentsRequest o) {
             super(o);
-            this.judgmentId = o.judgmentId;
+            this.experimentId = o.experimentId;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.judgmentId = o.judgmentId;
+            this.experimentId = o.experimentId;
         }
 
         @Override
@@ -130,54 +136,54 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * The judgment id
+         * The experiment id
          * <p>
-         * API name: {@code judgment_id}
+         * API name: {@code experiment_id}
          * </p>
          */
         @Nonnull
-        public final Builder judgmentId(@Nullable String value) {
-            this.judgmentId = value;
+        public final Builder experimentId(@Nullable String value) {
+            this.experimentId = value;
             return this;
         }
 
         /**
-         * Builds a {@link GetJudgmentsRequest}.
+         * Builds a {@link GetScheduledExperimentsRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GetJudgmentsRequest build() {
+        public GetScheduledExperimentsRequest build() {
             _checkSingleUse();
 
-            return new GetJudgmentsRequest(this);
+            return new GetScheduledExperimentsRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code search_relevance.get_judgments}".
+     * Endpoint "{@code search_relevance.get_scheduled_experiments}".
      */
-    public static final SimpleEndpoint<GetJudgmentsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+    public static final SimpleEndpoint<GetScheduledExperimentsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "GET",
         // Request path
         request -> {
-            final int _judgmentId = 1 << 0;
+            final int _experimentId = 1 << 0;
 
             int propsSet = 0;
 
-            if (request.judgmentId() != null) propsSet |= _judgmentId;
+            if (request.experimentId() != null) propsSet |= _experimentId;
 
             if (propsSet == 0) {
-                return "/_plugins/_search_relevance/judgments";
+                return "/_plugins/_search_relevance/experiments/schedule";
             }
-            if (propsSet == (_judgmentId)) {
+            if (propsSet == (_experimentId)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_plugins/_search_relevance/judgments/");
-                SimpleEndpoint.pathEncode(request.judgmentId, buf);
+                buf.append("/_plugins/_search_relevance/experiments/schedule/");
+                SimpleEndpoint.pathEncode(request.experimentId, buf);
                 return buf.toString();
             }
 
@@ -191,23 +197,25 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
         },
         SimpleEndpoint.emptyMap(),
         false,
-        GetJudgmentsResponse._DESERIALIZER
+        GetScheduledExperimentsResponse._DESERIALIZER
     );
 
     /**
-     * Create an "{@code search_relevance.get_judgments}" endpoint.
+     * Create an "{@code search_relevance.get_scheduled_experiments}" endpoint.
      */
     public static <
-        TDocument> Endpoint<GetJudgmentsRequest, GetJudgmentsResponse<TDocument>, ErrorResponse> createSearchRelevanceGetJudgmentsEndpoint(
-            JsonpDeserializer<TDocument> tDocumentDeserializer
-        ) {
-        return _ENDPOINT.withResponseDeserializer(GetJudgmentsResponse.createGetJudgmentsResponseDeserializer(tDocumentDeserializer));
+        TDocument>
+        Endpoint<GetScheduledExperimentsRequest, GetScheduledExperimentsResponse<TDocument>, ErrorResponse>
+        createSearchRelevanceGetScheduledExperimentsEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
+        return _ENDPOINT.withResponseDeserializer(
+            GetScheduledExperimentsResponse.createGetScheduledExperimentsResponseDeserializer(tDocumentDeserializer)
+        );
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.judgmentId);
+        result = 31 * result + Objects.hashCode(this.experimentId);
         return result;
     }
 
@@ -215,7 +223,7 @@ public final class GetJudgmentsRequest extends RequestBase implements ToCopyable
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetJudgmentsRequest other = (GetJudgmentsRequest) o;
-        return Objects.equals(this.judgmentId, other.judgmentId);
+        GetScheduledExperimentsRequest other = (GetScheduledExperimentsRequest) o;
+        return Objects.equals(this.experimentId, other.experimentId);
     }
 }
