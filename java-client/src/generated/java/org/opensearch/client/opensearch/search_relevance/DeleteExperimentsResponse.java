@@ -36,41 +36,34 @@
 
 package org.opensearch.client.opensearch.search_relevance;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: search_relevance.delete_experiments.Response
 
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteExperimentsResponse
+public class DeleteExperimentsResponse extends WriteResponseBase
     implements
-        PlainJsonSerializable,
         ToCopyableBuilder<DeleteExperimentsResponse.Builder, DeleteExperimentsResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteExperimentsResponse(Builder builder) {}
+    private DeleteExperimentsResponse(Builder builder) {
+        super(builder);
+    }
 
     public static DeleteExperimentsResponse of(Function<DeleteExperimentsResponse.Builder, ObjectBuilder<DeleteExperimentsResponse>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -89,18 +82,30 @@ public class DeleteExperimentsResponse
     /**
      * Builder for {@link DeleteExperimentsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteExperimentsResponse> {
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteExperimentsResponse> {
 
         public Builder() {}
 
-        private Builder(DeleteExperimentsResponse o) {}
+        private Builder(DeleteExperimentsResponse o) {
+            super(o);
+        }
 
-        private Builder(Builder o) {}
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -120,22 +125,28 @@ public class DeleteExperimentsResponse
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Singleton instance for {@link DeleteExperimentsResponse}.
+     * Json deserializer for {@link DeleteExperimentsResponse}
      */
-    public static final DeleteExperimentsResponse _INSTANCE = builder().build();
-
-    public static final JsonpDeserializer<DeleteExperimentsResponse> _DESERIALIZER = JsonpDeserializer.emptyObject(
-        DeleteExperimentsResponse._INSTANCE
+    public static final JsonpDeserializer<DeleteExperimentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteExperimentsResponse::setupDeleteExperimentsResponseDeserializer
     );
+
+    protected static void setupDeleteExperimentsResponseDeserializer(ObjectDeserializer<DeleteExperimentsResponse.Builder> op) {
+        setupWriteResponseBaseDeserializer(op);
+    }
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         return true;
