@@ -186,7 +186,7 @@ dependencies {
     api("commons-logging:commons-logging:1.3.5")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.hamcrest:hamcrest:3.0")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.3") {
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.4") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -194,8 +194,8 @@ dependencies {
     api("org.apache.httpcomponents.client5:httpclient5:5.6") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.4")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4")
+    api("org.apache.httpcomponents.core5:httpcore5:5.4.1")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.1")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
