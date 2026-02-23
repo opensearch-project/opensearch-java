@@ -51,6 +51,13 @@ public class QueryBuilders {
     private QueryBuilders() {}
 
     /**
+     * Creates a builder for the {@link AgenticQuery agentic} {@code Query} variant.
+     */
+    public static AgenticQuery.Builder agentic() {
+        return new AgenticQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link BoolQuery bool} {@code Query} variant.
      */
     public static BoolQuery.Builder bool() {

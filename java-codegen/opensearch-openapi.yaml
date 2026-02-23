@@ -48025,6 +48025,24 @@ components:
                 - xy_shape
           required:
             - type
+    _common.query_dsl___AgenticQuery:
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
+        - type: object
+          properties:
+            query_text:
+              description: The natural language question.
+              type: string
+            query_fields:
+              description: Index fields the agent should consider.
+              type: array
+              items:
+                type: string
+            memory_id:
+              description: Memory ID for conversational context.
+              type: string
+          required:
+            - query_text
     _common.query_dsl___BoolQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -49370,6 +49388,8 @@ components:
     _common.query_dsl___QueryContainer:
       type: object
       properties:
+        agentic:
+          $ref: '#/components/schemas/_common.query_dsl___AgenticQuery'
         bool:
           $ref: '#/components/schemas/_common.query_dsl___BoolQuery'
         boosting:

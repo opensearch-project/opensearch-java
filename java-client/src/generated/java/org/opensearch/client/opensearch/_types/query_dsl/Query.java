@@ -68,6 +68,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
      * {@link Query} variant kinds.
      */
     public enum Kind implements JsonEnum {
+        Agentic("agentic"),
         Bool("bool"),
         Boosting("boosting"),
         CombinedFields("combined_fields"),
@@ -171,6 +172,22 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
     public static Query of(Function<Query.Builder, ObjectBuilder<Query>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Is this variant instance of kind {@code agentic}?
+     */
+    public boolean isAgentic() {
+        return _kind == Kind.Agentic;
+    }
+
+    /**
+     * Get the {@code agentic} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code agentic} kind.
+     */
+    public AgenticQuery agentic() {
+        return TaggedUnionUtils.get(this, Kind.Agentic);
     }
 
     /**
@@ -1127,6 +1144,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             this._value = o._value;
         }
 
+        public ObjectBuilder<Query> agentic(AgenticQuery v) {
+            this._kind = Kind.Agentic;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> agentic(Function<AgenticQuery.Builder, ObjectBuilder<AgenticQuery>> fn) {
+            return this.agentic(fn.apply(new AgenticQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> bool(BoolQuery v) {
             this._kind = Kind.Bool;
             this._value = v;
@@ -1701,6 +1728,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
+        op.add(Builder::agentic, AgenticQuery._DESERIALIZER, "agentic");
         op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
         op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
         op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
