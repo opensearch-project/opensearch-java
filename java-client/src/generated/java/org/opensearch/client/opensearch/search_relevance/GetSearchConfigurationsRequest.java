@@ -43,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -165,40 +166,51 @@ public final class GetSearchConfigurationsRequest extends RequestBase
     /**
      * Endpoint "{@code search_relevance.get_search_configurations}".
      */
-    public static final Endpoint<GetSearchConfigurationsRequest, GetSearchConfigurationsResponse, ErrorResponse> _ENDPOINT =
-        new SimpleEndpoint<>(
-            // Request method
-            request -> "GET",
-            // Request path
-            request -> {
-                final int _searchConfigurationId = 1 << 0;
+    public static final SimpleEndpoint<GetSearchConfigurationsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+        // Request method
+        request -> "GET",
+        // Request path
+        request -> {
+            final int _searchConfigurationId = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                if (request.searchConfigurationId() != null) propsSet |= _searchConfigurationId;
+            if (request.searchConfigurationId() != null) propsSet |= _searchConfigurationId;
 
-                if (propsSet == 0) {
-                    return "/_plugins/_search_relevance/search_configurations";
-                }
-                if (propsSet == (_searchConfigurationId)) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/_plugins/_search_relevance/search_configurations/");
-                    SimpleEndpoint.pathEncode(request.searchConfigurationId, buf);
-                    return buf.toString();
-                }
+            if (propsSet == 0) {
+                return "/_plugins/_search_relevance/search_configurations";
+            }
+            if (propsSet == (_searchConfigurationId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_plugins/_search_relevance/search_configurations/");
+                SimpleEndpoint.pathEncode(request.searchConfigurationId, buf);
+                return buf.toString();
+            }
 
-                throw SimpleEndpoint.noPathTemplateFound("path");
-            },
-            // Request parameters
-            request -> {
-                Map<String, String> params = new HashMap<>();
-                request.applyQueryParameters(params);
-                return params;
-            },
-            SimpleEndpoint.emptyMap(),
-            false,
-            GetSearchConfigurationsResponse._DESERIALIZER
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetSearchConfigurationsResponse._DESERIALIZER
+    );
+
+    /**
+     * Create an "{@code search_relevance.get_search_configurations}" endpoint.
+     */
+    public static <
+        TDocument>
+        Endpoint<GetSearchConfigurationsRequest, GetSearchConfigurationsResponse<TDocument>, ErrorResponse>
+        createSearchRelevanceGetSearchConfigurationsEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
+        return _ENDPOINT.withResponseDeserializer(
+            GetSearchConfigurationsResponse.createGetSearchConfigurationsResponseDeserializer(tDocumentDeserializer)
         );
+    }
 
     @Override
     public int hashCode() {

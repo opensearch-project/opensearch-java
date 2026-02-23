@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -40,23 +46,24 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _global.search._types.Suggest
+// typedef: core.search.SuggestBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class SuggestBase implements PlainJsonSerializable {
+
     private final int length;
 
     private final int offset;
 
+    @Nonnull
     private final String text;
 
     // ---------------------------------------------------------------------------------------------
 
     protected SuggestBase(AbstractBuilder<?> builder) {
-
         this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
         this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
         this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-
     }
 
     /**
@@ -76,6 +83,7 @@ public abstract class SuggestBase implements PlainJsonSerializable {
     /**
      * Required - API name: {@code text}
      */
+    @Nonnull
     public final String text() {
         return this.text;
     }
@@ -83,6 +91,7 @@ public abstract class SuggestBase implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -90,7 +99,6 @@ public abstract class SuggestBase implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("length");
         generator.write(this.length);
 
@@ -99,25 +107,36 @@ public abstract class SuggestBase implements PlainJsonSerializable {
 
         generator.writeKey("text");
         generator.write(this.text);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link SuggestBase}.
-     */
-
     public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Integer length;
-
         private Integer offset;
-
         private String text;
+
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(SuggestBase o) {
+            this.length = o.length;
+            this.offset = o.offset;
+            this.text = o.text;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.length = o.length;
+            this.offset = o.offset;
+            this.text = o.text;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * Required - API name: {@code length}
          */
+        @Nonnull
         public final BuilderT length(int value) {
             this.length = value;
             return self();
@@ -126,6 +145,7 @@ public abstract class SuggestBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code offset}
          */
+        @Nonnull
         public final BuilderT offset(int value) {
             this.offset = value;
             return self();
@@ -134,21 +154,35 @@ public abstract class SuggestBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code text}
          */
+        @Nonnull
         public final BuilderT text(String value) {
             this.text = value;
             return self();
         }
-
-        protected abstract BuilderT self();
-
     }
 
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSuggestBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
 
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSuggestBaseDeserializer(ObjectDeserializer<BuilderT> op) {
         op.add(AbstractBuilder::length, JsonpDeserializer.integerDeserializer(), "length");
         op.add(AbstractBuilder::offset, JsonpDeserializer.integerDeserializer(), "offset");
         op.add(AbstractBuilder::text, JsonpDeserializer.stringDeserializer(), "text");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.length);
+        result = 31 * result + Integer.hashCode(this.offset);
+        result = 31 * result + this.text.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SuggestBase other = (SuggestBase) o;
+        return this.length == other.length && this.offset == other.offset && this.text.equals(other.text);
+    }
 }

@@ -43,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -159,7 +160,7 @@ public final class GetQuerySetsRequest extends RequestBase implements ToCopyable
     /**
      * Endpoint "{@code search_relevance.get_query_sets}".
      */
-    public static final Endpoint<GetQuerySetsRequest, GetQuerySetsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final SimpleEndpoint<GetQuerySetsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "GET",
         // Request path
@@ -192,6 +193,16 @@ public final class GetQuerySetsRequest extends RequestBase implements ToCopyable
         false,
         GetQuerySetsResponse._DESERIALIZER
     );
+
+    /**
+     * Create an "{@code search_relevance.get_query_sets}" endpoint.
+     */
+    public static <
+        TDocument> Endpoint<GetQuerySetsRequest, GetQuerySetsResponse<TDocument>, ErrorResponse> createSearchRelevanceGetQuerySetsEndpoint(
+            JsonpDeserializer<TDocument> tDocumentDeserializer
+        ) {
+        return _ENDPOINT.withResponseDeserializer(GetQuerySetsResponse.createGetQuerySetsResponseDeserializer(tDocumentDeserializer));
+    }
 
     @Override
     public int hashCode() {
