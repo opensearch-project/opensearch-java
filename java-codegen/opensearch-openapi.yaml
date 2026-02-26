@@ -61710,6 +61710,7 @@ components:
           description: The priority of the ISM template.
         last_updated_time:
           type: integer
+          format: int64
           description: When the ISM template was last updated.
     ism._common___Metadata:
       type: object
@@ -61735,6 +61736,7 @@ components:
           description: The description of the policy.
         last_updated_time:
           type: integer
+          format: int64
           description: When the policy was last updated.
         schema_version:
           type: number
