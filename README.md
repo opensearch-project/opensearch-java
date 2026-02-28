@@ -3,6 +3,7 @@
 ![Maven Central](https://img.shields.io/maven-central/v/org.opensearch.client/opensearch-java)
 [![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
 ![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
+[![libs.tech recommends](https://libs.tech/project/388880322/badge.svg)](https://libs.tech/project/388880322/opensearch-java)
 
 ![OpenSearch logo](OpenSearch.svg)
 
