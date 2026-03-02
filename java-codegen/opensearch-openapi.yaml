@@ -3944,6 +3944,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/multi-search/
       parameters:
+        - $ref: '#/components/parameters/msearch___query.allow_partial_results'
         - $ref: '#/components/parameters/msearch___query.ccs_minimize_roundtrips'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_searches'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_shard_requests'
@@ -3969,6 +3970,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/multi-search/
       parameters:
+        - $ref: '#/components/parameters/msearch___query.allow_partial_results'
         - $ref: '#/components/parameters/msearch___query.ccs_minimize_roundtrips'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_searches'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_shard_requests'
@@ -14240,6 +14242,7 @@ paths:
         url: https://opensearch.org/docs/latest/api-reference/multi-search/
       parameters:
         - $ref: '#/components/parameters/msearch___path.index'
+        - $ref: '#/components/parameters/msearch___query.allow_partial_results'
         - $ref: '#/components/parameters/msearch___query.ccs_minimize_roundtrips'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_searches'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_shard_requests'
@@ -14266,6 +14269,7 @@ paths:
         url: https://opensearch.org/docs/latest/api-reference/multi-search/
       parameters:
         - $ref: '#/components/parameters/msearch___path.index'
+        - $ref: '#/components/parameters/msearch___query.allow_partial_results'
         - $ref: '#/components/parameters/msearch___query.ccs_minimize_roundtrips'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_searches'
         - $ref: '#/components/parameters/msearch___query.max_concurrent_shard_requests'
@@ -26865,6 +26869,14 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Indices'
       style: simple
+    msearch___query.allow_partial_results:
+      in: query
+      name: allow_partial_results
+      description: Specifies whether to return partial results if there are shard request timeouts or shard failures
+      schema:
+        type: boolean
+        default: true
+      style: form
     msearch___query.ccs_minimize_roundtrips:
       in: query
       name: ccs_minimize_roundtrips
@@ -41753,6 +41765,7 @@ components:
               required:
                 - filter
               unevaluatedProperties: true
+              x-protobuf-excluded: true
             - properties:
                 filters:
                   $ref: '#/components/schemas/_common.aggregations___FiltersAggregation'
@@ -43311,6 +43324,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
         - type: object
+          properties:
+            value_type:
+              $ref: '#/components/schemas/_common.aggregations___ValueType'
     _common.aggregations___MaxBucketAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -43333,12 +43349,17 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
             missing:
               $ref: '#/components/schemas/_common___FieldValue'
-            script:
-              $ref: '#/components/schemas/_common___Script'
+        - anyOf:
+            - type: object
+              properties:
+                field:
+                  $ref: '#/components/schemas/_common___Field'
+            - type: object
+              properties:
+                script:
+                  $ref: '#/components/schemas/_common___Script'
     _common.aggregations___MinAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
@@ -43347,6 +43368,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
         - type: object
+          properties:
+            value_type:
+              $ref: '#/components/schemas/_common.aggregations___ValueType'
     _common.aggregations___MinBucketAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -44577,23 +44601,20 @@ components:
               $ref: '#/components/schemas/_common.aggregations___TermsExclude'
             execution_hint:
               $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
-            field:
-              $ref: '#/components/schemas/_common___Field'
             include:
               $ref: '#/components/schemas/_common.aggregations___TermsInclude'
             min_doc_count:
               description: Only return values that are found in more than `min_doc_count` hits.
               type: integer
-              format: int32
+              format: int64
             missing:
               $ref: '#/components/schemas/_common___FieldValue'
             value_type:
               description: Coerced unmapped fields into the specified type.
-              type: string
+              $ref: '#/components/schemas/_common.aggregations___ValueType'
             order:
               $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
-            script:
-              $ref: '#/components/schemas/_common___Script'
+              x-protobuf-excluded: true
             shard_size:
               description: |-
                 The number of candidate terms produced by each shard.
@@ -44603,7 +44624,7 @@ components:
             shard_min_doc_count:
               description: The minimum number of documents in a bucket on each shard for it to be returned.
               type: integer
-              format: int32
+              format: int64
             show_term_doc_count_error:
               description: Set to `true` to return the `doc_count_error_upper_bound`, which is an upper bound to the error on the `doc_count` returned by each shard.
               type: boolean
@@ -44613,6 +44634,15 @@ components:
               format: int32
             format:
               type: string
+        - anyOf:
+            - type: object
+              properties:
+                field:
+                  $ref: '#/components/schemas/_common___Field'
+            - type: object
+              properties:
+                script:
+                  $ref: '#/components/schemas/_common___Script'
     _common.aggregations___TermsAggregationCollectMode:
       type: string
       enum:
@@ -44780,17 +44810,25 @@ components:
         - type: object
     _common.aggregations___ValueType:
       type: string
+      description: |-
+        The data type for a field. The server's `lenientParse` accepts multiple representations
+        for the same underlying type (for example, byte/short/integer/long all map to long).
       enum:
         - boolean
+        - byte
         - date
-        - date_nanos
         - double
+        - float
         - geo_point
+        - integer
         - ip
         - long
         - number
         - numeric
+        - range
+        - short
         - string
+        - unsigned_long
     _common.aggregations___VariableWidthHistogramAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBaseVariableWidthHistogramBucket'
