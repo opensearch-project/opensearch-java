@@ -641,7 +641,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
             }
             if (request.allowPartialResults != null) {
                 params.put("allow_partial_results", String.valueOf(request.allowPartialResults));
-            })
+            }
             return params;
 
         },
