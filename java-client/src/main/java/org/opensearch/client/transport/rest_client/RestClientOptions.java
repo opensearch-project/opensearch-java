@@ -57,16 +57,28 @@ public class RestClientOptions implements TransportOptions {
     private final RequestOptions options;
 
     static RestClientOptions of(TransportOptions options) {
+        if (options == null) {
+            return new Builder(RequestOptions.DEFAULT.toBuilder()).build();
+        }
+
         if (options instanceof RestClientOptions) {
             return (RestClientOptions) options;
-
-        } else {
-            final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
-            options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
-            options.queryParameters().forEach(builder::setParameter);
-            builder.onWarnings(options.onWarnings());
-            return builder.build();
         }
+
+        final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
+
+        final Collection<Map.Entry<String, String>> headers = options.headers();
+        if (headers != null && !headers.isEmpty()) {
+            headers.forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
+        }
+
+        final Map<String, String> parameters = options.queryParameters();
+        if (parameters != null && !parameters.isEmpty()) {
+            parameters.forEach(builder::setParameter);
+        }
+
+        builder.onWarnings(options.onWarnings());
+        return builder.build();
     }
 
     public RestClientOptions(RequestOptions options) {
