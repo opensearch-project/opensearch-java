@@ -3,6 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
+- Add msearch `allow_partial_results` flag ([#1904](https://github.com/opensearch-project/opensearch-java/pull/1904))
+
 
 ### Dependencies
 - Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
