@@ -73,6 +73,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     @Nullable
     private final Boolean ccsMinimizeRoundtrips;
 
+    @Nullable
+    private final Boolean allowPartialResults;
+
     private final List<ExpandWildcard> expandWildcards;
 
     @Nullable
@@ -104,6 +107,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
         this.allowNoIndices = builder.allowNoIndices;
         this.cancelAfterTimeInterval = builder.cancelAfterTimeInterval;
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+        this.allowPartialResults = builder.allowPartialResults;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreThrottled = builder.ignoreThrottled;
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -159,6 +163,16 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     @Nullable
     public final Boolean ccsMinimizeRoundtrips() {
         return this.ccsMinimizeRoundtrips;
+    }
+
+    /**
+     * If true, return partial results if there are shard request timeouts or shard failures.
+     * <p>
+     * API name: {@code allow_partial_results}
+     */
+    @Nullable
+    public final Boolean allowPartialResults() {
+        return this.allowPartialResults;
     }
 
     /**
@@ -274,6 +288,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
         return new Builder().allowNoIndices(allowNoIndices)
             .cancelAfterTimeInterval(cancelAfterTimeInterval)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .allowPartialResults(allowPartialResults)
             .expandWildcards(expandWildcards)
             .ignoreThrottled(ignoreThrottled)
             .ignoreUnavailable(ignoreUnavailable)
@@ -300,6 +315,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
         @Nullable
         private Boolean ccsMinimizeRoundtrips;
+
+        @Nullable
+        private Boolean allowPartialResults;
 
         @Nullable
         private List<ExpandWildcard> expandWildcards;
@@ -370,6 +388,16 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
          */
         public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
             this.ccsMinimizeRoundtrips = value;
+            return this;
+        }
+
+        /**
+         * If true, return partial results if there are shard request timeouts or shard failures.
+         * <p>
+         * API name: {@code allow_partial_results}
+         */
+        public final Builder allowPartialResults(@Nullable Boolean value) {
+            this.allowPartialResults = value;
             return this;
         }
 
@@ -611,6 +639,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
             if (request.ccsMinimizeRoundtrips != null) {
                 params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
             }
+            if (request.allowPartialResults != null) {
+                params.put("allow_partial_results", String.valueOf(request.allowPartialResults));
+            })
             return params;
 
         },
