@@ -318,6 +318,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return executeAgent(fn.apply(new ExecuteAgentRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.execute_agent_stream
+
+    /**
+     * Execute an agent in streaming mode.
+     */
+    public ExecuteAgentStreamResponse executeAgentStream(ExecuteAgentStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExecuteAgentStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Execute an agent in streaming mode.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExecuteAgentStreamRequest}
+     */
+    public final ExecuteAgentStreamResponse executeAgentStream(
+        Function<ExecuteAgentStreamRequest.Builder, ObjectBuilder<ExecuteAgentStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return executeAgentStream(fn.apply(new ExecuteAgentStreamRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.get_agent
 
     /**
@@ -704,6 +724,26 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final LoadModelResponse loadModel(Function<LoadModelRequest.Builder, ObjectBuilder<LoadModelRequest>> fn) throws IOException,
         OpenSearchException {
         return loadModel(fn.apply(new LoadModelRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.predict_model_stream
+
+    /**
+     * Predicts a model in streaming mode.
+     */
+    public PredictModelStreamResponse predictModelStream(PredictModelStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PredictModelStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Predicts a model in streaming mode.
+     *
+     * @param fn a function that initializes a builder to create the {@link PredictModelStreamRequest}
+     */
+    public final PredictModelStreamResponse predictModelStream(
+        Function<PredictModelStreamRequest.Builder, ObjectBuilder<PredictModelStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return predictModelStream(fn.apply(new PredictModelStreamRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.register_agents

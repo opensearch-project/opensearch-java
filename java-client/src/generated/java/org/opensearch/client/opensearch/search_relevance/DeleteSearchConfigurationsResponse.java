@@ -36,43 +36,36 @@
 
 package org.opensearch.client.opensearch.search_relevance;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: search_relevance.delete_search_configurations.Response
 
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteSearchConfigurationsResponse
+public class DeleteSearchConfigurationsResponse extends WriteResponseBase
     implements
-        PlainJsonSerializable,
         ToCopyableBuilder<DeleteSearchConfigurationsResponse.Builder, DeleteSearchConfigurationsResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteSearchConfigurationsResponse(Builder builder) {}
+    private DeleteSearchConfigurationsResponse(Builder builder) {
+        super(builder);
+    }
 
     public static DeleteSearchConfigurationsResponse of(
         Function<DeleteSearchConfigurationsResponse.Builder, ObjectBuilder<DeleteSearchConfigurationsResponse>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -91,18 +84,30 @@ public class DeleteSearchConfigurationsResponse
     /**
      * Builder for {@link DeleteSearchConfigurationsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteSearchConfigurationsResponse> {
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteSearchConfigurationsResponse> {
 
         public Builder() {}
 
-        private Builder(DeleteSearchConfigurationsResponse o) {}
+        private Builder(DeleteSearchConfigurationsResponse o) {
+            super(o);
+        }
 
-        private Builder(Builder o) {}
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -122,22 +127,30 @@ public class DeleteSearchConfigurationsResponse
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Singleton instance for {@link DeleteSearchConfigurationsResponse}.
+     * Json deserializer for {@link DeleteSearchConfigurationsResponse}
      */
-    public static final DeleteSearchConfigurationsResponse _INSTANCE = builder().build();
-
-    public static final JsonpDeserializer<DeleteSearchConfigurationsResponse> _DESERIALIZER = JsonpDeserializer.emptyObject(
-        DeleteSearchConfigurationsResponse._INSTANCE
+    public static final JsonpDeserializer<DeleteSearchConfigurationsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteSearchConfigurationsResponse::setupDeleteSearchConfigurationsResponseDeserializer
     );
+
+    protected static void setupDeleteSearchConfigurationsResponseDeserializer(
+        ObjectDeserializer<DeleteSearchConfigurationsResponse.Builder> op
+    ) {
+        setupWriteResponseBaseDeserializer(op);
+    }
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         return true;

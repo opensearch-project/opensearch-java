@@ -67,14 +67,14 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_relevance.get_search_configurations.Response
+// typedef: search_relevance.get_scheduled_experiments.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetSearchConfigurationsResponse<TDocument>
+public class GetScheduledExperimentsResponse<TDocument>
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<GetSearchConfigurationsResponse.Builder<TDocument>, GetSearchConfigurationsResponse<TDocument>> {
+        ToCopyableBuilder<GetScheduledExperimentsResponse.Builder<TDocument>, GetScheduledExperimentsResponse<TDocument>> {
 
     @Nonnull
     private final Map<String, Aggregate> aggregations;
@@ -121,7 +121,7 @@ public class GetSearchConfigurationsResponse<TDocument>
 
     // ---------------------------------------------------------------------------------------------
 
-    private GetSearchConfigurationsResponse(Builder<TDocument> builder) {
+    private GetScheduledExperimentsResponse(Builder<TDocument> builder) {
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.clusters = builder.clusters;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -139,8 +139,8 @@ public class GetSearchConfigurationsResponse<TDocument>
         this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
     }
 
-    public static <TDocument> GetSearchConfigurationsResponse<TDocument> of(
-        Function<GetSearchConfigurationsResponse.Builder<TDocument>, ObjectBuilder<GetSearchConfigurationsResponse<TDocument>>> fn
+    public static <TDocument> GetScheduledExperimentsResponse<TDocument> of(
+        Function<GetScheduledExperimentsResponse.Builder<TDocument>, ObjectBuilder<GetScheduledExperimentsResponse<TDocument>>> fn
     ) {
         return fn.apply(new Builder<>()).build();
     }
@@ -365,11 +365,11 @@ public class GetSearchConfigurationsResponse<TDocument>
     }
 
     /**
-     * Builder for {@link GetSearchConfigurationsResponse}.
+     * Builder for {@link GetScheduledExperimentsResponse}.
      */
     public static class Builder<TDocument> extends ObjectBuilderBase
         implements
-            CopyableBuilder<Builder<TDocument>, GetSearchConfigurationsResponse<TDocument>> {
+            CopyableBuilder<Builder<TDocument>, GetScheduledExperimentsResponse<TDocument>> {
         @Nullable
         private Map<String, Aggregate> aggregations;
         @Nullable
@@ -399,7 +399,7 @@ public class GetSearchConfigurationsResponse<TDocument>
 
         public Builder() {}
 
-        private Builder(GetSearchConfigurationsResponse<TDocument> o) {
+        private Builder(GetScheduledExperimentsResponse<TDocument> o) {
             this.aggregations = _mapCopy(o.aggregations);
             this.clusters = o.clusters;
             this.fields = _mapCopy(o.fields);
@@ -711,45 +711,45 @@ public class GetSearchConfigurationsResponse<TDocument>
         }
 
         /**
-         * Builds a {@link GetSearchConfigurationsResponse}.
+         * Builds a {@link GetScheduledExperimentsResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GetSearchConfigurationsResponse<TDocument> build() {
+        public GetScheduledExperimentsResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new GetSearchConfigurationsResponse<>(this);
+            return new GetScheduledExperimentsResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Create a JSON deserializer for GetSearchConfigurationsResponse.
+     * Create a JSON deserializer for GetScheduledExperimentsResponse.
      */
     public static <
-        TDocument> JsonpDeserializer<GetSearchConfigurationsResponse<TDocument>> createGetSearchConfigurationsResponseDeserializer(
+        TDocument> JsonpDeserializer<GetScheduledExperimentsResponse<TDocument>> createGetScheduledExperimentsResponseDeserializer(
             JsonpDeserializer<TDocument> tDocumentDeserializer
         ) {
         return ObjectBuilderDeserializer.createForObject(
             Builder<TDocument>::new,
-            op -> GetSearchConfigurationsResponse.setupGetSearchConfigurationsResponseDeserializer(op, tDocumentDeserializer)
+            op -> GetScheduledExperimentsResponse.setupGetScheduledExperimentsResponseDeserializer(op, tDocumentDeserializer)
         );
     }
 
     /**
-     * Json deserializer for {@link GetSearchConfigurationsResponse} based on named deserializers provided by the calling
+     * Json deserializer for {@link GetScheduledExperimentsResponse} based on named deserializers provided by the calling
      * {@code JsonMapper}.
      */
-    public static final JsonpDeserializer<GetSearchConfigurationsResponse<Object>> _DESERIALIZER =
-        createGetSearchConfigurationsResponseDeserializer(
-            new NamedDeserializer<>("org.opensearch.client:Deserializer:search_relevance.get_search_configurations.TDocument")
+    public static final JsonpDeserializer<GetScheduledExperimentsResponse<Object>> _DESERIALIZER =
+        createGetScheduledExperimentsResponseDeserializer(
+            new NamedDeserializer<>("org.opensearch.client:Deserializer:search_relevance.get_scheduled_experiments.TDocument")
         );
 
-    protected static <TDocument> void setupGetSearchConfigurationsResponseDeserializer(
-        ObjectDeserializer<GetSearchConfigurationsResponse.Builder<TDocument>> op,
+    protected static <TDocument> void setupGetScheduledExperimentsResponseDeserializer(
+        ObjectDeserializer<GetScheduledExperimentsResponse.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
@@ -798,7 +798,7 @@ public class GetSearchConfigurationsResponse<TDocument>
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetSearchConfigurationsResponse<?> other = (GetSearchConfigurationsResponse<?>) o;
+        GetScheduledExperimentsResponse<?> other = (GetScheduledExperimentsResponse<?>) o;
         return Objects.equals(this.aggregations, other.aggregations)
             && Objects.equals(this.clusters, other.clusters)
             && Objects.equals(this.fields, other.fields)
