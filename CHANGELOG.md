@@ -13,15 +13,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
 
 ### Added
-- Add msearch `allow_partial_results` flag ([#1904](https://github.com/opensearch-project/opensearch-java/pull/1904))
 
 ### Fixed
-- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
-- Fix NPE when null ObjectBuilder is accessed ([#1717](https://github.com/opensearch-project/opensearch-java/issues/1717))
 
 ## [Unreleased 3.x]
 ### Added
-- Added BulkIngester helper for efficient bulk operations with buffering, retries, and backpressure. Ported from elasticsearch-java (commit e7120d4) ([#1809](https://github.com/opensearch-project/opensearch-java/pull/1809))
 
 ### Dependencies
 
@@ -32,7 +28,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fix NPEs while converting transport options when null options, headers, or query parameters are provided ([#1887](https://github.com/opensearch-project/opensearch-java/pull/1888))
 
 ### Security
 
@@ -48,6 +43,26 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [3.7.0] - 03/03/2026
+### Added
+- Add msearch `allow_partial_results` flag ([#1904](https://github.com/opensearch-project/opensearch-java/pull/1904))
+
+### Dependencies
+- Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
+- Bump `org.apache.httpcomponents.core5:httpcore5` from 5.4 to 5.4.1 ([#1883](https://github.com/opensearch-project/opensearch-java/pull/1883))
+- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.3 to 2.8.4 ([#1882](https://github.com/opensearch-project/opensearch-java/pull/1882))
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix NPEs while converting transport options when null options, headers, or query parameters are provided ([#1887](https://github.com/opensearch-project/opensearch-java/pull/1888))
 
 ### Security
 
