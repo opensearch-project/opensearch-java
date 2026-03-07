@@ -36,11 +36,15 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.CopyableBuilder;
@@ -56,10 +60,14 @@ public class MaxAggregation extends FormatMetricAggregationBase
         AggregationVariant,
         ToCopyableBuilder<MaxAggregation.Builder, MaxAggregation> {
 
+    @Nullable
+    private final ValueType valueType;
+
     // ---------------------------------------------------------------------------------------------
 
     private MaxAggregation(Builder builder) {
         super(builder);
+        this.valueType = builder.valueType;
     }
 
     public static MaxAggregation of(Function<MaxAggregation.Builder, ObjectBuilder<MaxAggregation>> fn) {
@@ -72,6 +80,22 @@ public class MaxAggregation extends FormatMetricAggregationBase
     @Override
     public Aggregation.Kind _aggregationKind() {
         return Aggregation.Kind.Max;
+    }
+
+    /**
+     * API name: {@code value_type}
+     */
+    @Nullable
+    public final ValueType valueType() {
+        return this.valueType;
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
+        if (this.valueType != null) {
+            generator.writeKey("value_type");
+            this.valueType.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -93,15 +117,19 @@ public class MaxAggregation extends FormatMetricAggregationBase
     public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
         implements
             CopyableBuilder<Builder, MaxAggregation> {
+        @Nullable
+        private ValueType valueType;
 
         public Builder() {}
 
         private Builder(MaxAggregation o) {
             super(o);
+            this.valueType = o.valueType;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.valueType = o.valueType;
         }
 
         @Override
@@ -113,6 +141,15 @@ public class MaxAggregation extends FormatMetricAggregationBase
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code value_type}
+         */
+        @Nonnull
+        public final Builder valueType(@Nullable ValueType value) {
+            this.valueType = value;
             return this;
         }
 
@@ -142,11 +179,13 @@ public class MaxAggregation extends FormatMetricAggregationBase
 
     protected static void setupMaxAggregationDeserializer(ObjectDeserializer<MaxAggregation.Builder> op) {
         setupFormatMetricAggregationBaseDeserializer(op);
+        op.add(Builder::valueType, ValueType._DESERIALIZER, "value_type");
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.valueType);
         return result;
     }
 
@@ -157,6 +196,7 @@ public class MaxAggregation extends FormatMetricAggregationBase
         }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        MaxAggregation other = (MaxAggregation) o;
+        return Objects.equals(this.valueType, other.valueType);
     }
 }
