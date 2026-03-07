@@ -85,7 +85,7 @@ public class TermsAggregation extends BucketAggregationBase
     private final TermsInclude include;
 
     @Nullable
-    private final Integer minDocCount;
+    private final Long minDocCount;
 
     @Nullable
     private final FieldValue missing;
@@ -97,7 +97,7 @@ public class TermsAggregation extends BucketAggregationBase
     private final Script script;
 
     @Nullable
-    private final Integer shardMinDocCount;
+    private final Long shardMinDocCount;
 
     @Nullable
     private final Integer shardSize;
@@ -199,7 +199,7 @@ public class TermsAggregation extends BucketAggregationBase
      * </p>
      */
     @Nullable
-    public final Integer minDocCount() {
+    public final Long minDocCount() {
         return this.minDocCount;
     }
 
@@ -234,7 +234,7 @@ public class TermsAggregation extends BucketAggregationBase
      * </p>
      */
     @Nullable
-    public final Integer shardMinDocCount() {
+    public final Long shardMinDocCount() {
         return this.shardMinDocCount;
     }
 
@@ -405,7 +405,7 @@ public class TermsAggregation extends BucketAggregationBase
         @Nullable
         private TermsInclude include;
         @Nullable
-        private Integer minDocCount;
+        private Long minDocCount;
         @Nullable
         private FieldValue missing;
         @Nullable
@@ -413,7 +413,7 @@ public class TermsAggregation extends BucketAggregationBase
         @Nullable
         private Script script;
         @Nullable
-        private Integer shardMinDocCount;
+        private Long shardMinDocCount;
         @Nullable
         private Integer shardSize;
         @Nullable
@@ -552,7 +552,7 @@ public class TermsAggregation extends BucketAggregationBase
          * </p>
          */
         @Nonnull
-        public final Builder minDocCount(@Nullable Integer value) {
+        public final Builder minDocCount(@Nullable Long value) {
             this.minDocCount = value;
             return this;
         }
@@ -624,7 +624,7 @@ public class TermsAggregation extends BucketAggregationBase
          * </p>
          */
         @Nonnull
-        public final Builder shardMinDocCount(@Nullable Integer value) {
+        public final Builder shardMinDocCount(@Nullable Long value) {
             this.shardMinDocCount = value;
             return this;
         }
@@ -711,7 +711,7 @@ public class TermsAggregation extends BucketAggregationBase
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
-        op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
+        op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
         op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
         op.add(
             Builder::order,
@@ -719,7 +719,7 @@ public class TermsAggregation extends BucketAggregationBase
             "order"
         );
         op.add(Builder::script, Script._DESERIALIZER, "script");
-        op.add(Builder::shardMinDocCount, JsonpDeserializer.integerDeserializer(), "shard_min_doc_count");
+        op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
         op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
         op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
