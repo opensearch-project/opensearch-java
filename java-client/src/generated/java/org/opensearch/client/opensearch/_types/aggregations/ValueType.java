@@ -42,10 +42,16 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: _types.aggregations.ValueType
 
+/**
+ * The data type for a field. The server's <code>lenientParse</code> accepts multiple representations for the same underlying type (for
+ * example, byte/short/integer/long all map to long).
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ValueType implements JsonEnum {
     Boolean("boolean"),
+
+    Byte("byte"),
 
     Date("date"),
 
@@ -53,7 +59,11 @@ public enum ValueType implements JsonEnum {
 
     Double("double"),
 
+    Float("float"),
+
     GeoPoint("geo_point"),
+
+    Integer("integer"),
 
     Ip("ip"),
 
@@ -63,7 +73,13 @@ public enum ValueType implements JsonEnum {
 
     Numeric("numeric"),
 
-    String("string");
+    Range("range"),
+
+    Short("short"),
+
+    String("string"),
+
+    UnsignedLong("unsigned_long");
 
     private final String jsonValue;
 
