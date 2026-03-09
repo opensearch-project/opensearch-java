@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.3 to 2.8.4 ([#1882](https://github.com/opensearch-project/opensearch-java/pull/1882))
 - Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
+- Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
 
 ### Added
 
