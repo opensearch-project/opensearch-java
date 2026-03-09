@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.owasp.dependencycheck` from 12.1.3 to 12.2.0 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742), [#1754](https://github.com/opensearch-project/opensearch-java/pull/1754), [#1765](https://github.com/opensearch-project/opensearch-java/pull/1765), [#1796](https://github.com/opensearch-project/opensearch-java/pull/1796), [#1854](https://github.com/opensearch-project/opensearch-java/pull/1854))
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.3 to 2.8.4 ([#1882](https://github.com/opensearch-project/opensearch-java/pull/1882))
 - Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
+- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
 
 ### Added
 
