@@ -84,7 +84,6 @@ public abstract class AbstractDynamicTemplateIT extends OpenSearchJavaClientTest
     }
 
     @Test
-    @Ignore("known bug, see https://github.com/opensearch-project/opensearch-java/issues/1513")
     public void shouldCreateDynamicTemplateTwo() throws IOException {
         // Create index with dynamic templates
         final String dynamicTemplatesMappingTwo = """
