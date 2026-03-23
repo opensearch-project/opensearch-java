@@ -183,7 +183,7 @@ dependencies {
     val jacksonDatabindVersion = "2.20.1"
 
     // Apache 2.0
-    api("commons-logging:commons-logging:1.3.5")
+    api("commons-logging:commons-logging:1.3.6")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.hamcrest:hamcrest:3.0")
     testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.4") {
