@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bump `gradle-wrapper` from 9.31. to 9.4.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930))
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
 
 ### Changed
