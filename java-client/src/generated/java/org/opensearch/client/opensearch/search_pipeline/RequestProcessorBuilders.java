@@ -46,6 +46,13 @@ public class RequestProcessorBuilders {
     private RequestProcessorBuilders() {}
 
     /**
+     * Creates a builder for the {@link AgenticQueryTranslatorRequestProcessor agentic_query_translator} {@code RequestProcessor} variant.
+     */
+    public static AgenticQueryTranslatorRequestProcessor.Builder agenticQueryTranslator() {
+        return new AgenticQueryTranslatorRequestProcessor.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link FilterQueryRequestProcessor filter_query} {@code RequestProcessor} variant.
      */
     public static FilterQueryRequestProcessor.Builder filterQuery() {

@@ -20,7 +20,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -52,7 +51,7 @@ public final class ExecuteAgentRequest extends RequestBase
     private final String agentId;
 
     @Nonnull
-    private final Map<String, JsonData> parameters;
+    private final Parameters parameters;
 
     @Nullable
     private final Boolean parametersVerbose;
@@ -62,7 +61,7 @@ public final class ExecuteAgentRequest extends RequestBase
     private ExecuteAgentRequest(Builder builder) {
         super(builder);
         this.agentId = ApiTypeHelper.requireNonNull(builder.agentId, this, "agentId");
-        this.parameters = ApiTypeHelper.unmodifiableRequired(builder.parameters, this, "parameters");
+        this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
         this.parametersVerbose = builder.parametersVerbose;
     }
 
@@ -82,7 +81,7 @@ public final class ExecuteAgentRequest extends RequestBase
      * Required - API name: {@code parameters}
      */
     @Nonnull
-    public final Map<String, JsonData> parameters() {
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -109,12 +108,7 @@ public final class ExecuteAgentRequest extends RequestBase
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("parameters");
-        generator.writeStartObject();
-        for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
-        }
-        generator.writeEnd();
+        this.parameters.serialize(generator, mapper);
 
         if (this.parametersVerbose != null) {
             generator.writeKey("parameters.verbose");
@@ -140,7 +134,7 @@ public final class ExecuteAgentRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExecuteAgentRequest> {
         private String agentId;
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         @Nullable
         private Boolean parametersVerbose;
 
@@ -149,14 +143,14 @@ public final class ExecuteAgentRequest extends RequestBase
         private Builder(ExecuteAgentRequest o) {
             super(o);
             this.agentId = o.agentId;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.parametersVerbose = o.parametersVerbose;
         }
 
         private Builder(Builder o) {
             super(o);
             this.agentId = o.agentId;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.parametersVerbose = o.parametersVerbose;
         }
 
@@ -183,28 +177,19 @@ public final class ExecuteAgentRequest extends RequestBase
 
         /**
          * Required - API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * Required - API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -244,7 +229,7 @@ public final class ExecuteAgentRequest extends RequestBase
     );
 
     protected static void setupExecuteAgentRequestDeserializer(ObjectDeserializer<ExecuteAgentRequest.Builder> op) {
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
         op.add(Builder::parametersVerbose, JsonpDeserializer.booleanDeserializer(), "parameters.verbose");
     }
 

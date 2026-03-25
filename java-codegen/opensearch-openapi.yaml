@@ -30814,7 +30814,7 @@ components:
                 - $ref: '#/components/schemas/_core.bulk___UpdateAction'
                 - type: object
                   additionalProperties: true
-                  x-protobuf-type: bytes
+                  x-protobuf-data-type: bytes
                   title: object
             description: The operation definition and data (action-data pairs), separated by newlines
       required: true
@@ -31780,6 +31780,7 @@ components:
         application/json:
           schema:
             type: object
+            title: MLExecuteAgentStreamRequestBody
             properties:
               parameters:
                 $ref: '#/components/schemas/ml._common___Parameters'
@@ -31907,6 +31908,7 @@ components:
         application/json:
           schema:
             type: object
+            title: MLPredictModelStreamRequestBody
             properties:
               parameters:
                 $ref: '#/components/schemas/ml._common___Parameters'
@@ -32741,6 +32743,7 @@ components:
               aggs:
                 description: Defines the aggregations that are run as part of the search request.
                 type: object
+                x-protobuf-excluded: true
                 additionalProperties:
                   $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
               collapse:
@@ -39597,7 +39600,7 @@ components:
           $ref: '#/components/schemas/_common___Routing'
         _source:
           type: object
-          x-protobuf-type: bytes
+          x-protobuf-data-type: bytes
           description: The source of the document.
           additionalProperties: true
       additionalProperties:
@@ -41051,13 +41054,13 @@ components:
       oneOf:
         - type: boolean
         - type: string
-      x-protobuf-type: bool
+      x-protobuf-data-type: bool
     _common___StringifiedDouble:
       oneOf:
         - type: number
           format: double
         - type: string
-      x-protobuf-type: double
+      x-protobuf-data-type: double
     _common___StringifiedEpochTimeUnitMillis:
       description: |-
         Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
@@ -41089,13 +41092,13 @@ components:
         - type: integer
         - type: string
           pattern: ^[+-]?\d+$
-      x-protobuf-type: int32
+      x-protobuf-data-type: int32
     _common___StringifiedLong:
       oneOf:
         - type: integer
           format: int64
         - type: string
-      x-protobuf-type: int64
+      x-protobuf-data-type: int64
     _common___StringifiedVersionNumber:
       description: |-
         Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
@@ -44614,7 +44617,6 @@ components:
               $ref: '#/components/schemas/_common.aggregations___ValueType'
             order:
               $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
-              x-protobuf-excluded: true
             shard_size:
               description: |-
                 The number of candidate terms produced by each shard.
@@ -44663,6 +44665,7 @@ components:
             doc_count_error:
               type: integer
               format: int64
+              description: Upper bound of the document count error. Only present when `show_term_doc_count_error` is true.
     _common.aggregations___TermsExclude:
       oneOf:
         - title: regexp
@@ -48063,6 +48066,25 @@ components:
                 - xy_shape
           required:
             - type
+    _common.query_dsl___AgenticQuery:
+      x-version-added: '3.2'
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
+        - type: object
+          properties:
+            query_text:
+              description: The natural language question to be answered by the agent.
+              type: string
+            query_fields:
+              description: A list of index fields that the agent should consider when generating the search query.
+              type: array
+              items:
+                $ref: '#/components/schemas/_common___Field'
+            memory_id:
+              description: The memory ID from a previous response, used to continue a conversation with prior context. Applicable for conversational agents only.
+              type: string
+          required:
+            - query_text
     _common.query_dsl___BoolQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -49408,6 +49430,8 @@ components:
     _common.query_dsl___QueryContainer:
       type: object
       properties:
+        agentic:
+          $ref: '#/components/schemas/_common.query_dsl___AgenticQuery'
         bool:
           $ref: '#/components/schemas/_common.query_dsl___BoolQuery'
         boosting:
@@ -50443,7 +50467,7 @@ components:
         doc:
           description: A partial update to an existing document.
           type: object
-          x-protobuf-type: bytes
+          x-protobuf-data-type: bytes
         doc_as_upsert:
           description: When `true`, uses the contents of `doc` as the value of `upsert`.
           type: boolean
@@ -50466,7 +50490,7 @@ components:
             If the document does not already exist, the contents of `upsert` are inserted as a
             new document. If the document exists, the `script` is executed.
           type: object
-          x-protobuf-type: bytes
+          x-protobuf-data-type: bytes
     _core.bulk___UpdateOperation:
       allOf:
         - $ref: '#/components/schemas/_core.bulk___OperationBase'
@@ -52639,7 +52663,7 @@ components:
         - score
     _core.search___TDocument:
       x-is-generic-type-parameter: true
-      x-protobuf-type: bytes
+      x-protobuf-data-type: bytes
     _core.search___TermSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -63147,6 +63171,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ml._common___Content'
+    ml._common___Messages:
+      type: object
+      properties:
+        role:
+          type: string
+          description: The role of the message.
+        content:
+          type: string
+          description: The content of the message.
     ml._common___Metadata:
       type: object
       additionalProperties: true
@@ -63499,6 +63532,17 @@ components:
         - name
     ml._common___Parameters:
       type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Messages'
+        inputs:
+          type: string
+        _llm_interface:
+          type: string
+        question:
+          type: string
       additionalProperties: true
     ml._common___PayloadType:
       type: string
@@ -68317,6 +68361,39 @@ components:
         target_field:
           type: string
           description: The field name to use in the target index for the terms aggregation results.
+    search_pipeline._common___AgenticContextResponseProcessor:
+      x-version-added: '3.3'
+      type: object
+      properties:
+        tag:
+          type: string
+        description:
+          type: string
+        ignore_failure:
+          type: boolean
+        agent_steps_summary:
+          description: Whether to include the agent's execution step summary in the response. Available for conversational agents only.
+          type: boolean
+          default: false
+        dsl_query:
+          description: Whether to include the generated DSL query in the response. Available for both conversational and flow agents.
+          type: boolean
+          default: false
+    search_pipeline._common___AgenticQueryTranslatorRequestProcessor:
+      x-version-added: '3.2'
+      type: object
+      properties:
+        tag:
+          type: string
+        description:
+          type: string
+        ignore_failure:
+          type: boolean
+        agent_id:
+          description: The ID of the agent to use for query translation.
+          type: string
+      required:
+        - agent_id
     search_pipeline._common___CollapseResponseProcessor:
       type: object
       properties:
@@ -68452,6 +68529,14 @@ components:
         - target_field
     search_pipeline._common___RequestProcessor:
       oneOf:
+        - x-version-added: '3.2'
+          type: object
+          title: agentic_query_translator
+          properties:
+            agentic_query_translator:
+              $ref: '#/components/schemas/search_pipeline._common___AgenticQueryTranslatorRequestProcessor'
+          required:
+            - agentic_query_translator
         - type: object
           title: filter_query
           properties:
@@ -68504,6 +68589,14 @@ components:
           $ref: '#/components/schemas/search_pipeline._common___RerankContext'
     search_pipeline._common___ResponseProcessor:
       oneOf:
+        - x-version-added: '3.3'
+          type: object
+          title: agentic_context
+          properties:
+            agentic_context:
+              $ref: '#/components/schemas/search_pipeline._common___AgenticContextResponseProcessor'
+          required:
+            - agentic_context
         - type: object
           title: personalize_search_ranking
           properties:

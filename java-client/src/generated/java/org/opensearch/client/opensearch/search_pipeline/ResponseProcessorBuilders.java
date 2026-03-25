@@ -46,6 +46,13 @@ public class ResponseProcessorBuilders {
     private ResponseProcessorBuilders() {}
 
     /**
+     * Creates a builder for the {@link AgenticContextResponseProcessor agentic_context} {@code ResponseProcessor} variant.
+     */
+    public static AgenticContextResponseProcessor.Builder agenticContext() {
+        return new AgenticContextResponseProcessor.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link CollapseResponseProcessor collapse} {@code ResponseProcessor} variant.
      */
     public static CollapseResponseProcessor.Builder collapse() {
