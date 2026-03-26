@@ -21,7 +21,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -64,8 +63,8 @@ public final class RegisterAgentsRequest extends RequestBase
     @Nonnull
     private final String name;
 
-    @Nonnull
-    private final Map<String, JsonData> parameters;
+    @Nullable
+    private final Parameters parameters;
 
     @Nonnull
     private final List<ToolItems> tools;
@@ -82,7 +81,7 @@ public final class RegisterAgentsRequest extends RequestBase
         this.llm = builder.llm;
         this.memory = builder.memory;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
+        this.parameters = builder.parameters;
         this.tools = ApiTypeHelper.unmodifiable(builder.tools);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
@@ -134,8 +133,8 @@ public final class RegisterAgentsRequest extends RequestBase
     /**
      * API name: {@code parameters}
      */
-    @Nonnull
-    public final Map<String, JsonData> parameters() {
+    @Nullable
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -189,14 +188,9 @@ public final class RegisterAgentsRequest extends RequestBase
         generator.writeKey("name");
         generator.write(this.name);
 
-        if (ApiTypeHelper.isDefined(this.parameters)) {
+        if (this.parameters != null) {
             generator.writeKey("parameters");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.parameters.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.tools)) {
@@ -239,7 +233,7 @@ public final class RegisterAgentsRequest extends RequestBase
         private Memory memory;
         private String name;
         @Nullable
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         @Nullable
         private List<ToolItems> tools;
         private String type;
@@ -253,7 +247,7 @@ public final class RegisterAgentsRequest extends RequestBase
             this.llm = o.llm;
             this.memory = o.memory;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.tools = _listCopy(o.tools);
             this.type = o.type;
         }
@@ -265,7 +259,7 @@ public final class RegisterAgentsRequest extends RequestBase
             this.llm = o.llm;
             this.memory = o.memory;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.tools = _listCopy(o.tools);
             this.type = o.type;
         }
@@ -345,28 +339,19 @@ public final class RegisterAgentsRequest extends RequestBase
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(@Nullable Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -446,7 +431,7 @@ public final class RegisterAgentsRequest extends RequestBase
         op.add(Builder::llm, LLM._DESERIALIZER, "llm");
         op.add(Builder::memory, Memory._DESERIALIZER, "memory");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
         op.add(Builder::tools, JsonpDeserializer.arrayDeserializer(ToolItems._DESERIALIZER), "tools");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }

@@ -61,7 +61,10 @@ public abstract class TermsBucketBase extends MultiBucketBase {
     }
 
     /**
+     * Upper bound of the document count error. Only present when <code>show_term_doc_count_error</code> is true.
+     * <p>
      * API name: {@code doc_count_error}
+     * </p>
      */
     @Nullable
     public final Long docCountError() {
@@ -96,7 +99,10 @@ public abstract class TermsBucketBase extends MultiBucketBase {
         }
 
         /**
+         * Upper bound of the document count error. Only present when <code>show_term_doc_count_error</code> is true.
+         * <p>
          * API name: {@code doc_count_error}
+         * </p>
          */
         @Nonnull
         public final BuilderT docCountError(@Nullable Long value) {

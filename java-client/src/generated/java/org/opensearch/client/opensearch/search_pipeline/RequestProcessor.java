@@ -64,6 +64,7 @@ public class RequestProcessor implements TaggedUnion<RequestProcessor.Kind, Requ
      * {@link RequestProcessor} variant kinds.
      */
     public enum Kind implements JsonEnum {
+        AgenticQueryTranslator("agentic_query_translator"),
         FilterQuery("filter_query"),
         NeuralQueryEnricher("neural_query_enricher"),
         Oversample("oversample"),
@@ -106,6 +107,22 @@ public class RequestProcessor implements TaggedUnion<RequestProcessor.Kind, Requ
 
     public static RequestProcessor of(Function<RequestProcessor.Builder, ObjectBuilder<RequestProcessor>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Is this variant instance of kind {@code agentic_query_translator}?
+     */
+    public boolean isAgenticQueryTranslator() {
+        return _kind == Kind.AgenticQueryTranslator;
+    }
+
+    /**
+     * Get the {@code agentic_query_translator} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code agentic_query_translator} kind.
+     */
+    public AgenticQueryTranslatorRequestProcessor agenticQueryTranslator() {
+        return TaggedUnionUtils.get(this, Kind.AgenticQueryTranslator);
     }
 
     /**
@@ -203,6 +220,18 @@ public class RequestProcessor implements TaggedUnion<RequestProcessor.Kind, Requ
             this._value = o._value;
         }
 
+        public ObjectBuilder<RequestProcessor> agenticQueryTranslator(AgenticQueryTranslatorRequestProcessor v) {
+            this._kind = Kind.AgenticQueryTranslator;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<RequestProcessor> agenticQueryTranslator(
+            Function<AgenticQueryTranslatorRequestProcessor.Builder, ObjectBuilder<AgenticQueryTranslatorRequestProcessor>> fn
+        ) {
+            return this.agenticQueryTranslator(fn.apply(new AgenticQueryTranslatorRequestProcessor.Builder()).build());
+        }
+
         public ObjectBuilder<RequestProcessor> filterQuery(FilterQueryRequestProcessor v) {
             this._kind = Kind.FilterQuery;
             this._value = v;
@@ -259,6 +288,7 @@ public class RequestProcessor implements TaggedUnion<RequestProcessor.Kind, Requ
     }
 
     protected static void setupRequestProcessorDeserializer(ObjectDeserializer<Builder> op) {
+        op.add(Builder::agenticQueryTranslator, AgenticQueryTranslatorRequestProcessor._DESERIALIZER, "agentic_query_translator");
         op.add(Builder::filterQuery, FilterQueryRequestProcessor._DESERIALIZER, "filter_query");
         op.add(Builder::neuralQueryEnricher, NeuralQueryEnricherRequestProcessor._DESERIALIZER, "neural_query_enricher");
         op.add(Builder::oversample, OversampleRequestProcessor._DESERIALIZER, "oversample");

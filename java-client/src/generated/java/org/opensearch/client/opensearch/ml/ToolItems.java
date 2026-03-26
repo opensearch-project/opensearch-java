@@ -54,8 +54,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Nullable
     private final String name;
 
-    @Nonnull
-    private final Map<String, JsonData> parameters;
+    @Nullable
+    private final Parameters parameters;
 
     @Nullable
     private final String type;
@@ -68,7 +68,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         this.includeOutputInAgentResponse = builder.includeOutputInAgentResponse;
         this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.name = builder.name;
-        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
+        this.parameters = builder.parameters;
         this.type = builder.type;
     }
 
@@ -116,8 +116,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     /**
      * API name: {@code parameters}
      */
-    @Nonnull
-    public final Map<String, JsonData> parameters() {
+    @Nullable
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -164,14 +164,9 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
             generator.write(this.name);
         }
 
-        if (ApiTypeHelper.isDefined(this.parameters)) {
+        if (this.parameters != null) {
             generator.writeKey("parameters");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.parameters.serialize(generator, mapper);
         }
 
         if (this.type != null) {
@@ -208,7 +203,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         @Nullable
         private String name;
         @Nullable
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         @Nullable
         private String type;
 
@@ -220,7 +215,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
             this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.type = o.type;
         }
 
@@ -230,7 +225,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
             this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.type = o.type;
         }
 
@@ -310,28 +305,19 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(@Nullable Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -372,7 +358,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::includeOutputInAgentResponse, JsonpDeserializer.booleanDeserializer(), "include_output_in_agent_response");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             if (builder.metadata == null) {

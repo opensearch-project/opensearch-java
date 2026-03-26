@@ -14,13 +14,11 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -54,8 +52,8 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
     @Nullable
     private final String name;
 
-    @Nonnull
-    private final Map<String, JsonData> parameters;
+    @Nullable
+    private final Parameters parameters;
 
     @Nullable
     private final String protocol;
@@ -71,7 +69,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         this.description = builder.description;
         this.lastUpdatedTime = builder.lastUpdatedTime;
         this.name = builder.name;
-        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
+        this.parameters = builder.parameters;
         this.protocol = builder.protocol;
         this.version = builder.version;
     }
@@ -132,8 +130,8 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
     /**
      * API name: {@code parameters}
      */
-    @Nonnull
-    public final Map<String, JsonData> parameters() {
+    @Nullable
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -193,14 +191,9 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
             generator.write(this.name);
         }
 
-        if (ApiTypeHelper.isDefined(this.parameters)) {
+        if (this.parameters != null) {
             generator.writeKey("parameters");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.parameters.serialize(generator, mapper);
         }
 
         if (this.protocol != null) {
@@ -242,7 +235,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         @Nullable
         private String name;
         @Nullable
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         @Nullable
         private String protocol;
         @Nullable
@@ -256,7 +249,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
             this.description = o.description;
             this.lastUpdatedTime = o.lastUpdatedTime;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.protocol = o.protocol;
             this.version = o.version;
         }
@@ -267,7 +260,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
             this.description = o.description;
             this.lastUpdatedTime = o.lastUpdatedTime;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.protocol = o.protocol;
             this.version = o.version;
         }
@@ -363,28 +356,19 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(@Nullable Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -435,7 +419,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
         op.add(Builder::protocol, JsonpDeserializer.stringDeserializer(), "protocol");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
