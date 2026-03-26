@@ -20,7 +20,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -48,8 +47,8 @@ public final class ExecuteToolRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<ExecuteToolRequest.Builder, ExecuteToolRequest> {
 
-    @Nonnull
-    private final Map<String, JsonData> parameters;
+    @Nullable
+    private final Parameters parameters;
 
     @Nonnull
     private final ToolName toolName;
@@ -58,7 +57,7 @@ public final class ExecuteToolRequest extends RequestBase
 
     private ExecuteToolRequest(Builder builder) {
         super(builder);
-        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
+        this.parameters = builder.parameters;
         this.toolName = ApiTypeHelper.requireNonNull(builder.toolName, this, "toolName");
     }
 
@@ -69,8 +68,8 @@ public final class ExecuteToolRequest extends RequestBase
     /**
      * API name: {@code parameters}
      */
-    @Nonnull
-    public final Map<String, JsonData> parameters() {
+    @Nullable
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -93,14 +92,9 @@ public final class ExecuteToolRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.parameters)) {
+        if (this.parameters != null) {
             generator.writeKey("parameters");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.parameters.serialize(generator, mapper);
         }
     }
 
@@ -122,20 +116,20 @@ public final class ExecuteToolRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExecuteToolRequest> {
         @Nullable
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         private ToolName toolName;
 
         public Builder() {}
 
         private Builder(ExecuteToolRequest o) {
             super(o);
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.toolName = o.toolName;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.toolName = o.toolName;
         }
 
@@ -153,28 +147,19 @@ public final class ExecuteToolRequest extends RequestBase
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(@Nullable Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -211,7 +196,7 @@ public final class ExecuteToolRequest extends RequestBase
     );
 
     protected static void setupExecuteToolRequestDeserializer(ObjectDeserializer<ExecuteToolRequest.Builder> op) {
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
     }
 
     // ---------------------------------------------------------------------------------------------
