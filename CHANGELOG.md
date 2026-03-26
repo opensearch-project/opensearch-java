@@ -49,6 +49,24 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
+## [3.8.0] - 03/26/2026
+### Added
+
+### Dependencies
+- Bump `gradle-wrapper` from 9.31. to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
+- Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
+- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [3.7.0] - 03/03/2026
 ### Added
 - Add msearch `allow_partial_results` flag ([#1904](https://github.com/opensearch-project/opensearch-java/pull/1904))
@@ -676,8 +694,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
+[3.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.3.0...v3.4.0
