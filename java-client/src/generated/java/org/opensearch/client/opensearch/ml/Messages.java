@@ -29,43 +29,49 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.LLM
+// typedef: ml.Messages
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder, LLM> {
+public class Messages implements PlainJsonSerializable, ToCopyableBuilder<Messages.Builder, Messages> {
 
     @Nullable
-    private final String modelId;
+    private final String content;
 
     @Nullable
-    private final Parameters parameters;
+    private final String role;
 
     // ---------------------------------------------------------------------------------------------
 
-    private LLM(Builder builder) {
-        this.modelId = builder.modelId;
-        this.parameters = builder.parameters;
+    private Messages(Builder builder) {
+        this.content = builder.content;
+        this.role = builder.role;
     }
 
-    public static LLM of(Function<LLM.Builder, ObjectBuilder<LLM>> fn) {
+    public static Messages of(Function<Messages.Builder, ObjectBuilder<Messages>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code model_id}
+     * The content of the message.
+     * <p>
+     * API name: {@code content}
+     * </p>
      */
     @Nullable
-    public final String modelId() {
-        return this.modelId;
+    public final String content() {
+        return this.content;
     }
 
     /**
-     * API name: {@code parameters}
+     * The role of the message.
+     * <p>
+     * API name: {@code role}
+     * </p>
      */
     @Nullable
-    public final Parameters parameters() {
-        return this.parameters;
+    public final String role() {
+        return this.role;
     }
 
     /**
@@ -79,14 +85,14 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.modelId != null) {
-            generator.writeKey("model_id");
-            generator.write(this.modelId);
+        if (this.content != null) {
+            generator.writeKey("content");
+            generator.write(this.content);
         }
 
-        if (this.parameters != null) {
-            generator.writeKey("parameters");
-            this.parameters.serialize(generator, mapper);
+        if (this.role != null) {
+            generator.writeKey("role");
+            generator.write(this.role);
         }
     }
 
@@ -104,24 +110,24 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
     }
 
     /**
-     * Builder for {@link LLM}.
+     * Builder for {@link Messages}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LLM> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Messages> {
         @Nullable
-        private String modelId;
+        private String content;
         @Nullable
-        private Parameters parameters;
+        private String role;
 
         public Builder() {}
 
-        private Builder(LLM o) {
-            this.modelId = o.modelId;
-            this.parameters = o.parameters;
+        private Builder(Messages o) {
+            this.content = o.content;
+            this.role = o.role;
         }
 
         private Builder(Builder o) {
-            this.modelId = o.modelId;
-            this.parameters = o.parameters;
+            this.content = o.content;
+            this.role = o.role;
         }
 
         @Override
@@ -131,62 +137,63 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
         }
 
         /**
-         * API name: {@code model_id}
+         * The content of the message.
+         * <p>
+         * API name: {@code content}
+         * </p>
          */
         @Nonnull
-        public final Builder modelId(@Nullable String value) {
-            this.modelId = value;
+        public final Builder content(@Nullable String value) {
+            this.content = value;
             return this;
         }
 
         /**
-         * API name: {@code parameters}
+         * The role of the message.
+         * <p>
+         * API name: {@code role}
+         * </p>
          */
         @Nonnull
-        public final Builder parameters(@Nullable Parameters value) {
-            this.parameters = value;
+        public final Builder role(@Nullable String value) {
+            this.role = value;
             return this;
         }
 
         /**
-         * API name: {@code parameters}
-         */
-        @Nonnull
-        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
-            return parameters(fn.apply(new Parameters.Builder()).build());
-        }
-
-        /**
-         * Builds a {@link LLM}.
+         * Builds a {@link Messages}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public LLM build() {
+        public Messages build() {
             _checkSingleUse();
 
-            return new LLM(this);
+            return new Messages(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link LLM}
+     * Json deserializer for {@link Messages}
      */
-    public static final JsonpDeserializer<LLM> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, LLM::setupLLMDeserializer);
+    public static final JsonpDeserializer<Messages> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Messages::setupMessagesDeserializer
+    );
 
-    protected static void setupLLMDeserializer(ObjectDeserializer<LLM.Builder> op) {
-        op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
+    protected static void setupMessagesDeserializer(ObjectDeserializer<Messages.Builder> op) {
+        op.add(Builder::content, JsonpDeserializer.stringDeserializer(), "content");
+        op.add(Builder::role, JsonpDeserializer.stringDeserializer(), "role");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.modelId);
-        result = 31 * result + Objects.hashCode(this.parameters);
+        result = 31 * result + Objects.hashCode(this.content);
+        result = 31 * result + Objects.hashCode(this.role);
         return result;
     }
 
@@ -194,7 +201,7 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        LLM other = (LLM) o;
-        return Objects.equals(this.modelId, other.modelId) && Objects.equals(this.parameters, other.parameters);
+        Messages other = (Messages) o;
+        return Objects.equals(this.content, other.content) && Objects.equals(this.role, other.role);
     }
 }

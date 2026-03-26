@@ -21,7 +21,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -65,7 +64,7 @@ public final class CreateConnectorRequest extends RequestBase
     private final String name;
 
     @Nonnull
-    private final Map<String, JsonData> parameters;
+    private final Parameters parameters;
 
     @Nonnull
     private final String protocol;
@@ -81,7 +80,7 @@ public final class CreateConnectorRequest extends RequestBase
         this.credential = ApiTypeHelper.requireNonNull(builder.credential, this, "credential");
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.parameters = ApiTypeHelper.unmodifiableRequired(builder.parameters, this, "parameters");
+        this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
         this.protocol = ApiTypeHelper.requireNonNull(builder.protocol, this, "protocol");
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
@@ -134,7 +133,7 @@ public final class CreateConnectorRequest extends RequestBase
      * Required - API name: {@code parameters}
      */
     @Nonnull
-    public final Map<String, JsonData> parameters() {
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -186,12 +185,7 @@ public final class CreateConnectorRequest extends RequestBase
         generator.write(this.name);
 
         generator.writeKey("parameters");
-        generator.writeStartObject();
-        for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
-        }
-        generator.writeEnd();
+        this.parameters.serialize(generator, mapper);
 
         generator.writeKey("protocol");
         generator.write(this.protocol);
@@ -223,7 +217,7 @@ public final class CreateConnectorRequest extends RequestBase
         private Credential credential;
         private String description;
         private String name;
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
         private String protocol;
         private Integer version;
 
@@ -236,7 +230,7 @@ public final class CreateConnectorRequest extends RequestBase
             this.credential = o.credential;
             this.description = o.description;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.protocol = o.protocol;
             this.version = o.version;
         }
@@ -248,7 +242,7 @@ public final class CreateConnectorRequest extends RequestBase
             this.credential = o.credential;
             this.description = o.description;
             this.name = o.name;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
             this.protocol = o.protocol;
             this.version = o.version;
         }
@@ -357,28 +351,19 @@ public final class CreateConnectorRequest extends RequestBase
 
         /**
          * Required - API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * Required - API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -429,7 +414,7 @@ public final class CreateConnectorRequest extends RequestBase
         op.add(Builder::credential, Credential._DESERIALIZER, "credential");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
         op.add(Builder::protocol, JsonpDeserializer.stringDeserializer(), "protocol");
         op.add(Builder::version, JsonpDeserializer.integerDeserializer(), "version");
     }
