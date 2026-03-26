@@ -47,20 +47,19 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoCentroidAggregate extends AggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<GeoCentroidAggregate.Builder, GeoCentroidAggregate> {
+public class GeoCentroidAggregate implements PlainJsonSerializable, ToCopyableBuilder<GeoCentroidAggregate.Builder, GeoCentroidAggregate> {
 
     private final long count;
 
@@ -70,21 +69,12 @@ public class GeoCentroidAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private GeoCentroidAggregate(Builder builder) {
-        super(builder);
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
         this.location = builder.location;
     }
 
     public static GeoCentroidAggregate of(Function<GeoCentroidAggregate.Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.GeoCentroid;
     }
 
     /**
@@ -102,8 +92,17 @@ public class GeoCentroidAggregate extends AggregateBase
         return this.location;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("count");
         generator.write(this.count);
 
@@ -129,7 +128,7 @@ public class GeoCentroidAggregate extends AggregateBase
     /**
      * Builder for {@link GeoCentroidAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GeoCentroidAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoCentroidAggregate> {
         private Long count;
         @Nullable
         private GeoLocation location;
@@ -137,13 +136,11 @@ public class GeoCentroidAggregate extends AggregateBase
         public Builder() {}
 
         private Builder(GeoCentroidAggregate o) {
-            super(o);
             this.count = o.count;
             this.location = o.location;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.count = o.count;
             this.location = o.location;
         }
@@ -152,12 +149,6 @@ public class GeoCentroidAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -211,14 +202,13 @@ public class GeoCentroidAggregate extends AggregateBase
     );
 
     protected static void setupGeoCentroidAggregateDeserializer(ObjectDeserializer<GeoCentroidAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
         op.add(Builder::location, GeoLocation._DESERIALIZER, "location");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Long.hashCode(this.count);
         result = 31 * result + Objects.hashCode(this.location);
         return result;
@@ -226,9 +216,6 @@ public class GeoCentroidAggregate extends AggregateBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         GeoCentroidAggregate other = (GeoCentroidAggregate) o;

@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ParentAggregate extends SingleBucketAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<ParentAggregate.Builder, ParentAggregate> {
+public class ParentAggregate extends SingleBucketAggregateBase implements ToCopyableBuilder<ParentAggregate.Builder, ParentAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class ParentAggregate extends SingleBucketAggregateBase
 
     public static ParentAggregate of(Function<ParentAggregate.Builder, ObjectBuilder<ParentAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Parent;
     }
 
     // ---------------------------------------------------------------------------------------------

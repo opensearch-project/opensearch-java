@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<ExtendedStatsBucketAggregate.Builder, ExtendedStatsBucketAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregateBase
         Function<ExtendedStatsBucketAggregate.Builder, ObjectBuilder<ExtendedStatsBucketAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.ExtendedStatsBucket;
     }
 
     // ---------------------------------------------------------------------------------------------

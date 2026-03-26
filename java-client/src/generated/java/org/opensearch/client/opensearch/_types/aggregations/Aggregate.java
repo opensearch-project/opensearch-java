@@ -37,107 +37,96 @@
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.ExternallyTaggedUnion;
-import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: _types.aggregations.Aggregate
 
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>, PlainJsonSerializable {
+public class Aggregate extends AggregateBase implements TaggedUnion<Aggregate.Kind, Object>, PlainJsonSerializable {
     /**
      * {@link Aggregate} variant kinds.
      */
-    public enum Kind implements JsonEnum {
-        AdjacencyMatrix("adjacency_matrix"),
-        AutoDateHistogram("auto_date_histogram"),
-        Avg("avg"),
-        BoxPlot("box_plot"),
-        BucketMetricValue("bucket_metric_value"),
-        Cardinality("cardinality"),
-        Children("children"),
-        Composite("composite"),
-        DateHistogram("date_histogram"),
-        DateRange("date_range"),
-        Derivative("derivative"),
-        Dterms("dterms"),
-        ExtendedStats("extended_stats"),
-        ExtendedStatsBucket("extended_stats_bucket"),
-        Filter("filter"),
-        Filters("filters"),
-        GeoBounds("geo_bounds"),
-        GeoCentroid("geo_centroid"),
-        GeoDistance("geo_distance"),
-        GeohashGrid("geohash_grid"),
-        GeotileGrid("geotile_grid"),
-        Global("global"),
-        HdrPercentileRanks("hdr_percentile_ranks"),
-        HdrPercentiles("hdr_percentiles"),
-        Histogram("histogram"),
-        IpRange("ip_range"),
-        Lrareterms("lrareterms"),
-        Lterms("lterms"),
-        MatrixStats("matrix_stats"),
-        Max("max"),
-        MedianAbsoluteDeviation("median_absolute_deviation"),
-        Min("min"),
-        Missing("missing"),
-        MultiTerms("multi_terms"),
-        Nested("nested"),
-        Parent("parent"),
-        PercentilesBucket("percentiles_bucket"),
-        Range("range"),
-        Rate("rate"),
-        ReverseNested("reverse_nested"),
-        Sampler("sampler"),
-        ScriptedMetric("scripted_metric"),
-        Siglterms("siglterms"),
-        Sigsterms("sigsterms"),
-        SimpleLongValue("simple_long_value"),
-        SimpleValue("simple_value"),
-        Srareterms("srareterms"),
-        Stats("stats"),
-        StatsBucket("stats_bucket"),
-        Sterms("sterms"),
-        Sum("sum"),
-        TTest("t_test"),
-        TdigestPercentileRanks("tdigest_percentile_ranks"),
-        TdigestPercentiles("tdigest_percentiles"),
-        TopHits("top_hits"),
-        Umrareterms("umrareterms"),
-        Umsigterms("umsigterms"),
-        Umterms("umterms"),
-        ValueCount("value_count"),
-        VariableWidthHistogram("variable_width_histogram"),
-        WeightedAvg("weighted_avg");
-
-        private final String jsonValue;
-
-        Kind(String jsonValue) {
-            this.jsonValue = jsonValue;
-        }
-
-        @Override
-        public String jsonValue() {
-            return jsonValue;
-        }
+    public enum Kind {
+        AdjacencyMatrix,
+        AutoDateHistogram,
+        Avg,
+        BoxPlot,
+        BucketMetricValue,
+        Cardinality,
+        Children,
+        Composite,
+        DateHistogram,
+        DateRange,
+        Derivative,
+        Dterms,
+        ExtendedStats,
+        ExtendedStatsBucket,
+        Filter,
+        Filters,
+        GeoBounds,
+        GeoCentroid,
+        GeoDistance,
+        GeohashGrid,
+        GeotileGrid,
+        Global,
+        HdrPercentileRanks,
+        HdrPercentiles,
+        Histogram,
+        IpRange,
+        Lrareterms,
+        Lterms,
+        MatrixStats,
+        Max,
+        MedianAbsoluteDeviation,
+        Min,
+        Missing,
+        MultiTerms,
+        Nested,
+        Parent,
+        PercentilesBucket,
+        Range,
+        Rate,
+        ReverseNested,
+        Sampler,
+        ScriptedMetric,
+        Siglterms,
+        Sigsterms,
+        SimpleLongValue,
+        SimpleValue,
+        Srareterms,
+        Stats,
+        StatsBucket,
+        Sterms,
+        Sum,
+        TTest,
+        TdigestPercentileRanks,
+        TdigestPercentiles,
+        TopHits,
+        Ulterms,
+        Umrareterms,
+        Umsigterms,
+        Umterms,
+        ValueCount,
+        VariableWidthHistogram,
+        WeightedAvg
     }
 
     private final Kind _kind;
-    private final AggregateVariant _value;
+    private final Object _value;
 
     @Override
     public final Kind _kind() {
@@ -145,16 +134,12 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
     }
 
     @Override
-    public final AggregateVariant _get() {
+    public final Object _get() {
         return _value;
     }
 
-    public Aggregate(AggregateVariant value) {
-        this._kind = ApiTypeHelper.requireNonNull(value._aggregateKind(), this, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-    }
-
     private Aggregate(Builder builder) {
+        super(builder);
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
@@ -1044,6 +1029,22 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
     }
 
     /**
+     * Is this variant instance of kind {@code ulterms}?
+     */
+    public boolean isUlterms() {
+        return _kind == Kind.Ulterms;
+    }
+
+    /**
+     * Get the {@code ulterms} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code ulterms} kind.
+     */
+    public UnsignedLongTermsAggregate ulterms() {
+        return TaggedUnionUtils.get(this, Kind.Ulterms);
+    }
+
+    /**
      * Is this variant instance of kind {@code umrareterms}?
      */
     public boolean isUmrareterms() {
@@ -1141,7 +1142,10 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        mapper.serialize(_value, generator);
+        super.serializeInternal(generator, mapper);
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        }
     }
 
     @Nonnull
@@ -1154,15 +1158,22 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         return new Builder();
     }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Aggregate> {
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<Aggregate> {
         private Kind _kind;
-        private AggregateVariant _value;
+        private Object _value;
 
         public Builder() {}
 
         private Builder(Aggregate o) {
+            super(o);
             this._kind = o._kind;
             this._value = o._value;
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         public ObjectBuilder<Aggregate> adjacencyMatrix(AdjacencyMatrixAggregate v) {
@@ -1743,6 +1754,18 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.topHits(fn.apply(new TopHitsAggregate.Builder()).build());
         }
 
+        public ObjectBuilder<Aggregate> ulterms(UnsignedLongTermsAggregate v) {
+            this._kind = Kind.Ulterms;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Aggregate> ulterms(
+            Function<UnsignedLongTermsAggregate.Builder, ObjectBuilder<UnsignedLongTermsAggregate>> fn
+        ) {
+            return this.ulterms(fn.apply(new UnsignedLongTermsAggregate.Builder()).build());
+        }
+
         public ObjectBuilder<Aggregate> umrareterms(UnmappedRareTermsAggregate v) {
             this._kind = Kind.Umrareterms;
             this._value = v;
@@ -1816,78 +1839,80 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         }
     }
 
-    public static final ExternallyTaggedUnion.TypedKeysDeserializer<Aggregate> _TYPED_KEYS_DESERIALIZER;
-
-    static {
-        Map<String, JsonpDeserializer<? extends AggregateVariant>> deserializers = new HashMap<>();
-        deserializers.put("adjacency_matrix", AdjacencyMatrixAggregate._DESERIALIZER);
-        deserializers.put("auto_date_histogram", AutoDateHistogramAggregate._DESERIALIZER);
-        deserializers.put("avg", AvgAggregate._DESERIALIZER);
-        deserializers.put("box_plot", BoxPlotAggregate._DESERIALIZER);
-        deserializers.put("bucket_metric_value", BucketMetricValueAggregate._DESERIALIZER);
-        deserializers.put("cardinality", CardinalityAggregate._DESERIALIZER);
-        deserializers.put("children", ChildrenAggregate._DESERIALIZER);
-        deserializers.put("composite", CompositeAggregate._DESERIALIZER);
-        deserializers.put("date_histogram", DateHistogramAggregate._DESERIALIZER);
-        deserializers.put("date_range", DateRangeAggregate._DESERIALIZER);
-        deserializers.put("derivative", DerivativeAggregate._DESERIALIZER);
-        deserializers.put("dterms", DoubleTermsAggregate._DESERIALIZER);
-        deserializers.put("extended_stats", ExtendedStatsAggregate._DESERIALIZER);
-        deserializers.put("extended_stats_bucket", ExtendedStatsBucketAggregate._DESERIALIZER);
-        deserializers.put("filter", FilterAggregate._DESERIALIZER);
-        deserializers.put("filters", FiltersAggregate._DESERIALIZER);
-        deserializers.put("geo_bounds", GeoBoundsAggregate._DESERIALIZER);
-        deserializers.put("geo_centroid", GeoCentroidAggregate._DESERIALIZER);
-        deserializers.put("geo_distance", GeoDistanceAggregate._DESERIALIZER);
-        deserializers.put("geohash_grid", GeoHashGridAggregate._DESERIALIZER);
-        deserializers.put("geotile_grid", GeoTileGridAggregate._DESERIALIZER);
-        deserializers.put("global", GlobalAggregate._DESERIALIZER);
-        deserializers.put("hdr_percentile_ranks", HdrPercentileRanksAggregate._DESERIALIZER);
-        deserializers.put("hdr_percentiles", HdrPercentilesAggregate._DESERIALIZER);
-        deserializers.put("histogram", HistogramAggregate._DESERIALIZER);
-        deserializers.put("ip_range", IpRangeAggregate._DESERIALIZER);
-        deserializers.put("lrareterms", LongRareTermsAggregate._DESERIALIZER);
-        deserializers.put("lterms", LongTermsAggregate._DESERIALIZER);
-        deserializers.put("matrix_stats", MatrixStatsAggregate._DESERIALIZER);
-        deserializers.put("max", MaxAggregate._DESERIALIZER);
-        deserializers.put("median_absolute_deviation", MedianAbsoluteDeviationAggregate._DESERIALIZER);
-        deserializers.put("min", MinAggregate._DESERIALIZER);
-        deserializers.put("missing", MissingAggregate._DESERIALIZER);
-        deserializers.put("multi_terms", MultiTermsAggregate._DESERIALIZER);
-        deserializers.put("nested", NestedAggregate._DESERIALIZER);
-        deserializers.put("parent", ParentAggregate._DESERIALIZER);
-        deserializers.put("percentiles_bucket", PercentilesBucketAggregate._DESERIALIZER);
-        deserializers.put("range", RangeAggregate._DESERIALIZER);
-        deserializers.put("rate", RateAggregate._DESERIALIZER);
-        deserializers.put("reverse_nested", ReverseNestedAggregate._DESERIALIZER);
-        deserializers.put("sampler", SamplerAggregate._DESERIALIZER);
-        deserializers.put("scripted_metric", ScriptedMetricAggregate._DESERIALIZER);
-        deserializers.put("siglterms", SignificantLongTermsAggregate._DESERIALIZER);
-        deserializers.put("sigsterms", SignificantStringTermsAggregate._DESERIALIZER);
-        deserializers.put("simple_long_value", CumulativeCardinalityAggregate._DESERIALIZER);
-        deserializers.put("simple_value", SimpleValueAggregate._DESERIALIZER);
-        deserializers.put("srareterms", StringRareTermsAggregate._DESERIALIZER);
-        deserializers.put("stats", StatsAggregate._DESERIALIZER);
-        deserializers.put("stats_bucket", StatsBucketAggregate._DESERIALIZER);
-        deserializers.put("sterms", StringTermsAggregate._DESERIALIZER);
-        deserializers.put("sum", SumAggregate._DESERIALIZER);
-        deserializers.put("t_test", TTestAggregate._DESERIALIZER);
-        deserializers.put("tdigest_percentile_ranks", TDigestPercentileRanksAggregate._DESERIALIZER);
-        deserializers.put("tdigest_percentiles", TDigestPercentilesAggregate._DESERIALIZER);
-        deserializers.put("top_hits", TopHitsAggregate._DESERIALIZER);
-        deserializers.put("umrareterms", UnmappedRareTermsAggregate._DESERIALIZER);
-        deserializers.put("umsigterms", UnmappedSignificantTermsAggregate._DESERIALIZER);
-        deserializers.put("umterms", UnmappedTermsAggregate._DESERIALIZER);
-        deserializers.put("value_count", ValueCountAggregate._DESERIALIZER);
-        deserializers.put("variable_width_histogram", VariableWidthHistogramAggregate._DESERIALIZER);
-        deserializers.put("weighted_avg", WeightedAvgAggregate._DESERIALIZER);
-
-        _TYPED_KEYS_DESERIALIZER = new ExternallyTaggedUnion.Deserializer<>(deserializers, Aggregate::new).typedKeys();
+    private static JsonpDeserializer<Aggregate> buildAggregateDeserializer() {
+        return new UnionDeserializer.Builder<Aggregate, Kind, Object>(Aggregate::new, false).addMember(
+            Kind.AdjacencyMatrix,
+            AdjacencyMatrixAggregate._DESERIALIZER
+        )
+            .addMember(Kind.AutoDateHistogram, AutoDateHistogramAggregate._DESERIALIZER)
+            .addMember(Kind.Avg, AvgAggregate._DESERIALIZER)
+            .addMember(Kind.BoxPlot, BoxPlotAggregate._DESERIALIZER)
+            .addMember(Kind.BucketMetricValue, BucketMetricValueAggregate._DESERIALIZER)
+            .addMember(Kind.Cardinality, CardinalityAggregate._DESERIALIZER)
+            .addMember(Kind.Children, ChildrenAggregate._DESERIALIZER)
+            .addMember(Kind.Composite, CompositeAggregate._DESERIALIZER)
+            .addMember(Kind.DateHistogram, DateHistogramAggregate._DESERIALIZER)
+            .addMember(Kind.DateRange, DateRangeAggregate._DESERIALIZER)
+            .addMember(Kind.Derivative, DerivativeAggregate._DESERIALIZER)
+            .addMember(Kind.Dterms, DoubleTermsAggregate._DESERIALIZER)
+            .addMember(Kind.ExtendedStats, ExtendedStatsAggregate._DESERIALIZER)
+            .addMember(Kind.ExtendedStatsBucket, ExtendedStatsBucketAggregate._DESERIALIZER)
+            .addMember(Kind.Filter, FilterAggregate._DESERIALIZER)
+            .addMember(Kind.Filters, FiltersAggregate._DESERIALIZER)
+            .addMember(Kind.GeoBounds, GeoBoundsAggregate._DESERIALIZER)
+            .addMember(Kind.GeoCentroid, GeoCentroidAggregate._DESERIALIZER)
+            .addMember(Kind.GeoDistance, GeoDistanceAggregate._DESERIALIZER)
+            .addMember(Kind.GeohashGrid, GeoHashGridAggregate._DESERIALIZER)
+            .addMember(Kind.GeotileGrid, GeoTileGridAggregate._DESERIALIZER)
+            .addMember(Kind.Global, GlobalAggregate._DESERIALIZER)
+            .addMember(Kind.HdrPercentileRanks, HdrPercentileRanksAggregate._DESERIALIZER)
+            .addMember(Kind.HdrPercentiles, HdrPercentilesAggregate._DESERIALIZER)
+            .addMember(Kind.Histogram, HistogramAggregate._DESERIALIZER)
+            .addMember(Kind.IpRange, IpRangeAggregate._DESERIALIZER)
+            .addMember(Kind.Lrareterms, LongRareTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Lterms, LongTermsAggregate._DESERIALIZER)
+            .addMember(Kind.MatrixStats, MatrixStatsAggregate._DESERIALIZER)
+            .addMember(Kind.Max, MaxAggregate._DESERIALIZER)
+            .addMember(Kind.MedianAbsoluteDeviation, MedianAbsoluteDeviationAggregate._DESERIALIZER)
+            .addMember(Kind.Min, MinAggregate._DESERIALIZER)
+            .addMember(Kind.Missing, MissingAggregate._DESERIALIZER)
+            .addMember(Kind.MultiTerms, MultiTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Nested, NestedAggregate._DESERIALIZER)
+            .addMember(Kind.Parent, ParentAggregate._DESERIALIZER)
+            .addMember(Kind.PercentilesBucket, PercentilesBucketAggregate._DESERIALIZER)
+            .addMember(Kind.Range, RangeAggregate._DESERIALIZER)
+            .addMember(Kind.Rate, RateAggregate._DESERIALIZER)
+            .addMember(Kind.ReverseNested, ReverseNestedAggregate._DESERIALIZER)
+            .addMember(Kind.Sampler, SamplerAggregate._DESERIALIZER)
+            .addMember(Kind.ScriptedMetric, ScriptedMetricAggregate._DESERIALIZER)
+            .addMember(Kind.Siglterms, SignificantLongTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Sigsterms, SignificantStringTermsAggregate._DESERIALIZER)
+            .addMember(Kind.SimpleLongValue, CumulativeCardinalityAggregate._DESERIALIZER)
+            .addMember(Kind.SimpleValue, SimpleValueAggregate._DESERIALIZER)
+            .addMember(Kind.Srareterms, StringRareTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Stats, StatsAggregate._DESERIALIZER)
+            .addMember(Kind.StatsBucket, StatsBucketAggregate._DESERIALIZER)
+            .addMember(Kind.Sterms, StringTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Sum, SumAggregate._DESERIALIZER)
+            .addMember(Kind.TTest, TTestAggregate._DESERIALIZER)
+            .addMember(Kind.TdigestPercentileRanks, TDigestPercentileRanksAggregate._DESERIALIZER)
+            .addMember(Kind.TdigestPercentiles, TDigestPercentilesAggregate._DESERIALIZER)
+            .addMember(Kind.TopHits, TopHitsAggregate._DESERIALIZER)
+            .addMember(Kind.Ulterms, UnsignedLongTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Umrareterms, UnmappedRareTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Umsigterms, UnmappedSignificantTermsAggregate._DESERIALIZER)
+            .addMember(Kind.Umterms, UnmappedTermsAggregate._DESERIALIZER)
+            .addMember(Kind.ValueCount, ValueCountAggregate._DESERIALIZER)
+            .addMember(Kind.VariableWidthHistogram, VariableWidthHistogramAggregate._DESERIALIZER)
+            .addMember(Kind.WeightedAvg, WeightedAvgAggregate._DESERIALIZER)
+            .build();
     }
+
+    public static final JsonpDeserializer<Aggregate> _DESERIALIZER = JsonpDeserializer.lazy(Aggregate::buildAggregateDeserializer);
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
         return result;
@@ -1895,6 +1920,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Aggregate other = (Aggregate) o;

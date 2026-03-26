@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MinBucketAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<MinBucketAggregation.Builder, MinBucketAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class MinBucketAggregation extends PipelineAggregationBase
 
     public static MinBucketAggregation of(Function<MinBucketAggregation.Builder, ObjectBuilder<MinBucketAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MinBucket;
     }
 
     // ---------------------------------------------------------------------------------------------

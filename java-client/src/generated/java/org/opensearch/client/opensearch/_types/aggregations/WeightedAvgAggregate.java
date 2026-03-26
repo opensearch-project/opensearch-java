@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class WeightedAvgAggregate extends SingleMetricAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<WeightedAvgAggregate.Builder, WeightedAvgAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase
 
     public static WeightedAvgAggregate of(Function<WeightedAvgAggregate.Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.WeightedAvg;
     }
 
     // ---------------------------------------------------------------------------------------------

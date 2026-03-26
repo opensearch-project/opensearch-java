@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase<SignificantLongTermsBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<SignificantLongTermsAggregate.Builder, SignificantLongTermsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase
         Function<SignificantLongTermsAggregate.Builder, ObjectBuilder<SignificantLongTermsAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Siglterms;
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -37,51 +37,67 @@
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.StringTermsBucket
+// typedef: _types.aggregations.NestedAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StringTermsBucket extends TermsBucketBase implements ToCopyableBuilder<StringTermsBucket.Builder, StringTermsBucket> {
+public class NestedAggregationFields
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<NestedAggregationFields.Builder, NestedAggregationFields> {
 
-    @Nonnull
-    private final String key;
+    @Nullable
+    private final String path;
 
     // ---------------------------------------------------------------------------------------------
 
-    private StringTermsBucket(Builder builder) {
-        super(builder);
-        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+    private NestedAggregationFields(Builder builder) {
+        this.path = builder.path;
     }
 
-    public static StringTermsBucket of(Function<StringTermsBucket.Builder, ObjectBuilder<StringTermsBucket>> fn) {
+    public static NestedAggregationFields of(Function<NestedAggregationFields.Builder, ObjectBuilder<NestedAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code key}
+     * API name: {@code path}
      */
-    @Nonnull
-    public final String key() {
-        return this.key;
+    @Nullable
+    public final String path() {
+        return this.path;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        generator.writeKey("key");
-        generator.write(this.key);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -98,21 +114,20 @@ public class StringTermsBucket extends TermsBucketBase implements ToCopyableBuil
     }
 
     /**
-     * Builder for {@link StringTermsBucket}.
+     * Builder for {@link NestedAggregationFields}.
      */
-    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, StringTermsBucket> {
-        private String key;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NestedAggregationFields> {
+        @Nullable
+        private String path;
 
         public Builder() {}
 
-        private Builder(StringTermsBucket o) {
-            super(o);
-            this.key = o.key;
+        private Builder(NestedAggregationFields o) {
+            this.path = o.path;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.key = o.key;
+            this.path = o.path;
         }
 
         @Override
@@ -121,65 +136,55 @@ public class StringTermsBucket extends TermsBucketBase implements ToCopyableBuil
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * Required - API name: {@code key}
+         * API name: {@code path}
          */
         @Nonnull
-        public final Builder key(String value) {
-            this.key = value;
+        public final Builder path(@Nullable String value) {
+            this.path = value;
             return this;
         }
 
         /**
-         * Builds a {@link StringTermsBucket}.
+         * Builds a {@link NestedAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public StringTermsBucket build() {
+        public NestedAggregationFields build() {
             _checkSingleUse();
 
-            return new StringTermsBucket(this);
+            return new NestedAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link StringTermsBucket}
+     * Json deserializer for {@link NestedAggregationFields}
      */
-    public static final JsonpDeserializer<StringTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<NestedAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        StringTermsBucket::setupStringTermsBucketDeserializer
+        NestedAggregationFields::setupNestedAggregationFieldsDeserializer
     );
 
-    protected static void setupStringTermsBucketDeserializer(ObjectDeserializer<StringTermsBucket.Builder> op) {
-        setupTermsBucketBaseDeserializer(op);
-        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+    protected static void setupNestedAggregationFieldsDeserializer(ObjectDeserializer<NestedAggregationFields.Builder> op) {
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + this.key.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.path);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        StringTermsBucket other = (StringTermsBucket) o;
-        return this.key.equals(other.key);
+        NestedAggregationFields other = (NestedAggregationFields) o;
+        return Objects.equals(this.path, other.path);
     }
 }

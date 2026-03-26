@@ -36,66 +36,43 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.ReverseNestedAggregation
+// typedef: _types.aggregations.UnsignedLongTermsAggregate
 
+/**
+ * Result of a <code>terms</code> aggregation when the field is an <code>unsigned_long</code> (64-bit unsigned integer). OpenSearch stores
+ * <code>unsigned_long</code> values as Long or BigInteger internally. In JSON responses, bucket keys are represented as numbers, which may
+ * lose precision for values larger than 2^53--1 due to IEEE 754 double precision limitations. In protocol buffer representations, keys are
+ * manually defined as uint64 to preserve the full 64-bit unsigned range. Use <code>key_as_string</code> in buckets for exact string
+ * representation of large unsigned long values.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ReverseNestedAggregation extends BucketAggregationBase
+public class UnsignedLongTermsAggregate extends TermsAggregateBase<JsonData>
     implements
-        AggregationVariant,
-        ToCopyableBuilder<ReverseNestedAggregation.Builder, ReverseNestedAggregation> {
-
-    @Nullable
-    private final String path;
+        ToCopyableBuilder<UnsignedLongTermsAggregate.Builder, UnsignedLongTermsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private ReverseNestedAggregation(Builder builder) {
+    private UnsignedLongTermsAggregate(Builder builder) {
         super(builder);
-        this.path = builder.path;
     }
 
-    public static ReverseNestedAggregation of(Function<ReverseNestedAggregation.Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+    public static UnsignedLongTermsAggregate of(
+        Function<UnsignedLongTermsAggregate.Builder, ObjectBuilder<UnsignedLongTermsAggregate>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.ReverseNested;
-    }
-
-    /**
-     * API name: {@code path}
-     */
-    @Nullable
-    public final String path() {
-        return this.path;
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        if (this.path != null) {
-            generator.writeKey("path");
-            generator.write(this.path);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -112,24 +89,20 @@ public class ReverseNestedAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link ReverseNestedAggregation}.
+     * Builder for {@link UnsignedLongTermsAggregate}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<JsonData, Builder>
         implements
-            CopyableBuilder<Builder, ReverseNestedAggregation> {
-        @Nullable
-        private String path;
+            CopyableBuilder<Builder, UnsignedLongTermsAggregate> {
 
         public Builder() {}
 
-        private Builder(ReverseNestedAggregation o) {
+        private Builder(UnsignedLongTermsAggregate o) {
             super(o);
-            this.path = o.path;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.path = o.path;
         }
 
         @Override
@@ -145,47 +118,36 @@ public class ReverseNestedAggregation extends BucketAggregationBase
         }
 
         /**
-         * API name: {@code path}
-         */
-        @Nonnull
-        public final Builder path(@Nullable String value) {
-            this.path = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link ReverseNestedAggregation}.
+         * Builds a {@link UnsignedLongTermsAggregate}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ReverseNestedAggregation build() {
+        public UnsignedLongTermsAggregate build() {
             _checkSingleUse();
 
-            return new ReverseNestedAggregation(this);
+            return new UnsignedLongTermsAggregate(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ReverseNestedAggregation}
+     * Json deserializer for {@link UnsignedLongTermsAggregate}
      */
-    public static final JsonpDeserializer<ReverseNestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UnsignedLongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ReverseNestedAggregation::setupReverseNestedAggregationDeserializer
+        UnsignedLongTermsAggregate::setupUnsignedLongTermsAggregateDeserializer
     );
 
-    protected static void setupReverseNestedAggregationDeserializer(ObjectDeserializer<ReverseNestedAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
-        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+    protected static void setupUnsignedLongTermsAggregateDeserializer(ObjectDeserializer<UnsignedLongTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, JsonData._DESERIALIZER);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.path);
         return result;
     }
 
@@ -196,7 +158,6 @@ public class ReverseNestedAggregation extends BucketAggregationBase
         }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ReverseNestedAggregation other = (ReverseNestedAggregation) o;
-        return Objects.equals(this.path, other.path);
+        return true;
     }
 }

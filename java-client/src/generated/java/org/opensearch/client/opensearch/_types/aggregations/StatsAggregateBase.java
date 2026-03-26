@@ -44,12 +44,14 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.StatsAggregateBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class StatsAggregateBase extends AggregateBase {
+public abstract class StatsAggregateBase implements PlainJsonSerializable {
 
     @Nullable
     private final Double avg;
@@ -79,7 +81,6 @@ public abstract class StatsAggregateBase extends AggregateBase {
     // ---------------------------------------------------------------------------------------------
 
     protected StatsAggregateBase(AbstractBuilder<?> builder) {
-        super(builder);
         this.avg = builder.avg;
         this.avgAsString = builder.avgAsString;
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
@@ -161,8 +162,17 @@ public abstract class StatsAggregateBase extends AggregateBase {
         return this.sumAsString;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.avg != null) {
             generator.writeKey("avg");
             generator.write(this.avg);
@@ -207,8 +217,7 @@ public abstract class StatsAggregateBase extends AggregateBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
-        BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Double avg;
         @Nullable
@@ -229,7 +238,6 @@ public abstract class StatsAggregateBase extends AggregateBase {
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(StatsAggregateBase o) {
-            super(o);
             this.avg = o.avg;
             this.avgAsString = o.avgAsString;
             this.count = o.count;
@@ -242,7 +250,6 @@ public abstract class StatsAggregateBase extends AggregateBase {
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
-            super(o);
             this.avg = o.avg;
             this.avgAsString = o.avgAsString;
             this.count = o.count;
@@ -253,6 +260,9 @@ public abstract class StatsAggregateBase extends AggregateBase {
             this.sum = o.sum;
             this.sumAsString = o.sumAsString;
         }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * API name: {@code avg}
@@ -341,7 +351,6 @@ public abstract class StatsAggregateBase extends AggregateBase {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupStatsAggregateBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-        setupAggregateBaseDeserializer(op);
         op.add(AbstractBuilder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
         op.add(AbstractBuilder::avgAsString, JsonpDeserializer.stringDeserializer(), "avg_as_string");
         op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
@@ -355,7 +364,7 @@ public abstract class StatsAggregateBase extends AggregateBase {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.avg);
         result = 31 * result + Objects.hashCode(this.avgAsString);
         result = 31 * result + Long.hashCode(this.count);
@@ -370,9 +379,6 @@ public abstract class StatsAggregateBase extends AggregateBase {
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         StatsAggregateBase other = (StatsAggregateBase) o;

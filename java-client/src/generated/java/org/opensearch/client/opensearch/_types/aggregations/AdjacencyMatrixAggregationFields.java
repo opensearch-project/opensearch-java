@@ -48,43 +48,36 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.AdjacencyMatrixAggregation
+// typedef: _types.aggregations.AdjacencyMatrixAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AdjacencyMatrixAggregation extends BucketAggregationBase
+public class AdjacencyMatrixAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<AdjacencyMatrixAggregation.Builder, AdjacencyMatrixAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<AdjacencyMatrixAggregationFields.Builder, AdjacencyMatrixAggregationFields> {
 
     @Nonnull
     private final Map<String, Query> filters;
 
     // ---------------------------------------------------------------------------------------------
 
-    private AdjacencyMatrixAggregation(Builder builder) {
-        super(builder);
+    private AdjacencyMatrixAggregationFields(Builder builder) {
         this.filters = ApiTypeHelper.unmodifiable(builder.filters);
     }
 
-    public static AdjacencyMatrixAggregation of(
-        Function<AdjacencyMatrixAggregation.Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn
+    public static AdjacencyMatrixAggregationFields of(
+        Function<AdjacencyMatrixAggregationFields.Builder, ObjectBuilder<AdjacencyMatrixAggregationFields>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.AdjacencyMatrix;
     }
 
     /**
@@ -98,8 +91,17 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase
         return this.filters;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (ApiTypeHelper.isDefined(this.filters)) {
             generator.writeKey("filters");
             generator.writeStartObject();
@@ -125,23 +127,19 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link AdjacencyMatrixAggregation}.
+     * Builder for {@link AdjacencyMatrixAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, AdjacencyMatrixAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AdjacencyMatrixAggregationFields> {
         @Nullable
         private Map<String, Query> filters;
 
         public Builder() {}
 
-        private Builder(AdjacencyMatrixAggregation o) {
-            super(o);
+        private Builder(AdjacencyMatrixAggregationFields o) {
             this.filters = _mapCopy(o.filters);
         }
 
         private Builder(Builder o) {
-            super(o);
             this.filters = _mapCopy(o.filters);
         }
 
@@ -149,12 +147,6 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -205,49 +197,47 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link AdjacencyMatrixAggregation}.
+         * Builds a {@link AdjacencyMatrixAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public AdjacencyMatrixAggregation build() {
+        public AdjacencyMatrixAggregationFields build() {
             _checkSingleUse();
 
-            return new AdjacencyMatrixAggregation(this);
+            return new AdjacencyMatrixAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link AdjacencyMatrixAggregation}
+     * Json deserializer for {@link AdjacencyMatrixAggregationFields}
      */
-    public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<AdjacencyMatrixAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer
+        AdjacencyMatrixAggregationFields::setupAdjacencyMatrixAggregationFieldsDeserializer
     );
 
-    protected static void setupAdjacencyMatrixAggregationDeserializer(ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupAdjacencyMatrixAggregationFieldsDeserializer(
+        ObjectDeserializer<AdjacencyMatrixAggregationFields.Builder> op
+    ) {
         op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.filters);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        AdjacencyMatrixAggregation other = (AdjacencyMatrixAggregation) o;
+        AdjacencyMatrixAggregationFields other = (AdjacencyMatrixAggregationFields) o;
         return Objects.equals(this.filters, other.filters);
     }
 }

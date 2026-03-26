@@ -48,21 +48,23 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.EmptyObject;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.SignificantTextAggregation
+// typedef: _types.aggregations.SignificantTextAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SignificantTextAggregation extends BucketAggregationBase
+public class SignificantTextAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<SignificantTextAggregation.Builder, SignificantTextAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<SignificantTextAggregationFields.Builder, SignificantTextAggregationFields> {
 
     @Nullable
     private final Query backgroundFilter;
@@ -117,8 +119,7 @@ public class SignificantTextAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private SignificantTextAggregation(Builder builder) {
-        super(builder);
+    private SignificantTextAggregationFields(Builder builder) {
         this.backgroundFilter = builder.backgroundFilter;
         this.chiSquare = builder.chiSquare;
         this.exclude = builder.exclude;
@@ -138,18 +139,10 @@ public class SignificantTextAggregation extends BucketAggregationBase
         this.sourceFields = ApiTypeHelper.unmodifiable(builder.sourceFields);
     }
 
-    public static SignificantTextAggregation of(
-        Function<SignificantTextAggregation.Builder, ObjectBuilder<SignificantTextAggregation>> fn
+    public static SignificantTextAggregationFields of(
+        Function<SignificantTextAggregationFields.Builder, ObjectBuilder<SignificantTextAggregationFields>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.SignificantText;
     }
 
     /**
@@ -306,8 +299,17 @@ public class SignificantTextAggregation extends BucketAggregationBase
         return this.sourceFields;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.backgroundFilter != null) {
             generator.writeKey("background_filter");
             this.backgroundFilter.serialize(generator, mapper);
@@ -412,11 +414,9 @@ public class SignificantTextAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link SignificantTextAggregation}.
+     * Builder for {@link SignificantTextAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, SignificantTextAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SignificantTextAggregationFields> {
         @Nullable
         private Query backgroundFilter;
         @Nullable
@@ -454,8 +454,7 @@ public class SignificantTextAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(SignificantTextAggregation o) {
-            super(o);
+        private Builder(SignificantTextAggregationFields o) {
             this.backgroundFilter = o.backgroundFilter;
             this.chiSquare = o.chiSquare;
             this.exclude = o.exclude;
@@ -476,7 +475,6 @@ public class SignificantTextAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.backgroundFilter = o.backgroundFilter;
             this.chiSquare = o.chiSquare;
             this.exclude = o.exclude;
@@ -500,12 +498,6 @@ public class SignificantTextAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -769,31 +761,32 @@ public class SignificantTextAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link SignificantTextAggregation}.
+         * Builds a {@link SignificantTextAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public SignificantTextAggregation build() {
+        public SignificantTextAggregationFields build() {
             _checkSingleUse();
 
-            return new SignificantTextAggregation(this);
+            return new SignificantTextAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SignificantTextAggregation}
+     * Json deserializer for {@link SignificantTextAggregationFields}
      */
-    public static final JsonpDeserializer<SignificantTextAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SignificantTextAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SignificantTextAggregation::setupSignificantTextAggregationDeserializer
+        SignificantTextAggregationFields::setupSignificantTextAggregationFieldsDeserializer
     );
 
-    protected static void setupSignificantTextAggregationDeserializer(ObjectDeserializer<SignificantTextAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupSignificantTextAggregationFieldsDeserializer(
+        ObjectDeserializer<SignificantTextAggregationFields.Builder> op
+    ) {
         op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
         op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");
         op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
@@ -815,7 +808,7 @@ public class SignificantTextAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.backgroundFilter);
         result = 31 * result + Objects.hashCode(this.chiSquare);
         result = 31 * result + Objects.hashCode(this.exclude);
@@ -838,12 +831,9 @@ public class SignificantTextAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        SignificantTextAggregation other = (SignificantTextAggregation) o;
+        SignificantTextAggregationFields other = (SignificantTextAggregationFields) o;
         return Objects.equals(this.backgroundFilter, other.backgroundFilter)
             && Objects.equals(this.chiSquare, other.chiSquare)
             && Objects.equals(this.exclude, other.exclude)

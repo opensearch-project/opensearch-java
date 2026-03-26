@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<DateHistogramAggregate.Builder, DateHistogramAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 
     public static DateHistogramAggregate of(Function<DateHistogramAggregate.Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.DateHistogram;
     }
 
     // ---------------------------------------------------------------------------------------------

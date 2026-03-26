@@ -42,13 +42,15 @@ import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.PercentilesAggregateBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class PercentilesAggregateBase extends AggregateBase {
+public abstract class PercentilesAggregateBase implements PlainJsonSerializable {
 
     @Nonnull
     private final Percentiles values;
@@ -56,7 +58,6 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
     // ---------------------------------------------------------------------------------------------
 
     protected PercentilesAggregateBase(AbstractBuilder<?> builder) {
-        super(builder);
         this.values = ApiTypeHelper.requireNonNull(builder.values, this, "values");
     }
 
@@ -68,29 +69,38 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
         return this.values;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("values");
         this.values.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
-        BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Percentiles values;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(PercentilesAggregateBase o) {
-            super(o);
             this.values = o.values;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
-            super(o);
             this.values = o.values;
         }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * Required - API name: {@code values}
@@ -115,22 +125,18 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPercentilesAggregateBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-        setupAggregateBaseDeserializer(op);
         op.add(AbstractBuilder::values, Percentiles._DESERIALIZER, "values");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + this.values.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PercentilesAggregateBase other = (PercentilesAggregateBase) o;
