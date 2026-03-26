@@ -5,7 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
-- Bump `gradle-wrapper` from 9.31. to 9.4.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930))
+- Bump `gradle-wrapper` from 9.31. to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
 
