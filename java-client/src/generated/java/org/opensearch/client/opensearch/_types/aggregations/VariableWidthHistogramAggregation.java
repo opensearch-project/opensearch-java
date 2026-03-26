@@ -59,7 +59,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class VariableWidthHistogramAggregation
     implements
-        AggregationVariant,
         PlainJsonSerializable,
         ToCopyableBuilder<VariableWidthHistogramAggregation.Builder, VariableWidthHistogramAggregation> {
 
@@ -88,14 +87,6 @@ public class VariableWidthHistogramAggregation
         Function<VariableWidthHistogramAggregation.Builder, ObjectBuilder<VariableWidthHistogramAggregation>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.VariableWidthHistogram;
     }
 
     /**

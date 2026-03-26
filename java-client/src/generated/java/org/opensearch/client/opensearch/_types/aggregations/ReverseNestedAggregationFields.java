@@ -47,54 +47,58 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.ParentAggregation
+// typedef: _types.aggregations.ReverseNestedAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ParentAggregation extends BucketAggregationBase
+public class ReverseNestedAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<ParentAggregation.Builder, ParentAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<ReverseNestedAggregationFields.Builder, ReverseNestedAggregationFields> {
 
     @Nullable
-    private final String type;
+    private final String path;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ParentAggregation(Builder builder) {
-        super(builder);
-        this.type = builder.type;
+    private ReverseNestedAggregationFields(Builder builder) {
+        this.path = builder.path;
     }
 
-    public static ParentAggregation of(Function<ParentAggregation.Builder, ObjectBuilder<ParentAggregation>> fn) {
+    public static ReverseNestedAggregationFields of(
+        Function<ReverseNestedAggregationFields.Builder, ObjectBuilder<ReverseNestedAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * {@link Aggregation} variant kind.
+     * API name: {@code path}
      */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Parent;
+    @Nullable
+    public final String path() {
+        return this.path;
     }
 
     /**
-     * API name: {@code type}
+     * Serialize this object to JSON.
      */
-    @Nullable
-    public final String type() {
-        return this.type;
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        if (this.type != null) {
-            generator.writeKey("type");
-            generator.write(this.type);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
         }
     }
 
@@ -112,24 +116,20 @@ public class ParentAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link ParentAggregation}.
+     * Builder for {@link ReverseNestedAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, ParentAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ReverseNestedAggregationFields> {
         @Nullable
-        private String type;
+        private String path;
 
         public Builder() {}
 
-        private Builder(ParentAggregation o) {
-            super(o);
-            this.type = o.type;
+        private Builder(ReverseNestedAggregationFields o) {
+            this.path = o.path;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.type = o.type;
+            this.path = o.path;
         }
 
         @Override
@@ -138,65 +138,55 @@ public class ParentAggregation extends BucketAggregationBase
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * API name: {@code type}
+         * API name: {@code path}
          */
         @Nonnull
-        public final Builder type(@Nullable String value) {
-            this.type = value;
+        public final Builder path(@Nullable String value) {
+            this.path = value;
             return this;
         }
 
         /**
-         * Builds a {@link ParentAggregation}.
+         * Builds a {@link ReverseNestedAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ParentAggregation build() {
+        public ReverseNestedAggregationFields build() {
             _checkSingleUse();
 
-            return new ParentAggregation(this);
+            return new ReverseNestedAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ParentAggregation}
+     * Json deserializer for {@link ReverseNestedAggregationFields}
      */
-    public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ReverseNestedAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ParentAggregation::setupParentAggregationDeserializer
+        ReverseNestedAggregationFields::setupReverseNestedAggregationFieldsDeserializer
     );
 
-    protected static void setupParentAggregationDeserializer(ObjectDeserializer<ParentAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+    protected static void setupReverseNestedAggregationFieldsDeserializer(ObjectDeserializer<ReverseNestedAggregationFields.Builder> op) {
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.type);
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.path);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ParentAggregation other = (ParentAggregation) o;
-        return Objects.equals(this.type, other.type);
+        ReverseNestedAggregationFields other = (ReverseNestedAggregationFields) o;
+        return Objects.equals(this.path, other.path);
     }
 }

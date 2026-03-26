@@ -49,20 +49,22 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.AutoDateHistogramAggregation
+// typedef: _types.aggregations.AutoDateHistogramAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AutoDateHistogramAggregation extends BucketAggregationBase
+public class AutoDateHistogramAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<AutoDateHistogramAggregation.Builder, AutoDateHistogramAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<AutoDateHistogramAggregationFields.Builder, AutoDateHistogramAggregationFields> {
 
     @Nullable
     private final Integer buckets;
@@ -93,8 +95,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private AutoDateHistogramAggregation(Builder builder) {
-        super(builder);
+    private AutoDateHistogramAggregationFields(Builder builder) {
         this.buckets = builder.buckets;
         this.field = builder.field;
         this.format = builder.format;
@@ -106,18 +107,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
         this.timeZone = builder.timeZone;
     }
 
-    public static AutoDateHistogramAggregation of(
-        Function<AutoDateHistogramAggregation.Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn
+    public static AutoDateHistogramAggregationFields of(
+        Function<AutoDateHistogramAggregationFields.Builder, ObjectBuilder<AutoDateHistogramAggregationFields>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.AutoDateHistogram;
     }
 
     /**
@@ -202,8 +195,17 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
         return this.timeZone;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.buckets != null) {
             generator.writeKey("buckets");
             generator.write(this.buckets);
@@ -269,11 +271,9 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link AutoDateHistogramAggregation}.
+     * Builder for {@link AutoDateHistogramAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, AutoDateHistogramAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AutoDateHistogramAggregationFields> {
         @Nullable
         private Integer buckets;
         @Nullable
@@ -295,8 +295,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(AutoDateHistogramAggregation o) {
-            super(o);
+        private Builder(AutoDateHistogramAggregationFields o) {
             this.buckets = o.buckets;
             this.field = o.field;
             this.format = o.format;
@@ -309,7 +308,6 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.buckets = o.buckets;
             this.field = o.field;
             this.format = o.format;
@@ -325,12 +323,6 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -450,31 +442,32 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link AutoDateHistogramAggregation}.
+         * Builds a {@link AutoDateHistogramAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public AutoDateHistogramAggregation build() {
+        public AutoDateHistogramAggregationFields build() {
             _checkSingleUse();
 
-            return new AutoDateHistogramAggregation(this);
+            return new AutoDateHistogramAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link AutoDateHistogramAggregation}
+     * Json deserializer for {@link AutoDateHistogramAggregationFields}
      */
-    public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<AutoDateHistogramAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer
+        AutoDateHistogramAggregationFields::setupAutoDateHistogramAggregationFieldsDeserializer
     );
 
-    protected static void setupAutoDateHistogramAggregationDeserializer(ObjectDeserializer<AutoDateHistogramAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupAutoDateHistogramAggregationFieldsDeserializer(
+        ObjectDeserializer<AutoDateHistogramAggregationFields.Builder> op
+    ) {
         op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
@@ -488,7 +481,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.buckets);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.format);
@@ -503,12 +496,9 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        AutoDateHistogramAggregation other = (AutoDateHistogramAggregation) o;
+        AutoDateHistogramAggregationFields other = (AutoDateHistogramAggregationFields) o;
         return Objects.equals(this.buckets, other.buckets)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.format, other.format)

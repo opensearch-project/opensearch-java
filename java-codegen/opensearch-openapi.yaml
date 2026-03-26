@@ -41473,13 +41473,20 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            filters:
-              description: |-
-                Filters used to create buckets.
-                At least one filter is required.
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+            adjacency_matrix:
+              $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregationFields'
+          required:
+            - adjacency_matrix
+    _common.aggregations___AdjacencyMatrixAggregationFields:
+      type: object
+      properties:
+        filters:
+          description: |-
+            Filters used to create buckets.
+            At least one filter is required.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
     _common.aggregations___AdjacencyMatrixBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -41491,129 +41498,133 @@ components:
             - key
     _common.aggregations___Aggregate:
       x-supports-typed-keys: true
-      anyOf:
-        - title: adjacency_matrix
-          $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregate'
-        - title: auto_date_histogram
-          $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregate'
-        - title: avg
-          $ref: '#/components/schemas/_common.aggregations___AvgAggregate'
-        - title: box_plot
-          $ref: '#/components/schemas/_common.aggregations___BoxPlotAggregate'
-        - title: bucket_metric_value
-          $ref: '#/components/schemas/_common.aggregations___BucketMetricValueAggregate'
-        - title: cardinality
-          $ref: '#/components/schemas/_common.aggregations___CardinalityAggregate'
-        - title: children
-          $ref: '#/components/schemas/_common.aggregations___ChildrenAggregate'
-        - title: composite
-          $ref: '#/components/schemas/_common.aggregations___CompositeAggregate'
-        - title: date_histogram
-          $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregate'
-        - title: date_range
-          $ref: '#/components/schemas/_common.aggregations___DateRangeAggregate'
-        - title: derivative
-          $ref: '#/components/schemas/_common.aggregations___DerivativeAggregate'
-        - title: dterms
-          $ref: '#/components/schemas/_common.aggregations___DoubleTermsAggregate'
-        - title: extended_stats
-          $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregate'
-        - title: extended_stats_bucket
-          $ref: '#/components/schemas/_common.aggregations___ExtendedStatsBucketAggregate'
-        - title: filter
-          $ref: '#/components/schemas/_common.aggregations___FilterAggregate'
-        - title: filters
-          $ref: '#/components/schemas/_common.aggregations___FiltersAggregate'
-        - title: geo_bounds
-          $ref: '#/components/schemas/_common.aggregations___GeoBoundsAggregate'
-        - title: geo_centroid
-          $ref: '#/components/schemas/_common.aggregations___GeoCentroidAggregate'
-        - title: geo_distance
-          $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregate'
-        - title: geohash_grid
-          $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregate'
-        - title: geotile_grid
-          $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregate'
-        - title: global
-          $ref: '#/components/schemas/_common.aggregations___GlobalAggregate'
-        - title: hdr_percentiles
-          $ref: '#/components/schemas/_common.aggregations___HdrPercentilesAggregate'
-        - title: hdr_percentile_ranks
-          $ref: '#/components/schemas/_common.aggregations___HdrPercentileRanksAggregate'
-        - title: histogram
-          $ref: '#/components/schemas/_common.aggregations___HistogramAggregate'
-        - title: ip_range
-          $ref: '#/components/schemas/_common.aggregations___IpRangeAggregate'
-        - title: lrareterms
-          $ref: '#/components/schemas/_common.aggregations___LongRareTermsAggregate'
-        - title: lterms
-          $ref: '#/components/schemas/_common.aggregations___LongTermsAggregate'
-        - title: matrix_stats
-          $ref: '#/components/schemas/_common.aggregations___MatrixStatsAggregate'
-        - title: max
-          $ref: '#/components/schemas/_common.aggregations___MaxAggregate'
-        - title: median_absolute_deviation
-          $ref: '#/components/schemas/_common.aggregations___MedianAbsoluteDeviationAggregate'
-        - title: min
-          $ref: '#/components/schemas/_common.aggregations___MinAggregate'
-        - title: missing
-          $ref: '#/components/schemas/_common.aggregations___MissingAggregate'
-        - title: multi_terms
-          $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregate'
-        - title: nested
-          $ref: '#/components/schemas/_common.aggregations___NestedAggregate'
-        - title: parent
-          $ref: '#/components/schemas/_common.aggregations___ParentAggregate'
-        - title: percentiles_bucket
-          $ref: '#/components/schemas/_common.aggregations___PercentilesBucketAggregate'
-        - title: range
-          $ref: '#/components/schemas/_common.aggregations___RangeAggregate'
-        - title: rate
-          $ref: '#/components/schemas/_common.aggregations___RateAggregate'
-        - title: reverse_nested
-          $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregate'
-        - title: sampler
-          $ref: '#/components/schemas/_common.aggregations___SamplerAggregate'
-        - title: scripted_metric
-          $ref: '#/components/schemas/_common.aggregations___ScriptedMetricAggregate'
-        - title: siglterms
-          $ref: '#/components/schemas/_common.aggregations___SignificantLongTermsAggregate'
-        - title: sigsterms
-          $ref: '#/components/schemas/_common.aggregations___SignificantStringTermsAggregate'
-        - title: simple_long_value
-          $ref: '#/components/schemas/_common.aggregations___CumulativeCardinalityAggregate'
-        - title: simple_value
-          $ref: '#/components/schemas/_common.aggregations___SimpleValueAggregate'
-        - title: stats
-          $ref: '#/components/schemas/_common.aggregations___StatsAggregate'
-        - title: stats_bucket
-          $ref: '#/components/schemas/_common.aggregations___StatsBucketAggregate'
-        - title: srareterms
-          $ref: '#/components/schemas/_common.aggregations___StringRareTermsAggregate'
-        - title: sterms
-          $ref: '#/components/schemas/_common.aggregations___StringTermsAggregate'
-        - title: sum
-          $ref: '#/components/schemas/_common.aggregations___SumAggregate'
-        - title: tdigest_percentiles
-          $ref: '#/components/schemas/_common.aggregations___TDigestPercentilesAggregate'
-        - title: tdigest_percentile_ranks
-          $ref: '#/components/schemas/_common.aggregations___TDigestPercentileRanksAggregate'
-        - title: t_test
-          $ref: '#/components/schemas/_common.aggregations___TTestAggregate'
-        - title: top_hits
-          $ref: '#/components/schemas/_common.aggregations___TopHitsAggregate'
-        - title: umrareterms
-          $ref: '#/components/schemas/_common.aggregations___UnmappedRareTermsAggregate'
-        - title: umsigterms
-          $ref: '#/components/schemas/_common.aggregations___UnmappedSignificantTermsAggregate'
-        - title: umterms
-          $ref: '#/components/schemas/_common.aggregations___UnmappedTermsAggregate'
-        - title: value_count
-          $ref: '#/components/schemas/_common.aggregations___ValueCountAggregate'
-        - title: variable_width_histogram
-          $ref: '#/components/schemas/_common.aggregations___VariableWidthHistogramAggregate'
-        - title: weighted_avg
-          $ref: '#/components/schemas/_common.aggregations___WeightedAvgAggregate'
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
+        - anyOf:
+            - title: adjacency_matrix
+              $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregate'
+            - title: auto_date_histogram
+              $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregate'
+            - title: avg
+              $ref: '#/components/schemas/_common.aggregations___AvgAggregate'
+            - title: box_plot
+              $ref: '#/components/schemas/_common.aggregations___BoxPlotAggregate'
+            - title: bucket_metric_value
+              $ref: '#/components/schemas/_common.aggregations___BucketMetricValueAggregate'
+            - title: cardinality
+              $ref: '#/components/schemas/_common.aggregations___CardinalityAggregate'
+            - title: children
+              $ref: '#/components/schemas/_common.aggregations___ChildrenAggregate'
+            - title: composite
+              $ref: '#/components/schemas/_common.aggregations___CompositeAggregate'
+            - title: date_histogram
+              $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregate'
+            - title: date_range
+              $ref: '#/components/schemas/_common.aggregations___DateRangeAggregate'
+            - title: derivative
+              $ref: '#/components/schemas/_common.aggregations___DerivativeAggregate'
+            - title: dterms
+              $ref: '#/components/schemas/_common.aggregations___DoubleTermsAggregate'
+            - title: extended_stats
+              $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregate'
+            - title: extended_stats_bucket
+              $ref: '#/components/schemas/_common.aggregations___ExtendedStatsBucketAggregate'
+            - title: filter
+              $ref: '#/components/schemas/_common.aggregations___FilterAggregate'
+            - title: filters
+              $ref: '#/components/schemas/_common.aggregations___FiltersAggregate'
+            - title: geo_bounds
+              $ref: '#/components/schemas/_common.aggregations___GeoBoundsAggregate'
+            - title: geo_centroid
+              $ref: '#/components/schemas/_common.aggregations___GeoCentroidAggregate'
+            - title: geo_distance
+              $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregate'
+            - title: geohash_grid
+              $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregate'
+            - title: geotile_grid
+              $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregate'
+            - title: global
+              $ref: '#/components/schemas/_common.aggregations___GlobalAggregate'
+            - title: hdr_percentiles
+              $ref: '#/components/schemas/_common.aggregations___HdrPercentilesAggregate'
+            - title: hdr_percentile_ranks
+              $ref: '#/components/schemas/_common.aggregations___HdrPercentileRanksAggregate'
+            - title: histogram
+              $ref: '#/components/schemas/_common.aggregations___HistogramAggregate'
+            - title: ip_range
+              $ref: '#/components/schemas/_common.aggregations___IpRangeAggregate'
+            - title: lrareterms
+              $ref: '#/components/schemas/_common.aggregations___LongRareTermsAggregate'
+            - title: lterms
+              $ref: '#/components/schemas/_common.aggregations___LongTermsAggregate'
+            - title: matrix_stats
+              $ref: '#/components/schemas/_common.aggregations___MatrixStatsAggregate'
+            - title: max
+              $ref: '#/components/schemas/_common.aggregations___MaxAggregate'
+            - title: median_absolute_deviation
+              $ref: '#/components/schemas/_common.aggregations___MedianAbsoluteDeviationAggregate'
+            - title: min
+              $ref: '#/components/schemas/_common.aggregations___MinAggregate'
+            - title: missing
+              $ref: '#/components/schemas/_common.aggregations___MissingAggregate'
+            - title: multi_terms
+              $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregate'
+            - title: nested
+              $ref: '#/components/schemas/_common.aggregations___NestedAggregate'
+            - title: parent
+              $ref: '#/components/schemas/_common.aggregations___ParentAggregate'
+            - title: percentiles_bucket
+              $ref: '#/components/schemas/_common.aggregations___PercentilesBucketAggregate'
+            - title: range
+              $ref: '#/components/schemas/_common.aggregations___RangeAggregate'
+            - title: rate
+              $ref: '#/components/schemas/_common.aggregations___RateAggregate'
+            - title: reverse_nested
+              $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregate'
+            - title: sampler
+              $ref: '#/components/schemas/_common.aggregations___SamplerAggregate'
+            - title: scripted_metric
+              $ref: '#/components/schemas/_common.aggregations___ScriptedMetricAggregate'
+            - title: siglterms
+              $ref: '#/components/schemas/_common.aggregations___SignificantLongTermsAggregate'
+            - title: sigsterms
+              $ref: '#/components/schemas/_common.aggregations___SignificantStringTermsAggregate'
+            - title: simple_long_value
+              $ref: '#/components/schemas/_common.aggregations___CumulativeCardinalityAggregate'
+            - title: simple_value
+              $ref: '#/components/schemas/_common.aggregations___SimpleValueAggregate'
+            - title: stats
+              $ref: '#/components/schemas/_common.aggregations___StatsAggregate'
+            - title: stats_bucket
+              $ref: '#/components/schemas/_common.aggregations___StatsBucketAggregate'
+            - title: srareterms
+              $ref: '#/components/schemas/_common.aggregations___StringRareTermsAggregate'
+            - title: sterms
+              $ref: '#/components/schemas/_common.aggregations___StringTermsAggregate'
+            - title: sum
+              $ref: '#/components/schemas/_common.aggregations___SumAggregate'
+            - title: tdigest_percentiles
+              $ref: '#/components/schemas/_common.aggregations___TDigestPercentilesAggregate'
+            - title: tdigest_percentile_ranks
+              $ref: '#/components/schemas/_common.aggregations___TDigestPercentileRanksAggregate'
+            - title: t_test
+              $ref: '#/components/schemas/_common.aggregations___TTestAggregate'
+            - title: top_hits
+              $ref: '#/components/schemas/_common.aggregations___TopHitsAggregate'
+            - title: ulterms
+              $ref: '#/components/schemas/_common.aggregations___UnsignedLongTermsAggregate'
+            - title: umrareterms
+              $ref: '#/components/schemas/_common.aggregations___UnmappedRareTermsAggregate'
+            - title: umsigterms
+              $ref: '#/components/schemas/_common.aggregations___UnmappedSignificantTermsAggregate'
+            - title: umterms
+              $ref: '#/components/schemas/_common.aggregations___UnmappedTermsAggregate'
+            - title: value_count
+              $ref: '#/components/schemas/_common.aggregations___ValueCountAggregate'
+            - title: variable_width_histogram
+              $ref: '#/components/schemas/_common.aggregations___VariableWidthHistogramAggregate'
+            - title: weighted_avg
+              $ref: '#/components/schemas/_common.aggregations___WeightedAvgAggregate'
     _common.aggregations___AggregateBase:
       type: object
       properties:
@@ -41637,29 +41648,15 @@ components:
       type: object
       properties:
         meta:
+          description: Custom metadata to associate with the aggregation (optional)
           $ref: '#/components/schemas/_common___Metadata'
-        name:
-          type: string
     _common.aggregations___AggregationContainer:
       allOf:
-        - type: object
-          properties:
-            meta:
-              $ref: '#/components/schemas/_common___Metadata'
+        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
           oneOf:
-            - properties:
-                adjacency_matrix:
-                  $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregation'
-              required:
-                - adjacency_matrix
-              unevaluatedProperties: true
-            - properties:
-                auto_date_histogram:
-                  $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregation'
-              required:
-                - auto_date_histogram
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregation'
             - properties:
                 avg:
                   $ref: '#/components/schemas/_common.aggregations___AverageAggregation'
@@ -41702,18 +41699,8 @@ components:
               required:
                 - cardinality
               unevaluatedProperties: true
-            - properties:
-                children:
-                  $ref: '#/components/schemas/_common.aggregations___ChildrenAggregation'
-              required:
-                - children
-              unevaluatedProperties: true
-            - properties:
-                composite:
-                  $ref: '#/components/schemas/_common.aggregations___CompositeAggregation'
-              required:
-                - composite
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___ChildrenAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___CompositeAggregation'
             - properties:
                 cumulative_cardinality:
                   $ref: '#/components/schemas/_common.aggregations___CumulativeCardinalityAggregation'
@@ -41726,30 +41713,15 @@ components:
               required:
                 - cumulative_sum
               unevaluatedProperties: true
-            - properties:
-                date_histogram:
-                  $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregation'
-              required:
-                - date_histogram
-              unevaluatedProperties: true
-            - properties:
-                date_range:
-                  $ref: '#/components/schemas/_common.aggregations___DateRangeAggregation'
-              required:
-                - date_range
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___DateRangeAggregation'
             - properties:
                 derivative:
                   $ref: '#/components/schemas/_common.aggregations___DerivativeAggregation'
               required:
                 - derivative
               unevaluatedProperties: true
-            - properties:
-                diversified_sampler:
-                  $ref: '#/components/schemas/_common.aggregations___DiversifiedSamplerAggregation'
-              required:
-                - diversified_sampler
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___DiversifiedSamplerAggregation'
             - properties:
                 extended_stats:
                   $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregation'
@@ -41762,19 +41734,8 @@ components:
               required:
                 - extended_stats_bucket
               unevaluatedProperties: true
-            - properties:
-                filter:
-                  $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-              required:
-                - filter
-              unevaluatedProperties: true
-              x-protobuf-excluded: true
-            - properties:
-                filters:
-                  $ref: '#/components/schemas/_common.aggregations___FiltersAggregation'
-              required:
-                - filters
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___FilterAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___FiltersAggregation'
             - properties:
                 geo_bounds:
                   $ref: '#/components/schemas/_common.aggregations___GeoBoundsAggregation'
@@ -41787,42 +41748,12 @@ components:
               required:
                 - geo_centroid
               unevaluatedProperties: true
-            - properties:
-                geo_distance:
-                  $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregation'
-              required:
-                - geo_distance
-              unevaluatedProperties: true
-            - properties:
-                geohash_grid:
-                  $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregation'
-              required:
-                - geohash_grid
-              unevaluatedProperties: true
-            - properties:
-                geotile_grid:
-                  $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregation'
-              required:
-                - geotile_grid
-              unevaluatedProperties: true
-            - properties:
-                global:
-                  $ref: '#/components/schemas/_common.aggregations___GlobalAggregation'
-              required:
-                - global
-              unevaluatedProperties: true
-            - properties:
-                histogram:
-                  $ref: '#/components/schemas/_common.aggregations___HistogramAggregation'
-              required:
-                - histogram
-              unevaluatedProperties: true
-            - properties:
-                ip_range:
-                  $ref: '#/components/schemas/_common.aggregations___IpRangeAggregation'
-              required:
-                - ip_range
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___GlobalAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___HistogramAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___IpRangeAggregation'
             - properties:
                 matrix_stats:
                   $ref: '#/components/schemas/_common.aggregations___MatrixStatsAggregation'
@@ -41859,12 +41790,7 @@ components:
               required:
                 - min_bucket
               unevaluatedProperties: true
-            - properties:
-                missing:
-                  $ref: '#/components/schemas/_common.aggregations___MissingAggregation'
-              required:
-                - missing
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___MissingAggregation'
             - properties:
                 moving_avg:
                   $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregation'
@@ -41883,30 +41809,15 @@ components:
               required:
                 - moving_fn
               unevaluatedProperties: true
-            - properties:
-                multi_terms:
-                  $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregation'
-              required:
-                - multi_terms
-              unevaluatedProperties: true
-            - properties:
-                nested:
-                  $ref: '#/components/schemas/_common.aggregations___NestedAggregation'
-              required:
-                - nested
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___NestedAggregation'
             - properties:
                 normalize:
                   $ref: '#/components/schemas/_common.aggregations___NormalizeAggregation'
               required:
                 - normalize
               unevaluatedProperties: true
-            - properties:
-                parent:
-                  $ref: '#/components/schemas/_common.aggregations___ParentAggregation'
-              required:
-                - parent
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___ParentAggregation'
             - properties:
                 percentile_ranks:
                   $ref: '#/components/schemas/_common.aggregations___PercentileRanksAggregation'
@@ -41925,36 +41836,16 @@ components:
               required:
                 - percentiles_bucket
               unevaluatedProperties: true
-            - properties:
-                range:
-                  $ref: '#/components/schemas/_common.aggregations___RangeAggregation'
-              required:
-                - range
-              unevaluatedProperties: true
-            - properties:
-                rare_terms:
-                  $ref: '#/components/schemas/_common.aggregations___RareTermsAggregation'
-              required:
-                - rare_terms
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___RangeAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___RareTermsAggregation'
             - properties:
                 rate:
                   $ref: '#/components/schemas/_common.aggregations___RateAggregation'
               required:
                 - rate
               unevaluatedProperties: true
-            - properties:
-                reverse_nested:
-                  $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregation'
-              required:
-                - reverse_nested
-              unevaluatedProperties: true
-            - properties:
-                sampler:
-                  $ref: '#/components/schemas/_common.aggregations___SamplerAggregation'
-              required:
-                - sampler
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___SamplerAggregation'
             - properties:
                 scripted_metric:
                   $ref: '#/components/schemas/_common.aggregations___ScriptedMetricAggregation'
@@ -41967,18 +41858,8 @@ components:
               required:
                 - serial_diff
               unevaluatedProperties: true
-            - properties:
-                significant_terms:
-                  $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregation'
-              required:
-                - significant_terms
-              unevaluatedProperties: true
-            - properties:
-                significant_text:
-                  $ref: '#/components/schemas/_common.aggregations___SignificantTextAggregation'
-              required:
-                - significant_text
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregation'
+            - $ref: '#/components/schemas/_common.aggregations___SignificantTextAggregation'
             - properties:
                 stats:
                   $ref: '#/components/schemas/_common.aggregations___StatsAggregation'
@@ -42003,12 +41884,7 @@ components:
               required:
                 - sum_bucket
               unevaluatedProperties: true
-            - properties:
-                terms:
-                  $ref: '#/components/schemas/_common.aggregations___TermsAggregation'
-              required:
-                - terms
-              unevaluatedProperties: true
+            - $ref: '#/components/schemas/_common.aggregations___TermsAggregation'
             - properties:
                 top_hits:
                   $ref: '#/components/schemas/_common.aggregations___TopHitsAggregation'
@@ -42088,31 +41964,38 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            buckets:
-              description: The target number of buckets.
-              type: integer
-              format: int32
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            format:
-              description: |-
-                The date format used to format `key_as_string` in the response.
-                If no `format` is specified, the first date format specified in the field mapping is used.
-              type: string
-            minimum_interval:
-              $ref: '#/components/schemas/_common.aggregations___MinimumInterval'
-            missing:
-              $ref: '#/components/schemas/_common___DateTime'
-            offset:
-              description: Time zone specified as a ISO 8601 UTC offset.
-              type: string
-            params:
-              type: object
-              additionalProperties: true
-            script:
-              $ref: '#/components/schemas/_common___Script'
-            time_zone:
-              $ref: '#/components/schemas/_common___TimeZone'
+            auto_date_histogram:
+              $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregationFields'
+          required:
+            - auto_date_histogram
+    _common.aggregations___AutoDateHistogramAggregationFields:
+      type: object
+      properties:
+        buckets:
+          description: The target number of buckets.
+          type: integer
+          format: int32
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        format:
+          description: |-
+            The date format used to format `key_as_string` in the response.
+            If no `format` is specified, the first date format specified in the field mapping is used.
+          type: string
+        minimum_interval:
+          $ref: '#/components/schemas/_common.aggregations___MinimumInterval'
+        missing:
+          $ref: '#/components/schemas/_common___DateTime'
+        offset:
+          description: Time zone specified as a ISO 8601 UTC offset.
+          type: string
+        params:
+          type: object
+          additionalProperties: true
+        script:
+          $ref: '#/components/schemas/_common___Script'
+        time_zone:
+          $ref: '#/components/schemas/_common___TimeZone'
     _common.aggregations___AverageAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
@@ -42126,53 +42009,51 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
         - type: object
     _common.aggregations___BoxPlotAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            min:
-              type: number
-              format: double
-            max:
-              type: number
-              format: double
-            q1:
-              type: number
-              format: double
-            q2:
-              type: number
-              format: double
-            q3:
-              type: number
-              format: double
-            lower:
-              type: number
-              format: double
-            upper:
-              type: number
-              format: double
-            min_as_string:
-              type: string
-            max_as_string:
-              type: string
-            q1_as_string:
-              type: string
-            q2_as_string:
-              type: string
-            q3_as_string:
-              type: string
-            lower_as_string:
-              type: string
-            upper_as_string:
-              type: string
-          required:
-            - lower
-            - max
-            - min
-            - q1
-            - q2
-            - q3
-            - upper
+      type: object
+      properties:
+        min:
+          type: number
+          format: double
+        max:
+          type: number
+          format: double
+        q1:
+          type: number
+          format: double
+        q2:
+          type: number
+          format: double
+        q3:
+          type: number
+          format: double
+        lower:
+          type: number
+          format: double
+        upper:
+          type: number
+          format: double
+        min_as_string:
+          type: string
+        max_as_string:
+          type: string
+        q1_as_string:
+          type: string
+        q2_as_string:
+          type: string
+        q3_as_string:
+          type: string
+        lower_as_string:
+          type: string
+        upper_as_string:
+          type: string
+      required:
+        - lower
+        - max
+        - min
+        - q1
+        - q2
+        - q3
+        - upper
     _common.aggregations___BoxplotAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -42183,20 +42064,39 @@ components:
               type: number
               format: double
     _common.aggregations___BucketAggregationBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            aggregations:
-              description: Sub-aggregations for this bucket aggregation
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
-            aggs:
-              description: Sub-aggregations for this bucket aggregation
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+      type: object
+      properties:
+        aggregations:
+          description: Sub-aggregations for this bucket aggregation
+          type: object
+          propertyNames:
+            title: aggregation_name
+            description: Sub-aggregation name
+            type: string
+          additionalProperties:
+            title: aggregation_container
+            $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+        aggs:
+          description: Sub-aggregations for this bucket aggregation (alias for 'aggregations')
+          type: object
+          x-protobuf-excluded: true
+          propertyNames:
+            title: aggregation_name
+            description: Sub-aggregation name
+            type: string
+          additionalProperties:
+            title: aggregation_container
+            $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+      not:
+        type: object
+        properties:
+          aggregations:
+            type: object
+          aggs:
+            type: object
+        required:
+          - aggregations
+          - aggs
     _common.aggregations___BucketMetricValueAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
@@ -42209,12 +42109,10 @@ components:
           required:
             - keys
     _common.aggregations___BucketPathAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            buckets_path:
-              $ref: '#/components/schemas/_common.aggregations___BucketsPath'
+      type: object
+      properties:
+        buckets_path:
+          $ref: '#/components/schemas/_common.aggregations___BucketsPath'
     _common.aggregations___Buckets:
       description: |-
         Aggregation buckets. By default they are returned as an array, but if the aggregation has keys configured for
@@ -42243,24 +42141,22 @@ components:
             script:
               $ref: '#/components/schemas/_common___Script'
     _common.aggregations___BucketSortAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            from:
-              description: Buckets in positions prior to `from` will be truncated.
-              type: integer
-              format: int32
-            gap_policy:
-              $ref: '#/components/schemas/_common.aggregations___GapPolicy'
-            size:
-              description: |-
-                The number of buckets to return.
-                Defaults to all buckets of the parent aggregation.
-              type: integer
-              format: int32
-            sort:
-              $ref: '#/components/schemas/_common___Sort'
+      type: object
+      properties:
+        from:
+          description: Buckets in positions prior to `from` will be truncated.
+          type: integer
+          format: int32
+        gap_policy:
+          $ref: '#/components/schemas/_common.aggregations___GapPolicy'
+        size:
+          description: |-
+            The number of buckets to return.
+            Defaults to all buckets of the parent aggregation.
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/_common___Sort'
     _common.aggregations___BucketsPath:
       description: |-
         Buckets path can be expressed in different ways, and an aggregation may accept some or all of these
@@ -42332,15 +42228,13 @@ components:
             - year
             - 1Y
     _common.aggregations___CardinalityAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value:
-              type: integer
-              format: int64
-          required:
-            - value
+      type: object
+      properties:
+        value:
+          type: integer
+          format: int64
+      required:
+        - value
     _common.aggregations___CardinalityAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -42369,8 +42263,15 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            type:
-              $ref: '#/components/schemas/_common___RelationName'
+            children:
+              $ref: '#/components/schemas/_common.aggregations___ChildrenAggregationFields'
+          required:
+            - children
+    _common.aggregations___ChildrenAggregationFields:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/_common___RelationName'
     _common.aggregations___ChiSquareHeuristic:
       type: object
       properties:
@@ -42399,21 +42300,28 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            after:
-              $ref: '#/components/schemas/_common.aggregations___CompositeAggregateKey'
-            size:
-              description: The number of composite buckets that should be returned.
-              type: integer
-              format: int32
-            sources:
-              description: |-
-                The value sources used to build composite buckets.
-                Keys are returned in the order of the `sources` definition.
-              type: array
-              items:
-                type: object
-                additionalProperties:
-                  $ref: '#/components/schemas/_common.aggregations___CompositeAggregationSource'
+            composite:
+              $ref: '#/components/schemas/_common.aggregations___CompositeAggregationFields'
+          required:
+            - composite
+    _common.aggregations___CompositeAggregationFields:
+      type: object
+      properties:
+        after:
+          $ref: '#/components/schemas/_common.aggregations___CompositeAggregateKey'
+        size:
+          description: The number of composite buckets that should be returned.
+          type: integer
+          format: int32
+        sources:
+          description: |-
+            The value sources used to build composite buckets.
+            Keys are returned in the order of the `sources` definition.
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/_common.aggregations___CompositeAggregationSource'
     _common.aggregations___CompositeAggregationSource:
       type: object
       properties:
@@ -42489,17 +42397,15 @@ components:
         order:
           $ref: '#/components/schemas/_common___SortOrder'
     _common.aggregations___CumulativeCardinalityAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value:
-              type: integer
-              format: int64
-            value_as_string:
-              type: string
-          required:
-            - value
+      type: object
+      properties:
+        value:
+          type: integer
+          format: int64
+        value_as_string:
+          type: string
+      required:
+        - value
     _common.aggregations___CumulativeCardinalityAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -42517,45 +42423,52 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            calendar_interval:
-              $ref: '#/components/schemas/_common.aggregations___CalendarInterval'
-            extended_bounds:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsFieldDateMath'
-            hard_bounds:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsFieldDateMath'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            fixed_interval:
-              $ref: '#/components/schemas/_common___Duration'
-            format:
-              description: |-
-                The date format used to format `key_as_string` in the response.
-                If no `format` is specified, the first date format specified in the field mapping is used.
-              type: string
-            interval:
-              $ref: '#/components/schemas/_common___Duration'
-            min_doc_count:
-              description: |-
-                Only returns buckets that have `min_doc_count` number of documents.
-                By default, all buckets between the first bucket that matches documents and the last one are returned.
-              type: integer
-              format: int32
-            missing:
-              $ref: '#/components/schemas/_common___DateTime'
-            offset:
-              $ref: '#/components/schemas/_common___Duration'
-            order:
-              $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
-            params:
-              type: object
-              additionalProperties: true
-            script:
-              $ref: '#/components/schemas/_common___Script'
-            time_zone:
-              $ref: '#/components/schemas/_common___TimeZone'
-            keyed:
-              description: Set to `true` to associate a unique string key with each bucket and return the ranges as a hash rather than an array.
-              type: boolean
+            date_histogram:
+              $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregationFields'
+          required:
+            - date_histogram
+    _common.aggregations___DateHistogramAggregationFields:
+      type: object
+      properties:
+        calendar_interval:
+          $ref: '#/components/schemas/_common.aggregations___CalendarInterval'
+        extended_bounds:
+          $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsFieldDateMath'
+        hard_bounds:
+          $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsFieldDateMath'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        fixed_interval:
+          $ref: '#/components/schemas/_common___Duration'
+        format:
+          description: |-
+            The date format used to format `key_as_string` in the response.
+            If no `format` is specified, the first date format specified in the field mapping is used.
+          type: string
+        interval:
+          $ref: '#/components/schemas/_common___Duration'
+        min_doc_count:
+          description: |-
+            Only returns buckets that have `min_doc_count` number of documents.
+            By default, all buckets between the first bucket that matches documents and the last one are returned.
+          type: integer
+          format: int32
+        missing:
+          $ref: '#/components/schemas/_common___DateTime'
+        offset:
+          $ref: '#/components/schemas/_common___Duration'
+        order:
+          $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
+        params:
+          type: object
+          additionalProperties: true
+        script:
+          $ref: '#/components/schemas/_common___Script'
+        time_zone:
+          $ref: '#/components/schemas/_common___TimeZone'
+        keyed:
+          description: Set to `true` to associate a unique string key with each bucket and return the ranges as a hash rather than an array.
+          type: boolean
     _common.aggregations___DateHistogramBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -42576,23 +42489,30 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            format:
-              description: The date format used to format `from` and `to` in the response.
-              type: string
-            missing:
-              $ref: '#/components/schemas/_common___FieldValue'
-            ranges:
-              description: Array of date ranges.
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___DateRangeExpression'
-            time_zone:
-              $ref: '#/components/schemas/_common___TimeZone'
-            keyed:
-              description: Set to `true` to associate a unique string key with each bucket and returns the ranges as a hash rather than an array.
-              type: boolean
+            date_range:
+              $ref: '#/components/schemas/_common.aggregations___DateRangeAggregationFields'
+          required:
+            - date_range
+    _common.aggregations___DateRangeAggregationFields:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        format:
+          description: The date format used to format `from` and `to` in the response.
+          type: string
+        missing:
+          $ref: '#/components/schemas/_common___FieldValue'
+        ranges:
+          description: Array of date ranges.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___DateRangeExpression'
+        time_zone:
+          $ref: '#/components/schemas/_common___TimeZone'
+        keyed:
+          description: Set to `true` to associate a unique string key with each bucket and returns the ranges as a hash rather than an array.
+          type: boolean
     _common.aggregations___DateRangeExpression:
       type: object
       properties:
@@ -42622,20 +42542,27 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            execution_hint:
-              $ref: '#/components/schemas/_common.aggregations___SamplerAggregationExecutionHint'
-            max_docs_per_value:
-              description: Limits how many documents are permitted per choice of de-duplicating value.
-              type: integer
-              format: int32
-            script:
-              $ref: '#/components/schemas/_common___Script'
-            shard_size:
-              description: Limits how many top-scoring documents are collected in the sample processed on each shard.
-              type: integer
-              format: int32
-            field:
-              $ref: '#/components/schemas/_common___Field'
+            diversified_sampler:
+              $ref: '#/components/schemas/_common.aggregations___DiversifiedSamplerAggregationFields'
+          required:
+            - diversified_sampler
+    _common.aggregations___DiversifiedSamplerAggregationFields:
+      type: object
+      properties:
+        execution_hint:
+          $ref: '#/components/schemas/_common.aggregations___SamplerAggregationExecutionHint'
+        max_docs_per_value:
+          description: Limits how many documents are permitted per choice of de-duplicating value.
+          type: integer
+          format: int32
+        script:
+          $ref: '#/components/schemas/_common___Script'
+        shard_size:
+          description: Limits how many top-scoring documents are collected in the sample processed on each shard.
+          type: integer
+          format: int32
+        field:
+          $ref: '#/components/schemas/_common___Field'
     _common.aggregations___DoubleTermsAggregate:
       description: Result of a `terms` aggregation when the field is some kind of decimal number like a float, double, or distance.
       allOf:
@@ -42806,6 +42733,19 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
         - type: object
+    _common.aggregations___FilterAggregation:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
+        - type: object
+          properties:
+            filter:
+              $ref: '#/components/schemas/_common.aggregations___FilterAggregationFields'
+          required:
+            - filter
+      x-protobuf-excluded: true
+    _common.aggregations___FilterAggregationFields:
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
     _common.aggregations___FiltersAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBaseFiltersBucket'
@@ -42816,18 +42756,25 @@ components:
         - type: object
           properties:
             filters:
-              $ref: '#/components/schemas/_common.aggregations___BucketsQueryContainer'
-            other_bucket:
-              description: Set to `true` to add a bucket to the response which will contain all documents that do not match any of the given filters.
-              type: boolean
-            other_bucket_key:
-              description: The key with which the other bucket is returned.
-              type: string
-            keyed:
-              description: |-
-                By default, the named filters aggregation returns the buckets as an object.
-                Set to `false` to return the buckets as an array of objects.
-              type: boolean
+              $ref: '#/components/schemas/_common.aggregations___FiltersAggregationFields'
+          required:
+            - filters
+    _common.aggregations___FiltersAggregationFields:
+      type: object
+      properties:
+        filters:
+          $ref: '#/components/schemas/_common.aggregations___BucketsQueryContainer'
+        other_bucket:
+          description: Set to `true` to add a bucket to the response which will contain all documents that do not match any of the given filters.
+          type: boolean
+        other_bucket_key:
+          description: The key with which the other bucket is returned.
+          type: string
+        keyed:
+          description: |-
+            By default, the named filters aggregation returns the buckets as an object.
+            Set to `false` to return the buckets as an array of objects.
+          type: boolean
     _common.aggregations___FiltersBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -42853,12 +42800,10 @@ components:
         - keep_values
         - skip
     _common.aggregations___GeoBoundsAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            bounds:
-              $ref: '#/components/schemas/_common___GeoBounds'
+      type: object
+      properties:
+        bounds:
+          $ref: '#/components/schemas/_common___GeoBounds'
     _common.aggregations___GeoBoundsAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -42868,17 +42813,15 @@ components:
               description: Specifies whether the bounding box should be allowed to overlap the international date line.
               type: boolean
     _common.aggregations___GeoCentroidAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            count:
-              type: integer
-              format: int64
-            location:
-              $ref: '#/components/schemas/_common___GeoLocation'
-          required:
-            - count
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        location:
+          $ref: '#/components/schemas/_common___GeoLocation'
+      required:
+        - count
     _common.aggregations___GeoCentroidAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -42898,19 +42841,26 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            distance_type:
-              $ref: '#/components/schemas/_common___GeoDistanceType'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            origin:
-              $ref: '#/components/schemas/_common___GeoLocation'
-            ranges:
-              description: An array of ranges used to bucket documents.
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___AggregationRange'
-            unit:
-              $ref: '#/components/schemas/_common___DistanceUnit'
+            geo_distance:
+              $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregationFields'
+          required:
+            - geo_distance
+    _common.aggregations___GeoDistanceAggregationFields:
+      type: object
+      properties:
+        distance_type:
+          $ref: '#/components/schemas/_common___GeoDistanceType'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        origin:
+          $ref: '#/components/schemas/_common___GeoLocation'
+        ranges:
+          description: An array of ranges used to bucket documents.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___AggregationRange'
+        unit:
+          $ref: '#/components/schemas/_common___DistanceUnit'
     _common.aggregations___GeoHashGridAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBaseGeoHashGridBucket'
@@ -42920,22 +42870,29 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            bounds:
-              $ref: '#/components/schemas/_common___GeoBounds'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            precision:
-              $ref: '#/components/schemas/_common___GeoHashPrecision'
-            shard_size:
-              description: |-
-                Allows for more accurate counting of the top cells returned in the final result the aggregation.
-                Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
-              type: integer
-              format: int32
-            size:
-              description: The maximum number of geohash buckets to return.
-              type: integer
-              format: int32
+            geohash_grid:
+              $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregationFields'
+          required:
+            - geohash_grid
+    _common.aggregations___GeoHashGridAggregationFields:
+      type: object
+      properties:
+        bounds:
+          $ref: '#/components/schemas/_common___GeoBounds'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        precision:
+          $ref: '#/components/schemas/_common___GeoHashPrecision'
+        shard_size:
+          description: |-
+            Allows for more accurate counting of the top cells returned in the final result the aggregation.
+            Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
+          type: integer
+          format: int32
+        size:
+          description: The maximum number of geohash buckets to return.
+          type: integer
+          format: int32
     _common.aggregations___GeoHashGridBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -42954,22 +42911,29 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            precision:
-              $ref: '#/components/schemas/_common___GeoTilePrecision'
-            shard_size:
-              description: |-
-                Allows for more accurate counting of the top cells returned in the final result the aggregation.
-                Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
-              type: integer
-              format: int32
-            size:
-              description: The maximum number of buckets to return.
-              type: integer
-              format: int32
-            bounds:
-              $ref: '#/components/schemas/_common___GeoBounds'
+            geotile_grid:
+              $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregationFields'
+          required:
+            - geotile_grid
+    _common.aggregations___GeoTileGridAggregationFields:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        precision:
+          $ref: '#/components/schemas/_common___GeoTilePrecision'
+        shard_size:
+          description: |-
+            Allows for more accurate counting of the top cells returned in the final result the aggregation.
+            Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
+          type: integer
+          format: int32
+        size:
+          description: The maximum number of buckets to return.
+          type: integer
+          format: int32
+        bounds:
+          $ref: '#/components/schemas/_common___GeoBounds'
     _common.aggregations___GeoTileGridBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -42987,6 +42951,13 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
+          properties:
+            global:
+              $ref: '#/components/schemas/_common.aggregations___GlobalAggregationFields'
+          required:
+            - global
+    _common.aggregations___GlobalAggregationFields:
+      type: object
     _common.aggregations___GoogleNormalizedDistanceHeuristic:
       type: object
       properties:
@@ -43017,45 +42988,52 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            extended_bounds:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsDouble'
-            hard_bounds:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsDouble'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            interval:
-              description: |-
-                The interval for the buckets.
-                Must be a positive decimal.
-              type: number
-              format: double
-            min_doc_count:
-              description: |-
-                Only returns buckets that have `min_doc_count` number of documents.
-                By default, the response will fill gaps in the histogram with empty buckets.
-              type: integer
-              format: int32
-            missing:
-              description: |-
-                The value to apply to documents that do not have a value.
-                By default, documents without a value are ignored.
-              type: number
-              format: double
-            offset:
-              description: |-
-                By default, the bucket keys start with 0 and then continue in even spaced steps of `interval`.
-                The bucket boundaries can be shifted by using the `offset` option.
-              type: number
-              format: double
-            order:
-              $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
-            script:
-              $ref: '#/components/schemas/_common___Script'
-            format:
-              type: string
-            keyed:
-              description: If `true`, returns buckets as a hash instead of an array, keyed by the bucket keys.
-              type: boolean
+            histogram:
+              $ref: '#/components/schemas/_common.aggregations___HistogramAggregationFields'
+          required:
+            - histogram
+    _common.aggregations___HistogramAggregationFields:
+      type: object
+      properties:
+        extended_bounds:
+          $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsDouble'
+        hard_bounds:
+          $ref: '#/components/schemas/_common.aggregations___ExtendedBoundsDouble'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        interval:
+          description: |-
+            The interval for the buckets.
+            Must be a positive decimal.
+          type: number
+          format: double
+        min_doc_count:
+          description: |-
+            Only returns buckets that have `min_doc_count` number of documents.
+            By default, the response will fill gaps in the histogram with empty buckets.
+          type: integer
+          format: int32
+        missing:
+          description: |-
+            The value to apply to documents that do not have a value.
+            By default, documents without a value are ignored.
+          type: number
+          format: double
+        offset:
+          description: |-
+            By default, the bucket keys start with 0 and then continue in even spaced steps of `interval`.
+            The bucket boundaries can be shifted by using the `offset` option.
+          type: number
+          format: double
+        order:
+          $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
+        script:
+          $ref: '#/components/schemas/_common___Script'
+        format:
+          type: string
+        keyed:
+          description: If `true`, returns buckets as a hash instead of an array, keyed by the bucket keys.
+          type: boolean
     _common.aggregations___HistogramBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -43148,13 +43126,20 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            ranges:
-              description: Array of IP ranges.
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___IpRangeAggregationRange'
+            ip_range:
+              $ref: '#/components/schemas/_common.aggregations___IpRangeAggregationFields'
+          required:
+            - ip_range
+    _common.aggregations___IpRangeAggregationFields:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        ranges:
+          description: Array of IP ranges.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___IpRangeAggregationRange'
     _common.aggregations___IpRangeAggregationRange:
       type: object
       properties:
@@ -43245,34 +43230,30 @@ components:
         - title: unsigned
           type: string
     _common.aggregations___MatrixAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            fields:
-              $ref: '#/components/schemas/_common___Fields'
-            missing:
-              description: |-
-                The value to apply to documents that do not have a value.
-                By default, documents without a value are ignored.
-              type: object
-              additionalProperties:
-                type: number
-                format: double
+      type: object
+      properties:
+        fields:
+          $ref: '#/components/schemas/_common___Fields'
+        missing:
+          description: |-
+            The value to apply to documents that do not have a value.
+            By default, documents without a value are ignored.
+          type: object
+          additionalProperties:
+            type: number
+            format: double
     _common.aggregations___MatrixStatsAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            doc_count:
-              type: integer
-              format: int64
-            fields:
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___MatrixStatsFields'
-          required:
-            - doc_count
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          format: int64
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___MatrixStatsFields'
+      required:
+        - doc_count
     _common.aggregations___MatrixStatsAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MatrixAggregation'
@@ -43349,7 +43330,6 @@ components:
               format: double
     _common.aggregations___MetricAggregationBase:
       allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
           properties:
             missing:
@@ -43396,10 +43376,17 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
             missing:
-              $ref: '#/components/schemas/_common___FieldValue'
+              $ref: '#/components/schemas/_common.aggregations___MissingAggregationFields'
+          required:
+            - missing
+    _common.aggregations___MissingAggregationFields:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        missing:
+          $ref: '#/components/schemas/_common___FieldValue'
     _common.aggregations___MissingOrder:
       type: string
       enum:
@@ -43465,22 +43452,20 @@ components:
             keyed:
               type: boolean
     _common.aggregations___MultiBucketAggregateBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            buckets:
-              allOf:
-                - $ref: '#/components/schemas/_common.aggregations___Buckets'
-                - oneOf:
-                    - type: object
-                      additionalProperties:
-                        $ref: '#/components/schemas/_common.aggregations___TBucket'
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/_common.aggregations___TBucket'
-          required:
-            - buckets
+      type: object
+      properties:
+        buckets:
+          allOf:
+            - $ref: '#/components/schemas/_common.aggregations___Buckets'
+            - oneOf:
+                - type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/_common.aggregations___TBucket'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/_common.aggregations___TBucket'
+      required:
+        - buckets
     _common.aggregations___MultiBucketAggregateBaseAdjacencyMatrixBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBase'
@@ -43704,6 +43689,8 @@ components:
         doc_count:
           type: integer
           format: int64
+      additionalProperties:
+        $ref: '#/components/schemas/_common.aggregations___Aggregate'
       required:
         - doc_count
     _common.aggregations___MultiTermLookup:
@@ -43724,38 +43711,45 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            collect_mode:
-              $ref: '#/components/schemas/_common.aggregations___TermsAggregationCollectMode'
-            order:
-              $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
-            min_doc_count:
-              description: The minimum number of documents in a bucket for it to be returned.
-              type: integer
-              format: int32
-            shard_min_doc_count:
-              description: The minimum number of documents in a bucket on each shard for it to be returned.
-              type: integer
-              format: int32
-            shard_size:
-              description: |-
-                The number of candidate terms produced by each shard.
-                By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: integer
-              format: int32
-            show_term_doc_count_error:
-              description: Calculates the doc count error on per term basis.
-              type: boolean
-            size:
-              description: The number of term buckets should be returned out of the overall terms list.
-              type: integer
-              format: int32
-            terms:
-              description: The field from which to generate sets of terms.
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___MultiTermLookup'
+            multi_terms:
+              $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregationFields'
           required:
-            - terms
+            - multi_terms
+    _common.aggregations___MultiTermsAggregationFields:
+      type: object
+      properties:
+        collect_mode:
+          $ref: '#/components/schemas/_common.aggregations___TermsAggregationCollectMode'
+        order:
+          $ref: '#/components/schemas/_common.aggregations___HistogramOrder'
+        min_doc_count:
+          description: The minimum number of documents in a bucket for it to be returned.
+          type: integer
+          format: int32
+        shard_min_doc_count:
+          description: The minimum number of documents in a bucket on each shard for it to be returned.
+          type: integer
+          format: int32
+        shard_size:
+          description: |-
+            The number of candidate terms produced by each shard.
+            By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
+          type: integer
+          format: int32
+        show_term_doc_count_error:
+          description: Calculates the doc count error on per term basis.
+          type: boolean
+        size:
+          description: The number of term buckets should be returned out of the overall terms list.
+          type: integer
+          format: int32
+        terms:
+          description: The field from which to generate sets of terms.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___MultiTermLookup'
+      required:
+        - terms
     _common.aggregations___MultiTermsBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -43791,8 +43785,15 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            path:
-              $ref: '#/components/schemas/_common___Field'
+            nested:
+              $ref: '#/components/schemas/_common.aggregations___NestedAggregationFields'
+          required:
+            - nested
+    _common.aggregations___NestedAggregationFields:
+      type: object
+      properties:
+        path:
+          $ref: '#/components/schemas/_common___Field'
     _common.aggregations___NormalizeAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -43818,8 +43819,15 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            type:
-              $ref: '#/components/schemas/_common___RelationName'
+            parent:
+              $ref: '#/components/schemas/_common.aggregations___ParentAggregationFields'
+          required:
+            - parent
+    _common.aggregations___ParentAggregationFields:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/_common___RelationName'
     _common.aggregations___PercentageScoreHeuristic:
       type: object
     _common.aggregations___PercentileRanksAggregation:
@@ -43851,14 +43859,12 @@ components:
           items:
             $ref: '#/components/schemas/_common.aggregations___ArrayPercentilesItem'
     _common.aggregations___PercentilesAggregateBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            values:
-              $ref: '#/components/schemas/_common.aggregations___Percentiles'
-          required:
-            - values
+      type: object
+      properties:
+        values:
+          $ref: '#/components/schemas/_common.aggregations___Percentiles'
+      required:
+        - values
     _common.aggregations___PercentilesAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
@@ -43919,26 +43925,33 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            missing:
-              description: |-
-                The value to apply to documents that do not have a value.
-                By default, documents without a value are ignored.
-              type: integer
-              format: int32
-            ranges:
-              description: An array of ranges used to bucket documents.
-              type: array
-              items:
-                $ref: '#/components/schemas/_common.aggregations___AggregationRange'
-            script:
-              $ref: '#/components/schemas/_common___Script'
-            keyed:
-              description: Set to `true` to associate a unique string key with each bucket and return the ranges as a hash rather than an array.
-              type: boolean
-            format:
-              type: string
+            range:
+              $ref: '#/components/schemas/_common.aggregations___RangeAggregationFields'
+          required:
+            - range
+    _common.aggregations___RangeAggregationFields:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        missing:
+          description: |-
+            The value to apply to documents that do not have a value.
+            By default, documents without a value are ignored.
+          type: integer
+          format: int32
+        ranges:
+          description: An array of ranges used to bucket documents.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.aggregations___AggregationRange'
+        script:
+          $ref: '#/components/schemas/_common___Script'
+        keyed:
+          description: Set to `true` to associate a unique string key with each bucket and return the ranges as a hash rather than an array.
+          type: boolean
+        format:
+          type: string
     _common.aggregations___RangeBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -43962,38 +43975,43 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            exclude:
-              $ref: '#/components/schemas/_common.aggregations___TermsExclude'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            include:
-              $ref: '#/components/schemas/_common.aggregations___TermsInclude'
-            max_doc_count:
-              description: The maximum number of documents a term should appear in.
-              type: integer
-              format: int64
-            missing:
-              $ref: '#/components/schemas/_common___FieldValue'
-            precision:
-              description: |-
-                The precision of the internal CuckooFilters.
-                Smaller precision leads to better approximation, but higher memory usage.
-              type: number
-              format: double
-            value_type:
-              type: string
-    _common.aggregations___RateAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value:
-              type: number
-              format: double
-            value_as_string:
-              type: string
+            rare_terms:
+              $ref: '#/components/schemas/_common.aggregations___RareTermsAggregationFields'
           required:
-            - value
+            - rare_terms
+    _common.aggregations___RareTermsAggregationFields:
+      type: object
+      properties:
+        exclude:
+          $ref: '#/components/schemas/_common.aggregations___TermsExclude'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        include:
+          $ref: '#/components/schemas/_common.aggregations___TermsInclude'
+        max_doc_count:
+          description: The maximum number of documents a term should appear in.
+          type: integer
+          format: int64
+        missing:
+          $ref: '#/components/schemas/_common___FieldValue'
+        precision:
+          description: |-
+            The precision of the internal CuckooFilters.
+            Smaller precision leads to better approximation, but higher memory usage.
+          type: number
+          format: double
+        value_type:
+          type: string
+    _common.aggregations___RateAggregate:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        value_as_string:
+          type: string
+      required:
+        - value
     _common.aggregations___RateAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
@@ -44017,8 +44035,15 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            path:
-              $ref: '#/components/schemas/_common___Field'
+            reverse_nested:
+              $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregationFields'
+          required:
+            - reverse_nested
+    _common.aggregations___ReverseNestedAggregationFields:
+      type: object
+      properties:
+        path:
+          $ref: '#/components/schemas/_common___Field'
     _common.aggregations___SamplerAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -44028,16 +44053,23 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            shard_size:
-              description: Limits how many top-scoring documents are collected in the sample processed on each shard.
-              type: integer
-              format: int32
+            sampler:
+              $ref: '#/components/schemas/_common.aggregations___SamplerAggregationFields'
+          required:
+            - sampler
     _common.aggregations___SamplerAggregationExecutionHint:
       type: string
       enum:
         - bytes_hash
         - global_ordinals
         - map
+    _common.aggregations___SamplerAggregationFields:
+      type: object
+      properties:
+        shard_size:
+          description: Limits how many top-scoring documents are collected in the sample processed on each shard.
+          type: integer
+          format: int32
     _common.aggregations___ScriptedHeuristic:
       type: object
       properties:
@@ -44046,13 +44078,11 @@ components:
       required:
         - script
     _common.aggregations___ScriptedMetricAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value: {}
-          required:
-            - value
+      type: object
+      properties:
+        value: {}
+      required:
+        - value
     _common.aggregations___ScriptedMetricAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -44173,48 +44203,55 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            background_filter:
-              $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-            chi_square:
-              $ref: '#/components/schemas/_common.aggregations___ChiSquareHeuristic'
-            exclude:
-              $ref: '#/components/schemas/_common.aggregations___TermsExclude'
-            execution_hint:
-              $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            gnd:
-              $ref: '#/components/schemas/_common.aggregations___GoogleNormalizedDistanceHeuristic'
-            include:
-              $ref: '#/components/schemas/_common.aggregations___TermsInclude'
-            jlh:
-              $ref: '#/components/schemas/_common___EmptyObject'
-            min_doc_count:
-              description: Only return terms that are found in more than `min_doc_count` hits.
-              type: integer
-              format: int64
-            mutual_information:
-              $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
-            percentage:
-              $ref: '#/components/schemas/_common.aggregations___PercentageScoreHeuristic'
-            script_heuristic:
-              $ref: '#/components/schemas/_common.aggregations___ScriptedHeuristic'
-            shard_min_doc_count:
-              description: |-
-                Regulates the certainty a shard has if the term should actually be added to the candidate list or not with respect to the `min_doc_count`.
-                Terms will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
-              type: integer
-              format: int64
-            shard_size:
-              description: |-
-                Can be used to control the volumes of candidate terms produced by each shard.
-                By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: integer
-              format: int32
-            size:
-              description: The number of buckets returned out of the overall terms list.
-              type: integer
-              format: int32
+            significant_terms:
+              $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregationFields'
+          required:
+            - significant_terms
+    _common.aggregations___SignificantTermsAggregationFields:
+      type: object
+      properties:
+        background_filter:
+          $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+        chi_square:
+          $ref: '#/components/schemas/_common.aggregations___ChiSquareHeuristic'
+        exclude:
+          $ref: '#/components/schemas/_common.aggregations___TermsExclude'
+        execution_hint:
+          $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        gnd:
+          $ref: '#/components/schemas/_common.aggregations___GoogleNormalizedDistanceHeuristic'
+        include:
+          $ref: '#/components/schemas/_common.aggregations___TermsInclude'
+        jlh:
+          $ref: '#/components/schemas/_common___EmptyObject'
+        min_doc_count:
+          description: Only return terms that are found in more than `min_doc_count` hits.
+          type: integer
+          format: int64
+        mutual_information:
+          $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
+        percentage:
+          $ref: '#/components/schemas/_common.aggregations___PercentageScoreHeuristic'
+        script_heuristic:
+          $ref: '#/components/schemas/_common.aggregations___ScriptedHeuristic'
+        shard_min_doc_count:
+          description: |-
+            Regulates the certainty a shard has if the term should actually be added to the candidate list or not with respect to the `min_doc_count`.
+            Terms will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
+          type: integer
+          format: int64
+        shard_size:
+          description: |-
+            Can be used to control the volumes of candidate terms produced by each shard.
+            By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
+          type: integer
+          format: int32
+        size:
+          description: The number of buckets returned out of the overall terms list.
+          type: integer
+          format: int32
     _common.aggregations___SignificantTermsBucketBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -44234,53 +44271,60 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
         - type: object
           properties:
-            background_filter:
-              $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-            chi_square:
-              $ref: '#/components/schemas/_common.aggregations___ChiSquareHeuristic'
-            exclude:
-              $ref: '#/components/schemas/_common.aggregations___TermsExclude'
-            execution_hint:
-              $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            filter_duplicate_text:
-              description: Whether to out duplicate text to deal with noisy data.
-              type: boolean
-            gnd:
-              $ref: '#/components/schemas/_common.aggregations___GoogleNormalizedDistanceHeuristic'
-            include:
-              $ref: '#/components/schemas/_common.aggregations___TermsInclude'
-            jlh:
-              $ref: '#/components/schemas/_common___EmptyObject'
-            min_doc_count:
-              description: Only return values that are found in more than `min_doc_count` hits.
-              type: integer
-              format: int64
-            mutual_information:
-              $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
-            percentage:
-              $ref: '#/components/schemas/_common.aggregations___PercentageScoreHeuristic'
-            script_heuristic:
-              $ref: '#/components/schemas/_common.aggregations___ScriptedHeuristic'
-            shard_min_doc_count:
-              description: |-
-                Regulates the certainty a shard has if the values should actually be added to the candidate list or not with respect to the `min_doc_count`.
-                Values will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
-              type: integer
-              format: int64
-            shard_size:
-              description: |-
-                The number of candidate terms produced by each shard.
-                By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: integer
-              format: int32
-            size:
-              description: The number of buckets returned out of the overall terms list.
-              type: integer
-              format: int32
-            source_fields:
-              $ref: '#/components/schemas/_common___Fields'
+            significant_text:
+              $ref: '#/components/schemas/_common.aggregations___SignificantTextAggregationFields'
+          required:
+            - significant_text
+    _common.aggregations___SignificantTextAggregationFields:
+      type: object
+      properties:
+        background_filter:
+          $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+        chi_square:
+          $ref: '#/components/schemas/_common.aggregations___ChiSquareHeuristic'
+        exclude:
+          $ref: '#/components/schemas/_common.aggregations___TermsExclude'
+        execution_hint:
+          $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
+        field:
+          $ref: '#/components/schemas/_common___Field'
+        filter_duplicate_text:
+          description: Whether to out duplicate text to deal with noisy data.
+          type: boolean
+        gnd:
+          $ref: '#/components/schemas/_common.aggregations___GoogleNormalizedDistanceHeuristic'
+        include:
+          $ref: '#/components/schemas/_common.aggregations___TermsInclude'
+        jlh:
+          $ref: '#/components/schemas/_common___EmptyObject'
+        min_doc_count:
+          description: Only return values that are found in more than `min_doc_count` hits.
+          type: integer
+          format: int64
+        mutual_information:
+          $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
+        percentage:
+          $ref: '#/components/schemas/_common.aggregations___PercentageScoreHeuristic'
+        script_heuristic:
+          $ref: '#/components/schemas/_common.aggregations___ScriptedHeuristic'
+        shard_min_doc_count:
+          description: |-
+            Regulates the certainty a shard has if the values should actually be added to the candidate list or not with respect to the `min_doc_count`.
+            Values will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
+          type: integer
+          format: int64
+        shard_size:
+          description: |-
+            The number of candidate terms produced by each shard.
+            By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
+          type: integer
+          format: int32
+        size:
+          description: The number of buckets returned out of the overall terms list.
+          type: integer
+          format: int32
+        source_fields:
+          $ref: '#/components/schemas/_common___Fields'
     _common.aggregations___SimpleMovingAverageAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregationBase'
@@ -44300,35 +44344,31 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
         - type: object
     _common.aggregations___SingleBucketAggregateBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            doc_count:
-              type: integer
-              format: int64
-          required:
-            - doc_count
-          additionalProperties:
-            title: aggregations
-            $ref: '#/components/schemas/_common.aggregations___Aggregate'
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          format: int64
+      required:
+        - doc_count
+      additionalProperties:
+        title: aggregations
+        $ref: '#/components/schemas/_common.aggregations___Aggregate'
     _common.aggregations___SingleMetricAggregateBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value:
-              description: |-
-                The metric value. A missing value generally means that there was no data to aggregate,
-                unless specified otherwise.
-              oneOf:
-                - type: number
-                  format: double
-                - type: 'null'
-            value_as_string:
-              type: string
-          required:
-            - value
+      type: object
+      properties:
+        value:
+          description: |-
+            The metric value. A missing value generally means that there was no data to aggregate,
+            unless specified otherwise.
+          oneOf:
+            - type: number
+              format: double
+            - type: 'null'
+        value_as_string:
+          type: string
+      required:
+        - value
     _common.aggregations___StandardDeviationBounds:
       type: object
       properties:
@@ -44397,45 +44437,43 @@ components:
         - type: object
           properties: {}
     _common.aggregations___StatsAggregateBase:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            count:
-              type: integer
-              format: int64
-            min:
-              oneOf:
-                - type: number
-                  format: double
-                - type: 'null'
-            max:
-              oneOf:
-                - type: number
-                  format: double
-                - type: 'null'
-            avg:
-              oneOf:
-                - type: number
-                  format: double
-                - type: 'null'
-            sum:
-              type: number
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        min:
+          oneOf:
+            - type: number
               format: double
-            min_as_string:
-              type: string
-            max_as_string:
-              type: string
-            avg_as_string:
-              type: string
-            sum_as_string:
-              type: string
-          required:
-            - avg
-            - count
-            - max
-            - min
-            - sum
+            - type: 'null'
+        max:
+          oneOf:
+            - type: number
+              format: double
+            - type: 'null'
+        avg:
+          oneOf:
+            - type: number
+              format: double
+            - type: 'null'
+        sum:
+          type: number
+          format: double
+        min_as_string:
+          type: string
+        max_as_string:
+          type: string
+        avg_as_string:
+          type: string
+        sum_as_string:
+          type: string
+      required:
+        - avg
+        - count
+        - max
+        - min
+        - sum
     _common.aggregations___StatsAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___FormatMetricAggregationBase'
@@ -44524,30 +44562,22 @@ components:
         - type: object
           properties:
             buckets:
-              allOf:
-                - $ref: '#/components/schemas/_common.aggregations___Buckets'
-                - oneOf:
-                    - type: object
-                      additionalProperties:
-                        $ref: '#/components/schemas/_common.aggregations___DoubleTermsBucket'
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/_common.aggregations___DoubleTermsBucket'
+              type: array
+              items:
+                $ref: '#/components/schemas/_common.aggregations___DoubleTermsBucket'
+          required:
+            - buckets
     _common.aggregations___TermsAggregateBaseLongTermsBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBase'
         - type: object
           properties:
             buckets:
-              allOf:
-                - $ref: '#/components/schemas/_common.aggregations___Buckets'
-                - oneOf:
-                    - type: object
-                      additionalProperties:
-                        $ref: '#/components/schemas/_common.aggregations___LongTermsBucket'
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/_common.aggregations___LongTermsBucket'
+              type: array
+              items:
+                $ref: '#/components/schemas/_common.aggregations___LongTermsBucket'
+          required:
+            - buckets
     _common.aggregations___TermsAggregateBaseMultiTermsBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBase'
@@ -44569,33 +44599,56 @@ components:
         - type: object
           properties:
             buckets:
-              allOf:
-                - $ref: '#/components/schemas/_common.aggregations___Buckets'
-                - oneOf:
-                    - type: object
-                      additionalProperties:
-                        $ref: '#/components/schemas/_common.aggregations___StringTermsBucket'
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/_common.aggregations___StringTermsBucket'
+              type: array
+              items:
+                $ref: '#/components/schemas/_common.aggregations___StringTermsBucket'
+          required:
+            - buckets
+    _common.aggregations___TermsAggregateBaseUnsignedLongTermsBucket:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBase'
+        - type: object
+          properties:
+            buckets:
+              type: array
+              items:
+                $ref: '#/components/schemas/_common.aggregations___UnsignedLongTermsBucket'
+          required:
+            - buckets
     _common.aggregations___TermsAggregateBaseVoid:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBase'
         - type: object
           properties:
             buckets:
-              allOf:
-                - $ref: '#/components/schemas/_common.aggregations___Buckets'
-                - oneOf:
-                    - type: object
-                      additionalProperties:
-                        $ref: '#/components/schemas/_common___Void'
-                    - type: array
-                      items:
-                        $ref: '#/components/schemas/_common___Void'
+              type: array
+              items:
+                $ref: '#/components/schemas/_common___Void'
+          required:
+            - buckets
     _common.aggregations___TermsAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
+        - type: object
+          properties:
+            terms:
+              $ref: '#/components/schemas/_common.aggregations___TermsAggregationFields'
+          required:
+            - terms
+    _common.aggregations___TermsAggregationCollectMode:
+      type: string
+      enum:
+        - breadth_first
+        - depth_first
+    _common.aggregations___TermsAggregationExecutionHint:
+      type: string
+      enum:
+        - global_ordinals
+        - global_ordinals_hash
+        - global_ordinals_low_cardinality
+        - map
+    _common.aggregations___TermsAggregationFields:
+      allOf:
         - type: object
           properties:
             collect_mode:
@@ -44645,24 +44698,12 @@ components:
               properties:
                 script:
                   $ref: '#/components/schemas/_common___Script'
-    _common.aggregations___TermsAggregationCollectMode:
-      type: string
-      enum:
-        - breadth_first
-        - depth_first
-    _common.aggregations___TermsAggregationExecutionHint:
-      type: string
-      enum:
-        - global_ordinals
-        - global_ordinals_hash
-        - global_ordinals_low_cardinality
-        - map
     _common.aggregations___TermsBucketBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
         - type: object
           properties:
-            doc_count_error:
+            doc_count_error_upper_bound:
               type: integer
               format: int64
               description: Upper bound of the document count error. Only present when `show_term_doc_count_error` is true.
@@ -44690,11 +44731,11 @@ components:
         num_partitions:
           description: The number of partitions.
           type: integer
-          format: int64
+          format: int32
         partition:
           description: The partition number for this request.
           type: integer
-          format: int64
+          format: int32
       required:
         - num_partitions
         - partition
@@ -44710,14 +44751,12 @@ components:
       required:
         - field
     _common.aggregations___TopHitsAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            hits:
-              $ref: '#/components/schemas/_core.search___HitsMetadataJsonValue'
-          required:
-            - hits
+      type: object
+      properties:
+        hits:
+          $ref: '#/components/schemas/_core.search___HitsMetadataJsonValue'
+      required:
+        - hits
     _common.aggregations___TopHitsAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
@@ -44759,30 +44798,26 @@ components:
               description: If `true`, returns sequence number and primary term of the last modification of each hit.
               type: boolean
     _common.aggregations___TTestAggregate:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
-        - type: object
-          properties:
-            value:
-              oneOf:
-                - type: number
-                  format: double
-                - type: 'null'
-            value_as_string:
-              type: string
-          required:
-            - value
+      type: object
+      properties:
+        value:
+          oneOf:
+            - type: number
+              format: double
+            - type: 'null'
+        value_as_string:
+          type: string
+      required:
+        - value
     _common.aggregations___TTestAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            a:
-              $ref: '#/components/schemas/_common.aggregations___TestPopulation'
-            b:
-              $ref: '#/components/schemas/_common.aggregations___TestPopulation'
-            type:
-              $ref: '#/components/schemas/_common.aggregations___TTestType'
+      type: object
+      properties:
+        a:
+          $ref: '#/components/schemas/_common.aggregations___TestPopulation'
+        b:
+          $ref: '#/components/schemas/_common.aggregations___TestPopulation'
+        type:
+          $ref: '#/components/schemas/_common.aggregations___TTestType'
     _common.aggregations___TTestType:
       type: string
       enum:
@@ -44803,6 +44838,41 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBaseVoid'
         - type: object
+    _common.aggregations___UnsignedLongTermsAggregate:
+      description: |-
+        Result of a `terms` aggregation when the field is an `unsigned_long` (64-bit unsigned integer).
+        OpenSearch stores `unsigned_long` values as Long or BigInteger internally. In JSON responses,
+        bucket keys are represented as numbers, which may lose precision for values larger than 2^53--1
+        due to IEEE 754 double precision limitations. In protocol buffer representations, keys are
+        manually defined as uint64 to preserve the full 64-bit unsigned range. Use `key_as_string` in
+        buckets for exact string representation of large unsigned long values.
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___TermsAggregateBaseUnsignedLongTermsBucket'
+        - type: object
+    _common.aggregations___UnsignedLongTermsBucket:
+      description: |-
+        Terms bucket for `unsigned_long` field type. The server returns 64-bit unsigned integer values
+        as Long or BigInteger types. Due to JSON specification limitations (IEEE 754 double precision
+        provides only 53 bits of integer precision), the key is represented as `type: number` in the
+        OpenAPI spec. For protocol buffer definitions, this is manually overridden to `uint64` to
+        preserve the full 64-bit unsigned integer range in binary encoding.
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___TermsBucketBase'
+        - type: object
+          properties:
+            key:
+              type: number
+              description: |
+                The unsigned 64-bit integer bucket key. While JSON represents this as a number,
+                values larger than 2^53--1 may lose precision in JSON serialization. The gRPC
+                protocol buffer definition uses uint64 to preserve full precision. Use `key_as_string`
+                for exact string representation of large values.
+              x-protobuf-data-type: uint64
+            key_as_string:
+              type: string
+              description: String representation of the key. Only present when a custom `format` parameter is specified in the aggregation request.
+          required:
+            - key
     _common.aggregations___ValueCountAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
@@ -44822,13 +44892,11 @@ components:
         - date
         - double
         - float
-        - geo_point
         - integer
         - ip
         - long
         - number
         - numeric
-        - range
         - short
         - string
         - unsigned_long
@@ -44882,19 +44950,17 @@ components:
             - max
             - min
     _common.aggregations___WeightedAverageAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
-        - type: object
-          properties:
-            format:
-              description: A numeric response formatter.
-              type: string
-            value:
-              $ref: '#/components/schemas/_common.aggregations___WeightedAverageValue'
-            value_type:
-              $ref: '#/components/schemas/_common.aggregations___ValueType'
-            weight:
-              $ref: '#/components/schemas/_common.aggregations___WeightedAverageValue'
+      type: object
+      properties:
+        format:
+          description: A numeric response formatter.
+          type: string
+        value:
+          $ref: '#/components/schemas/_common.aggregations___WeightedAverageValue'
+        value_type:
+          $ref: '#/components/schemas/_common.aggregations___ValueType'
+        weight:
+          $ref: '#/components/schemas/_common.aggregations___WeightedAverageValue'
     _common.aggregations___WeightedAverageValue:
       type: object
       properties:

@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregateBase<Void>
     implements
-        AggregateVariant,
         ToCopyableBuilder<UnmappedSignificantTermsAggregate.Builder, UnmappedSignificantTermsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregate
         Function<UnmappedSignificantTermsAggregate.Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Umsigterms;
     }
 
     // ---------------------------------------------------------------------------------------------

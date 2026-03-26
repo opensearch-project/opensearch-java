@@ -47,19 +47,18 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.BoxPlotAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BoxPlotAggregate extends AggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<BoxPlotAggregate.Builder, BoxPlotAggregate> {
+public class BoxPlotAggregate implements PlainJsonSerializable, ToCopyableBuilder<BoxPlotAggregate.Builder, BoxPlotAggregate> {
 
     private final double lower;
 
@@ -99,7 +98,6 @@ public class BoxPlotAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private BoxPlotAggregate(Builder builder) {
-        super(builder);
         this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
         this.lowerAsString = builder.lowerAsString;
         this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
@@ -118,14 +116,6 @@ public class BoxPlotAggregate extends AggregateBase
 
     public static BoxPlotAggregate of(Function<BoxPlotAggregate.Builder, ObjectBuilder<BoxPlotAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.BoxPlot;
     }
 
     /**
@@ -233,8 +223,17 @@ public class BoxPlotAggregate extends AggregateBase
         return this.upperAsString;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("lower");
         generator.write(this.lower);
 
@@ -308,7 +307,7 @@ public class BoxPlotAggregate extends AggregateBase
     /**
      * Builder for {@link BoxPlotAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, BoxPlotAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, BoxPlotAggregate> {
         private Double lower;
         @Nullable
         private String lowerAsString;
@@ -334,7 +333,6 @@ public class BoxPlotAggregate extends AggregateBase
         public Builder() {}
 
         private Builder(BoxPlotAggregate o) {
-            super(o);
             this.lower = o.lower;
             this.lowerAsString = o.lowerAsString;
             this.max = o.max;
@@ -352,7 +350,6 @@ public class BoxPlotAggregate extends AggregateBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.lower = o.lower;
             this.lowerAsString = o.lowerAsString;
             this.max = o.max;
@@ -373,12 +370,6 @@ public class BoxPlotAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -532,7 +523,6 @@ public class BoxPlotAggregate extends AggregateBase
     );
 
     protected static void setupBoxPlotAggregateDeserializer(ObjectDeserializer<BoxPlotAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::lower, JsonpDeserializer.doubleDeserializer(), "lower");
         op.add(Builder::lowerAsString, JsonpDeserializer.stringDeserializer(), "lower_as_string");
         op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");
@@ -551,7 +541,7 @@ public class BoxPlotAggregate extends AggregateBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Double.hashCode(this.lower);
         result = 31 * result + Objects.hashCode(this.lowerAsString);
         result = 31 * result + Double.hashCode(this.max);
@@ -571,9 +561,6 @@ public class BoxPlotAggregate extends AggregateBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         BoxPlotAggregate other = (BoxPlotAggregate) o;

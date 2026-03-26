@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<IpRangeAggregate.Builder, IpRangeAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
 
     public static IpRangeAggregate of(Function<IpRangeAggregate.Builder, ObjectBuilder<IpRangeAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.IpRange;
     }
 
     // ---------------------------------------------------------------------------------------------

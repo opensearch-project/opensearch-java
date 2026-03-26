@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NormalizeAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<NormalizeAggregation.Builder, NormalizeAggregation> {
 
     @Nullable
@@ -72,14 +71,6 @@ public class NormalizeAggregation extends PipelineAggregationBase
 
     public static NormalizeAggregation of(Function<NormalizeAggregation.Builder, ObjectBuilder<NormalizeAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Normalize;
     }
 
     /**

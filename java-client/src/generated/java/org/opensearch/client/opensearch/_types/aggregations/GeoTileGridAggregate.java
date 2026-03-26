@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<GeoTileGridAggregate.Builder, GeoTileGridAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBu
 
     public static GeoTileGridAggregate of(Function<GeoTileGridAggregate.Builder, ObjectBuilder<GeoTileGridAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.GeotileGrid;
     }
 
     // ---------------------------------------------------------------------------------------------

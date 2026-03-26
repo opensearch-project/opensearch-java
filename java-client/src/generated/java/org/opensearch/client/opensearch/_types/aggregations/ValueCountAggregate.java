@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ValueCountAggregate extends SingleMetricAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<ValueCountAggregate.Builder, ValueCountAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class ValueCountAggregate extends SingleMetricAggregateBase
 
     public static ValueCountAggregate of(Function<ValueCountAggregate.Builder, ObjectBuilder<ValueCountAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.ValueCount;
     }
 
     // ---------------------------------------------------------------------------------------------

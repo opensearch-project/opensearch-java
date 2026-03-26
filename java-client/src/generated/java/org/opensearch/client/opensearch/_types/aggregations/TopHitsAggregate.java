@@ -46,20 +46,19 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.core.search.HitsMetadata;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.TopHitsAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TopHitsAggregate extends AggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<TopHitsAggregate.Builder, TopHitsAggregate> {
+public class TopHitsAggregate implements PlainJsonSerializable, ToCopyableBuilder<TopHitsAggregate.Builder, TopHitsAggregate> {
 
     @Nonnull
     private final HitsMetadata<JsonData> hits;
@@ -67,20 +66,11 @@ public class TopHitsAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private TopHitsAggregate(Builder builder) {
-        super(builder);
         this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
     }
 
     public static TopHitsAggregate of(Function<TopHitsAggregate.Builder, ObjectBuilder<TopHitsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.TopHits;
     }
 
     /**
@@ -91,8 +81,17 @@ public class TopHitsAggregate extends AggregateBase
         return this.hits;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("hits");
         this.hits.serialize(generator, mapper);
     }
@@ -113,18 +112,16 @@ public class TopHitsAggregate extends AggregateBase
     /**
      * Builder for {@link TopHitsAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TopHitsAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TopHitsAggregate> {
         private HitsMetadata<JsonData> hits;
 
         public Builder() {}
 
         private Builder(TopHitsAggregate o) {
-            super(o);
             this.hits = o.hits;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.hits = o.hits;
         }
 
@@ -132,12 +129,6 @@ public class TopHitsAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -182,22 +173,18 @@ public class TopHitsAggregate extends AggregateBase
     );
 
     protected static void setupTopHitsAggregateDeserializer(ObjectDeserializer<TopHitsAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + this.hits.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TopHitsAggregate other = (TopHitsAggregate) o;

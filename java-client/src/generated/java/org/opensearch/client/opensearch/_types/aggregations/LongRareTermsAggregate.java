@@ -56,7 +56,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTermsBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<LongRareTermsAggregate.Builder, LongRareTermsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -67,14 +66,6 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 
     public static LongRareTermsAggregate of(Function<LongRareTermsAggregate.Builder, ObjectBuilder<LongRareTermsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Lrareterms;
     }
 
     // ---------------------------------------------------------------------------------------------

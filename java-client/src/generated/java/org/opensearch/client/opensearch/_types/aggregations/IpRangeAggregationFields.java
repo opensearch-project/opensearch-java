@@ -48,19 +48,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.IpRangeAggregation
+// typedef: _types.aggregations.IpRangeAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IpRangeAggregation extends BucketAggregationBase
+public class IpRangeAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<IpRangeAggregation.Builder, IpRangeAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<IpRangeAggregationFields.Builder, IpRangeAggregationFields> {
 
     @Nullable
     private final String field;
@@ -70,22 +72,13 @@ public class IpRangeAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private IpRangeAggregation(Builder builder) {
-        super(builder);
+    private IpRangeAggregationFields(Builder builder) {
         this.field = builder.field;
         this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
     }
 
-    public static IpRangeAggregation of(Function<IpRangeAggregation.Builder, ObjectBuilder<IpRangeAggregation>> fn) {
+    public static IpRangeAggregationFields of(Function<IpRangeAggregationFields.Builder, ObjectBuilder<IpRangeAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.IpRange;
     }
 
     /**
@@ -107,8 +100,17 @@ public class IpRangeAggregation extends BucketAggregationBase
         return this.ranges;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -138,11 +140,9 @@ public class IpRangeAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link IpRangeAggregation}.
+     * Builder for {@link IpRangeAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, IpRangeAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IpRangeAggregationFields> {
         @Nullable
         private String field;
         @Nullable
@@ -150,14 +150,12 @@ public class IpRangeAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(IpRangeAggregation o) {
-            super(o);
+        private Builder(IpRangeAggregationFields o) {
             this.field = o.field;
             this.ranges = _listCopy(o.ranges);
         }
 
         private Builder(Builder o) {
-            super(o);
             this.field = o.field;
             this.ranges = _listCopy(o.ranges);
         }
@@ -166,12 +164,6 @@ public class IpRangeAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -231,38 +223,37 @@ public class IpRangeAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link IpRangeAggregation}.
+         * Builds a {@link IpRangeAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public IpRangeAggregation build() {
+        public IpRangeAggregationFields build() {
             _checkSingleUse();
 
-            return new IpRangeAggregation(this);
+            return new IpRangeAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IpRangeAggregation}
+     * Json deserializer for {@link IpRangeAggregationFields}
      */
-    public static final JsonpDeserializer<IpRangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<IpRangeAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IpRangeAggregation::setupIpRangeAggregationDeserializer
+        IpRangeAggregationFields::setupIpRangeAggregationFieldsDeserializer
     );
 
-    protected static void setupIpRangeAggregationDeserializer(ObjectDeserializer<IpRangeAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupIpRangeAggregationFieldsDeserializer(ObjectDeserializer<IpRangeAggregationFields.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange._DESERIALIZER), "ranges");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.ranges);
         return result;
@@ -270,12 +261,9 @@ public class IpRangeAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        IpRangeAggregation other = (IpRangeAggregation) o;
+        IpRangeAggregationFields other = (IpRangeAggregationFields) o;
         return Objects.equals(this.field, other.field) && Objects.equals(this.ranges, other.ranges);
     }
 }

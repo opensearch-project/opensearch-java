@@ -44,11 +44,13 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.SingleMetricAggregateBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class SingleMetricAggregateBase extends AggregateBase {
+public abstract class SingleMetricAggregateBase implements PlainJsonSerializable {
 
     @Nullable
     private final Double value;
@@ -59,7 +61,6 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
     // ---------------------------------------------------------------------------------------------
 
     protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
-        super(builder);
         this.value = builder.value;
         this.valueAsString = builder.valueAsString;
     }
@@ -83,8 +84,17 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
         return this.valueAsString;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.value != null) {
             generator.writeKey("value");
             generator.write(this.value);
@@ -98,8 +108,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
-        BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Double value;
         @Nullable
@@ -108,16 +117,17 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(SingleMetricAggregateBase o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise.
@@ -146,14 +156,13 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleMetricAggregateBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-        setupAggregateBaseDeserializer(op);
         op.add(AbstractBuilder::value, JsonpDeserializer.doubleDeserializer(), "value");
         op.add(AbstractBuilder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.value);
         result = 31 * result + Objects.hashCode(this.valueAsString);
         return result;
@@ -161,9 +170,6 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SingleMetricAggregateBase other = (SingleMetricAggregateBase) o;

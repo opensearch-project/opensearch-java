@@ -60,7 +60,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<CompositeAggregate.Builder, CompositeAggregate> {
 
     @Nonnull
@@ -75,14 +74,6 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 
     public static CompositeAggregate of(Function<CompositeAggregate.Builder, ObjectBuilder<CompositeAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Composite;
     }
 
     /**

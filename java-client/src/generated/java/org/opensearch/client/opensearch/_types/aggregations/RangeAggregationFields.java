@@ -48,20 +48,22 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.RangeAggregation
+// typedef: _types.aggregations.RangeAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RangeAggregation extends BucketAggregationBase
+public class RangeAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<RangeAggregation.Builder, RangeAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<RangeAggregationFields.Builder, RangeAggregationFields> {
 
     @Nullable
     private final String field;
@@ -83,8 +85,7 @@ public class RangeAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private RangeAggregation(Builder builder) {
-        super(builder);
+    private RangeAggregationFields(Builder builder) {
         this.field = builder.field;
         this.format = builder.format;
         this.keyed = builder.keyed;
@@ -93,16 +94,8 @@ public class RangeAggregation extends BucketAggregationBase
         this.script = builder.script;
     }
 
-    public static RangeAggregation of(Function<RangeAggregation.Builder, ObjectBuilder<RangeAggregation>> fn) {
+    public static RangeAggregationFields of(Function<RangeAggregationFields.Builder, ObjectBuilder<RangeAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Range;
     }
 
     /**
@@ -162,8 +155,17 @@ public class RangeAggregation extends BucketAggregationBase
         return this.script;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -213,11 +215,9 @@ public class RangeAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link RangeAggregation}.
+     * Builder for {@link RangeAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, RangeAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RangeAggregationFields> {
         @Nullable
         private String field;
         @Nullable
@@ -233,8 +233,7 @@ public class RangeAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(RangeAggregation o) {
-            super(o);
+        private Builder(RangeAggregationFields o) {
             this.field = o.field;
             this.format = o.format;
             this.keyed = o.keyed;
@@ -244,7 +243,6 @@ public class RangeAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.field = o.field;
             this.format = o.format;
             this.keyed = o.keyed;
@@ -257,12 +255,6 @@ public class RangeAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -372,31 +364,30 @@ public class RangeAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link RangeAggregation}.
+         * Builds a {@link RangeAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RangeAggregation build() {
+        public RangeAggregationFields build() {
             _checkSingleUse();
 
-            return new RangeAggregation(this);
+            return new RangeAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RangeAggregation}
+     * Json deserializer for {@link RangeAggregationFields}
      */
-    public static final JsonpDeserializer<RangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RangeAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RangeAggregation::setupRangeAggregationDeserializer
+        RangeAggregationFields::setupRangeAggregationFieldsDeserializer
     );
 
-    protected static void setupRangeAggregationDeserializer(ObjectDeserializer<RangeAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupRangeAggregationFieldsDeserializer(ObjectDeserializer<RangeAggregationFields.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
@@ -407,7 +398,7 @@ public class RangeAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.keyed);
@@ -419,12 +410,9 @@ public class RangeAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RangeAggregation other = (RangeAggregation) o;
+        RangeAggregationFields other = (RangeAggregationFields) o;
         return Objects.equals(this.field, other.field)
             && Objects.equals(this.format, other.format)
             && Objects.equals(this.keyed, other.keyed)

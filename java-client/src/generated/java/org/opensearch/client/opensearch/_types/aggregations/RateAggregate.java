@@ -47,16 +47,18 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.RateAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RateAggregate extends AggregateBase implements AggregateVariant, ToCopyableBuilder<RateAggregate.Builder, RateAggregate> {
+public class RateAggregate implements PlainJsonSerializable, ToCopyableBuilder<RateAggregate.Builder, RateAggregate> {
 
     private final double value;
 
@@ -66,21 +68,12 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
     // ---------------------------------------------------------------------------------------------
 
     private RateAggregate(Builder builder) {
-        super(builder);
         this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
         this.valueAsString = builder.valueAsString;
     }
 
     public static RateAggregate of(Function<RateAggregate.Builder, ObjectBuilder<RateAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Rate;
     }
 
     /**
@@ -98,8 +91,17 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
         return this.valueAsString;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("value");
         generator.write(this.value);
 
@@ -125,7 +127,7 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
     /**
      * Builder for {@link RateAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RateAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RateAggregate> {
         private Double value;
         @Nullable
         private String valueAsString;
@@ -133,13 +135,11 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
         public Builder() {}
 
         private Builder(RateAggregate o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
@@ -148,12 +148,6 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -199,14 +193,13 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
     );
 
     protected static void setupRateAggregateDeserializer(ObjectDeserializer<RateAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
         op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Double.hashCode(this.value);
         result = 31 * result + Objects.hashCode(this.valueAsString);
         return result;
@@ -214,9 +207,6 @@ public class RateAggregate extends AggregateBase implements AggregateVariant, To
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         RateAggregate other = (RateAggregate) o;
