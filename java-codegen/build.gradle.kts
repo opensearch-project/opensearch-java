@@ -22,9 +22,10 @@ buildscript {
         maven(url = "https://ci.opensearch.org/ci/dbc/snapshots/maven/")
         mavenCentral()
         gradlePluginPortal()
+        maven(url = "https://repo.maven.apache.org/maven2")
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.6.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.5.0")
     }
 }
 
@@ -175,7 +176,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:6.0.3"))
+    testImplementation(platform("org.junit:junit-bom:5.11.4"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }

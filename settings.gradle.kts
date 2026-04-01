@@ -30,6 +30,15 @@
  * GitHub history for details.
  */
 
+pluginManagement {
+  repositories {
+    maven(url = "https://maven.aliyun.com/repository/gradle-plugin")
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+
+
 plugins {
   id("org.gradle.toolchains.foojay-resolver-convention") version("0.7.0")
 }
