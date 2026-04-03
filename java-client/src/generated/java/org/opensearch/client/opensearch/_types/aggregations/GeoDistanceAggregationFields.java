@@ -48,22 +48,24 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.DistanceUnit;
 import org.opensearch.client.opensearch._types.GeoDistanceType;
 import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.GeoDistanceAggregation
+// typedef: _types.aggregations.GeoDistanceAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoDistanceAggregation extends BucketAggregationBase
+public class GeoDistanceAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<GeoDistanceAggregation.Builder, GeoDistanceAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<GeoDistanceAggregationFields.Builder, GeoDistanceAggregationFields> {
 
     @Nullable
     private final GeoDistanceType distanceType;
@@ -82,8 +84,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private GeoDistanceAggregation(Builder builder) {
-        super(builder);
+    private GeoDistanceAggregationFields(Builder builder) {
         this.distanceType = builder.distanceType;
         this.field = builder.field;
         this.origin = builder.origin;
@@ -91,16 +92,10 @@ public class GeoDistanceAggregation extends BucketAggregationBase
         this.unit = builder.unit;
     }
 
-    public static GeoDistanceAggregation of(Function<GeoDistanceAggregation.Builder, ObjectBuilder<GeoDistanceAggregation>> fn) {
+    public static GeoDistanceAggregationFields of(
+        Function<GeoDistanceAggregationFields.Builder, ObjectBuilder<GeoDistanceAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.GeoDistance;
     }
 
     /**
@@ -146,8 +141,17 @@ public class GeoDistanceAggregation extends BucketAggregationBase
         return this.unit;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.distanceType != null) {
             generator.writeKey("distance_type");
             this.distanceType.serialize(generator, mapper);
@@ -192,11 +196,9 @@ public class GeoDistanceAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link GeoDistanceAggregation}.
+     * Builder for {@link GeoDistanceAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, GeoDistanceAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoDistanceAggregationFields> {
         @Nullable
         private GeoDistanceType distanceType;
         @Nullable
@@ -210,8 +212,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(GeoDistanceAggregation o) {
-            super(o);
+        private Builder(GeoDistanceAggregationFields o) {
             this.distanceType = o.distanceType;
             this.field = o.field;
             this.origin = o.origin;
@@ -220,7 +221,6 @@ public class GeoDistanceAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.distanceType = o.distanceType;
             this.field = o.field;
             this.origin = o.origin;
@@ -232,12 +232,6 @@ public class GeoDistanceAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -332,31 +326,30 @@ public class GeoDistanceAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link GeoDistanceAggregation}.
+         * Builds a {@link GeoDistanceAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GeoDistanceAggregation build() {
+        public GeoDistanceAggregationFields build() {
             _checkSingleUse();
 
-            return new GeoDistanceAggregation(this);
+            return new GeoDistanceAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GeoDistanceAggregation}
+     * Json deserializer for {@link GeoDistanceAggregationFields}
      */
-    public static final JsonpDeserializer<GeoDistanceAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GeoDistanceAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer
+        GeoDistanceAggregationFields::setupGeoDistanceAggregationFieldsDeserializer
     );
 
-    protected static void setupGeoDistanceAggregationDeserializer(ObjectDeserializer<GeoDistanceAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupGeoDistanceAggregationFieldsDeserializer(ObjectDeserializer<GeoDistanceAggregationFields.Builder> op) {
         op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::origin, GeoLocation._DESERIALIZER, "origin");
@@ -366,7 +359,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.distanceType);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.origin);
@@ -377,12 +370,9 @@ public class GeoDistanceAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GeoDistanceAggregation other = (GeoDistanceAggregation) o;
+        GeoDistanceAggregationFields other = (GeoDistanceAggregationFields) o;
         return Objects.equals(this.distanceType, other.distanceType)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.origin, other.origin)

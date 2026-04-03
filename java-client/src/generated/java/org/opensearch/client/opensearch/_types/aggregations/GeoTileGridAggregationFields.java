@@ -47,19 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoBounds;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.GeoTileGridAggregation
+// typedef: _types.aggregations.GeoTileGridAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoTileGridAggregation extends BucketAggregationBase
+public class GeoTileGridAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<GeoTileGridAggregation.Builder, GeoTileGridAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<GeoTileGridAggregationFields.Builder, GeoTileGridAggregationFields> {
 
     @Nullable
     private final GeoBounds bounds;
@@ -78,8 +80,7 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private GeoTileGridAggregation(Builder builder) {
-        super(builder);
+    private GeoTileGridAggregationFields(Builder builder) {
         this.bounds = builder.bounds;
         this.field = builder.field;
         this.precision = builder.precision;
@@ -87,16 +88,10 @@ public class GeoTileGridAggregation extends BucketAggregationBase
         this.size = builder.size;
     }
 
-    public static GeoTileGridAggregation of(Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+    public static GeoTileGridAggregationFields of(
+        Function<GeoTileGridAggregationFields.Builder, ObjectBuilder<GeoTileGridAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.GeotileGrid;
     }
 
     /**
@@ -146,8 +141,17 @@ public class GeoTileGridAggregation extends BucketAggregationBase
         return this.size;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.bounds != null) {
             generator.writeKey("bounds");
             this.bounds.serialize(generator, mapper);
@@ -188,11 +192,9 @@ public class GeoTileGridAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link GeoTileGridAggregation}.
+     * Builder for {@link GeoTileGridAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, GeoTileGridAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoTileGridAggregationFields> {
         @Nullable
         private GeoBounds bounds;
         @Nullable
@@ -206,8 +208,7 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(GeoTileGridAggregation o) {
-            super(o);
+        private Builder(GeoTileGridAggregationFields o) {
             this.bounds = o.bounds;
             this.field = o.field;
             this.precision = o.precision;
@@ -216,7 +217,6 @@ public class GeoTileGridAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.bounds = o.bounds;
             this.field = o.field;
             this.precision = o.precision;
@@ -228,12 +228,6 @@ public class GeoTileGridAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -297,31 +291,30 @@ public class GeoTileGridAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link GeoTileGridAggregation}.
+         * Builds a {@link GeoTileGridAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GeoTileGridAggregation build() {
+        public GeoTileGridAggregationFields build() {
             _checkSingleUse();
 
-            return new GeoTileGridAggregation(this);
+            return new GeoTileGridAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GeoTileGridAggregation}
+     * Json deserializer for {@link GeoTileGridAggregationFields}
      */
-    public static final JsonpDeserializer<GeoTileGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GeoTileGridAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer
+        GeoTileGridAggregationFields::setupGeoTileGridAggregationFieldsDeserializer
     );
 
-    protected static void setupGeoTileGridAggregationDeserializer(ObjectDeserializer<GeoTileGridAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupGeoTileGridAggregationFieldsDeserializer(ObjectDeserializer<GeoTileGridAggregationFields.Builder> op) {
         op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");
@@ -331,7 +324,7 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.bounds);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.precision);
@@ -342,12 +335,9 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GeoTileGridAggregation other = (GeoTileGridAggregation) o;
+        GeoTileGridAggregationFields other = (GeoTileGridAggregationFields) o;
         return Objects.equals(this.bounds, other.bounds)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.precision, other.precision)

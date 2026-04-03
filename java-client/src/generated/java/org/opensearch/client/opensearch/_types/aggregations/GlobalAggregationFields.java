@@ -36,42 +36,41 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.GlobalAggregation
+// typedef: _types.aggregations.GlobalAggregationFields
 
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GlobalAggregation extends BucketAggregationBase
+public class GlobalAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<GlobalAggregation.Builder, GlobalAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<GlobalAggregationFields.Builder, GlobalAggregationFields> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private GlobalAggregation(Builder builder) {
-        super(builder);
-    }
+    private GlobalAggregationFields(Builder builder) {}
 
-    public static GlobalAggregation of(Function<GlobalAggregation.Builder, ObjectBuilder<GlobalAggregation>> fn) {
+    public static GlobalAggregationFields of(Function<GlobalAggregationFields.Builder, ObjectBuilder<GlobalAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * {@link Aggregation} variant kind.
+     * Serialize this object to JSON.
      */
     @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Global;
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -88,21 +87,15 @@ public class GlobalAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link GlobalAggregation}.
+     * Builder for {@link GlobalAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, GlobalAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GlobalAggregationFields> {
 
         public Builder() {}
 
-        private Builder(GlobalAggregation o) {
-            super(o);
-        }
+        private Builder(GlobalAggregationFields o) {}
 
-        private Builder(Builder o) {
-            super(o);
-        }
+        private Builder(Builder o) {}
 
         @Override
         @Nonnull
@@ -110,51 +103,39 @@ public class GlobalAggregation extends BucketAggregationBase
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * Builds a {@link GlobalAggregation}.
+         * Builds a {@link GlobalAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GlobalAggregation build() {
+        public GlobalAggregationFields build() {
             _checkSingleUse();
 
-            return new GlobalAggregation(this);
+            return new GlobalAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GlobalAggregation}
+     * Singleton instance for {@link GlobalAggregationFields}.
      */
-    public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        GlobalAggregation::setupGlobalAggregationDeserializer
-    );
+    public static final GlobalAggregationFields _INSTANCE = builder().build();
 
-    protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
-    }
+    public static final JsonpDeserializer<GlobalAggregationFields> _DESERIALIZER = JsonpDeserializer.emptyObject(
+        GlobalAggregationFields._INSTANCE
+    );
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         return true;

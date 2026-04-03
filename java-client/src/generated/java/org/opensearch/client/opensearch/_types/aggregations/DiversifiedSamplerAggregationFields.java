@@ -47,19 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.DiversifiedSamplerAggregation
+// typedef: _types.aggregations.DiversifiedSamplerAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DiversifiedSamplerAggregation extends BucketAggregationBase
+public class DiversifiedSamplerAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<DiversifiedSamplerAggregation.Builder, DiversifiedSamplerAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<DiversifiedSamplerAggregationFields.Builder, DiversifiedSamplerAggregationFields> {
 
     @Nullable
     private final SamplerAggregationExecutionHint executionHint;
@@ -78,8 +80,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private DiversifiedSamplerAggregation(Builder builder) {
-        super(builder);
+    private DiversifiedSamplerAggregationFields(Builder builder) {
         this.executionHint = builder.executionHint;
         this.field = builder.field;
         this.maxDocsPerValue = builder.maxDocsPerValue;
@@ -87,18 +88,10 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
         this.shardSize = builder.shardSize;
     }
 
-    public static DiversifiedSamplerAggregation of(
-        Function<DiversifiedSamplerAggregation.Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn
+    public static DiversifiedSamplerAggregationFields of(
+        Function<DiversifiedSamplerAggregationFields.Builder, ObjectBuilder<DiversifiedSamplerAggregationFields>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.DiversifiedSampler;
     }
 
     /**
@@ -147,8 +140,17 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
         return this.shardSize;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.executionHint != null) {
             generator.writeKey("execution_hint");
             this.executionHint.serialize(generator, mapper);
@@ -189,11 +191,9 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link DiversifiedSamplerAggregation}.
+     * Builder for {@link DiversifiedSamplerAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, DiversifiedSamplerAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DiversifiedSamplerAggregationFields> {
         @Nullable
         private SamplerAggregationExecutionHint executionHint;
         @Nullable
@@ -207,8 +207,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(DiversifiedSamplerAggregation o) {
-            super(o);
+        private Builder(DiversifiedSamplerAggregationFields o) {
             this.executionHint = o.executionHint;
             this.field = o.field;
             this.maxDocsPerValue = o.maxDocsPerValue;
@@ -217,7 +216,6 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.executionHint = o.executionHint;
             this.field = o.field;
             this.maxDocsPerValue = o.maxDocsPerValue;
@@ -229,12 +227,6 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -297,31 +289,32 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link DiversifiedSamplerAggregation}.
+         * Builds a {@link DiversifiedSamplerAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public DiversifiedSamplerAggregation build() {
+        public DiversifiedSamplerAggregationFields build() {
             _checkSingleUse();
 
-            return new DiversifiedSamplerAggregation(this);
+            return new DiversifiedSamplerAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DiversifiedSamplerAggregation}
+     * Json deserializer for {@link DiversifiedSamplerAggregationFields}
      */
-    public static final JsonpDeserializer<DiversifiedSamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DiversifiedSamplerAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer
+        DiversifiedSamplerAggregationFields::setupDiversifiedSamplerAggregationFieldsDeserializer
     );
 
-    protected static void setupDiversifiedSamplerAggregationDeserializer(ObjectDeserializer<DiversifiedSamplerAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupDiversifiedSamplerAggregationFieldsDeserializer(
+        ObjectDeserializer<DiversifiedSamplerAggregationFields.Builder> op
+    ) {
         op.add(Builder::executionHint, SamplerAggregationExecutionHint._DESERIALIZER, "execution_hint");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");
@@ -331,7 +324,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.executionHint);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.maxDocsPerValue);
@@ -342,12 +335,9 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        DiversifiedSamplerAggregation other = (DiversifiedSamplerAggregation) o;
+        DiversifiedSamplerAggregationFields other = (DiversifiedSamplerAggregationFields) o;
         return Objects.equals(this.executionHint, other.executionHint)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.maxDocsPerValue, other.maxDocsPerValue)

@@ -47,20 +47,22 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoBounds;
 import org.opensearch.client.opensearch._types.GeoHashPrecision;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.GeoHashGridAggregation
+// typedef: _types.aggregations.GeoHashGridAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoHashGridAggregation extends BucketAggregationBase
+public class GeoHashGridAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<GeoHashGridAggregation.Builder, GeoHashGridAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<GeoHashGridAggregationFields.Builder, GeoHashGridAggregationFields> {
 
     @Nullable
     private final GeoBounds bounds;
@@ -79,8 +81,7 @@ public class GeoHashGridAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private GeoHashGridAggregation(Builder builder) {
-        super(builder);
+    private GeoHashGridAggregationFields(Builder builder) {
         this.bounds = builder.bounds;
         this.field = builder.field;
         this.precision = builder.precision;
@@ -88,16 +89,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase
         this.size = builder.size;
     }
 
-    public static GeoHashGridAggregation of(Function<GeoHashGridAggregation.Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+    public static GeoHashGridAggregationFields of(
+        Function<GeoHashGridAggregationFields.Builder, ObjectBuilder<GeoHashGridAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.GeohashGrid;
     }
 
     /**
@@ -147,8 +142,17 @@ public class GeoHashGridAggregation extends BucketAggregationBase
         return this.size;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.bounds != null) {
             generator.writeKey("bounds");
             this.bounds.serialize(generator, mapper);
@@ -189,11 +193,9 @@ public class GeoHashGridAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link GeoHashGridAggregation}.
+     * Builder for {@link GeoHashGridAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, GeoHashGridAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoHashGridAggregationFields> {
         @Nullable
         private GeoBounds bounds;
         @Nullable
@@ -207,8 +209,7 @@ public class GeoHashGridAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(GeoHashGridAggregation o) {
-            super(o);
+        private Builder(GeoHashGridAggregationFields o) {
             this.bounds = o.bounds;
             this.field = o.field;
             this.precision = o.precision;
@@ -217,7 +218,6 @@ public class GeoHashGridAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.bounds = o.bounds;
             this.field = o.field;
             this.precision = o.precision;
@@ -229,12 +229,6 @@ public class GeoHashGridAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -306,31 +300,30 @@ public class GeoHashGridAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link GeoHashGridAggregation}.
+         * Builds a {@link GeoHashGridAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GeoHashGridAggregation build() {
+        public GeoHashGridAggregationFields build() {
             _checkSingleUse();
 
-            return new GeoHashGridAggregation(this);
+            return new GeoHashGridAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GeoHashGridAggregation}
+     * Json deserializer for {@link GeoHashGridAggregationFields}
      */
-    public static final JsonpDeserializer<GeoHashGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GeoHashGridAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer
+        GeoHashGridAggregationFields::setupGeoHashGridAggregationFieldsDeserializer
     );
 
-    protected static void setupGeoHashGridAggregationDeserializer(ObjectDeserializer<GeoHashGridAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupGeoHashGridAggregationFieldsDeserializer(ObjectDeserializer<GeoHashGridAggregationFields.Builder> op) {
         op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::precision, GeoHashPrecision._DESERIALIZER, "precision");
@@ -340,7 +333,7 @@ public class GeoHashGridAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.bounds);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.precision);
@@ -351,12 +344,9 @@ public class GeoHashGridAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GeoHashGridAggregation other = (GeoHashGridAggregation) o;
+        GeoHashGridAggregationFields other = (GeoHashGridAggregationFields) o;
         return Objects.equals(this.bounds, other.bounds)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.precision, other.precision)

@@ -49,20 +49,22 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.CompositeAggregation
+// typedef: _types.aggregations.CompositeAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CompositeAggregation extends BucketAggregationBase
+public class CompositeAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<CompositeAggregation.Builder, CompositeAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<CompositeAggregationFields.Builder, CompositeAggregationFields> {
 
     @Nonnull
     private final Map<String, FieldValue> after;
@@ -75,23 +77,16 @@ public class CompositeAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private CompositeAggregation(Builder builder) {
-        super(builder);
+    private CompositeAggregationFields(Builder builder) {
         this.after = ApiTypeHelper.unmodifiable(builder.after);
         this.size = builder.size;
         this.sources = ApiTypeHelper.unmodifiable(builder.sources);
     }
 
-    public static CompositeAggregation of(Function<CompositeAggregation.Builder, ObjectBuilder<CompositeAggregation>> fn) {
+    public static CompositeAggregationFields of(
+        Function<CompositeAggregationFields.Builder, ObjectBuilder<CompositeAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Composite;
     }
 
     /**
@@ -124,8 +119,17 @@ public class CompositeAggregation extends BucketAggregationBase
         return this.sources;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (ApiTypeHelper.isDefined(this.after)) {
             generator.writeKey("after");
             generator.writeStartObject();
@@ -172,11 +176,9 @@ public class CompositeAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link CompositeAggregation}.
+     * Builder for {@link CompositeAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, CompositeAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CompositeAggregationFields> {
         @Nullable
         private Map<String, FieldValue> after;
         @Nullable
@@ -186,15 +188,13 @@ public class CompositeAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(CompositeAggregation o) {
-            super(o);
+        private Builder(CompositeAggregationFields o) {
             this.after = _mapCopy(o.after);
             this.size = o.size;
             this.sources = _listCopy(o.sources);
         }
 
         private Builder(Builder o) {
-            super(o);
             this.after = _mapCopy(o.after);
             this.size = o.size;
             this.sources = _listCopy(o.sources);
@@ -204,12 +204,6 @@ public class CompositeAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -295,31 +289,30 @@ public class CompositeAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link CompositeAggregation}.
+         * Builds a {@link CompositeAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CompositeAggregation build() {
+        public CompositeAggregationFields build() {
             _checkSingleUse();
 
-            return new CompositeAggregation(this);
+            return new CompositeAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CompositeAggregation}
+     * Json deserializer for {@link CompositeAggregationFields}
      */
-    public static final JsonpDeserializer<CompositeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<CompositeAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        CompositeAggregation::setupCompositeAggregationDeserializer
+        CompositeAggregationFields::setupCompositeAggregationFieldsDeserializer
     );
 
-    protected static void setupCompositeAggregationDeserializer(ObjectDeserializer<CompositeAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupCompositeAggregationFieldsDeserializer(ObjectDeserializer<CompositeAggregationFields.Builder> op) {
         op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "after");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(
@@ -331,7 +324,7 @@ public class CompositeAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.after);
         result = 31 * result + Objects.hashCode(this.size);
         result = 31 * result + Objects.hashCode(this.sources);
@@ -340,12 +333,9 @@ public class CompositeAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CompositeAggregation other = (CompositeAggregation) o;
+        CompositeAggregationFields other = (CompositeAggregationFields) o;
         return Objects.equals(this.after, other.after)
             && Objects.equals(this.size, other.size)
             && Objects.equals(this.sources, other.sources);

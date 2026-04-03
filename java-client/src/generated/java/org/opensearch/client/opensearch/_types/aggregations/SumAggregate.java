@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SumAggregate extends SingleMetricAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<SumAggregate.Builder, SumAggregate> {
+public class SumAggregate extends SingleMetricAggregateBase implements ToCopyableBuilder<SumAggregate.Builder, SumAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class SumAggregate extends SingleMetricAggregateBase
 
     public static SumAggregate of(Function<SumAggregate.Builder, ObjectBuilder<SumAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Sum;
     }
 
     // ---------------------------------------------------------------------------------------------

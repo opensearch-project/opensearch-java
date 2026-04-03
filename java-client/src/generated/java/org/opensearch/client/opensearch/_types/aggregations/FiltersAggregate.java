@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<FiltersAggregate.Builder, FiltersAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
 
     public static FiltersAggregate of(Function<FiltersAggregate.Builder, ObjectBuilder<FiltersAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Filters;
     }
 
     // ---------------------------------------------------------------------------------------------

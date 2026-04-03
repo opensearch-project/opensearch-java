@@ -47,59 +47,56 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.LongTermsBucket
+// typedef: _types.aggregations.ChildrenAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LongTermsBucket extends TermsBucketBase implements ToCopyableBuilder<LongTermsBucket.Builder, LongTermsBucket> {
-
-    @Nonnull
-    private final LongTermsBucketKey key;
+public class ChildrenAggregationFields
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ChildrenAggregationFields.Builder, ChildrenAggregationFields> {
 
     @Nullable
-    private final String keyAsString;
+    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
-    private LongTermsBucket(Builder builder) {
-        super(builder);
-        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-        this.keyAsString = builder.keyAsString;
+    private ChildrenAggregationFields(Builder builder) {
+        this.type = builder.type;
     }
 
-    public static LongTermsBucket of(Function<LongTermsBucket.Builder, ObjectBuilder<LongTermsBucket>> fn) {
+    public static ChildrenAggregationFields of(Function<ChildrenAggregationFields.Builder, ObjectBuilder<ChildrenAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code key}
+     * API name: {@code type}
      */
-    @Nonnull
-    public final LongTermsBucketKey key() {
-        return this.key;
+    @Nullable
+    public final String type() {
+        return this.type;
     }
 
     /**
-     * API name: {@code key_as_string}
+     * Serialize this object to JSON.
      */
-    @Nullable
-    public final String keyAsString() {
-        return this.keyAsString;
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        generator.writeKey("key");
-        this.key.serialize(generator, mapper);
-
-        if (this.keyAsString != null) {
-            generator.writeKey("key_as_string");
-            generator.write(this.keyAsString);
+        if (this.type != null) {
+            generator.writeKey("type");
+            generator.write(this.type);
         }
     }
 
@@ -117,25 +114,20 @@ public class LongTermsBucket extends TermsBucketBase implements ToCopyableBuilde
     }
 
     /**
-     * Builder for {@link LongTermsBucket}.
+     * Builder for {@link ChildrenAggregationFields}.
      */
-    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, LongTermsBucket> {
-        private LongTermsBucketKey key;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ChildrenAggregationFields> {
         @Nullable
-        private String keyAsString;
+        private String type;
 
         public Builder() {}
 
-        private Builder(LongTermsBucket o) {
-            super(o);
-            this.key = o.key;
-            this.keyAsString = o.keyAsString;
+        private Builder(ChildrenAggregationFields o) {
+            this.type = o.type;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.key = o.key;
-            this.keyAsString = o.keyAsString;
+            this.type = o.type;
         }
 
         @Override
@@ -144,84 +136,55 @@ public class LongTermsBucket extends TermsBucketBase implements ToCopyableBuilde
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code type}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder type(@Nullable String value) {
+            this.type = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code key}
-         */
-        @Nonnull
-        public final Builder key(LongTermsBucketKey value) {
-            this.key = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code key}
-         */
-        @Nonnull
-        public final Builder key(Function<LongTermsBucketKey.Builder, ObjectBuilder<LongTermsBucketKey>> fn) {
-            return key(fn.apply(new LongTermsBucketKey.Builder()).build());
-        }
-
-        /**
-         * API name: {@code key_as_string}
-         */
-        @Nonnull
-        public final Builder keyAsString(@Nullable String value) {
-            this.keyAsString = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link LongTermsBucket}.
+         * Builds a {@link ChildrenAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public LongTermsBucket build() {
+        public ChildrenAggregationFields build() {
             _checkSingleUse();
 
-            return new LongTermsBucket(this);
+            return new ChildrenAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link LongTermsBucket}
+     * Json deserializer for {@link ChildrenAggregationFields}
      */
-    public static final JsonpDeserializer<LongTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ChildrenAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        LongTermsBucket::setupLongTermsBucketDeserializer
+        ChildrenAggregationFields::setupChildrenAggregationFieldsDeserializer
     );
 
-    protected static void setupLongTermsBucketDeserializer(ObjectDeserializer<LongTermsBucket.Builder> op) {
-        setupTermsBucketBaseDeserializer(op);
-        op.add(Builder::key, LongTermsBucketKey._DESERIALIZER, "key");
-        op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
+    protected static void setupChildrenAggregationFieldsDeserializer(ObjectDeserializer<ChildrenAggregationFields.Builder> op) {
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + this.key.hashCode();
-        result = 31 * result + Objects.hashCode(this.keyAsString);
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        LongTermsBucket other = (LongTermsBucket) o;
-        return this.key.equals(other.key) && Objects.equals(this.keyAsString, other.keyAsString);
+        ChildrenAggregationFields other = (ChildrenAggregationFields) o;
+        return Objects.equals(this.type, other.type);
     }
 }

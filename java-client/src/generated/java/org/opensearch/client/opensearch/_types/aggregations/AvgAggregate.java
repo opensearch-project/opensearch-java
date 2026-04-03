@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AvgAggregate extends SingleMetricAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<AvgAggregate.Builder, AvgAggregate> {
+public class AvgAggregate extends SingleMetricAggregateBase implements ToCopyableBuilder<AvgAggregate.Builder, AvgAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class AvgAggregate extends SingleMetricAggregateBase
 
     public static AvgAggregate of(Function<AvgAggregate.Builder, ObjectBuilder<AvgAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Avg;
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class HdrPercentilesAggregate extends PercentilesAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<HdrPercentilesAggregate.Builder, HdrPercentilesAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase
 
     public static HdrPercentilesAggregate of(Function<HdrPercentilesAggregate.Builder, ObjectBuilder<HdrPercentilesAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.HdrPercentiles;
     }
 
     // ---------------------------------------------------------------------------------------------

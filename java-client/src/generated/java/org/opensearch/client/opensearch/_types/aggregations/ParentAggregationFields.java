@@ -47,57 +47,56 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.SamplerAggregation
+// typedef: _types.aggregations.ParentAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SamplerAggregation extends BucketAggregationBase
+public class ParentAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<SamplerAggregation.Builder, SamplerAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<ParentAggregationFields.Builder, ParentAggregationFields> {
 
     @Nullable
-    private final Integer shardSize;
+    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
-    private SamplerAggregation(Builder builder) {
-        super(builder);
-        this.shardSize = builder.shardSize;
+    private ParentAggregationFields(Builder builder) {
+        this.type = builder.type;
     }
 
-    public static SamplerAggregation of(Function<SamplerAggregation.Builder, ObjectBuilder<SamplerAggregation>> fn) {
+    public static ParentAggregationFields of(Function<ParentAggregationFields.Builder, ObjectBuilder<ParentAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * {@link Aggregation} variant kind.
+     * API name: {@code type}
      */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Sampler;
+    @Nullable
+    public final String type() {
+        return this.type;
     }
 
     /**
-     * Limits how many top-scoring documents are collected in the sample processed on each shard.
-     * <p>
-     * API name: {@code shard_size}
-     * </p>
+     * Serialize this object to JSON.
      */
-    @Nullable
-    public final Integer shardSize() {
-        return this.shardSize;
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        if (this.shardSize != null) {
-            generator.writeKey("shard_size");
-            generator.write(this.shardSize);
+        if (this.type != null) {
+            generator.writeKey("type");
+            generator.write(this.type);
         }
     }
 
@@ -115,24 +114,20 @@ public class SamplerAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link SamplerAggregation}.
+     * Builder for {@link ParentAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, SamplerAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ParentAggregationFields> {
         @Nullable
-        private Integer shardSize;
+        private String type;
 
         public Builder() {}
 
-        private Builder(SamplerAggregation o) {
-            super(o);
-            this.shardSize = o.shardSize;
+        private Builder(ParentAggregationFields o) {
+            this.type = o.type;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.shardSize = o.shardSize;
+            this.type = o.type;
         }
 
         @Override
@@ -141,68 +136,55 @@ public class SamplerAggregation extends BucketAggregationBase
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * Limits how many top-scoring documents are collected in the sample processed on each shard.
-         * <p>
-         * API name: {@code shard_size}
-         * </p>
+         * API name: {@code type}
          */
         @Nonnull
-        public final Builder shardSize(@Nullable Integer value) {
-            this.shardSize = value;
+        public final Builder type(@Nullable String value) {
+            this.type = value;
             return this;
         }
 
         /**
-         * Builds a {@link SamplerAggregation}.
+         * Builds a {@link ParentAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public SamplerAggregation build() {
+        public ParentAggregationFields build() {
             _checkSingleUse();
 
-            return new SamplerAggregation(this);
+            return new ParentAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SamplerAggregation}
+     * Json deserializer for {@link ParentAggregationFields}
      */
-    public static final JsonpDeserializer<SamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ParentAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SamplerAggregation::setupSamplerAggregationDeserializer
+        ParentAggregationFields::setupParentAggregationFieldsDeserializer
     );
 
-    protected static void setupSamplerAggregationDeserializer(ObjectDeserializer<SamplerAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
-        op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
+    protected static void setupParentAggregationFieldsDeserializer(ObjectDeserializer<ParentAggregationFields.Builder> op) {
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.shardSize);
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        SamplerAggregation other = (SamplerAggregation) o;
-        return Objects.equals(this.shardSize, other.shardSize);
+        ParentAggregationFields other = (ParentAggregationFields) o;
+        return Objects.equals(this.type, other.type);
     }
 }

@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StatsAggregate extends StatsAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<StatsAggregate.Builder, StatsAggregate> {
+public class StatsAggregate extends StatsAggregateBase implements ToCopyableBuilder<StatsAggregate.Builder, StatsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class StatsAggregate extends StatsAggregateBase
 
     public static StatsAggregate of(Function<StatsAggregate.Builder, ObjectBuilder<StatsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Stats;
     }
 
     // ---------------------------------------------------------------------------------------------

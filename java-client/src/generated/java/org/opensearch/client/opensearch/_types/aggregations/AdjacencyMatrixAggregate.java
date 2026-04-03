@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<AdjacencyMatrixBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<AdjacencyMatrixAggregate.Builder, AdjacencyMatrixAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 
     public static AdjacencyMatrixAggregate of(Function<AdjacencyMatrixAggregate.Builder, ObjectBuilder<AdjacencyMatrixAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.AdjacencyMatrix;
     }
 
     // ---------------------------------------------------------------------------------------------

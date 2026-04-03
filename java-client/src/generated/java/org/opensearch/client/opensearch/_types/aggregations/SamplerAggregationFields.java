@@ -47,57 +47,59 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.DoubleTermsBucket
+// typedef: _types.aggregations.SamplerAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DoubleTermsBucket extends TermsBucketBase implements ToCopyableBuilder<DoubleTermsBucket.Builder, DoubleTermsBucket> {
-
-    private final double key;
+public class SamplerAggregationFields
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SamplerAggregationFields.Builder, SamplerAggregationFields> {
 
     @Nullable
-    private final String keyAsString;
+    private final Integer shardSize;
 
     // ---------------------------------------------------------------------------------------------
 
-    private DoubleTermsBucket(Builder builder) {
-        super(builder);
-        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-        this.keyAsString = builder.keyAsString;
+    private SamplerAggregationFields(Builder builder) {
+        this.shardSize = builder.shardSize;
     }
 
-    public static DoubleTermsBucket of(Function<DoubleTermsBucket.Builder, ObjectBuilder<DoubleTermsBucket>> fn) {
+    public static SamplerAggregationFields of(Function<SamplerAggregationFields.Builder, ObjectBuilder<SamplerAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code key}
+     * Limits how many top-scoring documents are collected in the sample processed on each shard.
+     * <p>
+     * API name: {@code shard_size}
+     * </p>
      */
-    public final double key() {
-        return this.key;
+    @Nullable
+    public final Integer shardSize() {
+        return this.shardSize;
     }
 
     /**
-     * API name: {@code key_as_string}
+     * Serialize this object to JSON.
      */
-    @Nullable
-    public final String keyAsString() {
-        return this.keyAsString;
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        generator.writeKey("key");
-        generator.write(this.key);
-
-        if (this.keyAsString != null) {
-            generator.writeKey("key_as_string");
-            generator.write(this.keyAsString);
+        if (this.shardSize != null) {
+            generator.writeKey("shard_size");
+            generator.write(this.shardSize);
         }
     }
 
@@ -115,25 +117,20 @@ public class DoubleTermsBucket extends TermsBucketBase implements ToCopyableBuil
     }
 
     /**
-     * Builder for {@link DoubleTermsBucket}.
+     * Builder for {@link SamplerAggregationFields}.
      */
-    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DoubleTermsBucket> {
-        private Double key;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SamplerAggregationFields> {
         @Nullable
-        private String keyAsString;
+        private Integer shardSize;
 
         public Builder() {}
 
-        private Builder(DoubleTermsBucket o) {
-            super(o);
-            this.key = o.key;
-            this.keyAsString = o.keyAsString;
+        private Builder(SamplerAggregationFields o) {
+            this.shardSize = o.shardSize;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.key = o.key;
-            this.keyAsString = o.keyAsString;
+            this.shardSize = o.shardSize;
         }
 
         @Override
@@ -142,76 +139,58 @@ public class DoubleTermsBucket extends TermsBucketBase implements ToCopyableBuil
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * Required - API name: {@code key}
+         * Limits how many top-scoring documents are collected in the sample processed on each shard.
+         * <p>
+         * API name: {@code shard_size}
+         * </p>
          */
         @Nonnull
-        public final Builder key(double value) {
-            this.key = value;
+        public final Builder shardSize(@Nullable Integer value) {
+            this.shardSize = value;
             return this;
         }
 
         /**
-         * API name: {@code key_as_string}
-         */
-        @Nonnull
-        public final Builder keyAsString(@Nullable String value) {
-            this.keyAsString = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link DoubleTermsBucket}.
+         * Builds a {@link SamplerAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public DoubleTermsBucket build() {
+        public SamplerAggregationFields build() {
             _checkSingleUse();
 
-            return new DoubleTermsBucket(this);
+            return new SamplerAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DoubleTermsBucket}
+     * Json deserializer for {@link SamplerAggregationFields}
      */
-    public static final JsonpDeserializer<DoubleTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SamplerAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DoubleTermsBucket::setupDoubleTermsBucketDeserializer
+        SamplerAggregationFields::setupSamplerAggregationFieldsDeserializer
     );
 
-    protected static void setupDoubleTermsBucketDeserializer(ObjectDeserializer<DoubleTermsBucket.Builder> op) {
-        setupTermsBucketBaseDeserializer(op);
-        op.add(Builder::key, JsonpDeserializer.doubleDeserializer(), "key");
-        op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
+    protected static void setupSamplerAggregationFieldsDeserializer(ObjectDeserializer<SamplerAggregationFields.Builder> op) {
+        op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Double.hashCode(this.key);
-        result = 31 * result + Objects.hashCode(this.keyAsString);
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.shardSize);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        DoubleTermsBucket other = (DoubleTermsBucket) o;
-        return this.key == other.key && Objects.equals(this.keyAsString, other.keyAsString);
+        SamplerAggregationFields other = (SamplerAggregationFields) o;
+        return Objects.equals(this.shardSize, other.shardSize);
     }
 }
