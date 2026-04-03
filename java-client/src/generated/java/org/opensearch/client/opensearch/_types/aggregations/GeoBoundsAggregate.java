@@ -47,19 +47,18 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoBounds;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.GeoBoundsAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoBoundsAggregate extends AggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<GeoBoundsAggregate.Builder, GeoBoundsAggregate> {
+public class GeoBoundsAggregate implements PlainJsonSerializable, ToCopyableBuilder<GeoBoundsAggregate.Builder, GeoBoundsAggregate> {
 
     @Nullable
     private final GeoBounds bounds;
@@ -67,20 +66,11 @@ public class GeoBoundsAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private GeoBoundsAggregate(Builder builder) {
-        super(builder);
         this.bounds = builder.bounds;
     }
 
     public static GeoBoundsAggregate of(Function<GeoBoundsAggregate.Builder, ObjectBuilder<GeoBoundsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.GeoBounds;
     }
 
     /**
@@ -91,8 +81,17 @@ public class GeoBoundsAggregate extends AggregateBase
         return this.bounds;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.bounds != null) {
             generator.writeKey("bounds");
             this.bounds.serialize(generator, mapper);
@@ -115,19 +114,17 @@ public class GeoBoundsAggregate extends AggregateBase
     /**
      * Builder for {@link GeoBoundsAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GeoBoundsAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoBoundsAggregate> {
         @Nullable
         private GeoBounds bounds;
 
         public Builder() {}
 
         private Builder(GeoBoundsAggregate o) {
-            super(o);
             this.bounds = o.bounds;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.bounds = o.bounds;
         }
 
@@ -135,12 +132,6 @@ public class GeoBoundsAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -185,22 +176,18 @@ public class GeoBoundsAggregate extends AggregateBase
     );
 
     protected static void setupGeoBoundsAggregateDeserializer(ObjectDeserializer<GeoBoundsAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.bounds);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         GeoBoundsAggregate other = (GeoBoundsAggregate) o;

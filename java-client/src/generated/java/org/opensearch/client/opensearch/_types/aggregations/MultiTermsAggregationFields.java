@@ -48,19 +48,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.MultiTermsAggregation
+// typedef: _types.aggregations.MultiTermsAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MultiTermsAggregation extends BucketAggregationBase
+public class MultiTermsAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<MultiTermsAggregation.Builder, MultiTermsAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<MultiTermsAggregationFields.Builder, MultiTermsAggregationFields> {
 
     @Nullable
     private final TermsAggregationCollectMode collectMode;
@@ -88,8 +90,7 @@ public class MultiTermsAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private MultiTermsAggregation(Builder builder) {
-        super(builder);
+    private MultiTermsAggregationFields(Builder builder) {
         this.collectMode = builder.collectMode;
         this.minDocCount = builder.minDocCount;
         this.order = builder.order;
@@ -100,16 +101,10 @@ public class MultiTermsAggregation extends BucketAggregationBase
         this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
     }
 
-    public static MultiTermsAggregation of(Function<MultiTermsAggregation.Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+    public static MultiTermsAggregationFields of(
+        Function<MultiTermsAggregationFields.Builder, ObjectBuilder<MultiTermsAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MultiTerms;
     }
 
     /**
@@ -195,8 +190,17 @@ public class MultiTermsAggregation extends BucketAggregationBase
         return this.terms;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.collectMode != null) {
             generator.writeKey("collect_mode");
             this.collectMode.serialize(generator, mapper);
@@ -254,11 +258,9 @@ public class MultiTermsAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link MultiTermsAggregation}.
+     * Builder for {@link MultiTermsAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, MultiTermsAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, MultiTermsAggregationFields> {
         @Nullable
         private TermsAggregationCollectMode collectMode;
         @Nullable
@@ -277,8 +279,7 @@ public class MultiTermsAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(MultiTermsAggregation o) {
-            super(o);
+        private Builder(MultiTermsAggregationFields o) {
             this.collectMode = o.collectMode;
             this.minDocCount = o.minDocCount;
             this.order = o.order;
@@ -290,7 +291,6 @@ public class MultiTermsAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.collectMode = o.collectMode;
             this.minDocCount = o.minDocCount;
             this.order = o.order;
@@ -305,12 +305,6 @@ public class MultiTermsAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -448,31 +442,30 @@ public class MultiTermsAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link MultiTermsAggregation}.
+         * Builds a {@link MultiTermsAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public MultiTermsAggregation build() {
+        public MultiTermsAggregationFields build() {
             _checkSingleUse();
 
-            return new MultiTermsAggregation(this);
+            return new MultiTermsAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link MultiTermsAggregation}
+     * Json deserializer for {@link MultiTermsAggregationFields}
      */
-    public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<MultiTermsAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        MultiTermsAggregation::setupMultiTermsAggregationDeserializer
+        MultiTermsAggregationFields::setupMultiTermsAggregationFieldsDeserializer
     );
 
-    protected static void setupMultiTermsAggregationDeserializer(ObjectDeserializer<MultiTermsAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupMultiTermsAggregationFieldsDeserializer(ObjectDeserializer<MultiTermsAggregationFields.Builder> op) {
         op.add(Builder::collectMode, TermsAggregationCollectMode._DESERIALIZER, "collect_mode");
         op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
         op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
@@ -485,7 +478,7 @@ public class MultiTermsAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.collectMode);
         result = 31 * result + Objects.hashCode(this.minDocCount);
         result = 31 * result + Objects.hashCode(this.order);
@@ -499,12 +492,9 @@ public class MultiTermsAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        MultiTermsAggregation other = (MultiTermsAggregation) o;
+        MultiTermsAggregationFields other = (MultiTermsAggregationFields) o;
         return Objects.equals(this.collectMode, other.collectMode)
             && Objects.equals(this.minDocCount, other.minDocCount)
             && Objects.equals(this.order, other.order)

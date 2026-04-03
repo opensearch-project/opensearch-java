@@ -264,7 +264,12 @@ public class GetJudgmentsResponse<TDocument>
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (ApiTypeHelper.isDefined(this.aggregations)) {
             generator.writeKey("aggregations");
-            ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
+            generator.writeStartObject();
+            for (Map.Entry<String, Aggregate> item0 : this.aggregations.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
 
         if (this.clusters != null) {
@@ -697,7 +702,7 @@ public class GetJudgmentsResponse<TDocument>
         ObjectDeserializer<GetJudgmentsResponse.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
+        op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregate._DESERIALIZER), "aggregations");
         op.add(Builder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
         op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
         op.add(Builder::numReducePhases, JsonpDeserializer.integerDeserializer(), "num_reduce_phases");

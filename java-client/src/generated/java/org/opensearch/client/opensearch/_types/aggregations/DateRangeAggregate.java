@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DateRangeAggregate extends RangeAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<DateRangeAggregate.Builder, DateRangeAggregate> {
+public class DateRangeAggregate extends RangeAggregateBase implements ToCopyableBuilder<DateRangeAggregate.Builder, DateRangeAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class DateRangeAggregate extends RangeAggregateBase
 
     public static DateRangeAggregate of(Function<DateRangeAggregate.Builder, ObjectBuilder<DateRangeAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.DateRange;
     }
 
     // ---------------------------------------------------------------------------------------------

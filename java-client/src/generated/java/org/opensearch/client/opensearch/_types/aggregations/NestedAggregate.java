@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NestedAggregate extends SingleBucketAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<NestedAggregate.Builder, NestedAggregate> {
+public class NestedAggregate extends SingleBucketAggregateBase implements ToCopyableBuilder<NestedAggregate.Builder, NestedAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class NestedAggregate extends SingleBucketAggregateBase
 
     public static NestedAggregate of(Function<NestedAggregate.Builder, ObjectBuilder<NestedAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Nested;
     }
 
     // ---------------------------------------------------------------------------------------------

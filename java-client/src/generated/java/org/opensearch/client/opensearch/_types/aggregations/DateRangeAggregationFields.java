@@ -48,20 +48,22 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.DateRangeAggregation
+// typedef: _types.aggregations.DateRangeAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DateRangeAggregation extends BucketAggregationBase
+public class DateRangeAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<DateRangeAggregation.Builder, DateRangeAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<DateRangeAggregationFields.Builder, DateRangeAggregationFields> {
 
     @Nullable
     private final String field;
@@ -83,8 +85,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private DateRangeAggregation(Builder builder) {
-        super(builder);
+    private DateRangeAggregationFields(Builder builder) {
         this.field = builder.field;
         this.format = builder.format;
         this.keyed = builder.keyed;
@@ -93,16 +94,10 @@ public class DateRangeAggregation extends BucketAggregationBase
         this.timeZone = builder.timeZone;
     }
 
-    public static DateRangeAggregation of(Function<DateRangeAggregation.Builder, ObjectBuilder<DateRangeAggregation>> fn) {
+    public static DateRangeAggregationFields of(
+        Function<DateRangeAggregationFields.Builder, ObjectBuilder<DateRangeAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.DateRange;
     }
 
     /**
@@ -162,8 +157,17 @@ public class DateRangeAggregation extends BucketAggregationBase
         return this.timeZone;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -213,11 +217,9 @@ public class DateRangeAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link DateRangeAggregation}.
+     * Builder for {@link DateRangeAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, DateRangeAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DateRangeAggregationFields> {
         @Nullable
         private String field;
         @Nullable
@@ -233,8 +235,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(DateRangeAggregation o) {
-            super(o);
+        private Builder(DateRangeAggregationFields o) {
             this.field = o.field;
             this.format = o.format;
             this.keyed = o.keyed;
@@ -244,7 +245,6 @@ public class DateRangeAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.field = o.field;
             this.format = o.format;
             this.keyed = o.keyed;
@@ -257,12 +257,6 @@ public class DateRangeAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -372,31 +366,30 @@ public class DateRangeAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link DateRangeAggregation}.
+         * Builds a {@link DateRangeAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public DateRangeAggregation build() {
+        public DateRangeAggregationFields build() {
             _checkSingleUse();
 
-            return new DateRangeAggregation(this);
+            return new DateRangeAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DateRangeAggregation}
+     * Json deserializer for {@link DateRangeAggregationFields}
      */
-    public static final JsonpDeserializer<DateRangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DateRangeAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DateRangeAggregation::setupDateRangeAggregationDeserializer
+        DateRangeAggregationFields::setupDateRangeAggregationFieldsDeserializer
     );
 
-    protected static void setupDateRangeAggregationDeserializer(ObjectDeserializer<DateRangeAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupDateRangeAggregationFieldsDeserializer(ObjectDeserializer<DateRangeAggregationFields.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
@@ -407,7 +400,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.keyed);
@@ -419,12 +412,9 @@ public class DateRangeAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        DateRangeAggregation other = (DateRangeAggregation) o;
+        DateRangeAggregationFields other = (DateRangeAggregationFields) o;
         return Objects.equals(this.field, other.field)
             && Objects.equals(this.format, other.format)
             && Objects.equals(this.keyed, other.keyed)

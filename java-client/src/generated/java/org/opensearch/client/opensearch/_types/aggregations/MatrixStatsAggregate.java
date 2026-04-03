@@ -48,19 +48,18 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.MatrixStatsAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MatrixStatsAggregate extends AggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<MatrixStatsAggregate.Builder, MatrixStatsAggregate> {
+public class MatrixStatsAggregate implements PlainJsonSerializable, ToCopyableBuilder<MatrixStatsAggregate.Builder, MatrixStatsAggregate> {
 
     private final long docCount;
 
@@ -70,21 +69,12 @@ public class MatrixStatsAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private MatrixStatsAggregate(Builder builder) {
-        super(builder);
         this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
     }
 
     public static MatrixStatsAggregate of(Function<MatrixStatsAggregate.Builder, ObjectBuilder<MatrixStatsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.MatrixStats;
     }
 
     /**
@@ -102,8 +92,17 @@ public class MatrixStatsAggregate extends AggregateBase
         return this.fields;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("doc_count");
         generator.write(this.docCount);
 
@@ -133,7 +132,7 @@ public class MatrixStatsAggregate extends AggregateBase
     /**
      * Builder for {@link MatrixStatsAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, MatrixStatsAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, MatrixStatsAggregate> {
         private Long docCount;
         @Nullable
         private List<MatrixStatsFields> fields;
@@ -141,13 +140,11 @@ public class MatrixStatsAggregate extends AggregateBase
         public Builder() {}
 
         private Builder(MatrixStatsAggregate o) {
-            super(o);
             this.docCount = o.docCount;
             this.fields = _listCopy(o.fields);
         }
 
         private Builder(Builder o) {
-            super(o);
             this.docCount = o.docCount;
             this.fields = _listCopy(o.fields);
         }
@@ -156,12 +153,6 @@ public class MatrixStatsAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -236,14 +227,13 @@ public class MatrixStatsAggregate extends AggregateBase
     );
 
     protected static void setupMatrixStatsAggregateDeserializer(ObjectDeserializer<MatrixStatsAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(MatrixStatsFields._DESERIALIZER), "fields");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Long.hashCode(this.docCount);
         result = 31 * result + Objects.hashCode(this.fields);
         return result;
@@ -251,9 +241,6 @@ public class MatrixStatsAggregate extends AggregateBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         MatrixStatsAggregate other = (MatrixStatsAggregate) o;

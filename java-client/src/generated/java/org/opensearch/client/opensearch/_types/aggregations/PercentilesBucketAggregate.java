@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PercentilesBucketAggregate extends PercentilesAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<PercentilesBucketAggregate.Builder, PercentilesBucketAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase
         Function<PercentilesBucketAggregate.Builder, ObjectBuilder<PercentilesBucketAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.PercentilesBucket;
     }
 
     // ---------------------------------------------------------------------------------------------

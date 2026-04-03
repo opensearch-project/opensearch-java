@@ -44,7 +44,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -60,21 +59,14 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.TermsAggregation
+// typedef: _types.aggregations.TermsAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TermsAggregation
+public class TermsAggregationFields
     implements
-        AggregationVariant,
         PlainJsonSerializable,
-        ToCopyableBuilder<TermsAggregation.Builder, TermsAggregation> {
-
-    @Nonnull
-    private final Map<String, Aggregation> aggregations;
-
-    @Nonnull
-    private final Map<String, Aggregation> aggs;
+        ToCopyableBuilder<TermsAggregationFields.Builder, TermsAggregationFields> {
 
     @Nullable
     private final TermsAggregationCollectMode collectMode;
@@ -94,17 +86,11 @@ public class TermsAggregation
     @Nullable
     private final TermsInclude include;
 
-    @Nonnull
-    private final Map<String, JsonData> meta;
-
     @Nullable
     private final Long minDocCount;
 
     @Nullable
     private final FieldValue missing;
-
-    @Nullable
-    private final String name;
 
     @Nonnull
     private final List<Map<String, SortOrder>> order;
@@ -129,19 +115,15 @@ public class TermsAggregation
 
     // ---------------------------------------------------------------------------------------------
 
-    private TermsAggregation(Builder builder) {
-        this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
-        this.aggs = ApiTypeHelper.unmodifiable(builder.aggs);
+    private TermsAggregationFields(Builder builder) {
         this.collectMode = builder.collectMode;
         this.exclude = builder.exclude;
         this.executionHint = builder.executionHint;
         this.field = builder.field;
         this.format = builder.format;
         this.include = builder.include;
-        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
         this.minDocCount = builder.minDocCount;
         this.missing = builder.missing;
-        this.name = builder.name;
         this.order = ApiTypeHelper.unmodifiable(builder.order);
         this.script = builder.script;
         this.shardMinDocCount = builder.shardMinDocCount;
@@ -151,38 +133,8 @@ public class TermsAggregation
         this.valueType = builder.valueType;
     }
 
-    public static TermsAggregation of(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+    public static TermsAggregationFields of(Function<TermsAggregationFields.Builder, ObjectBuilder<TermsAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Terms;
-    }
-
-    /**
-     * Sub-aggregations for this bucket aggregation
-     * <p>
-     * API name: {@code aggregations}
-     * </p>
-     */
-    @Nonnull
-    public final Map<String, Aggregation> aggregations() {
-        return this.aggregations;
-    }
-
-    /**
-     * Sub-aggregations for this bucket aggregation
-     * <p>
-     * API name: {@code aggs}
-     * </p>
-     */
-    @Nonnull
-    public final Map<String, Aggregation> aggs() {
-        return this.aggs;
     }
 
     /**
@@ -234,14 +186,6 @@ public class TermsAggregation
     }
 
     /**
-     * API name: {@code meta}
-     */
-    @Nonnull
-    public final Map<String, JsonData> meta() {
-        return this.meta;
-    }
-
-    /**
      * Only return values that are found in more than <code>min_doc_count</code> hits.
      * <p>
      * API name: {@code min_doc_count}
@@ -258,14 +202,6 @@ public class TermsAggregation
     @Nullable
     public final FieldValue missing() {
         return this.missing;
-    }
-
-    /**
-     * API name: {@code name}
-     */
-    @Nullable
-    public final String name() {
-        return this.name;
     }
 
     /**
@@ -352,26 +288,6 @@ public class TermsAggregation
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.aggregations)) {
-            generator.writeKey("aggregations");
-            generator.writeStartObject();
-            for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-
-        if (ApiTypeHelper.isDefined(this.aggs)) {
-            generator.writeKey("aggs");
-            generator.writeStartObject();
-            for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-
         if (this.collectMode != null) {
             generator.writeKey("collect_mode");
             this.collectMode.serialize(generator, mapper);
@@ -402,16 +318,6 @@ public class TermsAggregation
             this.include.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.meta)) {
-            generator.writeKey("meta");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-
         if (this.minDocCount != null) {
             generator.writeKey("min_doc_count");
             generator.write(this.minDocCount);
@@ -420,11 +326,6 @@ public class TermsAggregation
         if (this.missing != null) {
             generator.writeKey("missing");
             this.missing.serialize(generator, mapper);
-        }
-
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
         }
 
         if (ApiTypeHelper.isDefined(this.order)) {
@@ -488,13 +389,9 @@ public class TermsAggregation
     }
 
     /**
-     * Builder for {@link TermsAggregation}.
+     * Builder for {@link TermsAggregationFields}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsAggregation> {
-        @Nullable
-        private Map<String, Aggregation> aggregations;
-        @Nullable
-        private Map<String, Aggregation> aggs;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsAggregationFields> {
         @Nullable
         private TermsAggregationCollectMode collectMode;
         @Nullable
@@ -508,13 +405,9 @@ public class TermsAggregation
         @Nullable
         private TermsInclude include;
         @Nullable
-        private Map<String, JsonData> meta;
-        @Nullable
         private Long minDocCount;
         @Nullable
         private FieldValue missing;
-        @Nullable
-        private String name;
         @Nullable
         private List<Map<String, SortOrder>> order;
         @Nullable
@@ -532,19 +425,15 @@ public class TermsAggregation
 
         public Builder() {}
 
-        private Builder(TermsAggregation o) {
-            this.aggregations = _mapCopy(o.aggregations);
-            this.aggs = _mapCopy(o.aggs);
+        private Builder(TermsAggregationFields o) {
             this.collectMode = o.collectMode;
             this.exclude = o.exclude;
             this.executionHint = o.executionHint;
             this.field = o.field;
             this.format = o.format;
             this.include = o.include;
-            this.meta = _mapCopy(o.meta);
             this.minDocCount = o.minDocCount;
             this.missing = o.missing;
-            this.name = o.name;
             this.order = _listCopy(o.order);
             this.script = o.script;
             this.shardMinDocCount = o.shardMinDocCount;
@@ -555,18 +444,14 @@ public class TermsAggregation
         }
 
         private Builder(Builder o) {
-            this.aggregations = _mapCopy(o.aggregations);
-            this.aggs = _mapCopy(o.aggs);
             this.collectMode = o.collectMode;
             this.exclude = o.exclude;
             this.executionHint = o.executionHint;
             this.field = o.field;
             this.format = o.format;
             this.include = o.include;
-            this.meta = _mapCopy(o.meta);
             this.minDocCount = o.minDocCount;
             this.missing = o.missing;
-            this.name = o.name;
             this.order = _listCopy(o.order);
             this.script = o.script;
             this.shardMinDocCount = o.shardMinDocCount;
@@ -580,100 +465,6 @@ public class TermsAggregation
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(Map<String, Aggregation> map) {
-            this.aggregations = _mapPutAll(this.aggregations, map);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(String key, Aggregation value) {
-            this.aggregations = _mapPut(this.aggregations, key, value);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds a value to <code>aggregations</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-            return aggregations(key, fn.apply(new Aggregation.Builder()).build());
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggs}
-         * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>aggs</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggs(Map<String, Aggregation> map) {
-            this.aggs = _mapPutAll(this.aggs, map);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggs}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>aggs</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggs(String key, Aggregation value) {
-            this.aggs = _mapPut(this.aggs, key, value);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this bucket aggregation
-         * <p>
-         * API name: {@code aggs}
-         * </p>
-         *
-         * <p>
-         * Adds a value to <code>aggs</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-            return aggs(key, fn.apply(new Aggregation.Builder()).build());
         }
 
         /**
@@ -747,32 +538,6 @@ public class TermsAggregation
         }
 
         /**
-         * API name: {@code meta}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>meta</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder meta(Map<String, JsonData> map) {
-            this.meta = _mapPutAll(this.meta, map);
-            return this;
-        }
-
-        /**
-         * API name: {@code meta}
-         *
-         * <p>
-         * Adds an entry to <code>meta</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder meta(String key, JsonData value) {
-            this.meta = _mapPut(this.meta, key, value);
-            return this;
-        }
-
-        /**
          * Only return values that are found in more than <code>min_doc_count</code> hits.
          * <p>
          * API name: {@code min_doc_count}
@@ -799,15 +564,6 @@ public class TermsAggregation
         @Nonnull
         public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
             return missing(fn.apply(new FieldValue.Builder()).build());
-        }
-
-        /**
-         * API name: {@code name}
-         */
-        @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
-            return this;
         }
 
         /**
@@ -916,42 +672,38 @@ public class TermsAggregation
         }
 
         /**
-         * Builds a {@link TermsAggregation}.
+         * Builds a {@link TermsAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public TermsAggregation build() {
+        public TermsAggregationFields build() {
             _checkSingleUse();
 
-            return new TermsAggregation(this);
+            return new TermsAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link TermsAggregation}
+     * Json deserializer for {@link TermsAggregationFields}
      */
-    public static final JsonpDeserializer<TermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<TermsAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        TermsAggregation::setupTermsAggregationDeserializer
+        TermsAggregationFields::setupTermsAggregationFieldsDeserializer
     );
 
-    protected static void setupTermsAggregationDeserializer(ObjectDeserializer<TermsAggregation.Builder> op) {
-        op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations");
-        op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+    protected static void setupTermsAggregationFieldsDeserializer(ObjectDeserializer<TermsAggregationFields.Builder> op) {
         op.add(Builder::collectMode, TermsAggregationCollectMode._DESERIALIZER, "collect_mode");
         op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
         op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
-        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
         op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
         op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(
             Builder::order,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(SortOrder._DESERIALIZER)),
@@ -968,18 +720,14 @@ public class TermsAggregation
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.aggregations);
-        result = 31 * result + Objects.hashCode(this.aggs);
         result = 31 * result + Objects.hashCode(this.collectMode);
         result = 31 * result + Objects.hashCode(this.exclude);
         result = 31 * result + Objects.hashCode(this.executionHint);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.include);
-        result = 31 * result + Objects.hashCode(this.meta);
         result = 31 * result + Objects.hashCode(this.minDocCount);
         result = 31 * result + Objects.hashCode(this.missing);
-        result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.order);
         result = 31 * result + Objects.hashCode(this.script);
         result = 31 * result + Objects.hashCode(this.shardMinDocCount);
@@ -994,19 +742,15 @@ public class TermsAggregation
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        TermsAggregation other = (TermsAggregation) o;
-        return Objects.equals(this.aggregations, other.aggregations)
-            && Objects.equals(this.aggs, other.aggs)
-            && Objects.equals(this.collectMode, other.collectMode)
+        TermsAggregationFields other = (TermsAggregationFields) o;
+        return Objects.equals(this.collectMode, other.collectMode)
             && Objects.equals(this.exclude, other.exclude)
             && Objects.equals(this.executionHint, other.executionHint)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.format, other.format)
             && Objects.equals(this.include, other.include)
-            && Objects.equals(this.meta, other.meta)
             && Objects.equals(this.minDocCount, other.minDocCount)
             && Objects.equals(this.missing, other.missing)
-            && Objects.equals(this.name, other.name)
             && Objects.equals(this.order, other.order)
             && Objects.equals(this.script, other.script)
             && Objects.equals(this.shardMinDocCount, other.shardMinDocCount)

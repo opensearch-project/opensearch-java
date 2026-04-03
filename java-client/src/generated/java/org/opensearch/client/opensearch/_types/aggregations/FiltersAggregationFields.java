@@ -47,19 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.FiltersAggregation
+// typedef: _types.aggregations.FiltersAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FiltersAggregation extends BucketAggregationBase
+public class FiltersAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<FiltersAggregation.Builder, FiltersAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<FiltersAggregationFields.Builder, FiltersAggregationFields> {
 
     @Nullable
     private final Buckets<Query> filters;
@@ -75,24 +77,15 @@ public class FiltersAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private FiltersAggregation(Builder builder) {
-        super(builder);
+    private FiltersAggregationFields(Builder builder) {
         this.filters = builder.filters;
         this.keyed = builder.keyed;
         this.otherBucket = builder.otherBucket;
         this.otherBucketKey = builder.otherBucketKey;
     }
 
-    public static FiltersAggregation of(Function<FiltersAggregation.Builder, ObjectBuilder<FiltersAggregation>> fn) {
+    public static FiltersAggregationFields of(Function<FiltersAggregationFields.Builder, ObjectBuilder<FiltersAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Filters;
     }
 
     /**
@@ -137,8 +130,17 @@ public class FiltersAggregation extends BucketAggregationBase
         return this.otherBucketKey;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.filters != null) {
             generator.writeKey("filters");
             this.filters.serialize(generator, mapper);
@@ -174,11 +176,9 @@ public class FiltersAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link FiltersAggregation}.
+     * Builder for {@link FiltersAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, FiltersAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FiltersAggregationFields> {
         @Nullable
         private Buckets<Query> filters;
         @Nullable
@@ -190,8 +190,7 @@ public class FiltersAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(FiltersAggregation o) {
-            super(o);
+        private Builder(FiltersAggregationFields o) {
             this.filters = o.filters;
             this.keyed = o.keyed;
             this.otherBucket = o.otherBucket;
@@ -199,7 +198,6 @@ public class FiltersAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.filters = o.filters;
             this.keyed = o.keyed;
             this.otherBucket = o.otherBucket;
@@ -210,12 +208,6 @@ public class FiltersAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -274,31 +266,30 @@ public class FiltersAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link FiltersAggregation}.
+         * Builds a {@link FiltersAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public FiltersAggregation build() {
+        public FiltersAggregationFields build() {
             _checkSingleUse();
 
-            return new FiltersAggregation(this);
+            return new FiltersAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link FiltersAggregation}
+     * Json deserializer for {@link FiltersAggregationFields}
      */
-    public static final JsonpDeserializer<FiltersAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<FiltersAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        FiltersAggregation::setupFiltersAggregationDeserializer
+        FiltersAggregationFields::setupFiltersAggregationFieldsDeserializer
     );
 
-    protected static void setupFiltersAggregationDeserializer(ObjectDeserializer<FiltersAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupFiltersAggregationFieldsDeserializer(ObjectDeserializer<FiltersAggregationFields.Builder> op) {
         op.add(Builder::filters, Buckets.createBucketsDeserializer(Query._DESERIALIZER), "filters");
         op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
         op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
@@ -307,7 +298,7 @@ public class FiltersAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.filters);
         result = 31 * result + Objects.hashCode(this.keyed);
         result = 31 * result + Objects.hashCode(this.otherBucket);
@@ -317,12 +308,9 @@ public class FiltersAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        FiltersAggregation other = (FiltersAggregation) o;
+        FiltersAggregationFields other = (FiltersAggregationFields) o;
         return Objects.equals(this.filters, other.filters)
             && Objects.equals(this.keyed, other.keyed)
             && Objects.equals(this.otherBucket, other.otherBucket)

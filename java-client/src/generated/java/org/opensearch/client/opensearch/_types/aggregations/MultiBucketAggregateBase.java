@@ -43,13 +43,15 @@ import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.MultiBucketAggregateBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
+public abstract class MultiBucketAggregateBase<TBucket> implements PlainJsonSerializable {
 
     @Nonnull
     private final Buckets<TBucket> buckets;
@@ -57,7 +59,6 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
     // ---------------------------------------------------------------------------------------------
 
     protected MultiBucketAggregateBase(AbstractBuilder<TBucket, ?> builder) {
-        super(builder);
         this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
     }
 
@@ -69,29 +70,38 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
         return this.buckets;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("buckets");
         this.buckets.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    public abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends
-        AggregateBase.AbstractBuilder<BuilderT> {
+    public abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends ObjectBuilderBase {
         private Buckets<TBucket> buckets;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(MultiBucketAggregateBase<TBucket> o) {
-            super(o);
             this.buckets = o.buckets;
         }
 
         protected AbstractBuilder(AbstractBuilder<TBucket, BuilderT> o) {
-            super(o);
             this.buckets = o.buckets;
         }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * Required - API name: {@code buckets}
@@ -117,22 +127,18 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
         ObjectDeserializer<BuilderT> op,
         JsonpDeserializer<TBucket> tBucketDeserializer
     ) {
-        setupAggregateBaseDeserializer(op);
         op.add(AbstractBuilder::buckets, Buckets.createBucketsDeserializer(tBucketDeserializer), "buckets");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + this.buckets.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         MultiBucketAggregateBase<?> other = (MultiBucketAggregateBase<?>) o;

@@ -44,7 +44,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -96,7 +95,10 @@ public abstract class MultiBucketBase implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        ExternallyTaggedUnion.serializeTypedKeysInner(this.aggregations, generator, mapper);
+        for (Map.Entry<String, Aggregate> item0 : this.aggregations.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
+        }
         generator.writeKey("doc_count");
         generator.write(this.docCount);
     }
@@ -179,7 +181,7 @@ public abstract class MultiBucketBase implements PlainJsonSerializable {
             if (builder.aggregations == null) {
                 builder.aggregations = new HashMap<>();
             }
-            Aggregate._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.aggregations);
+            builder.aggregations.put(name, Aggregate._DESERIALIZER.deserialize(parser, mapper));
         });
     }
 

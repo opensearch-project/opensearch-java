@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GeoDistanceAggregate extends RangeAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<GeoDistanceAggregate.Builder, GeoDistanceAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class GeoDistanceAggregate extends RangeAggregateBase
 
     public static GeoDistanceAggregate of(Function<GeoDistanceAggregate.Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.GeoDistance;
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<MedianAbsoluteDeviationAggregate.Builder, MedianAbsoluteDeviationAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase
         Function<MedianAbsoluteDeviationAggregate.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.MedianAbsoluteDeviation;
     }
 
     // ---------------------------------------------------------------------------------------------

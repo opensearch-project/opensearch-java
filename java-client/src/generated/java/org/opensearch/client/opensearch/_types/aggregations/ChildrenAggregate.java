@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ChildrenAggregate extends SingleBucketAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<ChildrenAggregate.Builder, ChildrenAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class ChildrenAggregate extends SingleBucketAggregateBase
 
     public static ChildrenAggregate of(Function<ChildrenAggregate.Builder, ObjectBuilder<ChildrenAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Children;
     }
 
     // ---------------------------------------------------------------------------------------------

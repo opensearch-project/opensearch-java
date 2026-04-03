@@ -58,30 +58,21 @@ public abstract class AggregationBase implements PlainJsonSerializable {
     @Nonnull
     private final Map<String, JsonData> meta;
 
-    @Nullable
-    private final String name;
-
     // ---------------------------------------------------------------------------------------------
 
     protected AggregationBase(AbstractBuilder<?> builder) {
         this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-        this.name = builder.name;
     }
 
     /**
+     * Custom metadata to associate with the aggregation (optional)
+     * <p>
      * API name: {@code meta}
+     * </p>
      */
     @Nonnull
     public final Map<String, JsonData> meta() {
         return this.meta;
-    }
-
-    /**
-     * API name: {@code name}
-     */
-    @Nullable
-    public final String name() {
-        return this.name;
     }
 
     /**
@@ -104,11 +95,6 @@ public abstract class AggregationBase implements PlainJsonSerializable {
             }
             generator.writeEnd();
         }
-
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -116,26 +102,25 @@ public abstract class AggregationBase implements PlainJsonSerializable {
     public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Map<String, JsonData> meta;
-        @Nullable
-        private String name;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(AggregationBase o) {
             this.meta = _mapCopy(o.meta);
-            this.name = o.name;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             this.meta = _mapCopy(o.meta);
-            this.name = o.name;
         }
 
         @Nonnull
         protected abstract BuilderT self();
 
         /**
+         * Custom metadata to associate with the aggregation (optional)
+         * <p>
          * API name: {@code meta}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>meta</code>.
@@ -148,7 +133,10 @@ public abstract class AggregationBase implements PlainJsonSerializable {
         }
 
         /**
+         * Custom metadata to associate with the aggregation (optional)
+         * <p>
          * API name: {@code meta}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>meta</code>.
@@ -159,29 +147,18 @@ public abstract class AggregationBase implements PlainJsonSerializable {
             this.meta = _mapPut(this.meta, key, value);
             return self();
         }
-
-        /**
-         * API name: {@code name}
-         */
-        @Nonnull
-        public final BuilderT name(@Nullable String value) {
-            this.name = value;
-            return self();
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAggregationBaseDeserializer(ObjectDeserializer<BuilderT> op) {
         op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
-        op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.meta);
-        result = 31 * result + Objects.hashCode(this.name);
         return result;
     }
 
@@ -190,6 +167,6 @@ public abstract class AggregationBase implements PlainJsonSerializable {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         AggregationBase other = (AggregationBase) o;
-        return Objects.equals(this.meta, other.meta) && Objects.equals(this.name, other.name);
+        return Objects.equals(this.meta, other.meta);
     }
 }

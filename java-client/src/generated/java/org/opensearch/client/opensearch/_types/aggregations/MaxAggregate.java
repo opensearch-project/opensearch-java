@@ -51,10 +51,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MaxAggregate extends SingleMetricAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<MaxAggregate.Builder, MaxAggregate> {
+public class MaxAggregate extends SingleMetricAggregateBase implements ToCopyableBuilder<MaxAggregate.Builder, MaxAggregate> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -64,14 +61,6 @@ public class MaxAggregate extends SingleMetricAggregateBase
 
     public static MaxAggregate of(Function<MaxAggregate.Builder, ObjectBuilder<MaxAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.Max;
     }
 
     // ---------------------------------------------------------------------------------------------

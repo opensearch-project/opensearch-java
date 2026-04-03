@@ -47,19 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.MissingAggregation
+// typedef: _types.aggregations.MissingAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MissingAggregation extends BucketAggregationBase
+public class MissingAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<MissingAggregation.Builder, MissingAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<MissingAggregationFields.Builder, MissingAggregationFields> {
 
     @Nullable
     private final String field;
@@ -69,22 +71,13 @@ public class MissingAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private MissingAggregation(Builder builder) {
-        super(builder);
+    private MissingAggregationFields(Builder builder) {
         this.field = builder.field;
         this.missing = builder.missing;
     }
 
-    public static MissingAggregation of(Function<MissingAggregation.Builder, ObjectBuilder<MissingAggregation>> fn) {
+    public static MissingAggregationFields of(Function<MissingAggregationFields.Builder, ObjectBuilder<MissingAggregationFields>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Missing;
     }
 
     /**
@@ -103,8 +96,17 @@ public class MissingAggregation extends BucketAggregationBase
         return this.missing;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -130,11 +132,9 @@ public class MissingAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link MissingAggregation}.
+     * Builder for {@link MissingAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, MissingAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, MissingAggregationFields> {
         @Nullable
         private String field;
         @Nullable
@@ -142,14 +142,12 @@ public class MissingAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(MissingAggregation o) {
-            super(o);
+        private Builder(MissingAggregationFields o) {
             this.field = o.field;
             this.missing = o.missing;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.field = o.field;
             this.missing = o.missing;
         }
@@ -158,12 +156,6 @@ public class MissingAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -193,38 +185,37 @@ public class MissingAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link MissingAggregation}.
+         * Builds a {@link MissingAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public MissingAggregation build() {
+        public MissingAggregationFields build() {
             _checkSingleUse();
 
-            return new MissingAggregation(this);
+            return new MissingAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link MissingAggregation}
+     * Json deserializer for {@link MissingAggregationFields}
      */
-    public static final JsonpDeserializer<MissingAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<MissingAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        MissingAggregation::setupMissingAggregationDeserializer
+        MissingAggregationFields::setupMissingAggregationFieldsDeserializer
     );
 
-    protected static void setupMissingAggregationDeserializer(ObjectDeserializer<MissingAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupMissingAggregationFieldsDeserializer(ObjectDeserializer<MissingAggregationFields.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.missing);
         return result;
@@ -232,12 +223,9 @@ public class MissingAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        MissingAggregation other = (MissingAggregation) o;
+        MissingAggregationFields other = (MissingAggregationFields) o;
         return Objects.equals(this.field, other.field) && Objects.equals(this.missing, other.missing);
     }
 }

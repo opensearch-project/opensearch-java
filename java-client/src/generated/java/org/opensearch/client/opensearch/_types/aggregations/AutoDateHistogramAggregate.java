@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<AutoDateHistogramAggregate.Builder, AutoDateHistogramAggregate> {
 
     @Nonnull
@@ -74,14 +73,6 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
         Function<AutoDateHistogramAggregate.Builder, ObjectBuilder<AutoDateHistogramAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.AutoDateHistogram;
     }
 
     /**

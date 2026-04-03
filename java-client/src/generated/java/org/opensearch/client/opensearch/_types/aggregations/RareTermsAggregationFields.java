@@ -47,19 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.RareTermsAggregation
+// typedef: _types.aggregations.RareTermsAggregationFields
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RareTermsAggregation extends BucketAggregationBase
+public class RareTermsAggregationFields
     implements
-        AggregationVariant,
-        ToCopyableBuilder<RareTermsAggregation.Builder, RareTermsAggregation> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<RareTermsAggregationFields.Builder, RareTermsAggregationFields> {
 
     @Nullable
     private final TermsExclude exclude;
@@ -84,8 +86,7 @@ public class RareTermsAggregation extends BucketAggregationBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private RareTermsAggregation(Builder builder) {
-        super(builder);
+    private RareTermsAggregationFields(Builder builder) {
         this.exclude = builder.exclude;
         this.field = builder.field;
         this.include = builder.include;
@@ -95,16 +96,10 @@ public class RareTermsAggregation extends BucketAggregationBase
         this.valueType = builder.valueType;
     }
 
-    public static RareTermsAggregation of(Function<RareTermsAggregation.Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+    public static RareTermsAggregationFields of(
+        Function<RareTermsAggregationFields.Builder, ObjectBuilder<RareTermsAggregationFields>> fn
+    ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.RareTerms;
     }
 
     /**
@@ -169,8 +164,17 @@ public class RareTermsAggregation extends BucketAggregationBase
         return this.valueType;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.exclude != null) {
             generator.writeKey("exclude");
             this.exclude.serialize(generator, mapper);
@@ -221,11 +225,9 @@ public class RareTermsAggregation extends BucketAggregationBase
     }
 
     /**
-     * Builder for {@link RareTermsAggregation}.
+     * Builder for {@link RareTermsAggregationFields}.
      */
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, RareTermsAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RareTermsAggregationFields> {
         @Nullable
         private TermsExclude exclude;
         @Nullable
@@ -243,8 +245,7 @@ public class RareTermsAggregation extends BucketAggregationBase
 
         public Builder() {}
 
-        private Builder(RareTermsAggregation o) {
-            super(o);
+        private Builder(RareTermsAggregationFields o) {
             this.exclude = o.exclude;
             this.field = o.field;
             this.include = o.include;
@@ -255,7 +256,6 @@ public class RareTermsAggregation extends BucketAggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.exclude = o.exclude;
             this.field = o.field;
             this.include = o.include;
@@ -269,12 +269,6 @@ public class RareTermsAggregation extends BucketAggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -371,31 +365,30 @@ public class RareTermsAggregation extends BucketAggregationBase
         }
 
         /**
-         * Builds a {@link RareTermsAggregation}.
+         * Builds a {@link RareTermsAggregationFields}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RareTermsAggregation build() {
+        public RareTermsAggregationFields build() {
             _checkSingleUse();
 
-            return new RareTermsAggregation(this);
+            return new RareTermsAggregationFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RareTermsAggregation}
+     * Json deserializer for {@link RareTermsAggregationFields}
      */
-    public static final JsonpDeserializer<RareTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RareTermsAggregationFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RareTermsAggregation::setupRareTermsAggregationDeserializer
+        RareTermsAggregationFields::setupRareTermsAggregationFieldsDeserializer
     );
 
-    protected static void setupRareTermsAggregationDeserializer(ObjectDeserializer<RareTermsAggregation.Builder> op) {
-        setupBucketAggregationBaseDeserializer(op);
+    protected static void setupRareTermsAggregationFieldsDeserializer(ObjectDeserializer<RareTermsAggregationFields.Builder> op) {
         op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
@@ -407,7 +400,7 @@ public class RareTermsAggregation extends BucketAggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.exclude);
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.include);
@@ -420,12 +413,9 @@ public class RareTermsAggregation extends BucketAggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RareTermsAggregation other = (RareTermsAggregation) o;
+        RareTermsAggregationFields other = (RareTermsAggregationFields) o;
         return Objects.equals(this.exclude, other.exclude)
             && Objects.equals(this.field, other.field)
             && Objects.equals(this.include, other.include)

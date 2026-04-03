@@ -47,18 +47,20 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CumulativeCardinalityAggregate extends AggregateBase
+public class CumulativeCardinalityAggregate
     implements
-        AggregateVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<CumulativeCardinalityAggregate.Builder, CumulativeCardinalityAggregate> {
 
     private final long value;
@@ -69,7 +71,6 @@ public class CumulativeCardinalityAggregate extends AggregateBase
     // ---------------------------------------------------------------------------------------------
 
     private CumulativeCardinalityAggregate(Builder builder) {
-        super(builder);
         this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
         this.valueAsString = builder.valueAsString;
     }
@@ -78,14 +79,6 @@ public class CumulativeCardinalityAggregate extends AggregateBase
         Function<CumulativeCardinalityAggregate.Builder, ObjectBuilder<CumulativeCardinalityAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.SimpleLongValue;
     }
 
     /**
@@ -103,8 +96,17 @@ public class CumulativeCardinalityAggregate extends AggregateBase
         return this.valueAsString;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("value");
         generator.write(this.value);
 
@@ -130,9 +132,7 @@ public class CumulativeCardinalityAggregate extends AggregateBase
     /**
      * Builder for {@link CumulativeCardinalityAggregate}.
      */
-    public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, CumulativeCardinalityAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CumulativeCardinalityAggregate> {
         private Long value;
         @Nullable
         private String valueAsString;
@@ -140,13 +140,11 @@ public class CumulativeCardinalityAggregate extends AggregateBase
         public Builder() {}
 
         private Builder(CumulativeCardinalityAggregate o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.value = o.value;
             this.valueAsString = o.valueAsString;
         }
@@ -155,12 +153,6 @@ public class CumulativeCardinalityAggregate extends AggregateBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -206,14 +198,13 @@ public class CumulativeCardinalityAggregate extends AggregateBase
     );
 
     protected static void setupCumulativeCardinalityAggregateDeserializer(ObjectDeserializer<CumulativeCardinalityAggregate.Builder> op) {
-        setupAggregateBaseDeserializer(op);
         op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
         op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Long.hashCode(this.value);
         result = 31 * result + Objects.hashCode(this.valueAsString);
         return result;
@@ -221,9 +212,6 @@ public class CumulativeCardinalityAggregate extends AggregateBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         CumulativeCardinalityAggregate other = (CumulativeCardinalityAggregate) o;

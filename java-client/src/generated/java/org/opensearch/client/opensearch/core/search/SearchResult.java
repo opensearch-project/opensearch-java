@@ -245,7 +245,12 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (ApiTypeHelper.isDefined(this.aggregations)) {
             generator.writeKey("aggregations");
-            ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
+            generator.writeStartObject();
+            for (Map.Entry<String, Aggregate> item0 : this.aggregations.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
 
         if (this.clusters != null) {
@@ -626,7 +631,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         ObjectDeserializer<BuilderT> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        op.add(AbstractBuilder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
+        op.add(AbstractBuilder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregate._DESERIALIZER), "aggregations");
         op.add(AbstractBuilder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
         op.add(AbstractBuilder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
         op.add(AbstractBuilder::numReducePhases, JsonpDeserializer.integerDeserializer(), "num_reduce_phases");

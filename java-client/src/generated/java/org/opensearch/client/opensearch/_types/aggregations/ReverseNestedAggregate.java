@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ReverseNestedAggregate extends SingleBucketAggregateBase
     implements
-        AggregateVariant,
         ToCopyableBuilder<ReverseNestedAggregate.Builder, ReverseNestedAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class ReverseNestedAggregate extends SingleBucketAggregateBase
 
     public static ReverseNestedAggregate of(Function<ReverseNestedAggregate.Builder, ObjectBuilder<ReverseNestedAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.ReverseNested;
     }
 
     // ---------------------------------------------------------------------------------------------

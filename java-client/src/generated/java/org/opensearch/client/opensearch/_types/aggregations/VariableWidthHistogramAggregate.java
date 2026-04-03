@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<VariableWidthHistogramBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<VariableWidthHistogramAggregate.Builder, VariableWidthHistogramAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -66,14 +65,6 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
         Function<VariableWidthHistogramAggregate.Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.VariableWidthHistogram;
     }
 
     // ---------------------------------------------------------------------------------------------

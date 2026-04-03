@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
     implements
-        AggregateVariant,
         ToCopyableBuilder<MultiTermsAggregate.Builder, MultiTermsAggregate> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
 
     public static MultiTermsAggregate of(Function<MultiTermsAggregate.Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregate} variant kind.
-     */
-    @Override
-    public Aggregate.Kind _aggregateKind() {
-        return Aggregate.Kind.MultiTerms;
     }
 
     // ---------------------------------------------------------------------------------------------
