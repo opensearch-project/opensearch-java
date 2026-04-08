@@ -43,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -268,7 +269,7 @@ public final class SearchFeaturesetsRequest extends RequestBase
     /**
      * Endpoint "{@code ltr.search_featuresets}".
      */
-    public static final Endpoint<SearchFeaturesetsRequest, SearchFeaturesetsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final SimpleEndpoint<SearchFeaturesetsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "GET",
         // Request path
@@ -302,6 +303,18 @@ public final class SearchFeaturesetsRequest extends RequestBase
         false,
         SearchFeaturesetsResponse._DESERIALIZER
     );
+
+    /**
+     * Create an "{@code ltr.search_featuresets}" endpoint.
+     */
+    public static <
+        TDocument>
+        Endpoint<SearchFeaturesetsRequest, SearchFeaturesetsResponse<TDocument>, ErrorResponse>
+        createLtrSearchFeaturesetsEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
+        return _ENDPOINT.withResponseDeserializer(
+            SearchFeaturesetsResponse.createSearchFeaturesetsResponseDeserializer(tDocumentDeserializer)
+        );
+    }
 
     @Override
     public int hashCode() {

@@ -59,7 +59,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PercentilesAggregation extends FormatMetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<PercentilesAggregation.Builder, PercentilesAggregation> {
 
     @Nullable
@@ -86,14 +85,6 @@ public class PercentilesAggregation extends FormatMetricAggregationBase
 
     public static PercentilesAggregation of(Function<PercentilesAggregation.Builder, ObjectBuilder<PercentilesAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Percentiles;
     }
 
     /**

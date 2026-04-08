@@ -16,6 +16,7 @@ import org.opensearch.Version;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.BuiltinScriptLanguage;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.aggregations.SingleBucketAggregateBase;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.SearchTemplateResponse;
@@ -84,8 +85,8 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
         assertEquals(1, searchResponse.aggregations().size());
         var buckets = searchResponse.aggregations().get("test-aggs").sterms().buckets().array();
         assertEquals(2, buckets.size());
-        assertEquals(2, buckets.get(0).docCount());
-        assertEquals(2, buckets.get(1).docCount());
+        assertEquals(2, buckets.get(0).to(SingleBucketAggregateBase.class).docCount());
+        assertEquals(2, buckets.get(1).to(SingleBucketAggregateBase.class).docCount());
 
     }
 

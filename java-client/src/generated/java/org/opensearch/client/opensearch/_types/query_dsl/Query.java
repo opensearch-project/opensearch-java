@@ -51,8 +51,6 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.aggregations.Aggregation;
-import org.opensearch.client.opensearch._types.aggregations.AggregationVariant;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -63,7 +61,7 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVariant, PlainJsonSerializable {
+public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializable {
     /**
      * {@link Query} variant kinds.
      */
@@ -137,14 +135,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         public String jsonValue() {
             return jsonValue;
         }
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Filter;
     }
 
     private final Kind _kind;

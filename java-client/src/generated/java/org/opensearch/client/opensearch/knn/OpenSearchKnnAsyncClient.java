@@ -42,9 +42,12 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -109,8 +112,22 @@ public class OpenSearchKnnAsyncClient extends ApiClient<OpenSearchTransport, Ope
     /**
      * Use an OpenSearch query to search for models in the index.
      */
-    public CompletableFuture<SearchModelsResponse> searchModels(SearchModelsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, SearchModelsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> CompletableFuture<SearchModelsResponse<TDocument>> searchModels(
+        SearchModelsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchModelsRequest, SearchModelsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchModelsRequest,
+            SearchModelsResponse<TDocument>,
+            ErrorResponse>) SearchModelsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:knn.search_models.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -118,17 +135,11 @@ public class OpenSearchKnnAsyncClient extends ApiClient<OpenSearchTransport, Ope
      *
      * @param fn a function that initializes a builder to create the {@link SearchModelsRequest}
      */
-    public final CompletableFuture<SearchModelsResponse> searchModels(
-        Function<SearchModelsRequest.Builder, ObjectBuilder<SearchModelsRequest>> fn
+    public final <TDocument> CompletableFuture<SearchModelsResponse<TDocument>> searchModels(
+        Function<SearchModelsRequest.Builder, ObjectBuilder<SearchModelsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return searchModels(fn.apply(new SearchModelsRequest.Builder()).build());
-    }
-
-    /**
-     * Use an OpenSearch query to search for models in the index.
-     */
-    public final CompletableFuture<SearchModelsResponse> searchModels() throws IOException, OpenSearchException {
-        return searchModels(new SearchModelsRequest.Builder().build());
+        return searchModels(fn.apply(new SearchModelsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: knn.stats

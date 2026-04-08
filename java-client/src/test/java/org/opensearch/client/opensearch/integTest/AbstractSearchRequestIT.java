@@ -22,7 +22,7 @@ import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregate;
-import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationFields;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
 import org.opensearch.client.opensearch._types.aggregations.CompositeBucket;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -88,7 +88,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         ).build();
         comAggrSrcMap.put("quantity", compositeAggregationSource1);
 
-        CompositeAggregation compAgg = new CompositeAggregation.Builder().sources(comAggrSrcMap).build();
+        CompositeAggregationFields compAgg = new CompositeAggregationFields.Builder().sources(comAggrSrcMap).build();
 
         Aggregation aggregation = new Aggregation.Builder().composite(compAgg).build();
 
