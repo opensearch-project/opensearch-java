@@ -227,6 +227,31 @@ public class TypeMapper {
             return mapType(allOf.get(0));
         }
 
+        if (allOf.size() > 1) {
+            OpenApiSchema primary = null;
+            for (final OpenApiSchema schema : allOf) {
+                if (schema.hasAllOf() || schema.hasOneOf()) {
+                    primary = schema;
+                    break;
+                }
+            }
+
+            if (primary == null) {
+                for (final OpenApiSchema schema : allOf) {
+                    if (schema.has$ref()) {
+                        primary = schema;
+                        break;
+                    }
+                }
+            }
+
+            if (primary != null) {
+                primary = allOf.get(allOf.size() - 1);
+            }
+
+            return mapType(primary);
+        }
+
         throw new UnsupportedOperationException("Can not get type name for allOf: " + allOf);
     }
 

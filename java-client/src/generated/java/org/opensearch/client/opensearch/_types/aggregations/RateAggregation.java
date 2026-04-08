@@ -55,10 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RateAggregation extends FormatMetricAggregationBase
-    implements
-        AggregationVariant,
-        ToCopyableBuilder<RateAggregation.Builder, RateAggregation> {
+public class RateAggregation extends FormatMetricAggregationBase implements ToCopyableBuilder<RateAggregation.Builder, RateAggregation> {
 
     @Nullable
     private final RateMode mode;
@@ -76,14 +73,6 @@ public class RateAggregation extends FormatMetricAggregationBase
 
     public static RateAggregation of(Function<RateAggregation.Builder, ObjectBuilder<RateAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Rate;
     }
 
     /**

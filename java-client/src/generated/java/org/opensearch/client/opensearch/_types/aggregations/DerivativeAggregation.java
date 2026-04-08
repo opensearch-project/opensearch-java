@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DerivativeAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<DerivativeAggregation.Builder, DerivativeAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class DerivativeAggregation extends PipelineAggregationBase
 
     public static DerivativeAggregation of(Function<DerivativeAggregation.Builder, ObjectBuilder<DerivativeAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Derivative;
     }
 
     // ---------------------------------------------------------------------------------------------

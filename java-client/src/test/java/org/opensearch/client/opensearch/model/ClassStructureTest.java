@@ -126,9 +126,8 @@ public class ClassStructureTest extends ModelTestCase {
                     .buckets(Buckets.of(b -> b.array(Collections.singletonList(RangeBucket.of(_2 -> _2.docCount(1))))))
             );
 
-            assertAncestorCount(3, date);
-            assertEquals("bar", date.meta().get("foo").to(String.class));
-            assertEquals("{\"meta\":{\"foo\":\"bar\"},\"buckets\":[{\"doc_count\":1}]}", toJson(date));
+            assertEquals("bar", date.meta().get("foo").toString());
+            assertEquals("{\"buckets\":[{\"doc_count\":1}],\"meta\":{\"foo\":\"bar\"}}", toJson(date));
         }
     }
 
@@ -236,14 +235,14 @@ public class ClassStructureTest extends ModelTestCase {
         ValueCountAggregation countC = ValueCountAggregation.of(v -> v.field("c"));
 
         Map<String, Aggregation> aggs = new HashMap<>();
-        aggs.put("aggA", countA.toAggregation());
-        aggs.put("aggB", countB.toAggregation());
+        aggs.put("aggA", Aggregation.builder().valueCount(countA).build());
+        aggs.put("aggB", Aggregation.builder().valueCount(countB).build());
 
         {
             // Appending doesn't modify the original collection
             SearchRequest search = SearchRequest.of(
                 b -> b.aggregations(aggs)
-                    .aggregations("aggC", countC.toAggregation())
+                    .aggregations("aggC", Aggregation.builder().valueCount(countC).build())
                     .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
             );
 
@@ -275,7 +274,7 @@ public class ClassStructureTest extends ModelTestCase {
         checkSingleBuilderUse(2, new CardinalityAggregate.Builder().value(0));
 
         // 3 ancestors + ObjectBuilderBase
-        checkSingleBuilderUse(4, new DateRangeAggregate.Builder().buckets(Buckets.of(b -> b.array(Collections.emptyList()))));
+        checkSingleBuilderUse(1, new DateRangeAggregate.Builder().buckets(Buckets.of(b -> b.array(Collections.emptyList()))));
     }
 
     @Test

@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MaxBucketAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<MaxBucketAggregation.Builder, MaxBucketAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class MaxBucketAggregation extends PipelineAggregationBase
 
     public static MaxBucketAggregation of(Function<MaxBucketAggregation.Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MaxBucket;
     }
 
     // ---------------------------------------------------------------------------------------------
