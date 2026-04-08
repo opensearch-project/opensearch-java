@@ -58,9 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<TermsPartition.Builder, TermsPartition> {
 
-    private final long numPartitions;
+    private final int numPartitions;
 
-    private final long partition;
+    private final int partition;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
      * API name: {@code num_partitions}
      * </p>
      */
-    public final long numPartitions() {
+    public final int numPartitions() {
         return this.numPartitions;
     }
 
@@ -89,7 +89,7 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
      * API name: {@code partition}
      * </p>
      */
-    public final long partition() {
+    public final int partition() {
         return this.partition;
     }
 
@@ -128,8 +128,8 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
      * Builder for {@link TermsPartition}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsPartition> {
-        private Long numPartitions;
-        private Long partition;
+        private Integer numPartitions;
+        private Integer partition;
 
         public Builder() {}
 
@@ -156,7 +156,7 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder numPartitions(long value) {
+        public final Builder numPartitions(int value) {
             this.numPartitions = value;
             return this;
         }
@@ -168,7 +168,7 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder partition(long value) {
+        public final Builder partition(int value) {
             this.partition = value;
             return this;
         }
@@ -198,15 +198,15 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
     );
 
     protected static void setupTermsPartitionDeserializer(ObjectDeserializer<TermsPartition.Builder> op) {
-        op.add(Builder::numPartitions, JsonpDeserializer.longDeserializer(), "num_partitions");
-        op.add(Builder::partition, JsonpDeserializer.longDeserializer(), "partition");
+        op.add(Builder::numPartitions, JsonpDeserializer.integerDeserializer(), "num_partitions");
+        op.add(Builder::partition, JsonpDeserializer.integerDeserializer(), "partition");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Long.hashCode(this.numPartitions);
-        result = 31 * result + Long.hashCode(this.partition);
+        result = 31 * result + Integer.hashCode(this.numPartitions);
+        result = 31 * result + Integer.hashCode(this.partition);
         return result;
     }
 
