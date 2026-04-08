@@ -36,34 +36,51 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.HistogramAggregate
 
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket>
+public class HistogramAggregate<TBucket>
     implements
         AggregateVariant,
-        ToCopyableBuilder<HistogramAggregate.Builder, HistogramAggregate> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<HistogramAggregate.Builder<TBucket>, HistogramAggregate<TBucket>> {
+
+    @Nonnull
+    private final Buckets<TBucket> buckets;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
 
     // ---------------------------------------------------------------------------------------------
 
-    private HistogramAggregate(Builder builder) {
-        super(builder);
+    private HistogramAggregate(Builder<TBucket> builder) {
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
     }
 
-    public static HistogramAggregate of(Function<HistogramAggregate.Builder, ObjectBuilder<HistogramAggregate>> fn) {
-        return fn.apply(new Builder()).build();
+    public static <TBucket> HistogramAggregate<TBucket> of(
+        Function<HistogramAggregate.Builder<TBucket>, ObjectBuilder<HistogramAggregate<TBucket>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
     }
 
     /**
@@ -74,45 +91,128 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
         return Aggregate.Kind.Histogram;
     }
 
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<TBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
     @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder<TBucket> toBuilder() {
+        return new Builder<>(this);
     }
 
     @Nonnull
-    public static Builder builder() {
-        return new Builder();
+    public static <TBucket> Builder builder() {
+        return new Builder<>();
     }
 
     /**
      * Builder for {@link HistogramAggregate}.
      */
-    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<HistogramBucket, Builder>
+    public static class Builder<TBucket> extends ObjectBuilderBase
         implements
-            CopyableBuilder<Builder, HistogramAggregate> {
+            CopyableBuilder<Builder<TBucket>, HistogramAggregate<TBucket>> {
+        private Buckets<TBucket> buckets;
+        @Nullable
+        private Map<String, JsonData> meta;
 
         public Builder() {}
 
-        private Builder(HistogramAggregate o) {
-            super(o);
+        private Builder(HistogramAggregate<TBucket> o) {
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
-        private Builder(Builder o) {
-            super(o);
-        }
-
-        @Override
-        @Nonnull
-        public Builder copy() {
-            return new Builder(this);
+        private Builder(Builder<TBucket> o) {
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         @Override
         @Nonnull
-        protected Builder self() {
+        public Builder<TBucket> copy() {
+            return new Builder<>(this);
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Buckets<TBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
             return this;
         }
 
@@ -123,40 +223,48 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
          */
         @Override
         @Nonnull
-        public HistogramAggregate build() {
+        public HistogramAggregate<TBucket> build() {
             _checkSingleUse();
 
-            return new HistogramAggregate(this);
+            return new HistogramAggregate<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link HistogramAggregate}
+     * Create a JSON deserializer for HistogramAggregate.
      */
-    public static final JsonpDeserializer<HistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        HistogramAggregate::setupHistogramAggregateDeserializer
-    );
+    public static <TBucket> JsonpDeserializer<HistogramAggregate<TBucket>> createHistogramAggregateDeserializer(
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            Builder<TBucket>::new,
+            op -> HistogramAggregate.setupHistogramAggregateDeserializer(op, tBucketDeserializer)
+        );
+    }
 
-    protected static void setupHistogramAggregateDeserializer(ObjectDeserializer<HistogramAggregate.Builder> op) {
-        setupMultiBucketAggregateBaseDeserializer(op, HistogramBucket._DESERIALIZER);
+    protected static <TBucket> void setupHistogramAggregateDeserializer(
+        ObjectDeserializer<HistogramAggregate.Builder<TBucket>> op,
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(tBucketDeserializer), "buckets");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        HistogramAggregate<?> other = (HistogramAggregate<?>) o;
+        return this.buckets.equals(other.buckets) && Objects.equals(this.meta, other.meta);
     }
 }

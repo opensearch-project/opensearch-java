@@ -61,7 +61,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ScriptedMetricAggregation extends MetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<ScriptedMetricAggregation.Builder, ScriptedMetricAggregation> {
 
     @Nullable
@@ -92,14 +91,6 @@ public class ScriptedMetricAggregation extends MetricAggregationBase
 
     public static ScriptedMetricAggregation of(Function<ScriptedMetricAggregation.Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.ScriptedMetric;
     }
 
     /**

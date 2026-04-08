@@ -58,7 +58,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class BucketScriptAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<BucketScriptAggregation.Builder, BucketScriptAggregation> {
 
     @Nullable
@@ -73,14 +72,6 @@ public class BucketScriptAggregation extends PipelineAggregationBase
 
     public static BucketScriptAggregation of(Function<BucketScriptAggregation.Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.BucketScript;
     }
 
     /**

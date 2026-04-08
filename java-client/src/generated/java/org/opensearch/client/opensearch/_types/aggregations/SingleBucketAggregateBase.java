@@ -37,27 +37,17 @@
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _types.aggregations.SingleBucketAggregateBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class SingleBucketAggregateBase extends AggregateBase {
-
-    @Nonnull
-    private final Map<String, Aggregate> aggregations;
 
     private final long docCount;
 
@@ -65,13 +55,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 
     protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
         super(builder);
-        this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-    }
-
-    @Nonnull
-    public final Map<String, Aggregate> aggregations() {
-        return this.aggregations;
     }
 
     /**
@@ -83,7 +67,6 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
-        ExternallyTaggedUnion.serializeTypedKeysInner(this.aggregations, generator, mapper);
         generator.writeKey("doc_count");
         generator.write(this.docCount);
     }
@@ -93,56 +76,17 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
     public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
         BuilderT> {
         private Long docCount;
-        @Nullable
-        protected Map<String, Aggregate> aggregations;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(SingleBucketAggregateBase o) {
             super(o);
-            this.aggregations = _mapCopy(o.aggregations);
             this.docCount = o.docCount;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             super(o);
-            this.aggregations = _mapCopy(o.aggregations);
             this.docCount = o.docCount;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final BuilderT aggregations(Map<String, Aggregate> map) {
-            this.aggregations = _mapPutAll(this.aggregations, map);
-            return self();
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final BuilderT aggregations(String key, Aggregate value) {
-            this.aggregations = _mapPut(this.aggregations, key, value);
-            return self();
-        }
-
-        /**
-         *
-         * <p>
-         * Adds a value to <code>aggregations</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
-            return aggregations(key, fn.apply(new Aggregate.Builder()).build());
         }
 
         /**
@@ -162,18 +106,11 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
     ) {
         setupAggregateBaseDeserializer(op);
         op.add(AbstractBuilder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
-        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-            if (builder.aggregations == null) {
-                builder.aggregations = new HashMap<>();
-            }
-            Aggregate._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.aggregations);
-        });
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.aggregations);
         result = 31 * result + Long.hashCode(this.docCount);
         return result;
     }
@@ -186,6 +123,6 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SingleBucketAggregateBase other = (SingleBucketAggregateBase) o;
-        return Objects.equals(this.aggregations, other.aggregations) && this.docCount == other.docCount;
+        return this.docCount == other.docCount;
     }
 }

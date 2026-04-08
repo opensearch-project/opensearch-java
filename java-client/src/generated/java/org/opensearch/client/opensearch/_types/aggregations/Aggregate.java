@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import org.opensearch.client.json.ExternallyTaggedUnion;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -117,6 +118,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         TdigestPercentileRanks("tdigest_percentile_ranks"),
         TdigestPercentiles("tdigest_percentiles"),
         TopHits("top_hits"),
+        Ulterms("ulterms"),
         Umrareterms("umrareterms"),
         Umsigterms("umsigterms"),
         Umterms("umterms"),
@@ -175,7 +177,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code adjacency_matrix} kind.
      */
-    public AdjacencyMatrixAggregate adjacencyMatrix() {
+    public AdjacencyMatrixAggregate<JsonData> adjacencyMatrix() {
         return TaggedUnionUtils.get(this, Kind.AdjacencyMatrix);
     }
 
@@ -303,7 +305,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code date_histogram} kind.
      */
-    public DateHistogramAggregate dateHistogram() {
+    public DateHistogramAggregate<JsonData> dateHistogram() {
         return TaggedUnionUtils.get(this, Kind.DateHistogram);
     }
 
@@ -319,7 +321,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code date_range} kind.
      */
-    public DateRangeAggregate dateRange() {
+    public DateRangeAggregate<JsonData> dateRange() {
         return TaggedUnionUtils.get(this, Kind.DateRange);
     }
 
@@ -415,7 +417,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code filters} kind.
      */
-    public FiltersAggregate filters() {
+    public FiltersAggregate<JsonData> filters() {
         return TaggedUnionUtils.get(this, Kind.Filters);
     }
 
@@ -463,7 +465,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code geo_distance} kind.
      */
-    public GeoDistanceAggregate geoDistance() {
+    public GeoDistanceAggregate<JsonData> geoDistance() {
         return TaggedUnionUtils.get(this, Kind.GeoDistance);
     }
 
@@ -479,7 +481,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code geohash_grid} kind.
      */
-    public GeoHashGridAggregate geohashGrid() {
+    public GeoHashGridAggregate<JsonData> geohashGrid() {
         return TaggedUnionUtils.get(this, Kind.GeohashGrid);
     }
 
@@ -495,7 +497,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code geotile_grid} kind.
      */
-    public GeoTileGridAggregate geotileGrid() {
+    public GeoTileGridAggregate<JsonData> geotileGrid() {
         return TaggedUnionUtils.get(this, Kind.GeotileGrid);
     }
 
@@ -559,7 +561,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code histogram} kind.
      */
-    public HistogramAggregate histogram() {
+    public HistogramAggregate<JsonData> histogram() {
         return TaggedUnionUtils.get(this, Kind.Histogram);
     }
 
@@ -575,7 +577,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code ip_range} kind.
      */
-    public IpRangeAggregate ipRange() {
+    public IpRangeAggregate<JsonData> ipRange() {
         return TaggedUnionUtils.get(this, Kind.IpRange);
     }
 
@@ -703,7 +705,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code multi_terms} kind.
      */
-    public MultiTermsAggregate multiTerms() {
+    public MultiTermsAggregate<JsonData> multiTerms() {
         return TaggedUnionUtils.get(this, Kind.MultiTerms);
     }
 
@@ -767,7 +769,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code range} kind.
      */
-    public RangeAggregate range() {
+    public RangeAggregate<JsonData> range() {
         return TaggedUnionUtils.get(this, Kind.Range);
     }
 
@@ -847,7 +849,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code siglterms} kind.
      */
-    public SignificantLongTermsAggregate siglterms() {
+    public SignificantLongTermsAggregate<JsonData> siglterms() {
         return TaggedUnionUtils.get(this, Kind.Siglterms);
     }
 
@@ -863,7 +865,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code sigsterms} kind.
      */
-    public SignificantStringTermsAggregate sigsterms() {
+    public SignificantStringTermsAggregate<JsonData> sigsterms() {
         return TaggedUnionUtils.get(this, Kind.Sigsterms);
     }
 
@@ -1044,6 +1046,22 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
     }
 
     /**
+     * Is this variant instance of kind {@code ulterms}?
+     */
+    public boolean isUlterms() {
+        return _kind == Kind.Ulterms;
+    }
+
+    /**
+     * Get the {@code ulterms} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code ulterms} kind.
+     */
+    public UnsignedLongTermsAggregate ulterms() {
+        return TaggedUnionUtils.get(this, Kind.Ulterms);
+    }
+
+    /**
      * Is this variant instance of kind {@code umrareterms}?
      */
     public boolean isUmrareterms() {
@@ -1071,7 +1089,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code umsigterms} kind.
      */
-    public UnmappedSignificantTermsAggregate umsigterms() {
+    public UnmappedSignificantTermsAggregate<JsonData> umsigterms() {
         return TaggedUnionUtils.get(this, Kind.Umsigterms);
     }
 
@@ -1119,7 +1137,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      *
      * @throws IllegalStateException if the current variant is not the {@code variable_width_histogram} kind.
      */
-    public VariableWidthHistogramAggregate variableWidthHistogram() {
+    public VariableWidthHistogramAggregate<JsonData> variableWidthHistogram() {
         return TaggedUnionUtils.get(this, Kind.VariableWidthHistogram);
     }
 
@@ -1165,16 +1183,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             this._value = o._value;
         }
 
-        public ObjectBuilder<Aggregate> adjacencyMatrix(AdjacencyMatrixAggregate v) {
+        public ObjectBuilder<Aggregate> adjacencyMatrix(AdjacencyMatrixAggregate<JsonData> v) {
             this._kind = Kind.AdjacencyMatrix;
             this._value = v;
             return this;
         }
 
         public ObjectBuilder<Aggregate> adjacencyMatrix(
-            Function<AdjacencyMatrixAggregate.Builder, ObjectBuilder<AdjacencyMatrixAggregate>> fn
+            Function<AdjacencyMatrixAggregate.Builder<JsonData>, ObjectBuilder<AdjacencyMatrixAggregate<JsonData>>> fn
         ) {
-            return this.adjacencyMatrix(fn.apply(new AdjacencyMatrixAggregate.Builder()).build());
+            return this.adjacencyMatrix(fn.apply(new AdjacencyMatrixAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> autoDateHistogram(AutoDateHistogramAggregate v) {
@@ -1251,24 +1269,28 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.composite(fn.apply(new CompositeAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> dateHistogram(DateHistogramAggregate v) {
+        public ObjectBuilder<Aggregate> dateHistogram(DateHistogramAggregate<JsonData> v) {
             this._kind = Kind.DateHistogram;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> dateHistogram(Function<DateHistogramAggregate.Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
-            return this.dateHistogram(fn.apply(new DateHistogramAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> dateHistogram(
+            Function<DateHistogramAggregate.Builder<JsonData>, ObjectBuilder<DateHistogramAggregate<JsonData>>> fn
+        ) {
+            return this.dateHistogram(fn.apply(new DateHistogramAggregate.Builder<JsonData>()).build());
         }
 
-        public ObjectBuilder<Aggregate> dateRange(DateRangeAggregate v) {
+        public ObjectBuilder<Aggregate> dateRange(DateRangeAggregate<JsonData> v) {
             this._kind = Kind.DateRange;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> dateRange(Function<DateRangeAggregate.Builder, ObjectBuilder<DateRangeAggregate>> fn) {
-            return this.dateRange(fn.apply(new DateRangeAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> dateRange(
+            Function<DateRangeAggregate.Builder<JsonData>, ObjectBuilder<DateRangeAggregate<JsonData>>> fn
+        ) {
+            return this.dateRange(fn.apply(new DateRangeAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> derivative(DerivativeAggregate v) {
@@ -1323,14 +1345,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.filter(fn.apply(new FilterAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> filters(FiltersAggregate v) {
+        public ObjectBuilder<Aggregate> filters(FiltersAggregate<JsonData> v) {
             this._kind = Kind.Filters;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> filters(Function<FiltersAggregate.Builder, ObjectBuilder<FiltersAggregate>> fn) {
-            return this.filters(fn.apply(new FiltersAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> filters(
+            Function<FiltersAggregate.Builder<JsonData>, ObjectBuilder<FiltersAggregate<JsonData>>> fn
+        ) {
+            return this.filters(fn.apply(new FiltersAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> geoBounds(GeoBoundsAggregate v) {
@@ -1353,34 +1377,40 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.geoCentroid(fn.apply(new GeoCentroidAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> geoDistance(GeoDistanceAggregate v) {
+        public ObjectBuilder<Aggregate> geoDistance(GeoDistanceAggregate<JsonData> v) {
             this._kind = Kind.GeoDistance;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> geoDistance(Function<GeoDistanceAggregate.Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
-            return this.geoDistance(fn.apply(new GeoDistanceAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> geoDistance(
+            Function<GeoDistanceAggregate.Builder<JsonData>, ObjectBuilder<GeoDistanceAggregate<JsonData>>> fn
+        ) {
+            return this.geoDistance(fn.apply(new GeoDistanceAggregate.Builder<JsonData>()).build());
         }
 
-        public ObjectBuilder<Aggregate> geohashGrid(GeoHashGridAggregate v) {
+        public ObjectBuilder<Aggregate> geohashGrid(GeoHashGridAggregate<JsonData> v) {
             this._kind = Kind.GeohashGrid;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> geohashGrid(Function<GeoHashGridAggregate.Builder, ObjectBuilder<GeoHashGridAggregate>> fn) {
-            return this.geohashGrid(fn.apply(new GeoHashGridAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> geohashGrid(
+            Function<GeoHashGridAggregate.Builder<JsonData>, ObjectBuilder<GeoHashGridAggregate<JsonData>>> fn
+        ) {
+            return this.geohashGrid(fn.apply(new GeoHashGridAggregate.Builder<JsonData>()).build());
         }
 
-        public ObjectBuilder<Aggregate> geotileGrid(GeoTileGridAggregate v) {
+        public ObjectBuilder<Aggregate> geotileGrid(GeoTileGridAggregate<JsonData> v) {
             this._kind = Kind.GeotileGrid;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> geotileGrid(Function<GeoTileGridAggregate.Builder, ObjectBuilder<GeoTileGridAggregate>> fn) {
-            return this.geotileGrid(fn.apply(new GeoTileGridAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> geotileGrid(
+            Function<GeoTileGridAggregate.Builder<JsonData>, ObjectBuilder<GeoTileGridAggregate<JsonData>>> fn
+        ) {
+            return this.geotileGrid(fn.apply(new GeoTileGridAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> global(GlobalAggregate v) {
@@ -1417,24 +1447,28 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.hdrPercentiles(fn.apply(new HdrPercentilesAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> histogram(HistogramAggregate v) {
+        public ObjectBuilder<Aggregate> histogram(HistogramAggregate<JsonData> v) {
             this._kind = Kind.Histogram;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> histogram(Function<HistogramAggregate.Builder, ObjectBuilder<HistogramAggregate>> fn) {
-            return this.histogram(fn.apply(new HistogramAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> histogram(
+            Function<HistogramAggregate.Builder<JsonData>, ObjectBuilder<HistogramAggregate<JsonData>>> fn
+        ) {
+            return this.histogram(fn.apply(new HistogramAggregate.Builder<JsonData>()).build());
         }
 
-        public ObjectBuilder<Aggregate> ipRange(IpRangeAggregate v) {
+        public ObjectBuilder<Aggregate> ipRange(IpRangeAggregate<JsonData> v) {
             this._kind = Kind.IpRange;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> ipRange(Function<IpRangeAggregate.Builder, ObjectBuilder<IpRangeAggregate>> fn) {
-            return this.ipRange(fn.apply(new IpRangeAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> ipRange(
+            Function<IpRangeAggregate.Builder<JsonData>, ObjectBuilder<IpRangeAggregate<JsonData>>> fn
+        ) {
+            return this.ipRange(fn.apply(new IpRangeAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> lrareterms(LongRareTermsAggregate v) {
@@ -1509,14 +1543,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.missing(fn.apply(new MissingAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> multiTerms(MultiTermsAggregate v) {
+        public ObjectBuilder<Aggregate> multiTerms(MultiTermsAggregate<JsonData> v) {
             this._kind = Kind.MultiTerms;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> multiTerms(Function<MultiTermsAggregate.Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
-            return this.multiTerms(fn.apply(new MultiTermsAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> multiTerms(
+            Function<MultiTermsAggregate.Builder<JsonData>, ObjectBuilder<MultiTermsAggregate<JsonData>>> fn
+        ) {
+            return this.multiTerms(fn.apply(new MultiTermsAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> nested(NestedAggregate v) {
@@ -1551,14 +1587,14 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.percentilesBucket(fn.apply(new PercentilesBucketAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> range(RangeAggregate v) {
+        public ObjectBuilder<Aggregate> range(RangeAggregate<JsonData> v) {
             this._kind = Kind.Range;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Aggregate> range(Function<RangeAggregate.Builder, ObjectBuilder<RangeAggregate>> fn) {
-            return this.range(fn.apply(new RangeAggregate.Builder()).build());
+        public ObjectBuilder<Aggregate> range(Function<RangeAggregate.Builder<JsonData>, ObjectBuilder<RangeAggregate<JsonData>>> fn) {
+            return this.range(fn.apply(new RangeAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> rate(RateAggregate v) {
@@ -1603,28 +1639,28 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.scriptedMetric(fn.apply(new ScriptedMetricAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> siglterms(SignificantLongTermsAggregate v) {
+        public ObjectBuilder<Aggregate> siglterms(SignificantLongTermsAggregate<JsonData> v) {
             this._kind = Kind.Siglterms;
             this._value = v;
             return this;
         }
 
         public ObjectBuilder<Aggregate> siglterms(
-            Function<SignificantLongTermsAggregate.Builder, ObjectBuilder<SignificantLongTermsAggregate>> fn
+            Function<SignificantLongTermsAggregate.Builder<JsonData>, ObjectBuilder<SignificantLongTermsAggregate<JsonData>>> fn
         ) {
-            return this.siglterms(fn.apply(new SignificantLongTermsAggregate.Builder()).build());
+            return this.siglterms(fn.apply(new SignificantLongTermsAggregate.Builder<JsonData>()).build());
         }
 
-        public ObjectBuilder<Aggregate> sigsterms(SignificantStringTermsAggregate v) {
+        public ObjectBuilder<Aggregate> sigsterms(SignificantStringTermsAggregate<JsonData> v) {
             this._kind = Kind.Sigsterms;
             this._value = v;
             return this;
         }
 
         public ObjectBuilder<Aggregate> sigsterms(
-            Function<SignificantStringTermsAggregate.Builder, ObjectBuilder<SignificantStringTermsAggregate>> fn
+            Function<SignificantStringTermsAggregate.Builder<JsonData>, ObjectBuilder<SignificantStringTermsAggregate<JsonData>>> fn
         ) {
-            return this.sigsterms(fn.apply(new SignificantStringTermsAggregate.Builder()).build());
+            return this.sigsterms(fn.apply(new SignificantStringTermsAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> simpleLongValue(CumulativeCardinalityAggregate v) {
@@ -1743,6 +1779,18 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.topHits(fn.apply(new TopHitsAggregate.Builder()).build());
         }
 
+        public ObjectBuilder<Aggregate> ulterms(UnsignedLongTermsAggregate v) {
+            this._kind = Kind.Ulterms;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Aggregate> ulterms(
+            Function<UnsignedLongTermsAggregate.Builder, ObjectBuilder<UnsignedLongTermsAggregate>> fn
+        ) {
+            return this.ulterms(fn.apply(new UnsignedLongTermsAggregate.Builder()).build());
+        }
+
         public ObjectBuilder<Aggregate> umrareterms(UnmappedRareTermsAggregate v) {
             this._kind = Kind.Umrareterms;
             this._value = v;
@@ -1755,16 +1803,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.umrareterms(fn.apply(new UnmappedRareTermsAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> umsigterms(UnmappedSignificantTermsAggregate v) {
+        public ObjectBuilder<Aggregate> umsigterms(UnmappedSignificantTermsAggregate<JsonData> v) {
             this._kind = Kind.Umsigterms;
             this._value = v;
             return this;
         }
 
         public ObjectBuilder<Aggregate> umsigterms(
-            Function<UnmappedSignificantTermsAggregate.Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn
+            Function<UnmappedSignificantTermsAggregate.Builder<JsonData>, ObjectBuilder<UnmappedSignificantTermsAggregate<JsonData>>> fn
         ) {
-            return this.umsigterms(fn.apply(new UnmappedSignificantTermsAggregate.Builder()).build());
+            return this.umsigterms(fn.apply(new UnmappedSignificantTermsAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> umterms(UnmappedTermsAggregate v) {
@@ -1787,16 +1835,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.valueCount(fn.apply(new ValueCountAggregate.Builder()).build());
         }
 
-        public ObjectBuilder<Aggregate> variableWidthHistogram(VariableWidthHistogramAggregate v) {
+        public ObjectBuilder<Aggregate> variableWidthHistogram(VariableWidthHistogramAggregate<JsonData> v) {
             this._kind = Kind.VariableWidthHistogram;
             this._value = v;
             return this;
         }
 
         public ObjectBuilder<Aggregate> variableWidthHistogram(
-            Function<VariableWidthHistogramAggregate.Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn
+            Function<VariableWidthHistogramAggregate.Builder<JsonData>, ObjectBuilder<VariableWidthHistogramAggregate<JsonData>>> fn
         ) {
-            return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregate.Builder()).build());
+            return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregate.Builder<JsonData>()).build());
         }
 
         public ObjectBuilder<Aggregate> weightedAvg(WeightedAvgAggregate v) {
@@ -1820,7 +1868,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
     static {
         Map<String, JsonpDeserializer<? extends AggregateVariant>> deserializers = new HashMap<>();
-        deserializers.put("adjacency_matrix", AdjacencyMatrixAggregate._DESERIALIZER);
+        deserializers.put("adjacency_matrix", AdjacencyMatrixAggregate.createAdjacencyMatrixAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("auto_date_histogram", AutoDateHistogramAggregate._DESERIALIZER);
         deserializers.put("avg", AvgAggregate._DESERIALIZER);
         deserializers.put("box_plot", BoxPlotAggregate._DESERIALIZER);
@@ -1828,24 +1876,24 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         deserializers.put("cardinality", CardinalityAggregate._DESERIALIZER);
         deserializers.put("children", ChildrenAggregate._DESERIALIZER);
         deserializers.put("composite", CompositeAggregate._DESERIALIZER);
-        deserializers.put("date_histogram", DateHistogramAggregate._DESERIALIZER);
-        deserializers.put("date_range", DateRangeAggregate._DESERIALIZER);
+        deserializers.put("date_histogram", DateHistogramAggregate.createDateHistogramAggregateDeserializer(JsonData._DESERIALIZER));
+        deserializers.put("date_range", DateRangeAggregate.createDateRangeAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("derivative", DerivativeAggregate._DESERIALIZER);
         deserializers.put("dterms", DoubleTermsAggregate._DESERIALIZER);
         deserializers.put("extended_stats", ExtendedStatsAggregate._DESERIALIZER);
         deserializers.put("extended_stats_bucket", ExtendedStatsBucketAggregate._DESERIALIZER);
         deserializers.put("filter", FilterAggregate._DESERIALIZER);
-        deserializers.put("filters", FiltersAggregate._DESERIALIZER);
+        deserializers.put("filters", FiltersAggregate.createFiltersAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("geo_bounds", GeoBoundsAggregate._DESERIALIZER);
         deserializers.put("geo_centroid", GeoCentroidAggregate._DESERIALIZER);
-        deserializers.put("geo_distance", GeoDistanceAggregate._DESERIALIZER);
-        deserializers.put("geohash_grid", GeoHashGridAggregate._DESERIALIZER);
-        deserializers.put("geotile_grid", GeoTileGridAggregate._DESERIALIZER);
+        deserializers.put("geo_distance", GeoDistanceAggregate.createGeoDistanceAggregateDeserializer(JsonData._DESERIALIZER));
+        deserializers.put("geohash_grid", GeoHashGridAggregate.createGeoHashGridAggregateDeserializer(JsonData._DESERIALIZER));
+        deserializers.put("geotile_grid", GeoTileGridAggregate.createGeoTileGridAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("global", GlobalAggregate._DESERIALIZER);
         deserializers.put("hdr_percentile_ranks", HdrPercentileRanksAggregate._DESERIALIZER);
         deserializers.put("hdr_percentiles", HdrPercentilesAggregate._DESERIALIZER);
-        deserializers.put("histogram", HistogramAggregate._DESERIALIZER);
-        deserializers.put("ip_range", IpRangeAggregate._DESERIALIZER);
+        deserializers.put("histogram", HistogramAggregate.createHistogramAggregateDeserializer(JsonData._DESERIALIZER));
+        deserializers.put("ip_range", IpRangeAggregate.createIpRangeAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("lrareterms", LongRareTermsAggregate._DESERIALIZER);
         deserializers.put("lterms", LongTermsAggregate._DESERIALIZER);
         deserializers.put("matrix_stats", MatrixStatsAggregate._DESERIALIZER);
@@ -1853,17 +1901,23 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         deserializers.put("median_absolute_deviation", MedianAbsoluteDeviationAggregate._DESERIALIZER);
         deserializers.put("min", MinAggregate._DESERIALIZER);
         deserializers.put("missing", MissingAggregate._DESERIALIZER);
-        deserializers.put("multi_terms", MultiTermsAggregate._DESERIALIZER);
+        deserializers.put("multi_terms", MultiTermsAggregate.createMultiTermsAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("nested", NestedAggregate._DESERIALIZER);
         deserializers.put("parent", ParentAggregate._DESERIALIZER);
         deserializers.put("percentiles_bucket", PercentilesBucketAggregate._DESERIALIZER);
-        deserializers.put("range", RangeAggregate._DESERIALIZER);
+        deserializers.put("range", RangeAggregate.createRangeAggregateDeserializer(JsonData._DESERIALIZER));
         deserializers.put("rate", RateAggregate._DESERIALIZER);
         deserializers.put("reverse_nested", ReverseNestedAggregate._DESERIALIZER);
         deserializers.put("sampler", SamplerAggregate._DESERIALIZER);
         deserializers.put("scripted_metric", ScriptedMetricAggregate._DESERIALIZER);
-        deserializers.put("siglterms", SignificantLongTermsAggregate._DESERIALIZER);
-        deserializers.put("sigsterms", SignificantStringTermsAggregate._DESERIALIZER);
+        deserializers.put(
+            "siglterms",
+            SignificantLongTermsAggregate.createSignificantLongTermsAggregateDeserializer(JsonData._DESERIALIZER)
+        );
+        deserializers.put(
+            "sigsterms",
+            SignificantStringTermsAggregate.createSignificantStringTermsAggregateDeserializer(JsonData._DESERIALIZER)
+        );
         deserializers.put("simple_long_value", CumulativeCardinalityAggregate._DESERIALIZER);
         deserializers.put("simple_value", SimpleValueAggregate._DESERIALIZER);
         deserializers.put("srareterms", StringRareTermsAggregate._DESERIALIZER);
@@ -1875,11 +1929,18 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         deserializers.put("tdigest_percentile_ranks", TDigestPercentileRanksAggregate._DESERIALIZER);
         deserializers.put("tdigest_percentiles", TDigestPercentilesAggregate._DESERIALIZER);
         deserializers.put("top_hits", TopHitsAggregate._DESERIALIZER);
+        deserializers.put("ulterms", UnsignedLongTermsAggregate._DESERIALIZER);
         deserializers.put("umrareterms", UnmappedRareTermsAggregate._DESERIALIZER);
-        deserializers.put("umsigterms", UnmappedSignificantTermsAggregate._DESERIALIZER);
+        deserializers.put(
+            "umsigterms",
+            UnmappedSignificantTermsAggregate.createUnmappedSignificantTermsAggregateDeserializer(JsonData._DESERIALIZER)
+        );
         deserializers.put("umterms", UnmappedTermsAggregate._DESERIALIZER);
         deserializers.put("value_count", ValueCountAggregate._DESERIALIZER);
-        deserializers.put("variable_width_histogram", VariableWidthHistogramAggregate._DESERIALIZER);
+        deserializers.put(
+            "variable_width_histogram",
+            VariableWidthHistogramAggregate.createVariableWidthHistogramAggregateDeserializer(JsonData._DESERIALIZER)
+        );
         deserializers.put("weighted_avg", WeightedAvgAggregate._DESERIALIZER);
 
         _TYPED_KEYS_DESERIALIZER = new ExternallyTaggedUnion.Deserializer<>(deserializers, Aggregate::new).typedKeys();
