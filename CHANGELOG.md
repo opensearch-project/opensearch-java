@@ -31,6 +31,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed deserialization failure when OpenSearch returns shard failures without the `primary` field in error responses by upgrading version of `opensearch-api-specification`
 
 ### Security
 
