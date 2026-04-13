@@ -30,10 +30,8 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.json.jackson;
+package org.opensearch.client.json.jackson3;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
@@ -41,7 +39,8 @@ import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParsingException;
-import java.io.IOException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.JsonToken;
 
 /**
  * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start of the
@@ -52,13 +51,13 @@ class JsonValueParser {
         private static final JsonProvider INSTANCE = JsonProvider.provider();
     }
 
-    public JsonObject parseObject(JsonParser parser) throws IOException {
+    public JsonObject parseObject(JsonParser parser) {
 
         JsonObjectBuilder ob = DefaultJsonProvider.INSTANCE.createObjectBuilder();
 
         JsonToken token;
         while ((token = parser.nextToken()) != JsonToken.END_OBJECT) {
-            if (token != JsonToken.FIELD_NAME) {
+            if (token != JsonToken.PROPERTY_NAME) {
                 throw new JsonParsingException("Expected a property name", new JacksonJsonpLocation(parser));
             }
             String name = parser.currentName();
@@ -68,7 +67,7 @@ class JsonValueParser {
         return ob.build();
     }
 
-    public JsonArray parseArray(JsonParser parser) throws IOException {
+    public JsonArray parseArray(JsonParser parser) {
         JsonArrayBuilder ab = DefaultJsonProvider.INSTANCE.createArrayBuilder();
 
         while (parser.nextToken() != JsonToken.END_ARRAY) {
@@ -77,7 +76,7 @@ class JsonValueParser {
         return ab.build();
     }
 
-    public JsonValue parseValue(JsonParser parser) throws IOException {
+    public JsonValue parseValue(JsonParser parser) {
         switch (parser.currentToken()) {
             case START_OBJECT:
                 return parseObject(parser);
@@ -95,7 +94,7 @@ class JsonValueParser {
                 return JsonValue.NULL;
 
             case VALUE_STRING:
-                return DefaultJsonProvider.INSTANCE.createValue(parser.getText());
+                return DefaultJsonProvider.INSTANCE.createValue(parser.getString());
 
             case VALUE_NUMBER_FLOAT:
             case VALUE_NUMBER_INT:

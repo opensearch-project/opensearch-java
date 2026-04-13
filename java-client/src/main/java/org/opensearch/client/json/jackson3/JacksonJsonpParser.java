@@ -30,18 +30,14 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.json.jackson;
+package org.opensearch.client.json.jackson3;
 
-import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.core.util.JsonParserSequence;
-import com.fasterxml.jackson.databind.util.TokenBuffer;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.AbstractMap;
 import java.util.EnumMap;
@@ -50,6 +46,10 @@ import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import org.opensearch.client.json.LookAheadJsonParser;
 import org.opensearch.client.json.UnexpectedJsonEventException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonToken;
+import tools.jackson.core.util.JsonParserSequence;
+import tools.jackson.databind.util.TokenBuffer;
 
 /**
  * A JSONP parser implementation on top of Jackson.
@@ -61,7 +61,7 @@ import org.opensearch.client.json.UnexpectedJsonEventException;
  */
 public class JacksonJsonpParser implements LookAheadJsonParser {
 
-    private final com.fasterxml.jackson.core.JsonParser parser;
+    private final tools.jackson.core.JsonParser parser;
 
     private boolean hasNextWasCalled = false;
 
@@ -71,7 +71,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         tokenToEvent = new EnumMap<>(JsonToken.class);
         tokenToEvent.put(JsonToken.END_ARRAY, Event.END_ARRAY);
         tokenToEvent.put(JsonToken.END_OBJECT, Event.END_OBJECT);
-        tokenToEvent.put(JsonToken.FIELD_NAME, Event.KEY_NAME);
+        tokenToEvent.put(JsonToken.PROPERTY_NAME, Event.KEY_NAME);
         tokenToEvent.put(JsonToken.START_ARRAY, Event.START_ARRAY);
         tokenToEvent.put(JsonToken.START_OBJECT, Event.START_OBJECT);
         tokenToEvent.put(JsonToken.VALUE_FALSE, Event.VALUE_FALSE);
@@ -86,25 +86,25 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         // - NOT_AVAILABLE
     }
 
-    public JacksonJsonpParser(com.fasterxml.jackson.core.JsonParser parser) {
+    public JacksonJsonpParser(tools.jackson.core.JsonParser parser) {
         this.parser = parser;
     }
 
     /**
      * Returns the underlying Jackson parser.
      */
-    public com.fasterxml.jackson.core.JsonParser jacksonParser() {
+    public tools.jackson.core.JsonParser jacksonParser() {
         return this.parser;
     }
 
-    private JsonParsingException convertException(IOException ioe) {
+    private JsonParsingException convertException(JacksonException ioe) {
         return new JsonParsingException("Jackson exception: " + ioe.getMessage(), ioe, getLocation());
     }
 
     private JsonToken fetchNextToken() {
         try {
             return parser.nextToken();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -129,7 +129,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
     public Event next() {
         JsonToken token;
         if (hasNextWasCalled) {
-            token = parser.getCurrentToken();
+            token = parser.currentToken();
             hasNextWasCalled = false;
         } else {
             token = fetchNextToken();
@@ -152,7 +152,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         ensureTokenIsCurrent();
         try {
             return parser.getValueAsString();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -168,7 +168,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         ensureTokenIsCurrent();
         try {
             return parser.getIntValue();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -178,7 +178,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         ensureTokenIsCurrent();
         try {
             return parser.getLongValue();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -188,7 +188,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         ensureTokenIsCurrent();
         try {
             return parser.getDecimalValue();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -202,7 +202,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
     public void close() {
         try {
             parser.close();
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -220,7 +220,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         }
         try {
             return valueParser.parseObject(parser);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -236,7 +236,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         }
         try {
             return valueParser.parseArray(parser);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -249,7 +249,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         }
         try {
             return valueParser.parseValue(parser);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -275,7 +275,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
                         break;
                 }
             } while (!(token == JsonToken.END_OBJECT && depth == 0));
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -301,7 +301,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
                         break;
                 }
             } while (!(token == JsonToken.END_ARRAY && depth == 0));
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw convertException(e);
         }
     }
@@ -328,14 +328,14 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
 
     public Map.Entry<String, JsonParser> lookAheadFieldValue(String name, String defaultValue) {
 
-        TokenBuffer tb = new TokenBuffer(parser, null);
+        TokenBuffer tb = TokenBuffer.forBuffering(parser, null);
 
         try {
             // The resulting parser must contain the full object, including START_EVENT
             tb.copyCurrentEvent(parser);
             while (parser.nextToken() != JsonToken.END_OBJECT) {
 
-                expectEvent(JsonToken.FIELD_NAME);
+                expectEvent(JsonToken.PROPERTY_NAME);
                 // Do not copy current event here, each branch will take care of it
 
                 String fieldName = parser.currentName();
@@ -346,7 +346,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
                     tb.copyCurrentEvent(parser);
 
                     return new AbstractMap.SimpleImmutableEntry<>(
-                        parser.getText(),
+                        parser.getString(),
                         new JacksonJsonpParser(JsonParserSequence.createFlattened(false, tb.asParser(), parser))
                     );
                 } else {
@@ -355,7 +355,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
             }
             // Copy ending END_OBJECT
             tb.copyCurrentEvent(parser);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw JacksonUtils.convertException(e);
         }
 
@@ -369,14 +369,14 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
     @Override
     public <Variant> Map.Entry<Variant, JsonParser> findVariant(Map<String, Variant> variants) {
         // We're on a START_OBJECT event
-        TokenBuffer tb = new TokenBuffer(parser, null);
+        TokenBuffer tb = TokenBuffer.forBuffering(parser, null);
 
         try {
             // The resulting parser must contain the full object, including START_EVENT
             tb.copyCurrentEvent(parser);
             while (parser.nextToken() != JsonToken.END_OBJECT) {
 
-                expectEvent(JsonToken.FIELD_NAME);
+                expectEvent(JsonToken.PROPERTY_NAME);
                 String fieldName = parser.currentName();
 
                 Variant variant = variants.get(fieldName);
@@ -392,7 +392,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
             }
             // Copy ending END_OBJECT
             tb.copyCurrentEvent(parser);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw JacksonUtils.convertException(e);
         }
 
@@ -403,7 +403,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
         );
     }
 
-    private void expectNextEvent(JsonToken expected) throws IOException {
+    private void expectNextEvent(JsonToken expected) {
         JsonToken event = parser.nextToken();
         if (event != expected) {
             throw new UnexpectedJsonEventException(this, tokenToEvent.get(event), tokenToEvent.get(expected));

@@ -30,7 +30,7 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.json.jackson;
+package org.opensearch.client.json.jackson3;
 
 import jakarta.json.stream.JsonLocation;
 
@@ -39,14 +39,14 @@ import jakarta.json.stream.JsonLocation;
  */
 public class JacksonJsonpLocation implements JsonLocation {
 
-    private final com.fasterxml.jackson.core.JsonLocation location;
+    private final tools.jackson.core.TokenStreamLocation location;
 
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonLocation location) {
+    JacksonJsonpLocation(tools.jackson.core.TokenStreamLocation location) {
         this.location = location;
     }
 
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonParser parser) {
-        this(parser.currentTokenLocation());
+    JacksonJsonpLocation(tools.jackson.core.JsonParser parser) {
+        this(parser.currentLocation());
     }
 
     @Override
