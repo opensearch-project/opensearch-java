@@ -59,8 +59,6 @@ public enum ValueType implements JsonEnum {
 
     Float("float"),
 
-    GeoPoint("geo_point"),
-
     Integer("integer"),
 
     Ip("ip"),
@@ -70,8 +68,6 @@ public enum ValueType implements JsonEnum {
     Number("number"),
 
     Numeric("numeric"),
-
-    Range("range"),
 
     Short("short"),
 

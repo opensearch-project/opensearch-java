@@ -223,7 +223,7 @@ public class TypeMapper {
     }
 
     private TypeRef mapAllOf(List<OpenApiSchema> allOf) {
-        if (allOf.size() == 1) {
+        if (allOf.size() > 0) {
             return mapType(allOf.get(0));
         }
 

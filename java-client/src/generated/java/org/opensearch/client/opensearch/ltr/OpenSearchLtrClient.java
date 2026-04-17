@@ -41,9 +41,12 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -492,8 +495,20 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
     /**
      * Search for features in a feature store.
      */
-    public SearchFeaturesResponse searchFeatures(SearchFeaturesRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(request, SearchFeaturesRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> SearchFeaturesResponse<TDocument> searchFeatures(SearchFeaturesRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchFeaturesRequest, SearchFeaturesResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchFeaturesRequest,
+            SearchFeaturesResponse<TDocument>,
+            ErrorResponse>) SearchFeaturesRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:ltr.search_features.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -501,16 +516,11 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
      *
      * @param fn a function that initializes a builder to create the {@link SearchFeaturesRequest}
      */
-    public final SearchFeaturesResponse searchFeatures(Function<SearchFeaturesRequest.Builder, ObjectBuilder<SearchFeaturesRequest>> fn)
-        throws IOException, OpenSearchException {
-        return searchFeatures(fn.apply(new SearchFeaturesRequest.Builder()).build());
-    }
-
-    /**
-     * Search for features in a feature store.
-     */
-    public final SearchFeaturesResponse searchFeatures() throws IOException, OpenSearchException {
-        return searchFeatures(new SearchFeaturesRequest.Builder().build());
+    public final <TDocument> SearchFeaturesResponse<TDocument> searchFeatures(
+        Function<SearchFeaturesRequest.Builder, ObjectBuilder<SearchFeaturesRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return searchFeatures(fn.apply(new SearchFeaturesRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: ltr.search_featuresets
@@ -518,8 +528,22 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
     /**
      * Search for feature sets in a feature store.
      */
-    public SearchFeaturesetsResponse searchFeaturesets(SearchFeaturesetsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(request, SearchFeaturesetsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> SearchFeaturesetsResponse<TDocument> searchFeaturesets(
+        SearchFeaturesetsRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchFeaturesetsRequest, SearchFeaturesetsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchFeaturesetsRequest,
+            SearchFeaturesetsResponse<TDocument>,
+            ErrorResponse>) SearchFeaturesetsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:ltr.search_featuresets.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -527,17 +551,11 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
      *
      * @param fn a function that initializes a builder to create the {@link SearchFeaturesetsRequest}
      */
-    public final SearchFeaturesetsResponse searchFeaturesets(
-        Function<SearchFeaturesetsRequest.Builder, ObjectBuilder<SearchFeaturesetsRequest>> fn
+    public final <TDocument> SearchFeaturesetsResponse<TDocument> searchFeaturesets(
+        Function<SearchFeaturesetsRequest.Builder, ObjectBuilder<SearchFeaturesetsRequest>> fn,
+        Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
-        return searchFeaturesets(fn.apply(new SearchFeaturesetsRequest.Builder()).build());
-    }
-
-    /**
-     * Search for feature sets in a feature store.
-     */
-    public final SearchFeaturesetsResponse searchFeaturesets() throws IOException, OpenSearchException {
-        return searchFeaturesets(new SearchFeaturesetsRequest.Builder().build());
+        return searchFeaturesets(fn.apply(new SearchFeaturesetsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: ltr.search_models
@@ -545,8 +563,20 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
     /**
      * Search for models in a feature store.
      */
-    public SearchModelsResponse searchModels(SearchModelsRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(request, SearchModelsRequest._ENDPOINT, this.transportOptions);
+    public <TDocument> SearchModelsResponse<TDocument> searchModels(SearchModelsRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchModelsRequest, SearchModelsResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchModelsRequest,
+            SearchModelsResponse<TDocument>,
+            ErrorResponse>) SearchModelsRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:ltr.search_models.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -554,16 +584,11 @@ public class OpenSearchLtrClient extends ApiClient<OpenSearchTransport, OpenSear
      *
      * @param fn a function that initializes a builder to create the {@link SearchModelsRequest}
      */
-    public final SearchModelsResponse searchModels(Function<SearchModelsRequest.Builder, ObjectBuilder<SearchModelsRequest>> fn)
-        throws IOException, OpenSearchException {
-        return searchModels(fn.apply(new SearchModelsRequest.Builder()).build());
-    }
-
-    /**
-     * Search for models in a feature store.
-     */
-    public final SearchModelsResponse searchModels() throws IOException, OpenSearchException {
-        return searchModels(new SearchModelsRequest.Builder().build());
+    public final <TDocument> SearchModelsResponse<TDocument> searchModels(
+        Function<SearchModelsRequest.Builder, ObjectBuilder<SearchModelsRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return searchModels(fn.apply(new SearchModelsRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: ltr.stats

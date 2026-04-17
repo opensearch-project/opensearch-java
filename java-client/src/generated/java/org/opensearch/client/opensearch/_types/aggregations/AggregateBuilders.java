@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types.aggregations;
 
 import javax.annotation.Generated;
+import org.opensearch.client.json.JsonData;
 
 /**
  * Builders for {@link Aggregate} variants.
@@ -48,8 +49,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link AdjacencyMatrixAggregate adjacency_matrix} {@code Aggregate} variant.
      */
-    public static AdjacencyMatrixAggregate.Builder adjacencyMatrix() {
-        return new AdjacencyMatrixAggregate.Builder();
+    public static AdjacencyMatrixAggregate.Builder<JsonData> adjacencyMatrix() {
+        return new AdjacencyMatrixAggregate.Builder<JsonData>();
     }
 
     /**
@@ -104,15 +105,15 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link DateHistogramAggregate date_histogram} {@code Aggregate} variant.
      */
-    public static DateHistogramAggregate.Builder dateHistogram() {
-        return new DateHistogramAggregate.Builder();
+    public static DateHistogramAggregate.Builder<JsonData> dateHistogram() {
+        return new DateHistogramAggregate.Builder<JsonData>();
     }
 
     /**
      * Creates a builder for the {@link DateRangeAggregate date_range} {@code Aggregate} variant.
      */
-    public static DateRangeAggregate.Builder dateRange() {
-        return new DateRangeAggregate.Builder();
+    public static DateRangeAggregate.Builder<JsonData> dateRange() {
+        return new DateRangeAggregate.Builder<JsonData>();
     }
 
     /**
@@ -153,8 +154,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link FiltersAggregate filters} {@code Aggregate} variant.
      */
-    public static FiltersAggregate.Builder filters() {
-        return new FiltersAggregate.Builder();
+    public static FiltersAggregate.Builder<JsonData> filters() {
+        return new FiltersAggregate.Builder<JsonData>();
     }
 
     /**
@@ -174,22 +175,22 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link GeoDistanceAggregate geo_distance} {@code Aggregate} variant.
      */
-    public static GeoDistanceAggregate.Builder geoDistance() {
-        return new GeoDistanceAggregate.Builder();
+    public static GeoDistanceAggregate.Builder<JsonData> geoDistance() {
+        return new GeoDistanceAggregate.Builder<JsonData>();
     }
 
     /**
      * Creates a builder for the {@link GeoHashGridAggregate geohash_grid} {@code Aggregate} variant.
      */
-    public static GeoHashGridAggregate.Builder geohashGrid() {
-        return new GeoHashGridAggregate.Builder();
+    public static GeoHashGridAggregate.Builder<JsonData> geohashGrid() {
+        return new GeoHashGridAggregate.Builder<JsonData>();
     }
 
     /**
      * Creates a builder for the {@link GeoTileGridAggregate geotile_grid} {@code Aggregate} variant.
      */
-    public static GeoTileGridAggregate.Builder geotileGrid() {
-        return new GeoTileGridAggregate.Builder();
+    public static GeoTileGridAggregate.Builder<JsonData> geotileGrid() {
+        return new GeoTileGridAggregate.Builder<JsonData>();
     }
 
     /**
@@ -216,15 +217,15 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link HistogramAggregate histogram} {@code Aggregate} variant.
      */
-    public static HistogramAggregate.Builder histogram() {
-        return new HistogramAggregate.Builder();
+    public static HistogramAggregate.Builder<JsonData> histogram() {
+        return new HistogramAggregate.Builder<JsonData>();
     }
 
     /**
      * Creates a builder for the {@link IpRangeAggregate ip_range} {@code Aggregate} variant.
      */
-    public static IpRangeAggregate.Builder ipRange() {
-        return new IpRangeAggregate.Builder();
+    public static IpRangeAggregate.Builder<JsonData> ipRange() {
+        return new IpRangeAggregate.Builder<JsonData>();
     }
 
     /**
@@ -279,8 +280,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link MultiTermsAggregate multi_terms} {@code Aggregate} variant.
      */
-    public static MultiTermsAggregate.Builder multiTerms() {
-        return new MultiTermsAggregate.Builder();
+    public static MultiTermsAggregate.Builder<JsonData> multiTerms() {
+        return new MultiTermsAggregate.Builder<JsonData>();
     }
 
     /**
@@ -307,8 +308,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link RangeAggregate range} {@code Aggregate} variant.
      */
-    public static RangeAggregate.Builder range() {
-        return new RangeAggregate.Builder();
+    public static RangeAggregate.Builder<JsonData> range() {
+        return new RangeAggregate.Builder<JsonData>();
     }
 
     /**
@@ -342,15 +343,15 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link SignificantLongTermsAggregate siglterms} {@code Aggregate} variant.
      */
-    public static SignificantLongTermsAggregate.Builder siglterms() {
-        return new SignificantLongTermsAggregate.Builder();
+    public static SignificantLongTermsAggregate.Builder<JsonData> siglterms() {
+        return new SignificantLongTermsAggregate.Builder<JsonData>();
     }
 
     /**
      * Creates a builder for the {@link SignificantStringTermsAggregate sigsterms} {@code Aggregate} variant.
      */
-    public static SignificantStringTermsAggregate.Builder sigsterms() {
-        return new SignificantStringTermsAggregate.Builder();
+    public static SignificantStringTermsAggregate.Builder<JsonData> sigsterms() {
+        return new SignificantStringTermsAggregate.Builder<JsonData>();
     }
 
     /**
@@ -431,6 +432,13 @@ public class AggregateBuilders {
     }
 
     /**
+     * Creates a builder for the {@link UnsignedLongTermsAggregate ulterms} {@code Aggregate} variant.
+     */
+    public static UnsignedLongTermsAggregate.Builder ulterms() {
+        return new UnsignedLongTermsAggregate.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link UnmappedRareTermsAggregate umrareterms} {@code Aggregate} variant.
      */
     public static UnmappedRareTermsAggregate.Builder umrareterms() {
@@ -440,8 +448,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link UnmappedSignificantTermsAggregate umsigterms} {@code Aggregate} variant.
      */
-    public static UnmappedSignificantTermsAggregate.Builder umsigterms() {
-        return new UnmappedSignificantTermsAggregate.Builder();
+    public static UnmappedSignificantTermsAggregate.Builder<JsonData> umsigterms() {
+        return new UnmappedSignificantTermsAggregate.Builder<JsonData>();
     }
 
     /**
@@ -461,8 +469,8 @@ public class AggregateBuilders {
     /**
      * Creates a builder for the {@link VariableWidthHistogramAggregate variable_width_histogram} {@code Aggregate} variant.
      */
-    public static VariableWidthHistogramAggregate.Builder variableWidthHistogram() {
-        return new VariableWidthHistogramAggregate.Builder();
+    public static VariableWidthHistogramAggregate.Builder<JsonData> variableWidthHistogram() {
+        return new VariableWidthHistogramAggregate.Builder<JsonData>();
     }
 
     /**

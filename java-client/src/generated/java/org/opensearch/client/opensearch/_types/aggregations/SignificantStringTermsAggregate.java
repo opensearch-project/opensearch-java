@@ -36,36 +36,59 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.SignificantStringTermsAggregate
 
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SignificantStringTermsAggregate extends SignificantTermsAggregateBase<SignificantStringTermsBucket>
+public class SignificantStringTermsAggregate<TBucket>
     implements
         AggregateVariant,
-        ToCopyableBuilder<SignificantStringTermsAggregate.Builder, SignificantStringTermsAggregate> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<SignificantStringTermsAggregate.Builder<TBucket>, SignificantStringTermsAggregate<TBucket>> {
+
+    @Nullable
+    private final Long bgCount;
+
+    @Nonnull
+    private final Buckets<TBucket> buckets;
+
+    @Nullable
+    private final Long docCount;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
 
     // ---------------------------------------------------------------------------------------------
 
-    private SignificantStringTermsAggregate(Builder builder) {
-        super(builder);
+    private SignificantStringTermsAggregate(Builder<TBucket> builder) {
+        this.bgCount = builder.bgCount;
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.docCount = builder.docCount;
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
     }
 
-    public static SignificantStringTermsAggregate of(
-        Function<SignificantStringTermsAggregate.Builder, ObjectBuilder<SignificantStringTermsAggregate>> fn
+    public static <TBucket> SignificantStringTermsAggregate<TBucket> of(
+        Function<SignificantStringTermsAggregate.Builder<TBucket>, ObjectBuilder<SignificantStringTermsAggregate<TBucket>>> fn
     ) {
-        return fn.apply(new Builder()).build();
+        return fn.apply(new Builder<>()).build();
     }
 
     /**
@@ -76,45 +99,180 @@ public class SignificantStringTermsAggregate extends SignificantTermsAggregateBa
         return Aggregate.Kind.Sigsterms;
     }
 
+    /**
+     * API name: {@code bg_count}
+     */
+    @Nullable
+    public final Long bgCount() {
+        return this.bgCount;
+    }
+
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<TBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code doc_count}
+     */
+    @Nullable
+    public final Long docCount() {
+        return this.docCount;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.bgCount != null) {
+            generator.writeKey("bg_count");
+            generator.write(this.bgCount);
+        }
+
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (this.docCount != null) {
+            generator.writeKey("doc_count");
+            generator.write(this.docCount);
+        }
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
     @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder<TBucket> toBuilder() {
+        return new Builder<>(this);
     }
 
     @Nonnull
-    public static Builder builder() {
-        return new Builder();
+    public static <TBucket> Builder builder() {
+        return new Builder<>();
     }
 
     /**
      * Builder for {@link SignificantStringTermsAggregate}.
      */
-    public static class Builder extends SignificantTermsAggregateBase.AbstractBuilder<SignificantStringTermsBucket, Builder>
+    public static class Builder<TBucket> extends ObjectBuilderBase
         implements
-            CopyableBuilder<Builder, SignificantStringTermsAggregate> {
+            CopyableBuilder<Builder<TBucket>, SignificantStringTermsAggregate<TBucket>> {
+        @Nullable
+        private Long bgCount;
+        private Buckets<TBucket> buckets;
+        @Nullable
+        private Long docCount;
+        @Nullable
+        private Map<String, JsonData> meta;
 
         public Builder() {}
 
-        private Builder(SignificantStringTermsAggregate o) {
-            super(o);
+        private Builder(SignificantStringTermsAggregate<TBucket> o) {
+            this.bgCount = o.bgCount;
+            this.buckets = o.buckets;
+            this.docCount = o.docCount;
+            this.meta = _mapCopy(o.meta);
         }
 
-        private Builder(Builder o) {
-            super(o);
+        private Builder(Builder<TBucket> o) {
+            this.bgCount = o.bgCount;
+            this.buckets = o.buckets;
+            this.docCount = o.docCount;
+            this.meta = _mapCopy(o.meta);
         }
 
         @Override
         @Nonnull
-        public Builder copy() {
-            return new Builder(this);
+        public Builder<TBucket> copy() {
+            return new Builder<>(this);
         }
 
-        @Override
+        /**
+         * API name: {@code bg_count}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder<TBucket> bgCount(@Nullable Long value) {
+            this.bgCount = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Buckets<TBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
+        }
+
+        /**
+         * API name: {@code doc_count}
+         */
+        @Nonnull
+        public final Builder<TBucket> docCount(@Nullable Long value) {
+            this.docCount = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
             return this;
         }
 
@@ -125,40 +283,55 @@ public class SignificantStringTermsAggregate extends SignificantTermsAggregateBa
          */
         @Override
         @Nonnull
-        public SignificantStringTermsAggregate build() {
+        public SignificantStringTermsAggregate<TBucket> build() {
             _checkSingleUse();
 
-            return new SignificantStringTermsAggregate(this);
+            return new SignificantStringTermsAggregate<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SignificantStringTermsAggregate}
+     * Create a JSON deserializer for SignificantStringTermsAggregate.
      */
-    public static final JsonpDeserializer<SignificantStringTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        SignificantStringTermsAggregate::setupSignificantStringTermsAggregateDeserializer
-    );
+    public static <TBucket> JsonpDeserializer<SignificantStringTermsAggregate<TBucket>> createSignificantStringTermsAggregateDeserializer(
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            Builder<TBucket>::new,
+            op -> SignificantStringTermsAggregate.setupSignificantStringTermsAggregateDeserializer(op, tBucketDeserializer)
+        );
+    }
 
-    protected static void setupSignificantStringTermsAggregateDeserializer(ObjectDeserializer<SignificantStringTermsAggregate.Builder> op) {
-        setupSignificantTermsAggregateBaseDeserializer(op, SignificantStringTermsBucket._DESERIALIZER);
+    protected static <TBucket> void setupSignificantStringTermsAggregateDeserializer(
+        ObjectDeserializer<SignificantStringTermsAggregate.Builder<TBucket>> op,
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        op.add(Builder::bgCount, JsonpDeserializer.longDeserializer(), "bg_count");
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(tBucketDeserializer), "buckets");
+        op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.bgCount);
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.docCount);
+        result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        SignificantStringTermsAggregate<?> other = (SignificantStringTermsAggregate<?>) o;
+        return Objects.equals(this.bgCount, other.bgCount)
+            && this.buckets.equals(other.buckets)
+            && Objects.equals(this.docCount, other.docCount)
+            && Objects.equals(this.meta, other.meta);
     }
 }

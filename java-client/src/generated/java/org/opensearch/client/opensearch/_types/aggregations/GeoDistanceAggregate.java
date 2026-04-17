@@ -36,34 +36,51 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.GeoDistanceAggregate
 
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoDistanceAggregate extends RangeAggregateBase
+public class GeoDistanceAggregate<TBucket>
     implements
         AggregateVariant,
-        ToCopyableBuilder<GeoDistanceAggregate.Builder, GeoDistanceAggregate> {
+        PlainJsonSerializable,
+        ToCopyableBuilder<GeoDistanceAggregate.Builder<TBucket>, GeoDistanceAggregate<TBucket>> {
+
+    @Nonnull
+    private final Buckets<TBucket> buckets;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
 
     // ---------------------------------------------------------------------------------------------
 
-    private GeoDistanceAggregate(Builder builder) {
-        super(builder);
+    private GeoDistanceAggregate(Builder<TBucket> builder) {
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
     }
 
-    public static GeoDistanceAggregate of(Function<GeoDistanceAggregate.Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
-        return fn.apply(new Builder()).build();
+    public static <TBucket> GeoDistanceAggregate<TBucket> of(
+        Function<GeoDistanceAggregate.Builder<TBucket>, ObjectBuilder<GeoDistanceAggregate<TBucket>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
     }
 
     /**
@@ -74,45 +91,128 @@ public class GeoDistanceAggregate extends RangeAggregateBase
         return Aggregate.Kind.GeoDistance;
     }
 
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<TBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
     @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder<TBucket> toBuilder() {
+        return new Builder<>(this);
     }
 
     @Nonnull
-    public static Builder builder() {
-        return new Builder();
+    public static <TBucket> Builder builder() {
+        return new Builder<>();
     }
 
     /**
      * Builder for {@link GeoDistanceAggregate}.
      */
-    public static class Builder extends RangeAggregateBase.AbstractBuilder<Builder>
+    public static class Builder<TBucket> extends ObjectBuilderBase
         implements
-            CopyableBuilder<Builder, GeoDistanceAggregate> {
+            CopyableBuilder<Builder<TBucket>, GeoDistanceAggregate<TBucket>> {
+        private Buckets<TBucket> buckets;
+        @Nullable
+        private Map<String, JsonData> meta;
 
         public Builder() {}
 
-        private Builder(GeoDistanceAggregate o) {
-            super(o);
+        private Builder(GeoDistanceAggregate<TBucket> o) {
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
-        private Builder(Builder o) {
-            super(o);
-        }
-
-        @Override
-        @Nonnull
-        public Builder copy() {
-            return new Builder(this);
+        private Builder(Builder<TBucket> o) {
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         @Override
         @Nonnull
-        protected Builder self() {
+        public Builder<TBucket> copy() {
+            return new Builder<>(this);
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Buckets<TBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder<TBucket> buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TBucket> meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
             return this;
         }
 
@@ -123,40 +223,48 @@ public class GeoDistanceAggregate extends RangeAggregateBase
          */
         @Override
         @Nonnull
-        public GeoDistanceAggregate build() {
+        public GeoDistanceAggregate<TBucket> build() {
             _checkSingleUse();
 
-            return new GeoDistanceAggregate(this);
+            return new GeoDistanceAggregate<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GeoDistanceAggregate}
+     * Create a JSON deserializer for GeoDistanceAggregate.
      */
-    public static final JsonpDeserializer<GeoDistanceAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        GeoDistanceAggregate::setupGeoDistanceAggregateDeserializer
-    );
+    public static <TBucket> JsonpDeserializer<GeoDistanceAggregate<TBucket>> createGeoDistanceAggregateDeserializer(
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            Builder<TBucket>::new,
+            op -> GeoDistanceAggregate.setupGeoDistanceAggregateDeserializer(op, tBucketDeserializer)
+        );
+    }
 
-    protected static void setupGeoDistanceAggregateDeserializer(ObjectDeserializer<GeoDistanceAggregate.Builder> op) {
-        setupRangeAggregateBaseDeserializer(op);
+    protected static <TBucket> void setupGeoDistanceAggregateDeserializer(
+        ObjectDeserializer<GeoDistanceAggregate.Builder<TBucket>> op,
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(tBucketDeserializer), "buckets");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        GeoDistanceAggregate<?> other = (GeoDistanceAggregate<?>) o;
+        return this.buckets.equals(other.buckets) && Objects.equals(this.meta, other.meta);
     }
 }
