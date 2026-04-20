@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 
 ### Dependencies
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
 
 ### Changed
 
