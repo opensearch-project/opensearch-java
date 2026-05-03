@@ -22,10 +22,14 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.time.Clock;
 import java.util.AbstractMap;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
@@ -85,6 +89,23 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     public static final Integer DEFAULT_REQUEST_COMPRESSION_SIZE = 8192;
 
     private static final byte[] NO_BYTES = new byte[0];
+
+    /**
+     * FQCNs of Apache-backed AWS SDK HTTP clients (v4, v5) that share the body-on-GET/DELETE limitation.
+     */
+    private static final Set<String> APACHE_HTTP_CLIENT_CLASS_NAMES = Collections.unmodifiableSet(
+        new HashSet<>(
+            Arrays.asList("software.amazon.awssdk.http.apache.ApacheHttpClient", "software.amazon.awssdk.http.apache5.Apache5HttpClient")
+        )
+    );
+
+    /**
+     * Package-private to allow assertions in unit tests.
+     */
+    static boolean isAwsSdkApacheHttpClient(SdkAutoCloseable httpClient) {
+        return httpClient instanceof SdkHttpClient && APACHE_HTTP_CLIENT_CLASS_NAMES.contains(httpClient.getClass().getName());
+    }
+
     private final SdkAutoCloseable httpClient;
     private final boolean isApacheHttpClient;
     private final String host;
@@ -196,8 +217,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
-        this.isApacheHttpClient = httpClient instanceof SdkHttpClient
-            && httpClient.getClass().getName().equals("software.amazon.awssdk.http.apache.ApacheHttpClient");
+        this.isApacheHttpClient = isAwsSdkApacheHttpClient(httpClient);
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
