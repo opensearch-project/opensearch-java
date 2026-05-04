@@ -13,7 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.2 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896), [#1952](https://github.com/opensearch-project/opensearch-java/pull/1952))
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
-- Bump `gradle-wrapper` from 9.3.1 to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
+- Bump `gradle-wrapper` from 9.3.1 to 9.5.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934), [#1973](https://github.com/opensearch-project/opensearch-java/pull/1973))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
 
 ### Added
