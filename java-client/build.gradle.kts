@@ -179,8 +179,10 @@ val integrationTest = task<Test>("integrationTest") {
 val opensearchVersion = "3.5.0-SNAPSHOT"
 
 dependencies {
-    val jacksonVersion = "2.20.1"
-    val jacksonDatabindVersion = "2.20.1"
+    val jacksonVersion = "2.21.2"
+    val jacksonDatabindVersion = "2.21.2"
+    val jackson3Version = "3.1.1"
+    val jackson3DatabindVersion = "3.1.1"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.6")
@@ -215,8 +217,10 @@ dependencies {
     implementation("jakarta.annotation", "jakarta.annotation-api", "1.3.5")
 
     // Apache 2.0
-    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
+    implementation("tools.jackson.core", "jackson-core", jackson3Version)
+    implementation("tools.jackson.core", "jackson-databind", jackson3DatabindVersion)
+    compileOnly("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // For AwsSdk2Transport
