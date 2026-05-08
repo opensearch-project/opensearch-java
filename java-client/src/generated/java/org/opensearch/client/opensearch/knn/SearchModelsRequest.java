@@ -45,6 +45,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -1750,7 +1751,7 @@ public final class SearchModelsRequest extends RequestBase implements ToCopyable
     /**
      * Endpoint "{@code knn.search_models}".
      */
-    public static final Endpoint<SearchModelsRequest, SearchModelsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final SimpleEndpoint<SearchModelsRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "POST",
         // Request path
@@ -1765,6 +1766,15 @@ public final class SearchModelsRequest extends RequestBase implements ToCopyable
         false,
         SearchModelsResponse._DESERIALIZER
     );
+
+    /**
+     * Create an "{@code knn.search_models}" endpoint.
+     */
+    public static <TDocument> Endpoint<SearchModelsRequest, SearchModelsResponse<TDocument>, ErrorResponse> createKnnSearchModelsEndpoint(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return _ENDPOINT.withResponseDeserializer(SearchModelsResponse.createSearchModelsResponseDeserializer(tDocumentDeserializer));
+    }
 
     @Override
     public int hashCode() {

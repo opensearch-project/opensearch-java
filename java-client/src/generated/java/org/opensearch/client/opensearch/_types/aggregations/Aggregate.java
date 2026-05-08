@@ -117,6 +117,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         TdigestPercentileRanks("tdigest_percentile_ranks"),
         TdigestPercentiles("tdigest_percentiles"),
         TopHits("top_hits"),
+        Ulterms("ulterms"),
         Umrareterms("umrareterms"),
         Umsigterms("umsigterms"),
         Umterms("umterms"),
@@ -1044,6 +1045,22 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
     }
 
     /**
+     * Is this variant instance of kind {@code ulterms}?
+     */
+    public boolean isUlterms() {
+        return _kind == Kind.Ulterms;
+    }
+
+    /**
+     * Get the {@code ulterms} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code ulterms} kind.
+     */
+    public UnsignedLongTermsAggregate ulterms() {
+        return TaggedUnionUtils.get(this, Kind.Ulterms);
+    }
+
+    /**
      * Is this variant instance of kind {@code umrareterms}?
      */
     public boolean isUmrareterms() {
@@ -1743,6 +1760,18 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this.topHits(fn.apply(new TopHitsAggregate.Builder()).build());
         }
 
+        public ObjectBuilder<Aggregate> ulterms(UnsignedLongTermsAggregate v) {
+            this._kind = Kind.Ulterms;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Aggregate> ulterms(
+            Function<UnsignedLongTermsAggregate.Builder, ObjectBuilder<UnsignedLongTermsAggregate>> fn
+        ) {
+            return this.ulterms(fn.apply(new UnsignedLongTermsAggregate.Builder()).build());
+        }
+
         public ObjectBuilder<Aggregate> umrareterms(UnmappedRareTermsAggregate v) {
             this._kind = Kind.Umrareterms;
             this._value = v;
@@ -1875,6 +1904,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         deserializers.put("tdigest_percentile_ranks", TDigestPercentileRanksAggregate._DESERIALIZER);
         deserializers.put("tdigest_percentiles", TDigestPercentilesAggregate._DESERIALIZER);
         deserializers.put("top_hits", TopHitsAggregate._DESERIALIZER);
+        deserializers.put("ulterms", UnsignedLongTermsAggregate._DESERIALIZER);
         deserializers.put("umrareterms", UnmappedRareTermsAggregate._DESERIALIZER);
         deserializers.put("umsigterms", UnmappedSignificantTermsAggregate._DESERIALIZER);
         deserializers.put("umterms", UnmappedTermsAggregate._DESERIALIZER);

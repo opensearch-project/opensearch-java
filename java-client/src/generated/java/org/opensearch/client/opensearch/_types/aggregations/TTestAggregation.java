@@ -47,18 +47,17 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.TTestAggregation
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TTestAggregation extends AggregationBase
-    implements
-        AggregationVariant,
-        ToCopyableBuilder<TTestAggregation.Builder, TTestAggregation> {
+public class TTestAggregation implements PlainJsonSerializable, ToCopyableBuilder<TTestAggregation.Builder, TTestAggregation> {
 
     @Nullable
     private final TestPopulation a;
@@ -72,7 +71,6 @@ public class TTestAggregation extends AggregationBase
     // ---------------------------------------------------------------------------------------------
 
     private TTestAggregation(Builder builder) {
-        super(builder);
         this.a = builder.a;
         this.b = builder.b;
         this.type = builder.type;
@@ -80,14 +78,6 @@ public class TTestAggregation extends AggregationBase
 
     public static TTestAggregation of(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.TTest;
     }
 
     /**
@@ -114,8 +104,17 @@ public class TTestAggregation extends AggregationBase
         return this.type;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.a != null) {
             generator.writeKey("a");
             this.a.serialize(generator, mapper);
@@ -148,7 +147,7 @@ public class TTestAggregation extends AggregationBase
     /**
      * Builder for {@link TTestAggregation}.
      */
-    public static class Builder extends AggregationBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TTestAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TTestAggregation> {
         @Nullable
         private TestPopulation a;
         @Nullable
@@ -159,14 +158,12 @@ public class TTestAggregation extends AggregationBase
         public Builder() {}
 
         private Builder(TTestAggregation o) {
-            super(o);
             this.a = o.a;
             this.b = o.b;
             this.type = o.type;
         }
 
         private Builder(Builder o) {
-            super(o);
             this.a = o.a;
             this.b = o.b;
             this.type = o.type;
@@ -176,12 +173,6 @@ public class TTestAggregation extends AggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -252,7 +243,6 @@ public class TTestAggregation extends AggregationBase
     );
 
     protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
-        setupAggregationBaseDeserializer(op);
         op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
         op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
         op.add(Builder::type, TTestType._DESERIALIZER, "type");
@@ -260,7 +250,7 @@ public class TTestAggregation extends AggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.a);
         result = 31 * result + Objects.hashCode(this.b);
         result = 31 * result + Objects.hashCode(this.type);
@@ -269,9 +259,6 @@ public class TTestAggregation extends AggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TTestAggregation other = (TTestAggregation) o;
