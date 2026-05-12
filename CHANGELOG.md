@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
+- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
 
 ### Dependencies
 
