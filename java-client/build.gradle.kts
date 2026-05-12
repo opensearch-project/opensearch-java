@@ -51,7 +51,7 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "3.1.1"
+    id("com.github.jk1.dependency-license-report") version "3.1.2"
     id("org.owasp.dependencycheck") version "12.1.3"
 
     id("opensearch-java.spotless-conventions")
@@ -228,6 +228,7 @@ dependencies {
     testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "aws-crt-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "apache-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "apache5-client", "[2.34,3.0)")
     testImplementation("software.amazon.awssdk", "netty-nio-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "url-connection-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "sts", "[2.21,3.0)")

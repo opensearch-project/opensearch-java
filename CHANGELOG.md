@@ -3,8 +3,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
+- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
 
 ### Dependencies
+- Bump `com.github.jk1.dependency-license-report` from 3.1.1 to 3.1.2 ([#1952](https://github.com/opensearch-project/opensearch-java/pull/1952))
 - Bump `gradle-wrapper` from 9.3.1 to 9.5.0 ([#1973](https://github.com/opensearch-project/opensearch-java/pull/1973))
 
 ### Changed
