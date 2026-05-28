@@ -30,22 +30,26 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.json.jackson;
+package org.opensearch.client.json.jackson3;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import java.io.IOException;
 import java.util.EnumSet;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpDeserializerBase;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpMapperBase;
 import org.opensearch.client.json.JsonpSerializer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.TokenStreamFactory;
+import tools.jackson.core.json.JsonFactory;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.introspect.DefaultAccessorNamingStrategy;
+import tools.jackson.databind.json.JsonMapper;
 
 public class JacksonJsonpMapper extends JsonpMapperBase {
     private final JacksonJsonProvider provider;
@@ -53,19 +57,25 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
         // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
-        this(objectMapper, objectMapper.getFactory());
+        this(objectMapper, objectMapper.tokenStreamFactory());
     }
 
-    public JacksonJsonpMapper(ObjectMapper objectMapper, JsonFactory jsonFactory) {
+    public JacksonJsonpMapper(ObjectMapper objectMapper, TokenStreamFactory jsonFactory) {
         this.provider = new JacksonJsonProvider(jsonFactory);
         this.objectMapper = objectMapper;
     }
 
     public JacksonJsonpMapper() {
         this(
-            new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false)
-                .setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL)
-                .findAndRegisterModules()
+            new JsonMapper.Builder(new JsonFactory()).configure(SerializationFeature.INDENT_OUTPUT, false)
+                // In Jackson 3.x, property naming is more strict
+                .accessorNaming(new DefaultAccessorNamingStrategy.Provider().withFirstCharAcceptance(true, true))
+                // In Jackson 3.x, DeserializationFeature.FAIL_ON_TRAILING_TOKENS is enabled by
+                // default (it was off by default in 2.x).
+                .configure(DeserializationFeature.FAIL_ON_TRAILING_TOKENS, false)
+                .changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(JsonInclude.Include.NON_NULL))
+                .changeDefaultPropertyInclusion(incl -> incl.withContentInclusion(JsonInclude.Include.NON_NULL))
+                .build()
         );
     }
 
@@ -110,10 +120,10 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
             return;
         }
 
-        com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator) generator).jacksonGenerator();
+        tools.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator) generator).jacksonGenerator();
         try {
             objectMapper.writeValue(jkGenerator, value);
-        } catch (IOException ioe) {
+        } catch (JacksonException ioe) {
             throw JacksonUtils.convertException(ioe);
         }
     }
@@ -134,11 +144,11 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
                 throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
             }
 
-            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
+            tools.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
 
             try {
                 return objectMapper.readValue(jkParser, clazz);
-            } catch (IOException ioe) {
+            } catch (JacksonException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }
         }

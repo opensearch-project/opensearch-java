@@ -30,38 +30,24 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.json.jackson;
+package org.opensearch.client.json.jackson3;
 
-import jakarta.json.stream.JsonLocation;
+import jakarta.json.JsonException;
+import jakarta.json.stream.JsonGenerationException;
+import jakarta.json.stream.JsonParsingException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.exc.StreamReadException;
+import tools.jackson.core.exc.StreamWriteException;
 
-/**
- * Translate a Jackson location to a JSONP location.
- */
-public class JacksonJsonpLocation implements JsonLocation {
-
-    private final com.fasterxml.jackson.core.JsonLocation location;
-
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonLocation location) {
-        this.location = location;
-    }
-
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonParser parser) {
-        this(parser.currentTokenLocation());
-    }
-
-    @Override
-    public long getLineNumber() {
-        return location.getLineNr();
-    }
-
-    @Override
-    public long getColumnNumber() {
-        return location.getColumnNr();
-    }
-
-    @Override
-    public long getStreamOffset() {
-        long charOffset = location.getCharOffset();
-        return charOffset == -1 ? location.getByteOffset() : charOffset;
+class JacksonUtils {
+    public static JsonException convertException(JacksonException ioe) {
+        if (ioe instanceof StreamWriteException) {
+            return new JsonGenerationException(ioe.getMessage(), ioe);
+        } else if (ioe instanceof StreamReadException) {
+            StreamReadException jpe = (StreamReadException) ioe;
+            return new JsonParsingException(ioe.getMessage(), jpe, new JacksonJsonpLocation(jpe.getLocation()));
+        } else {
+            return new JsonException("Jackson exception", ioe);
+        }
     }
 }
