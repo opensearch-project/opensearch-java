@@ -9,6 +9,8 @@ jobs:
   draft-a-release:
     name: Draft a release
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
