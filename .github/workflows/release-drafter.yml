@@ -10,7 +10,8 @@ jobs:
     name: Draft a release
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      issues: write # trstringer/manual-approval
+      contents: write # softprops/action-gh-release
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
