@@ -1,3 +1,0 @@
-{{#fieldsToDeserialize}}
-    op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
-{{/fieldsToDeserialize}}

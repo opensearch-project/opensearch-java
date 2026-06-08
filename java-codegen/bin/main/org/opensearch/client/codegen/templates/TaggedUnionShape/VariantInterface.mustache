@@ -1,9 +1,0 @@
-{{>Partials/ClassDeclaration}} {
-    {{unionClassName}}.Kind _{{#camelCase}}{{unionClassName}}{{/camelCase}}Kind();
-{{#includeToUnionMethod}}
-
-    default {{unionClassName}} to{{unionClassName}}() {
-        return new {{unionClassName}}(this);
-    }
-{{/includeToUnionMethod}}
-}
