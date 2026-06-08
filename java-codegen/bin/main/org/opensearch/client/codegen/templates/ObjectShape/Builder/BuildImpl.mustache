@@ -1,0 +1,12 @@
+/**
+ * Builds a {@link {{className}}}.
+ *
+ * @throws NullPointerException if some of the required fields are null.
+ */
+@Override
+@{{TYPES.Javax.Annotation.Nonnull}}
+public {{selfType}} build() {
+    _checkSingleUse();
+
+    return new {{className}}{{#typeParameters}}<>{{/typeParameters}}(this);
+}

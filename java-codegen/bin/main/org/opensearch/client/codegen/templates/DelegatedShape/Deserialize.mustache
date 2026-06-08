@@ -1,0 +1,17 @@
+{{^typeParameters}}
+    /**
+     * Json deserializer for {@link {{className}}}
+     */
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = create{{className}}Deserializer();
+{{/typeParameters}}
+{{#typeParameters}}
+    {{>Partials/Deserialize/TypeParametersNamedDeserializer}}
+{{/typeParameters}}
+
+{{>Partials/Deserialize/CreateClassDeserializerFnSignature}} {
+    {{TYPES.Client.Json.JsonpDeserializer}}<{{delegatedType}}> valueDeserializer = {{#delegatedType}}{{>Type/deserializer}}{{/delegatedType}};
+    return {{TYPES.Client.Json.JsonpDeserializer}}.of(
+        valueDeserializer.acceptedEvents(),
+        (parser, mapper) -> new Builder{{#typeParameters}}{{.}}{{/typeParameters}}().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+    );
+}

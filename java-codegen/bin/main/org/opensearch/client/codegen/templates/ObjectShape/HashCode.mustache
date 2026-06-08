@@ -1,0 +1,11 @@
+    @Override
+    public int hashCode() {
+        {{#extendsOtherShape}}
+        int result = super.hashCode();
+        {{/extendsOtherShape}}
+        {{^extendsOtherShape}}
+        int result = 17;
+        {{/extendsOtherShape}}
+        {{>ObjectShape/HashCode/Fields}}
+        return result;
+    }

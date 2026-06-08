@@ -1,0 +1,14 @@
+{{#hasDelegatedBodyField}}
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = create{{className}}Deserializer();
+
+    protected static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> create{{className}}Deserializer() {
+    {{TYPES.Client.Json.JsonpDeserializer}}<{{delegatedBodyField.type}}> valueDeserializer = {{#delegatedBodyField.type}}{{>Type/deserializer}}{{/delegatedBodyField.type}};
+        return {{TYPES.Client.Json.JsonpDeserializer}}.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().{{delegatedBodyField.name}}(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
+{{/hasDelegatedBodyField}}
+{{^hasDelegatedBodyField}}
+    {{>ObjectShape/Deserialize}}
+{{/hasDelegatedBodyField}}

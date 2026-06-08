@@ -1,0 +1,28 @@
+{{>Partials/ClassDeclaration}} {
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+{{#referencingDiscriminatedUnions}}
+
+    {{>ObjectShape/DiscriminatedUnionInterfaceImpl}}
+{{/referencingDiscriminatedUnions}}
+    {{>ObjectShape/Getters}}
+
+    {{>ObjectShape/Serialize}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/ToBuilder}}
+
+    {{>ObjectShape/Builder}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Deserialize}}
+
+    {{>ObjectShape/HashCode}}
+
+    {{>ObjectShape/Equals}}
+}

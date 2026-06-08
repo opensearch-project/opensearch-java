@@ -1,0 +1,16 @@
+{{#hashableFields}}
+    {{^-first}}
+        &&
+    {{/-first}}
+    {{#required}}
+        {{#type.isPrimitive}}
+            this.{{name}} == other.{{name}}
+        {{/type.isPrimitive}}
+        {{^type.isPrimitive}}
+            this.{{name}}.equals(other.{{name}})
+        {{/type.isPrimitive}}
+    {{/required}}
+    {{^required}}
+        {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
+    {{/required}}
+{{/hashableFields}}

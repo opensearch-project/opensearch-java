@@ -1,0 +1,21 @@
+{{#doesExtendType}}
+    super(builder);
+{{/doesExtendType}}
+{{#fields}}
+    {{#type.isListOrMap}}
+        {{#required}}
+            this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiableRequired(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+        {{/required}}
+        {{^required}}
+            this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiable(builder.{{name}});
+        {{/required}}
+    {{/type.isListOrMap}}
+    {{^type.isListOrMap}}
+        {{#required}}
+            this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+        {{/required}}
+        {{^required}}
+            this.{{name}} = builder.{{name}};
+        {{/required}}
+    {{/type.isListOrMap}}
+{{/fields}}

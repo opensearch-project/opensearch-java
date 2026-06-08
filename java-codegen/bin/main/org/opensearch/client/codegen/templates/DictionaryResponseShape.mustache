@@ -1,0 +1,32 @@
+{{>Partials/ClassDeclaration}} {
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Builder for {@link {{className}}}.
+     */
+    public static class Builder extends {{extendsType.name}}.AbstractBuilder<{{keyType}}, {{valueType}}, Builder>
+        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+        {{>ObjectShape/Builder/SelfImpl}}
+
+        /**
+         * Builds a {@link {{className}}}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        public {{className}} build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
+
+            return new {{className}}(this);
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Deserialize}}
+}

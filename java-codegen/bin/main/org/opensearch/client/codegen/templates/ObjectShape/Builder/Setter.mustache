@@ -1,0 +1,72 @@
+{{#field}}
+{{#type.isMap}}
+    {{>ObjectShape/FieldDoc/MapAddAll}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public final {{builderType}} {{name}}({{type}} map) {
+        {{builderThis}}.{{name}} = _mapPutAll({{builderThis}}.{{name}}, map);
+        return {{^extendedByOtherShape}}this{{/extendedByOtherShape}}{{#extendedByOtherShape}}self(){{/extendedByOtherShape}};
+    }
+
+    {{>ObjectShape/FieldDoc/MapAdd}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public final {{builderType}} {{name}}({{type.mapKeyType}} key, {{type.mapValueType}} value) {
+        {{builderThis}}.{{name}} = _mapPut({{builderThis}}.{{name}}, key, value);
+        return {{^extendedByOtherShape}}this{{/extendedByOtherShape}}{{#extendedByOtherShape}}self(){{/extendedByOtherShape}};
+    }
+    {{#type.mapValueType.hasBuilder}}
+
+        {{>ObjectShape/FieldDoc/MapAddBuilderFn}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
+        @{{TYPES.Javax.Annotation.Nonnull}}
+        public final {{builderType}} {{name}}(String key, {{type.mapValueType.builderFnType}} fn) {
+            return {{name}}(key, fn.apply(new {{type.mapValueType.builderType}}()).build());
+        }
+    {{/type.mapValueType.hasBuilder}}
+{{/type.isMap}}
+{{#type.isList}}
+    {{>ObjectShape/FieldDoc/ListAddAll}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public final {{builderType}} {{name}}({{type}} list) {
+        {{builderThis}}.{{name}} = _listAddAll({{builderThis}}.{{name}}, list);
+        return {{^extendedByOtherShape}}this{{/extendedByOtherShape}}{{#extendedByOtherShape}}self(){{/extendedByOtherShape}};
+    }
+
+    {{>ObjectShape/FieldDoc/ListAdd}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public final {{builderType}} {{name}}({{type.listValueType}} value, {{type.listValueType}}... values) {
+        {{builderThis}}.{{name}} = _listAdd({{builderThis}}.{{name}}, value, values);
+        return {{^extendedByOtherShape}}this{{/extendedByOtherShape}}{{#extendedByOtherShape}}self(){{/extendedByOtherShape}};
+    }
+    {{#type.listValueType.hasBuilder}}
+
+        {{>ObjectShape/FieldDoc/ListAddBuilderFn}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
+        @{{TYPES.Javax.Annotation.Nonnull}}
+        public final {{builderType}} {{name}}({{type.listValueType.builderFnType}} fn) {
+            return {{name}}(fn.apply(new {{type.listValueType.builderType}}()).build());
+        }
+    {{/type.listValueType.hasBuilder}}
+{{/type.isList}}
+{{^type.isListOrMap}}
+    {{>ObjectShape/FieldDoc/Basic}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public final {{builderType}} {{name}}({{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}{{type}} value) {
+        {{builderThis}}.{{name}} = value;
+        return {{^extendedByOtherShape}}this{{/extendedByOtherShape}}{{#extendedByOtherShape}}self(){{/extendedByOtherShape}};
+    }
+    {{#type.hasBuilder}}
+
+        {{>ObjectShape/FieldDoc/Basic}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
+        @{{TYPES.Javax.Annotation.Nonnull}}
+        public final {{builderType}} {{name}}({{type.builderFnType}} fn) {
+            return {{name}}(fn.apply(new {{type.builderType}}()).build());
+        }
+    {{/type.hasBuilder}}
+{{/type.isListOrMap}}
+{{/field}}
