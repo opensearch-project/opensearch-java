@@ -26,4 +26,4 @@ samples/bin
 
 .DS_Store
 
-.kotlin/java-codegen/bin/
+.kotlin/
