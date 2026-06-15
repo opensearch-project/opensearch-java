@@ -14,7 +14,7 @@ jobs:
       contents: write # softprops/action-gh-release
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - id: get_data
         run: |
           echo "approvers=$(cat .github/CODEOWNERS | grep @ | tr -d '* ' | sed 's/@/,/g' | sed 's/,//1')" >> $GITHUB_OUTPUT
@@ -28,7 +28,7 @@ jobs:
           issue-body: "Please approve or deny the release of opensearch-java. **VERSION**: ${{ steps.get_data.outputs.version }} **TAG**: ${{ github.ref_name }}  **COMMIT**: ${{ github.sha }}"
           exclude-workflow-initiator-as-approver: true
       - name: Set up JDK 21
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@ad2b38190b15e4d6bdf0c97fb4fca8412226d287 # v5
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -39,7 +39,7 @@ jobs:
           echo Building the version: $VERSION
           ./gradlew --no-daemon publishPublishMavenPublicationToLocalRepoRepository && tar -C build -cvf artifacts.tar.gz repository
       - name: Draft a release
-        uses: softprops/action-gh-release@v3
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd
         with:
           draft: true
           generate_release_notes: true

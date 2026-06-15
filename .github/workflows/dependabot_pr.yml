@@ -18,13 +18,13 @@ jobs:
     steps:
       - name: GitHub App token
         id: github_app_token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           token: ${{ steps.github_app_token.outputs.token }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -35,12 +35,12 @@ jobs:
           echo "::set-output name=version::$(cat gradle.properties | grep systemProp.version | cut -d' ' -f3 | cut -d\. -f1,2)"
 
       - name: Update the changelog
-        uses: dangoslen/dependabot-changelog-helper@v4
+        uses: dangoslen/dependabot-changelog-helper@291c8cb629d7cd7b57ea065782c435ec2bedb138 # v4.3.0
         with:
           version: "Unreleased ${{ steps.version.outputs.version }}"
 
       - name: Commit the changes
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
         with:
           commit_message: "Update changelog"
           branch: ${{ github.head_ref }}
