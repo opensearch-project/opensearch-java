@@ -10,8 +10,8 @@ jobs:
     name: Draft a release
     runs-on: ubuntu-latest
     permissions:
-      issues: write # trstringer/manual-approval
-      contents: write # softprops/action-gh-release
+      issues: write
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -41,7 +41,7 @@ jobs:
       - name: Draft a release
         uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd
         with:
-          draft: true
-          generate_release_notes: true
-          files: |
-            artifacts.tar.gz
+          immutableCreate: true
+          generateReleaseNotes: true
+          artifacts: "artifacts.tar.gz"
+          prerelease: true
