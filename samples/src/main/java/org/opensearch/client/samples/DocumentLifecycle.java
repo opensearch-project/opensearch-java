@@ -9,19 +9,15 @@
 package org.opensearch.client.samples;
 
 import java.util.Map;
-import org.apache.hc.core5.http.HttpHost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Result;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.UpdateRequest;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
 import org.opensearch.client.transport.httpclient5.ResponseException;
 
 /**
@@ -33,10 +29,7 @@ public class DocumentLifecycle {
     private static final String REINDEXED_INDEX_NAME = "movies-document-lifecycle-reindexed";
 
     public static void main(String[] args) throws Exception {
-        final HttpHost[] hosts = new HttpHost[] { new HttpHost("http", "localhost", 9200) };
-
-        final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder.builder(hosts).setMapper(new JacksonJsonpMapper()).build();
-        OpenSearchClient client = new OpenSearchClient(transport);
+        OpenSearchClient client = SampleClient.create();
 
         var version = client.info().version();
         LOGGER.info("Server: {}@{}", version.distribution(), version.number());
