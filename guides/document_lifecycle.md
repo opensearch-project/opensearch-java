@@ -1,9 +1,9 @@
 - [Document Lifecycle](#document-lifecycle)
   - [Setup](#setup)
-  - [Create a document with an ID](#create-a-document-with-an-id)
-  - [Handle duplicate creates](#handle-duplicate-creates)
+  - [Index a document with an ID](#index-a-document-with-an-id)
+  - [Handle duplicate documents](#handle-duplicate-documents)
   - [Index or replace a document](#index-or-replace-a-document)
-  - [Create a document with an auto-generated ID](#create-a-document-with-an-auto-generated-id)
+  - [Index a document with an auto-generated ID](#index-a-document-with-an-auto-generated-id)
   - [Get a document](#get-a-document)
   - [Filter source fields](#filter-source-fields)
   - [Get multiple documents](#get-multiple-documents)
@@ -18,16 +18,25 @@
 
 # Document Lifecycle
 
-This guide covers common document lifecycle operations with the OpenSearch Java client: creating, indexing, retrieving, updating, reindexing, and deleting documents.
+This guide covers common document lifecycle operations with the OpenSearch Java client:  indexing, retrieving, updating, reindexing, and deleting documents.
 
 You can find a working version of the code in [DocumentLifecycle.java](../samples/src/main/java/org/opensearch/client/samples/DocumentLifecycle.java).
 
 ## Setup
 
-Create a client and the indexes used by the examples below.
+Create a client and the indices used by the examples below.
 
 ```java
-OpenSearchClient client = SampleClient.create();
+final HttpHost[] hosts = new HttpHost[] {
+    new HttpHost("http", "localhost", 9200)
+  };
+
+final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
+    .builder(hosts)
+    .setMapper(new JacksonJsonpMapper())
+    .build();
+OpenSearchClient client = new OpenSearchClient(transport);
+
 String index = "movies-document-lifecycle";
 String reindexedIndex = "movies-document-lifecycle-reindexed";
 
@@ -66,7 +75,7 @@ public static class Movie {
 }
 ```
 
-## Create a document with an ID
+## Index a document with an ID
 
 Use the create API when the document must not already exist. OpenSearch returns an error if another document already has the same ID.
 
@@ -81,9 +90,9 @@ CreateResponse response = client.create(
 );
 ```
 
-## Handle duplicate creates
+## Handle duplicate documents
 
-A second create request with the same ID returns a `409` conflict. Keep expected errors inside a `try/catch` block so the sample can keep running. Depending on the transport and error conversion path, the conflict may be raised as a transport `ResponseException` or as an `OpenSearchException`.
+A second index request with the same ID returns a `409` conflict. Keep expected errors inside a `try/catch` block so the sample can keep running. Depending on the transport and error conversion path, the conflict may be raised as a transport `ResponseException` or as an `OpenSearchException`.
 
 ```java
 try {
@@ -101,7 +110,7 @@ try {
 
 ## Index or replace a document
 
-Use the index API when you want to create or replace a document. If the ID already exists, OpenSearch replaces the stored document.
+Use the index API when you want to create or replace a document. If the document with such ID already exists, OpenSearch replaces the stored document.
 
 ```java
 IndexResponse response = client.index(
@@ -112,7 +121,7 @@ IndexResponse response = client.index(
 );
 ```
 
-## Create a document with an auto-generated ID
+## Index a document with an auto-generated ID
 
 If you do not provide an ID, OpenSearch generates one and returns it in the index response.
 
