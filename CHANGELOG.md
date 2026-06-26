@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 3.x]
 ### Added
 - Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
+- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 
 ### Dependencies
 
