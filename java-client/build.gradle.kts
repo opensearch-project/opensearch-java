@@ -193,11 +193,11 @@ dependencies {
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.6") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.6.1") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.4.2")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.2")
+    api("org.apache.httpcomponents.core5:httpcore5:5.4.3")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.3")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
