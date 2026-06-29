@@ -61,7 +61,6 @@ import org.opensearch.client.util.TaggedUnionUtils;
 public class MovingAverageAggregation
     implements
         TaggedUnion<MovingAverageAggregation.Kind, MovingAverageAggregationVariant>,
-        AggregationVariant,
         PlainJsonSerializable {
     /**
      * {@link MovingAverageAggregation} variant kinds.
@@ -83,14 +82,6 @@ public class MovingAverageAggregation
         public String jsonValue() {
             return jsonValue;
         }
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MovingAvg;
     }
 
     private final Kind _kind;
