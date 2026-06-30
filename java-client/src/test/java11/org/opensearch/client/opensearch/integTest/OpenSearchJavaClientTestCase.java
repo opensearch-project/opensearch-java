@@ -71,7 +71,6 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     @Before
     public void initJavaClient() throws IOException {
         if (javaClient == null) {
-            OpenSearchTestContainer.startIfNeeded();
             String cluster = getTestRestCluster();
             String[] stringUrls = cluster.split(",");
             List<HttpHost> hosts = new ArrayList<>(stringUrls.length);
