@@ -52,17 +52,28 @@ To run unit tests for the java-client:
 
 #### Integration Tests
 
-To run integration tests for the java-client, start an OpenSearch cluster using docker and pass the OpenSearch version:
-
-```
-docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=1.3.0
-docker-compose --project-directory .ci/opensearch up -d
-```
-
-Run integration tests after starting OpenSearch cluster:
+To run integration tests for the java-client:
 
 ```
 ./gradlew clean integrationTest
+```
+
+By default, the integration test task starts a single OpenSearch test container for the test JVM. To test against a specific OpenSearch image version, pass the OpenSearch version:
+
+```
+./gradlew clean integrationTest -Dtests.opensearch.version=3.2.0
+```
+
+To use a custom security-enabled OpenSearch image, pass the full image name:
+
+```
+./gradlew clean integrationTest -Dtests.opensearch.image=opensearchproject/opensearch:3.2.0
+```
+
+To run against an already running cluster, disable the test container and pass the cluster endpoint if it is not `localhost:9200`:
+
+```
+./gradlew clean integrationTest -Dtests.opensearch.testcontainers.enabled=false -Dtests.rest.cluster=localhost:9200
 ```
 
 #### AWS Transport Integration Tests

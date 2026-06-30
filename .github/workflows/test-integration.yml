@@ -40,27 +40,8 @@ jobs:
           java-version: ${{ matrix.entry.java }}
           distribution: 'temurin'
           cache: 'gradle'
-      - name: Run Docker
-        run: |
-          echo "PASSWORD=admin" >> $GITHUB_ENV
-          docker info
-          docker compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
-          docker compose --project-directory .ci/opensearch up -d
-          sleep 60
-
-      - name: Sets password (new versions)
-        run: |
-          VERSION_COMPONENTS=(${OPENSEARCH_VERSION//./ })
-          MAJOR_VERSION=${VERSION_COMPONENTS[0]}
-          MINOR_VERSION=${VERSION_COMPONENTS[1]}
-          if (( $MAJOR_VERSION > 2 || ( $MAJOR_VERSION == 2 && $MINOR_VERSION >= 12 ) )); then
-              echo "PASSWORD=0_aD^min_0" >> $GITHUB_ENV
-          fi
-        env:
-          OPENSEARCH_VERSION: ${{ matrix.entry.opensearch_version }}
-
       - name: Run Integration Test
-        run: ./gradlew clean integrationTest -Dpassword=${{ env.PASSWORD }}
+        run: ./gradlew clean integrationTest -Dtests.opensearch.version=${{ matrix.entry.opensearch_version }}
 
       - name: Upload Reports
         if: failure()
@@ -69,7 +50,3 @@ jobs:
           name: test-reports-os${{ matrix.entry.opensearch_version }}-java${{ matrix.entry.java }}
           path: java-client/build/reports/
           retention-days: 7
-
-      - name: Stop Docker
-        run: |
-          docker compose --project-directory .ci/opensearch down

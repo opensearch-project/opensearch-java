@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import com.carrotsearch.randomizedtesting.annotations.ThreadLeakFilters;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +31,7 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -45,6 +47,7 @@ import org.opensearch.client.opensearch.nodes.info.NodeInfo;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
 
+@ThreadLeakFilters(filters = TestcontainersThreadFilter.class)
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
     private static final List<String> systemIndices = List.of(
         ".opensearch-observability",
@@ -59,9 +62,16 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     private static TreeSet<Version> nodeVersions;
     private static List<HttpHost> clusterHosts;
 
+    // Superclass setup reads tests.rest.cluster before subclass @Before methods run.
+    @BeforeClass
+    public static void startOpenSearchTestContainer() {
+        OpenSearchTestContainer.startIfNeeded();
+    }
+
     @Before
     public void initJavaClient() throws IOException {
         if (javaClient == null) {
+            OpenSearchTestContainer.startIfNeeded();
             String cluster = getTestRestCluster();
             String[] stringUrls = cluster.split(",");
             List<HttpHost> hosts = new ArrayList<>(stringUrls.length);
