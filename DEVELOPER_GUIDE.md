@@ -64,7 +64,7 @@ By default, the integration test task starts a single OpenSearch test container 
 ./gradlew clean integrationTest -Dtests.opensearch.version=3.2.0
 ```
 
-To use a custom security-enabled OpenSearch image, pass the full image name:
+To pass the full official OpenSearch image name, use:
 
 ```
 ./gradlew clean integrationTest -Dtests.opensearch.image=opensearchproject/opensearch:3.2.0

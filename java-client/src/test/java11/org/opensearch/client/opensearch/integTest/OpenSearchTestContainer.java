@@ -8,10 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest;
 
-import java.time.Duration;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
-import org.testcontainers.utility.DockerImageName;
+import org.opensearch.testcontainers.OpenSearchContainer;
 
 final class OpenSearchTestContainer {
     static final String ENABLED_PROPERTY = "tests.opensearch.testcontainers.enabled";
@@ -23,14 +20,10 @@ final class OpenSearchTestContainer {
     static final String PASSWORD_PROPERTY = "password";
 
     private static final String DEFAULT_IMAGE = "opensearchproject/opensearch";
-    private static final String ADMIN_USER = "admin";
     private static final String DEFAULT_ADMIN_PASSWORD = "admin";
-    // OpenSearch 2.12+ rejects the old admin/admin demo password during container startup.
-    private static final String DEFAULT_INITIAL_ADMIN_PASSWORD = "OSClient-Test-2026-Password!";
     private static final int HTTP_PORT = 9200;
 
-    private static GenericContainer<?> container;
-    private static String password;
+    private static OpenSearchContainer<?> container;
 
     private OpenSearchTestContainer() {}
 
@@ -41,44 +34,32 @@ final class OpenSearchTestContainer {
 
         if (container == null) {
             String version = System.getProperty(VERSION_PROPERTY);
-            String imageName = resolveImageName(version);
-            String passwordCompatibilityVersion = passwordCompatibilityVersion(version, imageName);
-            password = passwordFor(passwordCompatibilityVersion);
-            GenericContainer<?> openSearch = createContainer(imageName, passwordCompatibilityVersion, password);
+            String imageName = resolveImageName(version, System.getProperty(IMAGE_PROPERTY));
+            OpenSearchContainer<?> openSearch = createContainer(imageName);
             openSearch.start();
             container = openSearch;
         }
 
         System.setProperty(CLUSTER_PROPERTY, container.getHost() + ":" + container.getMappedPort(HTTP_PORT));
-        System.setProperty(HTTPS_PROPERTY, "true");
-        System.setProperty(USER_PROPERTY, ADMIN_USER);
-        System.setProperty(PASSWORD_PROPERTY, password);
+        System.setProperty(HTTPS_PROPERTY, Boolean.toString(container.isSecurityEnabled()));
+        System.setProperty(USER_PROPERTY, container.getUsername());
+        System.setProperty(PASSWORD_PROPERTY, container.getPassword());
     }
 
-    private static GenericContainer<?> createContainer(String imageName, String passwordCompatibilityVersion, String adminPassword) {
-        GenericContainer<?> openSearch = new GenericContainer<>(DockerImageName.parse(imageName)).withExposedPorts(HTTP_PORT)
-            .withEnv("discovery.type", "single-node")
+    private static OpenSearchContainer<?> createContainer(String imageName) {
+        OpenSearchContainer<?> openSearch = new OpenSearchContainer<>(imageName).withSecurityEnabled()
             .withEnv("bootstrap.memory_lock", "true")
-            .withEnv("cluster.routing.allocation.disk.threshold_enabled", "false")
-            .waitingFor(
-                new HttpWaitStrategy().forPort(HTTP_PORT)
-                    .usingTls()
-                    .allowInsecure()
-                    .withBasicCredentials(ADMIN_USER, adminPassword)
-                    .forStatusCode(200)
-                    .withReadTimeout(Duration.ofSeconds(10))
-                    .withStartupTimeout(Duration.ofMinutes(5))
-            );
+            .withEnv("cluster.routing.allocation.disk.threshold_enabled", "false");
 
-        if (requiresInitialAdminPassword(passwordCompatibilityVersion)) {
-            openSearch.withEnv("OPENSEARCH_INITIAL_ADMIN_PASSWORD", adminPassword);
+        String configuredPassword = System.getProperty(PASSWORD_PROPERTY);
+        if (hasText(configuredPassword) && !DEFAULT_ADMIN_PASSWORD.equals(configuredPassword)) {
+            openSearch.withEnv("OPENSEARCH_INITIAL_ADMIN_PASSWORD", configuredPassword);
         }
 
         return openSearch;
     }
 
-    private static String resolveImageName(String version) {
-        String image = System.getProperty(IMAGE_PROPERTY);
+    static String resolveImageName(String version, String image) {
         if (hasText(image)) {
             return image;
         }
@@ -86,89 +67,6 @@ final class OpenSearchTestContainer {
             throw new IllegalStateException("Missing " + VERSION_PROPERTY + " for OpenSearch Testcontainers image");
         }
         return DEFAULT_IMAGE + ":" + version;
-    }
-
-    private static String passwordFor(String version) {
-        String configuredPassword = System.getProperty(PASSWORD_PROPERTY);
-        if (requiresInitialAdminPassword(version)) {
-            if (!hasText(configuredPassword) || DEFAULT_ADMIN_PASSWORD.equals(configuredPassword)) {
-                return DEFAULT_INITIAL_ADMIN_PASSWORD;
-            }
-            return configuredPassword;
-        }
-        return hasText(configuredPassword) ? configuredPassword : DEFAULT_ADMIN_PASSWORD;
-    }
-
-    static boolean requiresInitialAdminPassword(String version) {
-        if (!hasText(version) || "latest".equalsIgnoreCase(version)) {
-            return true;
-        }
-
-        String[] components = version.split("[-+]", 2)[0].split("\\.");
-        Integer major = parseInt(components, 0);
-        if (major == null) {
-            return true;
-        }
-        if (major > 2) {
-            return true;
-        }
-        if (major < 2) {
-            return false;
-        }
-        Integer minor = parseInt(components, 1);
-        if (minor == null) {
-            return true;
-        }
-        return minor >= 12;
-    }
-
-    private static Integer parseInt(String[] components, int index) {
-        if (index >= components.length) {
-            return null;
-        }
-        return parseInt(components[index]);
-    }
-
-    private static Integer parseInt(String component) {
-        try {
-            return Integer.parseInt(component);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-
-    static String passwordCompatibilityVersion(String version, String imageName) {
-        String imageTag = imageTag(imageName);
-        if (isCompatibilityVersion(imageTag)) {
-            return imageTag;
-        }
-        return hasText(version) ? version : imageTag;
-    }
-
-    private static boolean isCompatibilityVersion(String version) {
-        if (!hasText(version)) {
-            return false;
-        }
-        if ("latest".equalsIgnoreCase(version)) {
-            return true;
-        }
-
-        String[] components = version.split("[-+]", 2)[0].split("\\.");
-        for (String component : components) {
-            if (parseInt(component) == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static String imageTag(String imageName) {
-        int lastSlash = imageName.lastIndexOf('/');
-        int lastColon = imageName.lastIndexOf(':');
-        if (lastColon > lastSlash && lastColon < imageName.length() - 1) {
-            return imageName.substring(lastColon + 1);
-        }
-        return null;
     }
 
     private static boolean testcontainersEnabled() {

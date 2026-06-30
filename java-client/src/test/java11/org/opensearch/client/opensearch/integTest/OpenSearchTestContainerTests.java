@@ -9,44 +9,33 @@
 package org.opensearch.client.opensearch.integTest;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class OpenSearchTestContainerTests {
 
     @Test
-    public void initialAdminPasswordIsNotRequiredForOlderVersions() {
-        assertFalse(OpenSearchTestContainer.requiresInitialAdminPassword("1"));
-        assertFalse(OpenSearchTestContainer.requiresInitialAdminPassword("1.x"));
-        assertFalse(OpenSearchTestContainer.requiresInitialAdminPassword("1.3.20"));
-        assertFalse(OpenSearchTestContainer.requiresInitialAdminPassword("2.11.0"));
+    public void defaultImageUsesOfficialOpenSearchImage() {
+        assertEquals("opensearchproject/opensearch:3.2.0", OpenSearchTestContainer.resolveImageName("3.2.0", null));
     }
 
     @Test
-    public void initialAdminPasswordIsRequiredForNewerVersions() {
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("2.12.0"));
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("3.2.0"));
+    public void configuredImageTakesPrecedenceOverVersion() {
+        assertEquals(
+            "opensearchproject/opensearch:2.19.2",
+            OpenSearchTestContainer.resolveImageName("3.2.0", "opensearchproject/opensearch:2.19.2")
+        );
     }
 
     @Test
-    public void initialAdminPasswordIsRequiredForMissingOrRollingVersions() {
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword(null));
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("2"));
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("latest"));
-    }
+    public void missingVersionWithoutCustomImageFailsFast() {
+        try {
+            OpenSearchTestContainer.resolveImageName(null, null);
+        } catch (IllegalStateException e) {
+            assertEquals("Missing tests.opensearch.version for OpenSearch Testcontainers image", e.getMessage());
+            return;
+        }
 
-    @Test
-    public void initialAdminPasswordIsRequiredForUnknownVersions() {
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("2.x"));
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("2.foo"));
-        assertTrue(OpenSearchTestContainer.requiresInitialAdminPassword("custom"));
-    }
-
-    @Test
-    public void customImageTagsUseConfiguredVersionForPasswordCompatibility() {
-        assertEquals("2.11.0", OpenSearchTestContainer.passwordCompatibilityVersion("2.11.0", "registry.example.com/opensearch:custom"));
-        assertEquals("2.12.0", OpenSearchTestContainer.passwordCompatibilityVersion("2.11.0", "registry.example.com/opensearch:2.12.0"));
+        throw new AssertionError("Expected missing OpenSearch version to fail");
     }
 }

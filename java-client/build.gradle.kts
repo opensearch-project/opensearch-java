@@ -398,7 +398,12 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
       exclude(group = "org.hamcrest")
     }
-    "java21Implementation"("org.testcontainers:testcontainers:2.0.5")
+    // opensearch-testcontainers exposes OpenSearchContainer as a GenericContainer subclass, but publishes
+    // Testcontainers as a runtime dependency. javac needs the superclass API for inherited methods.
+    "java21CompileOnly"("org.testcontainers:testcontainers:2.0.3") {
+      isTransitive = false
+    }
+    "java21Implementation"("org.opensearch:opensearch-testcontainers:4.1.0")
   }
 
   tasks.named<JavaCompile>("compileJava21Java") {
