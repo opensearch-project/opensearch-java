@@ -99,7 +99,7 @@ final class OpenSearchTestContainer {
         return hasText(configuredPassword) ? configuredPassword : DEFAULT_ADMIN_PASSWORD;
     }
 
-    private static boolean requiresInitialAdminPassword(String version) {
+    static boolean requiresInitialAdminPassword(String version) {
         if (!hasText(version) || "latest".equalsIgnoreCase(version)) {
             return true;
         }
@@ -109,36 +109,57 @@ final class OpenSearchTestContainer {
         if (major == null) {
             return true;
         }
-        if (major == 2 && components.length == 1) {
+        if (major > 2) {
             return true;
         }
-
-        int minor = parseInt(components, 1, 0);
-        return major > 2 || major == 2 && minor >= 12;
+        if (major < 2) {
+            return false;
+        }
+        Integer minor = parseInt(components, 1);
+        if (minor == null) {
+            return true;
+        }
+        return minor >= 12;
     }
 
     private static Integer parseInt(String[] components, int index) {
         if (index >= components.length) {
             return null;
         }
+        return parseInt(components[index]);
+    }
+
+    private static Integer parseInt(String component) {
         try {
-            return Integer.parseInt(components[index]);
+            return Integer.parseInt(component);
         } catch (NumberFormatException e) {
             return null;
         }
     }
 
-    private static int parseInt(String[] components, int index, int defaultValue) {
-        Integer value = parseInt(components, index);
-        return value == null ? defaultValue : value;
-    }
-
-    private static String passwordCompatibilityVersion(String version, String imageName) {
+    static String passwordCompatibilityVersion(String version, String imageName) {
         String imageTag = imageTag(imageName);
-        if (hasText(imageTag)) {
+        if (isCompatibilityVersion(imageTag)) {
             return imageTag;
         }
-        return version;
+        return hasText(version) ? version : imageTag;
+    }
+
+    private static boolean isCompatibilityVersion(String version) {
+        if (!hasText(version)) {
+            return false;
+        }
+        if ("latest".equalsIgnoreCase(version)) {
+            return true;
+        }
+
+        String[] components = version.split("[-+]", 2)[0].split("\\.");
+        for (String component : components) {
+            if (parseInt(component) == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static String imageTag(String imageName) {
