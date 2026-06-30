@@ -41,7 +41,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.LongSupplier;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
@@ -78,7 +83,9 @@ import org.apache.hc.core5.http.message.RequestLine;
 import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
+import org.apache.hc.core5.io.CloseMode;
 import org.apache.hc.core5.net.URIBuilder;
+import org.apache.hc.core5.reactor.IOReactorShutdownException;
 import org.apache.hc.core5.util.Args;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -107,8 +114,29 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     private static final Log logger = LogFactory.getLog(ApacheHttpClient5Transport.class);
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
 
+    /**
+     * Default minimum delay between two consecutive attempts to rebuild the underlying client after an I/O reactor
+     * shutdown. The effective delay grows exponentially (up to {@link #MAX_REBUILD_BACKOFF_NANOS}) while the reactor
+     * keeps dying, and resets once it has been stable.
+     */
+    static final long DEFAULT_REBUILD_BACKOFF_MILLIS = 1000L;
+
+    /** Upper bound for the exponentially-growing rebuild back-off. */
+    private static final long MAX_REBUILD_BACKOFF_NANOS = 30_000L * 1_000_000L;
+
     private final JsonpMapper mapper;
-    private final CloseableHttpAsyncClient client;
+    private final AtomicReference<CloseableHttpAsyncClient> clientRef;
+    @Nullable
+    private final Supplier<CloseableHttpAsyncClient> clientFactory;
+    private final ReentrantLock rebuildLock = new ReentrantLock();
+    private final AtomicBoolean closed = new AtomicBoolean(false);
+    private final long rebuildBackoffBaseNanos;
+    // The following three fields are guarded by rebuildLock.
+    private boolean rebuiltOnce = false;
+    private long lastRebuildNanos = 0L;
+    private long currentBackoffNanos = 0L;
+    // Monotonic nanosecond clock; overridable for deterministic back-off testing.
+    private volatile LongSupplier nanoClock = System::nanoTime;
     private final ApacheHttpClient5Options transportOptions;
     private final ConcurrentMap<HttpHost, DeadHostState> denylist = new ConcurrentHashMap<>();
     private final AtomicInteger lastNodeIndex = new AtomicInteger(0);
@@ -134,8 +162,55 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final boolean compressionEnabled,
         final boolean chunkedEnabled
     ) {
+        this(
+            null,
+            DEFAULT_REBUILD_BACKOFF_MILLIS,
+            client,
+            defaultHeaders,
+            nodes,
+            mapper,
+            options,
+            pathPrefix,
+            failureListener,
+            nodeSelector,
+            strictDeprecationMode,
+            compressionEnabled,
+            chunkedEnabled
+        );
+    }
+
+    /**
+     * Creates a transport that can rebuild its underlying {@link CloseableHttpAsyncClient} if the I/O reactor is shut
+     * down, so the transport can recover without being recreated by the caller. See
+     * <a href="https://github.com/opensearch-project/opensearch-java/issues/1969">opensearch-java#1969</a>.
+     *
+     * @param clientFactory factory used to (re)build and start the async client, or {@code null} to disable recovery
+     *                      (used when the client lifecycle is owned externally)
+     * @param rebuildBackoffMillis base back-off, in milliseconds, between client rebuilds (grows exponentially while
+     *                             the reactor keeps dying); a value {@code <= 0} disables the back-off
+     * @param client the initial, already-started async client
+     */
+    ApacheHttpClient5Transport(
+        @Nullable final Supplier<CloseableHttpAsyncClient> clientFactory,
+        final long rebuildBackoffMillis,
+        final CloseableHttpAsyncClient client,
+        final Header[] defaultHeaders,
+        final List<Node> nodes,
+        final JsonpMapper mapper,
+        @Nullable TransportOptions options,
+        final String pathPrefix,
+        final FailureListener failureListener,
+        final NodeSelector nodeSelector,
+        final boolean strictDeprecationMode,
+        final boolean compressionEnabled,
+        final boolean chunkedEnabled
+    ) {
         this.mapper = mapper;
-        this.client = client;
+        this.clientFactory = clientFactory;
+        final long backoffMillis = Math.max(0L, rebuildBackoffMillis);
+        // Clamp to avoid overflow when converting to nanoseconds for absurdly large inputs.
+        this.rebuildBackoffBaseNanos = Math.min(backoffMillis, Long.MAX_VALUE / 1_000_000L) * 1_000_000L;
+        this.clientRef = new AtomicReference<>(client);
         this.defaultHeaders = Collections.unmodifiableList(Arrays.asList(defaultHeaders));
         this.pathPrefix = pathPrefix;
         this.transportOptions = (options == null) ? ApacheHttpClient5Options.initialOptions() : ApacheHttpClient5Options.of(options);
@@ -208,7 +283,14 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
     @Override
     public void close() throws IOException {
-        client.close();
+        rebuildLock.lock();
+        try {
+            if (closed.compareAndSet(false, true)) {
+                clientRef.get().close();
+            }
+        } finally {
+            rebuildLock.unlock();
+        }
     }
 
     private void performRequestAsync(
@@ -218,59 +300,220 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final WarningsHandler warningsHandler,
         final CompletableFuture<Response> listener
     ) {
-        final RequestContext context = createContextForNextAttempt(options, request, nodeTuple.nodes.next(), nodeTuple.authCache);
-        Future<ClassicHttpResponse> future = client.execute(
-            context.requestProducer,
-            context.asyncResponseConsumer,
-            context.context,
-            new FutureCallback<ClassicHttpResponse>() {
-                @Override
-                public void completed(ClassicHttpResponse httpResponse) {
-                    try {
-                        ResponseOrResponseException responseOrResponseException = convertResponse(
-                            request,
-                            context.node,
-                            httpResponse,
-                            warningsHandler
-                        );
-                        if (responseOrResponseException.responseException == null) {
-                            listener.complete(responseOrResponseException.response);
-                        } else {
-                            if (nodeTuple.nodes.hasNext()) {
-                                performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
-                            } else {
-                                listener.completeExceptionally(responseOrResponseException.responseException);
-                            }
-                        }
-                    } catch (Exception e) {
-                        listener.completeExceptionally(e);
-                    }
-                }
+        final Node node = nodeTuple.nodes.next();
+        executeRequestAttempt(nodeTuple, options, request, warningsHandler, listener, node, true);
+    }
 
-                @Override
-                public void failed(Exception failure) {
-                    try {
-                        onFailure(context.node);
+    private void executeRequestAttempt(
+        final NodeTuple<Iterator<Node>> nodeTuple,
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final WarningsHandler warningsHandler,
+        final CompletableFuture<Response> listener,
+        final Node node,
+        final boolean allowRecovery
+    ) {
+        final CloseableHttpAsyncClient client;
+        final RequestContext context;
+        rebuildLock.lock();
+        try {
+            if (closed.get()) {
+                listener.completeExceptionally(new IOException("transport is closed"));
+                return;
+            }
+            client = clientRef.get();
+            context = createContextForNextAttempt(options, request, node, nodeTuple.authCache);
+        } finally {
+            rebuildLock.unlock();
+        }
+        final AtomicBoolean callbackOrDependencyClaimed = new AtomicBoolean(false);
+        final FutureCallback<ClassicHttpResponse> callback = new FutureCallback<ClassicHttpResponse>() {
+            @Override
+            public void completed(ClassicHttpResponse httpResponse) {
+                callbackOrDependencyClaimed.set(true);
+                try {
+                    ResponseOrResponseException responseOrResponseException = convertResponse(request, node, httpResponse, warningsHandler);
+                    if (responseOrResponseException.responseException == null) {
+                        listener.complete(responseOrResponseException.response);
+                    } else {
                         if (nodeTuple.nodes.hasNext()) {
                             performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
                         } else {
-                            listener.completeExceptionally(failure);
+                            listener.completeExceptionally(responseOrResponseException.responseException);
                         }
-                    } catch (Exception e) {
-                        listener.completeExceptionally(e);
                     }
-                }
-
-                @Override
-                public void cancelled() {
-                    listener.completeExceptionally(new CancellationException("request was cancelled"));
+                } catch (Exception e) {
+                    listener.completeExceptionally(e);
                 }
             }
-        );
 
-        if (future instanceof org.apache.hc.core5.concurrent.Cancellable) {
+            @Override
+            public void failed(Exception failure) {
+                callbackOrDependencyClaimed.set(true);
+                try {
+                    if (isReactorShutdown(failure)) {
+                        retryAfterReactorShutdown(
+                            nodeTuple,
+                            options,
+                            request,
+                            warningsHandler,
+                            listener,
+                            node,
+                            client,
+                            failure,
+                            allowRecovery
+                        );
+                        return;
+                    }
+                    onFailure(node);
+                    if (nodeTuple.nodes.hasNext()) {
+                        performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
+                    } else {
+                        listener.completeExceptionally(failure);
+                    }
+                } catch (Exception e) {
+                    listener.completeExceptionally(e);
+                }
+            }
+
+            @Override
+            public void cancelled() {
+                callbackOrDependencyClaimed.set(true);
+                listener.completeExceptionally(new CancellationException("request was cancelled"));
+            }
+        };
+
+        Future<ClassicHttpResponse> future;
+        try {
+            future = client.execute(context.requestProducer, context.asyncResponseConsumer, context.context, callback);
+        } catch (final IOReactorShutdownException reactorShutdown) {
+            // The I/O reactor has been shut down. Try to recover by rebuilding the client, then retry this request once
+            // on the fresh client.
+            retryAfterReactorShutdown(nodeTuple, options, request, warningsHandler, listener, node, client, reactorShutdown, allowRecovery);
+            return;
+        }
+
+        if (callbackOrDependencyClaimed.compareAndSet(false, true) && future instanceof org.apache.hc.core5.concurrent.Cancellable) {
             request.setDependency((org.apache.hc.core5.concurrent.Cancellable) future);
         }
+    }
+
+    private void retryAfterReactorShutdown(
+        final NodeTuple<Iterator<Node>> nodeTuple,
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final WarningsHandler warningsHandler,
+        final CompletableFuture<Response> listener,
+        final Node node,
+        final CloseableHttpAsyncClient deadClient,
+        final Throwable reactorShutdown,
+        final boolean allowRecovery
+    ) {
+        if (closed.get()) {
+            listener.completeExceptionally(new IOException("transport is closed"));
+            return;
+        }
+        if (!allowRecovery) {
+            listener.completeExceptionally(new IOException("I/O reactor has been shut down", reactorShutdown));
+            return;
+        }
+        final CloseableHttpAsyncClient recovered = recoverClient(deadClient);
+        if (recovered == null || recovered == deadClient) {
+            listener.completeExceptionally(
+                new IOException("I/O reactor has been shut down and the transport could not be recovered", reactorShutdown)
+            );
+            return;
+        }
+        executeRequestAttempt(nodeTuple, options, request, warningsHandler, listener, node, false);
+    }
+
+    /**
+     * Attempts to recover from an {@link IOReactorShutdownException} by rebuilding the underlying async client.
+     * <p>
+     * Recovery is guarded by a circuit breaker based on {@link #DEFAULT_REBUILD_BACKOFF_MILLIS} so that a reactor which
+     * keeps dying under a repeated failure condition does not trigger a rebuild storm that would amplify the failure.
+     * Only one thread rebuilds at a time; concurrent callers that observe the already-rebuilt client reuse it.
+     *
+     * @param deadClient the client whose reactor was detected as shut down
+     * @return a healthy client to retry with, or {@code null} if recovery is disabled, throttled, or itself failed
+     */
+    private CloseableHttpAsyncClient recoverClient(final CloseableHttpAsyncClient deadClient) {
+        if (clientFactory == null) {
+            // The client was supplied externally and its lifecycle is not owned by this transport: cannot rebuild.
+            return null;
+        }
+        CloseableHttpAsyncClient rebuilt = null;
+        rebuildLock.lock();
+        try {
+            if (closed.get()) {
+                return null;
+            }
+            final CloseableHttpAsyncClient current = clientRef.get();
+            if (current != deadClient) {
+                // Another thread has already rebuilt the client; reuse it.
+                return current;
+            }
+
+            final long now = nanoClock.getAsLong();
+            if (rebuiltOnce) {
+                final long elapsed = now - lastRebuildNanos;
+                if (elapsed < currentBackoffNanos) {
+                    // Within the back-off window: fail fast instead of thrashing.
+                    return null;
+                }
+                // Grow the back-off while the reactor keeps dying soon after a rebuild; reset once it looks stable.
+                if (elapsed > currentBackoffNanos * 4) {
+                    currentBackoffNanos = rebuildBackoffBaseNanos;
+                } else {
+                    currentBackoffNanos = Math.min(currentBackoffNanos * 2, MAX_REBUILD_BACKOFF_NANOS);
+                }
+            } else {
+                currentBackoffNanos = rebuildBackoffBaseNanos;
+            }
+            rebuiltOnce = true;
+            lastRebuildNanos = now;
+
+            rebuilt = clientFactory.get();
+            clientRef.set(rebuilt);
+            logger.warn("Apache HttpClient 5 I/O reactor was shut down; the transport client has been rebuilt to recover");
+        } catch (final RuntimeException rebuildFailure) {
+            logger.error("Failed to rebuild Apache HttpClient 5 transport after I/O reactor shutdown", rebuildFailure);
+            return null;
+        } finally {
+            rebuildLock.unlock();
+        }
+        // Close the dead client outside the lock, with IMMEDIATE mode, so a (potentially slow) graceful shutdown of a
+        // dead reactor cannot block the request thread or stall other threads waiting on the rebuild lock.
+        closeQuietly(deadClient);
+        return rebuilt;
+    }
+
+    private static void closeQuietly(final CloseableHttpAsyncClient client) {
+        try {
+            client.close(CloseMode.IMMEDIATE);
+        } catch (final Exception e) {
+            // Best-effort cleanup of the dead client; the reactor is already down.
+        }
+    }
+
+    /**
+     * Overrides the monotonic clock used to time rebuild back-off. For tests only.
+     *
+     * @param nanoClock a supplier of monotonically non-decreasing nanosecond timestamps
+     */
+    void setNanoClock(final LongSupplier nanoClock) {
+        this.nanoClock = nanoClock;
+    }
+
+    private static boolean isReactorShutdown(final Throwable failure) {
+        Throwable cause = failure;
+        // Bounded walk of the cause chain, defensive against pathological or cyclic chains.
+        for (int depth = 0; cause != null && depth < 32; cause = cause.getCause(), depth++) {
+            if (cause instanceof IOReactorShutdownException) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
