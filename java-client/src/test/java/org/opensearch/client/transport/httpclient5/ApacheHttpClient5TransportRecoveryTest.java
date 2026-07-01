@@ -10,16 +10,20 @@ package org.opensearch.client.transport.httpclient5;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.core5.concurrent.FutureCallback;
@@ -35,6 +39,7 @@ import org.apache.hc.core5.io.CloseMode;
 import org.apache.hc.core5.reactor.IOReactorShutdownException;
 import org.apache.hc.core5.reactor.IOReactorStatus;
 import org.apache.hc.core5.util.TimeValue;
+import org.apache.hc.core5.util.Timeout;
 import org.junit.Test;
 import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
@@ -91,6 +96,123 @@ public class ApacheHttpClient5TransportRecoveryTest {
         assertEquals("dead client should receive the original request once", 1, dead.executeCount.get());
         assertEquals("healthy client should receive the recovered retry once", 1, healthy.executeCount.get());
         assertTrue("dead client should be closed during recovery", dead.closed);
+    }
+
+    @Test
+    public void testRecoversWhenShutdownClientThrowsCancellationException() throws IOException {
+        FakeAsyncClient dead = FakeAsyncClient.reactorShutdownAsCancellationException();
+        FakeAsyncClient healthy = new FakeAsyncClient(false);
+        AtomicInteger factoryCalls = new AtomicInteger();
+        Supplier<CloseableHttpAsyncClient> factory = () -> {
+            factoryCalls.incrementAndGet();
+            return healthy;
+        };
+
+        ApacheHttpClient5Transport transport = newTransport(factory, dead);
+
+        BooleanResponse response = transport.performRequest(null, headEndpoint(), null);
+
+        assertTrue("request should succeed after recovering from a stopped client", response.value());
+        assertEquals("client should be rebuilt exactly once", 1, factoryCalls.get());
+        assertTrue("dead client should be closed during recovery", dead.closed);
+    }
+
+    @Test
+    public void testRecoversWhenShutdownClientReportsIllegalStateWithoutCause() throws IOException {
+        FakeAsyncClient dead = FakeAsyncClient.reactorShutdownAsIllegalStateCallback();
+        FakeAsyncClient healthy = new FakeAsyncClient(false);
+        AtomicInteger factoryCalls = new AtomicInteger();
+        Supplier<CloseableHttpAsyncClient> factory = () -> {
+            factoryCalls.incrementAndGet();
+            return healthy;
+        };
+
+        ApacheHttpClient5Transport transport = newTransport(factory, dead);
+
+        BooleanResponse response = transport.performRequest(null, headEndpoint(), null);
+
+        assertTrue("request should succeed after recovering from a stopped client callback", response.value());
+        assertEquals("client should be rebuilt exactly once", 1, factoryCalls.get());
+        assertTrue("dead client should be closed during recovery", dead.closed);
+    }
+
+    @Test
+    public void testDoesNotRecoverActiveClientCancellation() {
+        FakeAsyncClient cancelled = FakeAsyncClient.activeCancellation();
+        AtomicInteger factoryCalls = new AtomicInteger();
+        Supplier<CloseableHttpAsyncClient> factory = () -> {
+            factoryCalls.incrementAndGet();
+            return new FakeAsyncClient(false);
+        };
+
+        ApacheHttpClient5Transport transport = newTransport(factory, cancelled);
+
+        assertThrows(RuntimeException.class, () -> transport.performRequest(null, headEndpoint(), null));
+        assertEquals("active-client cancellation must not trigger a reactor rebuild", 0, factoryCalls.get());
+        assertFalse("active client should not be closed as a dead reactor", cancelled.closed);
+    }
+
+    @Test
+    public void testResponseConsumerFactoryRunsOutsideRebuildLock() throws IOException {
+        AtomicReference<ApacheHttpClient5Transport> transportRef = new AtomicReference<>();
+        AtomicReference<IOException> closeFailure = new AtomicReference<>();
+        ApacheHttpClient5Options.Builder options = ApacheHttpClient5Options.DEFAULT.toBuilder();
+        options.setHttpAsyncResponseConsumerFactory(() -> {
+            Thread closer = new Thread(() -> {
+                try {
+                    transportRef.get().close();
+                } catch (IOException e) {
+                    closeFailure.set(e);
+                }
+            }, "transport-close-from-response-consumer-factory");
+            closer.start();
+            try {
+                closer.join(1000L);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new AssertionError(e);
+            }
+            assertFalse("response consumer factory must not run while the rebuild lock is held", closer.isAlive());
+            if (closeFailure.get() != null) {
+                throw new AssertionError(closeFailure.get());
+            }
+            return HttpAsyncResponseConsumerFactory.DEFAULT.createHttpAsyncResponseConsumer();
+        });
+        ApacheHttpClient5Transport transport = newTransport(
+            null,
+            new FakeAsyncClient(false),
+            60_000L,
+            Collections.singletonList(new Node(HOST_A)),
+            options.build()
+        );
+        transportRef.set(transport);
+
+        BooleanResponse response = transport.performRequest(null, headEndpoint(), null);
+
+        assertTrue("request should still complete in the fake client", response.value());
+    }
+
+    @Test
+    public void testBuilderCreatedTransportRebuildsClosedClient() throws Exception {
+        ApacheHttpClient5Transport transport = ApacheHttpClient5TransportBuilder.builder(new HttpHost("localhost", 1))
+            .setReactorRebuildBackoffMillis(0L)
+            .setRequestConfigCallback(
+                requestConfigBuilder -> requestConfigBuilder.setConnectTimeout(Timeout.ofMilliseconds(100L))
+                    .setResponseTimeout(Timeout.ofMilliseconds(100L))
+            )
+            .build();
+
+        try {
+            AtomicReference<CloseableHttpAsyncClient> clientRef = clientRef(transport);
+            CloseableHttpAsyncClient initialClient = clientRef.get();
+            initialClient.close(CloseMode.IMMEDIATE);
+
+            assertThrows(IOException.class, () -> transport.performRequest(null, headEndpoint(), null));
+
+            assertNotSame("builder-created transport should rebuild the closed async client", initialClient, clientRef.get());
+        } finally {
+            transport.close();
+        }
     }
 
     @Test
@@ -198,6 +320,16 @@ public class ApacheHttpClient5TransportRecoveryTest {
         long backoffMillis,
         List<Node> nodes
     ) {
+        return newTransport(factory, initial, backoffMillis, nodes, null);
+    }
+
+    private static ApacheHttpClient5Transport newTransport(
+        Supplier<CloseableHttpAsyncClient> factory,
+        CloseableHttpAsyncClient initial,
+        long backoffMillis,
+        List<Node> nodes,
+        ApacheHttpClient5Options options
+    ) {
         return new ApacheHttpClient5Transport(
             factory,
             backoffMillis,
@@ -205,7 +337,7 @@ public class ApacheHttpClient5TransportRecoveryTest {
             new Header[0],
             nodes,
             new JacksonJsonpMapper(),
-            null,
+            options,
             null,
             null,
             null,
@@ -215,33 +347,58 @@ public class ApacheHttpClient5TransportRecoveryTest {
         );
     }
 
+    @SuppressWarnings("unchecked")
+    private static AtomicReference<CloseableHttpAsyncClient> clientRef(ApacheHttpClient5Transport transport) throws NoSuchFieldException,
+        IllegalAccessException {
+        Field clientRefField = ApacheHttpClient5Transport.class.getDeclaredField("clientRef");
+        clientRefField.setAccessible(true);
+        return (AtomicReference<CloseableHttpAsyncClient>) clientRefField.get(transport);
+    }
+
     private static BooleanEndpoint<Void> headEndpoint() {
         return new BooleanEndpoint<>(v -> "HEAD", v -> "/", v -> Collections.emptyMap(), v -> Collections.emptyMap());
     }
 
     /**
-     * Minimal {@link CloseableHttpAsyncClient}. When {@code reactorDown} is set, {@code doExecute} throws
-     * {@link IOReactorShutdownException}; when {@code reactorDownViaCallback} is set, it reports the same shutdown to
-     * the callback, matching the path used by the real HC5 client when scheduling catches the shutdown. Otherwise it
-     * completes with an empty {@code 200} response.
+     * Minimal {@link CloseableHttpAsyncClient}. It models the reactor shutdown failure shapes observed around the real
+     * HC5 scheduling path, or completes with an empty {@code 200} response.
      */
     private static final class FakeAsyncClient extends CloseableHttpAsyncClient {
-        private final boolean reactorDown;
-        private final boolean reactorDownViaCallback;
+        private enum FailureMode {
+            NONE,
+            IO_REACTOR_THROWN,
+            IO_REACTOR_CALLBACK,
+            CANCELLATION_THROWN,
+            ILLEGAL_STATE_CALLBACK,
+            ACTIVE_CANCELLATION
+        }
+
+        private final FailureMode failureMode;
         final AtomicInteger executeCount = new AtomicInteger();
         volatile boolean closed = false;
 
         FakeAsyncClient(boolean reactorDown) {
-            this(reactorDown, false);
+            this(reactorDown ? FailureMode.IO_REACTOR_THROWN : FailureMode.NONE);
         }
 
-        private FakeAsyncClient(boolean reactorDown, boolean reactorDownViaCallback) {
-            this.reactorDown = reactorDown;
-            this.reactorDownViaCallback = reactorDownViaCallback;
+        private FakeAsyncClient(FailureMode failureMode) {
+            this.failureMode = failureMode;
         }
 
         static FakeAsyncClient reactorShutdownViaCallback() {
-            return new FakeAsyncClient(true, true);
+            return new FakeAsyncClient(FailureMode.IO_REACTOR_CALLBACK);
+        }
+
+        static FakeAsyncClient reactorShutdownAsCancellationException() {
+            return new FakeAsyncClient(FailureMode.CANCELLATION_THROWN);
+        }
+
+        static FakeAsyncClient reactorShutdownAsIllegalStateCallback() {
+            return new FakeAsyncClient(FailureMode.ILLEGAL_STATE_CALLBACK);
+        }
+
+        static FakeAsyncClient activeCancellation() {
+            return new FakeAsyncClient(FailureMode.ACTIVE_CANCELLATION);
         }
 
         @Override
@@ -254,15 +411,24 @@ public class ApacheHttpClient5TransportRecoveryTest {
             FutureCallback<T> callback
         ) {
             executeCount.incrementAndGet();
-            if (reactorDown) {
-                IOReactorShutdownException shutdown = new IOReactorShutdownException("I/O reactor has been shut down");
-                if (reactorDownViaCallback) {
+            switch (failureMode) {
+                case IO_REACTOR_THROWN:
+                    throw new IOReactorShutdownException("I/O reactor has been shut down");
+                case IO_REACTOR_CALLBACK:
                     if (callback != null) {
-                        callback.failed(shutdown);
+                        callback.failed(new IOReactorShutdownException("I/O reactor has been shut down"));
                     }
                     return CompletableFuture.completedFuture(null);
-                }
-                throw shutdown;
+                case CANCELLATION_THROWN:
+                case ACTIVE_CANCELLATION:
+                    throw new CancellationException("Request execution cancelled");
+                case ILLEGAL_STATE_CALLBACK:
+                    if (callback != null) {
+                        callback.failed(new IllegalStateException("Request execution cancelled"));
+                    }
+                    return CompletableFuture.completedFuture(null);
+                case NONE:
+                    break;
             }
             @SuppressWarnings("unchecked")
             T response = (T) new BasicClassicHttpResponse(200);
@@ -277,7 +443,9 @@ public class ApacheHttpClient5TransportRecoveryTest {
 
         @Override
         public IOReactorStatus getStatus() {
-            return reactorDown ? IOReactorStatus.SHUT_DOWN : IOReactorStatus.ACTIVE;
+            return failureMode == FailureMode.NONE || failureMode == FailureMode.ACTIVE_CANCELLATION
+                ? IOReactorStatus.ACTIVE
+                : IOReactorStatus.SHUT_DOWN;
         }
 
         @Override

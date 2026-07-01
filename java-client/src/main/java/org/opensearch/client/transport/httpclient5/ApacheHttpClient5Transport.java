@@ -86,6 +86,7 @@ import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.io.CloseMode;
 import org.apache.hc.core5.net.URIBuilder;
 import org.apache.hc.core5.reactor.IOReactorShutdownException;
+import org.apache.hc.core5.reactor.IOReactorStatus;
 import org.apache.hc.core5.util.Args;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -315,17 +316,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     ) {
         final CloseableHttpAsyncClient client;
         final RequestContext context;
-        rebuildLock.lock();
-        try {
-            if (closed.get()) {
-                listener.completeExceptionally(new IOException("transport is closed"));
-                return;
-            }
-            client = clientRef.get();
-            context = createContextForNextAttempt(options, request, node, nodeTuple.authCache);
-        } finally {
-            rebuildLock.unlock();
+        if (closed.get()) {
+            listener.completeExceptionally(new IOException("transport is closed"));
+            return;
         }
+        client = clientRef.get();
+        context = createContextForNextAttempt(options, request, node, nodeTuple.authCache);
         final AtomicBoolean callbackOrDependencyClaimed = new AtomicBoolean(false);
         final FutureCallback<ClassicHttpResponse> callback = new FutureCallback<ClassicHttpResponse>() {
             @Override
@@ -351,8 +347,8 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             public void failed(Exception failure) {
                 callbackOrDependencyClaimed.set(true);
                 try {
-                    if (isReactorShutdown(failure)) {
-                        retryAfterReactorShutdown(
+                    if (isRecoverableReactorFailure(failure, client)) {
+                        retryAfterReactorFailure(
                             nodeTuple,
                             options,
                             request,
@@ -386,10 +382,13 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         Future<ClassicHttpResponse> future;
         try {
             future = client.execute(context.requestProducer, context.asyncResponseConsumer, context.context, callback);
-        } catch (final IOReactorShutdownException reactorShutdown) {
+        } catch (final RuntimeException runtimeFailure) {
+            if (isRecoverableReactorFailure(runtimeFailure, client) == false) {
+                throw runtimeFailure;
+            }
             // The I/O reactor has been shut down. Try to recover by rebuilding the client, then retry this request once
             // on the fresh client.
-            retryAfterReactorShutdown(nodeTuple, options, request, warningsHandler, listener, node, client, reactorShutdown, allowRecovery);
+            retryAfterReactorFailure(nodeTuple, options, request, warningsHandler, listener, node, client, runtimeFailure, allowRecovery);
             return;
         }
 
@@ -398,7 +397,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         }
     }
 
-    private void retryAfterReactorShutdown(
+    private void retryAfterReactorFailure(
         final NodeTuple<Iterator<Node>> nodeTuple,
         final ApacheHttpClient5Options options,
         final HttpUriRequestBase request,
@@ -406,7 +405,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final CompletableFuture<Response> listener,
         final Node node,
         final CloseableHttpAsyncClient deadClient,
-        final Throwable reactorShutdown,
+        final Throwable reactorFailure,
         final boolean allowRecovery
     ) {
         if (closed.get()) {
@@ -414,13 +413,13 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return;
         }
         if (!allowRecovery) {
-            listener.completeExceptionally(new IOException("I/O reactor has been shut down", reactorShutdown));
+            listener.completeExceptionally(new IOException("I/O reactor has been shut down", reactorFailure));
             return;
         }
         final CloseableHttpAsyncClient recovered = recoverClient(deadClient);
         if (recovered == null || recovered == deadClient) {
             listener.completeExceptionally(
-                new IOException("I/O reactor has been shut down and the transport could not be recovered", reactorShutdown)
+                new IOException("I/O reactor has been shut down and the transport could not be recovered", reactorFailure)
             );
             return;
         }
@@ -428,7 +427,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     /**
-     * Attempts to recover from an {@link IOReactorShutdownException} by rebuilding the underlying async client.
+     * Attempts to recover from a shut-down I/O reactor by rebuilding the underlying async client.
      * <p>
      * Recovery is guarded by a circuit breaker based on {@link #DEFAULT_REBUILD_BACKOFF_MILLIS} so that a reactor which
      * keeps dying under a repeated failure condition does not trigger a rebuild storm that would amplify the failure.
@@ -505,6 +504,10 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         this.nanoClock = nanoClock;
     }
 
+    private static boolean isRecoverableReactorFailure(final Throwable failure, final CloseableHttpAsyncClient client) {
+        return isReactorShutdown(failure) || isClientReactorShutDown(client);
+    }
+
     private static boolean isReactorShutdown(final Throwable failure) {
         Throwable cause = failure;
         // Bounded walk of the cause chain, defensive against pathological or cyclic chains.
@@ -514,6 +517,14 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             }
         }
         return false;
+    }
+
+    private static boolean isClientReactorShutDown(final CloseableHttpAsyncClient client) {
+        try {
+            return client.getStatus() == IOReactorStatus.SHUT_DOWN;
+        } catch (final RuntimeException statusFailure) {
+            return false;
+        }
     }
 
     /**
