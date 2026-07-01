@@ -43,6 +43,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.LongSupplier;
@@ -322,11 +323,10 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         }
         client = clientRef.get();
         context = createContextForNextAttempt(options, request, node, nodeTuple.authCache);
-        final AtomicBoolean callbackOrDependencyClaimed = new AtomicBoolean(false);
-        final FutureCallback<ClassicHttpResponse> callback = new FutureCallback<ClassicHttpResponse>() {
+        final AttemptCallback callback = new AttemptCallback() {
             @Override
             public void completed(ClassicHttpResponse httpResponse) {
-                callbackOrDependencyClaimed.set(true);
+                markCallbackOrDependencyClaimed();
                 try {
                     ResponseOrResponseException responseOrResponseException = convertResponse(request, node, httpResponse, warningsHandler);
                     if (responseOrResponseException.responseException == null) {
@@ -345,7 +345,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
             @Override
             public void failed(Exception failure) {
-                callbackOrDependencyClaimed.set(true);
+                markCallbackOrDependencyClaimed();
                 try {
                     if (isRecoverableReactorFailure(failure, client)) {
                         retryAfterReactorFailure(
@@ -374,7 +374,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
             @Override
             public void cancelled() {
-                callbackOrDependencyClaimed.set(true);
+                markCallbackOrDependencyClaimed();
                 listener.completeExceptionally(new CancellationException("request was cancelled"));
             }
         };
@@ -392,7 +392,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return;
         }
 
-        if (callbackOrDependencyClaimed.compareAndSet(false, true) && future instanceof org.apache.hc.core5.concurrent.Cancellable) {
+        if (callback.claimDependency() && future instanceof org.apache.hc.core5.concurrent.Cancellable) {
             request.setDependency((org.apache.hc.core5.concurrent.Cancellable) future);
         }
     }
@@ -524,6 +524,21 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return client.getStatus() == IOReactorStatus.SHUT_DOWN;
         } catch (final RuntimeException statusFailure) {
             return false;
+        }
+    }
+
+    private abstract static class AttemptCallback implements FutureCallback<ClassicHttpResponse> {
+        private static final AtomicIntegerFieldUpdater<AttemptCallback> CALLBACK_OR_DEPENDENCY_CLAIMED = AtomicIntegerFieldUpdater
+            .newUpdater(AttemptCallback.class, "callbackOrDependencyClaimed");
+
+        private volatile int callbackOrDependencyClaimed;
+
+        final void markCallbackOrDependencyClaimed() {
+            callbackOrDependencyClaimed = 1;
+        }
+
+        final boolean claimDependency() {
+            return CALLBACK_OR_DEPENDENCY_CLAIMED.compareAndSet(this, 0, 1);
         }
     }
 
