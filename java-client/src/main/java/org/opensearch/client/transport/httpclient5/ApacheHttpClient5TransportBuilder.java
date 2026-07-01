@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
@@ -33,6 +34,7 @@ import org.apache.hc.core5.function.Factory;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
+import org.apache.hc.core5.io.CloseMode;
 import org.apache.hc.core5.reactor.ssl.TlsDetails;
 import org.apache.hc.core5.util.Timeout;
 import org.opensearch.client.RestClient;
@@ -79,6 +81,7 @@ public class ApacheHttpClient5TransportBuilder {
     private Optional<Boolean> chunkedEnabled;
     private JsonpMapper mapper;
     private TransportOptions options;
+    private Long reactorRebuildBackoffMillis = null;
 
     /**
      * Creates a new builder instance and sets the hosts that the client will send requests to.
@@ -201,6 +204,23 @@ public class ApacheHttpClient5TransportBuilder {
     }
 
     /**
+     * Sets the base back-off, in milliseconds, between attempts to rebuild the underlying async client after the
+     * I/O reactor has been shut down (see
+     * <a href="https://github.com/opensearch-project/opensearch-java/issues/1969">opensearch-java#1969</a>). The
+     * effective delay grows exponentially while the reactor keeps dying and resets once it has been stable, acting as
+     * a circuit breaker against rebuild storms.
+     * <p>
+     * Defaults to {@value ApacheHttpClient5Transport#DEFAULT_REBUILD_BACKOFF_MILLIS} ms. A value {@code <= 0} disables
+     * the back-off (a rebuild is attempted on every detected shutdown).
+     *
+     * @param reactorRebuildBackoffMillis the base back-off in milliseconds
+     */
+    public ApacheHttpClient5TransportBuilder setReactorRebuildBackoffMillis(long reactorRebuildBackoffMillis) {
+        this.reactorRebuildBackoffMillis = reactorRebuildBackoffMillis;
+        return this;
+    }
+
+    /**
      * Cleans up the given path prefix to ensure that looks like "/base/path".
      *
      * @param pathPrefix the path prefix to be cleaned up.
@@ -282,30 +302,61 @@ public class ApacheHttpClient5TransportBuilder {
         if (failureListener == null) {
             failureListener = new ApacheHttpClient5Transport.FailureListener();
         }
-        CloseableHttpAsyncClient httpClient = AccessController.doPrivileged(
-            (PrivilegedAction<CloseableHttpAsyncClient>) this::createHttpClient
-        );
+
+        final RequestConfigCallback requestConfigCallbackSnapshot = requestConfigCallback;
+        final ConnectionConfigCallback connectionConfigCallbackSnapshot = connectionConfigCallback;
+        final HttpClientConfigCallback httpClientConfigCallbackSnapshot = httpClientConfigCallback;
+
+        // Factory that builds AND starts a fresh async client. It is used for the initial client and to rebuild it if
+        // the I/O reactor is shut down, allowing the transport to recover without being recreated by the caller.
+        // See https://github.com/opensearch-project/opensearch-java/issues/1969.
+        final Supplier<CloseableHttpAsyncClient> clientFactory = () -> {
+            final CloseableHttpAsyncClient client = AccessController.doPrivileged(
+                (PrivilegedAction<CloseableHttpAsyncClient>) () -> createHttpClient(
+                    requestConfigCallbackSnapshot,
+                    connectionConfigCallbackSnapshot,
+                    httpClientConfigCallbackSnapshot
+                )
+            );
+            client.start();
+            return client;
+        };
+
+        final CloseableHttpAsyncClient httpClient = clientFactory.get();
 
         if (mapper == null) {
             mapper = new JacksonJsonpMapper();
         }
 
-        final ApacheHttpClient5Transport transport = new ApacheHttpClient5Transport(
-            httpClient,
-            defaultHeaders,
-            nodes,
-            mapper,
-            options,
-            pathPrefix,
-            failureListener,
-            nodeSelector,
-            strictDeprecationMode,
-            compressionEnabled,
-            chunkedEnabled.orElse(false)
-        );
+        final long rebuildBackoffMillis = (reactorRebuildBackoffMillis != null)
+            ? reactorRebuildBackoffMillis
+            : ApacheHttpClient5Transport.DEFAULT_REBUILD_BACKOFF_MILLIS;
 
-        httpClient.start();
-        return transport;
+        try {
+            return new ApacheHttpClient5Transport(
+                clientFactory,
+                rebuildBackoffMillis,
+                httpClient,
+                defaultHeaders,
+                nodes,
+                mapper,
+                options,
+                pathPrefix,
+                failureListener,
+                nodeSelector,
+                strictDeprecationMode,
+                compressionEnabled,
+                chunkedEnabled.orElse(false)
+            );
+        } catch (final RuntimeException | Error e) {
+            // The client has already been started; avoid leaking its reactor threads if construction fails.
+            try {
+                httpClient.close(CloseMode.IMMEDIATE);
+            } catch (final Exception suppressed) {
+                e.addSuppressed(suppressed);
+            }
+            throw e;
+        }
     }
 
     /**
@@ -339,7 +390,11 @@ public class ApacheHttpClient5TransportBuilder {
         return new ApacheHttpClient5TransportBuilder(nodes);
     }
 
-    private CloseableHttpAsyncClient createHttpClient() {
+    private CloseableHttpAsyncClient createHttpClient(
+        RequestConfigCallback requestConfigCallback,
+        ConnectionConfigCallback connectionConfigCallback,
+        HttpClientConfigCallback httpClientConfigCallback
+    ) {
         // default timeouts are all infinite
         RequestConfig.Builder requestConfigBuilder = RequestConfig.custom();
 
