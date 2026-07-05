@@ -143,6 +143,9 @@ tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
+val opensearchVersion = "3.5.0-SNAPSHOT"
+val opensearchDockerVersion = opensearchVersion.removeSuffix("-SNAPSHOT")
+
 tasks.test {
     systemProperty("tests.security.manager", "false")
 
@@ -168,6 +171,16 @@ val integrationTest = task<Test>("integrationTest") {
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))
+    systemProperty(
+        "tests.opensearch.testcontainers.enabled",
+        System.getProperty("tests.opensearch.testcontainers.enabled", "true")
+    )
+    systemProperty(
+        "tests.opensearch.version",
+        System.getProperty("tests.opensearch.version", opensearchDockerVersion)
+    )
+    System.getProperty("tests.rest.cluster")?.let { systemProperty("tests.rest.cluster", it) }
+    System.getProperty("tests.opensearch.image")?.let { systemProperty("tests.opensearch.image", it) }
     systemProperty("tests.awsSdk2support.domainHost",
             System.getProperty("tests.awsSdk2support.domainHost", null))
     systemProperty("tests.awsSdk2support.serviceName",
@@ -175,8 +188,6 @@ val integrationTest = task<Test>("integrationTest") {
     systemProperty("tests.awsSdk2support.domainRegion",
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
-
-val opensearchVersion = "3.5.0-SNAPSHOT"
 
 dependencies {
     val jacksonVersion = "2.21.2"
@@ -377,6 +388,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       srcDir("src/test/java11")
+      srcDir("src/test/java21")
     }
   }
 
@@ -387,6 +399,8 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
       exclude(group = "org.hamcrest")
     }
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.testcontainers:testcontainers:2.0.4")
   }
 
   tasks.named<JavaCompile>("compileJava21Java") {

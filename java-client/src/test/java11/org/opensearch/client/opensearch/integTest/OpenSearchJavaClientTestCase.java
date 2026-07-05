@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import com.carrotsearch.randomizedtesting.annotations.ThreadLeakFilters;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +31,7 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -45,6 +47,7 @@ import org.opensearch.client.opensearch.nodes.info.NodeInfo;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
 
+@ThreadLeakFilters(filters = TestcontainersThreadFilter.class)
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
     private static final List<String> systemIndices = List.of(
         ".opensearch-observability",
@@ -58,6 +61,11 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
 
     private static TreeSet<Version> nodeVersions;
     private static List<HttpHost> clusterHosts;
+
+    // The integration tests run through JUnit 4 (RandomizedRunner), so @ClassRule is the pre/post
+    // lifecycle hook; the rule starts a single container shared by the whole test JVM.
+    @ClassRule
+    public static final OpenSearchTestContainerRule testContainer = new OpenSearchTestContainerRule();
 
     @Before
     public void initJavaClient() throws IOException {
