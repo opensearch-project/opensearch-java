@@ -40846,7 +40846,6 @@ components:
       required:
         - primary
         - reason
-        - shard
     _common___ShardInfo:
       type: object
       properties:
