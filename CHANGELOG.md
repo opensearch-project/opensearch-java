@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 
 ### Fixed
+- Fix `ShardFailure.shard` incorrectly marked required causing `MissingRequiredPropertyException` ([#2037](https://github.com/opensearch-project/opensearch-java/pull/2037))
 
 ## [Unreleased 3.x]
 ### Added
