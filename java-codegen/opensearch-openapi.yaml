@@ -45952,10 +45952,6 @@ components:
             skip:
               $ref: '#/components/schemas/_common___StringifiedInteger'
           required:
-            - buffer_size
-            - delimiter
-            - reverse
-            - skip
             - type
     _common.analysis___PatternAnalyzer:
       type: object
