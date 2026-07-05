@@ -37,6 +37,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
 
 ### Security
 
