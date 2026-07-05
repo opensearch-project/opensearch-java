@@ -90,7 +90,7 @@ jobs:
       - name: Run Integration Test
         run: |
           cd opensearch-java
-          ./gradlew clean integrationTest -Dhttps=false
+          ./gradlew clean integrationTest -Dhttps=false -Dtests.opensearch.testcontainers.enabled=false
 
       - name: Upload Reports
         if: failure()
