@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 
 ### Fixed
+- Fix `ShardProfile.fetch` typed as single `FetchProfile` instead of `List<FetchProfile>` causing deserialization failure with profile API ([#2040](https://github.com/opensearch-project/opensearch-java/pull/2040))
 
 ## [Unreleased 3.x]
 ### Added
