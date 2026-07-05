@@ -31,7 +31,7 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -62,11 +62,10 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     private static TreeSet<Version> nodeVersions;
     private static List<HttpHost> clusterHosts;
 
-    // Superclass setup reads tests.rest.cluster before subclass @Before methods run.
-    @BeforeClass
-    public static void startOpenSearchTestContainer() {
-        OpenSearchTestContainer.startIfNeeded();
-    }
+    // The integration tests run through JUnit 4 (RandomizedRunner), so @ClassRule is the pre/post
+    // lifecycle hook; the rule starts a single container shared by the whole test JVM.
+    @ClassRule
+    public static final OpenSearchTestContainerRule testContainer = new OpenSearchTestContainerRule();
 
     @Before
     public void initJavaClient() throws IOException {
