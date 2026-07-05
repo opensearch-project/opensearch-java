@@ -19,13 +19,13 @@ import org.opensearch.testcontainers.OpenSearchDockerImage;
  * after each class; Testcontainers' Ryuk reaper removes it once the JVM exits.
  */
 final class OpenSearchTestContainerRule extends ExternalResource {
-    static final String ENABLED_PROPERTY = "tests.opensearch.testcontainers.enabled";
-    static final String VERSION_PROPERTY = "tests.opensearch.version";
-    static final String IMAGE_PROPERTY = "tests.opensearch.image";
-    static final String CLUSTER_PROPERTY = "tests.rest.cluster";
-    static final String HTTPS_PROPERTY = "https";
-    static final String USER_PROPERTY = "user";
-    static final String PASSWORD_PROPERTY = "password";
+    private static final String ENABLED_PROPERTY = "tests.opensearch.testcontainers.enabled";
+    private static final String VERSION_PROPERTY = "tests.opensearch.version";
+    private static final String IMAGE_PROPERTY = "tests.opensearch.image";
+    private static final String CLUSTER_PROPERTY = "tests.rest.cluster";
+    private static final String HTTPS_PROPERTY = "https";
+    private static final String USER_PROPERTY = "user";
+    private static final String PASSWORD_PROPERTY = "password";
 
     private static final String DEFAULT_ADMIN_PASSWORD = "admin";
 
@@ -36,7 +36,7 @@ final class OpenSearchTestContainerRule extends ExternalResource {
         startIfNeeded();
     }
 
-    static synchronized void startIfNeeded() {
+    private static void startIfNeeded() {
         if (hasText(System.getProperty(CLUSTER_PROPERTY)) || !testcontainersEnabled()) {
             return;
         }
