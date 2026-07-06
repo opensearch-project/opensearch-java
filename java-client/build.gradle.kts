@@ -400,7 +400,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
       exclude(group = "org.hamcrest")
     }
     testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
-    testImplementation("org.testcontainers:testcontainers:2.0.4")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
   }
 
   tasks.named<JavaCompile>("compileJava21Java") {
