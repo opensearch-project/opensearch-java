@@ -72,7 +72,8 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
     @Nonnull
     private final ErrorCause reason;
 
-    private final int shard;
+    @Nullable
+    private final Integer shard;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -80,7 +81,7 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         this.index = builder.index;
         this.node = builder.node;
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = builder.shard;
     }
 
     public static ShardSearchFailure of(Function<ShardSearchFailure.Builder, ObjectBuilder<ShardSearchFailure>> fn) {
@@ -118,12 +119,13 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - The shard id where the failure occurred.
+     * The shard id where the failure occurred.
      * <p>
      * API name: {@code shard}
      * </p>
      */
-    public final int shard() {
+    @Nullable
+    public final Integer shard() {
         return this.shard;
     }
 
@@ -151,8 +153,10 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
 
-        generator.writeKey("shard");
-        generator.write(this.shard);
+        if (this.shard != null) {
+            generator.writeKey("shard");
+            generator.write(this.shard);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -177,6 +181,7 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         @Nullable
         private String node;
         private ErrorCause reason;
+        @Nullable
         private Integer shard;
 
         public Builder() {}
@@ -243,13 +248,13 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - The shard id where the failure occurred.
+         * The shard id where the failure occurred.
          * <p>
          * API name: {@code shard}
          * </p>
          */
         @Nonnull
-        public final Builder shard(int value) {
+        public final Builder shard(@Nullable Integer value) {
             this.shard = value;
             return this;
         }
@@ -291,7 +296,7 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + this.reason.hashCode();
-        result = 31 * result + Integer.hashCode(this.shard);
+        result = 31 * result + Objects.hashCode(this.shard);
         return result;
     }
 
@@ -303,6 +308,6 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         return Objects.equals(this.index, other.index)
             && Objects.equals(this.node, other.node)
             && this.reason.equals(other.reason)
-            && this.shard == other.shard;
+            && Objects.equals(this.shard, other.shard);
     }
 }
