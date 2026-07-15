@@ -22,6 +22,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
 - Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
+- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
 
 ### Fixed
 
