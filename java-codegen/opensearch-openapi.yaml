@@ -56686,9 +56686,11 @@ components:
           $ref: '#/components/schemas/flow_framework.common___user'
         created_time:
           type: integer
+          format: int64
           description: When the workflow was created.
         last_updated_time:
           type: integer
+          format: int64
           description: When the workflow was last updated.
         last_provisioned_time:
           type: number
@@ -61772,6 +61774,7 @@ components:
           description: The priority of the ISM template.
         last_updated_time:
           type: integer
+          format: int64
           description: When the ISM template was last updated.
     ism._common___Metadata:
       type: object
@@ -61797,6 +61800,7 @@ components:
           description: The description of the policy.
         last_updated_time:
           type: integer
+          format: int64
           description: When the policy was last updated.
         schema_version:
           type: number
@@ -70265,6 +70269,7 @@ components:
           type: boolean
         last_updated_time:
           type: integer
+          format: int64
           description: When the policy was last modified.
         enabled_time:
           type: integer
