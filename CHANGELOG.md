@@ -24,6 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 
 ### Fixed
+- Fix `PathHierarchyTokenizer` optional fields incorrectly marked required causing deserialization failure ([#2038](https://github.com/opensearch-project/opensearch-java/pull/2038))
 
 ## [Unreleased 3.x]
 ### Added

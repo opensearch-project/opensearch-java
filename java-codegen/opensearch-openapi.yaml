@@ -38878,8 +38878,6 @@ components:
     _common___DerivedField:
       type: object
       properties:
-        name:
-          type: string
         type:
           type: string
         script:
@@ -38893,7 +38891,6 @@ components:
         format:
           type: string
       required:
-        - name
         - script
         - type
     _common___DFIIndependenceMeasure:
@@ -40849,7 +40846,6 @@ components:
       required:
         - primary
         - reason
-        - shard
     _common___ShardInfo:
       type: object
       properties:
@@ -45956,10 +45952,6 @@ components:
             skip:
               $ref: '#/components/schemas/_common___StringifiedInteger'
           required:
-            - buffer_size
-            - delimiter
-            - reverse
-            - skip
             - type
     _common.analysis___PatternAnalyzer:
       type: object

@@ -61,27 +61,30 @@ public class PathHierarchyTokenizer extends TokenizerBase
         TokenizerDefinitionVariant,
         ToCopyableBuilder<PathHierarchyTokenizer.Builder, PathHierarchyTokenizer> {
 
-    private final int bufferSize;
+    @Nullable
+    private final Integer bufferSize;
 
-    @Nonnull
+    @Nullable
     private final String delimiter;
 
     @Nullable
     private final String replacement;
 
-    private final boolean reverse;
+    @Nullable
+    private final Boolean reverse;
 
-    private final int skip;
+    @Nullable
+    private final Integer skip;
 
     // ---------------------------------------------------------------------------------------------
 
     private PathHierarchyTokenizer(Builder builder) {
         super(builder);
-        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
-        this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+        this.bufferSize = builder.bufferSize;
+        this.delimiter = builder.delimiter;
         this.replacement = builder.replacement;
-        this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
-        this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
+        this.reverse = builder.reverse;
+        this.skip = builder.skip;
     }
 
     public static PathHierarchyTokenizer of(Function<PathHierarchyTokenizer.Builder, ObjectBuilder<PathHierarchyTokenizer>> fn) {
@@ -97,16 +100,17 @@ public class PathHierarchyTokenizer extends TokenizerBase
     }
 
     /**
-     * Required - API name: {@code buffer_size}
+     * API name: {@code buffer_size}
      */
-    public final int bufferSize() {
+    @Nullable
+    public final Integer bufferSize() {
         return this.bufferSize;
     }
 
     /**
-     * Required - API name: {@code delimiter}
+     * API name: {@code delimiter}
      */
-    @Nonnull
+    @Nullable
     public final String delimiter() {
         return this.delimiter;
     }
@@ -120,38 +124,48 @@ public class PathHierarchyTokenizer extends TokenizerBase
     }
 
     /**
-     * Required - API name: {@code reverse}
+     * API name: {@code reverse}
      */
-    public final boolean reverse() {
+    @Nullable
+    public final Boolean reverse() {
         return this.reverse;
     }
 
     /**
-     * Required - API name: {@code skip}
+     * API name: {@code skip}
      */
-    public final int skip() {
+    @Nullable
+    public final Integer skip() {
         return this.skip;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "path_hierarchy");
         super.serializeInternal(generator, mapper);
-        generator.writeKey("buffer_size");
-        generator.write(this.bufferSize);
+        if (this.bufferSize != null) {
+            generator.writeKey("buffer_size");
+            generator.write(this.bufferSize);
+        }
 
-        generator.writeKey("delimiter");
-        generator.write(this.delimiter);
+        if (this.delimiter != null) {
+            generator.writeKey("delimiter");
+            generator.write(this.delimiter);
+        }
 
         if (this.replacement != null) {
             generator.writeKey("replacement");
             generator.write(this.replacement);
         }
 
-        generator.writeKey("reverse");
-        generator.write(this.reverse);
+        if (this.reverse != null) {
+            generator.writeKey("reverse");
+            generator.write(this.reverse);
+        }
 
-        generator.writeKey("skip");
-        generator.write(this.skip);
+        if (this.skip != null) {
+            generator.writeKey("skip");
+            generator.write(this.skip);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -211,7 +225,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
         }
 
         /**
-         * Required - API name: {@code buffer_size}
+         * API name: {@code buffer_size}
          */
         @Nonnull
         public final Builder bufferSize(int value) {
@@ -220,7 +234,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
         }
 
         /**
-         * Required - API name: {@code delimiter}
+         * API name: {@code delimiter}
          */
         @Nonnull
         public final Builder delimiter(String value) {
@@ -238,7 +252,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
         }
 
         /**
-         * Required - API name: {@code reverse}
+         * API name: {@code reverse}
          */
         @Nonnull
         public final Builder reverse(boolean value) {
@@ -247,7 +261,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
         }
 
         /**
-         * Required - API name: {@code skip}
+         * API name: {@code skip}
          */
         @Nonnull
         public final Builder skip(int value) {
@@ -293,11 +307,11 @@ public class PathHierarchyTokenizer extends TokenizerBase
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + Integer.hashCode(this.bufferSize);
-        result = 31 * result + this.delimiter.hashCode();
+        result = 31 * result + Objects.hashCode(this.bufferSize);
+        result = 31 * result + Objects.hashCode(this.delimiter);
         result = 31 * result + Objects.hashCode(this.replacement);
-        result = 31 * result + Boolean.hashCode(this.reverse);
-        result = 31 * result + Integer.hashCode(this.skip);
+        result = 31 * result + Objects.hashCode(this.reverse);
+        result = 31 * result + Objects.hashCode(this.skip);
         return result;
     }
 
@@ -309,10 +323,10 @@ public class PathHierarchyTokenizer extends TokenizerBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PathHierarchyTokenizer other = (PathHierarchyTokenizer) o;
-        return this.bufferSize == other.bufferSize
-            && this.delimiter.equals(other.delimiter)
+        return Objects.equals(this.bufferSize, other.bufferSize)
+            && Objects.equals(this.delimiter, other.delimiter)
             && Objects.equals(this.replacement, other.replacement)
-            && this.reverse == other.reverse
-            && this.skip == other.skip;
+            && Objects.equals(this.reverse, other.reverse)
+            && Objects.equals(this.skip, other.skip);
     }
 }

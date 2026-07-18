@@ -71,7 +71,8 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     @Nonnull
     private final ErrorCause reason;
 
-    private final int shard;
+    @Nullable
+    private final Integer shard;
 
     @Nullable
     private final String status;
@@ -83,7 +84,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         this.node = builder.node;
         this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = builder.shard;
         this.status = builder.status;
     }
 
@@ -123,9 +124,10 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * Required - API name: {@code shard}
+     * API name: {@code shard}
      */
-    public final int shard() {
+    @Nullable
+    public final Integer shard() {
         return this.shard;
     }
 
@@ -164,8 +166,10 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
 
-        generator.writeKey("shard");
-        generator.write(this.shard);
+        if (this.shard != null) {
+            generator.writeKey("shard");
+            generator.write(this.shard);
+        }
 
         if (this.status != null) {
             generator.writeKey("status");
@@ -271,7 +275,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * Required - API name: {@code shard}
+         * API name: {@code shard}
          */
         @Nonnull
         public final Builder shard(int value) {
@@ -328,7 +332,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + Boolean.hashCode(this.primary);
         result = 31 * result + this.reason.hashCode();
-        result = 31 * result + Integer.hashCode(this.shard);
+        result = 31 * result + Objects.hashCode(this.shard);
         result = 31 * result + Objects.hashCode(this.status);
         return result;
     }
@@ -342,7 +346,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
             && Objects.equals(this.node, other.node)
             && this.primary == other.primary
             && this.reason.equals(other.reason)
-            && this.shard == other.shard
+            && Objects.equals(this.shard, other.shard)
             && Objects.equals(this.status, other.status);
     }
 }
