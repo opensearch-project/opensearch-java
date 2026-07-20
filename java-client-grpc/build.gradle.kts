@@ -64,6 +64,70 @@ tasks.test {
     systemProperty("tests.security.manager", "false")
 }
 
+val unitTest = tasks.register<Test>("unitTest") {
+    filter {
+        excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+    }
+    systemProperty("tests.security.manager", "false")
+}
+
+val integrationTest = tasks.register<Test>("integrationTest") {
+    filter {
+        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+    }
+    systemProperty("tests.security.manager", "false")
+    systemProperty("https", System.getProperty("https", "false"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
+    systemProperty("tests.opensearch.testcontainers.enabled",
+        System.getProperty("tests.opensearch.testcontainers.enabled", "true"))
+    systemProperty("tests.opensearch.version",
+        System.getProperty("tests.opensearch.version", opensearchVersion))
+}
+
+// Integration tests require Java 21+ and live in src/test/java11
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
+    val java21: SourceSet = sourceSets.create("java21") {
+        java {
+            compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+            runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+            srcDir("src/test/java11")
+        }
+    }
+
+    configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+    configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+
+    dependencies {
+        "java21Implementation"("org.opensearch.test", "framework", opensearchVersion) {
+            exclude(group = "org.hamcrest")
+        }
+        "java21Implementation"("org.opensearch:opensearch-testcontainers:4.1.0")
+        "java21Implementation"("org.testcontainers:testcontainers:2.0.5")
+    }
+
+    tasks.named<JavaCompile>("compileJava21Java") {
+        targetCompatibility = JavaVersion.VERSION_21.toString()
+        sourceCompatibility = JavaVersion.VERSION_21.toString()
+    }
+
+    tasks.named<JavaCompile>("compileTestJava") {
+        targetCompatibility = JavaVersion.VERSION_21.toString()
+        sourceCompatibility = JavaVersion.VERSION_21.toString()
+    }
+
+    integrationTest.configure {
+        testClassesDirs += java21.output.classesDirs
+        classpath = sourceSets["java21"].runtimeClasspath
+    }
+
+    unitTest.configure {
+        testClassesDirs += java21.output.classesDirs
+        classpath = sourceSets["java21"].runtimeClasspath
+    }
+}
+
 tasks.withType<Jar> {
     manifest {
         attributes["Implementation-Title"] = "OpenSearch Java Client - gRPC Transport"
