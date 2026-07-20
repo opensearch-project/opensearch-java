@@ -20,26 +20,15 @@ import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 
 /**
- * Hybrid transport that composes a {@link GrpcTransport} with a REST transport.
+ * Hybrid transport that routes supported endpoints to gRPC and all other
+ * operations to REST.
  * <p>
- * Routes supported endpoints (Bulk) to gRPC for better performance,
- * and all other operations to the REST transport automatically.
+ * Supported endpoints (e.g., Bulk) are sent over gRPC for better performance.
+ * Unsupported endpoints are sent over REST automatically.
  * <p>
- * If a gRPC request fails due to connection issues or unsupported payload,
- * the request is retried via REST (fallback behavior).
- * <p>
- * This is the recommended transport for production use:
- * <pre>{@code
- * OpenSearchTransport restTransport = ApacheHttpClient5TransportBuilder.builder(host).build();
- * GrpcTransport grpcTransport = GrpcTransport.builder("localhost", 9400)
- *     .jsonpMapper(mapper).build();
- *
- * HybridTransport hybrid = new HybridTransport(grpcTransport, restTransport);
- * OpenSearchClient client = new OpenSearchClient(hybrid);
- *
- * client.bulk(bulkRequest);  // → gRPC
- * client.search(searchReq);  // → REST
- * }</pre>
+ * gRPC errors are propagated directly to the caller — there is no silent
+ * fallback to REST for supported endpoints. This ensures users know
+ * immediately when their gRPC configuration is not working.
  */
 public class HybridTransport implements OpenSearchTransport {
 
@@ -47,29 +36,21 @@ public class HybridTransport implements OpenSearchTransport {
 
     private final GrpcTransport grpcTransport;
     private final OpenSearchTransport restTransport;
-    private final boolean fallbackOnError;
 
     /**
-     * Creates a HybridTransport with default fallback behavior (fallback on error = true).
+     * Creates a HybridTransport that routes supported endpoints to gRPC
+     * and all other endpoints to REST.
+     * <p>
+     * gRPC errors are propagated directly to the caller — there is no silent
+     * fallback to REST for gRPC-supported endpoints. This ensures users are
+     * aware when their gRPC configuration is not working.
      *
      * @param grpcTransport the gRPC transport for supported endpoints
-     * @param restTransport the REST transport for all other endpoints and fallback
+     * @param restTransport the REST transport for all other endpoints
      */
     public HybridTransport(GrpcTransport grpcTransport, OpenSearchTransport restTransport) {
-        this(grpcTransport, restTransport, true);
-    }
-
-    /**
-     * Creates a HybridTransport.
-     *
-     * @param grpcTransport   the gRPC transport for supported endpoints
-     * @param restTransport   the REST transport for all other endpoints and fallback
-     * @param fallbackOnError if true, retries failed gRPC requests via REST
-     */
-    public HybridTransport(GrpcTransport grpcTransport, OpenSearchTransport restTransport, boolean fallbackOnError) {
         this.grpcTransport = grpcTransport;
         this.restTransport = restTransport;
-        this.fallbackOnError = fallbackOnError;
     }
 
     @Override
@@ -84,24 +65,8 @@ public class HybridTransport implements OpenSearchTransport {
             return restTransport.performRequest(request, endpoint, options);
         }
 
-        // Try gRPC for supported endpoints
-        try {
-            return grpcTransport.performRequest(request, endpoint, options);
-        } catch (UnsupportedOperationException e) {
-            // Endpoint registered but payload not convertible — fallback to REST
-            if (fallbackOnError) {
-                logger.log(Level.FINE, "gRPC conversion failed, falling back to REST: {0}", e.getMessage());
-                return restTransport.performRequest(request, endpoint, options);
-            }
-            throw e;
-        } catch (TransportException e) {
-            // Connection error — fallback to REST if enabled
-            if (fallbackOnError) {
-                logger.log(Level.WARNING, "gRPC request failed, falling back to REST: {0}", e.getMessage());
-                return restTransport.performRequest(request, endpoint, options);
-            }
-            throw e;
-        }
+        // gRPC-supported endpoints go over gRPC — errors propagate to caller
+        return grpcTransport.performRequest(request, endpoint, options);
     }
 
     @Override
@@ -115,21 +80,8 @@ public class HybridTransport implements OpenSearchTransport {
             return restTransport.performRequestAsync(request, endpoint, options);
         }
 
-        // Try gRPC, fallback to REST on failure
-        CompletableFuture<ResponseT> future = grpcTransport.performRequestAsync(request, endpoint, options);
-
-        if (fallbackOnError) {
-            return future.exceptionally(throwable -> {
-                logger.log(Level.WARNING, "Async gRPC failed, falling back to REST: {0}", throwable.getMessage());
-                try {
-                    return restTransport.performRequest(request, endpoint, options);
-                } catch (IOException e) {
-                    throw new RuntimeException("REST fallback also failed", e);
-                }
-            });
-        }
-
-        return future;
+        // gRPC-supported endpoints go over gRPC — errors propagate to caller
+        return grpcTransport.performRequestAsync(request, endpoint, options);
     }
 
     @Override
@@ -166,10 +118,4 @@ public class HybridTransport implements OpenSearchTransport {
         return restTransport;
     }
 
-    /**
-     * Returns whether fallback on gRPC error is enabled.
-     */
-    public boolean fallbackOnError() {
-        return fallbackOnError;
-    }
 }

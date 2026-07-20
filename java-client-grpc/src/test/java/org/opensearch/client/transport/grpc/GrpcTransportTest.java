@@ -252,23 +252,15 @@ public class GrpcTransportTest {
     }
 
     @Test
-    public void testFallbackOnGrpcFailure() throws IOException {
+    public void testGrpcErrorPropagatesForSupportedEndpoint() throws IOException {
         MockRestTransport rest = new MockRestTransport();
-        HybridTransport h = new HybridTransport(new FailingGrpcTransport(mapper), rest, true);
-        BulkRequest req = new BulkRequest.Builder().operations(op -> op.delete(d -> d.id("1").index("t"))).build();
-        assertNotNull(h.performRequest(req, BulkRequest._ENDPOINT, null));
-        assertEquals(1, rest.callCount);
-    }
-
-    @Test
-    public void testNoFallbackWhenDisabled() throws IOException {
-        MockRestTransport rest = new MockRestTransport();
-        HybridTransport h = new HybridTransport(new FailingGrpcTransport(mapper), rest, false);
+        HybridTransport h = new HybridTransport(new FailingGrpcTransport(mapper), rest);
         BulkRequest req = new BulkRequest.Builder().operations(op -> op.delete(d -> d.id("1").index("t"))).build();
         try {
             h.performRequest(req, BulkRequest._ENDPOINT, null);
-            fail();
+            fail("Should propagate gRPC error");
         } catch (TransportException e) {
+            // gRPC error propagated — no silent fallback
             assertEquals(0, rest.callCount);
         }
     }
