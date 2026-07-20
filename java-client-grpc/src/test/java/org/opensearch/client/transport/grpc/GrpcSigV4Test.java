@@ -122,7 +122,10 @@ public class GrpcSigV4Test {
 
     @Test
     public void testNoSessionTokenWithBasicCreds() {
-        java.util.Map<String, java.util.List<String>> h = interceptor(false).signRequest("opensearch.DocumentService/Bulk", GrpcSigV4Interceptor.UNSIGNED_PAYLOAD);
+        java.util.Map<String, java.util.List<String>> h = interceptor(false).signRequest(
+            "opensearch.DocumentService/Bulk",
+            GrpcSigV4Interceptor.UNSIGNED_PAYLOAD
+        );
         assertFalse(h.containsKey("X-Amz-Security-Token") || h.containsKey("x-amz-security-token"));
     }
 

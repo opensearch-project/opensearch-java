@@ -384,7 +384,6 @@ public class GrpcTransport implements OpenSearchTransport {
                     allInterceptors.add(new BasicAuthInterceptor(basicAuthUsername, basicAuthPassword));
                 }
 
-
                 // JWT auth interceptor
                 if (jwtTokenSupplier != null) {
                     allInterceptors.add(new JwtAuthInterceptor(jwtTokenSupplier));

@@ -37,9 +37,13 @@ public class AwsGrpcTransport extends GrpcTransport {
 
     private final GrpcSigV4Interceptor sigV4Interceptor;
 
-    AwsGrpcTransport(ManagedChannel channel, JsonpMapper jsonpMapper,
-                     GrpcTransportOptions grpcOptions, @Nullable TransportOptions transportOptions,
-                     GrpcSigV4Interceptor sigV4Interceptor) {
+    AwsGrpcTransport(
+        ManagedChannel channel,
+        JsonpMapper jsonpMapper,
+        GrpcTransportOptions grpcOptions,
+        @Nullable TransportOptions transportOptions,
+        GrpcSigV4Interceptor sigV4Interceptor
+    ) {
         super(channel, jsonpMapper, grpcOptions, transportOptions);
         this.sigV4Interceptor = sigV4Interceptor;
     }
@@ -127,9 +131,7 @@ public class AwsGrpcTransport extends GrpcTransport {
                 throw new IllegalArgumentException("sigV4 config is required for AwsGrpcTransport. Use GrpcTransport for non-AWS usage.");
             }
             if (tlsConfig == null) {
-                throw new IllegalStateException(
-                    "TLS is required when using SigV4 signing. Configure TLS with .tls() before .sigV4()."
-                );
+                throw new IllegalStateException("TLS is required when using SigV4 signing. Configure TLS with .tls() before .sigV4().");
             }
 
             ManagedChannel ch = this.channel;

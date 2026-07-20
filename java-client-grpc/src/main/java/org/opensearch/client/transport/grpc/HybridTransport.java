@@ -10,13 +10,11 @@ package org.opensearch.client.transport.grpc;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 
 /**
