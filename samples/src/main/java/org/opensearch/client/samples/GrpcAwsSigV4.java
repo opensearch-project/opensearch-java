@@ -24,6 +24,7 @@ import org.opensearch.client.transport.aws.AwsSdk2Transport;
 import org.opensearch.client.transport.aws.AwsSdk2TransportOptions;
 import org.opensearch.client.transport.grpc.GrpcSigV4Config;
 import org.opensearch.client.transport.grpc.GrpcTlsConfig;
+import org.opensearch.client.transport.grpc.AwsGrpcTransport;
 import org.opensearch.client.transport.grpc.GrpcTransport;
 import org.opensearch.client.transport.grpc.HybridTransport;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
@@ -36,7 +37,7 @@ import software.amazon.awssdk.regions.Region;
  * <p>
  * This shows how to configure:
  * - gRPC transport with SigV4 authentication (for bulk)
- * - AwsSdk2Transport for REST fallback (for search, info, etc.)
+ * - AwsSdk2Transport for REST (unsupported ops like search) (for search, info, etc.)
  * - Both using the same AWS credentials from the default provider chain
  * <p>
  * Prerequisites:
@@ -77,7 +78,7 @@ public class GrpcAwsSigV4 {
 
             // ─── gRPC transport with SigV4 (for bulk operations) ─────────────────
 
-            GrpcTransport grpcTransport = GrpcTransport.builder(domain, grpcPort)
+            GrpcTransport grpcTransport = AwsGrpcTransport.awsBuilder(domain, grpcPort)
                 .jsonpMapper(new JacksonJsonpMapper())
                 .tls(GrpcTlsConfig.builder().build())  // system trust store (AWS certs are in JVM cacerts)
                 .sigV4(

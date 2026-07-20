@@ -42,7 +42,7 @@ import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
  * - All 4 operation types (index, create, update, delete)
  * - Response format completeness (_shards, _version, _seq_no, _primary_term)
  * - Status code mapping (201, 200, 409, 404)
- * - REST fallback for non-bulk operations
+ * - REST routing for non-bulk operations
  * <p>
  * Skips automatically on OpenSearch versions below 3.5.0.
  * <p>
@@ -229,10 +229,10 @@ public class GrpcBulkIT extends AbstractGrpcIT implements GrpcTransportSupport {
     }
 
     /**
-     * Tests that non-bulk operations fall back to REST seamlessly.
+     * Tests that non-bulk operations are routed to REST.
      */
     @Test
-    public void testRestFallback() throws IOException {
+    public void testRestRouting() throws IOException {
         assumeGrpcSupported();
 
         // info() — REST
@@ -241,7 +241,7 @@ public class GrpcBulkIT extends AbstractGrpcIT implements GrpcTransportSupport {
         assertNotNull(info.version().number());
 
         // Index create/search/delete — all REST
-        String index = INDEX + "-fallback";
+        String index = INDEX + "-routing";
         grpcClient().indices().create(new CreateIndexRequest.Builder().index(index).build());
         try {
             SearchResponse<Product> resp = grpcClient().search(s -> s.index(index), Product.class);

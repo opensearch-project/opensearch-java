@@ -31,7 +31,7 @@ import org.opensearch.protobufs.services.DocumentServiceGrpc;
  * supported operations (Bulk) through gRPC stubs.
  * <p>
  * For unsupported endpoints, this transport throws {@link UnsupportedOperationException}.
- * Use {@link HybridTransport} for automatic REST fallback.
+ * Use {@link HybridTransport} to route unsupported endpoints to REST automatically.
  * <p>
  * Usage:
  * <pre>{@code
@@ -105,7 +105,7 @@ public class GrpcTransport implements OpenSearchTransport {
             throw new UnsupportedOperationException(
                 "Endpoint not supported by gRPC transport: "
                     + endpoint.requestUrl(request)
-                    + ". Use HybridTransport for automatic REST fallback."
+                    + ". Use HybridTransport to route unsupported endpoints to REST."
             );
         }
 

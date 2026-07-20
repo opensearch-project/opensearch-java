@@ -2,7 +2,7 @@
  * OpenSearch gRPC Demo — Java Client
  * ====================================
  *
- * Demonstrates transparent gRPC bulk ingestion with automatic REST fallback.
+ * Demonstrates transparent gRPC bulk ingestion with REST routing for unsupported ops.
  *
  * Prerequisites:
  *   - OpenSearch 3.5+ running with gRPC on port 9400
@@ -46,7 +46,7 @@ public class GrpcDemo {
 
         long restTime = demoRestBulk();
         long grpcTime = demoGrpcBulk();
-        demoFallback();
+        demoRouting();
 
         // Summary
         System.out.println("\n" + "=".repeat(60));
@@ -59,7 +59,7 @@ public class GrpcDemo {
             System.out.printf("  Speedup:    %.1f%% faster with gRPC%n", speedup);
         }
         System.out.println("\n  Key takeaway: Same client API, zero code migration,");
-        System.out.println("  automatic fallback when gRPC is unavailable.\n");
+        System.out.println("  REST routing for unsupported operations.\n");
     }
 
     // ─── Demo 1: REST Bulk (baseline) ────────────────────────────────────────
@@ -97,7 +97,7 @@ public class GrpcDemo {
         System.out.println("  DEMO 2: Bulk Indexing via gRPC (transparent)");
         System.out.println("=".repeat(60));
 
-        // REST transport for fallback
+        // REST transport for unsupported operations
         var restTransport = ApacheHttpClient5TransportBuilder
             .builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
 
@@ -179,44 +179,39 @@ public class GrpcDemo {
 
     // ─── Demo 3: Fallback ────────────────────────────────────────────────────
 
-    static void demoFallback() throws Exception {
+    static void demoRouting() throws Exception {
         System.out.println("\n" + "=".repeat(60));
-        System.out.println("  DEMO 3: Fallback — gRPC unavailable, REST takes over");
+        System.out.println("  DEMO 3: REST routing — unsupported ops go to REST");
         System.out.println("=".repeat(60));
 
         var restTransport = ApacheHttpClient5TransportBuilder
             .builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
 
-        // Point gRPC to wrong port — simulates gRPC being down
-        var grpcTransport = GrpcTransport.builder(REST_HOST, 9999)
+        var grpcTransport = GrpcTransport.builder(REST_HOST, GRPC_PORT)
             .jsonpMapper(new JacksonJsonpMapper())
-            .grpcOptions(GrpcTransportOptions.builder().maxRetries(0).build())
             .build();
 
         var hybridTransport = new HybridTransport(grpcTransport, restTransport);
         var client = new OpenSearchClient(hybridTransport);
 
-        List<BulkOperation> ops = new ArrayList<>();
-        ops.add(new BulkOperation.Builder().index(
-            new IndexOperation.Builder<Product>().index(INDEX).id("fallback-1")
-                .document(new Product("Fallback Product", 42.0, "demo", true)).build()
-        ).build());
+        // Search is not supported by gRPC — routed to REST automatically
+        System.out.println("  📤 client.search() → not in gRPC registry → REST");
+        var info = client.info();
+        System.out.printf("  ✅ info() via REST: %s %s%n", info.version().distribution(), info.version().number());
 
-        long start = System.currentTimeMillis();
-        BulkResponse response = client.bulk(new BulkRequest.Builder()
-            .index(INDEX).operations(ops).refresh(Refresh.True).build());
-        long elapsed = System.currentTimeMillis() - start;
+        // Index create/delete also goes to REST
+        System.out.println("  📤 client.indices().create() → REST");
+        client.indices().create(c -> c.index(INDEX + "-routing"));
+        System.out.println("  ✅ Index created via REST");
 
-        System.out.println("  ✅ Bulk succeeded despite gRPC being unavailable!");
-        System.out.printf("  ⏱  Time: %dms (includes fallback)%n", elapsed);
-        System.out.printf("  📊 Errors: %s%n", response.errors());
-        System.out.println("  💡 Client transparently fell back to REST");
+        client.indices().delete(d -> d.index(INDEX + "-routing"));
+        System.out.println("  ✅ Index deleted via REST");
+        System.out.println();
+        System.out.println("  💡 HybridTransport routes by endpoint:");
+        System.out.println("     bulk()   → gRPC (supported)");
+        System.out.println("     search() → REST (not yet supported by gRPC)");
+        System.out.println("     info()   → REST (not yet supported by gRPC)");
 
-        // Verify
-        var doc = client.get(g -> g.index(INDEX).id("fallback-1"), Product.class);
-        System.out.printf("  📄 Retrieved doc: %s%n", doc.source().name);
-
-        client.indices().delete(d -> d.index(INDEX));
         hybridTransport.close();
     }
 
