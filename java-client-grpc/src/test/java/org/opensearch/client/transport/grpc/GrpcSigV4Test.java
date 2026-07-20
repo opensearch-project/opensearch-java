@@ -32,7 +32,7 @@ public class GrpcSigV4Test {
     private static final String TOKEN = "FwoGZXIvYXdzEBYaDHqa0AP";
 
     private GrpcSigV4Interceptor interceptor(boolean withToken) {
-        var provider = withToken
+        StaticCredentialsProvider provider = withToken
             ? StaticCredentialsProvider.create(AwsSessionCredentials.create(AK, SK, TOKEN))
             : StaticCredentialsProvider.create(AwsBasicCredentials.create(AK, SK));
         return new GrpcSigV4Interceptor(
@@ -122,7 +122,7 @@ public class GrpcSigV4Test {
 
     @Test
     public void testNoSessionTokenWithBasicCreds() {
-        var h = interceptor(false).signRequest("opensearch.DocumentService/Bulk", GrpcSigV4Interceptor.UNSIGNED_PAYLOAD);
+        java.util.Map<String, java.util.List<String>> h = interceptor(false).signRequest("opensearch.DocumentService/Bulk", GrpcSigV4Interceptor.UNSIGNED_PAYLOAD);
         assertFalse(h.containsKey("X-Amz-Security-Token") || h.containsKey("x-amz-security-token"));
     }
 
@@ -231,8 +231,8 @@ public class GrpcSigV4Test {
 
     @Test
     public void testAossServiceName() {
-        var provider = StaticCredentialsProvider.create(AwsBasicCredentials.create(AK, SK));
-        var i = new GrpcSigV4Interceptor(
+        StaticCredentialsProvider provider = StaticCredentialsProvider.create(AwsBasicCredentials.create(AK, SK));
+        GrpcSigV4Interceptor i = new GrpcSigV4Interceptor(
             GrpcSigV4Config.builder().region(Region.US_WEST_2).service("aoss").credentialsProvider(provider).build(),
             HOST
         );
