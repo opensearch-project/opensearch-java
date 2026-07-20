@@ -121,11 +121,6 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
         testClassesDirs += java21.output.classesDirs
         classpath = sourceSets["java21"].runtimeClasspath
     }
-
-    unitTest.configure {
-        testClassesDirs += java21.output.classesDirs
-        classpath = sourceSets["java21"].runtimeClasspath
-    }
 }
 
 tasks.withType<Jar> {
