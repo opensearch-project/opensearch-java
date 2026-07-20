@@ -38,7 +38,7 @@ import java.util.Base64;
  *
  * @see <a href="https://docs.opensearch.org/latest/security/authentication-backends/basic-authc/">OpenSearch Basic Auth</a>
  */
-public class BasicAuthInterceptor implements ClientInterceptor {
+class BasicAuthInterceptor implements ClientInterceptor {
 
     private static final Metadata.Key<String> AUTHORIZATION_KEY = Metadata.Key.of("Authorization", Metadata.ASCII_STRING_MARSHALLER);
 
