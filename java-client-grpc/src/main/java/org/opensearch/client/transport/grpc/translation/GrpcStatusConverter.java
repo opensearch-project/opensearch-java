@@ -55,7 +55,7 @@ public final class GrpcStatusConverter {
      * @param e the gRPC exception
      * @return the converted exception (TransportException, OpenSearchException, or UnsupportedOperationException)
      */
-    public static Exception convert(StatusRuntimeException e) {
+    static Exception convert(StatusRuntimeException e) {
         Status status = e.getStatus();
         Status.Code code = status.getCode();
         String description = status.getDescription() != null ? status.getDescription() : e.getMessage();
