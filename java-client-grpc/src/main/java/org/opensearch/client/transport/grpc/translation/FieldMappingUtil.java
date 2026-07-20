@@ -17,7 +17,7 @@ import org.opensearch.protobufs.WaitForActiveShards;
 /**
  * Maps opensearch-java client enum types to their protobuf equivalents.
  */
-public final class FieldMappingUtil {
+final class FieldMappingUtil {
 
     private FieldMappingUtil() {
         // utility class
