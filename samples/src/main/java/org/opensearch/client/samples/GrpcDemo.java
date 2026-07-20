@@ -1,21 +1,16 @@
 /*
- * OpenSearch gRPC Demo — Java Client
- * ====================================
+ * SPDX-License-Identifier: Apache-2.0
  *
- * Demonstrates transparent gRPC bulk ingestion with REST routing for unsupported ops.
- *
- * Prerequisites:
- *   - OpenSearch 3.5+ running with gRPC on port 9400
- *   - opensearch-java + opensearch-java-grpc on classpath
- *
- * Run:
- *   ./gradlew :samples:run -Dsamples.mainClass=GrpcDemo
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
  */
 
 package org.opensearch.client.samples;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.hc.core5.http.HttpHost;
 import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -24,12 +19,9 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 import org.opensearch.client.opensearch.core.bulk.IndexOperation;
-import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.grpc.GrpcTransport;
-import org.opensearch.client.transport.grpc.GrpcTransportOptions;
 import org.opensearch.client.transport.grpc.HybridTransport;
 import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
-import org.apache.hc.core5.http.HttpHost;
 
 public class GrpcDemo {
 
@@ -55,7 +47,7 @@ public class GrpcDemo {
         System.out.printf("  REST bulk:  %dms%n", restTime);
         System.out.printf("  gRPC bulk:  %dms%n", grpcTime);
         if (grpcTime < restTime) {
-            double speedup = ((double)(restTime - grpcTime) / restTime) * 100;
+            double speedup = ((double) (restTime - grpcTime) / restTime) * 100;
             System.out.printf("  Speedup:    %.1f%% faster with gRPC%n", speedup);
         }
         System.out.println("\n  Key takeaway: Same client API, zero code migration,");
@@ -69,15 +61,13 @@ public class GrpcDemo {
         System.out.println("  DEMO 1: Bulk Indexing via REST");
         System.out.println("=".repeat(60));
 
-        var restTransport = ApacheHttpClient5TransportBuilder
-            .builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
+        var restTransport = ApacheHttpClient5TransportBuilder.builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
         var client = new OpenSearchClient(restTransport);
 
         List<BulkOperation> ops = buildBulkOps();
 
         long start = System.currentTimeMillis();
-        BulkResponse response = client.bulk(new BulkRequest.Builder()
-            .index(INDEX).operations(ops).refresh(Refresh.True).build());
+        BulkResponse response = client.bulk(new BulkRequest.Builder().index(INDEX).operations(ops).refresh(Refresh.True).build());
         long elapsed = System.currentTimeMillis() - start;
 
         System.out.printf("  ✅ Indexed %d documents via REST%n", NUM_DOCS);
@@ -98,13 +88,10 @@ public class GrpcDemo {
         System.out.println("=".repeat(60));
 
         // REST transport for unsupported operations
-        var restTransport = ApacheHttpClient5TransportBuilder
-            .builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
+        var restTransport = ApacheHttpClient5TransportBuilder.builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
 
         // gRPC transport for bulk
-        var grpcTransport = GrpcTransport.builder(REST_HOST, GRPC_PORT)
-            .jsonpMapper(new JacksonJsonpMapper())
-            .build();
+        var grpcTransport = GrpcTransport.builder(REST_HOST, GRPC_PORT).jsonpMapper(new JacksonJsonpMapper()).build();
 
         // Combine — bulk → gRPC, everything else → REST
         var hybridTransport = new HybridTransport(grpcTransport, restTransport);
@@ -130,8 +117,7 @@ public class GrpcDemo {
         System.out.println();
 
         long start = System.currentTimeMillis();
-        BulkResponse response = client.bulk(new BulkRequest.Builder()
-            .index(INDEX).operations(ops).refresh(Refresh.True).build());
+        BulkResponse response = client.bulk(new BulkRequest.Builder().index(INDEX).operations(ops).refresh(Refresh.True).build());
         long elapsed = System.currentTimeMillis() - start;
 
         // Show the response as the client receives it
@@ -149,15 +135,15 @@ public class GrpcDemo {
             System.out.printf("           \"_id\": \"%s\",%n", item.id());
             System.out.printf("           \"result\": \"%s\",%n", item.result());
             System.out.printf("           \"status\": %d,%n", item.status());
-            if (item.version() != null)
-                System.out.printf("           \"_version\": %d,%n", item.version());
-            if (item.seqNo() != null)
-                System.out.printf("           \"_seq_no\": %d,%n", item.seqNo());
-            if (item.primaryTerm() != null)
-                System.out.printf("           \"_primary_term\": %d,%n", item.primaryTerm());
-            if (item.shards() != null)
-                System.out.printf("           \"_shards\": {\"total\": %d, \"successful\": %d, \"failed\": %d}%n",
-                    item.shards().total(), item.shards().successful(), item.shards().failed());
+            if (item.version() != null) System.out.printf("           \"_version\": %d,%n", item.version());
+            if (item.seqNo() != null) System.out.printf("           \"_seq_no\": %d,%n", item.seqNo());
+            if (item.primaryTerm() != null) System.out.printf("           \"_primary_term\": %d,%n", item.primaryTerm());
+            if (item.shards() != null) System.out.printf(
+                "           \"_shards\": {\"total\": %d, \"successful\": %d, \"failed\": %d}%n",
+                item.shards().total(),
+                item.shards().successful(),
+                item.shards().failed()
+            );
             System.out.printf("         }}%s%n", i < 2 ? "," : "");
         }
         System.out.printf("         ... (%d more items)%n", NUM_DOCS - 3);
@@ -184,12 +170,9 @@ public class GrpcDemo {
         System.out.println("  DEMO 3: REST routing — unsupported ops go to REST");
         System.out.println("=".repeat(60));
 
-        var restTransport = ApacheHttpClient5TransportBuilder
-            .builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
+        var restTransport = ApacheHttpClient5TransportBuilder.builder(new HttpHost("http", REST_HOST, REST_PORT)).build();
 
-        var grpcTransport = GrpcTransport.builder(REST_HOST, GRPC_PORT)
-            .jsonpMapper(new JacksonJsonpMapper())
-            .build();
+        var grpcTransport = GrpcTransport.builder(REST_HOST, GRPC_PORT).jsonpMapper(new JacksonJsonpMapper()).build();
 
         var hybridTransport = new HybridTransport(grpcTransport, restTransport);
         var client = new OpenSearchClient(hybridTransport);
@@ -218,19 +201,18 @@ public class GrpcDemo {
     // ─── Helpers ─────────────────────────────────────────────────────────────
 
     static List<BulkOperation> buildBulkOps() {
-        String[] categories = {"electronics", "clothing", "home", "sports"};
+        String[] categories = { "electronics", "clothing", "home", "sports" };
         List<BulkOperation> ops = new ArrayList<>();
         for (int i = 0; i < NUM_DOCS; i++) {
             final int id = i;
-            ops.add(new BulkOperation.Builder().index(
-                new IndexOperation.Builder<Product>().index(INDEX).id(String.valueOf(id))
-                    .document(new Product(
-                        "Product " + id,
-                        9.99 + id * 0.5,
-                        categories[id % 4],
-                        id % 3 != 0
-                    )).build()
-            ).build());
+            ops.add(
+                new BulkOperation.Builder().index(
+                    new IndexOperation.Builder<Product>().index(INDEX)
+                        .id(String.valueOf(id))
+                        .document(new Product("Product " + id, 9.99 + id * 0.5, categories[id % 4], id % 3 != 0))
+                        .build()
+                ).build()
+            );
         }
         return ops;
     }
@@ -242,18 +224,44 @@ public class GrpcDemo {
         public boolean inStock;
 
         public Product() {}
+
         public Product(String name, double price, String category, boolean inStock) {
-            this.name = name; this.price = price;
-            this.category = category; this.inStock = inStock;
+            this.name = name;
+            this.price = price;
+            this.category = category;
+            this.inStock = inStock;
         }
 
-        public String getName() { return name; }
-        public void setName(String n) { name = n; }
-        public double getPrice() { return price; }
-        public void setPrice(double p) { price = p; }
-        public String getCategory() { return category; }
-        public void setCategory(String c) { category = c; }
-        public boolean isInStock() { return inStock; }
-        public void setInStock(boolean s) { inStock = s; }
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String n) {
+            name = n;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double p) {
+            price = p;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String c) {
+            category = c;
+        }
+
+        public boolean isInStock() {
+            return inStock;
+        }
+
+        public void setInStock(boolean s) {
+            inStock = s;
+        }
     }
 }
