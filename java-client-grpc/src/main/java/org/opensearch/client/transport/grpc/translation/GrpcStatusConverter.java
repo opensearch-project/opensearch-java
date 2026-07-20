@@ -150,53 +150,6 @@ public final class GrpcStatusConverter {
     }
 
     /**
-     * Returns the HTTP status code equivalent for a gRPC status code.
-     *
-     * @param code the gRPC status code
-     * @return HTTP status code equivalent
-     */
-    public static int toHttpStatus(Status.Code code) {
-        switch (code) {
-            case OK:
-                return 200;
-            case CANCELLED:
-                return 499;
-            case UNKNOWN:
-                return 500;
-            case INVALID_ARGUMENT:
-                return 400;
-            case DEADLINE_EXCEEDED:
-                return 408;
-            case NOT_FOUND:
-                return 404;
-            case ALREADY_EXISTS:
-                return 409;
-            case PERMISSION_DENIED:
-                return 403;
-            case RESOURCE_EXHAUSTED:
-                return 429;
-            case FAILED_PRECONDITION:
-                return 412;
-            case ABORTED:
-                return 409;
-            case OUT_OF_RANGE:
-                return 400;
-            case UNIMPLEMENTED:
-                return 501;
-            case INTERNAL:
-                return 500;
-            case UNAVAILABLE:
-                return 503;
-            case DATA_LOSS:
-                return 500;
-            case UNAUTHENTICATED:
-                return 401;
-            default:
-                return 500;
-        }
-    }
-
-    /**
      * Determines if a gRPC status code represents a retryable error.
      * Transient errors like UNAVAILABLE and DEADLINE_EXCEEDED may succeed on retry.
      *

@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.transport.grpc;
+package org.opensearch.client.transport.grpc.translation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,10 +30,6 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.transport.TransportException;
-import org.opensearch.client.transport.grpc.translation.BulkRequestConverter;
-import org.opensearch.client.transport.grpc.translation.BulkResponseConverter;
-import org.opensearch.client.transport.grpc.translation.FieldMappingUtil;
-import org.opensearch.client.transport.grpc.translation.GrpcStatusConverter;
 import org.opensearch.protobufs.ErrorCause;
 import org.opensearch.protobufs.Item;
 import org.opensearch.protobufs.ResponseItem;
