@@ -55,8 +55,6 @@ dependencies {
     testImplementation("io.grpc", "grpc-testing", grpcVersion)
     testImplementation("junit", "junit", "4.13.2")
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("tools.jackson.core", "jackson-core", "3.1.1")
-    testImplementation("tools.jackson.core", "jackson-databind", "3.1.1")
     testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "auth", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
