@@ -136,5 +136,14 @@ public abstract class AbstractGrpcIT {
             "gRPC transport requires OpenSearch 3.5.0+, but server is " + version,
             major > GRPC_MIN_MAJOR || (major == GRPC_MIN_MAJOR && minor >= GRPC_MIN_MINOR)
         );
+
+        // Also verify gRPC port is actually reachable
+        try {
+            java.net.Socket socket = new java.net.Socket();
+            socket.connect(new java.net.InetSocketAddress(getGrpcHost(), getGrpcPort()), 2000);
+            socket.close();
+        } catch (IOException e) {
+            Assume.assumeTrue("gRPC port not reachable at " + getGrpcHost() + ":" + getGrpcPort(), false);
+        }
     }
 }
