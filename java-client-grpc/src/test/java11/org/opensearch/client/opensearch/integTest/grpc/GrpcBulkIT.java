@@ -52,7 +52,7 @@ import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
  *   -Dtests.opensearch.version=3.5.0
  * </pre>
  */
-public class GrpcBulkIT extends AbstractGrpcIT implements GrpcTransportSupport {
+public class GrpcBulkIT extends AbstractGrpcIT {
 
     private static final String INDEX = "grpc-bulk-it";
 
