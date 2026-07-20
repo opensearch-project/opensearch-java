@@ -309,7 +309,7 @@ public class GrpcSigV4Test {
 
     @Test(expected = IllegalStateException.class)
     public void testBuilderRequiresTls() {
-        GrpcTransport.builder("localhost", 9400)
+        AwsGrpcTransport.awsBuilder("localhost", 9400)
             .jsonpMapper(new org.opensearch.client.json.jackson3.JacksonJsonpMapper())
             .sigV4(
                 GrpcSigV4Config.builder()
@@ -322,9 +322,9 @@ public class GrpcSigV4Test {
 
     @Test
     public void testBuilderWithTlsAndSigV4() {
-        GrpcTransport t = GrpcTransport.builder(HOST, 9400)
+        GrpcTransport t = AwsGrpcTransport.awsBuilder(HOST, 9400)
             .jsonpMapper(new org.opensearch.client.json.jackson3.JacksonJsonpMapper())
-            .tlsInsecure()
+            .tls(GrpcTlsConfig.insecure())
             .sigV4(
                 GrpcSigV4Config.builder()
                     .region(Region.US_EAST_1)

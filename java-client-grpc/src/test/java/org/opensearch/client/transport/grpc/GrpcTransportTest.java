@@ -205,7 +205,7 @@ public class GrpcTransportTest {
 
     static class FailingGrpcTransport extends GrpcTransport {
         FailingGrpcTransport(JsonpMapper m) {
-            super(null, m, GrpcTransportOptions.defaults(), null, null);
+            super(null, m, GrpcTransportOptions.defaults(), null);
         }
 
         @Override

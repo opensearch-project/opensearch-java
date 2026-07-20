@@ -71,21 +71,19 @@ public class GrpcTransport implements OpenSearchTransport {
     private final GrpcTransportOptions grpcOptions;
     private final TransportOptions transportOptions;
     private final GrpcChannelHealthMonitor healthMonitor;
-    private final GrpcSigV4Interceptor sigV4Interceptor; // nullable — for body-aware signing
 
     GrpcTransport(
         ManagedChannel channel,
         JsonpMapper jsonpMapper,
         GrpcTransportOptions grpcOptions,
-        @Nullable TransportOptions transportOptions,
-        @Nullable GrpcSigV4Interceptor sigV4Interceptor
+        @Nullable TransportOptions transportOptions
+
     ) {
         this.channel = channel;
         this.documentStub = channel != null ? DocumentServiceGrpc.newBlockingStub(channel) : null;
         this.jsonpMapper = jsonpMapper;
         this.grpcOptions = grpcOptions;
         this.transportOptions = transportOptions;
-        this.sigV4Interceptor = sigV4Interceptor;
         this.healthMonitor = channel != null ? new GrpcChannelHealthMonitor(channel) : null;
 
         // Start monitoring channel health and warm up the connection
@@ -196,17 +194,22 @@ public class GrpcTransport implements OpenSearchTransport {
         return grpcOptions;
     }
 
+    /**
+     * Hook for subclasses to pre-process the protobuf request before sending.
+     * Override in subclasses like {@link AwsGrpcTransport} for SigV4 payload signing.
+     */
+    protected void preProcessBulk(org.opensearch.protobufs.BulkRequest protoRequest) {
+        // Default: no-op. Subclasses override for auth-specific pre-processing.
+    }
+
     // ─── Internal gRPC Handlers ──────────────────────────────────────────────────
 
     private BulkResponse performBulk(BulkRequest request) throws TransportException {
         // Convert client request to protobuf
         org.opensearch.protobufs.BulkRequest protoRequest = BulkRequestConverter.toProto(request, jsonpMapper);
 
-        // Pre-compute payload hash for body-aware SigV4 signing
-        if (sigV4Interceptor != null) {
-            String payloadHash = GrpcSigV4Interceptor.computePayloadHash(protoRequest.toByteArray());
-            sigV4Interceptor.setPayloadHash(payloadHash);
-        }
+        // Hook for subclasses (e.g., AwsGrpcTransport for SigV4 payload signing)
+        preProcessBulk(protoRequest);
 
         // Execute with retry logic
         int attempt = 0;
@@ -256,7 +259,6 @@ public class GrpcTransport implements OpenSearchTransport {
         private GrpcTlsConfig tlsConfig;
         private String basicAuthUsername;
         private String basicAuthPassword;
-        private GrpcSigV4Config sigV4Config;
         private java.util.function.Supplier<String> jwtTokenSupplier;
         private final java.util.List<io.grpc.ClientInterceptor> interceptors = new java.util.ArrayList<>();
         private ManagedChannel channel; // allow injecting channel for testing
@@ -333,26 +335,6 @@ public class GrpcTransport implements OpenSearchTransport {
         }
 
         /**
-         * Configures AWS SigV4 signing for the gRPC channel.
-         * <p>
-         * Every gRPC call will be signed using the provided AWS credentials and region.
-         * TLS is required when using SigV4 — if no TLS config is set, insecure TLS
-         * will NOT be used automatically. You must explicitly configure TLS.
-         * <p>
-         * Example:
-         * <pre>{@code
-         * .tls(GrpcTlsConfig.builder().build())  // use system trust store
-         * .sigV4(GrpcSigV4Config.builder()
-         *     .region(Region.US_EAST_1)
-         *     .service("es")
-         *     .build())
-         * }</pre>
-         *
-         * @param sigV4Config the SigV4 configuration
-         */
-        public Builder sigV4(GrpcSigV4Config sigV4Config) {
-            this.sigV4Config = sigV4Config;
-            return this;
         }
 
         /**
@@ -393,7 +375,6 @@ public class GrpcTransport implements OpenSearchTransport {
             }
 
             ManagedChannel ch = this.channel;
-            GrpcSigV4Interceptor sigV4InterceptorRef = null;
             if (ch == null) {
                 // Build interceptor list
                 java.util.List<io.grpc.ClientInterceptor> allInterceptors = new java.util.ArrayList<>();
@@ -403,16 +384,6 @@ public class GrpcTransport implements OpenSearchTransport {
                     allInterceptors.add(new BasicAuthInterceptor(basicAuthUsername, basicAuthPassword));
                 }
 
-                // SigV4 interceptor (mutually exclusive with basic auth in practice)
-                if (sigV4Config != null) {
-                    if (tlsConfig == null) {
-                        throw new IllegalStateException(
-                            "TLS is required when using SigV4 signing. " + "Configure TLS with .tls() or .tlsInsecure() before .sigV4()."
-                        );
-                    }
-                    sigV4InterceptorRef = new GrpcSigV4Interceptor(sigV4Config, host);
-                    allInterceptors.add(sigV4InterceptorRef);
-                }
 
                 // JWT auth interceptor
                 if (jwtTokenSupplier != null) {
@@ -430,7 +401,7 @@ public class GrpcTransport implements OpenSearchTransport {
                 }
             }
 
-            return new GrpcTransport(ch, jsonpMapper, grpcOptions, transportOptions, sigV4InterceptorRef);
+            return new GrpcTransport(ch, jsonpMapper, grpcOptions, transportOptions);
         }
     }
 }
