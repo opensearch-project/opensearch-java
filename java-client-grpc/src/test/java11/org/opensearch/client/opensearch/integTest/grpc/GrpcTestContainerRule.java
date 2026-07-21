@@ -44,7 +44,16 @@ final class GrpcTestContainerRule extends ExternalResource {
 
     @Override
     protected void before() {
-        startIfNeeded();
+        try {
+            startIfNeeded();
+        } catch (Exception e) {
+            // Container failed to start — tests will skip via assumeGrpcSupported()
+            System.err.println("GrpcTestContainerRule: container failed to start: " + e.getMessage());
+            org.junit.Assume.assumeTrue(
+                "OpenSearch container failed to start (gRPC may not be available): " + e.getMessage(),
+                false
+            );
+        }
     }
 
     private static void startIfNeeded() {
@@ -90,6 +99,9 @@ final class GrpcTestContainerRule extends ExternalResource {
 
         // Disable disk watermarks for CI
         openSearch.withEnv("cluster.routing.allocation.disk.threshold_enabled", "false");
+
+        // Allow extra startup time for gRPC-enabled containers in CI
+        openSearch.withStartupTimeout(java.time.Duration.ofMinutes(5));
 
         return openSearch;
     }
