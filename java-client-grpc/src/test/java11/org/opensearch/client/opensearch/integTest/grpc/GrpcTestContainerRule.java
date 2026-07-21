@@ -49,10 +49,7 @@ final class GrpcTestContainerRule extends ExternalResource {
         } catch (Exception e) {
             // Container failed to start — tests will skip via assumeGrpcSupported()
             System.err.println("GrpcTestContainerRule: container failed to start: " + e.getMessage());
-            org.junit.Assume.assumeTrue(
-                "OpenSearch container failed to start (gRPC may not be available): " + e.getMessage(),
-                false
-            );
+            org.junit.Assume.assumeTrue("OpenSearch container failed to start (gRPC may not be available): " + e.getMessage(), false);
         }
     }
 
