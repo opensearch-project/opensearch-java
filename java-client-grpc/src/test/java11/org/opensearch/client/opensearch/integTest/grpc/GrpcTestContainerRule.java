@@ -71,24 +71,41 @@ final class GrpcTestContainerRule extends ExternalResource {
 
     private static OpenSearchContainer<?> createContainer() {
         String image = System.getProperty(IMAGE_PROPERTY);
+        String version = System.getProperty(VERSION_PROPERTY, "");
         OpenSearchContainer<?> openSearch = hasText(image)
             ? new OpenSearchContainer<>(image)
             : new OpenSearchContainer<>(OpenSearchDockerImage.ofVersion(requiredVersion()));
 
-        // Disable security for plaintext gRPC testing
+        // Disable security for plaintext testing
         openSearch.withEnv("plugins.security.disabled", "true");
 
-        // Enable gRPC transport
-        openSearch.withEnv("aux.transport.types", "transport-grpc");
-        openSearch.withEnv("aux.transport.transport-grpc.port", String.valueOf(GRPC_PORT));
-
-        // Expose both REST and gRPC ports
-        openSearch.withExposedPorts(9200, GRPC_PORT);
+        // Only enable gRPC transport for versions that support it (3.5.0+)
+        if (supportsGrpc(version)) {
+            openSearch.withEnv("aux.transport.types", "transport-grpc");
+            openSearch.withEnv("aux.transport.transport-grpc.port", String.valueOf(GRPC_PORT));
+            openSearch.withExposedPorts(9200, GRPC_PORT);
+        } else {
+            openSearch.withExposedPorts(9200);
+        }
 
         // Disable disk watermarks for CI
         openSearch.withEnv("cluster.routing.allocation.disk.threshold_enabled", "false");
 
         return openSearch;
+    }
+
+    private static boolean supportsGrpc(String version) {
+        if (!hasText(version)) {
+            return false;
+        }
+        try {
+            String[] parts = version.replace("-SNAPSHOT", "").split("\\.");
+            int major = Integer.parseInt(parts[0]);
+            int minor = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
+            return major > 3 || (major == 3 && minor >= 5);
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private static String requiredVersion() {
