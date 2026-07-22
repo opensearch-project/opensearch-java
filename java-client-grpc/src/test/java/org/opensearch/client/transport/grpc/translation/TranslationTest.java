@@ -109,41 +109,6 @@ public class TranslationTest {
         assertEquals(org.opensearch.protobufs.OpType.OP_TYPE_UNSPECIFIED, FieldMappingUtil.mapOpType(null));
     }
 
-    @Test
-    public void testGrpcStatusOkCreated() {
-        assertEquals(201, FieldMappingUtil.grpcStatusToHttpStatus(0, "created"));
-    }
-
-    @Test
-    public void testGrpcStatusOkUpdated() {
-        assertEquals(200, FieldMappingUtil.grpcStatusToHttpStatus(0, "updated"));
-    }
-
-    @Test
-    public void testGrpcStatusOkNull() {
-        assertEquals(200, FieldMappingUtil.grpcStatusToHttpStatus(0, null));
-    }
-
-    @Test
-    public void testGrpcStatusDeadline() {
-        assertEquals(408, FieldMappingUtil.grpcStatusToHttpStatus(4, null));
-    }
-
-    @Test
-    public void testGrpcStatusUnavailable() {
-        assertEquals(503, FieldMappingUtil.grpcStatusToHttpStatus(14, null));
-    }
-
-    @Test
-    public void testGrpcStatusUnimplemented() {
-        assertEquals(501, FieldMappingUtil.grpcStatusToHttpStatus(12, null));
-    }
-
-    @Test
-    public void testGrpcStatusInternal() {
-        assertEquals(500, FieldMappingUtil.grpcStatusToHttpStatus(13, null));
-    }
-
     // ═══ GrpcStatusConverter Tests ═══════════════════════════════════════════════
 
     @Test
