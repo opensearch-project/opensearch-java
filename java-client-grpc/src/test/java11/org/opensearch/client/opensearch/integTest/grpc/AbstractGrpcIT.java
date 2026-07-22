@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.transport.OpenSearchTransport;

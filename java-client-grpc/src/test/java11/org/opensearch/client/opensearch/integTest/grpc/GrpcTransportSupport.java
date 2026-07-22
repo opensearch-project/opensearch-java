@@ -10,7 +10,7 @@ package org.opensearch.client.opensearch.integTest.grpc;
 
 import java.io.IOException;
 import org.apache.hc.core5.http.HttpHost;
-import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.grpc.GrpcTransport;
 import org.opensearch.client.transport.grpc.GrpcTransportOptions;

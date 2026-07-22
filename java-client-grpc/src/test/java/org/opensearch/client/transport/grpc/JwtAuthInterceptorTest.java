@@ -41,7 +41,7 @@ public class JwtAuthInterceptorTest {
     @Test
     public void testBuilderWithJwt() {
         GrpcTransport t = GrpcTransport.builder("localhost", 9400)
-            .jsonpMapper(new org.opensearch.client.json.jackson3.JacksonJsonpMapper())
+            .jsonpMapper(new org.opensearch.client.json.jackson.JacksonJsonpMapper())
             .jwtAuth(() -> "token")
             .build();
         assertNotNull(t);
@@ -53,7 +53,7 @@ public class JwtAuthInterceptorTest {
     @Test
     public void testBuilderWithTlsAndJwt() {
         GrpcTransport t = GrpcTransport.builder("localhost", 9400)
-            .jsonpMapper(new org.opensearch.client.json.jackson3.JacksonJsonpMapper())
+            .jsonpMapper(new org.opensearch.client.json.jackson.JacksonJsonpMapper())
             .tlsInsecure()
             .jwtAuth(() -> "token")
             .build();

@@ -27,7 +27,7 @@ java {
     withSourcesJar()
 }
 
-val opensearchVersion = "3.5.0-SNAPSHOT"
+val opensearchVersion = "3.5.0"
 val grpcVersion = "1.68.0"
 val protobufVersion = "3.25.5"
 val opensearchProtobufVersion = "1.2.0"

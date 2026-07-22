@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.transport.Endpoint;

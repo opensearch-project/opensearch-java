@@ -11,7 +11,7 @@ package org.opensearch.client.samples;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.hc.core5.http.HttpHost;
-import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.BulkRequest;

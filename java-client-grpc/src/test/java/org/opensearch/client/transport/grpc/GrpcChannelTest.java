@@ -127,7 +127,7 @@ public class GrpcChannelTest {
     @Test
     public void testBuilderWithTlsAndBasicAuth() {
         GrpcTransport t = GrpcTransport.builder("localhost", 9400)
-            .jsonpMapper(new org.opensearch.client.json.jackson3.JacksonJsonpMapper())
+            .jsonpMapper(new org.opensearch.client.json.jackson.JacksonJsonpMapper())
             .tlsInsecure()
             .basicAuth("a", "b")
             .build();
