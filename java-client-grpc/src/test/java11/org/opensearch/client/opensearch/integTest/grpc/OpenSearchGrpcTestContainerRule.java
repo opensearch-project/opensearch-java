@@ -32,7 +32,7 @@ import org.opensearch.testcontainers.OpenSearchDockerImage;
  *   <li>{@code https} — false (security disabled)</li>
  * </ul>
  */
-final class GrpcTestContainerRule extends ExternalResource {
+final class OpenSearchGrpcTestContainerRule extends ExternalResource {
     private static final String ENABLED_PROPERTY = "tests.opensearch.testcontainers.enabled";
     private static final String VERSION_PROPERTY = "tests.opensearch.version";
     private static final String IMAGE_PROPERTY = "tests.opensearch.image";
@@ -53,7 +53,7 @@ final class GrpcTestContainerRule extends ExternalResource {
         try {
             startIfNeeded();
         } catch (Exception e) {
-            System.err.println("GrpcTestContainerRule: container failed to start: " + e.getMessage());
+            System.err.println("OpenSearchGrpcTestContainerRule: container failed to start: " + e.getMessage());
             assumeTrue("OpenSearch container failed to start: " + e.getMessage(), false);
         }
     }

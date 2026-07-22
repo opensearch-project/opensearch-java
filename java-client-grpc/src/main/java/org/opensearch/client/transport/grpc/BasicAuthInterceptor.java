@@ -51,7 +51,7 @@ class BasicAuthInterceptor implements ClientInterceptor {
      * @param password the password
      * @throws IllegalArgumentException if username or password is null
      */
-    public BasicAuthInterceptor(String username, String password) {
+    BasicAuthInterceptor(String username, String password) {
         if (username == null) {
             throw new IllegalArgumentException("username cannot be null");
         }

@@ -39,7 +39,7 @@ import javax.net.ssl.TrustManagerFactory;
  *   <li>Insecure mode (trust all — development only)</li>
  * </ul>
  */
-public final class GrpcChannelFactory {
+final class GrpcChannelFactory {
 
     private GrpcChannelFactory() {
         // utility class

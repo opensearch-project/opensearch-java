@@ -28,7 +28,7 @@ import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBui
  * Base class for gRPC integration tests.
  * <p>
  * Self-contained — does not depend on internal test framework classes from java-client.
- * Uses {@link GrpcTestContainerRule} to start an OpenSearch container with gRPC enabled,
+ * Uses {@link OpenSearchGrpcTestContainerRule} to start an OpenSearch container with gRPC enabled,
  * then creates a {@link HybridTransport} that routes bulk over gRPC and everything else over REST.
  * <p>
  * Subclasses get access to:
@@ -47,7 +47,7 @@ public abstract class AbstractGrpcIT {
     private static final int GRPC_MIN_MINOR = 5;
 
     @ClassRule
-    public static final GrpcTestContainerRule grpcContainer = new GrpcTestContainerRule();
+    public static final OpenSearchGrpcTestContainerRule grpcContainer = new OpenSearchGrpcTestContainerRule();
 
     private static OpenSearchClient grpcClient;
 
@@ -59,7 +59,7 @@ public abstract class AbstractGrpcIT {
                 // Use REST host with default gRPC port if not explicitly configured
                 String restCluster = getRestCluster();
                 String host = restCluster.split(":")[0];
-                grpcCluster = host + ":" + GrpcTestContainerRule.GRPC_PORT;
+                grpcCluster = host + ":" + OpenSearchGrpcTestContainerRule.GRPC_PORT;
             }
 
             String[] parts = grpcCluster.split(":");
