@@ -36,30 +36,51 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.WeightedAvgAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WeightedAvgAggregate extends SingleMetricAggregateBase
+public class WeightedAvgAggregate
     implements
         AggregateVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<WeightedAvgAggregate.Builder, WeightedAvgAggregate> {
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
+
+    @Nullable
+    private final Double value;
+
+    @Nullable
+    private final String valueAsString;
 
     // ---------------------------------------------------------------------------------------------
 
     private WeightedAvgAggregate(Builder builder) {
-        super(builder);
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+        this.value = builder.value;
+        this.valueAsString = builder.valueAsString;
     }
 
     public static WeightedAvgAggregate of(Function<WeightedAvgAggregate.Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
@@ -72,6 +93,65 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase
     @Override
     public Aggregate.Kind _aggregateKind() {
         return Aggregate.Kind.WeightedAvg;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise.
+     * <p>
+     * API name: {@code value}
+     * </p>
+     */
+    @Nullable
+    public final Double value() {
+        return this.value;
+    }
+
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
+        if (this.value != null) {
+            generator.writeKey("value");
+            generator.write(this.value);
+        }
+
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,18 +170,26 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase
     /**
      * Builder for {@link WeightedAvgAggregate}.
      */
-    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, WeightedAvgAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, WeightedAvgAggregate> {
+        @Nullable
+        private Map<String, JsonData> meta;
+        @Nullable
+        private Double value;
+        @Nullable
+        private String valueAsString;
 
         public Builder() {}
 
         private Builder(WeightedAvgAggregate o) {
-            super(o);
+            this.meta = _mapCopy(o.meta);
+            this.value = o.value;
+            this.valueAsString = o.valueAsString;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.meta = _mapCopy(o.meta);
+            this.value = o.value;
+            this.valueAsString = o.valueAsString;
         }
 
         @Override
@@ -110,9 +198,50 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
+            return this;
+        }
+
+        /**
+         * The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise.
+         * <p>
+         * API name: {@code value}
+         * </p>
+         */
+        @Nonnull
+        public final Builder value(@Nullable Double value) {
+            this.value = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code value_as_string}
+         */
+        @Nonnull
+        public final Builder valueAsString(@Nullable String value) {
+            this.valueAsString = value;
             return this;
         }
 
@@ -141,22 +270,27 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase
     );
 
     protected static void setupWeightedAvgAggregateDeserializer(ObjectDeserializer<WeightedAvgAggregate.Builder> op) {
-        setupSingleMetricAggregateBaseDeserializer(op);
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
+        op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
+        op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.meta);
+        result = 31 * result + Objects.hashCode(this.value);
+        result = 31 * result + Objects.hashCode(this.valueAsString);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        WeightedAvgAggregate other = (WeightedAvgAggregate) o;
+        return Objects.equals(this.meta, other.meta)
+            && Objects.equals(this.value, other.value)
+            && Objects.equals(this.valueAsString, other.valueAsString);
     }
 }

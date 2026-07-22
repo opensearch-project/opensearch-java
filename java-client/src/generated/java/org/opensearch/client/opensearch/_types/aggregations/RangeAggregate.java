@@ -36,30 +36,43 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.RangeAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RangeAggregate extends RangeAggregateBase
-    implements
-        AggregateVariant,
-        ToCopyableBuilder<RangeAggregate.Builder, RangeAggregate> {
+public class RangeAggregate implements AggregateVariant, PlainJsonSerializable, ToCopyableBuilder<RangeAggregate.Builder, RangeAggregate> {
+
+    @Nonnull
+    private final Buckets<RangeBucket> buckets;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
 
     // ---------------------------------------------------------------------------------------------
 
     private RangeAggregate(Builder builder) {
-        super(builder);
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
     }
 
     public static RangeAggregate of(Function<RangeAggregate.Builder, ObjectBuilder<RangeAggregate>> fn) {
@@ -72,6 +85,47 @@ public class RangeAggregate extends RangeAggregateBase
     @Override
     public Aggregate.Kind _aggregateKind() {
         return Aggregate.Kind.Range;
+    }
+
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<RangeBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,16 +144,21 @@ public class RangeAggregate extends RangeAggregateBase
     /**
      * Builder for {@link RangeAggregate}.
      */
-    public static class Builder extends RangeAggregateBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RangeAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RangeAggregate> {
+        private Buckets<RangeBucket> buckets;
+        @Nullable
+        private Map<String, JsonData> meta;
 
         public Builder() {}
 
         private Builder(RangeAggregate o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         @Override
@@ -108,9 +167,46 @@ public class RangeAggregate extends RangeAggregateBase
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * Required - API name: {@code buckets}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder buckets(Buckets<RangeBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder buckets(Function<Buckets.Builder<RangeBucket>, ObjectBuilder<Buckets<RangeBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<RangeBucket>()).build());
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
             return this;
         }
 
@@ -139,22 +235,23 @@ public class RangeAggregate extends RangeAggregateBase
     );
 
     protected static void setupRangeAggregateDeserializer(ObjectDeserializer<RangeAggregate.Builder> op) {
-        setupRangeAggregateBaseDeserializer(op);
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(RangeBucket._DESERIALIZER), "buckets");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        RangeAggregate other = (RangeAggregate) o;
+        return this.buckets.equals(other.buckets) && Objects.equals(this.meta, other.meta);
     }
 }
