@@ -30,6 +30,8 @@ jobs:
           - { opensearch_version: 3.0.0, java: 21, os: ubuntu-latest }
           - { opensearch_version: 3.2.0, java: 21, os: ubuntu-latest }
           - { opensearch_version: 3.2.0, java: 25, os: ubuntu-latest }
+          - { opensearch_version: 3.5.0, java: 21, os: ubuntu-latest }
+          - { opensearch_version: 3.5.0, java: 25, os: ubuntu-latest }
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
