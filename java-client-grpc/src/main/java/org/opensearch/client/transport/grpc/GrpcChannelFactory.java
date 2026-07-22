@@ -54,7 +54,7 @@ public final class GrpcChannelFactory {
      * @param interceptors optional client interceptors (e.g., auth)
      * @return a configured ManagedChannel
      */
-    public static ManagedChannel createPlaintextChannel(
+    static ManagedChannel createPlaintextChannel(
         String host,
         int port,
         GrpcTransportOptions options,
@@ -79,7 +79,7 @@ public final class GrpcChannelFactory {
      * @return a configured ManagedChannel with TLS
      * @throws IOException if SSL context creation fails
      */
-    public static ManagedChannel createTlsChannel(
+    static ManagedChannel createTlsChannel(
         String host,
         int port,
         GrpcTlsConfig tlsConfig,
@@ -113,7 +113,7 @@ public final class GrpcChannelFactory {
      * @return a configured ManagedChannel
      * @throws IOException if TLS context creation fails
      */
-    public static ManagedChannel createChannel(
+    static ManagedChannel createChannel(
         String host,
         int port,
         @Nullable GrpcTlsConfig tlsConfig,
