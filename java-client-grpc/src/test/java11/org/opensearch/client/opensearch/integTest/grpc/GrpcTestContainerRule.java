@@ -8,6 +8,8 @@
 
 package org.opensearch.client.opensearch.integTest.grpc;
 
+import static org.junit.Assume.assumeTrue;
+
 import java.net.URI;
 import org.junit.rules.ExternalResource;
 import org.opensearch.testcontainers.OpenSearchContainer;
@@ -44,12 +46,15 @@ final class GrpcTestContainerRule extends ExternalResource {
 
     @Override
     protected void before() {
+        // Skip tests for versions that don't support gRPC
+        String version = System.getProperty(VERSION_PROPERTY, "");
+        assumeTrue("OpenSearch should support gRPC", supportsGrpc(version));
+
         try {
             startIfNeeded();
         } catch (Exception e) {
-            // Container failed to start — tests will skip via assumeGrpcSupported()
             System.err.println("GrpcTestContainerRule: container failed to start: " + e.getMessage());
-            org.junit.Assume.assumeTrue("OpenSearch container failed to start (gRPC may not be available): " + e.getMessage(), false);
+            assumeTrue("OpenSearch container failed to start: " + e.getMessage(), false);
         }
     }
 
@@ -77,7 +82,6 @@ final class GrpcTestContainerRule extends ExternalResource {
 
     private static OpenSearchContainer<?> createContainer() {
         String image = System.getProperty(IMAGE_PROPERTY);
-        String version = System.getProperty(VERSION_PROPERTY, "");
         OpenSearchContainer<?> openSearch = hasText(image)
             ? new OpenSearchContainer<>(image)
             : new OpenSearchContainer<>(OpenSearchDockerImage.ofVersion(requiredVersion()));
@@ -85,14 +89,10 @@ final class GrpcTestContainerRule extends ExternalResource {
         // Disable security for plaintext testing
         openSearch.withEnv("plugins.security.disabled", "true");
 
-        // Only enable gRPC transport for versions that support it (3.5.0+)
-        if (supportsGrpc(version)) {
-            openSearch.withEnv("aux.transport.types", "transport-grpc");
-            openSearch.withEnv("aux.transport.transport-grpc.port", String.valueOf(GRPC_PORT));
-            openSearch.withExposedPorts(9200, GRPC_PORT);
-        } else {
-            openSearch.withExposedPorts(9200);
-        }
+        // Enable gRPC transport (we only reach here for 3.5.0+)
+        openSearch.withEnv("aux.transport.types", "transport-grpc");
+        openSearch.withEnv("aux.transport.transport-grpc.port", String.valueOf(GRPC_PORT));
+        openSearch.withExposedPorts(9200, GRPC_PORT);
 
         // Disable disk watermarks for CI
         openSearch.withEnv("cluster.routing.allocation.disk.threshold_enabled", "false");
