@@ -88,6 +88,8 @@ public class Overrides {
                 .with(schema("_common", "StringifiedVersionNumber"), so -> so.withMappedType(Types.Primitive.Long))
                 .with(schema("_common", "Void"), so -> so.withMappedType(Types.Primitive.Void))
 
+                .with(schema("_common", "ShardSearchFailure"), so -> so.withProperties(p -> p.with("shard", po -> po.withRequired(false))))
+
                 .with(schema("_common", "ScriptSort"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(
                     schema("_common", "SortOptions"),
