@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
 - Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
 - Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
+- Add gRPC ML streaming support for the ML Commons `PredictModelStream` and `ExecuteAgentStream` APIs, exposed as `GrpcTransport.predictModelStream()` and `GrpcTransport.executeAgentStream()` ([#2070](https://github.com/opensearch-project/opensearch-java/pull/2070))
 
 ### Fixed
 

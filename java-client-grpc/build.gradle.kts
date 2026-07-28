@@ -30,7 +30,7 @@ java {
 val opensearchVersion = "3.5.0-SNAPSHOT"
 val grpcVersion = "1.68.0"
 val protobufVersion = "3.25.5"
-val opensearchProtobufVersion = "1.2.0"
+val opensearchProtobufVersion = "1.6.0"
 
 dependencies {
     // Depend on java-client core
@@ -53,6 +53,7 @@ dependencies {
 
     // Test dependencies
     testImplementation("io.grpc", "grpc-testing", grpcVersion)
+    testImplementation("io.grpc", "grpc-inprocess", grpcVersion)
     testImplementation("junit", "junit", "4.13.2")
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
@@ -60,11 +61,18 @@ dependencies {
     testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
 }
 
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+
 tasks.test {
     systemProperty("tests.security.manager", "false")
 }
 
 val unitTest = tasks.register<Test>("unitTest") {
+    // Without these the task is NO-SOURCE and silently runs nothing; skipped on Java 8, where java-client's Jackson 3 cannot compile.
+    if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
+        testClassesDirs = sourceSets.test.get().output.classesDirs
+        classpath = sourceSets.test.get().runtimeClasspath
+    }
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
@@ -86,7 +94,6 @@ val integrationTest = tasks.register<Test>("integrationTest") {
 }
 
 // Integration tests require Java 21+ and live in src/test/java11
-val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
 if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     val java21: SourceSet = sourceSets.create("java21") {
         java {

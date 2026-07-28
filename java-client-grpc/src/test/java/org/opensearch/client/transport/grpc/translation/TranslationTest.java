@@ -30,14 +30,27 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.transport.TransportException;
+import org.opensearch.client.transport.grpc.ml.MlExecuteAgentStreamRequest;
+import org.opensearch.client.transport.grpc.ml.MlMessage;
+import org.opensearch.client.transport.grpc.ml.MlParameters;
+import org.opensearch.client.transport.grpc.ml.MlPredictStreamRequest;
+import org.opensearch.client.transport.grpc.ml.MlStreamChunk;
+import org.opensearch.client.transport.grpc.ml.MlStreamStatus;
+import org.opensearch.protobufs.DataAsMap;
 import org.opensearch.protobufs.ErrorCause;
+import org.opensearch.protobufs.InferenceResults;
 import org.opensearch.protobufs.Item;
+import org.opensearch.protobufs.Messages;
+import org.opensearch.protobufs.Output;
+import org.opensearch.protobufs.Parameters;
+import org.opensearch.protobufs.PredictResponse;
 import org.opensearch.protobufs.ResponseItem;
 import org.opensearch.protobufs.ShardInfo;
 
 /**
  * Combined unit tests for the gRPC translation layer:
- * BulkRequestConverter, BulkResponseConverter, FieldMappingUtil, GrpcStatusConverter.
+ * BulkRequestConverter, BulkResponseConverter, FieldMappingUtil, GrpcStatusConverter,
+ * MlStreamRequestConverter, MlStreamResponseConverter.
  */
 public class TranslationTest {
 
@@ -392,6 +405,175 @@ public class TranslationTest {
             .addItems(Item.newBuilder().setIndex(ResponseItem.newBuilder().setXIndex("i").setXId("1").setStatus(0).build()).build())
             .build();
         assertEquals(Long.valueOf(25L), BulkResponseConverter.fromProto(proto).ingestTook());
+    }
+
+    // ═══ MlStreamRequestConverter Tests ══════════════════════════════════════════
+
+    @Test
+    public void testPredictRequestModelIdOnly() {
+        org.opensearch.protobufs.MlPredictModelStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlPredictStreamRequest.builder().modelId("model-1").build()
+        );
+        assertEquals("model-1", proto.getModelId());
+        assertFalse(proto.hasMlPredictModelStreamRequestBody());
+    }
+
+    @Test
+    public void testPredictRequestWithMessages() {
+        org.opensearch.protobufs.MlPredictModelStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlPredictStreamRequest.builder()
+                .modelId("model-1")
+                .parameters(p -> p.addMessage("system", "Be brief").addMessage("user", "Hi"))
+                .build()
+        );
+        Parameters params = proto.getMlPredictModelStreamRequestBody().getParameters();
+        assertEquals(2, params.getMessagesCount());
+        assertEquals("system", params.getMessages(0).getRole());
+        assertEquals("Be brief", params.getMessages(0).getContent());
+        assertEquals("user", params.getMessages(1).getRole());
+    }
+
+    @Test
+    public void testPredictRequestOnlySetsProvidedParameters() {
+        org.opensearch.protobufs.MlPredictModelStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlPredictStreamRequest.builder().modelId("model-1").parameters(p -> p.inputs("raw text")).build()
+        );
+        Parameters params = proto.getMlPredictModelStreamRequestBody().getParameters();
+        assertTrue(params.hasInputs());
+        assertEquals("raw text", params.getInputs());
+        assertFalse(params.hasQuestion());
+        assertFalse(params.hasXLlmInterface());
+        assertEquals(0, params.getMessagesCount());
+    }
+
+    @Test
+    public void testPredictRequestEmptyParametersStillSetsBody() {
+        // An explicitly-set but empty parameters object must still produce a body,
+        // distinguishing "no parameters" from "empty parameters".
+        org.opensearch.protobufs.MlPredictModelStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlPredictStreamRequest.builder().modelId("model-1").parameters(MlParameters.builder().build()).build()
+        );
+        assertTrue(proto.hasMlPredictModelStreamRequestBody());
+    }
+
+    @Test
+    public void testAgentRequestWithQuestion() {
+        org.opensearch.protobufs.MlExecuteAgentStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlExecuteAgentStreamRequest.builder().agentId("agent-1").parameters(p -> p.question("What is OpenSearch?")).build()
+        );
+        assertEquals("agent-1", proto.getAgentId());
+        assertEquals("What is OpenSearch?", proto.getMlExecuteAgentStreamRequestBody().getParameters().getQuestion());
+    }
+
+    @Test
+    public void testAgentRequestAgentIdOnly() {
+        org.opensearch.protobufs.MlExecuteAgentStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlExecuteAgentStreamRequest.builder().agentId("agent-1").build()
+        );
+        assertFalse(proto.hasMlExecuteAgentStreamRequestBody());
+    }
+
+    @Test
+    public void testMessageWithOnlyContent() {
+        org.opensearch.protobufs.MlPredictModelStreamRequest proto = MlStreamRequestConverter.toProto(
+            MlPredictStreamRequest.builder()
+                .modelId("m")
+                .parameters(p -> p.addMessage(MlMessage.builder().content("no role").build()))
+                .build()
+        );
+        Messages message = proto.getMlPredictModelStreamRequestBody().getParameters().getMessages(0);
+        assertFalse(message.hasRole());
+        assertEquals("no role", message.getContent());
+    }
+
+    // ═══ MlStreamResponseConverter Tests ═════════════════════════════════════════
+
+    @Test
+    public void testChunkWithDataAsMap() {
+        MlStreamChunk chunk = MlStreamResponseConverter.fromProto(
+            PredictResponse.newBuilder()
+                .setStatus(org.opensearch.protobufs.Status.STATUS_RUNNING)
+                .addInferenceResults(
+                    InferenceResults.newBuilder()
+                        .addOutput(
+                            Output.newBuilder()
+                                .setName("response")
+                                .setDataAsMap(DataAsMap.newBuilder().setContent("Hello").setIsLast(false).build())
+                                .build()
+                        )
+                        .build()
+                )
+                .build()
+        );
+        assertEquals(MlStreamStatus.RUNNING, chunk.status());
+        assertEquals("Hello", chunk.content());
+        assertEquals(Boolean.FALSE, chunk.isLast());
+        assertEquals("response", chunk.inferenceResults().get(0).output().get(0).name());
+    }
+
+    @Test
+    public void testChunkWithResultField() {
+        MlStreamChunk chunk = MlStreamResponseConverter.fromProto(
+            PredictResponse.newBuilder()
+                .addInferenceResults(InferenceResults.newBuilder().addOutput(Output.newBuilder().setResult("plain text").build()).build())
+                .build()
+        );
+        assertEquals("plain text", chunk.inferenceResults().get(0).output().get(0).result());
+        assertNull(chunk.content());
+    }
+
+    @Test
+    public void testChunkWithoutStatus() {
+        assertNull(MlStreamResponseConverter.fromProto(PredictResponse.newBuilder().build()).status());
+    }
+
+    @Test
+    public void testEmptyChunkHasNoContent() {
+        MlStreamChunk chunk = MlStreamResponseConverter.fromProto(PredictResponse.newBuilder().build());
+        assertTrue(chunk.inferenceResults().isEmpty());
+        assertNull(chunk.content());
+        assertNull(chunk.isLast());
+    }
+
+    @Test
+    public void testChunkWithEmptyOutputList() {
+        MlStreamChunk chunk = MlStreamResponseConverter.fromProto(
+            PredictResponse.newBuilder().addInferenceResults(InferenceResults.newBuilder().build()).build()
+        );
+        assertEquals(1, chunk.inferenceResults().size());
+        assertNull(chunk.content());
+        assertNull(chunk.isLast());
+    }
+
+    @Test
+    public void testChunkWithMultipleOutputs() {
+        MlStreamChunk chunk = MlStreamResponseConverter.fromProto(
+            PredictResponse.newBuilder()
+                .addInferenceResults(
+                    InferenceResults.newBuilder()
+                        .addOutput(Output.newBuilder().setDataAsMap(DataAsMap.newBuilder().setContent("first").build()).build())
+                        .addOutput(Output.newBuilder().setDataAsMap(DataAsMap.newBuilder().setContent("second").build()).build())
+                        .build()
+                )
+                .build()
+        );
+        assertEquals(2, chunk.inferenceResults().get(0).output().size());
+        assertEquals("first", chunk.content());
+    }
+
+    @Test
+    public void testAllStatusValuesMap() {
+        assertEquals(MlStreamStatus.CANCELLED, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_CANCELLED));
+        assertEquals(MlStreamStatus.COMPLETED, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_COMPLETED));
+        assertEquals(
+            MlStreamStatus.COMPLETED_WITH_ERROR,
+            MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_COMPLETED_WITH_ERROR)
+        );
+        assertEquals(MlStreamStatus.CREATED, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_CREATED));
+        assertEquals(MlStreamStatus.FAILED, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_FAILED));
+        assertEquals(MlStreamStatus.RUNNING, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_RUNNING));
+        assertEquals(MlStreamStatus.UNSPECIFIED, MlStreamStatus.fromProto(org.opensearch.protobufs.Status.STATUS_UNSPECIFIED));
+        assertEquals(MlStreamStatus.UNSPECIFIED, MlStreamStatus.fromProto(null));
     }
 
     // ═══ Helper ══════════════════════════════════════════════════════════════════
