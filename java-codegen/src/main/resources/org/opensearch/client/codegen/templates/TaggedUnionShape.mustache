@@ -257,38 +257,9 @@
 
     {{>TaggedUnionShape/Deserialize}}
 
-{{#discriminated}}
-    @Override
-    public int hashCode() {
-        int result = 17;
-        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._kind);
-        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._value);
-        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._customKind);
-    {{#fields}}
-        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
-    {{/fields}}
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || this.getClass() != o.getClass()) return false;
-        {{className}}{{#typeParameters}}<?>{{/typeParameters}} other = ({{className}}{{#typeParameters}}<?>{{/typeParameters}}) o;
-        return {{TYPES.Java.Util.Objects}}.equals(this._kind, other._kind)
-            && {{TYPES.Java.Util.Objects}}.equals(this._value, other._value)
-            && {{TYPES.Java.Util.Objects}}.equals(this._customKind, other._customKind)
-    {{#fields}}
-            && {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
-    {{/fields}}
-            ;
-    }
-{{/discriminated}}
-{{^discriminated}}
     {{>ObjectShape/HashCode}}
 
     {{>ObjectShape/Equals}}
-{{/discriminated}}
 {{#discriminated}}
 
     // Wrapper so JsonData fits the variant interface slot for custom/plugin types

@@ -158,6 +158,9 @@ public class TaggedUnionShape extends ObjectShapeBase {
         var fields = new ArrayList<Field>();
         fields.add(Field.builder().withName("_kind", true).withType(getMaterializedType().getNestedType("Kind")).build());
         fields.add(Field.builder().withName("_value", true).withType(getVariantBaseType()).build());
+        if (isDiscriminated()) {
+            fields.add(Field.builder().withName("_customKind", true).withType(Types.Java.Lang.String).build());
+        }
         fields.addAll(super.getHashableFields());
         return fields;
     }
