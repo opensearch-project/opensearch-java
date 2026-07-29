@@ -412,26 +412,23 @@ public class IntervalsQuery extends QueryBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
         result = 31 * result + Objects.hashCode(this._customKind);
-        result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.field);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         IntervalsQuery other = (IntervalsQuery) o;
         return Objects.equals(this._kind, other._kind)
             && Objects.equals(this._value, other._value)
             && Objects.equals(this._customKind, other._customKind)
-            && this.field.equals(other.field);
+            && Objects.equals(this.field, other.field);
     }
 
     // Wrapper so JsonData fits the variant interface slot for custom/plugin types
