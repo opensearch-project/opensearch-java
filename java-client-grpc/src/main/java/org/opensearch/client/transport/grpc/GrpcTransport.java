@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -25,6 +27,7 @@ import org.opensearch.client.transport.grpc.translation.BulkRequestConverter;
 import org.opensearch.client.transport.grpc.translation.BulkResponseConverter;
 import org.opensearch.client.transport.grpc.translation.GrpcStatusConverter;
 import org.opensearch.protobufs.services.DocumentServiceGrpc;
+import org.opensearch.protobufs.services.SearchServiceGrpc;
 
 /**
  * Pure gRPC transport for OpenSearch. Implements {@link OpenSearchTransport} and routes
@@ -52,7 +55,8 @@ public class GrpcTransport implements OpenSearchTransport {
     static {
         java.util.Set<Endpoint<?, ?, ?>> endpoints = new java.util.HashSet<>();
         endpoints.add(BulkRequest._ENDPOINT);
-        // Future: SearchRequest._ENDPOINT, KnnSearchRequest._ENDPOINT
+        endpoints.add(SearchRequest._ENDPOINT);
+        // Future: KnnSearchRequest._ENDPOINT
         SUPPORTED_ENDPOINTS = java.util.Collections.unmodifiableSet(endpoints);
     }
 
@@ -67,6 +71,7 @@ public class GrpcTransport implements OpenSearchTransport {
 
     private final ManagedChannel channel;
     private final DocumentServiceGrpc.DocumentServiceBlockingStub documentStub;
+    private final SearchServiceGrpc.SearchServiceBlockingStub searchStub;
     private final JsonpMapper jsonpMapper;
     private final GrpcTransportOptions grpcOptions;
     private final TransportOptions transportOptions;
@@ -81,6 +86,7 @@ public class GrpcTransport implements OpenSearchTransport {
     ) {
         this.channel = channel;
         this.documentStub = channel != null ? DocumentServiceGrpc.newBlockingStub(channel) : null;
+        this.searchStub = channel != null ? SearchServiceGrpc.newBlockingStub(channel) : null;
         this.jsonpMapper = jsonpMapper;
         this.grpcOptions = grpcOptions;
         this.transportOptions = transportOptions;
@@ -112,6 +118,9 @@ public class GrpcTransport implements OpenSearchTransport {
         // Route to the appropriate gRPC handler
         if (endpoint == BulkRequest._ENDPOINT) {
             return (ResponseT) performBulk((BulkRequest) request);
+        }
+        if (endpoint == SearchRequest._ENDPOINT) {
+            return (ResponseT) performSearch((SearchRequest) request);
         }
 
         throw new UnsupportedOperationException("Endpoint registered but no handler: " + endpoint.requestUrl(request));
@@ -235,6 +244,31 @@ public class GrpcTransport implements OpenSearchTransport {
                     throw new TransportException("gRPC error: " + e.getMessage(), e);
                 }
             }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private <TDocument> SearchResponse<TDocument> performSearch(SearchRequest request) throws TransportException {
+        // Convert client request to protobuf
+        org.opensearch.protobufs.SearchRequest protoRequest = org.opensearch.client.transport.grpc.translation.SearchRequestConverter
+            .toProto(request, jsonpMapper);
+
+        // Execute gRPC call
+        try {
+            org.opensearch.protobufs.SearchResponse protoResponse = searchStub.search(protoRequest);
+
+            // Convert response — use Object.class as default; the actual deserialization
+            // is handled by the endpoint's response deserializer in the transport layer
+            return (SearchResponse<TDocument>) org.opensearch.client.transport.grpc.translation.SearchResponseConverter.fromProto(
+                protoResponse,
+                jsonpMapper,
+                (Class<TDocument>) Object.class
+            );
+        } catch (StatusRuntimeException e) {
+            throw new TransportException(
+                "gRPC search request failed: " + e.getStatus().getDescription(),
+                new org.opensearch.client.transport.TransportException(e.getMessage(), e)
+            );
         }
     }
 
