@@ -42,4 +42,12 @@ public interface TaggedUnion<Tag extends Enum<?>, BaseType> {
     Tag _kind();
 
     BaseType _get();
+
+    /**
+     * Returns the actual type name for custom (plugin-provided) variant kinds whose
+     * {@code jsonValue} is {@code null}. Returns {@code null} for all built-in kinds.
+     */
+    default String _customKind() {
+        return null;
+    }
 }

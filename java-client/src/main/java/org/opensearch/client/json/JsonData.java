@@ -108,5 +108,16 @@ public interface JsonData extends JsonpSerializable {
         return of(parser.getValue(), mapper);
     }
 
-    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(EnumSet.allOf(JsonParser.Event.class), JsonData::from);
+    JsonpDeserializer<JsonData> _DESERIALIZER = new JsonpDeserializerBase<JsonData>(EnumSet.allOf(JsonParser.Event.class)) {
+        @Override
+        public JsonData deserialize(JsonParser parser, JsonpMapper mapper) {
+            return JsonData.from(parser, mapper);
+        }
+
+        @Override
+        public JsonData deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            // Event already consumed — getValue() returns the current token's value tree
+            return JsonData.of(parser.getValue(), mapper);
+        }
+    };
 }
