@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import org.opensearch.client.json.ExternallyTaggedUnion;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -64,7 +65,9 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     public enum Kind implements JsonEnum {
         Completion("completion"),
         Phrase("phrase"),
-        Term("term");
+        Term("term"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -80,6 +83,7 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
 
     private final Kind _kind;
     private final SuggestVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -91,14 +95,23 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     public Suggest(SuggestVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._suggestKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
     }
 
     private Suggest(Builder<TDocument> builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static <TDocument> Suggest<TDocument> of(Function<Suggest.Builder<TDocument>, ObjectBuilder<Suggest<TDocument>>> fn) {
@@ -153,6 +166,25 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         return TaggedUnionUtils.get(this, Kind.Term);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         mapper.serialize(_value, generator);
@@ -171,12 +203,14 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Suggest<TDocument>> {
         private Kind _kind;
         private SuggestVariant _value;
+        private String _customKind;
 
         public Builder() {}
 
         private Builder(Suggest<TDocument> o) {
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         public ObjectBuilder<Suggest<TDocument>> completion(CompletionSuggest<TDocument> v) {
@@ -211,6 +245,19 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
             return this.term(fn.apply(new TermSuggest.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<Suggest<TDocument>> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public Suggest<TDocument> build() {
             _checkSingleUse();
@@ -226,7 +273,11 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         deserializers.put("phrase", PhraseSuggest._DESERIALIZER);
         deserializers.put("term", TermSuggest._DESERIALIZER);
 
-        return new ExternallyTaggedUnion.Deserializer<>(deserializers, Suggest<TDocument>::new).typedKeys();
+        return new ExternallyTaggedUnion.Deserializer<>(
+            deserializers,
+            Suggest<TDocument>::new,
+            (t, d) -> new Builder<TDocument>()._custom(t, d).build()
+        ).typedKeys();
     }
 
     @Override
@@ -234,6 +285,7 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         return result;
     }
 
@@ -242,6 +294,41 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Suggest<?> other = (Suggest<?>) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && Objects.equals(this._customKind, other._customKind);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements SuggestVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _suggestKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

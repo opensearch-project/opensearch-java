@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -72,7 +73,9 @@ public class IntervalsQuery extends QueryBase
         Fuzzy("fuzzy"),
         Match("match"),
         Prefix("prefix"),
-        Wildcard("wildcard");
+        Wildcard("wildcard"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -96,6 +99,7 @@ public class IntervalsQuery extends QueryBase
 
     private final Kind _kind;
     private final IntervalsQueryVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -107,6 +111,13 @@ public class IntervalsQuery extends QueryBase
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     @Nonnull
     private final String field;
 
@@ -115,6 +126,7 @@ public class IntervalsQuery extends QueryBase
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static IntervalsQuery of(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
@@ -225,12 +237,31 @@ public class IntervalsQuery extends QueryBase
         return TaggedUnionUtils.get(this, Kind.Wildcard);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         generator.writeStartObject(this.field);
         super.serializeInternal(generator, mapper);
-        generator.writeKey(_kind.jsonValue());
+        generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
@@ -251,6 +282,7 @@ public class IntervalsQuery extends QueryBase
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {
         private Kind _kind;
         private IntervalsQueryVariant _value;
+        private String _customKind;
         private String field;
 
         public Builder() {}
@@ -260,6 +292,7 @@ public class IntervalsQuery extends QueryBase
             this.field = o.field;
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         @Override
@@ -337,6 +370,19 @@ public class IntervalsQuery extends QueryBase
             return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<IntervalsQuery> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public IntervalsQuery build() {
             _checkSingleUse();
@@ -353,6 +399,9 @@ public class IntervalsQuery extends QueryBase
         op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
         op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<IntervalsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -366,6 +415,7 @@ public class IntervalsQuery extends QueryBase
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         result = 31 * result + this.field.hashCode();
         return result;
     }
@@ -378,6 +428,41 @@ public class IntervalsQuery extends QueryBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         IntervalsQuery other = (IntervalsQuery) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && this.field.equals(other.field);
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && Objects.equals(this._customKind, other._customKind) && this.field.equals(other.field);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements IntervalsQueryVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _intervalsQueryKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

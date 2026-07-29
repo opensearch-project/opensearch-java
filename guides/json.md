@@ -5,6 +5,9 @@
   - [Deserialization](#deserialization)
     - [Using withJson](#using-withjson)
     - [Using static _DESERIALIZER](#using-static-_deserializer)
+  - [Custom (Plugin-Provided) Variant Types](#custom-plugin-provided-variant-types)
+    - [Reading a custom variant](#reading-a-custom-variant)
+    - [Building a custom variant](#building-a-custom-variant)
  
 
 # Working With JSON
@@ -110,3 +113,37 @@ private IndexTemplateMapping getInstance(String templateJsonString) {
   }
 }
 ```
+
+## Custom (Plugin-Provided) Variant Types
+
+All discriminated tagged unions in this client — both externally-tagged (e.g. `Aggregate`, `Suggest`) and internally-tagged (e.g. `Query`, `Property`, `Processor`, `Analyzer`, `TokenFilterDefinition`) — support a `_Custom` variant kind.
+
+When the server returns a discriminator value that isn't natively modeled (for example, a type introduced by a plugin), the client captures it as `Kind._Custom` with the raw JSON preserved as `JsonData`, rather than throwing a deserialization error.
+
+### Reading a custom variant
+
+```java
+SearchResponse<IndexData> response = client.search(searchRequest, IndexData.class);
+
+for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
+    Aggregate agg = entry.getValue();
+    if (agg._isCustom()) {
+        // _customKind() returns the type name from the server (e.g. "my_plugin_agg")
+        String typeName = agg._customKind();
+        // _custom() returns the raw JSON body as JsonData
+        JsonData rawData = agg._custom();
+        System.out.printf("Custom aggregation '%s' of type '%s': %s%n",
+            entry.getKey(), typeName, rawData.toJson());
+    }
+}
+```
+
+### Building a custom variant
+
+```java
+Aggregate custom = new Aggregate.Builder()
+    ._custom("my_plugin_agg", JsonData.of(Map.of("score", 42)))
+    .build();
+```
+
+The same `_isCustom()`, `_customKind()`, `_custom()`, and `Builder._custom(type, data)` methods are available on every discriminated tagged union type.

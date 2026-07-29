@@ -3,7 +3,9 @@
      * {@link {{className}}} variant kinds.
      */
     public enum Kind{{#discriminated}} implements {{TYPES.Client.Json.JsonEnum}}{{/discriminated}} {
-        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{#discriminated}}({{#quoted}}{{name}}{{/quoted}}){{/discriminated}}{{^-last}},{{/-last}}{{/variants}}
+        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{#discriminated}}({{#quoted}}{{name}}{{/quoted}}){{/discriminated}}{{^-last}},{{/-last}}{{/variants}}{{#discriminated}},
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null){{/discriminated}}
         {{#discriminated}};
 
         private final String jsonValue;
@@ -25,6 +27,9 @@
 
     private final Kind _kind;
     private final {{variantBaseType}} _value;
+{{#discriminated}}
+    private final String _customKind;
+{{/discriminated}}
 
     @Override
     public final Kind _kind() {
@@ -35,6 +40,15 @@
     public final {{variantBaseType}} _get() {
         return _value;
     }
+{{#discriminated}}
+
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+{{/discriminated}}
 {{#hasFields}}
     {{>ObjectShape/Fields}}
 
@@ -54,6 +68,9 @@
             this._value = null;
         }
     {{/isOptionalExternallyDiscriminated}}
+    {{#discriminated}}
+        this._customKind = null;
+    {{/discriminated}}
     {{#fields}}
         this.{{name}} = null;
     {{/fields}}
@@ -84,6 +101,9 @@
             this._value = null;
         }
     {{/isOptionalExternallyDiscriminated}}
+    {{#discriminated}}
+        this._customKind = builder._customKind;
+    {{/discriminated}}
     }
 
     public static{{#typeParameters}} {{.}}{{/typeParameters}} {{selfType}} of({{selfType.builderFnType}} fn) {
@@ -125,6 +145,27 @@
     }
 
 {{/variants}}
+{{#discriminated}}
+
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public {{TYPES.Client.Json.JsonData}} _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+{{/discriminated}}
 
     {{>TaggedUnionShape/Serialize}}
 
@@ -138,6 +179,9 @@
     public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}} {
         private Kind _kind;
         private {{variantBaseType}} _value;
+    {{#discriminated}}
+        private String _customKind;
+    {{/discriminated}}
         {{>ObjectShape/Builder/Fields}}
 
         public Builder() {}
@@ -146,6 +190,9 @@
             {{>ObjectShape/Builder/CopyCtorImpl}}
             this._kind = o._kind;
             this._value = o._value;
+        {{#discriminated}}
+            this._customKind = o._customKind;
+        {{/discriminated}}
         }
 
     {{#extendsOtherShape}}
@@ -171,6 +218,21 @@
         {{/type.hasBuilder}}
 
     {{/variants}}
+    {{#discriminated}}
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} _custom(String type, {{TYPES.Client.Json.JsonData}} data) {
+            this._kind = Kind._Custom;
+            this._customKind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant({{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(data, this, "<custom variant data>"));
+            return {{^needsContainerBuilder}}this{{/needsContainerBuilder}}{{#needsContainerBuilder}}new ContainerBuilder(){{/needsContainerBuilder}};
+        }
+
+    {{/discriminated}}
         {{^needsContainerBuilder}}@Override
         public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{selfType}} build() {
             _checkSingleUse();
@@ -195,7 +257,73 @@
 
     {{>TaggedUnionShape/Deserialize}}
 
+{{#discriminated}}
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._kind);
+        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._value);
+        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this._customKind);
+    {{#fields}}
+        result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
+    {{/fields}}
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        {{className}}{{#typeParameters}}<?>{{/typeParameters}} other = ({{className}}{{#typeParameters}}<?>{{/typeParameters}}) o;
+        return {{TYPES.Java.Util.Objects}}.equals(this._kind, other._kind)
+            && {{TYPES.Java.Util.Objects}}.equals(this._value, other._value)
+            && {{TYPES.Java.Util.Objects}}.equals(this._customKind, other._customKind)
+    {{#fields}}
+            && {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
+    {{/fields}}
+            ;
+    }
+{{/discriminated}}
+{{^discriminated}}
     {{>ObjectShape/HashCode}}
 
     {{>ObjectShape/Equals}}
+{{/discriminated}}
+{{#discriminated}}
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements {{variantInterfaceType}}, {{TYPES.Client.Json.PlainJsonSerializable}} {
+        private final {{TYPES.Client.Json.JsonData}} data;
+
+        CustomVariant({{TYPES.Client.Json.JsonData}} data) {
+            this.data = data;
+        }
+
+        public {{TYPES.Client.Json.JsonData}} data() {
+            return data;
+        }
+
+        @Override
+        public Kind _{{#camelCase}}{{className}}{{/camelCase}}Kind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
+    }
+{{/discriminated}}
 }

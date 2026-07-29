@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -67,7 +68,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
     public enum Kind implements JsonEnum {
         Completion("completion"),
         Phrase("phrase"),
-        Term("term");
+        Term("term"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -83,6 +86,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
 
     private final Kind _kind;
     private final FieldSuggesterVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -92,6 +96,13 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
     @Override
     public final FieldSuggesterVariant _get() {
         return _value;
+    }
+
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
     }
 
     @Nullable
@@ -106,6 +117,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
     public FieldSuggester(FieldSuggesterVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._fieldSuggesterKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
         this.prefix = null;
         this.regex = null;
         this.text = null;
@@ -117,6 +129,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
         this.text = builder.text;
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static FieldSuggester of(Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
@@ -195,6 +208,25 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
         return TaggedUnionUtils.get(this, Kind.Term);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
@@ -212,7 +244,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
             generator.writeKey("text");
             generator.write(this.text);
         }
-        generator.writeKey(_kind.jsonValue());
+        generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
@@ -232,6 +264,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
     public static class Builder extends ObjectBuilderBase {
         private Kind _kind;
         private FieldSuggesterVariant _value;
+        private String _customKind;
         @Nullable
         private String prefix;
         @Nullable
@@ -247,6 +280,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
             this.text = o.text;
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         /**
@@ -306,6 +340,19 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
             return this.term(fn.apply(new TermSuggester.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ContainerBuilder _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return new ContainerBuilder();
+        }
+
         protected FieldSuggester build() {
             _checkSingleUse();
             return new FieldSuggester(this);
@@ -355,6 +402,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
         op.add(Builder::completion, CompletionSuggester._DESERIALIZER, "completion");
         op.add(Builder::phrase, PhraseSuggester._DESERIALIZER, "phrase");
         op.add(Builder::term, TermSuggester._DESERIALIZER, "term");
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<FieldSuggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -368,6 +418,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         result = 31 * result + Objects.hashCode(this.prefix);
         result = 31 * result + Objects.hashCode(this.regex);
         result = 31 * result + Objects.hashCode(this.text);
@@ -381,8 +432,44 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, FieldSug
         FieldSuggester other = (FieldSuggester) o;
         return Objects.equals(this._kind, other._kind)
             && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind)
             && Objects.equals(this.prefix, other.prefix)
             && Objects.equals(this.regex, other.regex)
             && Objects.equals(this.text, other.text);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements FieldSuggesterVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _fieldSuggesterKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

@@ -132,7 +132,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         TopHits("top_hits"),
         ValueCount("value_count"),
         VariableWidthHistogram("variable_width_histogram"),
-        WeightedAvg("weighted_avg");
+        WeightedAvg("weighted_avg"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -148,6 +150,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
     private final Kind _kind;
     private final AggregationVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -159,12 +162,20 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     @Nonnull
     private final Map<String, JsonData> meta;
 
     public Aggregation(AggregationVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
         this.meta = null;
     }
 
@@ -172,6 +183,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         this.meta = ApiTypeHelper.unmodifiable(builder.meta);
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static Aggregation of(Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -1226,6 +1238,25 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         return TaggedUnionUtils.get(this, Kind.WeightedAvg);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
@@ -1238,7 +1269,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             }
             generator.writeEnd();
         }
-        generator.writeKey(_kind.jsonValue());
+        generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
@@ -1258,6 +1289,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     public static class Builder extends ObjectBuilderBase {
         private Kind _kind;
         private AggregationVariant _value;
+        private String _customKind;
         @Nullable
         private Map<String, JsonData> meta;
 
@@ -1267,6 +1299,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             this.meta = _mapCopy(o.meta);
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         /**
@@ -1971,6 +2004,19 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.weightedAvg(fn.apply(new WeightedAverageAggregation.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ContainerBuilder _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return new ContainerBuilder();
+        }
+
         protected Aggregation build() {
             _checkSingleUse();
             return new Aggregation(this);
@@ -2079,6 +2125,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         op.add(Builder::valueCount, ValueCountAggregation._DESERIALIZER, "value_count");
         op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation._DESERIALIZER, "variable_width_histogram");
         op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<Aggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -2092,6 +2141,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
@@ -2103,6 +2153,42 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         Aggregation other = (Aggregation) o;
         return Objects.equals(this._kind, other._kind)
             && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind)
             && Objects.equals(this.meta, other.meta);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements AggregationVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _aggregationKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

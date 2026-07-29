@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -64,7 +65,9 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
      */
     public enum Kind implements JsonEnum {
         Custom("custom"),
-        Lowercase("lowercase");
+        Lowercase("lowercase"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -80,6 +83,7 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 
     private final Kind _kind;
     private final NormalizerVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -91,14 +95,23 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     public Normalizer(NormalizerVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._normalizerKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
     }
 
     private Normalizer(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static Normalizer of(Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
@@ -137,6 +150,25 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         return TaggedUnionUtils.get(this, Kind.Lowercase);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         mapper.serialize(_value, generator);
@@ -155,12 +187,14 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Normalizer> {
         private Kind _kind;
         private NormalizerVariant _value;
+        private String _customKind;
 
         public Builder() {}
 
         private Builder(Normalizer o) {
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
@@ -183,6 +217,19 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
             return this.lowercase(fn.apply(new LowercaseNormalizer.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<Normalizer> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public Normalizer build() {
             _checkSingleUse();
@@ -194,6 +241,9 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
         op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
         op.setTypeProperty("type", Kind.Custom.jsonValue());
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<Normalizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -207,6 +257,7 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         return result;
     }
 
@@ -215,6 +266,41 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Normalizer other = (Normalizer) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && Objects.equals(this._customKind, other._customKind);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements NormalizerVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _normalizerKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }
