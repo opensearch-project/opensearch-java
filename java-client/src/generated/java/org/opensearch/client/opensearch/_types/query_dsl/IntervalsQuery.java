@@ -428,7 +428,10 @@ public class IntervalsQuery extends QueryBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         IntervalsQuery other = (IntervalsQuery) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && Objects.equals(this._customKind, other._customKind) && this.field.equals(other.field);
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind)
+            && this.field.equals(other.field);
     }
 
     // Wrapper so JsonData fits the variant interface slot for custom/plugin types

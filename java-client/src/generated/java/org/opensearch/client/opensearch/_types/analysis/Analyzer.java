@@ -714,7 +714,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Analyzer other = (Analyzer) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value) && Objects.equals(this._customKind, other._customKind);
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind);
     }
 
     // Wrapper so JsonData fits the variant interface slot for custom/plugin types
