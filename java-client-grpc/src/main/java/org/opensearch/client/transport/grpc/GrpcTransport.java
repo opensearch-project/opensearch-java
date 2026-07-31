@@ -67,6 +67,30 @@ public class GrpcTransport implements OpenSearchTransport {
         return SUPPORTED_ENDPOINTS.contains(endpoint);
     }
 
+    /**
+     * Returns true if the given endpoint and request can be handled by gRPC transport.
+     * For endpoints that only partially support gRPC (e.g., search with limited query types),
+     * this method inspects the request to determine if gRPC can handle it.
+     */
+    public static <RequestT> boolean isEndpointSupported(Endpoint<?, ?, ?> endpoint, RequestT request) {
+        if (!SUPPORTED_ENDPOINTS.contains(endpoint)) {
+            return false;
+        }
+        // Bulk: all operations supported
+        if (endpoint == BulkRequest._ENDPOINT) {
+            return true;
+        }
+        // Search: only match_all is currently supported
+        if (endpoint == SearchRequest._ENDPOINT && request instanceof SearchRequest) {
+            SearchRequest searchRequest = (SearchRequest) request;
+            if (searchRequest.query() == null) {
+                return true; // No query = match_all by default
+            }
+            return searchRequest.query().isMatchAll();
+        }
+        return true;
+    }
+
     // ─── Instance Fields ─────────────────────────────────────────────────────────
 
     private final ManagedChannel channel;
@@ -107,7 +131,7 @@ public class GrpcTransport implements OpenSearchTransport {
         @Nullable TransportOptions options
     ) throws IOException {
 
-        if (!GrpcTransport.isEndpointSupported(endpoint)) {
+        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
             throw new UnsupportedOperationException(
                 "Endpoint not supported by gRPC transport: "
                     + endpoint.requestUrl(request)
