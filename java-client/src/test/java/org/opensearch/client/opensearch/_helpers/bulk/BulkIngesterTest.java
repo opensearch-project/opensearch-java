@@ -223,6 +223,21 @@ public class BulkIngesterTest extends Assert {
         assertEquals(5, ingester.requestCount());
     }
 
+    /**
+     * Waits for the periodic flusher to have emitted {@code expected} requests. Tests that add operations
+     * spaced apart in time cannot rely on sleeping longer than the flush interval: under load two operations
+     * can land in the same flush window, which coalesces them into a single request.
+     */
+    private static void awaitRequestCount(BulkIngester<?> ingester, long expected) throws InterruptedException {
+        long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+        while (ingester.requestCount() < expected) {
+            if (System.nanoTime() - deadline > 0) {
+                fail("Timed out waiting for " + expected + " requests, got " + ingester.requestCount());
+            }
+            Thread.sleep(5);
+        }
+    }
+
     @Test
     public void periodicFlushTest() throws Exception {
         TestTransport transport = new TestTransport();
@@ -237,11 +252,11 @@ public class BulkIngesterTest extends Assert {
                 .maxConcurrentRequests(Integer.MAX_VALUE - 1)
         );
 
-        // Add an operation every 100 ms to give time
-        // to the flushing timer to kick in.
+        // Add an operation at a time, waiting for the flushing timer to kick in
+        // before adding the next one so that each gets its own request.
         for (int i = 0; i < 10; i++) {
             ingester.add(operation);
-            Thread.sleep(100);
+            awaitRequestCount(ingester, i + 1);
         }
 
         ingester.close();
@@ -299,11 +314,11 @@ public class BulkIngesterTest extends Assert {
                 .listener(listener)
         );
 
-        // Add an operation every 100 ms to give time
-        // to the flushing timer to kick in.
+        // Add an operation at a time, waiting for the flushing timer to kick in
+        // before adding the next one so that each gets its own request.
         for (int i = 0; i < 10; i++) {
             ingester.add(operation);
-            Thread.sleep(100);
+            awaitRequestCount(ingester, i + 1);
         }
 
         ingester.close();
