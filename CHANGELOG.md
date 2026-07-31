@@ -25,6 +25,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
 
 ### Fixed
+- Fix `unitTest` task not running the tests in the `test` source set ([#2069](https://github.com/opensearch-project/opensearch-java/pull/2069))
 
 ## [Unreleased 3.x]
 ### Added

@@ -157,6 +157,8 @@ tasks.test {
 }
 
 val unitTest = task<Test>("unitTest") {
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
