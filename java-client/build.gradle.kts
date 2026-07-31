@@ -157,8 +157,6 @@ tasks.test {
 }
 
 val unitTest = task<Test>("unitTest") {
-    testClassesDirs = sourceSets["test"].output.classesDirs
-    classpath = sourceSets["test"].runtimeClasspath
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
@@ -389,6 +387,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+      srcDir("src/test/java")
       srcDir("src/test/java11")
       srcDir("src/test/java21")
     }
