@@ -387,7 +387,6 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-      srcDir("src/test/java")
       srcDir("src/test/java11")
       srcDir("src/test/java21")
     }
