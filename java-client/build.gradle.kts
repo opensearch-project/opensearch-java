@@ -420,7 +420,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
  }
   
   tasks.named<Test>("unitTest") {
-    testClassesDirs += java21.output.classesDirs
+    testClassesDirs += java21.output.classesDirs + sourceSets.test.get().output.classesDirs
     classpath = sourceSets["java21"].runtimeClasspath
  }
 }
