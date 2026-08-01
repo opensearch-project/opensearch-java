@@ -24,6 +24,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -72,6 +73,40 @@ public class GrpcTransportTest {
     @Test
     public void testBulkSupported() {
         assertTrue(GrpcTransport.isEndpointSupported(BulkRequest._ENDPOINT));
+    }
+
+    @Test
+    public void testBulkSupportedWithRequest() {
+        BulkRequest request = new BulkRequest.Builder().operations(op -> op.delete(d -> d.id("1").index("t"))).build();
+        assertTrue(GrpcTransport.isEndpointSupported(BulkRequest._ENDPOINT, request));
+    }
+
+    @Test
+    public void testSearchMatchAllSupportedWithRequest() {
+        SearchRequest request = new SearchRequest.Builder().index("test").query(q -> q.matchAll(m -> m)).build();
+        assertTrue(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
+    }
+
+    @Test
+    public void testSearchNoQuerySupportedWithRequest() {
+        SearchRequest request = new SearchRequest.Builder().index("test").build();
+        assertTrue(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
+    }
+
+    @Test
+    public void testSearchTermQueryNotSupportedWithRequest() {
+        SearchRequest request = new SearchRequest.Builder().index("test")
+            .query(q -> q.term(t -> t.field("status").value(v -> v.stringValue("active"))))
+            .build();
+        assertFalse(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
+    }
+
+    @Test
+    public void testSearchMatchQueryNotSupportedWithRequest() {
+        SearchRequest request = new SearchRequest.Builder().index("test")
+            .query(q -> q.match(m -> m.field("title").query(fv -> fv.stringValue("hello"))))
+            .build();
+        assertFalse(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
     }
 
     @Test
