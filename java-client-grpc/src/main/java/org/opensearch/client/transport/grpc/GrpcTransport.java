@@ -11,8 +11,11 @@ package org.opensearch.client.transport.grpc;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.util.Iterator;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch.core.BulkRequest;
@@ -21,10 +24,17 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.grpc.ml.MlExecuteAgentStreamRequest;
+import org.opensearch.client.transport.grpc.ml.MlPredictStreamRequest;
+import org.opensearch.client.transport.grpc.ml.MlStreamChunk;
 import org.opensearch.client.transport.grpc.translation.BulkRequestConverter;
 import org.opensearch.client.transport.grpc.translation.BulkResponseConverter;
 import org.opensearch.client.transport.grpc.translation.GrpcStatusConverter;
+import org.opensearch.client.transport.grpc.translation.MlStreamRequestConverter;
+import org.opensearch.client.transport.grpc.translation.MlStreamResponseConverter;
+import org.opensearch.protobufs.PredictResponse;
 import org.opensearch.protobufs.services.DocumentServiceGrpc;
+import org.opensearch.protobufs.services.MLServiceGrpc;
 
 /**
  * Pure gRPC transport for OpenSearch. Implements {@link OpenSearchTransport} and routes
@@ -42,6 +52,10 @@ import org.opensearch.protobufs.services.DocumentServiceGrpc;
  * OpenSearchClient client = new OpenSearchClient(transport);
  * client.bulk(bulkRequest); // goes over gRPC
  * }</pre>
+ * <p>
+ * In addition to the {@link OpenSearchTransport} contract, this transport exposes the
+ * ML server-streaming APIs directly via {@link #predictModelStream} and
+ * {@link #executeAgentStream}.
  */
 public class GrpcTransport implements OpenSearchTransport {
 
@@ -67,6 +81,7 @@ public class GrpcTransport implements OpenSearchTransport {
 
     private final ManagedChannel channel;
     private final DocumentServiceGrpc.DocumentServiceBlockingStub documentStub;
+    private final MLServiceGrpc.MLServiceBlockingStub mlStub;
     private final JsonpMapper jsonpMapper;
     private final GrpcTransportOptions grpcOptions;
     private final TransportOptions transportOptions;
@@ -81,6 +96,7 @@ public class GrpcTransport implements OpenSearchTransport {
     ) {
         this.channel = channel;
         this.documentStub = channel != null ? DocumentServiceGrpc.newBlockingStub(channel) : null;
+        this.mlStub = channel != null ? MLServiceGrpc.newBlockingStub(channel) : null;
         this.jsonpMapper = jsonpMapper;
         this.grpcOptions = grpcOptions;
         this.transportOptions = transportOptions;
@@ -236,6 +252,81 @@ public class GrpcTransport implements OpenSearchTransport {
                 }
             }
         }
+    }
+
+    // ─── ML Streaming APIs ───────────────────────────────────────────────────────
+
+    /**
+     * Invokes the ML streaming predict API ({@code MLService/PredictModelStream}) and
+     * returns an iterator over the response chunks as the server produces them.
+     *
+     * @param request the streaming predict request
+     * @return an iterator over the streamed chunks
+     */
+    public Iterator<MlStreamChunk> predictModelStream(MlPredictStreamRequest request) {
+        org.opensearch.protobufs.MlPredictModelStreamRequest protoRequest = MlStreamRequestConverter.toProto(request);
+        return stream(() -> requireMlStub().predictModelStream(protoRequest));
+    }
+
+    /**
+     * Invokes the ML streaming agent execute API ({@code MLService/ExecuteAgentStream})
+     * and returns an iterator over the response chunks as the server produces them.
+     *
+     * @param request the streaming agent execute request
+     * @return an iterator over the streamed chunks
+     */
+    public Iterator<MlStreamChunk> executeAgentStream(MlExecuteAgentStreamRequest request) {
+        org.opensearch.protobufs.MlExecuteAgentStreamRequest protoRequest = MlStreamRequestConverter.toProto(request);
+        return stream(() -> requireMlStub().executeAgentStream(protoRequest));
+    }
+
+    private MLServiceGrpc.MLServiceBlockingStub requireMlStub() {
+        if (mlStub == null) {
+            throw new IllegalStateException("gRPC channel is not available; ML streaming requires a connected transport");
+        }
+        return mlStub;
+    }
+
+    private Iterator<MlStreamChunk> stream(Supplier<Iterator<PredictResponse>> rpc) {
+        return new Iterator<MlStreamChunk>() {
+            private Iterator<PredictResponse> delegate;
+
+            @Override
+            public boolean hasNext() {
+                try {
+                    return delegate().hasNext();
+                } catch (StatusRuntimeException e) {
+                    throw convert(e);
+                }
+            }
+
+            @Override
+            public MlStreamChunk next() {
+                try {
+                    return MlStreamResponseConverter.fromProto(delegate().next());
+                } catch (StatusRuntimeException e) {
+                    throw convert(e);
+                }
+            }
+
+            private Iterator<PredictResponse> delegate() {
+                if (delegate == null) {
+                    delegate = rpc.get();
+                }
+                return delegate;
+            }
+        };
+    }
+
+    private static RuntimeException convert(StatusRuntimeException e) {
+        try {
+            GrpcStatusConverter.throwConverted(e);
+        } catch (TransportException converted) {
+            return new UncheckedIOException(converted);
+        } catch (RuntimeException converted) {
+            return converted;
+        }
+        return new UncheckedIOException(new TransportException("gRPC error: " + e.getMessage(), e));
     }
 
     // ─── Builder ─────────────────────────────────────────────────────────────────
