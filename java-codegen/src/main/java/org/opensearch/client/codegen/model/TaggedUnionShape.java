@@ -32,6 +32,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
     private String discriminatingField;
     private String defaultVariant;
     private ExternallyDiscriminated externallyDiscriminated;
+    private boolean nonExhaustive;
 
     public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
         super(parent, className, typedefName, description, shouldGenerate);
@@ -105,6 +106,14 @@ public class TaggedUnionShape extends ObjectShapeBase {
         this.externallyDiscriminated = externallyDiscriminated;
     }
 
+    public boolean isNonExhaustive() {
+        return nonExhaustive;
+    }
+
+    public void setNonExhaustive(boolean nonExhaustive) {
+        this.nonExhaustive = nonExhaustive;
+    }
+
     public Type getVariantBaseType() {
         return isDiscriminated() && getVariants().stream().map(Variant::getType).allMatch(t -> t.getTargetShape().isPresent())
             ? getVariantInterfaceType()
@@ -158,6 +167,9 @@ public class TaggedUnionShape extends ObjectShapeBase {
         var fields = new ArrayList<Field>();
         fields.add(Field.builder().withName("_kind", true).withType(getMaterializedType().getNestedType("Kind")).build());
         fields.add(Field.builder().withName("_value", true).withType(getVariantBaseType()).build());
+        if (isNonExhaustive()) {
+            fields.add(Field.builder().withName("_customKind", true).withType(Types.Java.Lang.String).build());
+        }
         fields.addAll(super.getHashableFields());
         return fields;
     }

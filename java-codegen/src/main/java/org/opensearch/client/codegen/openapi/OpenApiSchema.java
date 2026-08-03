@@ -100,6 +100,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     @Nullable
     private final Boolean supportsTypedKeys;
     @Nullable
+    private final Boolean nonExhaustive;
+    @Nullable
     private Boolean isGenericTypeParameter;
     @Nullable
     private OpenApiSchema $extends;
@@ -131,6 +133,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         versionRemoved = builder.versionRemoved;
         versionDeprecated = builder.versionDeprecated;
         supportsTypedKeys = builder.supportsTypedKeys;
+        nonExhaustive = builder.nonExhaustive;
         isGenericTypeParameter = builder.isGenericTypeParameter;
         set$extends(builder.$extends);
     }
@@ -180,6 +183,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(v -> Versions.coerce((String) v)).orElse(null);
 
         supportsTypedKeys = Maps.tryGet(extensions, "x-supports-typed-keys").map(Boolean.class::cast).orElse(null);
+        nonExhaustive = Maps.tryGet(extensions, "x-non-exhaustive").map(Boolean.class::cast).orElse(null);
         isGenericTypeParameter = Maps.tryGet(extensions, "x-is-generic-type-parameter").map(Boolean.class::cast).orElse(null);
     }
 
@@ -494,6 +498,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         return supportsTypedKeys != null && supportsTypedKeys;
     }
 
+    public boolean isNonExhaustive() {
+        return nonExhaustive != null && nonExhaustive;
+    }
+
     public boolean isGenericTypeParameter() {
         return isGenericTypeParameter != null && isGenericTypeParameter;
     }
@@ -792,6 +800,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
             .withVersionRemoved(versionRemoved)
             .withVersionDeprecated(versionDeprecated)
             .withSupportsTypedKeys(supportsTypedKeys)
+            .withNonExhaustive(nonExhaustive)
             .withIsGenericTypeParameter(isGenericTypeParameter);
     }
 
@@ -847,6 +856,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         private Semver versionDeprecated;
         @Nullable
         private Boolean supportsTypedKeys;
+        @Nullable
+        private Boolean nonExhaustive;
         @Nullable
         private Boolean isGenericTypeParameter;
         @Nullable
@@ -1050,6 +1061,12 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         @Nonnull
         public Builder withSupportsTypedKeys(@Nullable Boolean supportsTypedKeys) {
             this.supportsTypedKeys = supportsTypedKeys;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withNonExhaustive(@Nullable Boolean nonExhaustive) {
+            this.nonExhaustive = nonExhaustive;
             return this;
         }
 

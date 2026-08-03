@@ -14,6 +14,9 @@
         {{#singleKeyMap}}
             op.setKey(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}});
         {{/singleKeyMap}}
+        {{#nonExhaustive}}
+            op.setUnknownFieldHandler((builder, name, parser, mapper) -> builder._custom(name, {{TYPES.Client.Json.JsonData}}._DESERIALIZER.deserialize(parser, mapper)));
+        {{/nonExhaustive}}
         }
 
         public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer, Builder::build);
@@ -43,6 +46,12 @@
     {{^typeParameters}}
         public static final {{TYPES.Client.Json.ExternallyTaggedUnion}}.TypedKeysDeserializer<{{className}}> _TYPED_KEYS_DESERIALIZER;
 
+    {{#nonExhaustive}}
+        private static {{className}} _buildCustom(String type, {{TYPES.Client.Json.JsonData}} data) {
+            return new Builder()._custom(type, data).build();
+        }
+
+    {{/nonExhaustive}}
         static {
     {{/typeParameters}}
             {{TYPES.Java.Util.Map}}<String, {{TYPES.Client.Json.JsonpDeserializer}}<? extends {{variantBaseType}}>> deserializers = new {{TYPES.Java.Util.HashMap}}<>();
@@ -51,10 +60,20 @@
             {{/variants}}
 
     {{#typeParameters}}
+        {{#nonExhaustive}}
+            return new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new, (t, d) -> new Builder{{#typeParameters}}{{.}}{{/typeParameters}}()._custom(t, d).build()).typedKeys();
+        {{/nonExhaustive}}
+        {{^nonExhaustive}}
             return new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new).typedKeys();
+        {{/nonExhaustive}}
     {{/typeParameters}}
     {{^typeParameters}}
+        {{#nonExhaustive}}
+            _TYPED_KEYS_DESERIALIZER = new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new, {{className}}::_buildCustom).typedKeys();
+        {{/nonExhaustive}}
+        {{^nonExhaustive}}
             _TYPED_KEYS_DESERIALIZER = new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new).typedKeys();
+        {{/nonExhaustive}}
     {{/typeParameters}}
         }
 {{/usesTypedKeys}}

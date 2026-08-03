@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -109,7 +110,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         Version("version"),
         Wildcard("wildcard"),
         XyPoint("xy_point"),
-        XyShape("xy_shape");
+        XyShape("xy_shape"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -125,6 +128,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
 
     private final Kind _kind;
     private final PropertyVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -136,14 +140,23 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     public Property(PropertyVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._propertyKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
     }
 
     private Property(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static Property of(Function<Property.Builder, ObjectBuilder<Property>> fn) {
@@ -902,6 +915,25 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         mapper.serialize(_value, generator);
@@ -920,12 +952,14 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Property> {
         private Kind _kind;
         private PropertyVariant _value;
+        private String _customKind;
 
         public Builder() {}
 
         private Builder(Property o) {
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         public ObjectBuilder<Property> aggregateMetricDouble(AggregateMetricDoubleProperty v) {
@@ -1410,6 +1444,19 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
             return this.xyShape(fn.apply(new XyShapeProperty.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<Property> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public Property build() {
             _checkSingleUse();
@@ -1466,6 +1513,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         op.add(Builder::xyPoint, XyPointProperty._DESERIALIZER, "xy_point");
         op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
         op.setTypeProperty("type", Kind.Object.jsonValue());
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<Property> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -1479,6 +1529,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         return result;
     }
 
@@ -1487,6 +1538,43 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Property other = (Property) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements PropertyVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _propertyKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

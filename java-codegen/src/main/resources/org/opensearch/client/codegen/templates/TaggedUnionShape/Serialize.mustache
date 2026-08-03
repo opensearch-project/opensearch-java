@@ -22,7 +22,12 @@ public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{T
             if (_kind != null) {
         {{/isOptionalExternallyDiscriminated}}
         {{#externallyDiscriminated}}
+        {{#nonExhaustive}}
+            generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
+        {{/nonExhaustive}}
+        {{^nonExhaustive}}
             generator.writeKey(_kind.jsonValue());
+        {{/nonExhaustive}}
         {{/externallyDiscriminated}}
         if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
         (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);

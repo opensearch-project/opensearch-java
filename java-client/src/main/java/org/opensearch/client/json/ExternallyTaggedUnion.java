@@ -89,6 +89,7 @@ public class ExternallyTaggedUnion {
                 if (unKnownUnionCtor != null) {
                     return unKnownUnionCtor.apply(type, JsonData._DESERIALIZER.deserialize(parser, mapper, event));
                 }
+                throw new jakarta.json.JsonException("Unknown variant type '" + type + "'");
             }
 
             return unionCtor.apply(deserializer.deserialize(parser, mapper, event));
@@ -191,7 +192,11 @@ public class ExternallyTaggedUnion {
         if (mapper.attribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, true)) {
             for (Map.Entry<String, T> entry : map.entrySet()) {
                 T value = entry.getValue();
-                generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
+                String type = value._kind().jsonValue();
+                if (type == null) {
+                    type = value._customKind();
+                }
+                generator.writeKey(type + "#" + entry.getKey());
                 value.serialize(generator, mapper);
             }
         } else {
@@ -223,7 +228,11 @@ public class ExternallyTaggedUnion {
                 if (list.isEmpty()) {
                     continue;
                 }
-                generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
+                String type = list.get(0)._kind().jsonValue();
+                if (type == null) {
+                    type = list.get(0)._customKind();
+                }
+                generator.writeKey(type + "#" + entry.getKey());
                 generator.writeStartArray();
                 for (T value : list) {
                     value.serialize(generator, mapper);

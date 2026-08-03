@@ -538,6 +538,8 @@ public class SpecTransformer {
                         .ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, typeMapper.mapType(v))));
                 }
             }
+
+            taggedUnion.setNonExhaustive(unionSchema.isNonExhaustive());
         } else if (schema.isShortcutPropertyObject() || schema.getSingleType().orElse(null) == OpenApiSchemaType.Object) {
             if (!schema.has$extends()
                 && !schema.hasProperties()
