@@ -48620,8 +48620,6 @@ components:
           $ref: '#/components/schemas/_common.query_dsl___GeoShape'
         relation:
           $ref: '#/components/schemas/_common___GeoShapeRelation'
-      required:
-        - shape
     _common.query_dsl___GeoValidationMethod:
       type: string
       enum:
@@ -50318,8 +50316,6 @@ components:
           $ref: '#/components/schemas/_common.query_dsl___XyShape'
         relation:
           $ref: '#/components/schemas/_common___GeoShapeRelation'
-      required:
-        - shape
     _common.query_dsl___ZeroTermsQuery:
       type: string
       enum:

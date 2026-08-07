@@ -43,4 +43,14 @@ public class XyShapeQueryFieldTest extends ModelTestCase {
 
         assertEquals(toJson(copied), toJson(origin));
     }
+
+    @Test
+    public void indexedShapeOnly() {
+        XyShapeQueryField field = new XyShapeQueryField.Builder().indexedShape(i -> i.id("id").index("shapes").path("location"))
+            .build();
+
+        assertNull(field.shape());
+        assertEquals("id", field.indexedShape().id());
+        assertEquals("{\"indexed_shape\":{\"id\":\"id\",\"index\":\"shapes\",\"path\":\"location\"}}", toJson(field));
+    }
 }

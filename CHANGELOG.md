@@ -27,6 +27,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))
+- Allow pre-indexed shape queries by making `shape` optional on `GeoShapeQueryField` and `XyShapeQueryField` ([#2011](https://github.com/opensearch-project/opensearch-java/issues/2011))
 
 ## [Unreleased 3.x]
 ### Added

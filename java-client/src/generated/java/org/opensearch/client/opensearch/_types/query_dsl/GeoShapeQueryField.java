@@ -49,7 +49,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoShapeRelation;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -67,7 +66,7 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
     @Nullable
     private final GeoShapeRelation relation;
 
-    @Nonnull
+    @Nullable
     private final GeoShape shape;
 
     // ---------------------------------------------------------------------------------------------
@@ -75,7 +74,7 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
     private GeoShapeQueryField(Builder builder) {
         this.indexedShape = builder.indexedShape;
         this.relation = builder.relation;
-        this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
+        this.shape = builder.shape;
     }
 
     public static GeoShapeQueryField of(Function<GeoShapeQueryField.Builder, ObjectBuilder<GeoShapeQueryField>> fn) {
@@ -99,9 +98,9 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code shape}
+     * API name: {@code shape}
      */
-    @Nonnull
+    @Nullable
     public final GeoShape shape() {
         return this.shape;
     }
@@ -127,8 +126,10 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
             this.relation.serialize(generator, mapper);
         }
 
-        generator.writeKey("shape");
-        this.shape.serialize(generator, mapper);
+        if (this.shape != null) {
+            generator.writeKey("shape");
+            this.shape.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -152,6 +153,7 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
         private FieldLookup indexedShape;
         @Nullable
         private GeoShapeRelation relation;
+        @Nullable
         private GeoShape shape;
 
         public Builder() {}
@@ -201,16 +203,16 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shape}
+         * API name: {@code shape}
          */
         @Nonnull
-        public final Builder shape(GeoShape value) {
+        public final Builder shape(@Nullable GeoShape value) {
             this.shape = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code shape}
+         * API name: {@code shape}
          */
         @Nonnull
         public final Builder shape(Function<GeoShape.Builder, ObjectBuilder<GeoShape>> fn) {
@@ -252,7 +254,7 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
         int result = 17;
         result = 31 * result + Objects.hashCode(this.indexedShape);
         result = 31 * result + Objects.hashCode(this.relation);
-        result = 31 * result + this.shape.hashCode();
+        result = 31 * result + Objects.hashCode(this.shape);
         return result;
     }
 
@@ -263,6 +265,6 @@ public class GeoShapeQueryField implements PlainJsonSerializable, ToCopyableBuil
         GeoShapeQueryField other = (GeoShapeQueryField) o;
         return Objects.equals(this.indexedShape, other.indexedShape)
             && Objects.equals(this.relation, other.relation)
-            && this.shape.equals(other.shape);
+            && Objects.equals(this.shape, other.shape);
     }
 }
