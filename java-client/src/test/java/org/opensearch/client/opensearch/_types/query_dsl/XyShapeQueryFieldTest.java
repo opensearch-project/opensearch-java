@@ -46,8 +46,7 @@ public class XyShapeQueryFieldTest extends ModelTestCase {
 
     @Test
     public void indexedShapeOnly() {
-        XyShapeQueryField field = new XyShapeQueryField.Builder().indexedShape(i -> i.id("id").index("shapes").path("location"))
-            .build();
+        XyShapeQueryField field = new XyShapeQueryField.Builder().indexedShape(i -> i.id("id").index("shapes").path("location")).build();
 
         assertNull(field.shape());
         assertEquals("id", field.indexedShape().id());

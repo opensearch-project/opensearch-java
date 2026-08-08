@@ -22,9 +22,7 @@ public class GeoShapeQueryFieldTest extends ModelTestCase {
 
     @Test
     public void indexedShapeOnly() {
-        GeoShapeQueryField field = new GeoShapeQueryField.Builder().indexedShape(
-            i -> i.id("id").index("shapes").path("location")
-        ).build();
+        GeoShapeQueryField field = new GeoShapeQueryField.Builder().indexedShape(i -> i.id("id").index("shapes").path("location")).build();
 
         assertNull(field.shape());
         assertEquals("id", field.indexedShape().id());
