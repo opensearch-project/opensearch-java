@@ -5,20 +5,30 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
 - Bump `org.junit:junit-bom` from 5.13.3 to 6.0.3 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746), [#1780](https://github.com/opensearch-project/opensearch-java/pull/1780), [#1856](https://github.com/opensearch-project/opensearch-java/pull/1856), [#1885](https://github.com/opensearch-project/opensearch-java/pull/1885))
-- Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.6.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714), [#1756](https://github.com/opensearch-project/opensearch-java/pull/1756), [#1841](https://github.com/opensearch-project/opensearch-java/pull/1841), [#1868](https://github.com/opensearch-project/opensearch-java/pull/1868), [#1869](https://github.com/opensearch-project/opensearch-java/pull/1869))
+- Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.7.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714), [#1756](https://github.com/opensearch-project/opensearch-java/pull/1756), [#1841](https://github.com/opensearch-project/opensearch-java/pull/1841), [#1868](https://github.com/opensearch-project/opensearch-java/pull/1868), [#1869](https://github.com/opensearch-project/opensearch-java/pull/1869), [#1950](https://github.com/opensearch-project/opensearch-java/pull/1950))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.4.1 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733), [#1815](https://github.com/opensearch-project/opensearch-java/pull/1815), [#1883](https://github.com/opensearch-project/opensearch-java/pull/1883))
-- Bump `org.owasp.dependencycheck` from 12.1.3 to 12.2.0 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742), [#1754](https://github.com/opensearch-project/opensearch-java/pull/1754), [#1765](https://github.com/opensearch-project/opensearch-java/pull/1765), [#1796](https://github.com/opensearch-project/opensearch-java/pull/1796), [#1854](https://github.com/opensearch-project/opensearch-java/pull/1854))
+- Bump `org.owasp.dependencycheck` from 12.1.3 to 12.2.2 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742), [#1754](https://github.com/opensearch-project/opensearch-java/pull/1754), [#1765](https://github.com/opensearch-project/opensearch-java/pull/1765), [#1796](https://github.com/opensearch-project/opensearch-java/pull/1796), [#1854](https://github.com/opensearch-project/opensearch-java/pull/1854), [#1959](https://github.com/opensearch-project/opensearch-java/pull/1959), [#1972](https://github.com/opensearch-project/opensearch-java/pull/1972), [#1974](https://github.com/opensearch-project/opensearch-java/pull/1974))
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.3 to 2.8.4 ([#1882](https://github.com/opensearch-project/opensearch-java/pull/1882))
-- Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.1 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896))
+- Bump `com.github.jk1.dependency-license-report` from 3.0.1 to 3.1.4 ([#1895](https://github.com/opensearch-project/opensearch-java/pull/1895), [#1896](https://github.com/opensearch-project/opensearch-java/pull/1896), [#1952](https://github.com/opensearch-project/opensearch-java/pull/1952), [#2003](https://github.com/opensearch-project/opensearch-java/pull/2003))
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
-- Bump `gradle-wrapper` from 9.3.1 to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
+- Bump `gradle-wrapper` from 9.3.1 to 9.5.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934), [#1973](https://github.com/opensearch-project/opensearch-java/pull/1973))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
 
 ### Added
-- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a `Map<String, Double>`, where the array form yields a map with `null` values and the object form yields query name to score entries ([#XXXX](https://github.com/opensearch-project/opensearch-java/pull/XXXX))
+- Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
+- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
+- Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
+- Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
+- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
+- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
+- Add search over gRPC with match_all query support, SearchRequestConverter, SearchResponseConverter, and _source deserialization ([#2071](https://github.com/opensearch-project/opensearch-java/pull/2071))
+- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a `Map<String, Double>`, where the array form yields a map with `null` values and the object form yields query name to score entries ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
 
 ### Fixed
+- Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))
+- Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
 
 ## [Unreleased 3.x]
 ### Added
@@ -39,6 +49,24 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.8.0] - 03/26/2026
+### Added
+
+### Dependencies
+- Bump `gradle-wrapper` from 9.31. to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
+- Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
+- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.4.1 to 5.4.2 ([#1919](https://github.com/opensearch-project/opensearch-java/pull/1919))
 
 ### Changed
 
@@ -677,8 +705,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
+[3.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.3.0...v3.4.0

@@ -13,20 +13,17 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -41,14 +38,14 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
     @Nullable
     private final String modelId;
 
-    @Nonnull
-    private final Map<String, JsonData> parameters;
+    @Nullable
+    private final Parameters parameters;
 
     // ---------------------------------------------------------------------------------------------
 
     private LLM(Builder builder) {
         this.modelId = builder.modelId;
-        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
+        this.parameters = builder.parameters;
     }
 
     public static LLM of(Function<LLM.Builder, ObjectBuilder<LLM>> fn) {
@@ -66,8 +63,8 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
     /**
      * API name: {@code parameters}
      */
-    @Nonnull
-    public final Map<String, JsonData> parameters() {
+    @Nullable
+    public final Parameters parameters() {
         return this.parameters;
     }
 
@@ -87,14 +84,9 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
             generator.write(this.modelId);
         }
 
-        if (ApiTypeHelper.isDefined(this.parameters)) {
+        if (this.parameters != null) {
             generator.writeKey("parameters");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.parameters.serialize(generator, mapper);
         }
     }
 
@@ -118,18 +110,18 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
         @Nullable
         private String modelId;
         @Nullable
-        private Map<String, JsonData> parameters;
+        private Parameters parameters;
 
         public Builder() {}
 
         private Builder(LLM o) {
             this.modelId = o.modelId;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
         }
 
         private Builder(Builder o) {
             this.modelId = o.modelId;
-            this.parameters = _mapCopy(o.parameters);
+            this.parameters = o.parameters;
         }
 
         @Override
@@ -149,28 +141,19 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(Map<String, JsonData> map) {
-            this.parameters = _mapPutAll(this.parameters, map);
+        public final Builder parameters(@Nullable Parameters value) {
+            this.parameters = value;
             return this;
         }
 
         /**
          * API name: {@code parameters}
-         *
-         * <p>
-         * Adds an entry to <code>parameters</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder parameters(String key, JsonData value) {
-            this.parameters = _mapPut(this.parameters, key, value);
-            return this;
+        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
+            return parameters(fn.apply(new Parameters.Builder()).build());
         }
 
         /**
@@ -196,7 +179,7 @@ public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder
 
     protected static void setupLLMDeserializer(ObjectDeserializer<LLM.Builder> op) {
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
     }
 
     @Override

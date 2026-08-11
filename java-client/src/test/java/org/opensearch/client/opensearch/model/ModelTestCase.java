@@ -38,51 +38,45 @@ import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
-import java.util.Random;
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 
 /**
- * Base class for tests that encode/decode json
+ * Base class for tests that encode/decode json.
+ * Every test is run once per JsonpMapper implementation.
  */
+@RunWith(Parameterized.class)
 public abstract class ModelTestCase extends Assert {
 
-    // Same value for all tests in a test run
-    private static final int RAND = new Random().nextInt(100);
-
-    protected final JsonpMapper mapper;
-
-    private JsonpMapper setupMapper(int rand) {
-        // Randomly choose json-b or jackson
-        if (rand % 2 == 0) {
-            System.out.println("Using a JsonB mapper (rand = " + rand + ").");
-            return new JsonbJsonpMapper() {
-                @Override
-                public boolean ignoreUnknownFields() {
-                    return false;
-                }
-            };
-        } else {
-            System.out.println("Using a Jackson mapper (rand = " + rand + ").");
-            return new JacksonJsonpMapper() {
-                @Override
-                public boolean ignoreUnknownFields() {
-                    return false;
-                }
-            };
-        }
+    @Parameterized.Parameters(name = "{0}")
+    public static Collection<Object[]> mappers() {
+        JsonpMapper jsonb = new JsonbJsonpMapper() {
+            @Override
+            public boolean ignoreUnknownFields() {
+                return false;
+            }
+        };
+        JsonpMapper jackson = new JacksonJsonpMapper() {
+            @Override
+            public boolean ignoreUnknownFields() {
+                return false;
+            }
+        };
+        return Arrays.asList(new Object[] { "json-b", jsonb }, new Object[] { "jackson", jackson });
     }
 
-    protected ModelTestCase() {
-        this(RAND);
-    }
+    @Parameterized.Parameter(0)
+    public String mapperName;
 
-    protected ModelTestCase(int rand) {
-        mapper = setupMapper(rand);
-    }
+    @Parameterized.Parameter(1)
+    public JsonpMapper mapper;
 
     protected <T> String toJson(T value) {
         return toJson(value, mapper);

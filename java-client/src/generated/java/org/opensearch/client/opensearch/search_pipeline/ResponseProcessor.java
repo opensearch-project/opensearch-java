@@ -64,6 +64,7 @@ public class ResponseProcessor implements TaggedUnion<ResponseProcessor.Kind, Re
      * {@link ResponseProcessor} variant kinds.
      */
     public enum Kind implements JsonEnum {
+        AgenticContext("agentic_context"),
         Collapse("collapse"),
         PersonalizeSearchRanking("personalize_search_ranking"),
         RenameField("rename_field"),
@@ -110,6 +111,22 @@ public class ResponseProcessor implements TaggedUnion<ResponseProcessor.Kind, Re
 
     public static ResponseProcessor of(Function<ResponseProcessor.Builder, ObjectBuilder<ResponseProcessor>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Is this variant instance of kind {@code agentic_context}?
+     */
+    public boolean isAgenticContext() {
+        return _kind == Kind.AgenticContext;
+    }
+
+    /**
+     * Get the {@code agentic_context} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code agentic_context} kind.
+     */
+    public AgenticContextResponseProcessor agenticContext() {
+        return TaggedUnionUtils.get(this, Kind.AgenticContext);
     }
 
     /**
@@ -271,6 +288,18 @@ public class ResponseProcessor implements TaggedUnion<ResponseProcessor.Kind, Re
             this._value = o._value;
         }
 
+        public ObjectBuilder<ResponseProcessor> agenticContext(AgenticContextResponseProcessor v) {
+            this._kind = Kind.AgenticContext;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<ResponseProcessor> agenticContext(
+            Function<AgenticContextResponseProcessor.Builder, ObjectBuilder<AgenticContextResponseProcessor>> fn
+        ) {
+            return this.agenticContext(fn.apply(new AgenticContextResponseProcessor.Builder()).build());
+        }
+
         public ObjectBuilder<ResponseProcessor> collapse(CollapseResponseProcessor v) {
             this._kind = Kind.Collapse;
             this._value = v;
@@ -371,6 +400,7 @@ public class ResponseProcessor implements TaggedUnion<ResponseProcessor.Kind, Re
     }
 
     protected static void setupResponseProcessorDeserializer(ObjectDeserializer<Builder> op) {
+        op.add(Builder::agenticContext, AgenticContextResponseProcessor._DESERIALIZER, "agentic_context");
         op.add(Builder::collapse, CollapseResponseProcessor._DESERIALIZER, "collapse");
         op.add(Builder::personalizeSearchRanking, PersonalizeSearchRankingResponseProcessor._DESERIALIZER, "personalize_search_ranking");
         op.add(Builder::renameField, RenameFieldResponseProcessor._DESERIALIZER, "rename_field");

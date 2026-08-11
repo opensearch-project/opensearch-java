@@ -61,7 +61,7 @@ class JsonValueParser {
             if (token != JsonToken.FIELD_NAME) {
                 throw new JsonParsingException("Expected a property name", new JacksonJsonpLocation(parser));
             }
-            String name = parser.getCurrentName();
+            String name = parser.currentName();
             parser.nextToken();
             ob.add(name, parseValue(parser));
         }

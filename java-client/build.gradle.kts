@@ -43,7 +43,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.6.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.8.0-SNAPSHOT")
     }
 }
 
@@ -51,8 +51,8 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "3.1.1"
-    id("org.owasp.dependencycheck") version "12.2.0"
+    id("com.github.jk1.dependency-license-report") version "3.1.4"
+    id("org.owasp.dependencycheck") version "13.0.0"
 
     id("opensearch-java.spotless-conventions")
 }
@@ -143,6 +143,9 @@ tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
+val opensearchVersion = "3.5.0-SNAPSHOT"
+val opensearchDockerVersion = opensearchVersion.removeSuffix("-SNAPSHOT")
+
 tasks.test {
     systemProperty("tests.security.manager", "false")
 
@@ -168,6 +171,16 @@ val integrationTest = task<Test>("integrationTest") {
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))
+    systemProperty(
+        "tests.opensearch.testcontainers.enabled",
+        System.getProperty("tests.opensearch.testcontainers.enabled", "true")
+    )
+    systemProperty(
+        "tests.opensearch.version",
+        System.getProperty("tests.opensearch.version", opensearchDockerVersion)
+    )
+    System.getProperty("tests.rest.cluster")?.let { systemProperty("tests.rest.cluster", it) }
+    System.getProperty("tests.opensearch.image")?.let { systemProperty("tests.opensearch.image", it) }
     systemProperty("tests.awsSdk2support.domainHost",
             System.getProperty("tests.awsSdk2support.domainHost", null))
     systemProperty("tests.awsSdk2support.serviceName",
@@ -176,26 +189,26 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.5.0-SNAPSHOT"
-
 dependencies {
-    val jacksonVersion = "2.20.1"
-    val jacksonDatabindVersion = "2.20.1"
+    val jacksonVersion = "2.21.2"
+    val jacksonDatabindVersion = "2.21.2"
+    val jackson3Version = "3.1.1"
+    val jackson3DatabindVersion = "3.1.1"
 
     // Apache 2.0
-    api("commons-logging:commons-logging:1.3.6")
+    api("commons-logging:commons-logging:1.4.0")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.hamcrest:hamcrest:3.0")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.4") {
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.9.1") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.6") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.6.3") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.4.2")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.2")
+    api("org.apache.httpcomponents.core5:httpcore5:5.4.3")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.3")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -204,7 +217,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.1.7")
+    api("org.eclipse.parsson:parsson:1.1.9")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
@@ -215,8 +228,10 @@ dependencies {
     implementation("jakarta.annotation", "jakarta.annotation-api", "1.3.5")
 
     // Apache 2.0
-    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
+    implementation("tools.jackson.core", "jackson-core", jackson3Version)
+    implementation("tools.jackson.core", "jackson-databind", jackson3DatabindVersion)
+    compileOnly("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // For AwsSdk2Transport
@@ -228,6 +243,7 @@ dependencies {
     testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "aws-crt-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "apache-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "apache5-client", "[2.34,3.0)")
     testImplementation("software.amazon.awssdk", "netty-nio-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "url-connection-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "sts", "[2.21,3.0)")
@@ -244,7 +260,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.184")
+    testImplementation("io.github.classgraph:classgraph:4.8.186")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -372,6 +388,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       srcDir("src/test/java11")
+      srcDir("src/test/java21")
     }
   }
 
@@ -382,6 +399,8 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
       exclude(group = "org.hamcrest")
     }
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
   }
 
   tasks.named<JavaCompile>("compileJava21Java") {
@@ -400,7 +419,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
  }
   
   tasks.named<Test>("unitTest") {
-    testClassesDirs += java21.output.classesDirs
+    testClassesDirs += java21.output.classesDirs + sourceSets.test.get().output.classesDirs
     classpath = sourceSets["java21"].runtimeClasspath
  }
 }

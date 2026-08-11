@@ -1,2 +1,6 @@
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
+
+# gRPC transport configuration
+aux.transport.types: [transport-grpc]
+aux.transport.transport-grpc.port: '9400'

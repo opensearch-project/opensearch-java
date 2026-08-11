@@ -291,4 +291,17 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
             }
         )
     );
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FieldValue that = (FieldValue) o;
+        return _kind == that._kind && java.util.Objects.equals(_value, that._value);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(_kind, _value);
+    }
 }

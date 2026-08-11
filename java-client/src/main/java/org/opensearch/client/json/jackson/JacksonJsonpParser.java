@@ -195,7 +195,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
 
     @Override
     public JsonLocation getLocation() {
-        return new JacksonJsonpLocation(parser.getCurrentLocation());
+        return new JacksonJsonpLocation(parser.currentLocation());
     }
 
     @Override
@@ -213,7 +213,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
     public JsonObject getObject() {
         ensureTokenIsCurrent();
         if (parser.currentToken() != JsonToken.START_OBJECT) {
-            throw new IllegalStateException("Unexpected event '" + parser.currentToken() + "' at " + parser.getTokenLocation());
+            throw new IllegalStateException("Unexpected event '" + parser.currentToken() + "' at " + parser.currentTokenLocation());
         }
         if (valueParser == null) {
             valueParser = new JsonValueParser();
@@ -232,7 +232,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
             valueParser = new JsonValueParser();
         }
         if (parser.currentToken() != JsonToken.START_ARRAY) {
-            throw new IllegalStateException("Unexpected event '" + parser.currentToken() + "' at " + parser.getTokenLocation());
+            throw new IllegalStateException("Unexpected event '" + parser.currentToken() + "' at " + parser.currentTokenLocation());
         }
         try {
             return valueParser.parseArray(parser);
@@ -338,7 +338,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
                 expectEvent(JsonToken.FIELD_NAME);
                 // Do not copy current event here, each branch will take care of it
 
-                String fieldName = parser.getCurrentName();
+                String fieldName = parser.currentName();
                 if (fieldName.equals(name)) {
                     // Found
                     tb.copyCurrentEvent(parser);
@@ -377,7 +377,7 @@ public class JacksonJsonpParser implements LookAheadJsonParser {
             while (parser.nextToken() != JsonToken.END_OBJECT) {
 
                 expectEvent(JsonToken.FIELD_NAME);
-                String fieldName = parser.getCurrentName();
+                String fieldName = parser.currentName();
 
                 Variant variant = variants.get(fieldName);
                 if (variant != null) {

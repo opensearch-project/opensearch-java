@@ -24,14 +24,14 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.6.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.8.0-SNAPSHOT")
     }
 }
 
 plugins {
     application
-    id("com.github.jk1.dependency-license-report") version "3.1.1"
-    id("org.owasp.dependencycheck") version "12.2.0"
+    id("com.github.jk1.dependency-license-report") version "3.1.4"
+    id("org.owasp.dependencycheck") version "13.0.0"
     id("de.undercouch.download") version "5.7.0"
 
     id("opensearch-java.spotless-conventions")
@@ -175,7 +175,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:6.0.3"))
+    testImplementation(platform("org.junit:junit-bom:6.1.2"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }

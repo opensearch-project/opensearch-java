@@ -46,7 +46,7 @@ public class JacksonJsonpLocation implements JsonLocation {
     }
 
     JacksonJsonpLocation(com.fasterxml.jackson.core.JsonParser parser) {
-        this(parser.getTokenLocation());
+        this(parser.currentTokenLocation());
     }
 
     @Override
