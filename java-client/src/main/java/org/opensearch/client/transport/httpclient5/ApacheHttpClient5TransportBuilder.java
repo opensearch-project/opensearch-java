@@ -395,7 +395,7 @@ public class ApacheHttpClient5TransportBuilder {
                 .setTargetAuthenticationStrategy(DefaultAuthenticationStrategy.INSTANCE);
             if (automaticRetriesDisabled) {
                 // Keep behavior on par with the 4.x http client, which had no automatic retries
-                httpClientBuilder =  httpClientBuilder.disableAutomaticRetries();
+                httpClientBuilder = httpClientBuilder.disableAutomaticRetries();
             }
             if (httpClientConfigCallback != null) {
                 httpClientBuilder = httpClientConfigCallback.customizeHttpClient(httpClientBuilder);
