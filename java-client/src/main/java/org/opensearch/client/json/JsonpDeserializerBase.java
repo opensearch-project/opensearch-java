@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -368,6 +369,33 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
                 String key = parser.getString();
                 T value = itemDeserializer.deserialize(parser, mapper);
                 result.put(key, value);
+            }
+            return result;
+        }
+    }
+
+    static class StringArrayOrMapDeserializer<T> extends JsonpDeserializerBase<Map<String, T>> {
+        private final JsonpDeserializer<T> itemDeserializer;
+
+        protected StringArrayOrMapDeserializer(JsonpDeserializer<T> itemDeserializer) {
+            super(EnumSet.of(Event.START_ARRAY, Event.START_OBJECT));
+            this.itemDeserializer = itemDeserializer;
+        }
+
+        @Override
+        public Map<String, T> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            Map<String, T> result = new LinkedHashMap<>();
+            if (event == Event.START_ARRAY) {
+                while ((event = parser.next()) != Event.END_ARRAY) {
+                    JsonpUtils.expectEvent(parser, Event.VALUE_STRING, event);
+                    result.put(parser.getString(), null);
+                }
+            } else {
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                    String key = parser.getString();
+                    result.put(key, itemDeserializer.deserialize(parser, mapper));
+                }
             }
             return result;
         }

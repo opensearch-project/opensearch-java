@@ -206,7 +206,10 @@ public class Overrides {
                 .with(
                     requestBodySchema("search"),
                     so -> so.withProperties(
-                        p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))).with("aggs", po -> po.withIgnore(true))
+                        p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs")))
+                            .with("aggs", po -> po.withIgnore(true))
+                            // The server ignores include_named_queries_score in the request body and renders named query scores only when it is sent as a query parameter. See https://github.com/opensearch-project/OpenSearch/issues/22689. Remove this once the server honors the body value.
+                            .with("include_named_queries_score", po -> po.withIgnore(true))
                     )
                 )
         )

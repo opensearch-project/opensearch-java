@@ -227,6 +227,15 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.StringMapDeserializer<T>(itemDeserializer);
     }
 
+    /**
+     * Deserializer for a value that is serialized either as an array of string keys or as an object mapping those keys
+     * to values. The array form is deserialized into a map whose values are {@code null}; the object form is
+     * deserialized into a map of keys to values.
+     */
+    static <T> JsonpDeserializer<Map<String, T>> stringArrayOrMapDeserializer(JsonpDeserializer<T> itemDeserializer) {
+        return new JsonpDeserializerBase.StringArrayOrMapDeserializer<T>(itemDeserializer);
+    }
+
     static <K extends JsonEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
         JsonpDeserializer<K> keyDeserializer,
         JsonpDeserializer<V> valueDeserializer

@@ -601,7 +601,9 @@ public class SpecTransformer {
 
             var propOverrides = overrides.map(so -> so.getProperty(k));
 
-            var type = propOverrides.flatMap(PropertyOverride::getMappedType).orElseGet(() -> typeMapper.mapType(v));
+            var mappedType = propOverrides.flatMap(PropertyOverride::getMappedType);
+            var arrayOrMapUnionType = mappedType.isPresent() ? Optional.<TypeRef>empty() : typeMapper.mapStringArrayOrValueMapUnion(v);
+            var type = mappedType.or(() -> arrayOrMapUnionType).orElseGet(() -> typeMapper.mapType(v));
 
             var isRequired = propOverrides.flatMap(PropertyOverride::getRequired).orElseGet(() -> required.contains(k));
 
@@ -617,6 +619,7 @@ public class SpecTransformer {
                 .withName(propOverrides.flatMap(PropertyOverride::getName).orElse(null))
                 .withType(type)
                 .withRequired(!canBeNull)
+                .withArrayOrMapUnion(arrayOrMapUnionType.isPresent())
                 .withDescription(v.getDescription().orElse(null))
                 .whenPresent(propOverrides.flatMap(PropertyOverride::getAliases), (b, aliases) -> b.withAliases(a -> a.with(aliases)))
                 .build();

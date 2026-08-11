@@ -90,8 +90,8 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     @Nonnull
     private final Map<String, InnerHitsResult> innerHits;
 
-    @Nullable
-    private final JsonData matchedQueries;
+    @Nonnull
+    private final Map<String, Double> matchedQueries;
 
     @Nonnull
     private final Map<String, JsonData> metaFields;
@@ -140,7 +140,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         this.ignoredFieldValues = ApiTypeHelper.unmodifiable(builder.ignoredFieldValues);
         this.index = builder.index;
         this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
-        this.matchedQueries = builder.matchedQueries;
+        this.matchedQueries = ApiTypeHelper.unmodifiable(builder.matchedQueries);
         this.metaFields = ApiTypeHelper.unmodifiable(builder.metaFields);
         this.nested = builder.nested;
         this.node = builder.node;
@@ -230,8 +230,8 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
      * API name: {@code matched_queries}
      * </p>
      */
-    @Nullable
-    public final JsonData matchedQueries() {
+    @Nonnull
+    public final Map<String, Double> matchedQueries() {
         return this.matchedQueries;
     }
 
@@ -422,9 +422,22 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             generator.writeEnd();
         }
 
-        if (this.matchedQueries != null) {
+        if (ApiTypeHelper.isDefined(this.matchedQueries)) {
             generator.writeKey("matched_queries");
-            this.matchedQueries.serialize(generator, mapper);
+            if (this.matchedQueries.values().stream().allMatch(Objects::isNull)) {
+                generator.writeStartArray();
+                for (String item : this.matchedQueries.keySet()) {
+                    generator.write(item);
+                }
+                generator.writeEnd();
+            } else {
+                generator.writeStartObject();
+                for (Map.Entry<String, Double> item0 : this.matchedQueries.entrySet()) {
+                    generator.writeKey(item0.getKey());
+                    generator.write(item0.getValue());
+                }
+                generator.writeEnd();
+            }
         }
 
         if (this.nested != null) {
@@ -516,7 +529,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Map<String, InnerHitsResult> innerHits;
         @Nullable
-        private JsonData matchedQueries;
+        private Map<String, Double> matchedQueries;
         @Nullable
         private Map<String, JsonData> metaFields;
         @Nullable
@@ -553,7 +566,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             this.ignoredFieldValues = _mapCopy(o.ignoredFieldValues);
             this.index = o.index;
             this.innerHits = _mapCopy(o.innerHits);
-            this.matchedQueries = o.matchedQueries;
+            this.matchedQueries = _mapCopy(o.matchedQueries);
             this.metaFields = _mapCopy(o.metaFields);
             this.nested = o.nested;
             this.node = o.node;
@@ -577,7 +590,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
             this.ignoredFieldValues = _mapCopy(o.ignoredFieldValues);
             this.index = o.index;
             this.innerHits = _mapCopy(o.innerHits);
-            this.matchedQueries = o.matchedQueries;
+            this.matchedQueries = _mapCopy(o.matchedQueries);
             this.metaFields = _mapCopy(o.metaFields);
             this.nested = o.nested;
             this.node = o.node;
@@ -781,10 +794,31 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
          * <p>
          * API name: {@code matched_queries}
          * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>matchedQueries</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder<TDocument> matchedQueries(@Nullable JsonData value) {
-            this.matchedQueries = value;
+        public final Builder<TDocument> matchedQueries(Map<String, Double> map) {
+            this.matchedQueries = _mapPutAll(this.matchedQueries, map);
+            return this;
+        }
+
+        /**
+         * The names of queries that matched the document. When <code>include_named_queries_score</code> is false (default), returns an
+         * array of query names. When true, returns an object mapping query names to their scores.
+         * <p>
+         * API name: {@code matched_queries}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>matchedQueries</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TDocument> matchedQueries(String key, Double value) {
+            this.matchedQueries = _mapPut(this.matchedQueries, key, value);
             return this;
         }
 
@@ -996,7 +1030,11 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         );
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult._DESERIALIZER), "inner_hits");
-        op.add(Builder::matchedQueries, JsonData._DESERIALIZER, "matched_queries");
+        op.add(
+            Builder::matchedQueries,
+            JsonpDeserializer.stringArrayOrMapDeserializer(JsonpDeserializer.doubleDeserializer()),
+            "matched_queries"
+        );
         op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
         op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");

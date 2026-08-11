@@ -1,3 +1,3 @@
 {{#fieldsToDeserialize}}
-    op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
+    op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#arrayOrMapUnion}}{{TYPES.Client.Json.JsonpDeserializer}}.stringArrayOrMapDeserializer({{#type.mapValueType}}{{>Type/deserializer}}{{/type.mapValueType}}){{/arrayOrMapUnion}}{{^arrayOrMapUnion}}{{#type}}{{>Type/deserializer}}{{/type}}{{/arrayOrMapUnion}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
 {{/fieldsToDeserialize}}

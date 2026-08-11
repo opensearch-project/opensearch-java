@@ -16,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `gradle-wrapper` from 9.3.1 to 9.4.1 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934))
 
 ### Added
+- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a `Map<String, Double>`, where the array form yields a map with `null` values and the object form yields query name to score entries ([#XXXX](https://github.com/opensearch-project/opensearch-java/pull/XXXX))
 
 ### Fixed
 

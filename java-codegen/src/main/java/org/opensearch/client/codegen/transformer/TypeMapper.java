@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -185,6 +186,64 @@ public class TypeMapper {
         }
 
         return Types.Client.Json.JsonData;
+    }
+
+    /**
+     * Detects the pattern where a value is serialized either as an array of string keys or as an object mapping those keys to values (a
+     * {@code oneOf} of an array of strings and an object with additional properties). Such a value is mapped to a {@code Map<String, V>},
+     * where the array form yields a map with {@code null} values. Returns empty when the schema does not match this pattern.
+     */
+    public Optional<TypeRef> mapStringArrayOrValueMapUnion(OpenApiSchema schema) {
+        var oneOf = schema.getOneOf().orElse(null);
+        if (oneOf == null) {
+            return Optional.empty();
+        }
+
+        var branches = oneOf.stream().filter(s -> !s.isNull()).collect(Collectors.toList());
+        if (branches.size() != 2) {
+            return Optional.empty();
+        }
+
+        OpenApiSchema array = null;
+        OpenApiSchema object = null;
+        for (var branch : branches) {
+            if (branch.isArray()) {
+                array = branch;
+            } else if (branch.getAdditionalProperties().isPresent()) {
+                object = branch;
+            }
+        }
+        if (array == null || object == null) {
+            return Optional.empty();
+        }
+
+        // The map branch must be a pure map (additional properties only), not a struct that also defines fixed properties.
+        if (!object.getProperties().map(Map::isEmpty).orElse(true)) {
+            return Optional.empty();
+        }
+
+        // The array branch must be a list of strings, i.e. the keys of the map.
+        var items = array.getItems().orElse(null);
+        if (items == null || items.getSingleType().orElse(null) != OpenApiSchemaType.String) {
+            return Optional.empty();
+        }
+
+        // The map values must be scalars, the range for which the "key list or key-to-value map" representation is meaningful.
+        var valueSchema = object.getAdditionalProperties().orElseThrow();
+        var resolvedValueSchema = valueSchema.has$ref() ? valueSchema.resolve() : valueSchema;
+        if (!isScalarType(resolvedValueSchema.getSingleType().orElse(null))) {
+            return Optional.empty();
+        }
+
+        var valueType = mapType(valueSchema, true);
+        return Optional.of(Types.Java.Util.Map(Types.Java.Lang.String, valueType));
+    }
+
+    private static boolean isScalarType(@Nullable OpenApiSchemaType type) {
+        return type == OpenApiSchemaType.String
+            || type == OpenApiSchemaType.Number
+            || type == OpenApiSchemaType.Integer
+            || type == OpenApiSchemaType.Boolean;
     }
 
     private Type mapAnyOf(List<OpenApiSchema> anyOf) {

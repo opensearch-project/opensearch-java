@@ -3,7 +3,20 @@
         if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
     {{/required}}
     generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
-    {{#type.serializer}}this.{{name}}{{/type.serializer}}
+    {{#arrayOrMapUnion}}
+        if (this.{{name}}.values().stream().allMatch({{TYPES.Java.Util.Objects}}::isNull)) {
+            generator.writeStartArray();
+            for ({{TYPES.Java.Lang.String}} item : this.{{name}}.keySet()) {
+                generator.write(item);
+            }
+            generator.writeEnd();
+        } else {
+            {{#type.serializer}}this.{{name}}{{/type.serializer}}
+        }
+    {{/arrayOrMapUnion}}
+    {{^arrayOrMapUnion}}
+        {{#type.serializer}}this.{{name}}{{/type.serializer}}
+    {{/arrayOrMapUnion}}
     {{^required}}
         }
     {{/required}}
