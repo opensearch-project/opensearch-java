@@ -91,7 +91,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     private final Map<String, InnerHitsResult> innerHits;
 
     @Nullable
-    private final JsonData matchedQueries;
+    private final MatchedQueries matchedQueries;
 
     @Nonnull
     private final Map<String, JsonData> metaFields;
@@ -231,7 +231,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
      * </p>
      */
     @Nullable
-    public final JsonData matchedQueries() {
+    public final MatchedQueries matchedQueries() {
         return this.matchedQueries;
     }
 
@@ -516,7 +516,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Map<String, InnerHitsResult> innerHits;
         @Nullable
-        private JsonData matchedQueries;
+        private MatchedQueries matchedQueries;
         @Nullable
         private Map<String, JsonData> metaFields;
         @Nullable
@@ -783,9 +783,21 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder<TDocument> matchedQueries(@Nullable JsonData value) {
+        public final Builder<TDocument> matchedQueries(@Nullable MatchedQueries value) {
             this.matchedQueries = value;
             return this;
+        }
+
+        /**
+         * The names of queries that matched the document. When <code>include_named_queries_score</code> is false (default), returns an
+         * array of query names. When true, returns an object mapping query names to their scores.
+         * <p>
+         * API name: {@code matched_queries}
+         * </p>
+         */
+        @Nonnull
+        public final Builder<TDocument> matchedQueries(Function<MatchedQueries.Builder, ObjectBuilder<MatchedQueries>> fn) {
+            return matchedQueries(fn.apply(new MatchedQueries.Builder()).build());
         }
 
         /**
@@ -996,7 +1008,7 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         );
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult._DESERIALIZER), "inner_hits");
-        op.add(Builder::matchedQueries, JsonData._DESERIALIZER, "matched_queries");
+        op.add(Builder::matchedQueries, MatchedQueries._DESERIALIZER, "matched_queries");
         op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
         op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
