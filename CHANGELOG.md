@@ -25,7 +25,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
 - Add search over gRPC with match_all query support, SearchRequestConverter, SearchResponseConverter, and _source deserialization ([#2071](https://github.com/opensearch-project/opensearch-java/pull/2071))
 - Add `setAutomaticRetriesDisabled` to `ApacheHttpClient5TransportBuilder` to allow enabling automatic retries ([#2086](https://github.com/opensearch-project/opensearch-java/pull/2086))
-- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a `Map<String, Double>`, where the array form yields a map with `null` values and the object form yields query name to score entries ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
+- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a new `MatchedQueries` tagged union, whose `names` variant carries a `List<String>` and whose `scores` variant carries a `Map<String, Double>`, and by sending `include_named_queries_score` as a query parameter ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
 
 ### Fixed
 - Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))

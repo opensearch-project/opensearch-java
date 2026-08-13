@@ -31,7 +31,6 @@ public class Field {
     @Nonnull
     private final TypeRef type;
     private final boolean required;
-    private final boolean arrayOrMapUnion;
     @Nullable
     private final String description;
     @Nullable
@@ -53,7 +52,6 @@ public class Field {
         }
         this.type = Objects.requireNonNull(builder.type, "type must not be null");
         this.required = builder.required;
-        this.arrayOrMapUnion = builder.arrayOrMapUnion;
         this.description = builder.description;
         this.deprecation = builder.deprecation;
         this.aliases = builder.aliases;
@@ -76,10 +74,6 @@ public class Field {
 
     public boolean isRequired() {
         return required;
-    }
-
-    public boolean isArrayOrMapUnion() {
-        return arrayOrMapUnion;
     }
 
     @Nullable
@@ -117,7 +111,6 @@ public class Field {
         private boolean verbatimName;
         private TypeRef type;
         private boolean required;
-        private boolean arrayOrMapUnion;
         private String description;
         private Deprecation deprecation;
         private Set<String> aliases;
@@ -129,7 +122,6 @@ public class Field {
             this.name = f.name;
             this.type = f.type;
             this.required = f.required;
-            this.arrayOrMapUnion = f.arrayOrMapUnion;
             this.description = f.description;
             this.deprecation = f.deprecation;
             this.aliases = f.aliases != null ? new HashSet<>(f.aliases) : null;
@@ -170,12 +162,6 @@ public class Field {
         @Nonnull
         public Builder withRequired(boolean required) {
             this.required = required;
-            return this;
-        }
-
-        @Nonnull
-        public Builder withArrayOrMapUnion(boolean arrayOrMapUnion) {
-            this.arrayOrMapUnion = arrayOrMapUnion;
             return this;
         }
 
