@@ -1000,10 +1000,6 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
             this.highlight.serialize(generator, mapper);
 
         }
-        if (this.includeNamedQueriesScore != null) {
-            generator.writeKey("include_named_queries_score");
-            generator.write(this.includeNamedQueriesScore);
-        }
         if (ApiTypeHelper.isDefined(this.indicesBoost)) {
             generator.writeKey("indices_boost");
             generator.writeStartArray();
@@ -2501,7 +2497,6 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
-        op.add(Builder::includeNamedQueriesScore, JsonpDeserializer.booleanDeserializer(), "include_named_queries_score");
         op.add(
             Builder::indicesBoost,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
@@ -2589,6 +2584,9 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
             }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+            }
+            if (request.includeNamedQueriesScore != null) {
+                params.put("include_named_queries_score", String.valueOf(request.includeNamedQueriesScore));
             }
             if (request.allowNoIndices != null) {
                 params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
