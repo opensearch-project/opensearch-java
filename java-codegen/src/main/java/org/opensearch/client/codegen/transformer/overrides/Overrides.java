@@ -169,6 +169,12 @@ public class Overrides {
                 .with(schema("_core.search", "Suggester"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "TermSuggestOption"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(
+                    schema("_core.search", "Hit"),
+                    so -> so.withProperties(
+                        p -> p.with("matched_queries", po -> po.withMappedType(Types.Client.OpenSearch.Core.Search.MatchedQueries))
+                    )
+                )
+                .with(
                     schema("_core.search", "HitsMetadata"),
                     so -> so.withProperties(
                         p -> p.with(

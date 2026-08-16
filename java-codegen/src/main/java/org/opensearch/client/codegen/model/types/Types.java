@@ -230,6 +230,16 @@ public final class Types {
                 public static final String PACKAGE = OpenSearch.PACKAGE + ".cat";
                 public static final Type CatRequestBase = type(PACKAGE, "CatRequestBase");
             }
+
+            public static final class Core {
+                public static final String PACKAGE = OpenSearch.PACKAGE + ".core";
+
+                public static final class Search {
+                    public static final String PACKAGE = Core.PACKAGE + ".search";
+
+                    public static final Type MatchedQueries = type(PACKAGE, "MatchedQueries");
+                }
+            }
         }
 
         public static final class Transport {
