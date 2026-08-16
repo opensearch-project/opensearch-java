@@ -9,7 +9,12 @@
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -37,7 +42,7 @@ import org.opensearch.client.util.TaggedUnionUtils;
  * </p>
  */
 @JsonpDeserializable
-public class MatchedQueries implements TaggedUnion<MatchedQueries.Kind, Object>, PlainJsonSerializable {
+public class MatchedQueries implements TaggedUnion<MatchedQueries.Kind, Object>, PlainJsonSerializable, List<String> {
 
     /**
      * {@link MatchedQueries} variant kinds.
@@ -203,5 +208,124 @@ public class MatchedQueries implements TaggedUnion<MatchedQueries.Kind, Object>,
         if (o == null || this.getClass() != o.getClass()) return false;
         MatchedQueries other = (MatchedQueries) o;
         return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
+
+    @Override
+    public int size() {
+        return isNames() ? names().size() : scores().size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return isNames() ? names().isEmpty() : scores().isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return isNames() ? names().contains(o) : scores().containsKey(o);
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return isNames() ? names().iterator() : scores().keySet().iterator();
+    }
+
+    @Override
+    public Object[] toArray() {
+        return isNames() ? names().toArray() : scores().keySet().toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return isNames() ? names().toArray(a) : scores().keySet().toArray(a);
+    }
+
+    @Override
+    public boolean add(String e) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return isNames() ? names().containsAll(c) : scores().keySet().containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends String> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends String> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String get(int index) {
+        return isNames() ? names().get(index) : new ArrayList<>(scores().keySet()).get(index);
+    }
+
+    @Override
+    public String set(int index, String element) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void add(int index, String element) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String remove(int index) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return isNames() ? names().indexOf(o) : new ArrayList<>(scores().keySet()).indexOf(o);
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return isNames() ? names().lastIndexOf(o) : new ArrayList<>(scores().keySet()).lastIndexOf(o);
+    }
+
+    @Override
+    public ListIterator<String> listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public ListIterator<String> listIterator(int index) {
+        return isNames()
+            ? names().listIterator(index)
+            : Collections.unmodifiableList(new ArrayList<>(scores().keySet())).listIterator(index);
+    }
+
+    @Override
+    public List<String> subList(int fromIndex, int toIndex) {
+        return isNames()
+            ? names().subList(fromIndex, toIndex)
+            : Collections.unmodifiableList(new ArrayList<>(scores().keySet()).subList(fromIndex, toIndex));
     }
 }
