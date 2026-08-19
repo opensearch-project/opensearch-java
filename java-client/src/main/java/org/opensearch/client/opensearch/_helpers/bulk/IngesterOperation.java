@@ -32,8 +32,8 @@
 
 package org.opensearch.client.opensearch._helpers.bulk;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
