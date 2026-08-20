@@ -125,7 +125,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private BackoffPolicy backoffPolicy;
 
     // Current state
-    private List<RetryableBulkOperation<Context>> operations = new ArrayList<>();
+    private List<IngesterOperation<Context>> operations = new ArrayList<>();
     private long currentSize;
     private int requestsInFlightCount;
     private volatile boolean isClosed = false;
@@ -237,7 +237,7 @@ public class BulkIngester<Context> implements AutoCloseable {
      * The number of operations that have been buffered, waiting to be sent.
      */
     public int pendingOperations() {
-        List<RetryableBulkOperation<Context>> operations = this.operations;
+        List<IngesterOperation<Context>> operations = this.operations;
         return operations == null ? 0 : operations.size();
     }
 
@@ -353,23 +353,24 @@ public class BulkIngester<Context> implements AutoCloseable {
      * automatic flush triggers (maxOperations, maxSize, or flushInterval).
      */
     public void flush() {
-        List<RetryableBulkOperation<Context>> sentRequests = new ArrayList<>();
+        List<IngesterOperation<Context>> sentRequests = new ArrayList<>();
         RequestExecution<Context> exec = sendRequestCondition.whenReadyIf(() -> {
             // May happen on manual and periodic flushes
-            return !operations.isEmpty() && operations.stream().anyMatch(RetryableBulkOperation::isSendable);
+            return !operations.isEmpty() && operations.stream().anyMatch(IngesterOperation::isSendable);
         }, () -> {
             // Selecting operations that can be sent immediately,
             // Dividing actual operations from contexts
             List<BulkOperation> immediateOps = new ArrayList<>();
             List<Context> contexts = new ArrayList<>();
 
-            for (Iterator<RetryableBulkOperation<Context>> it = operations.iterator(); it.hasNext();) {
-                RetryableBulkOperation<Context> op = it.next();
+            for (Iterator<IngesterOperation<Context>> it = operations.iterator(); it.hasNext();) {
+                IngesterOperation<Context> op = it.next();
                 if (op.isSendable()) {
                     immediateOps.add(op.operation());
                     contexts.add(op.context());
 
                     sentRequests.add(op);
+                    currentSize -= op.size();
                     it.remove();
                 }
             }
@@ -377,8 +378,6 @@ public class BulkIngester<Context> implements AutoCloseable {
             // Build the request
             BulkRequest request = newRequest().operations(immediateOps).build();
 
-            // Prepare for next round
-            currentSize = operations.size();
             addCondition.signalIfReady();
 
             long id = sendRequestCondition.invocations();
@@ -423,7 +422,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                         // Partial success, retrying failed requests if policy allows it
                         // Keeping list of retryable requests/responses, to exclude them for calling
                         // listener later
-                        List<RetryableBulkOperation<Context>> retryableReq = new ArrayList<>();
+                        List<IngesterOperation<Context>> retryableReq = new ArrayList<>();
                         List<RetryableBulkOperation<Context>> refires = new ArrayList<>();
                         List<BulkResponseItem> retryableResp = new ArrayList<>();
 
@@ -442,7 +441,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                                 // Creating partial BulkRequest
                                 List<BulkOperation> partialOps = new ArrayList<>();
                                 List<Context> partialCtx = new ArrayList<>();
-                                for (RetryableBulkOperation<Context> op : sentRequests) {
+                                for (IngesterOperation<Context> op : sentRequests) {
                                     partialOps.add(op.operation());
                                     partialCtx.add(op.context());
                                 }
@@ -489,14 +488,13 @@ public class BulkIngester<Context> implements AutoCloseable {
     private void selectingRetries(
         int index,
         BulkResponseItem bulkItemResponse,
-        List<RetryableBulkOperation<Context>> sentRequests,
+        List<IngesterOperation<Context>> sentRequests,
         List<BulkResponseItem> retryableResp,
-        List<RetryableBulkOperation<Context>> retryableReq,
+        List<IngesterOperation<Context>> retryableReq,
         List<RetryableBulkOperation<Context>> refires
     ) {
-
         // Getting original failed, requests and keeping successful ones to send to the listener
-        RetryableBulkOperation<Context> original = sentRequests.get(index);
+        IngesterOperation<Context> original = sentRequests.get(index);
         if (original.canRetry()) {
             retryableResp.add(bulkItemResponse);
             Iterator<Long> retryTimes = Optional.ofNullable(original.retries()).orElse(backoffPolicy.iterator());
@@ -592,10 +590,10 @@ public class BulkIngester<Context> implements AutoCloseable {
     }
 
     private void innerAdd(RetryableBulkOperation<Context> repeatableOp) {
-        IngesterOperation ingestOp = IngesterOperation.of(repeatableOp, client._transport().jsonpMapper());
+        IngesterOperation<Context> ingestOp = IngesterOperation.of(repeatableOp, client._transport().jsonpMapper());
 
         addCondition.whenReady(() -> {
-            operations.add(ingestOp.repeatableOperation());
+            operations.add(ingestOp);
             currentSize += ingestOp.size();
 
             if (!canAddOperation()) {
