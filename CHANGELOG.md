@@ -27,7 +27,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
-## [Unreleased 2.x]
+### Changed
+- Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
+
+## [Unreleased 3.x]
 ### Added
 
 ### Dependencies
