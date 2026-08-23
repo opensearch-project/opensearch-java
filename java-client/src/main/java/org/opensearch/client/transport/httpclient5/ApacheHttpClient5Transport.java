@@ -689,7 +689,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return rawEndpoint.responseDeserializer(
                 requestLine.getUri(),
                 requestLine.getMethod(),
-                requestLine.getProtocolVersion().format(),
+                statusLine.getProtocolVersion().format(),
                 statusLine.getStatusCode(),
                 statusLine.getReasonPhrase(),
                 Arrays.stream(clientResp.getHeaders())
