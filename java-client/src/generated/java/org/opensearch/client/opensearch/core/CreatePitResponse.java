@@ -37,11 +37,9 @@
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -49,6 +47,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -60,21 +59,20 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuilder<CreatePitResponse.Builder, CreatePitResponse> {
 
-    @Nullable
-    private final Long creationTime;
+    private final long creationTime;
 
-    @Nullable
+    @Nonnull
     private final String pitId;
 
-    @Nullable
+    @Nonnull
     private final ShardStatistics shards;
 
     // ---------------------------------------------------------------------------------------------
 
     private CreatePitResponse(Builder builder) {
-        this.creationTime = builder.creationTime;
-        this.pitId = builder.pitId;
-        this.shards = builder.shards;
+        this.creationTime = ApiTypeHelper.requireNonNull(builder.creationTime, this, "creationTime");
+        this.pitId = ApiTypeHelper.requireNonNull(builder.pitId, this, "pitId");
+        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
     }
 
     public static CreatePitResponse of(Function<CreatePitResponse.Builder, ObjectBuilder<CreatePitResponse>> fn) {
@@ -82,25 +80,24 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * API name: {@code creation_time}
+     * Required - API name: {@code creation_time}
      */
-    @Nullable
-    public final Long creationTime() {
+    public final long creationTime() {
         return this.creationTime;
     }
 
     /**
-     * API name: {@code pit_id}
+     * Required - API name: {@code pit_id}
      */
-    @Nullable
+    @Nonnull
     public final String pitId() {
         return this.pitId;
     }
 
     /**
-     * API name: {@code _shards}
+     * Required - API name: {@code _shards}
      */
-    @Nullable
+    @Nonnull
     public final ShardStatistics shards() {
         return this.shards;
     }
@@ -116,20 +113,14 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.creationTime != null) {
-            generator.writeKey("creation_time");
-            generator.write(this.creationTime);
-        }
+        generator.writeKey("creation_time");
+        generator.write(this.creationTime);
 
-        if (this.pitId != null) {
-            generator.writeKey("pit_id");
-            generator.write(this.pitId);
-        }
+        generator.writeKey("pit_id");
+        generator.write(this.pitId);
 
-        if (this.shards != null) {
-            generator.writeKey("_shards");
-            this.shards.serialize(generator, mapper);
-        }
+        generator.writeKey("_shards");
+        this.shards.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -149,11 +140,8 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
      * Builder for {@link CreatePitResponse}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreatePitResponse> {
-        @Nullable
         private Long creationTime;
-        @Nullable
         private String pitId;
-        @Nullable
         private ShardStatistics shards;
 
         public Builder() {}
@@ -177,34 +165,34 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * API name: {@code creation_time}
+         * Required - API name: {@code creation_time}
          */
         @Nonnull
-        public final Builder creationTime(@Nullable Long value) {
+        public final Builder creationTime(long value) {
             this.creationTime = value;
             return this;
         }
 
         /**
-         * API name: {@code pit_id}
+         * Required - API name: {@code pit_id}
          */
         @Nonnull
-        public final Builder pitId(@Nullable String value) {
+        public final Builder pitId(String value) {
             this.pitId = value;
             return this;
         }
 
         /**
-         * API name: {@code _shards}
+         * Required - API name: {@code _shards}
          */
         @Nonnull
-        public final Builder shards(@Nullable ShardStatistics value) {
+        public final Builder shards(ShardStatistics value) {
             this.shards = value;
             return this;
         }
 
         /**
-         * API name: {@code _shards}
+         * Required - API name: {@code _shards}
          */
         @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
@@ -244,9 +232,9 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.creationTime);
-        result = 31 * result + Objects.hashCode(this.pitId);
-        result = 31 * result + Objects.hashCode(this.shards);
+        result = 31 * result + Long.hashCode(this.creationTime);
+        result = 31 * result + this.pitId.hashCode();
+        result = 31 * result + this.shards.hashCode();
         return result;
     }
 
@@ -255,8 +243,6 @@ public class CreatePitResponse implements PlainJsonSerializable, ToCopyableBuild
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         CreatePitResponse other = (CreatePitResponse) o;
-        return Objects.equals(this.creationTime, other.creationTime)
-            && Objects.equals(this.pitId, other.pitId)
-            && Objects.equals(this.shards, other.shards);
+        return this.creationTime == other.creationTime && this.pitId.equals(other.pitId) && this.shards.equals(other.shards);
     }
 }

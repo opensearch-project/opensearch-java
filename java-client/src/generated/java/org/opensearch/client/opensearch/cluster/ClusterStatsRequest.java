@@ -110,7 +110,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
     /**
      * A comma-separated list of
-     * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric groups</a>,
+     * <a href="https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric groups</a>,
      * for example, <code>docs,store</code>.
      * <p>
      * API name: {@code index_metric}
@@ -134,7 +134,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
     /**
      * A comma-separated list of node IDs used to filter results. Supports
-     * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
+     * <a href="https://docs.opensearch.org/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
      * <p>
      * API name: {@code node_id}
      * </p>
@@ -233,7 +233,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
         /**
          * A comma-separated list of
-         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
+         * <a href="https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
          * groups</a>, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
@@ -251,7 +251,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
         /**
          * A comma-separated list of
-         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
+         * <a href="https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
          * groups</a>, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
@@ -301,7 +301,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
         /**
          * A comma-separated list of node IDs used to filter results. Supports
-         * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
+         * <a href="https://docs.opensearch.org/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -318,7 +318,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
 
         /**
          * A comma-separated list of node IDs used to filter results. Supports
-         * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
+         * <a href="https://docs.opensearch.org/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
          * <p>
          * API name: {@code node_id}
          * </p>

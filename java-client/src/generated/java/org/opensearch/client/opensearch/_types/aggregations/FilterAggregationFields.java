@@ -81,6 +81,7 @@ import org.opensearch.client.opensearch._types.query_dsl.MoreLikeThisQuery;
 import org.opensearch.client.opensearch._types.query_dsl.MultiMatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.NestedQuery;
 import org.opensearch.client.opensearch._types.query_dsl.NeuralQuery;
+import org.opensearch.client.opensearch._types.query_dsl.NeuralSparseQuery;
 import org.opensearch.client.opensearch._types.query_dsl.ParentIdQuery;
 import org.opensearch.client.opensearch._types.query_dsl.PercolateQuery;
 import org.opensearch.client.opensearch._types.query_dsl.PrefixQuery;
@@ -100,6 +101,7 @@ import org.opensearch.client.opensearch._types.query_dsl.SpanNotQuery;
 import org.opensearch.client.opensearch._types.query_dsl.SpanOrQuery;
 import org.opensearch.client.opensearch._types.query_dsl.SpanTermQuery;
 import org.opensearch.client.opensearch._types.query_dsl.SpanWithinQuery;
+import org.opensearch.client.opensearch._types.query_dsl.StoredLtrQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermsSetQuery;
@@ -219,6 +221,9 @@ public class FilterAggregationFields
     private final NeuralQuery neural;
 
     @Nullable
+    private final NeuralSparseQuery neuralSparse;
+
+    @Nullable
     private final ParentIdQuery parentId;
 
     @Nullable
@@ -247,6 +252,9 @@ public class FilterAggregationFields
 
     @Nullable
     private final SimpleQueryStringQuery simpleQueryString;
+
+    @Nullable
+    private final StoredLtrQuery sltr;
 
     @Nullable
     private final SpanContainingQuery spanContaining;
@@ -331,6 +339,7 @@ public class FilterAggregationFields
         this.multiMatch = builder.multiMatch;
         this.nested = builder.nested;
         this.neural = builder.neural;
+        this.neuralSparse = builder.neuralSparse;
         this.parentId = builder.parentId;
         this.percolate = builder.percolate;
         this.prefix = builder.prefix;
@@ -341,6 +350,7 @@ public class FilterAggregationFields
         this.script = builder.script;
         this.scriptScore = builder.scriptScore;
         this.simpleQueryString = builder.simpleQueryString;
+        this.sltr = builder.sltr;
         this.spanContaining = builder.spanContaining;
         this.spanFirst = builder.spanFirst;
         this.spanMulti = builder.spanMulti;
@@ -640,6 +650,14 @@ public class FilterAggregationFields
     }
 
     /**
+     * API name: {@code neural_sparse}
+     */
+    @Nullable
+    public final NeuralSparseQuery neuralSparse() {
+        return this.neuralSparse;
+    }
+
+    /**
      * API name: {@code parent_id}
      */
     @Nullable
@@ -726,6 +744,14 @@ public class FilterAggregationFields
     @Nullable
     public final SimpleQueryStringQuery simpleQueryString() {
         return this.simpleQueryString;
+    }
+
+    /**
+     * API name: {@code sltr}
+     */
+    @Nullable
+    public final StoredLtrQuery sltr() {
+        return this.sltr;
     }
 
     /**
@@ -1047,6 +1073,11 @@ public class FilterAggregationFields
             this.neural.serialize(generator, mapper);
         }
 
+        if (this.neuralSparse != null) {
+            generator.writeKey("neural_sparse");
+            this.neuralSparse.serialize(generator, mapper);
+        }
+
         if (this.parentId != null) {
             generator.writeKey("parent_id");
             this.parentId.serialize(generator, mapper);
@@ -1095,6 +1126,11 @@ public class FilterAggregationFields
         if (this.simpleQueryString != null) {
             generator.writeKey("simple_query_string");
             this.simpleQueryString.serialize(generator, mapper);
+        }
+
+        if (this.sltr != null) {
+            generator.writeKey("sltr");
+            this.sltr.serialize(generator, mapper);
         }
 
         if (this.spanContaining != null) {
@@ -1265,6 +1301,8 @@ public class FilterAggregationFields
         @Nullable
         private NeuralQuery neural;
         @Nullable
+        private NeuralSparseQuery neuralSparse;
+        @Nullable
         private ParentIdQuery parentId;
         @Nullable
         private PercolateQuery percolate;
@@ -1284,6 +1322,8 @@ public class FilterAggregationFields
         private ScriptScoreQuery scriptScore;
         @Nullable
         private SimpleQueryStringQuery simpleQueryString;
+        @Nullable
+        private StoredLtrQuery sltr;
         @Nullable
         private SpanContainingQuery spanContaining;
         @Nullable
@@ -1352,6 +1392,7 @@ public class FilterAggregationFields
             this.multiMatch = o.multiMatch;
             this.nested = o.nested;
             this.neural = o.neural;
+            this.neuralSparse = o.neuralSparse;
             this.parentId = o.parentId;
             this.percolate = o.percolate;
             this.prefix = o.prefix;
@@ -1362,6 +1403,7 @@ public class FilterAggregationFields
             this.script = o.script;
             this.scriptScore = o.scriptScore;
             this.simpleQueryString = o.simpleQueryString;
+            this.sltr = o.sltr;
             this.spanContaining = o.spanContaining;
             this.spanFirst = o.spanFirst;
             this.spanMulti = o.spanMulti;
@@ -1413,6 +1455,7 @@ public class FilterAggregationFields
             this.multiMatch = o.multiMatch;
             this.nested = o.nested;
             this.neural = o.neural;
+            this.neuralSparse = o.neuralSparse;
             this.parentId = o.parentId;
             this.percolate = o.percolate;
             this.prefix = o.prefix;
@@ -1423,6 +1466,7 @@ public class FilterAggregationFields
             this.script = o.script;
             this.scriptScore = o.scriptScore;
             this.simpleQueryString = o.simpleQueryString;
+            this.sltr = o.sltr;
             this.spanContaining = o.spanContaining;
             this.spanFirst = o.spanFirst;
             this.spanMulti = o.spanMulti;
@@ -2032,6 +2076,23 @@ public class FilterAggregationFields
         }
 
         /**
+         * API name: {@code neural_sparse}
+         */
+        @Nonnull
+        public final Builder neuralSparse(@Nullable NeuralSparseQuery value) {
+            this.neuralSparse = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code neural_sparse}
+         */
+        @Nonnull
+        public final Builder neuralSparse(Function<NeuralSparseQuery.Builder, ObjectBuilder<NeuralSparseQuery>> fn) {
+            return neuralSparse(fn.apply(new NeuralSparseQuery.Builder()).build());
+        }
+
+        /**
          * API name: {@code parent_id}
          */
         @Nonnull
@@ -2217,6 +2278,23 @@ public class FilterAggregationFields
         @Nonnull
         public final Builder simpleQueryString(Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
             return simpleQueryString(fn.apply(new SimpleQueryStringQuery.Builder()).build());
+        }
+
+        /**
+         * API name: {@code sltr}
+         */
+        @Nonnull
+        public final Builder sltr(@Nullable StoredLtrQuery value) {
+            this.sltr = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code sltr}
+         */
+        @Nonnull
+        public final Builder sltr(Function<StoredLtrQuery.Builder, ObjectBuilder<StoredLtrQuery>> fn) {
+            return sltr(fn.apply(new StoredLtrQuery.Builder()).build());
         }
 
         /**
@@ -2599,6 +2677,7 @@ public class FilterAggregationFields
         op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
         op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
         op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
+        op.add(Builder::neuralSparse, NeuralSparseQuery._DESERIALIZER, "neural_sparse");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
         op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
@@ -2609,6 +2688,7 @@ public class FilterAggregationFields
         op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
         op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
         op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
+        op.add(Builder::sltr, StoredLtrQuery._DESERIALIZER, "sltr");
         op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
         op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
         op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
@@ -2662,6 +2742,7 @@ public class FilterAggregationFields
         result = 31 * result + Objects.hashCode(this.multiMatch);
         result = 31 * result + Objects.hashCode(this.nested);
         result = 31 * result + Objects.hashCode(this.neural);
+        result = 31 * result + Objects.hashCode(this.neuralSparse);
         result = 31 * result + Objects.hashCode(this.parentId);
         result = 31 * result + Objects.hashCode(this.percolate);
         result = 31 * result + Objects.hashCode(this.prefix);
@@ -2672,6 +2753,7 @@ public class FilterAggregationFields
         result = 31 * result + Objects.hashCode(this.script);
         result = 31 * result + Objects.hashCode(this.scriptScore);
         result = 31 * result + Objects.hashCode(this.simpleQueryString);
+        result = 31 * result + Objects.hashCode(this.sltr);
         result = 31 * result + Objects.hashCode(this.spanContaining);
         result = 31 * result + Objects.hashCode(this.spanFirst);
         result = 31 * result + Objects.hashCode(this.spanMulti);
@@ -2728,6 +2810,7 @@ public class FilterAggregationFields
             && Objects.equals(this.multiMatch, other.multiMatch)
             && Objects.equals(this.nested, other.nested)
             && Objects.equals(this.neural, other.neural)
+            && Objects.equals(this.neuralSparse, other.neuralSparse)
             && Objects.equals(this.parentId, other.parentId)
             && Objects.equals(this.percolate, other.percolate)
             && Objects.equals(this.prefix, other.prefix)
@@ -2738,6 +2821,7 @@ public class FilterAggregationFields
             && Objects.equals(this.script, other.script)
             && Objects.equals(this.scriptScore, other.scriptScore)
             && Objects.equals(this.simpleQueryString, other.simpleQueryString)
+            && Objects.equals(this.sltr, other.sltr)
             && Objects.equals(this.spanContaining, other.spanContaining)
             && Objects.equals(this.spanFirst, other.spanFirst)
             && Objects.equals(this.spanMulti, other.spanMulti)

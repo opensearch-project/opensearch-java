@@ -49,19 +49,17 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.NodeStatistics;
+import org.opensearch.client.opensearch.nodes.NodesResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ltr.cache_stats.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuilder<CacheStatsResponse.Builder, CacheStatsResponse> {
+public class CacheStatsResponse extends NodesResponseBase implements ToCopyableBuilder<CacheStatsResponse.Builder, CacheStatsResponse> {
 
     @Nullable
     private final CacheAllStats all;
@@ -69,8 +67,8 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
     @Nullable
     private final String clusterName;
 
-    @Nullable
-    private final NodeStatistics nodes;
+    @Nonnull
+    private final Map<String, NodeDetails> nodes;
 
     @Nonnull
     private final Map<String, JsonData> stores;
@@ -78,9 +76,10 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
     // ---------------------------------------------------------------------------------------------
 
     private CacheStatsResponse(Builder builder) {
+        super(builder);
         this.all = builder.all;
         this.clusterName = builder.clusterName;
-        this.nodes = builder.nodes;
+        this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
         this.stores = ApiTypeHelper.unmodifiable(builder.stores);
     }
 
@@ -105,10 +104,13 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * API name: {@code _nodes}
+     * Cache statistics per node.
+     * <p>
+     * API name: {@code nodes}
+     * </p>
      */
-    @Nullable
-    public final NodeStatistics nodes() {
+    @Nonnull
+    public final Map<String, NodeDetails> nodes() {
         return this.nodes;
     }
 
@@ -123,17 +125,8 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
         return this.stores;
     }
 
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         if (this.all != null) {
             generator.writeKey("all");
             this.all.serialize(generator, mapper);
@@ -144,9 +137,14 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
             generator.write(this.clusterName);
         }
 
-        if (this.nodes != null) {
-            generator.writeKey("_nodes");
-            this.nodes.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            generator.writeKey("nodes");
+            generator.writeStartObject();
+            for (Map.Entry<String, NodeDetails> item0 : this.nodes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
 
         if (ApiTypeHelper.isDefined(this.stores)) {
@@ -176,29 +174,31 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
     /**
      * Builder for {@link CacheStatsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CacheStatsResponse> {
+    public static class Builder extends NodesResponseBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CacheStatsResponse> {
         @Nullable
         private CacheAllStats all;
         @Nullable
         private String clusterName;
         @Nullable
-        private NodeStatistics nodes;
+        private Map<String, NodeDetails> nodes;
         @Nullable
         private Map<String, JsonData> stores;
 
         public Builder() {}
 
         private Builder(CacheStatsResponse o) {
+            super(o);
             this.all = o.all;
             this.clusterName = o.clusterName;
-            this.nodes = o.nodes;
+            this.nodes = _mapCopy(o.nodes);
             this.stores = _mapCopy(o.stores);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.all = o.all;
             this.clusterName = o.clusterName;
-            this.nodes = o.nodes;
+            this.nodes = _mapCopy(o.nodes);
             this.stores = _mapCopy(o.stores);
         }
 
@@ -206,6 +206,12 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -235,20 +241,50 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * API name: {@code _nodes}
+         * Cache statistics per node.
+         * <p>
+         * API name: {@code nodes}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>nodes</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder nodes(@Nullable NodeStatistics value) {
-            this.nodes = value;
+        public final Builder nodes(Map<String, NodeDetails> map) {
+            this.nodes = _mapPutAll(this.nodes, map);
             return this;
         }
 
         /**
-         * API name: {@code _nodes}
+         * Cache statistics per node.
+         * <p>
+         * API name: {@code nodes}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>nodes</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-            return nodes(fn.apply(new NodeStatistics.Builder()).build());
+        public final Builder nodes(String key, NodeDetails value) {
+            this.nodes = _mapPut(this.nodes, key, value);
+            return this;
+        }
+
+        /**
+         * Cache statistics per node.
+         * <p>
+         * API name: {@code nodes}
+         * </p>
+         *
+         * <p>
+         * Adds a value to <code>nodes</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder nodes(String key, Function<NodeDetails.Builder, ObjectBuilder<NodeDetails>> fn) {
+            return nodes(key, fn.apply(new NodeDetails.Builder()).build());
         }
 
         /**
@@ -308,15 +344,16 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
     );
 
     protected static void setupCacheStatsResponseDeserializer(ObjectDeserializer<CacheStatsResponse.Builder> op) {
+        setupNodesResponseBaseDeserializer(op);
         op.add(Builder::all, CacheAllStats._DESERIALIZER, "all");
         op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-        op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
+        op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDetails._DESERIALIZER), "nodes");
         op.add(Builder::stores, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "stores");
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.all);
         result = 31 * result + Objects.hashCode(this.clusterName);
         result = 31 * result + Objects.hashCode(this.nodes);
@@ -326,6 +363,9 @@ public class CacheStatsResponse implements PlainJsonSerializable, ToCopyableBuil
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         CacheStatsResponse other = (CacheStatsResponse) o;

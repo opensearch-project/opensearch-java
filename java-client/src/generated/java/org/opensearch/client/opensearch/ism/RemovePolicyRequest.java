@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.ism;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,6 +48,7 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
@@ -59,14 +61,14 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class RemovePolicyRequest extends RequestBase implements ToCopyableBuilder<RemovePolicyRequest.Builder, RemovePolicyRequest> {
 
-    @Nullable
-    private final String index;
+    @Nonnull
+    private final List<String> index;
 
     // ---------------------------------------------------------------------------------------------
 
     private RemovePolicyRequest(Builder builder) {
         super(builder);
-        this.index = builder.index;
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
     }
 
     public static RemovePolicyRequest of(Function<RemovePolicyRequest.Builder, ObjectBuilder<RemovePolicyRequest>> fn) {
@@ -74,10 +76,14 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
     }
 
     /**
+     * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+     * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * <p>
      * API name: {@code index}
+     * </p>
      */
-    @Nullable
-    public final String index() {
+    @Nonnull
+    public final List<String> index() {
         return this.index;
     }
 
@@ -99,18 +105,18 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RemovePolicyRequest> {
         @Nullable
-        private String index;
+        private List<String> index;
 
         public Builder() {}
 
         private Builder(RemovePolicyRequest o) {
             super(o);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         @Override
@@ -126,11 +132,36 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
         }
 
         /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
          * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder index(@Nullable String value) {
-            this.index = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
             return this;
         }
 
@@ -162,7 +193,7 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
 
             int propsSet = 0;
 
-            if (request.index() != null) propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
                 return "/_plugins/_ism/remove";
@@ -170,7 +201,7 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/_plugins/_ism/remove/");
-                SimpleEndpoint.pathEncode(request.index, buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 return buf.toString();
             }
 
