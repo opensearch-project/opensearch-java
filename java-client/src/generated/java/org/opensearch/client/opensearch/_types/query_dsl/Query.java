@@ -98,6 +98,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         MultiMatch("multi_match"),
         Nested("nested"),
         Neural("neural"),
+        NeuralSparse("neural_sparse"),
         ParentId("parent_id"),
         Percolate("percolate"),
         Prefix("prefix"),
@@ -108,6 +109,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         Script("script"),
         ScriptScore("script_score"),
         SimpleQueryString("simple_query_string"),
+        Sltr("sltr"),
         SpanContaining("span_containing"),
         SpanFirst("span_first"),
         SpanMulti("span_multi"),
@@ -677,6 +679,22 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
     }
 
     /**
+     * Is this variant instance of kind {@code neural_sparse}?
+     */
+    public boolean isNeuralSparse() {
+        return _kind == Kind.NeuralSparse;
+    }
+
+    /**
+     * Get the {@code neural_sparse} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code neural_sparse} kind.
+     */
+    public NeuralSparseQuery neuralSparse() {
+        return TaggedUnionUtils.get(this, Kind.NeuralSparse);
+    }
+
+    /**
      * Is this variant instance of kind {@code parent_id}?
      */
     public boolean isParentId() {
@@ -834,6 +852,22 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
      */
     public SimpleQueryStringQuery simpleQueryString() {
         return TaggedUnionUtils.get(this, Kind.SimpleQueryString);
+    }
+
+    /**
+     * Is this variant instance of kind {@code sltr}?
+     */
+    public boolean isSltr() {
+        return _kind == Kind.Sltr;
+    }
+
+    /**
+     * Get the {@code sltr} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code sltr} kind.
+     */
+    public StoredLtrQuery sltr() {
+        return TaggedUnionUtils.get(this, Kind.Sltr);
     }
 
     /**
@@ -1454,6 +1488,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
             return this.neural(fn.apply(new NeuralQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> neuralSparse(NeuralSparseQuery v) {
+            this._kind = Kind.NeuralSparse;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> neuralSparse(Function<NeuralSparseQuery.Builder, ObjectBuilder<NeuralSparseQuery>> fn) {
+            return this.neuralSparse(fn.apply(new NeuralSparseQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> parentId(ParentIdQuery v) {
             this._kind = Kind.ParentId;
             this._value = v;
@@ -1552,6 +1596,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
 
         public ObjectBuilder<Query> simpleQueryString(Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
             return this.simpleQueryString(fn.apply(new SimpleQueryStringQuery.Builder()).build());
+        }
+
+        public ObjectBuilder<Query> sltr(StoredLtrQuery v) {
+            this._kind = Kind.Sltr;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> sltr(Function<StoredLtrQuery.Builder, ObjectBuilder<StoredLtrQuery>> fn) {
+            return this.sltr(fn.apply(new StoredLtrQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
@@ -1750,6 +1804,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
         op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
         op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
+        op.add(Builder::neuralSparse, NeuralSparseQuery._DESERIALIZER, "neural_sparse");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
         op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
@@ -1760,6 +1815,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
         op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
         op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
+        op.add(Builder::sltr, StoredLtrQuery._DESERIALIZER, "sltr");
         op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
         op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
         op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
