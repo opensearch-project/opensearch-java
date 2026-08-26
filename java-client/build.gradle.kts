@@ -190,10 +190,10 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val jacksonVersion = "2.21.2"
-    val jacksonDatabindVersion = "2.21.2"
-    val jackson3Version = "3.1.1"
-    val jackson3DatabindVersion = "3.1.1"
+    val jacksonVersion = "2.22.2"
+    val jacksonDatabindVersion = "2.22.2"
+    val jackson3Version = "3.2.2"
+    val jackson3DatabindVersion = "3.2.2"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.4.0")

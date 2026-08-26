@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
 - Bump `gradle-wrapper` from 9.3.1 to 9.5.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934), [#1973](https://github.com/opensearch-project/opensearch-java/pull/1973))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
+- Bump Jackson to 2.22.2 / 3.2.2 ([#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Added
 - Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
