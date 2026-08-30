@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch._types.OpenSearchVersionInfo;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.generic.Bodies;
 import org.opensearch.client.opensearch.generic.Requests;
@@ -34,7 +35,7 @@ public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase
         // compare with what the low level client outputs
         try (Response response = javaClient().generic().execute(Requests.builder().endpoint("/").method("GET").build())) {
             assertThat(response.getStatus(), equalTo(200));
-            assertThat(response.getProtocol(), equalTo("HTTP/1.1"));
+            assertThat(response.getProtocol(), equalTo(expectedHttpProtocol(info.version())));
             assertThat(response.getBody().isEmpty(), is(false));
 
             Map<String, Object> infoAsMap = response.getBody()
@@ -55,5 +56,9 @@ public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase
             assertEquals(versionMap.get("lucene_version"), info.version().luceneVersion());
             assertTrue(versionMap.get("number").toString().startsWith(info.version().number()));
         }
+    }
+
+    protected String expectedHttpProtocol(OpenSearchVersionInfo version) {
+        return "HTTP/1.1";
     }
 }
