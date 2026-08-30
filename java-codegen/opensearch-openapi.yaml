@@ -70273,6 +70273,7 @@ components:
           description: When the policy was last modified.
         enabled_time:
           type: integer
+          format: int64
           description: When the policy was last enabled.
       required:
         - creation
