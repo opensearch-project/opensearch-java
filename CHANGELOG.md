@@ -33,7 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
 - Fix currentSize calculation in BulkIngester ([#2113](https://github.com/opensearch-project/opensearch-java/pull/2113))
 - Use protocol version from response (rather than request) ([#2118](https://github.com/opensearch-project/opensearch-java/pull/2118))
-- Fix `ShardFailure.shard` incorrectly marked required causing `MissingRequiredPropertyException` ([#2037](https://github.com/opensearch-project/opensearch-java/pull/2037))
+- Fix `ShardFailure` serializing/deserializing `index`/`node`/`shard` instead of the server's `_index`/`_node`/`_shard` keys, causing `MissingRequiredPropertyException` and silently dropped fields ([#2037](https://github.com/opensearch-project/opensearch-java/pull/2037))
 
 ### Changed
 - Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
