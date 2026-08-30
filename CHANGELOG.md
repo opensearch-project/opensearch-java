@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
+- Bump Jackson to 2.22.2 / 3.2.2 ([#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Changed
 - Breaking: Change typed shape of `Hit.matched_queries` to a `MatchedQueries` tagged union that carries either a `List<String>` (names) or a `Map<String, Double>` (scores), and send `include_named_queries_score` as a query parameter ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
