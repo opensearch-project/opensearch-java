@@ -71,8 +71,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     @Nonnull
     private final ErrorCause reason;
 
-    @Nullable
-    private final Integer shard;
+    private final int shard;
 
     @Nullable
     private final String status;
@@ -84,7 +83,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         this.node = builder.node;
         this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.shard = builder.shard;
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
         this.status = builder.status;
     }
 
@@ -93,7 +92,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * API name: {@code index}
+     * API name: {@code _index}
      */
     @Nullable
     public final String index() {
@@ -101,7 +100,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * API name: {@code node}
+     * API name: {@code _node}
      */
     @Nullable
     public final String node() {
@@ -124,10 +123,9 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * API name: {@code shard}
+     * Required - API name: {@code _shard}
      */
-    @Nullable
-    public final Integer shard() {
+    public final int shard() {
         return this.shard;
     }
 
@@ -151,12 +149,12 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.index != null) {
-            generator.writeKey("index");
+            generator.writeKey("_index");
             generator.write(this.index);
         }
 
         if (this.node != null) {
-            generator.writeKey("node");
+            generator.writeKey("_node");
             generator.write(this.node);
         }
 
@@ -166,10 +164,8 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
 
-        if (this.shard != null) {
-            generator.writeKey("shard");
-            generator.write(this.shard);
-        }
+        generator.writeKey("_shard");
+        generator.write(this.shard);
 
         if (this.status != null) {
             generator.writeKey("status");
@@ -231,7 +227,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * API name: {@code index}
+         * API name: {@code _index}
          */
         @Nonnull
         public final Builder index(@Nullable String value) {
@@ -240,7 +236,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * API name: {@code node}
+         * API name: {@code _node}
          */
         @Nonnull
         public final Builder node(@Nullable String value) {
@@ -275,7 +271,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * API name: {@code shard}
+         * Required - API name: {@code _shard}
          */
         @Nonnull
         public final Builder shard(int value) {
@@ -317,11 +313,11 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     );
 
     protected static void setupShardFailureDeserializer(ObjectDeserializer<ShardFailure.Builder> op) {
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
         op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
         op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
-        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "_shard");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
 
@@ -332,7 +328,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + Boolean.hashCode(this.primary);
         result = 31 * result + this.reason.hashCode();
-        result = 31 * result + Objects.hashCode(this.shard);
+        result = 31 * result + Integer.hashCode(this.shard);
         result = 31 * result + Objects.hashCode(this.status);
         return result;
     }
@@ -346,7 +342,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
             && Objects.equals(this.node, other.node)
             && this.primary == other.primary
             && this.reason.equals(other.reason)
-            && Objects.equals(this.shard, other.shard)
+            && this.shard == other.shard
             && Objects.equals(this.status, other.status);
     }
 }

@@ -40831,19 +40831,20 @@ components:
     _common___ShardFailure:
       type: object
       properties:
-        index:
+        _index:
           $ref: '#/components/schemas/_common___IndexName'
-        node:
+        _node:
           type: string
         reason:
           $ref: '#/components/schemas/_common___ErrorCause'
-        shard:
+        _shard:
           type: integer
         status:
           type: string
         primary:
           type: boolean
       required:
+        - _shard
         - primary
         - reason
     _common___ShardInfo:
