@@ -38,21 +38,23 @@ spotless {
         bumpThisNumberIfACustomStepChanges(1)
 
         val wildcardImportRegex = Regex("""^import\s+(?:static\s+)?[^*\s]+\.\*;$""", RegexOption.MULTILINE)
-        custom("Refuse wildcard imports") { contents ->
-            // Wildcard imports can't be resolved by spotless itself.
-            // This will require the developer themselves to adhere to best practices.
-            val wildcardImports = wildcardImportRegex.findAll(contents)
-            if (wildcardImports.any()) {
-                var msg = """
-                    Please replace the following wildcard imports with explicit imports ('spotlessApply' cannot resolve this issue):
-                """.trimIndent()
-                wildcardImports.forEach {
-                    msg += "\n\t- ${it.value}"
+        custom("Refuse wildcard imports", object : java.io.Serializable, com.diffplug.spotless.FormatterFunc {
+            override fun apply(contents: String) : String {
+                // Wildcard imports can't be resolved by spotless itself.
+                // This will require the developer themselves to adhere to best practices.
+                val wildcardImports = wildcardImportRegex.findAll(contents)
+                if (wildcardImports.any()) {
+                    var msg = """
+                        Please replace the following wildcard imports with explicit imports ('spotlessApply' cannot resolve this issue):
+                    """.trimIndent()
+                    wildcardImports.forEach {
+                        msg += "\n\t- ${it.value}"
+                    }
+                    msg += "\n"
+                    throw AssertionError(msg)
                 }
-                msg += "\n"
-                throw AssertionError(msg)
-            }
-            contents
-        }
+                return contents
+           }
+        })
     }
 }
