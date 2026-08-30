@@ -143,7 +143,7 @@ tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
-val opensearchVersion = "3.5.0"
+val opensearchVersion = "3.8.0"
 val opensearchDockerVersion = opensearchVersion.removeSuffix("-SNAPSHOT")
 
 tasks.test {
