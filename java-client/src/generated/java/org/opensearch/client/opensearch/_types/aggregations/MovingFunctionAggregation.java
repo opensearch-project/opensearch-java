@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MovingFunctionAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<MovingFunctionAggregation.Builder, MovingFunctionAggregation> {
 
     @Nullable
@@ -80,14 +79,6 @@ public class MovingFunctionAggregation extends PipelineAggregationBase
 
     public static MovingFunctionAggregation of(Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MovingFn;
     }
 
     /**

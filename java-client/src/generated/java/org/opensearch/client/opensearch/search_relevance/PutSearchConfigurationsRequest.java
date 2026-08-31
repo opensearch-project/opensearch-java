@@ -71,6 +71,9 @@ public final class PutSearchConfigurationsRequest extends RequestBase
         ToCopyableBuilder<PutSearchConfigurationsRequest.Builder, PutSearchConfigurationsRequest> {
 
     @Nullable
+    private final String description;
+
+    @Nullable
     private final String index;
 
     @Nullable
@@ -86,6 +89,7 @@ public final class PutSearchConfigurationsRequest extends RequestBase
 
     private PutSearchConfigurationsRequest(Builder builder) {
         super(builder);
+        this.description = builder.description;
         this.index = builder.index;
         this.name = builder.name;
         this.query = builder.query;
@@ -96,6 +100,14 @@ public final class PutSearchConfigurationsRequest extends RequestBase
         Function<PutSearchConfigurationsRequest.Builder, ObjectBuilder<PutSearchConfigurationsRequest>> fn
     ) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code description}
+     */
+    @Nullable
+    public final String description() {
+        return this.description;
     }
 
     /**
@@ -141,6 +153,11 @@ public final class PutSearchConfigurationsRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.description != null) {
+            generator.writeKey("description");
+            generator.write(this.description);
+        }
+
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
@@ -182,6 +199,8 @@ public final class PutSearchConfigurationsRequest extends RequestBase
         implements
             CopyableBuilder<Builder, PutSearchConfigurationsRequest> {
         @Nullable
+        private String description;
+        @Nullable
         private String index;
         @Nullable
         private String name;
@@ -194,6 +213,7 @@ public final class PutSearchConfigurationsRequest extends RequestBase
 
         private Builder(PutSearchConfigurationsRequest o) {
             super(o);
+            this.description = o.description;
             this.index = o.index;
             this.name = o.name;
             this.query = o.query;
@@ -202,6 +222,7 @@ public final class PutSearchConfigurationsRequest extends RequestBase
 
         private Builder(Builder o) {
             super(o);
+            this.description = o.description;
             this.index = o.index;
             this.name = o.name;
             this.query = o.query;
@@ -217,6 +238,15 @@ public final class PutSearchConfigurationsRequest extends RequestBase
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code description}
+         */
+        @Nonnull
+        public final Builder description(@Nullable String value) {
+            this.description = value;
             return this;
         }
 
@@ -281,6 +311,7 @@ public final class PutSearchConfigurationsRequest extends RequestBase
     );
 
     protected static void setupPutSearchConfigurationsRequestDeserializer(ObjectDeserializer<PutSearchConfigurationsRequest.Builder> op) {
+        op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
@@ -312,6 +343,7 @@ public final class PutSearchConfigurationsRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.query);
@@ -324,7 +356,8 @@ public final class PutSearchConfigurationsRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PutSearchConfigurationsRequest other = (PutSearchConfigurationsRequest) o;
-        return Objects.equals(this.index, other.index)
+        return Objects.equals(this.description, other.description)
+            && Objects.equals(this.index, other.index)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.query, other.query)
             && Objects.equals(this.searchPipeline, other.searchPipeline);

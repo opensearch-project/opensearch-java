@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MovingPercentilesAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<MovingPercentilesAggregation.Builder, MovingPercentilesAggregation> {
 
     @Nullable
@@ -82,14 +81,6 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase
         Function<MovingPercentilesAggregation.Builder, ObjectBuilder<MovingPercentilesAggregation>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MovingPercentiles;
     }
 
     /**

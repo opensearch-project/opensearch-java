@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AverageAggregation extends FormatMetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<AverageAggregation.Builder, AverageAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class AverageAggregation extends FormatMetricAggregationBase
 
     public static AverageAggregation of(Function<AverageAggregation.Builder, ObjectBuilder<AverageAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Avg;
     }
 
     // ---------------------------------------------------------------------------------------------

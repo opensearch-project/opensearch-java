@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class StatsBucketAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<StatsBucketAggregation.Builder, StatsBucketAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class StatsBucketAggregation extends PipelineAggregationBase
 
     public static StatsBucketAggregation of(Function<StatsBucketAggregation.Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.StatsBucket;
     }
 
     // ---------------------------------------------------------------------------------------------

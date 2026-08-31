@@ -108,5 +108,7 @@ public interface JsonData extends JsonpSerializable {
         return of(parser.getValue(), mapper);
     }
 
-    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(EnumSet.allOf(JsonParser.Event.class), JsonData::from);
+    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(EnumSet.allOf(JsonParser.Event.class), (parser, mapper, event) -> {
+        return of(parser.getValue(), mapper);
+    });
 }

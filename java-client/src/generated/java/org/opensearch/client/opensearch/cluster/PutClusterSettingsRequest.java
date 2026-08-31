@@ -110,7 +110,7 @@ public final class PutClusterSettingsRequest extends RequestBase
 
     /**
      * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
+     * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -276,7 +276,7 @@ public final class PutClusterSettingsRequest extends RequestBase
 
         /**
          * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
+         * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -289,7 +289,7 @@ public final class PutClusterSettingsRequest extends RequestBase
 
         /**
          * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
+         * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>

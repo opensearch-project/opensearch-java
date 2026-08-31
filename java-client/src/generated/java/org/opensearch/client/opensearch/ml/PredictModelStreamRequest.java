@@ -15,9 +15,11 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -45,22 +47,52 @@ public final class PredictModelStreamRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<PredictModelStreamRequest.Builder, PredictModelStreamRequest> {
 
+    @Nullable
+    private final PredictionActionType actionType;
+
+    @Nonnull
+    private final Map<String, String> dlq;
+
     @Nonnull
     private final String modelId;
 
     @Nonnull
-    private final Parameters parameters;
+    private final Map<String, String> parameters;
 
     // ---------------------------------------------------------------------------------------------
 
     private PredictModelStreamRequest(Builder builder) {
         super(builder);
+        this.actionType = builder.actionType;
+        this.dlq = ApiTypeHelper.unmodifiable(builder.dlq);
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-        this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
+        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
     }
 
     public static PredictModelStreamRequest of(Function<PredictModelStreamRequest.Builder, ObjectBuilder<PredictModelStreamRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Overrides the action type derived from the request path.
+     * <p>
+     * API name: {@code action_type}
+     * </p>
+     */
+    @Nullable
+    public final PredictionActionType actionType() {
+        return this.actionType;
+    }
+
+    /**
+     * Dead-letter queue configuration for batch predict on remote connector models.
+     * <p>
+     * API name: {@code dlq}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, String> dlq() {
+        return this.dlq;
     }
 
     /**
@@ -72,10 +104,13 @@ public final class PredictModelStreamRequest extends RequestBase
     }
 
     /**
-     * Required - API name: {@code parameters}
+     * The parameters to pass to the remote connector model.
+     * <p>
+     * API name: {@code parameters}
+     * </p>
      */
     @Nonnull
-    public final Parameters parameters() {
+    public final Map<String, String> parameters() {
         return this.parameters;
     }
 
@@ -90,8 +125,30 @@ public final class PredictModelStreamRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("parameters");
-        this.parameters.serialize(generator, mapper);
+        if (this.actionType != null) {
+            generator.writeKey("action_type");
+            this.actionType.serialize(generator, mapper);
+        }
+
+        if (ApiTypeHelper.isDefined(this.dlq)) {
+            generator.writeKey("dlq");
+            generator.writeStartObject();
+            for (Map.Entry<String, String> item0 : this.dlq.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
+            }
+            generator.writeEnd();
+        }
+
+        if (ApiTypeHelper.isDefined(this.parameters)) {
+            generator.writeKey("parameters");
+            generator.writeStartObject();
+            for (Map.Entry<String, String> item0 : this.parameters.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -113,21 +170,30 @@ public final class PredictModelStreamRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder>
         implements
             CopyableBuilder<Builder, PredictModelStreamRequest> {
+        @Nullable
+        private PredictionActionType actionType;
+        @Nullable
+        private Map<String, String> dlq;
         private String modelId;
-        private Parameters parameters;
+        @Nullable
+        private Map<String, String> parameters;
 
         public Builder() {}
 
         private Builder(PredictModelStreamRequest o) {
             super(o);
+            this.actionType = o.actionType;
+            this.dlq = _mapCopy(o.dlq);
             this.modelId = o.modelId;
-            this.parameters = o.parameters;
+            this.parameters = _mapCopy(o.parameters);
         }
 
         private Builder(Builder o) {
             super(o);
+            this.actionType = o.actionType;
+            this.dlq = _mapCopy(o.dlq);
             this.modelId = o.modelId;
-            this.parameters = o.parameters;
+            this.parameters = _mapCopy(o.parameters);
         }
 
         @Override
@@ -143,6 +209,50 @@ public final class PredictModelStreamRequest extends RequestBase
         }
 
         /**
+         * Overrides the action type derived from the request path.
+         * <p>
+         * API name: {@code action_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder actionType(@Nullable PredictionActionType value) {
+            this.actionType = value;
+            return this;
+        }
+
+        /**
+         * Dead-letter queue configuration for batch predict on remote connector models.
+         * <p>
+         * API name: {@code dlq}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>dlq</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder dlq(Map<String, String> map) {
+            this.dlq = _mapPutAll(this.dlq, map);
+            return this;
+        }
+
+        /**
+         * Dead-letter queue configuration for batch predict on remote connector models.
+         * <p>
+         * API name: {@code dlq}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>dlq</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder dlq(String key, String value) {
+            this.dlq = _mapPut(this.dlq, key, value);
+            return this;
+        }
+
+        /**
          * Required - API name: {@code model_id}
          */
         @Nonnull
@@ -152,20 +262,35 @@ public final class PredictModelStreamRequest extends RequestBase
         }
 
         /**
-         * Required - API name: {@code parameters}
+         * The parameters to pass to the remote connector model.
+         * <p>
+         * API name: {@code parameters}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>parameters</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder parameters(Parameters value) {
-            this.parameters = value;
+        public final Builder parameters(Map<String, String> map) {
+            this.parameters = _mapPutAll(this.parameters, map);
             return this;
         }
 
         /**
-         * Required - API name: {@code parameters}
+         * The parameters to pass to the remote connector model.
+         * <p>
+         * API name: {@code parameters}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>parameters</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder parameters(Function<Parameters.Builder, ObjectBuilder<Parameters>> fn) {
-            return parameters(fn.apply(new Parameters.Builder()).build());
+        public final Builder parameters(String key, String value) {
+            this.parameters = _mapPut(this.parameters, key, value);
+            return this;
         }
 
         /**
@@ -193,7 +318,9 @@ public final class PredictModelStreamRequest extends RequestBase
     );
 
     protected static void setupPredictModelStreamRequestDeserializer(ObjectDeserializer<PredictModelStreamRequest.Builder> op) {
-        op.add(Builder::parameters, Parameters._DESERIALIZER, "parameters");
+        op.add(Builder::actionType, PredictionActionType._DESERIALIZER, "action_type");
+        op.add(Builder::dlq, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dlq");
+        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "parameters");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -226,8 +353,10 @@ public final class PredictModelStreamRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.actionType);
+        result = 31 * result + Objects.hashCode(this.dlq);
         result = 31 * result + this.modelId.hashCode();
-        result = 31 * result + this.parameters.hashCode();
+        result = 31 * result + Objects.hashCode(this.parameters);
         return result;
     }
 
@@ -236,6 +365,9 @@ public final class PredictModelStreamRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PredictModelStreamRequest other = (PredictModelStreamRequest) o;
-        return this.modelId.equals(other.modelId) && this.parameters.equals(other.parameters);
+        return Objects.equals(this.actionType, other.actionType)
+            && Objects.equals(this.dlq, other.dlq)
+            && this.modelId.equals(other.modelId)
+            && Objects.equals(this.parameters, other.parameters);
     }
 }

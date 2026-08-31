@@ -36,30 +36,55 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.MultiTermsAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
+public class MultiTermsAggregate
     implements
         AggregateVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<MultiTermsAggregate.Builder, MultiTermsAggregate> {
+
+    @Nonnull
+    private final Buckets<MultiTermsBucket> buckets;
+
+    @Nullable
+    private final Long docCountErrorUpperBound;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
+
+    @Nullable
+    private final Long sumOtherDocCount;
 
     // ---------------------------------------------------------------------------------------------
 
     private MultiTermsAggregate(Builder builder) {
-        super(builder);
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+        this.sumOtherDocCount = builder.sumOtherDocCount;
     }
 
     public static MultiTermsAggregate of(Function<MultiTermsAggregate.Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
@@ -72,6 +97,73 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
     @Override
     public Aggregate.Kind _aggregateKind() {
         return Aggregate.Kind.MultiTerms;
+    }
+
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<MultiTermsBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code doc_count_error_upper_bound}
+     */
+    @Nullable
+    public final Long docCountErrorUpperBound() {
+        return this.docCountErrorUpperBound;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * API name: {@code sum_other_doc_count}
+     */
+    @Nullable
+    public final Long sumOtherDocCount() {
+        return this.sumOtherDocCount;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (this.docCountErrorUpperBound != null) {
+            generator.writeKey("doc_count_error_upper_bound");
+            generator.write(this.docCountErrorUpperBound);
+        }
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
+        if (this.sumOtherDocCount != null) {
+            generator.writeKey("sum_other_doc_count");
+            generator.write(this.sumOtherDocCount);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,18 +182,29 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
     /**
      * Builder for {@link MultiTermsAggregate}.
      */
-    public static class Builder extends TermsAggregateBase.AbstractBuilder<MultiTermsBucket, Builder>
-        implements
-            CopyableBuilder<Builder, MultiTermsAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, MultiTermsAggregate> {
+        private Buckets<MultiTermsBucket> buckets;
+        @Nullable
+        private Long docCountErrorUpperBound;
+        @Nullable
+        private Map<String, JsonData> meta;
+        @Nullable
+        private Long sumOtherDocCount;
 
         public Builder() {}
 
         private Builder(MultiTermsAggregate o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.docCountErrorUpperBound = o.docCountErrorUpperBound;
+            this.meta = _mapCopy(o.meta);
+            this.sumOtherDocCount = o.sumOtherDocCount;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.docCountErrorUpperBound = o.docCountErrorUpperBound;
+            this.meta = _mapCopy(o.meta);
+            this.sumOtherDocCount = o.sumOtherDocCount;
         }
 
         @Override
@@ -110,9 +213,64 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * Required - API name: {@code buckets}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder buckets(Buckets<MultiTermsBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder buckets(Function<Buckets.Builder<MultiTermsBucket>, ObjectBuilder<Buckets<MultiTermsBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<MultiTermsBucket>()).build());
+        }
+
+        /**
+         * API name: {@code doc_count_error_upper_bound}
+         */
+        @Nonnull
+        public final Builder docCountErrorUpperBound(@Nullable Long value) {
+            this.docCountErrorUpperBound = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
+            return this;
+        }
+
+        /**
+         * API name: {@code sum_other_doc_count}
+         */
+        @Nonnull
+        public final Builder sumOtherDocCount(@Nullable Long value) {
+            this.sumOtherDocCount = value;
             return this;
         }
 
@@ -141,22 +299,30 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
     );
 
     protected static void setupMultiTermsAggregateDeserializer(ObjectDeserializer<MultiTermsAggregate.Builder> op) {
-        setupTermsAggregateBaseDeserializer(op, MultiTermsBucket._DESERIALIZER);
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(MultiTermsBucket._DESERIALIZER), "buckets");
+        op.add(Builder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(), "doc_count_error_upper_bound");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
+        op.add(Builder::sumOtherDocCount, JsonpDeserializer.longDeserializer(), "sum_other_doc_count");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.docCountErrorUpperBound);
+        result = 31 * result + Objects.hashCode(this.meta);
+        result = 31 * result + Objects.hashCode(this.sumOtherDocCount);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        MultiTermsAggregate other = (MultiTermsAggregate) o;
+        return this.buckets.equals(other.buckets)
+            && Objects.equals(this.docCountErrorUpperBound, other.docCountErrorUpperBound)
+            && Objects.equals(this.meta, other.meta)
+            && Objects.equals(this.sumOtherDocCount, other.sumOtherDocCount);
     }
 }
