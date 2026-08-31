@@ -37,13 +37,17 @@ import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.nio.ByteBuffer;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+
 import javax.annotation.Nullable;
+
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpStatus;
@@ -58,6 +62,8 @@ import org.opensearch.client.Response;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.ResponseListener;
 import org.opensearch.client.RestClient;
+import org.opensearch.client.StreamingRequest;
+import org.opensearch.client.StreamingResponse;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
@@ -65,20 +71,24 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.OpenSearchStreamingTransport;
+import org.opensearch.client.transport.StreamingEndpoint;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.transport.internal.ByteBufferInputStream;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.MissingRequiredPropertyException;
+import org.reactivestreams.Publisher;
+import reactor.core.publisher.Flux;
 
 /**
  * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
  * use {@link org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport} instead.
  */
 @Deprecated
-public class RestClientTransport implements OpenSearchTransport {
+public class RestClientTransport implements OpenSearchStreamingTransport {
 
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
 
@@ -185,6 +195,91 @@ public class RestClientTransport implements OpenSearchTransport {
         });
 
         return future;
+    }
+
+    @Override
+    public <RequestT extends Publisher<?>, ResponseT extends Publisher<?>, ErrorT> ResponseT stream(
+        RequestT request,
+        StreamingEndpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
+    ) throws IOException {
+        StreamingRequest<ByteBuffer> clientReq = prepareLowLevelStreamingRequest(request, endpoint, options);
+        final StreamingResponse<ByteBuffer> response = restClient.streamRequest(clientReq);
+        return getHighLevelStreamingResponse(response, endpoint);
+    }
+
+    private <RequestT extends Publisher<?>> StreamingRequest<ByteBuffer> prepareLowLevelStreamingRequest(
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        TransportOptions options
+    ) {
+        String method = endpoint.method(request);
+        String path = endpoint.requestUrl(request);
+        Map<String, String> params = endpoint.queryParameters(request);
+
+        RequestOptions restOptions = options == null
+            ? transportOptions.restClientRequestOptions()
+            : RestClientOptions.of(options).restClientRequestOptions();
+
+        Publisher<ByteBuffer> body = null;
+        if (endpoint.hasRequestBody()) {
+            body = Flux.from(request).map(t -> {
+                final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                if (t instanceof NdJsonpSerializable) {
+                    writeNdJson((NdJsonpSerializable) t, baos);
+                } else if (t instanceof GenericSerializable) {
+                    ((GenericSerializable) t).serialize(baos);
+                } else {
+                    // Always assume the content is a JSON serializable
+                    try (JsonGenerator generator = mapper.jsonProvider().createGenerator(baos)) {
+                        mapper.serialize(t, generator);
+                    }
+                }
+                return ByteBuffer.wrap(baos.toByteArray());
+            });
+        }
+
+        StreamingRequest<ByteBuffer> clientReq = new StreamingRequest<>(method, path, body);
+        if (restOptions != null) {
+            clientReq.setOptions(restOptions);
+        }
+
+        clientReq.addParameters(params);
+        return clientReq;
+    }
+
+    private <ResponseT extends Publisher<?>, ErrorT> ResponseT getHighLevelStreamingResponse(
+        StreamingResponse<ByteBuffer> clientResp,
+        StreamingEndpoint<?, ResponseT, ErrorT> endpoint
+    ) throws IOException {
+        final int statusCode = clientResp.getStatusLine().getStatusCode();
+        if (endpoint.isError(statusCode)) {
+            final Publisher<ByteBuffer> entity = clientResp.getBody();
+            try (final InputStream content = new ByteBufferInputStream(Flux.from(entity).toIterable())) {
+                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                if (errorDeserializer == null) {
+                    throw new TransportException("Request failed with status code '" + statusCode + "'");
+                }
+
+                try {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                        throw endpoint.exceptionConverter(statusCode, error);
+                    }
+                } catch (MissingRequiredPropertyException errorEx) {
+                    // Could not decode exception, try the response type
+                    try {
+                        ResponseT response = decodeStreamingResponse(statusCode, clientResp, endpoint);
+                        return response;
+                    } catch (Exception respEx) {
+                        // No better luck: throw the original error decoding exception
+                        throw new TransportException("Failed to decode error response", respEx);
+                    }
+                }
+            }
+        } else {
+            return decodeStreamingResponse(statusCode, clientResp, endpoint);
+        }
     }
 
     private <RequestT> org.opensearch.client.Request prepareLowLevelRequest(
@@ -345,7 +440,6 @@ public class RestClientTransport implements OpenSearchTransport {
             return response;
 
         } else if (endpoint instanceof JsonEndpoint) {
-            @SuppressWarnings("unchecked")
             JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response
             ResponseT response = null;
@@ -359,7 +453,6 @@ public class RestClientTransport implements OpenSearchTransport {
                 try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                     response = responseParser.deserialize(parser, mapper);
                 }
-                ;
             }
             return response;
         } else if (endpoint instanceof GenericEndpoint) {
@@ -392,4 +485,25 @@ public class RestClientTransport implements OpenSearchTransport {
         }
     }
 
+    private <ResponseT extends Publisher<?>> ResponseT decodeStreamingResponse(
+        int statusCode,
+        StreamingResponse<ByteBuffer> clientResp,
+        StreamingEndpoint<?, ResponseT, ?> endpoint
+    ) throws IOException {
+        // Successful response
+        ResponseT response = null;
+        JsonpDeserializer<?> elementParser = endpoint.elementDeserializer();
+        if (elementParser != null) {
+            return endpoint.responseDeserializer(clientResp.getBody(), (bb) -> {
+                try (ByteBufferInputStream in = new ByteBufferInputStream(bb)) {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(in)) {
+                        return elementParser.deserialize(parser, mapper);
+                    }
+                } catch (IOException ex) {
+                    throw new UncheckedIOException(ex);
+                }
+            });
+        }
+        return response;
+    }
 }
