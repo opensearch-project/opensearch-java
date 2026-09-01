@@ -18,6 +18,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump Jackson to 2.22.2 / 3.2.2 ([#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.10.0] - 09/01/2026
+### Added
 - Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
 - Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
 - Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
@@ -37,22 +52,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
 
-## [Unreleased 3.x]
-### Added
-
-### Dependencies
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
-## [Unreleased 2.x]
+## [3.9.0] - 05/28/2026
 ### Added
 
 ### Dependencies
@@ -712,8 +712,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.9.0...v3.10.0
+[3.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...v3.9.0
 [3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...v3.6.0
