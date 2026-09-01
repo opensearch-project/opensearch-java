@@ -18,28 +18,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump Jackson to 2.22.2 / 3.2.2 ([#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Added
-- Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
-- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
-- Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
-- Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
-- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
-- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
-- Add search over gRPC with match_all query support, SearchRequestConverter, SearchResponseConverter, and _source deserialization ([#2071](https://github.com/opensearch-project/opensearch-java/pull/2071))
-- Add `setAutomaticRetriesDisabled` to `ApacheHttpClient5TransportBuilder` to allow enabling automatic retries ([#2086](https://github.com/opensearch-project/opensearch-java/pull/2086))
-- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a new `MatchedQueries` tagged union, whose `names` variant carries a `List<String>` and whose `scores` variant carries a `Map<String, Double>`, and by sending `include_named_queries_score` as a query parameter ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
-
-### Fixed
-- Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))
-- Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
-- Fix currentSize calculation in BulkIngester ([#2113](https://github.com/opensearch-project/opensearch-java/pull/2113))
-- Use protocol version from response (rather than request) ([#2118](https://github.com/opensearch-project/opensearch-java/pull/2118))
-
-### Changed
-- Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
-
-## [Unreleased 3.x]
-### Added
 
 ### Dependencies
 
@@ -53,7 +32,28 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
-## [Unreleased 2.x]
+## [3.10.0] - 09/01/2026
+### Added
+- Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
+- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
+- Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
+- Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
+- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
+- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
+- Add search over gRPC with match_all query support, SearchRequestConverter, SearchResponseConverter, and _source deserialization ([#2071](https://github.com/opensearch-project/opensearch-java/pull/2071))
+- Add `setAutomaticRetriesDisabled` to `ApacheHttpClient5TransportBuilder` to allow enabling automatic retries ([#2086](https://github.com/opensearch-project/opensearch-java/pull/2086))
+- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a new `MatchedQueries` tagged union, whose `names` variant carries a `List<String>` and whose `scores` variant carries a `Map<String, Double>`, and by sending `include_named_queries_score` as a query parameter ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
+
+### Fixed
+- Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))
+- Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
+- Fix currentSize calculation in BulkIngester ([#2113](https://github.com/opensearch-project/opensearch-java/pull/2113))
+- Use protocol version from response (rather than request) ([#2118](https://github.com/opensearch-project/opensearch-java/pull/2118))
+
+### Changed
+- Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
+
+## [3.9.0] - 05/28/2026
 ### Added
 
 ### Dependencies
@@ -713,8 +713,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.9.0...v3.10.0
+[3.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...v3.9.0
 [3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...v3.6.0
