@@ -83,7 +83,7 @@ Assuming the following current state.
 
 ### Automated Release
 
-The [release-drafter workflow](.github/workflows/release-drafter.yml) will be automatically kicked off and is responsible for drafting a new release on GitHub containing release artifacts. Before creating a draft release, this workflow creates a GitHub issue asking for approval from the [maintainers](MAINTAINERS.md). See sample [issue](https://github.com/gaiksaya/opensearch-java/issues/1). The maintainers need to approve in order to continue the workflow run. Once a release is drafted [opensearch-java-maven-sign-and-release](https://build.ci.opensearch.org/job/opensearch-java-maven-sign-and-release/) Jenkins workflow is triggered. The artifacts will be automatically signed and published to maven.
+The [release-drafter workflow](.github/workflows/release-drafter.yml) will be automatically kicked off and is responsible for drafting a new pre-release on GitHub containing release artifacts. Before creating a release, this workflow creates a GitHub issue asking for approval from the [maintainers](MAINTAINERS.md). See sample [issue](https://github.com/opensearch-project/opensearch-java/issues/2000). The maintainers need to approve in order to continue the workflow run. Once a pre-release is created [opensearch-java-maven-sign-and-release](https://build.ci.opensearch.org/job/opensearch-java-maven-sign-and-release/) Jenkins workflow is triggered. The artifacts will be automatically signed and published to maven. Once the above release workflow is successful, it creates a GitHub issue requesting maintainers to manually publish the pre-release to release on GitHub.
 
 ### CHANGELOG Entries
 
