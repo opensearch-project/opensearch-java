@@ -48,4 +48,20 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
             assertEquals("c", valueList.get(2)._get());
         }
     }
+
+    @Test
+    public void testNullArray() {
+        // A JSON null for the whole array field (as opposed to an item within it) is treated as
+        // an empty list rather than null, so it can flow into builder setters (via _listAddAll)
+        // the same way an absent/empty array would, instead of throwing a NullPointerException.
+        // See https://github.com/opensearch-project/opensearch-java/issues/1813
+        String json = "null";
+
+        JsonpDeserializer<String> stringDeser = JsonpDeserializer.stringDeserializer();
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+
+        List<String> stringList = JsonpDeserializer.arrayDeserializer(stringDeser).deserialize(parser, mapper);
+        assertNotNull(stringList);
+        assertTrue(stringList.isEmpty());
+    }
 }
