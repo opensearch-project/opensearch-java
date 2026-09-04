@@ -92,7 +92,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * API name: {@code index}
+     * API name: {@code _index}
      */
     @Nullable
     public final String index() {
@@ -100,7 +100,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * API name: {@code node}
+     * API name: {@code _node}
      */
     @Nullable
     public final String node() {
@@ -123,7 +123,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * Required - API name: {@code shard}
+     * Required - API name: {@code _shard}
      */
     public final int shard() {
         return this.shard;
@@ -149,12 +149,12 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.index != null) {
-            generator.writeKey("index");
+            generator.writeKey("_index");
             generator.write(this.index);
         }
 
         if (this.node != null) {
-            generator.writeKey("node");
+            generator.writeKey("_node");
             generator.write(this.node);
         }
 
@@ -164,7 +164,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
 
-        generator.writeKey("shard");
+        generator.writeKey("_shard");
         generator.write(this.shard);
 
         if (this.status != null) {
@@ -227,7 +227,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * API name: {@code index}
+         * API name: {@code _index}
          */
         @Nonnull
         public final Builder index(@Nullable String value) {
@@ -236,7 +236,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * API name: {@code node}
+         * API name: {@code _node}
          */
         @Nonnull
         public final Builder node(@Nullable String value) {
@@ -271,7 +271,7 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * Required - API name: {@code shard}
+         * Required - API name: {@code _shard}
          */
         @Nonnull
         public final Builder shard(int value) {
@@ -313,11 +313,11 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     );
 
     protected static void setupShardFailureDeserializer(ObjectDeserializer<ShardFailure.Builder> op) {
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
         op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
         op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
-        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "_shard");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
 
