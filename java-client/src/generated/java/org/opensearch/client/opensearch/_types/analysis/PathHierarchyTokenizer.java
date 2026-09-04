@@ -184,11 +184,15 @@ public class PathHierarchyTokenizer extends TokenizerBase
      * Builder for {@link PathHierarchyTokenizer}.
      */
     public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PathHierarchyTokenizer> {
+        @Nullable
         private Integer bufferSize;
+        @Nullable
         private String delimiter;
         @Nullable
         private String replacement;
+        @Nullable
         private Boolean reverse;
+        @Nullable
         private Integer skip;
 
         public Builder() {}
@@ -227,7 +231,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
          * API name: {@code buffer_size}
          */
         @Nonnull
-        public final Builder bufferSize(int value) {
+        public final Builder bufferSize(@Nullable Integer value) {
             this.bufferSize = value;
             return this;
         }
@@ -236,7 +240,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
          * API name: {@code delimiter}
          */
         @Nonnull
-        public final Builder delimiter(String value) {
+        public final Builder delimiter(@Nullable String value) {
             this.delimiter = value;
             return this;
         }
@@ -254,7 +258,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
          * API name: {@code reverse}
          */
         @Nonnull
-        public final Builder reverse(boolean value) {
+        public final Builder reverse(@Nullable Boolean value) {
             this.reverse = value;
             return this;
         }
@@ -263,7 +267,7 @@ public class PathHierarchyTokenizer extends TokenizerBase
          * API name: {@code skip}
          */
         @Nonnull
-        public final Builder skip(int value) {
+        public final Builder skip(@Nullable Integer value) {
             this.skip = value;
             return this;
         }
