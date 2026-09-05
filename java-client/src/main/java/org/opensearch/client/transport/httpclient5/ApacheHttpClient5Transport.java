@@ -15,11 +15,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UncheckedIOException;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.ByteBuffer;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,18 +70,23 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpRequest;
+import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
+import org.apache.hc.core5.http.Message;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.HttpEntityWrapper;
+import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.RequestLine;
 import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.net.URIBuilder;
+import org.apache.hc.core5.reactive.ReactiveResponseConsumer;
 import org.apache.hc.core5.util.Args;
+import org.opensearch.client.http.ReactiveHttpUriRequestProducer;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
@@ -89,7 +96,8 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.OpenSearchStreamingTransport;
+import org.opensearch.client.transport.StreamingEndpoint;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
@@ -98,12 +106,17 @@ import org.opensearch.client.transport.httpclient5.internal.HttpUriRequestProduc
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 import org.opensearch.client.transport.httpclient5.internal.NodeState;
+import org.opensearch.client.transport.internal.ByteBufferInputStream;
 import org.opensearch.client.util.MissingRequiredPropertyException;
+import org.reactivestreams.Publisher;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.MonoSink;
 
 /**
  * Apache HttpClient 5 based client transport.
  */
-public class ApacheHttpClient5Transport implements OpenSearchTransport {
+public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport {
     private static final Log logger = LogFactory.getLog(ApacheHttpClient5Transport.class);
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
 
@@ -151,7 +164,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-        TransportOptions options
+        @Nullable TransportOptions options
     ) throws IOException {
         try {
             return performRequestAsync(request, endpoint, options).get();
@@ -171,7 +184,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
         RequestT request,
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-        TransportOptions options
+        @Nullable TransportOptions options
     ) {
 
         final ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
@@ -197,6 +210,23 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     @Override
+    public <RequestT extends Publisher<?>, ResponseT extends Publisher<?>, ErrorT> ResponseT stream(
+        RequestT request,
+        StreamingEndpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
+    ) throws IOException {
+        final ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
+
+        final WarningsHandler warningsHandler = (requestOptions.getWarningsHandler() == null)
+            ? this.warningsHandler
+            : requestOptions.getWarningsHandler();
+
+        StreamingRequest<ByteBuffer> clientReq = prepareLowLevelStreamingRequest(request, endpoint, requestOptions);
+        final StreamingResponse<ByteBuffer> response = streamRequest(clientReq, requestOptions, warningsHandler);
+        return getHighLevelStreamingResponse(response, endpoint);
+    }
+
+    @Override
     public JsonpMapper jsonpMapper() {
         return mapper;
     }
@@ -211,6 +241,119 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         client.close();
     }
 
+    /**
+     * Sends a streaming request to the OpenSearch cluster that the client points to and returns streaming response. <strong>This is an experimental API</strong>.
+     * @param request streaming request
+     * @return streaming response
+     * @throws IOException IOException
+     */
+    private StreamingResponse<ByteBuffer> streamRequest(
+        StreamingRequest<ByteBuffer> request,
+        final ApacheHttpClient5Options options,
+        final WarningsHandler warningsHandler
+    ) throws IOException {
+        final URI uri = buildUri(pathPrefix, request.getEndpoint(), request.getParameters());
+        final HttpUriRequestBase clientReq = new HttpUriRequestBase(request.getMethod(), uri);
+        setHeaders(clientReq, options.headers());
+        if (options.getRequestConfig() != null) {
+            clientReq.setConfig(options.getRequestConfig());
+        }
+
+        final StreamingResponse<ByteBuffer> response = new StreamingResponse<>(
+            new RequestLine(clientReq),
+            streamRequest(nextNodes(), options, clientReq, request.getBody(), warningsHandler)
+        );
+
+        return response;
+    }
+
+    private Publisher<Message<HttpResponse, Publisher<ByteBuffer>>> streamRequest(
+        final NodeTuple<Iterator<Node>> nodeTuple,
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final Publisher<ByteBuffer> requestBodyPublisher,
+        final WarningsHandler warningsHandler
+    ) throws IOException {
+        final Node node = nodeTuple.nodes.next();
+
+        final Mono<Message<HttpResponse, Publisher<ByteBuffer>>> publisher = Mono.create(emitter -> {
+            final RequestContext<Void> context = createContextForNextAttempt(
+                options,
+                request,
+                node,
+                nodeTuple.authCache,
+                requestBodyPublisher,
+                emitter
+            );
+            final Future<Void> future = client.execute(context.requestProducer(), context.asyncResponseConsumer(), context.context(), null);
+
+            if (future instanceof org.apache.hc.core5.concurrent.Cancellable) {
+                request.setDependency((org.apache.hc.core5.concurrent.Cancellable) future);
+            }
+        });
+
+        return publisher.flatMap(message -> {
+            try {
+                final ResponseOrResponseException responseOrResponseException = convertResponse(request, node, message, warningsHandler);
+                if (responseOrResponseException.responseException == null) {
+                    return Mono.just(
+                        new Message<>(message.getHead(), Flux.from(message.getBody()).flatMapSequential(b -> Flux.fromIterable(frame(b))))
+                    );
+                } else {
+                    if (nodeTuple.nodes.hasNext()) {
+                        return Mono.from(streamRequest(nodeTuple, options, request, requestBodyPublisher, warningsHandler));
+                    } else {
+                        return Mono.error(responseOrResponseException.responseException);
+                    }
+                }
+            } catch (final Exception ex) {
+                return Mono.error(ex);
+            }
+        });
+    }
+
+    /**
+     * Frame the {@link ByteBuffer} into individual chunks that are separated by '\r\n' sequence.
+     * @param b {@link ByteBuffer} to split
+     * @return individual chunks
+     */
+    private static Collection<ByteBuffer> frame(ByteBuffer b) {
+        final Collection<ByteBuffer> buffers = new ArrayList<>();
+
+        int position = b.position();
+        while (b.hasRemaining()) {
+            // Skip the chunk separator when it comes right at the beginning
+            if (b.get() == '\r' && b.hasRemaining() && b.position() > 1) {
+                if (b.get() == '\n') {
+                    final byte[] chunk = new byte[b.position() - position];
+
+                    b.position(position);
+                    b.get(chunk);
+
+                    // Do not copy the '\r\n' sequence
+                    buffers.add(ByteBuffer.wrap(chunk, 0, chunk.length - 2));
+                    position = b.position();
+                }
+            }
+        }
+
+        if (buffers.isEmpty()) {
+            return Collections.singleton(b);
+        }
+
+        // Copy last chunk
+        if (position != b.position()) {
+            final byte[] chunk = new byte[b.position() - position];
+
+            b.position(position);
+            b.get(chunk);
+
+            buffers.add(ByteBuffer.wrap(chunk, 0, chunk.length));
+        }
+
+        return buffers;
+    }
+
     private void performRequestAsync(
         final NodeTuple<Iterator<Node>> nodeTuple,
         final ApacheHttpClient5Options options,
@@ -218,18 +361,23 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final WarningsHandler warningsHandler,
         final CompletableFuture<Response> listener
     ) {
-        final RequestContext context = createContextForNextAttempt(options, request, nodeTuple.nodes.next(), nodeTuple.authCache);
+        final RequestContext<ClassicHttpResponse> context = createContextForNextAttempt(
+            options,
+            request,
+            nodeTuple.nodes.next(),
+            nodeTuple.authCache
+        );
         Future<ClassicHttpResponse> future = client.execute(
-            context.requestProducer,
-            context.asyncResponseConsumer,
-            context.context,
+            context.requestProducer(),
+            context.asyncResponseConsumer(),
+            context.context(),
             new FutureCallback<ClassicHttpResponse>() {
                 @Override
                 public void completed(ClassicHttpResponse httpResponse) {
                     try {
                         ResponseOrResponseException responseOrResponseException = convertResponse(
                             request,
-                            context.node,
+                            context.node(),
                             httpResponse,
                             warningsHandler
                         );
@@ -250,7 +398,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 @Override
                 public void failed(Exception failure) {
                     try {
-                        onFailure(context.node);
+                        onFailure(context.node());
                         if (nodeTuple.nodes.hasNext()) {
                             performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
                         } else {
@@ -304,6 +452,40 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         int statusCode = httpResponse.getCode();
 
         Response response = new Response(new RequestLine(request), node.getHost(), httpResponse);
+        Set<Integer> ignoreErrorCodes = getIgnoreErrorCodes("400,401,403,404,405", request.getMethod());
+        if (isSuccessfulResponse(statusCode) || ignoreErrorCodes.contains(response.getStatusLine().getStatusCode())) {
+            onResponse(node);
+            if (warningsHandler.warningsShouldFailRequest(response.getWarnings())) {
+                throw new WarningFailureException(response);
+            }
+            return new ResponseOrResponseException(response);
+        }
+        ResponseException responseException = new ResponseException(response);
+        if (isRetryStatus(statusCode)) {
+            // mark host dead and retry against next one
+            onFailure(node);
+            return new ResponseOrResponseException(responseException);
+        }
+        // mark host alive and don't retry, as the error should be a request problem
+        onResponse(node);
+        throw responseException;
+    }
+
+    private ResponseOrResponseException convertResponse(
+        HttpUriRequestBase request,
+        Node node,
+        Message<HttpResponse, Publisher<ByteBuffer>> message,
+        final WarningsHandler warningsHandler
+    ) throws IOException {
+
+        // Streaming Response could accumulate a lot of data so we may not be able to fully consume it.
+        final ClassicHttpResponse httpResponse = new BasicClassicHttpResponse(
+            message.getHead().getCode(),
+            message.getHead().getReasonPhrase()
+        );
+        final Response response = new Response(new RequestLine(request), node.getHost(), httpResponse);
+        int statusCode = httpResponse.getCode();
+
         Set<Integer> ignoreErrorCodes = getIgnoreErrorCodes("400,401,403,404,405", request.getMethod());
         if (isSuccessfulResponse(statusCode) || ignoreErrorCodes.contains(response.getStatusLine().getStatusCode())) {
             onResponse(node);
@@ -474,14 +656,26 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         failureListener.onFailure(node);
     }
 
-    private RequestContext createContextForNextAttempt(
+    private RequestContext<ClassicHttpResponse> createContextForNextAttempt(
         final ApacheHttpClient5Options options,
         final HttpUriRequestBase request,
         final Node node,
         final AuthCache authCache
     ) {
         request.reset();
-        return new RequestContext(options, request, node, authCache);
+        return new AsyncRequestContext(options, request, node, authCache);
+    }
+
+    private RequestContext<Void> createContextForNextAttempt(
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final Node node,
+        final AuthCache authCache,
+        final Publisher<ByteBuffer> requestBodyPublisher,
+        final MonoSink<Message<HttpResponse, Publisher<ByteBuffer>>> emitter
+    ) {
+        request.reset();
+        return new ReactiveRequestContext(options, request, node, authCache, requestBodyPublisher, emitter);
     }
 
     private <ResponseT, ErrorT> ResponseT prepareResponse(Response clientResp, Endpoint<?, ResponseT, ErrorT> endpoint) throws IOException {
@@ -589,13 +783,107 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), contentType));
         }
 
-        setHeaders(clientReq, options.headers());
+        if (options != null) {
+            setHeaders(clientReq, options.headers());
 
-        if (options.getRequestConfig() != null) {
-            clientReq.setConfig(options.getRequestConfig());
+            if (options.getRequestConfig() != null) {
+                clientReq.setConfig(options.getRequestConfig());
+            }
         }
 
         return clientReq;
+    }
+
+    private <RequestT extends Publisher<?>> StreamingRequest<ByteBuffer> prepareLowLevelStreamingRequest(
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        @Nullable ApacheHttpClient5Options options
+    ) {
+        String method = endpoint.method(request);
+        String path = endpoint.requestUrl(request);
+        Map<String, String> params = endpoint.queryParameters(request);
+
+        Publisher<ByteBuffer> body = null;
+        if (endpoint.hasRequestBody()) {
+            body = Flux.from(request).map(t -> {
+                final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                if (t instanceof NdJsonpSerializable) {
+                    writeNdJson((NdJsonpSerializable) t, baos);
+                } else if (t instanceof GenericSerializable) {
+                    ((GenericSerializable) t).serialize(baos);
+                } else {
+                    // Always assume the content is a JSON serializable
+                    try (JsonGenerator generator = mapper.jsonProvider().createGenerator(baos)) {
+                        mapper.serialize(t, generator);
+                    }
+                }
+                return ByteBuffer.wrap(baos.toByteArray());
+            });
+        }
+
+        StreamingRequest<ByteBuffer> clientReq = new StreamingRequest<>(method, path, body);
+        if (options != null) {
+            clientReq.setOptions(options);
+        }
+
+        clientReq.addParameters(params);
+        return clientReq;
+    }
+
+    private <ResponseT extends Publisher<?>, ErrorT> ResponseT getHighLevelStreamingResponse(
+        StreamingResponse<ByteBuffer> clientResp,
+        StreamingEndpoint<?, ResponseT, ErrorT> endpoint
+    ) throws IOException {
+        final int statusCode = clientResp.getStatusLine().getStatusCode();
+        if (endpoint.isError(statusCode)) {
+            final Publisher<ByteBuffer> entity = clientResp.getBody();
+            try (final InputStream content = new ByteBufferInputStream(Flux.from(entity).toIterable())) {
+                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                if (errorDeserializer == null) {
+                    throw new TransportException("Request failed with status code '" + statusCode + "'");
+                }
+
+                try {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                        throw endpoint.exceptionConverter(statusCode, error);
+                    }
+                } catch (MissingRequiredPropertyException errorEx) {
+                    // Could not decode exception, try the response type
+                    try {
+                        ResponseT response = decodeStreamingResponse(statusCode, clientResp, endpoint);
+                        return response;
+                    } catch (Exception respEx) {
+                        // No better luck: throw the original error decoding exception
+                        throw new TransportException("Failed to decode error response", respEx);
+                    }
+                }
+            }
+        } else {
+            return decodeStreamingResponse(statusCode, clientResp, endpoint);
+        }
+    }
+
+    private <ResponseT extends Publisher<?>> ResponseT decodeStreamingResponse(
+        int statusCode,
+        StreamingResponse<ByteBuffer> clientResp,
+        StreamingEndpoint<?, ResponseT, ?> endpoint
+    ) throws IOException {
+        // Successful response
+        ResponseT response = null;
+        JsonpDeserializer<?> elementParser = endpoint.elementDeserializer();
+        if (elementParser != null) {
+            return endpoint.responseDeserializer(clientResp.getBody(), (bb) -> {
+                try (ByteBufferInputStream in = new ByteBufferInputStream(bb)) {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(in)) {
+                        return elementParser.deserialize(parser, mapper);
+                    }
+                } catch (IOException ex) {
+                    throw new UncheckedIOException(ex);
+                }
+            });
+        }
+        return response;
     }
 
     private HttpUriRequestBase addRequestBody(HttpUriRequestBase httpRequest, HttpEntity entity) {
@@ -818,13 +1106,23 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         }
     }
 
-    private static class RequestContext {
+    private interface RequestContext<T> {
+        Node node();
+
+        AsyncRequestProducer requestProducer();
+
+        AsyncResponseConsumer<T> asyncResponseConsumer();
+
+        HttpClientContext context();
+    }
+
+    private static class AsyncRequestContext implements RequestContext<ClassicHttpResponse> {
         private final Node node;
         private final AsyncRequestProducer requestProducer;
         private final AsyncResponseConsumer<ClassicHttpResponse> asyncResponseConsumer;
         private final HttpClientContext context;
 
-        RequestContext(
+        AsyncRequestContext(
             final ApacheHttpClient5Options options,
             final HttpUriRequestBase request,
             final Node node,
@@ -835,6 +1133,88 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             this.asyncResponseConsumer = options.getHttpAsyncResponseConsumerFactory().createHttpAsyncResponseConsumer();
             this.context = HttpClientContext.create();
             context.setAuthCache(new WrappingAuthCache(context, authCache));
+        }
+
+        @Override
+        public AsyncResponseConsumer<ClassicHttpResponse> asyncResponseConsumer() {
+            return asyncResponseConsumer;
+        }
+
+        @Override
+        public HttpClientContext context() {
+            return context;
+        }
+
+        @Override
+        public AsyncRequestProducer requestProducer() {
+            return requestProducer;
+        }
+
+        @Override
+        public Node node() {
+            return node;
+        }
+    }
+
+    private static class ReactiveRequestContext implements RequestContext<Void> {
+        private final Node node;
+        private final AsyncRequestProducer requestProducer;
+        private final AsyncResponseConsumer<Void> asyncResponseConsumer;
+        private final HttpClientContext context;
+
+        ReactiveRequestContext(
+            final ApacheHttpClient5Options options,
+            final HttpUriRequestBase request,
+            final Node node,
+            final AuthCache authCache,
+            final Publisher<ByteBuffer> requestBodyPublisher,
+            final MonoSink<Message<HttpResponse, Publisher<ByteBuffer>>> emitter
+        ) {
+            this.node = node;
+            // we stream the request body if the entity allows for it
+            this.requestProducer = ReactiveHttpUriRequestProducer.create(request, node.getHost(), requestBodyPublisher);
+            this.asyncResponseConsumer = new ReactiveResponseConsumer(new FutureCallback<Message<HttpResponse, Publisher<ByteBuffer>>>() {
+                @Override
+                public void failed(Exception ex) {
+                    emitter.error(ex);
+                }
+
+                @Override
+                public void completed(Message<HttpResponse, Publisher<ByteBuffer>> result) {
+                    if (result == null) {
+                        emitter.success();
+                    } else {
+                        emitter.success(result);
+                    }
+                }
+
+                @Override
+                public void cancelled() {
+                    failed(new CancellationException("Future cancelled"));
+                }
+            });
+            this.context = HttpClientContext.create();
+            context.setAuthCache(new WrappingAuthCache(context, authCache));
+        }
+
+        @Override
+        public AsyncResponseConsumer<Void> asyncResponseConsumer() {
+            return asyncResponseConsumer;
+        }
+
+        @Override
+        public HttpClientContext context() {
+            return context;
+        }
+
+        @Override
+        public Node node() {
+            return node;
+        }
+
+        @Override
+        public AsyncRequestProducer requestProducer() {
+            return requestProducer;
         }
     }
 
