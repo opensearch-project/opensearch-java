@@ -33,6 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
 - Fix currentSize calculation in BulkIngester ([#2113](https://github.com/opensearch-project/opensearch-java/pull/2113))
 - Use protocol version from response (rather than request) ([#2118](https://github.com/opensearch-project/opensearch-java/pull/2118))
+- Fix `ShardProfile.fetch` typed as single `FetchProfile` instead of `List<FetchProfile>` causing deserialization failure with profile API ([#2040](https://github.com/opensearch-project/opensearch-java/pull/2040))
 
 ### Changed
 - Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
