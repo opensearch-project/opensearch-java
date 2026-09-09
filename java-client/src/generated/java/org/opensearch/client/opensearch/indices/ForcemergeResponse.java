@@ -47,18 +47,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.forcemerge.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ForcemergeResponse extends ShardsOperationResponseBase
-    implements
-        ToCopyableBuilder<ForcemergeResponse.Builder, ForcemergeResponse> {
+public class ForcemergeResponse implements PlainJsonSerializable, ToCopyableBuilder<ForcemergeResponse.Builder, ForcemergeResponse> {
+
+    @Nullable
+    private final ShardStatistics shards;
 
     @Nullable
     private final String task;
@@ -66,12 +69,20 @@ public class ForcemergeResponse extends ShardsOperationResponseBase
     // ---------------------------------------------------------------------------------------------
 
     private ForcemergeResponse(Builder builder) {
-        super(builder);
+        this.shards = builder.shards;
         this.task = builder.task;
     }
 
     public static ForcemergeResponse of(Function<ForcemergeResponse.Builder, ObjectBuilder<ForcemergeResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code _shards}
+     */
+    @Nullable
+    public final ShardStatistics shards() {
+        return this.shards;
     }
 
     /**
@@ -86,8 +97,22 @@ public class ForcemergeResponse extends ShardsOperationResponseBase
         return this.task;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
+        if (this.shards != null) {
+            generator.writeKey("_shards");
+            this.shards.serialize(generator, mapper);
+        }
+
         if (this.task != null) {
             generator.writeKey("task");
             generator.write(this.task);
@@ -110,21 +135,21 @@ public class ForcemergeResponse extends ShardsOperationResponseBase
     /**
      * Builder for {@link ForcemergeResponse}.
      */
-    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, ForcemergeResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ForcemergeResponse> {
+        @Nullable
+        private ShardStatistics shards;
         @Nullable
         private String task;
 
         public Builder() {}
 
         private Builder(ForcemergeResponse o) {
-            super(o);
+            this.shards = o.shards;
             this.task = o.task;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.shards = o.shards;
             this.task = o.task;
         }
 
@@ -134,10 +159,21 @@ public class ForcemergeResponse extends ShardsOperationResponseBase
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code _shards}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder shards(@Nullable ShardStatistics value) {
+            this.shards = value;
             return this;
+        }
+
+        /**
+         * API name: {@code _shards}
+         */
+        @Nonnull
+        public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
 
         /**
@@ -178,25 +214,23 @@ public class ForcemergeResponse extends ShardsOperationResponseBase
     );
 
     protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
-        setupShardsOperationResponseBaseDeserializer(op);
+        op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.shards);
         result = 31 * result + Objects.hashCode(this.task);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ForcemergeResponse other = (ForcemergeResponse) o;
-        return Objects.equals(this.task, other.task);
+        return Objects.equals(this.shards, other.shards) && Objects.equals(this.task, other.task);
     }
 }
