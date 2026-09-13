@@ -74,7 +74,7 @@ public class HitsMetadata<TDocument>
     // ---------------------------------------------------------------------------------------------
 
     private HitsMetadata(Builder<TDocument> builder) {
-        this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+        this.hits = ApiTypeHelper.unmodifiable(builder.hits);
         this.maxScore = builder.maxScore;
         this.total = builder.total;
     }
@@ -86,7 +86,7 @@ public class HitsMetadata<TDocument>
     }
 
     /**
-     * Required - API name: {@code hits}
+     * API name: {@code hits}
      */
     @Nonnull
     public final List<Hit<TDocument>> hits() {
@@ -123,12 +123,14 @@ public class HitsMetadata<TDocument>
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("hits");
-        generator.writeStartArray();
-        for (Hit<TDocument> item0 : this.hits) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.hits)) {
+            generator.writeKey("hits");
+            generator.writeStartArray();
+            for (Hit<TDocument> item0 : this.hits) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
         if (this.maxScore != null) {
             generator.writeKey("max_score");
@@ -160,6 +162,7 @@ public class HitsMetadata<TDocument>
     public static class Builder<TDocument> extends ObjectBuilderBase
         implements
             CopyableBuilder<Builder<TDocument>, HitsMetadata<TDocument>> {
+        @Nullable
         private List<Hit<TDocument>> hits;
         @Nullable
         private Float maxScore;
@@ -187,7 +190,7 @@ public class HitsMetadata<TDocument>
         }
 
         /**
-         * Required - API name: {@code hits}
+         * API name: {@code hits}
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>hits</code>.
@@ -200,7 +203,7 @@ public class HitsMetadata<TDocument>
         }
 
         /**
-         * Required - API name: {@code hits}
+         * API name: {@code hits}
          *
          * <p>
          * Adds one or more values to <code>hits</code>.
@@ -213,7 +216,7 @@ public class HitsMetadata<TDocument>
         }
 
         /**
-         * Required - API name: {@code hits}
+         * API name: {@code hits}
          *
          * <p>
          * Adds a value to <code>hits</code> using a builder lambda.
@@ -296,7 +299,7 @@ public class HitsMetadata<TDocument>
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.hits.hashCode();
+        result = 31 * result + Objects.hashCode(this.hits);
         result = 31 * result + Objects.hashCode(this.maxScore);
         result = 31 * result + Objects.hashCode(this.total);
         return result;
@@ -307,6 +310,8 @@ public class HitsMetadata<TDocument>
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         HitsMetadata<?> other = (HitsMetadata<?>) o;
-        return this.hits.equals(other.hits) && Objects.equals(this.maxScore, other.maxScore) && Objects.equals(this.total, other.total);
+        return Objects.equals(this.hits, other.hits)
+            && Objects.equals(this.maxScore, other.maxScore)
+            && Objects.equals(this.total, other.total);
     }
 }

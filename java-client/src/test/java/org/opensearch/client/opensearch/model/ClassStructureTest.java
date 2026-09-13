@@ -54,9 +54,8 @@ import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.IntervalsQuery;
 import org.opensearch.client.opensearch.core.GetRequest;
 import org.opensearch.client.opensearch.core.SearchRequest;
-import org.opensearch.client.opensearch.core.search.HitsMetadata;
+import org.opensearch.client.opensearch.core.search.Profile;
 import org.opensearch.client.opensearch.core.search.TotalHits;
-import org.opensearch.client.opensearch.core.search.TotalHitsRelation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.ObjectBuilder;
@@ -147,11 +146,8 @@ public class ClassStructureTest extends ModelTestCase {
     public void testUndefinedCollections() {
         // Not setting a required list should throw an exception
         {
-            MissingRequiredPropertyException ex = assertThrows(
-                MissingRequiredPropertyException.class,
-                () -> HitsMetadata.of(_1 -> _1.total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq)))
-            );
-            assertTrue(ex.getMessage().contains(".hits"));
+            MissingRequiredPropertyException ex = assertThrows(MissingRequiredPropertyException.class, () -> Profile.of(_1 -> _1));
+            assertTrue(ex.getMessage().contains(".shards"));
         }
 
         // Unset list should be non-null, empty but not serialized
