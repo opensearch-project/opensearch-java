@@ -109,6 +109,10 @@ public class Overrides {
                     schema("_common", "FieldSort"),
                     so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("FieldSort"))
                 )
+                .with(
+                    schema("_common", "PluginStats"),
+                    so -> so.withProperties(p -> p.with("opensearch_version", po -> po.withRequired(false)))
+                )
 
                 .with(schema("_common.aggregations", "Aggregate"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))

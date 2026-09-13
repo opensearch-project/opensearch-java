@@ -84,7 +84,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
     @Nonnull
     private final String name;
 
-    @Nonnull
+    @Nullable
     private final String opensearchVersion;
 
     @Nonnull
@@ -104,7 +104,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
         this.licensed = builder.licensed;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.opensearchVersion = ApiTypeHelper.requireNonNull(builder.opensearchVersion, this, "opensearchVersion");
+        this.opensearchVersion = builder.opensearchVersion;
         this.optionalExtendedPlugins = ApiTypeHelper.unmodifiable(builder.optionalExtendedPlugins);
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
@@ -177,9 +177,9 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
     }
 
     /**
-     * Required - API name: {@code opensearch_version}
+     * API name: {@code opensearch_version}
      */
-    @Nonnull
+    @Nullable
     public final String opensearchVersion() {
         return this.opensearchVersion;
     }
@@ -243,8 +243,10 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         generator.writeKey("name");
         generator.write(this.name);
 
-        generator.writeKey("opensearch_version");
-        generator.write(this.opensearchVersion);
+        if (this.opensearchVersion != null) {
+            generator.writeKey("opensearch_version");
+            generator.write(this.opensearchVersion);
+        }
 
         if (ApiTypeHelper.isDefined(this.optionalExtendedPlugins)) {
             generator.writeKey("optional_extended_plugins");
@@ -286,6 +288,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         @Nullable
         private Boolean licensed;
         private String name;
+        @Nullable
         private String opensearchVersion;
         @Nullable
         private List<String> optionalExtendedPlugins;
@@ -417,10 +420,10 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         }
 
         /**
-         * Required - API name: {@code opensearch_version}
+         * API name: {@code opensearch_version}
          */
         @Nonnull
-        public final Builder opensearchVersion(String value) {
+        public final Builder opensearchVersion(@Nullable String value) {
             this.opensearchVersion = value;
             return this;
         }
@@ -513,7 +516,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         result = 31 * result + this.javaVersion.hashCode();
         result = 31 * result + Objects.hashCode(this.licensed);
         result = 31 * result + this.name.hashCode();
-        result = 31 * result + this.opensearchVersion.hashCode();
+        result = 31 * result + Objects.hashCode(this.opensearchVersion);
         result = 31 * result + Objects.hashCode(this.optionalExtendedPlugins);
         result = 31 * result + this.version.hashCode();
         return result;
@@ -532,7 +535,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
             && this.javaVersion.equals(other.javaVersion)
             && Objects.equals(this.licensed, other.licensed)
             && this.name.equals(other.name)
-            && this.opensearchVersion.equals(other.opensearchVersion)
+            && Objects.equals(this.opensearchVersion, other.opensearchVersion)
             && Objects.equals(this.optionalExtendedPlugins, other.optionalExtendedPlugins)
             && this.version.equals(other.version);
     }
