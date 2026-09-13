@@ -69,6 +69,9 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
     private final String locale;
 
     @Nullable
+    private final String outputFormat;
+
+    @Nullable
     private final String targetField;
 
     @Nullable
@@ -81,6 +84,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.formats = ApiTypeHelper.unmodifiableRequired(builder.formats, this, "formats");
         this.locale = builder.locale;
+        this.outputFormat = builder.outputFormat;
         this.targetField = builder.targetField;
         this.timezone = builder.timezone;
     }
@@ -129,6 +133,17 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
     }
 
     /**
+     * The date format to use when writing the parsed date to the target field. Default is <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code>.
+     * <p>
+     * API name: {@code output_format}
+     * </p>
+     */
+    @Nullable
+    public final String outputFormat() {
+        return this.outputFormat;
+    }
+
+    /**
      * API name: {@code target_field}
      */
     @Nullable
@@ -164,6 +179,11 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
             generator.write(this.locale);
         }
 
+        if (this.outputFormat != null) {
+            generator.writeKey("output_format");
+            generator.write(this.outputFormat);
+        }
+
         if (this.targetField != null) {
             generator.writeKey("target_field");
             generator.write(this.targetField);
@@ -197,6 +217,8 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         @Nullable
         private String locale;
         @Nullable
+        private String outputFormat;
+        @Nullable
         private String targetField;
         @Nullable
         private String timezone;
@@ -208,6 +230,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
             this.field = o.field;
             this.formats = _listCopy(o.formats);
             this.locale = o.locale;
+            this.outputFormat = o.outputFormat;
             this.targetField = o.targetField;
             this.timezone = o.timezone;
         }
@@ -217,6 +240,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
             this.field = o.field;
             this.formats = _listCopy(o.formats);
             this.locale = o.locale;
+            this.outputFormat = o.outputFormat;
             this.targetField = o.targetField;
             this.timezone = o.timezone;
         }
@@ -289,6 +313,18 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         }
 
         /**
+         * The date format to use when writing the parsed date to the target field. Default is <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code>.
+         * <p>
+         * API name: {@code output_format}
+         * </p>
+         */
+        @Nonnull
+        public final Builder outputFormat(@Nullable String value) {
+            this.outputFormat = value;
+            return this;
+        }
+
+        /**
          * API name: {@code target_field}
          */
         @Nonnull
@@ -338,6 +374,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::formats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "formats");
         op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+        op.add(Builder::outputFormat, JsonpDeserializer.stringDeserializer(), "output_format");
         op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
         op.add(Builder::timezone, JsonpDeserializer.stringDeserializer(), "timezone");
     }
@@ -348,6 +385,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         result = 31 * result + this.field.hashCode();
         result = 31 * result + this.formats.hashCode();
         result = 31 * result + Objects.hashCode(this.locale);
+        result = 31 * result + Objects.hashCode(this.outputFormat);
         result = 31 * result + Objects.hashCode(this.targetField);
         result = 31 * result + Objects.hashCode(this.timezone);
         return result;
@@ -364,6 +402,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant, To
         return this.field.equals(other.field)
             && this.formats.equals(other.formats)
             && Objects.equals(this.locale, other.locale)
+            && Objects.equals(this.outputFormat, other.outputFormat)
             && Objects.equals(this.targetField, other.targetField)
             && Objects.equals(this.timezone, other.timezone);
     }

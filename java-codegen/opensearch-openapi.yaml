@@ -60418,6 +60418,9 @@ components:
                 The locale to use when parsing the date, relevant when parsing month names or week days.
                 Supports template snippets.
               type: string
+            output_format:
+              description: The date format to use when writing the parsed date to the target field. Default is `yyyy-MM-dd'T'HH:mm:ss.SSSZZ`.
+              type: string
             target_field:
               $ref: '#/components/schemas/_common___Field'
             timezone:
