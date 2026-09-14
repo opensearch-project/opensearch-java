@@ -324,7 +324,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             // Accepted events is computed lazily
             // no need for double-checked lock, we don't care about computing it several times
             if (acceptedEvents == null) {
-                acceptedEvents = EnumSet.of(Event.START_ARRAY);
+                acceptedEvents = EnumSet.of(Event.START_ARRAY, Event.VALUE_NULL);
                 acceptedEvents.addAll(itemDeserializer.acceptedEvents());
             }
             return acceptedEvents;
@@ -332,6 +332,13 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
         @Override
         public List<T> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                // The server sent JSON null for this array field (e.g. ism_template in ISM
+                // Policy). Treat it as an empty list rather than null so it can flow into
+                // builder setters the same way an absent/empty array would.
+                // See https://github.com/opensearch-project/opensearch-java/issues/1813
+                return new ArrayList<>();
+            }
             if (event == Event.START_ARRAY) {
                 List<T> result = new ArrayList<>();
                 while ((event = parser.next()) != Event.END_ARRAY) {
