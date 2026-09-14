@@ -172,6 +172,9 @@ public class Overrides {
                                 Type.builder().withPackage(Types.Client.OpenSearch.PACKAGE + ".core.search").withName("TotalHits").build()
                             )
                         )
+                            // hits is omitted from the response when a search matches nothing or filter_path drops hits.hits, so it must
+                            // not be required. See https://github.com/opensearch-project/opensearch-java/issues/1729.
+                            .with("hits", po -> po.withRequired(false))
                     )
                 )
                 .with(schema("_core.search", "TotalHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))
