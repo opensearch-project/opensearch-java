@@ -25,4 +25,8 @@ updates:
       - "dependencies"
       - "github-actions"
       - "skip-changelog"
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action/*"
 version: 2
