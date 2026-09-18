@@ -141,7 +141,7 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
     protected static void setupScoreSortDeserializer(ObjectDeserializer<ScoreSort.Builder> op) {
 
         op.add(Builder::order, SortOrder._DESERIALIZER, "order");
-
+        op.shortcutProperty("order");
     }
 
 }
