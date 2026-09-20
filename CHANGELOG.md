@@ -29,7 +29,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Thread the caller's document type through the gRPC transport typed search path so hit `_source` values deserialize to `TDocument` instead of being silently cast from `Object`/`JsonData`, fixing a runtime `ClassCastException` ([#2123](https://github.com/opensearch-project/opensearch-java/issues/2123))
+- Thread the caller's document type through the gRPC transport typed search path so hit `_source` values deserialize to `TDocument` instead of being silently cast from `Object`/`JsonData`, fixing a runtime `ClassCastException` ([#2123](https://github.com/opensearch-project/opensearch-java/issues/2123), [#2160](https://github.com/opensearch-project/opensearch-java/pull/2160))
 
 ### Security
 
