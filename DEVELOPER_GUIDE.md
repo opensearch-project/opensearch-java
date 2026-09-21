@@ -131,6 +131,56 @@ Please follow these formatting guidelines:
 * Note that JavaDoc and block comments i.e. `/* ... */` are not formatted, but line comments i.e `// ...` are.
 * There is an implicit rule that negative boolean expressions should use the form `foo == false` instead of `!foo` for better readability of the code. While this isn't strictly enforced, if might get called out in PR reviews as something to change.
 
+## Generated Code
+
+A large part of the `java-client` API is **generated** from the [OpenSearch OpenAPI specification](https://github.com/opensearch-project/opensearch-api-specification) by the `java-codegen` module. The generated sources live under [`java-client/src/generated/java/`](java-client/src/generated/java/) and are **committed to the repository**, so you only need to regenerate them when the API surface changes (e.g. after pulling a newer spec, adding an operation, or editing a code-generation template).
+
+### Where the spec comes from
+
+`java-codegen/opensearch-openapi.yaml` is a committed copy of the published spec. The upstream source of truth is the [opensearch-api-specification](https://github.com/opensearch-project/opensearch-api-specification) repository, which publishes a bundled document to:
+
+```
+https://api-spec.opensearch.org/opensearch-openapi.yaml
+```
+
+To pull the latest published spec into the repo, run:
+
+```
+./gradlew :java-codegen:downloadLatestSpec
+```
+
+This overwrites `java-codegen/opensearch-openapi.yaml` with the file from that URL. Commit the updated spec together with the regenerated code so the two stay in sync.
+
+### Regenerating the code
+
+Always regenerate through the Gradle `run` task — **do not run `CodeGenerator` by hand**:
+
+```
+./gradlew :java-codegen:run
+```
+
+This runs `org.opensearch.client.codegen.CodeGenerator` with the arguments wired up in [`java-codegen/build.gradle.kts`](java-codegen/build.gradle.kts):
+
+* `--input` &rarr; the local `java-codegen/opensearch-openapi.yaml`
+* `--output` &rarr; `java-client/src/generated/java/` (this directory is wiped and rewritten on each run)
+* `--eclipse-config` &rarr; `buildSrc/formatterConfig-generated.xml`
+
+After regenerating, review the diff, then build and test:
+
+```
+./gradlew clean build -x test
+```
+
+> **Note on the "huge diff" problem:** the generator formats its output with a **dedicated** Eclipse config, [`buildSrc/formatterConfig-generated.xml`](buildSrc/formatterConfig-generated.xml), which is **not** the same as the Spotless config used for hand-written code ([`buildSrc/formatterConfig.xml`](buildSrc/formatterConfig.xml)). The `CodeGenerator` applies the generated config internally as the final step, so running the generator via `./gradlew :java-codegen:run` reproduces exactly what is committed. Invoking `CodeGenerator` directly with the wrong config — or trying to "fix up" the output afterwards with `./gradlew spotlessApply` — reformats JavaDoc and other constructs differently and produces a large, spurious diff. Do not run `spotlessApply` over `java-client/src/generated/java/`.
+
+### Customizing what gets generated
+
+If the raw spec does not produce the desired Java, the generator can be tuned in a few places under `java-codegen/src/main/`:
+
+* **Operation include/exclude list** — the `OPERATION_MATCHER` in [`CodeGenerator.java`](java-codegen/src/main/java/org/opensearch/client/codegen/CodeGenerator.java) excludes operations/namespaces that are not yet supported (e.g. NDJSON APIs) or need review. Enable an operation by removing it from that list.
+* **Overrides** — per-schema/operation/property tweaks live in `transformer/overrides/` (see `Overrides.java`).
+* **Templates** — the emitted Java is rendered from Mustache templates in `src/main/resources/org/opensearch/client/codegen/templates/`.
+
 ## Submitting Changes
 
 See [CONTRIBUTING](CONTRIBUTING.md).
