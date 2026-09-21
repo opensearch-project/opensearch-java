@@ -135,6 +135,8 @@ Please follow these formatting guidelines:
 
 A large part of the `java-client` API is **generated** from the [OpenSearch OpenAPI specification](https://github.com/opensearch-project/opensearch-api-specification) by the `java-codegen` module. The generated sources live under [`java-client/src/generated/java/`](java-client/src/generated/java/) and are **committed to the repository**, so you only need to regenerate them when the API surface changes (e.g. after pulling a newer spec, adding an operation, or editing a code-generation template).
 
+The published API reference for the client (including the generated types) is available as [JavaDoc](https://www.javadoc.io/doc/org.opensearch.client/opensearch-java/latest/index.html).
+
 ### Where the spec comes from
 
 `java-codegen/opensearch-openapi.yaml` is a committed copy of the published spec. The upstream source of truth is the [opensearch-api-specification](https://github.com/opensearch-project/opensearch-api-specification) repository, which publishes a bundled document to:
