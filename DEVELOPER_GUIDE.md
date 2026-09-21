@@ -170,7 +170,7 @@ This runs `org.opensearch.client.codegen.CodeGenerator` with the arguments wired
 After regenerating, review the diff, then build and test:
 
 ```
-./gradlew clean build -x test
+./gradlew clean build
 ```
 
 > **Note on the "huge diff" problem:** the generator formats its output with a **dedicated** Eclipse config, [`buildSrc/formatterConfig-generated.xml`](buildSrc/formatterConfig-generated.xml), which is **not** the same as the Spotless config used for hand-written code ([`buildSrc/formatterConfig.xml`](buildSrc/formatterConfig.xml)). The `CodeGenerator` applies the generated config internally as the final step, so running the generator via `./gradlew :java-codegen:run` reproduces exactly what is committed. Invoking `CodeGenerator` directly with the wrong config — or trying to "fix up" the output afterwards with `./gradlew spotlessApply` — reformats JavaDoc and other constructs differently and produces a large, spurious diff. Do not run `spotlessApply` over `java-client/src/generated/java/`.
