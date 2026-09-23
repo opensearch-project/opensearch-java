@@ -147,30 +147,30 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         this.concurrentQueryTime = builder.concurrentQueryTime;
         this.concurrentQueryTimeInMillis = builder.concurrentQueryTimeInMillis;
         this.concurrentQueryTotal = builder.concurrentQueryTotal;
-        this.fetchCurrent = ApiTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent");
+        this.fetchCurrent = ApiTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent", 0L);
         this.fetchTime = builder.fetchTime;
-        this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis");
-        this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal");
+        this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis", 0L);
+        this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal", 0L);
         this.groups = ApiTypeHelper.unmodifiable(builder.groups);
         this.openContexts = builder.openContexts;
         this.pointInTimeCurrent = builder.pointInTimeCurrent;
         this.pointInTimeTime = builder.pointInTimeTime;
         this.pointInTimeTimeInMillis = builder.pointInTimeTimeInMillis;
         this.pointInTimeTotal = builder.pointInTimeTotal;
-        this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
+        this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent", 0L);
         this.queryTime = builder.queryTime;
-        this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
-        this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
+        this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis", 0L);
+        this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal", 0L);
         this.request = ApiTypeHelper.unmodifiable(builder.request);
-        this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent");
+        this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent", 0L);
         this.scrollTime = builder.scrollTime;
-        this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis");
-        this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
+        this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis", 0L);
+        this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal", 0L);
         this.searchIdleReactivateCountTotal = builder.searchIdleReactivateCountTotal;
-        this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
+        this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent", 0L);
         this.suggestTime = builder.suggestTime;
-        this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this, "suggestTimeInMillis");
-        this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal");
+        this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this, "suggestTimeInMillis", 0L);
+        this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal", 0L);
     }
 
     public static SearchStats of(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {

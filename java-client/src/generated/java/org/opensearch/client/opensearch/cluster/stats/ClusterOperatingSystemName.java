@@ -71,7 +71,7 @@ public class ClusterOperatingSystemName
     // ---------------------------------------------------------------------------------------------
 
     private ClusterOperatingSystemName(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
         this.name = builder.name;
     }
 

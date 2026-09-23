@@ -85,11 +85,11 @@ public class RemoteStoreUploadDownloadStats
 
     private RemoteStoreUploadDownloadStats(Builder builder) {
         this.failed = builder.failed;
-        this.failedBytes = ApiTypeHelper.requireNonNull(builder.failedBytes, this, "failedBytes");
+        this.failedBytes = ApiTypeHelper.requireNonNull(builder.failedBytes, this, "failedBytes", 0L);
         this.started = builder.started;
-        this.startedBytes = ApiTypeHelper.requireNonNull(builder.startedBytes, this, "startedBytes");
+        this.startedBytes = ApiTypeHelper.requireNonNull(builder.startedBytes, this, "startedBytes", 0L);
         this.succeeded = builder.succeeded;
-        this.succeededBytes = ApiTypeHelper.requireNonNull(builder.succeededBytes, this, "succeededBytes");
+        this.succeededBytes = ApiTypeHelper.requireNonNull(builder.succeededBytes, this, "succeededBytes", 0L);
     }
 
     public static RemoteStoreUploadDownloadStats of(

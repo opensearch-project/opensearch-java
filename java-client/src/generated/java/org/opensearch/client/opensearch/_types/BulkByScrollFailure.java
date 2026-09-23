@@ -89,7 +89,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable, ToCopyableBui
         this.node = builder.node;
         this.reason = builder.reason;
         this.shard = builder.shard;
-        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status", 0);
     }
 
     public static BulkByScrollFailure of(Function<BulkByScrollFailure.Builder, ObjectBuilder<BulkByScrollFailure>> fn) {

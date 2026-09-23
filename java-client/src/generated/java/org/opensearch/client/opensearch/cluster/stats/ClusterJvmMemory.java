@@ -74,9 +74,9 @@ public class ClusterJvmMemory implements PlainJsonSerializable, ToCopyableBuilde
 
     private ClusterJvmMemory(Builder builder) {
         this.heapMax = builder.heapMax;
-        this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+        this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes", 0L);
         this.heapUsed = builder.heapUsed;
-        this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
+        this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes", 0L);
     }
 
     public static ClusterJvmMemory of(Function<ClusterJvmMemory.Builder, ObjectBuilder<ClusterJvmMemory>> fn) {

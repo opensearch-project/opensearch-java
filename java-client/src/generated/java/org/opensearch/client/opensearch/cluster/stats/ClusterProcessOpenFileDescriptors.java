@@ -70,9 +70,9 @@ public class ClusterProcessOpenFileDescriptors
     // ---------------------------------------------------------------------------------------------
 
     private ClusterProcessOpenFileDescriptors(Builder builder) {
-        this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
-        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-        this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+        this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg", 0L);
+        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0L);
+        this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min", 0L);
     }
 
     public static ClusterProcessOpenFileDescriptors of(

@@ -65,8 +65,8 @@ public class ChiSquareHeuristic implements PlainJsonSerializable, ToCopyableBuil
     // ---------------------------------------------------------------------------------------------
 
     private ChiSquareHeuristic(Builder builder) {
-        this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this, "backgroundIsSuperset");
-        this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
+        this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this, "backgroundIsSuperset", false);
+        this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives", false);
     }
 
     public static ChiSquareHeuristic of(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {

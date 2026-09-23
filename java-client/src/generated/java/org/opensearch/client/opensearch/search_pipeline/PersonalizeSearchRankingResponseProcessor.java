@@ -97,7 +97,7 @@ public class PersonalizeSearchRankingResponseProcessor
         this.itemIdField = builder.itemIdField;
         this.recipe = ApiTypeHelper.requireNonNull(builder.recipe, this, "recipe");
         this.tag = builder.tag;
-        this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
+        this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight", 0.0f);
     }
 
     public static PersonalizeSearchRankingResponseProcessor of(

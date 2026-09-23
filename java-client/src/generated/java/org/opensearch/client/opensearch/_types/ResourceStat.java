@@ -68,8 +68,8 @@ public class ResourceStat implements PlainJsonSerializable, ToCopyableBuilder<Re
     // ---------------------------------------------------------------------------------------------
 
     private ResourceStat(Builder builder) {
-        this.cpuTimeInNanos = ApiTypeHelper.requireNonNull(builder.cpuTimeInNanos, this, "cpuTimeInNanos");
-        this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
+        this.cpuTimeInNanos = ApiTypeHelper.requireNonNull(builder.cpuTimeInNanos, this, "cpuTimeInNanos", 0L);
+        this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes", 0L);
     }
 
     public static ResourceStat of(Function<ResourceStat.Builder, ObjectBuilder<ResourceStat>> fn) {

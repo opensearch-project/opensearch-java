@@ -68,8 +68,8 @@ public class CleanupRepositoryResults
     // ---------------------------------------------------------------------------------------------
 
     private CleanupRepositoryResults(Builder builder) {
-        this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
-        this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
+        this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs", 0L);
+        this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes", 0L);
     }
 
     public static CleanupRepositoryResults of(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {

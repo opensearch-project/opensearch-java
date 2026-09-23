@@ -85,11 +85,11 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         this.forcedRefresh = builder.forcedRefresh;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+        this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm", 0L);
         this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-        this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+        this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo", 0L);
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0L);
     }
 
     /**

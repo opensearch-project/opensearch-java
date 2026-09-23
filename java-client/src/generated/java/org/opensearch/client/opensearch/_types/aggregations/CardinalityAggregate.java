@@ -65,7 +65,7 @@ public class CardinalityAggregate extends AggregateBase
 
     private CardinalityAggregate(Builder builder) {
         super(builder);
-        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0L);
     }
 
     public static CardinalityAggregate of(Function<CardinalityAggregate.Builder, ObjectBuilder<CardinalityAggregate>> fn) {

@@ -109,19 +109,19 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
 
     private ClusterNodeCount(Builder builder) {
         this.clusterManager = builder.clusterManager;
-        this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly");
-        this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
+        this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly", 0);
+        this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data", 0);
         this.dataCold = builder.dataCold;
         this.dataContent = builder.dataContent;
         this.dataFrozen = builder.dataFrozen;
         this.dataHot = builder.dataHot;
         this.dataWarm = builder.dataWarm;
-        this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-        this.master = ApiTypeHelper.requireNonNull(builder.master, this, "master");
+        this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest", 0);
+        this.master = ApiTypeHelper.requireNonNull(builder.master, this, "master", 0);
         this.ml = builder.ml;
-        this.remoteClusterClient = ApiTypeHelper.requireNonNull(builder.remoteClusterClient, this, "remoteClusterClient");
+        this.remoteClusterClient = ApiTypeHelper.requireNonNull(builder.remoteClusterClient, this, "remoteClusterClient", 0);
         this.search = builder.search;
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
         this.transform = builder.transform;
         this.votingOnly = builder.votingOnly;
         this.warm = builder.warm;

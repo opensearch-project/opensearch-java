@@ -89,11 +89,16 @@ public class RemoteStoreUploadStats
 
     private RemoteStoreUploadStats(Builder builder) {
         this.maxRefreshTimeLag = builder.maxRefreshTimeLag;
-        this.maxRefreshTimeLagInMillis = ApiTypeHelper.requireNonNull(builder.maxRefreshTimeLagInMillis, this, "maxRefreshTimeLagInMillis");
+        this.maxRefreshTimeLagInMillis = ApiTypeHelper.requireNonNull(
+            builder.maxRefreshTimeLagInMillis,
+            this,
+            "maxRefreshTimeLagInMillis",
+            0L
+        );
         this.pressure = builder.pressure;
         this.refreshSizeLag = ApiTypeHelper.requireNonNull(builder.refreshSizeLag, this, "refreshSizeLag");
         this.totalTimeSpent = builder.totalTimeSpent;
-        this.totalTimeSpentInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeSpentInMillis, this, "totalTimeSpentInMillis");
+        this.totalTimeSpentInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeSpentInMillis, this, "totalTimeSpentInMillis", 0L);
         this.totalUploadSize = ApiTypeHelper.requireNonNull(builder.totalUploadSize, this, "totalUploadSize");
     }
 

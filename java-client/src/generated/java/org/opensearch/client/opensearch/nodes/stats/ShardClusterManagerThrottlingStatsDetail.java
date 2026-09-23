@@ -75,7 +75,7 @@ public class ShardClusterManagerThrottlingStatsDetail
             this,
             "throttledTasksPerTaskType"
         );
-        this.totalThrottledTasks = ApiTypeHelper.requireNonNull(builder.totalThrottledTasks, this, "totalThrottledTasks");
+        this.totalThrottledTasks = ApiTypeHelper.requireNonNull(builder.totalThrottledTasks, this, "totalThrottledTasks", 0L);
     }
 
     public static ShardClusterManagerThrottlingStatsDetail of(

@@ -81,9 +81,9 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
     private RecoveryFiles(Builder builder) {
         this.details = ApiTypeHelper.unmodifiable(builder.details);
         this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
-        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-        this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered", 0L);
+        this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
     }
 
     public static RecoveryFiles of(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {

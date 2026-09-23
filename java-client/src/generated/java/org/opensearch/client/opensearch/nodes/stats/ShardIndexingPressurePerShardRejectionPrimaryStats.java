@@ -76,7 +76,7 @@ public class ShardIndexingPressurePerShardRejectionPrimaryStats
     private ShardIndexingPressurePerShardRejectionPrimaryStats(Builder builder) {
         this.breakup = builder.breakup;
         this.breakupShadowMode = builder.breakupShadowMode;
-        this.primaryRejections = ApiTypeHelper.requireNonNull(builder.primaryRejections, this, "primaryRejections");
+        this.primaryRejections = ApiTypeHelper.requireNonNull(builder.primaryRejections, this, "primaryRejections", 0L);
     }
 
     public static ShardIndexingPressurePerShardRejectionPrimaryStats of(

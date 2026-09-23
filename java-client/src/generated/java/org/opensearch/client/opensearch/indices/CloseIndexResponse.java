@@ -71,7 +71,7 @@ public class CloseIndexResponse extends AcknowledgedResponseBase
     private CloseIndexResponse(Builder builder) {
         super(builder);
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static CloseIndexResponse of(Function<CloseIndexResponse.Builder, ObjectBuilder<CloseIndexResponse>> fn) {

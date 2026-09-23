@@ -73,8 +73,8 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
 
     private ShardRetentionLeases(Builder builder) {
         this.leases = ApiTypeHelper.unmodifiableRequired(builder.leases, this, "leases");
-        this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm", 0L);
+        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0L);
     }
 
     public static ShardRetentionLeases of(Function<ShardRetentionLeases.Builder, ObjectBuilder<ShardRetentionLeases>> fn) {

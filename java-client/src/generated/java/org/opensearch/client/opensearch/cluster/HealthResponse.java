@@ -118,35 +118,37 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private HealthResponse(Builder builder) {
-        this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this, "activePrimaryShards");
-        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+        this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this, "activePrimaryShards", 0);
+        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
         this.activeShardsPercent = builder.activeShardsPercent;
         this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNull(
             builder.activeShardsPercentAsNumber,
             this,
-            "activeShardsPercentAsNumber"
+            "activeShardsPercentAsNumber",
+            0.0
         );
         this.awarenessAttributes = ApiTypeHelper.unmodifiable(builder.awarenessAttributes);
         this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-        this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this, "delayedUnassignedShards");
+        this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this, "delayedUnassignedShards", 0);
         this.discoveredClusterManager = builder.discoveredClusterManager;
         this.discoveredMaster = builder.discoveredMaster;
         this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
-        this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
-        this.numberOfInFlightFetch = ApiTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this, "numberOfInFlightFetch");
-        this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
-        this.numberOfPendingTasks = ApiTypeHelper.requireNonNull(builder.numberOfPendingTasks, this, "numberOfPendingTasks");
-        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards", 0);
+        this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes", 0);
+        this.numberOfInFlightFetch = ApiTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this, "numberOfInFlightFetch", 0);
+        this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes", 0);
+        this.numberOfPendingTasks = ApiTypeHelper.requireNonNull(builder.numberOfPendingTasks, this, "numberOfPendingTasks", 0);
+        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards", 0);
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
         this.taskMaxWaitingInQueue = builder.taskMaxWaitingInQueue;
         this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(
             builder.taskMaxWaitingInQueueMillis,
             this,
-            "taskMaxWaitingInQueueMillis"
+            "taskMaxWaitingInQueueMillis",
+            0L
         );
-        this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+        this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
+        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards", 0);
     }
 
     public static HealthResponse of(Function<HealthResponse.Builder, ObjectBuilder<HealthResponse>> fn) {

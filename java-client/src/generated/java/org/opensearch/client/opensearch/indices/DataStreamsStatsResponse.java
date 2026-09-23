@@ -83,12 +83,12 @@ public class DataStreamsStatsResponse
     // ---------------------------------------------------------------------------------------------
 
     private DataStreamsStatsResponse(Builder builder) {
-        this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
-        this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+        this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices", 0);
+        this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount", 0);
         this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
         this.totalStoreSize = builder.totalStoreSize;
-        this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this, "totalStoreSizeBytes");
+        this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this, "totalStoreSizeBytes", 0L);
     }
 
     public static DataStreamsStatsResponse of(Function<DataStreamsStatsResponse.Builder, ObjectBuilder<DataStreamsStatsResponse>> fn) {

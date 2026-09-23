@@ -94,19 +94,19 @@ public class ReindexStatus implements PlainJsonSerializable, ToCopyableBuilder<R
     // ---------------------------------------------------------------------------------------------
 
     private ReindexStatus(Builder builder) {
-        this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
-        this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
-        this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-        this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
-        this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+        this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches", 0L);
+        this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", 0L);
+        this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", 0L);
+        this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops", 0L);
+        this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0.0f);
         this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
         this.throttled = builder.throttled;
-        this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+        this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis", 0L);
         this.throttledUntil = builder.throttledUntil;
-        this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this, "throttledUntilMillis");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-        this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
-        this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+        this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this, "throttledUntilMillis", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
+        this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated", 0L);
+        this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts", 0L);
     }
 
     public static ReindexStatus of(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {

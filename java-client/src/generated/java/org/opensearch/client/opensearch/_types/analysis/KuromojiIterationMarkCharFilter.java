@@ -67,8 +67,8 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase
 
     private KuromojiIterationMarkCharFilter(Builder builder) {
         super(builder);
-        this.normalizeKana = ApiTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana");
-        this.normalizeKanji = ApiTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji");
+        this.normalizeKana = ApiTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana", false);
+        this.normalizeKanji = ApiTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji", false);
     }
 
     public static KuromojiIterationMarkCharFilter of(

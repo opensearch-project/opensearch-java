@@ -83,14 +83,14 @@ public class QueryCacheStats implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private QueryCacheStats(Builder builder) {
-        this.cacheCount = ApiTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
-        this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-        this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-        this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+        this.cacheCount = ApiTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount", 0L);
+        this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize", 0L);
+        this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0L);
+        this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount", 0L);
         this.memorySize = builder.memorySize;
-        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-        this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
-        this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0L);
+        this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount", 0L);
+        this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount", 0L);
     }
 
     public static QueryCacheStats of(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {

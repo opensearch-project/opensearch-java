@@ -72,10 +72,10 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private CoordsGeoBounds(Builder builder) {
-        this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom");
-        this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left");
-        this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right");
-        this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top");
+        this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom", 0.0);
+        this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left", 0.0);
+        this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right", 0.0);
+        this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top", 0.0);
     }
 
     public static CoordsGeoBounds of(Function<CoordsGeoBounds.Builder, ObjectBuilder<CoordsGeoBounds>> fn) {

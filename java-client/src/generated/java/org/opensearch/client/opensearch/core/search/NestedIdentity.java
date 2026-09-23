@@ -73,7 +73,7 @@ public class NestedIdentity implements PlainJsonSerializable, ToCopyableBuilder<
     private NestedIdentity(Builder builder) {
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.nested = builder.nested;
-        this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
+        this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset", 0);
     }
 
     public static NestedIdentity of(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {

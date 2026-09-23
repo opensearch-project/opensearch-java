@@ -80,7 +80,7 @@ public class ShardSearchFailure implements PlainJsonSerializable, ToCopyableBuil
         this.index = builder.index;
         this.node = builder.node;
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
     }
 
     public static ShardSearchFailure of(Function<ShardSearchFailure.Builder, ObjectBuilder<ShardSearchFailure>> fn) {

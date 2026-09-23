@@ -81,9 +81,9 @@ public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<Sh
     private ShardFailure(Builder builder) {
         this.index = builder.index;
         this.node = builder.node;
-        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
         this.status = builder.status;
     }
 

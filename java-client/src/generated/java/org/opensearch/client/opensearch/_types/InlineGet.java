@@ -93,7 +93,7 @@ public class InlineGet<TDocument> implements PlainJsonSerializable, ToCopyableBu
 
     private InlineGet(Builder<TDocument> builder) {
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
         this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.primaryTerm = builder.primaryTerm;
         this.routing = builder.routing;

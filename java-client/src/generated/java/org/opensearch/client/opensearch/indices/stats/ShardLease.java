@@ -75,9 +75,9 @@ public class ShardLease implements PlainJsonSerializable, ToCopyableBuilder<Shar
 
     private ShardLease(Builder builder) {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
+        this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo", 0L);
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0L);
     }
 
     public static ShardLease of(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {

@@ -66,7 +66,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
     protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
         super(builder);
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
-        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0L);
     }
 
     @Nonnull

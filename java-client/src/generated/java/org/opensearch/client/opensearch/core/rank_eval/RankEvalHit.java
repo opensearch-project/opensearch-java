@@ -71,7 +71,7 @@ public class RankEvalHit implements PlainJsonSerializable, ToCopyableBuilder<Ran
     private RankEvalHit(Builder builder) {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0.0);
     }
 
     public static RankEvalHit of(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {

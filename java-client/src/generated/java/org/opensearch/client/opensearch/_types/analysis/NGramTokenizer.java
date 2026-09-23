@@ -77,8 +77,8 @@ public class NGramTokenizer extends TokenizerBase
     private NGramTokenizer(Builder builder) {
         super(builder);
         this.customTokenChars = builder.customTokenChars;
-        this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-        this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+        this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram", 0);
+        this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram", 0);
         this.tokenChars = ApiTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
     }
 

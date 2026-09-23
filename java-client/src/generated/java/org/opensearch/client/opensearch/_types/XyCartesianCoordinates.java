@@ -47,8 +47,8 @@ public class XyCartesianCoordinates
     // ---------------------------------------------------------------------------------------------
 
     private XyCartesianCoordinates(Builder builder) {
-        this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x");
-        this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y");
+        this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x", 0.0);
+        this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y", 0.0);
     }
 
     public static XyCartesianCoordinates of(Function<XyCartesianCoordinates.Builder, ObjectBuilder<XyCartesianCoordinates>> fn) {

@@ -82,7 +82,7 @@ public final class ImportDanglingIndexRequest extends RequestBase
 
     private ImportDanglingIndexRequest(Builder builder) {
         super(builder);
-        this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+        this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
         this.masterTimeout = builder.masterTimeout;

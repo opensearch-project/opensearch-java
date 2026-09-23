@@ -68,8 +68,8 @@ public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries
     // ---------------------------------------------------------------------------------------------
 
     private Retries(Builder builder) {
-        this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk");
-        this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+        this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk", 0L);
+        this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search", 0L);
     }
 
     public static Retries of(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {

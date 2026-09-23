@@ -67,9 +67,9 @@ public class FieldStatistics implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private FieldStatistics(Builder builder) {
-        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-        this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
-        this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
+        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0);
+        this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq", 0L);
+        this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf", 0L);
     }
 
     public static FieldStatistics of(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {

@@ -89,18 +89,18 @@ public class AggregationBreakdown implements PlainJsonSerializable, ToCopyableBu
     // ---------------------------------------------------------------------------------------------
 
     private AggregationBreakdown(Builder builder) {
-        this.buildAggregation = ApiTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation");
-        this.buildAggregationCount = ApiTypeHelper.requireNonNull(builder.buildAggregationCount, this, "buildAggregationCount");
-        this.buildLeafCollector = ApiTypeHelper.requireNonNull(builder.buildLeafCollector, this, "buildLeafCollector");
-        this.buildLeafCollectorCount = ApiTypeHelper.requireNonNull(builder.buildLeafCollectorCount, this, "buildLeafCollectorCount");
-        this.collect = ApiTypeHelper.requireNonNull(builder.collect, this, "collect");
-        this.collectCount = ApiTypeHelper.requireNonNull(builder.collectCount, this, "collectCount");
-        this.initialize = ApiTypeHelper.requireNonNull(builder.initialize, this, "initialize");
-        this.initializeCount = ApiTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount");
+        this.buildAggregation = ApiTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation", 0L);
+        this.buildAggregationCount = ApiTypeHelper.requireNonNull(builder.buildAggregationCount, this, "buildAggregationCount", 0L);
+        this.buildLeafCollector = ApiTypeHelper.requireNonNull(builder.buildLeafCollector, this, "buildLeafCollector", 0L);
+        this.buildLeafCollectorCount = ApiTypeHelper.requireNonNull(builder.buildLeafCollectorCount, this, "buildLeafCollectorCount", 0L);
+        this.collect = ApiTypeHelper.requireNonNull(builder.collect, this, "collect", 0L);
+        this.collectCount = ApiTypeHelper.requireNonNull(builder.collectCount, this, "collectCount", 0L);
+        this.initialize = ApiTypeHelper.requireNonNull(builder.initialize, this, "initialize", 0L);
+        this.initializeCount = ApiTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount", 0L);
         this.postCollection = builder.postCollection;
         this.postCollectionCount = builder.postCollectionCount;
-        this.reduce = ApiTypeHelper.requireNonNull(builder.reduce, this, "reduce");
-        this.reduceCount = ApiTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount");
+        this.reduce = ApiTypeHelper.requireNonNull(builder.reduce, this, "reduce", 0L);
+        this.reduceCount = ApiTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount", 0L);
     }
 
     public static AggregationBreakdown of(Function<AggregationBreakdown.Builder, ObjectBuilder<AggregationBreakdown>> fn) {

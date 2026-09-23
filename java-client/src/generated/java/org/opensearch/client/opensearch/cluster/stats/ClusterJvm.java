@@ -79,9 +79,9 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
 
     private ClusterJvm(Builder builder) {
         this.maxUptime = builder.maxUptime;
-        this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
+        this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis", 0L);
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
-        this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+        this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads", 0L);
         this.versions = ApiTypeHelper.unmodifiable(builder.versions);
     }
 

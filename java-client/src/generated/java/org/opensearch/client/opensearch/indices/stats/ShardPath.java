@@ -73,7 +73,7 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
 
     private ShardPath(Builder builder) {
         this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
-        this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
+        this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath", false);
         this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
     }
 

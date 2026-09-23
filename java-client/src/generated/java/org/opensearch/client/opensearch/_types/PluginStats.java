@@ -100,7 +100,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         this.customFoldername = builder.customFoldername;
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
         this.extendedPlugins = ApiTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
-        this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this, "hasNativeController");
+        this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this, "hasNativeController", false);
         this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
         this.licensed = builder.licensed;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");

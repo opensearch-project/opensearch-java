@@ -79,7 +79,7 @@ public class CircleProcessor extends ProcessorBase
 
     private CircleProcessor(Builder builder) {
         super(builder);
-        this.errorDistance = ApiTypeHelper.requireNonNull(builder.errorDistance, this, "errorDistance");
+        this.errorDistance = ApiTypeHelper.requireNonNull(builder.errorDistance, this, "errorDistance", 0.0);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.ignoreMissing = builder.ignoreMissing;
         this.shapeType = ApiTypeHelper.requireNonNull(builder.shapeType, this, "shapeType");

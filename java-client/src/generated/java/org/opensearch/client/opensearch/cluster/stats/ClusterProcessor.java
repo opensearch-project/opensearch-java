@@ -75,11 +75,11 @@ public class ClusterProcessor implements PlainJsonSerializable, ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private ClusterProcessor(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0L);
+        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0L);
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0L);
         this.time = builder.time;
-        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0L);
     }
 
     public static ClusterProcessor of(Function<ClusterProcessor.Builder, ObjectBuilder<ClusterProcessor>> fn) {

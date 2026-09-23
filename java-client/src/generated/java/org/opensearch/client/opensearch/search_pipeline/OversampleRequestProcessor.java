@@ -84,7 +84,7 @@ public class OversampleRequestProcessor
         this.contentPrefix = builder.contentPrefix;
         this.description = builder.description;
         this.ignoreFailure = builder.ignoreFailure;
-        this.sampleFactor = ApiTypeHelper.requireNonNull(builder.sampleFactor, this, "sampleFactor");
+        this.sampleFactor = ApiTypeHelper.requireNonNull(builder.sampleFactor, this, "sampleFactor", 0.0f);
         this.tag = builder.tag;
     }
 

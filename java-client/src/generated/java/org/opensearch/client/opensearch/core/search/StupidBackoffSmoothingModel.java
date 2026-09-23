@@ -67,7 +67,7 @@ public class StupidBackoffSmoothingModel
     // ---------------------------------------------------------------------------------------------
 
     private StupidBackoffSmoothingModel(Builder builder) {
-        this.discount = ApiTypeHelper.requireNonNull(builder.discount, this, "discount");
+        this.discount = ApiTypeHelper.requireNonNull(builder.discount, this, "discount", 0.0);
     }
 
     public static StupidBackoffSmoothingModel of(

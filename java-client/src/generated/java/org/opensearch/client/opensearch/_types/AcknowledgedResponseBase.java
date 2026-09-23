@@ -56,7 +56,7 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     // ---------------------------------------------------------------------------------------------
 
     protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
-        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
     }
 
     /**

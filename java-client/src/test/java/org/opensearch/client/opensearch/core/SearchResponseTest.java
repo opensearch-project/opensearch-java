@@ -31,6 +31,9 @@ public class SearchResponseTest extends ModelTestCase {
         + "\"_shards\":{\"total\":2,\"successful\":2,\"skipped\":0,\"failed\":0},"
         + "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"},\"max_score\":null}}";
 
+    // An inclusion filter such as filter_path=hits.hits._source prunes required primitives (took, timed_out) as well.
+    private static final String FILTERED_PRIMITIVES_RESPONSE = "{\"hits\":{\"hits\":[{\"_source\":{\"title\":\"foo\"}}]}}";
+
     @Test
     public void emptyResponseDeserializes() {
         SearchResponse<JsonData> response = fromJson(EMPTY_RESPONSE, deserializer);
@@ -57,6 +60,20 @@ public class SearchResponseTest extends ModelTestCase {
             assertFalse(ApiTypeHelper.isDefined(response.hits().hits()));
             assertEquals(0L, response.hits().total().value());
             assertEquals(6L, response.took());
+        }
+    }
+
+    @Test
+    public void filteredResponseWithoutRequiredPrimitivesDeserializesWhenRequiredChecksAreDisabled() {
+        assertThrows(MissingRequiredPropertyException.class, () -> fromJson(FILTERED_PRIMITIVES_RESPONSE, deserializer));
+
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            SearchResponse<JsonData> response = fromJson(FILTERED_PRIMITIVES_RESPONSE, deserializer);
+            // Missing primitives read as their default value
+            assertEquals(0L, response.took());
+            assertFalse(response.timedOut());
+            assertNull(response.shards());
+            assertEquals("foo", response.hits().hits().get(0).source().toJson().asJsonObject().getString("title"));
         }
     }
 }

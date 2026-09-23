@@ -80,7 +80,7 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
         this.collateMatch = builder.collateMatch;
         this.freq = builder.freq;
         this.highlighted = builder.highlighted;
-        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0.0);
         this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
     }
 
