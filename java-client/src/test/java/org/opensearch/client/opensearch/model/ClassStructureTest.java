@@ -329,6 +329,19 @@ public class ClassStructureTest extends ModelTestCase {
         }
     }
 
+    @Test
+    public void testRequiredPrimitiveWithChecksDisabled() {
+        // Missing required primitive is rejected
+        assertThrows(MissingRequiredPropertyException.class, () -> ApiTypeHelper.requireNonNull((Long) null, this, "p", 0L));
+
+        // Disable checks, missing required primitive gets the default value instead of failing on unboxing
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            long p = ApiTypeHelper.requireNonNull((Long) null, this, "p", 0L);
+            assertEquals(0L, p);
+            assertEquals(Long.valueOf(42L), ApiTypeHelper.requireNonNull(42L, this, "p", 0L));
+        }
+    }
+
     private void assertAncestorCount(int count, Object obj) {
         Class<?> clazz = obj.getClass();
         while (count-- >= 0) {
