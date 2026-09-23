@@ -154,7 +154,7 @@ public class ApiTypeHelper {
         // lists may have a meaning in some APIs. Furthermore, being defined means that it was set by
         // the application, so it's not an omission.
         requireNonNull(list == UNDEFINED_LIST ? null : list, obj, name);
-        return Collections.unmodifiableList(list);
+        return unmodifiable(list);
     }
 
     // ----- Maps
@@ -207,6 +207,6 @@ public class ApiTypeHelper {
         // maps may have a meaning in some APIs. Furthermore, being defined means that it was set by
         // the application, so it's not an omission.
         requireNonNull(map == UNDEFINED_MAP ? null : map, obj, name);
-        return Collections.unmodifiableMap(map);
+        return unmodifiable(map);
     }
 }
