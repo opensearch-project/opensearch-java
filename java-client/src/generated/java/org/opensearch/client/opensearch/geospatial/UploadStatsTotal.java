@@ -71,11 +71,11 @@ public class UploadStatsTotal implements PlainJsonSerializable, ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private UploadStatsTotal(Builder builder) {
-        this.duration = ApiTypeHelper.requireNonNull(builder.duration, this, "duration");
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-        this.requestCount = ApiTypeHelper.requireNonNull(builder.requestCount, this, "requestCount");
-        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success");
-        this.upload = ApiTypeHelper.requireNonNull(builder.upload, this, "upload");
+        this.duration = ApiTypeHelper.requireNonNull(builder.duration, this, "duration", 0L);
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
+        this.requestCount = ApiTypeHelper.requireNonNull(builder.requestCount, this, "requestCount", 0);
+        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success", 0);
+        this.upload = ApiTypeHelper.requireNonNull(builder.upload, this, "upload", 0);
     }
 
     public static UploadStatsTotal of(Function<UploadStatsTotal.Builder, ObjectBuilder<UploadStatsTotal>> fn) {

@@ -70,7 +70,7 @@ public class NodeInfoNetwork implements PlainJsonSerializable, ToCopyableBuilder
 
     private NodeInfoNetwork(Builder builder) {
         this.primaryInterface = ApiTypeHelper.requireNonNull(builder.primaryInterface, this, "primaryInterface");
-        this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval");
+        this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval", 0);
     }
 
     public static NodeInfoNetwork of(Function<NodeInfoNetwork.Builder, ObjectBuilder<NodeInfoNetwork>> fn) {

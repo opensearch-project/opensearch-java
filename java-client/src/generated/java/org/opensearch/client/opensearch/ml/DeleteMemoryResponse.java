@@ -39,7 +39,7 @@ public class DeleteMemoryResponse implements PlainJsonSerializable, ToCopyableBu
     // ---------------------------------------------------------------------------------------------
 
     private DeleteMemoryResponse(Builder builder) {
-        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success");
+        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success", false);
     }
 
     public static DeleteMemoryResponse of(Function<DeleteMemoryResponse.Builder, ObjectBuilder<DeleteMemoryResponse>> fn) {

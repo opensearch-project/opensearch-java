@@ -65,8 +65,8 @@ public class ClearScrollResponse implements PlainJsonSerializable, ToCopyableBui
     // ---------------------------------------------------------------------------------------------
 
     private ClearScrollResponse(Builder builder) {
-        this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
-        this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+        this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed", 0);
+        this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded", false);
     }
 
     public static ClearScrollResponse of(Function<ClearScrollResponse.Builder, ObjectBuilder<ClearScrollResponse>> fn) {

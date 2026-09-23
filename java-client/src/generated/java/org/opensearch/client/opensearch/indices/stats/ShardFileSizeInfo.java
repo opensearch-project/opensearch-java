@@ -92,7 +92,7 @@ public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuild
         this.maxSizeInBytes = builder.maxSizeInBytes;
         this.minSizeInBytes = builder.minSizeInBytes;
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
     }
 
     public static ShardFileSizeInfo of(Function<ShardFileSizeInfo.Builder, ObjectBuilder<ShardFileSizeInfo>> fn) {

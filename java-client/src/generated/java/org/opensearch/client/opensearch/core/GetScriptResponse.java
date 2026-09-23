@@ -72,7 +72,7 @@ public class GetScriptResponse implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private GetScriptResponse(Builder builder) {
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.script = builder.script;
     }

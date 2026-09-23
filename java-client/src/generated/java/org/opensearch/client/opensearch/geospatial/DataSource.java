@@ -83,9 +83,14 @@ public class DataSource implements PlainJsonSerializable, ToCopyableBuilder<Data
         this.database = ApiTypeHelper.requireNonNull(builder.database, this, "database");
         this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.nextUpdateAtInEpochMillis = ApiTypeHelper.requireNonNull(builder.nextUpdateAtInEpochMillis, this, "nextUpdateAtInEpochMillis");
+        this.nextUpdateAtInEpochMillis = ApiTypeHelper.requireNonNull(
+            builder.nextUpdateAtInEpochMillis,
+            this,
+            "nextUpdateAtInEpochMillis",
+            0L
+        );
         this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-        this.updateIntervalInDays = ApiTypeHelper.requireNonNull(builder.updateIntervalInDays, this, "updateIntervalInDays");
+        this.updateIntervalInDays = ApiTypeHelper.requireNonNull(builder.updateIntervalInDays, this, "updateIntervalInDays", 0);
         this.updateStats = ApiTypeHelper.requireNonNull(builder.updateStats, this, "updateStats");
     }
 

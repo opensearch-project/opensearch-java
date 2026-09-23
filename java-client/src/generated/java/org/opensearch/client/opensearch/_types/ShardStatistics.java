@@ -76,11 +76,11 @@ public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private ShardStatistics(Builder builder) {
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
         this.failures = ApiTypeHelper.unmodifiable(builder.failures);
         this.skipped = builder.skipped;
-        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", 0);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
     }
 
     public static ShardStatistics of(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {

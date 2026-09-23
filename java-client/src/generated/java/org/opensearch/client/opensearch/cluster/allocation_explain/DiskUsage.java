@@ -86,14 +86,14 @@ public class DiskUsage implements PlainJsonSerializable, ToCopyableBuilder<DiskU
 
     private DiskUsage(Builder builder) {
         this.free = builder.free;
-        this.freeBytes = ApiTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes");
-        this.freeDiskPercent = ApiTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent");
+        this.freeBytes = ApiTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes", 0L);
+        this.freeDiskPercent = ApiTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent", 0.0);
         this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
         this.total = builder.total;
-        this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
+        this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes", 0L);
         this.used = builder.used;
-        this.usedBytes = ApiTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes");
-        this.usedDiskPercent = ApiTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent");
+        this.usedBytes = ApiTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes", 0L);
+        this.usedDiskPercent = ApiTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent", 0.0);
     }
 
     public static DiskUsage of(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {

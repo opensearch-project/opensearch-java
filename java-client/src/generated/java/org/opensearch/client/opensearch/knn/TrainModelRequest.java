@@ -112,7 +112,7 @@ public final class TrainModelRequest extends RequestBase
         super(builder);
         this.compressionLevel = builder.compressionLevel;
         this.description = builder.description;
-        this.dimension = ApiTypeHelper.requireNonNull(builder.dimension, this, "dimension");
+        this.dimension = ApiTypeHelper.requireNonNull(builder.dimension, this, "dimension", 0);
         this.maxTrainingVectorCount = builder.maxTrainingVectorCount;
         this.method = builder.method;
         this.mode = builder.mode;

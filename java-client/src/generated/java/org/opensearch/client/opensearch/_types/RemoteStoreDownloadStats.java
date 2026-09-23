@@ -79,7 +79,7 @@ public class RemoteStoreDownloadStats
     private RemoteStoreDownloadStats(Builder builder) {
         this.totalDownloadSize = ApiTypeHelper.requireNonNull(builder.totalDownloadSize, this, "totalDownloadSize");
         this.totalTimeSpent = builder.totalTimeSpent;
-        this.totalTimeSpentInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeSpentInMillis, this, "totalTimeSpentInMillis");
+        this.totalTimeSpentInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeSpentInMillis, this, "totalTimeSpentInMillis", 0L);
     }
 
     public static RemoteStoreDownloadStats of(Function<RemoteStoreDownloadStats.Builder, ObjectBuilder<RemoteStoreDownloadStats>> fn) {

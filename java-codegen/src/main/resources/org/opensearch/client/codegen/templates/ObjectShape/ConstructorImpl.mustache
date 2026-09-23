@@ -12,7 +12,7 @@
     {{/type.isListOrMap}}
     {{^type.isListOrMap}}
         {{#required}}
-            this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+            this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}}{{#type.isPrimitive}}, {{type.primitiveDefault}}{{/type.isPrimitive}});
         {{/required}}
         {{^required}}
             this.{{name}} = builder.{{name}};

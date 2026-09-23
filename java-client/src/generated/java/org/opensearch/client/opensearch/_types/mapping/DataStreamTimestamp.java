@@ -63,7 +63,7 @@ public class DataStreamTimestamp implements PlainJsonSerializable, ToCopyableBui
     // ---------------------------------------------------------------------------------------------
 
     private DataStreamTimestamp(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static DataStreamTimestamp of(Function<DataStreamTimestamp.Builder, ObjectBuilder<DataStreamTimestamp>> fn) {

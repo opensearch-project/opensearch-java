@@ -109,7 +109,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
 
     private DataStream(Builder builder) {
         this.allowCustomRouting = builder.allowCustomRouting;
-        this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+        this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation", 0L);
         this.hidden = builder.hidden;
         this.ilmPolicy = builder.ilmPolicy;
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");

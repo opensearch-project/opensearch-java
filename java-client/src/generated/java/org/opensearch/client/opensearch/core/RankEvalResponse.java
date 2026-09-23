@@ -74,7 +74,7 @@ public class RankEvalResponse implements PlainJsonSerializable, ToCopyableBuilde
     private RankEvalResponse(Builder builder) {
         this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
         this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
-        this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+        this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore", 0.0);
     }
 
     public static RankEvalResponse of(Function<RankEvalResponse.Builder, ObjectBuilder<RankEvalResponse>> fn) {

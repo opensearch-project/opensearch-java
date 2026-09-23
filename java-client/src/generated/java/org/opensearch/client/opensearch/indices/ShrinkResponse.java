@@ -67,7 +67,7 @@ public class ShrinkResponse extends AcknowledgedResponseBase implements ToCopyab
     private ShrinkResponse(Builder builder) {
         super(builder);
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static ShrinkResponse of(Function<ShrinkResponse.Builder, ObjectBuilder<ShrinkResponse>> fn) {

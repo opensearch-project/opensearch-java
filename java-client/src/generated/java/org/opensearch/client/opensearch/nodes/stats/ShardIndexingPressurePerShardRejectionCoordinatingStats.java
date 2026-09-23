@@ -78,7 +78,7 @@ public class ShardIndexingPressurePerShardRejectionCoordinatingStats
     private ShardIndexingPressurePerShardRejectionCoordinatingStats(Builder builder) {
         this.breakup = builder.breakup;
         this.breakupShadowMode = builder.breakupShadowMode;
-        this.coordinatingRejections = ApiTypeHelper.requireNonNull(builder.coordinatingRejections, this, "coordinatingRejections");
+        this.coordinatingRejections = ApiTypeHelper.requireNonNull(builder.coordinatingRejections, this, "coordinatingRejections", 0L);
     }
 
     public static ShardIndexingPressurePerShardRejectionCoordinatingStats of(

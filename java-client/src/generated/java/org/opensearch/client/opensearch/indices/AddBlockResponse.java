@@ -69,7 +69,7 @@ public class AddBlockResponse extends AcknowledgedResponseBase implements ToCopy
     private AddBlockResponse(Builder builder) {
         super(builder);
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static AddBlockResponse of(Function<AddBlockResponse.Builder, ObjectBuilder<AddBlockResponse>> fn) {

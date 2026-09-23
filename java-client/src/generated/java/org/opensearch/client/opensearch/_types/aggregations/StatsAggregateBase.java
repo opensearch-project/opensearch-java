@@ -82,12 +82,12 @@ public abstract class StatsAggregateBase extends AggregateBase {
         super(builder);
         this.avg = builder.avg;
         this.avgAsString = builder.avgAsString;
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0L);
         this.max = builder.max;
         this.maxAsString = builder.maxAsString;
         this.min = builder.min;
         this.minAsString = builder.minAsString;
-        this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
+        this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum", 0.0);
         this.sumAsString = builder.sumAsString;
     }
 

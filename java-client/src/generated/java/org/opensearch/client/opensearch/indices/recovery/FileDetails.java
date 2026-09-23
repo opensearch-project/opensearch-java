@@ -71,9 +71,9 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
     // ---------------------------------------------------------------------------------------------
 
     private FileDetails(Builder builder) {
-        this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+        this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length", 0L);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered", 0L);
     }
 
     public static FileDetails of(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {

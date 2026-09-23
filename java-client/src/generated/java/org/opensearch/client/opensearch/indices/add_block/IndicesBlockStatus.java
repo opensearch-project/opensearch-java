@@ -69,7 +69,7 @@ public class IndicesBlockStatus implements PlainJsonSerializable, ToCopyableBuil
     // ---------------------------------------------------------------------------------------------
 
     private IndicesBlockStatus(Builder builder) {
-        this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
+        this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked", false);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
     }
 

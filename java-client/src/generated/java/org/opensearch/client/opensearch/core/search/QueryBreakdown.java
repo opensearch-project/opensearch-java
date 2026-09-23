@@ -97,28 +97,29 @@ public class QueryBreakdown implements PlainJsonSerializable, ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private QueryBreakdown(Builder builder) {
-        this.advance = ApiTypeHelper.requireNonNull(builder.advance, this, "advance");
-        this.advanceCount = ApiTypeHelper.requireNonNull(builder.advanceCount, this, "advanceCount");
-        this.buildScorer = ApiTypeHelper.requireNonNull(builder.buildScorer, this, "buildScorer");
-        this.buildScorerCount = ApiTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount");
-        this.computeMaxScore = ApiTypeHelper.requireNonNull(builder.computeMaxScore, this, "computeMaxScore");
-        this.computeMaxScoreCount = ApiTypeHelper.requireNonNull(builder.computeMaxScoreCount, this, "computeMaxScoreCount");
-        this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight");
-        this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount");
-        this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
-        this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount");
-        this.nextDoc = ApiTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc");
-        this.nextDocCount = ApiTypeHelper.requireNonNull(builder.nextDocCount, this, "nextDocCount");
-        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-        this.scoreCount = ApiTypeHelper.requireNonNull(builder.scoreCount, this, "scoreCount");
-        this.setMinCompetitiveScore = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScore, this, "setMinCompetitiveScore");
+        this.advance = ApiTypeHelper.requireNonNull(builder.advance, this, "advance", 0L);
+        this.advanceCount = ApiTypeHelper.requireNonNull(builder.advanceCount, this, "advanceCount", 0L);
+        this.buildScorer = ApiTypeHelper.requireNonNull(builder.buildScorer, this, "buildScorer", 0L);
+        this.buildScorerCount = ApiTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount", 0L);
+        this.computeMaxScore = ApiTypeHelper.requireNonNull(builder.computeMaxScore, this, "computeMaxScore", 0L);
+        this.computeMaxScoreCount = ApiTypeHelper.requireNonNull(builder.computeMaxScoreCount, this, "computeMaxScoreCount", 0L);
+        this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight", 0L);
+        this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount", 0L);
+        this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match", 0L);
+        this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount", 0L);
+        this.nextDoc = ApiTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc", 0L);
+        this.nextDocCount = ApiTypeHelper.requireNonNull(builder.nextDocCount, this, "nextDocCount", 0L);
+        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0L);
+        this.scoreCount = ApiTypeHelper.requireNonNull(builder.scoreCount, this, "scoreCount", 0L);
+        this.setMinCompetitiveScore = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScore, this, "setMinCompetitiveScore", 0L);
         this.setMinCompetitiveScoreCount = ApiTypeHelper.requireNonNull(
             builder.setMinCompetitiveScoreCount,
             this,
-            "setMinCompetitiveScoreCount"
+            "setMinCompetitiveScoreCount",
+            0L
         );
-        this.shallowAdvance = ApiTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance");
-        this.shallowAdvanceCount = ApiTypeHelper.requireNonNull(builder.shallowAdvanceCount, this, "shallowAdvanceCount");
+        this.shallowAdvance = ApiTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance", 0L);
+        this.shallowAdvanceCount = ApiTypeHelper.requireNonNull(builder.shallowAdvanceCount, this, "shallowAdvanceCount", 0L);
     }
 
     public static QueryBreakdown of(Function<QueryBreakdown.Builder, ObjectBuilder<QueryBreakdown>> fn) {

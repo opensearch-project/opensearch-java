@@ -73,9 +73,9 @@ public class FielddataFrequencyFilter
     // ---------------------------------------------------------------------------------------------
 
     private FielddataFrequencyFilter(Builder builder) {
-        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-        this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
-        this.minSegmentSize = ApiTypeHelper.requireNonNull(builder.minSegmentSize, this, "minSegmentSize");
+        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0.0);
+        this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min", 0.0);
+        this.minSegmentSize = ApiTypeHelper.requireNonNull(builder.minSegmentSize, this, "minSegmentSize", 0);
     }
 
     public static FielddataFrequencyFilter of(Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {

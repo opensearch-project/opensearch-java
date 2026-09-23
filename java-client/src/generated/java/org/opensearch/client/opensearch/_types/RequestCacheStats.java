@@ -77,11 +77,11 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private RequestCacheStats(Builder builder) {
-        this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-        this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+        this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0L);
+        this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount", 0L);
         this.memorySize = builder.memorySize;
-        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-        this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0L);
+        this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount", 0L);
     }
 
     public static RequestCacheStats of(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {

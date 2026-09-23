@@ -77,11 +77,11 @@ public class PathHierarchyTokenizer extends TokenizerBase
 
     private PathHierarchyTokenizer(Builder builder) {
         super(builder);
-        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize", 0);
         this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
         this.replacement = builder.replacement;
-        this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
-        this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
+        this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse", false);
+        this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip", 0);
     }
 
     public static PathHierarchyTokenizer of(Function<PathHierarchyTokenizer.Builder, ObjectBuilder<PathHierarchyTokenizer>> fn) {

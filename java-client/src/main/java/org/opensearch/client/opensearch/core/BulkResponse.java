@@ -64,9 +64,9 @@ public class BulkResponse implements PlainJsonSerializable {
 
     private BulkResponse(Builder builder) {
 
-        this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors");
+        this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors", false);
         this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
-        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0L);
         this.ingestTook = builder.ingestTook;
 
     }

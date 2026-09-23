@@ -85,7 +85,7 @@ public class FetchProfile implements PlainJsonSerializable, ToCopyableBuilder<Fe
         this.children = ApiTypeHelper.unmodifiable(builder.children);
         this.debug = builder.debug;
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0L);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 

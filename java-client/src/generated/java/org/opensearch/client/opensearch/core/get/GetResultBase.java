@@ -90,7 +90,7 @@ public abstract class GetResultBase<TDocument> implements PlainJsonSerializable 
 
     protected GetResultBase(AbstractBuilder<TDocument, ?> builder) {
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.primaryTerm = builder.primaryTerm;

@@ -81,12 +81,12 @@ public class ClusterRemoteSniffInfo
     // ---------------------------------------------------------------------------------------------
 
     private ClusterRemoteSniffInfo(Builder builder) {
-        this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+        this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected", false);
         this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this, "initialConnectTimeout");
-        this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this, "maxConnectionsPerCluster");
-        this.numNodesConnected = ApiTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
+        this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this, "maxConnectionsPerCluster", 0);
+        this.numNodesConnected = ApiTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected", 0L);
         this.seeds = ApiTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
-        this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+        this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable", false);
     }
 
     public static ClusterRemoteSniffInfo of(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {

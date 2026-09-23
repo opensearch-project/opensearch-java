@@ -71,7 +71,7 @@ public class ClusterOperatingSystemPrettyName
     // ---------------------------------------------------------------------------------------------
 
     private ClusterOperatingSystemPrettyName(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
         this.prettyName = builder.prettyName;
     }
 

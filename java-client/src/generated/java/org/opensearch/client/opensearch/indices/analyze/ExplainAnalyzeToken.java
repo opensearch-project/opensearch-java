@@ -89,12 +89,12 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
 
     private ExplainAnalyzeToken(Builder builder) {
         this.bytes = ApiTypeHelper.requireNonNull(builder.bytes, this, "bytes");
-        this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
+        this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset", 0);
         this.keyword = builder.keyword;
-        this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
-        this.positionLength = ApiTypeHelper.requireNonNull(builder.positionLength, this, "positionLength");
-        this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
-        this.termFrequency = ApiTypeHelper.requireNonNull(builder.termFrequency, this, "termFrequency");
+        this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position", 0);
+        this.positionLength = ApiTypeHelper.requireNonNull(builder.positionLength, this, "positionLength", 0);
+        this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset", 0);
+        this.termFrequency = ApiTypeHelper.requireNonNull(builder.termFrequency, this, "termFrequency", 0);
         this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }

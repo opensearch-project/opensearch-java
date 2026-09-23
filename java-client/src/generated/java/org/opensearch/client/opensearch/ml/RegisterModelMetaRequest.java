@@ -87,7 +87,7 @@ public final class RegisterModelMetaRequest extends RequestBase
         this.modelFormat = ApiTypeHelper.requireNonNull(builder.modelFormat, this, "modelFormat");
         this.modelGroupId = builder.modelGroupId;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.totalChunks = ApiTypeHelper.requireNonNull(builder.totalChunks, this, "totalChunks");
+        this.totalChunks = ApiTypeHelper.requireNonNull(builder.totalChunks, this, "totalChunks", 0L);
         this.url = builder.url;
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }

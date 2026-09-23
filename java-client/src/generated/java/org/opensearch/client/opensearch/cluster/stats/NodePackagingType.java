@@ -71,7 +71,7 @@ public class NodePackagingType implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private NodePackagingType(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
         this.flavor = builder.flavor;
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }

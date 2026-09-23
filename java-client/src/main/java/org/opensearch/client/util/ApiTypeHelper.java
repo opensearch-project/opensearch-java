@@ -74,7 +74,12 @@ public class ApiTypeHelper {
      * DANGEROUS! Allows disabling the verification of required properties on the current thread when calling {@link ObjectBuilder#build()}.
      * This can lead properties expected to be always present to be {@code null}, or have the default value for primitive types.
      * <p>
-     * This can be used as a workaround for properties that are erroneously marked as required.
+     * A missing primitive property reads as {@code 0} or {@code false}, which cannot be told apart from a real value. For example,
+     * {@code filter_path=items.*.error} removes {@code errors} from a bulk response, so {@code BulkResponse.errors()} returns
+     * {@code false} even if some items failed.
+     * <p>
+     * This can be used as a workaround for properties that are erroneously marked as required, or to deserialize a response
+     * where {@code filter_path} has removed required properties.
      * <p>
      * The result of this method is an {@link AutoCloseable} handle that can be used in try-with-resource blocks to precisely
      * limit the scope where checks are disabled.
@@ -90,6 +95,16 @@ public class ApiTypeHelper {
             throw new MissingRequiredPropertyException(obj, name);
         }
         return value;
+    }
+
+    /**
+     * Checks a required property that is a primitive in the API object. If checks are disabled and {@code value} is
+     * {@code null}, returns {@code defaultValue} so that it can be unboxed. Callers of the API object cannot tell this default
+     * from a real value.
+     */
+    public static <T> T requireNonNull(T value, Object obj, String name, T defaultValue) {
+        T result = requireNonNull(value, obj, name);
+        return result != null ? result : defaultValue;
     }
 
     // ----- Lists
@@ -154,7 +169,7 @@ public class ApiTypeHelper {
         // lists may have a meaning in some APIs. Furthermore, being defined means that it was set by
         // the application, so it's not an omission.
         requireNonNull(list == UNDEFINED_LIST ? null : list, obj, name);
-        return Collections.unmodifiableList(list);
+        return unmodifiable(list);
     }
 
     // ----- Maps
@@ -207,6 +222,6 @@ public class ApiTypeHelper {
         // maps may have a meaning in some APIs. Furthermore, being defined means that it was set by
         // the application, so it's not an omission.
         requireNonNull(map == UNDEFINED_MAP ? null : map, obj, name);
-        return Collections.unmodifiableMap(map);
+        return unmodifiable(map);
     }
 }

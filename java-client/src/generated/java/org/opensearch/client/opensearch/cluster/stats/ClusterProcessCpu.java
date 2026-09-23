@@ -63,7 +63,7 @@ public class ClusterProcessCpu implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private ClusterProcessCpu(Builder builder) {
-        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent", 0.0);
     }
 
     public static ClusterProcessCpu of(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {

@@ -73,9 +73,9 @@ public class RemoteStoreTranslogUploadTotalUploadsStats
     // ---------------------------------------------------------------------------------------------
 
     private RemoteStoreTranslogUploadTotalUploadsStats(Builder builder) {
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-        this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
-        this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0L);
+        this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started", 0L);
+        this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded", 0L);
     }
 
     public static RemoteStoreTranslogUploadTotalUploadsStats of(

@@ -98,20 +98,20 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     // ---------------------------------------------------------------------------------------------
 
     private IndexingStats(Builder builder) {
-        this.deleteCurrent = ApiTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent");
+        this.deleteCurrent = ApiTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent", 0L);
         this.deleteTime = builder.deleteTime;
-        this.deleteTimeInMillis = ApiTypeHelper.requireNonNull(builder.deleteTimeInMillis, this, "deleteTimeInMillis");
-        this.deleteTotal = ApiTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal");
+        this.deleteTimeInMillis = ApiTypeHelper.requireNonNull(builder.deleteTimeInMillis, this, "deleteTimeInMillis", 0L);
+        this.deleteTotal = ApiTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal", 0L);
         this.docStatus = builder.docStatus;
-        this.indexCurrent = ApiTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent");
-        this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
+        this.indexCurrent = ApiTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent", 0L);
+        this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed", 0L);
         this.indexTime = builder.indexTime;
-        this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
-        this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-        this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
-        this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
+        this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis", 0L);
+        this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0L);
+        this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled", false);
+        this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal", 0L);
         this.throttleTime = builder.throttleTime;
-        this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this, "throttleTimeInMillis");
+        this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this, "throttleTimeInMillis", 0L);
     }
 
     public static IndexingStats of(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {

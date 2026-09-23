@@ -70,7 +70,7 @@ public class IngestionStateShardFailure
 
     private IngestionStateShardFailure(Builder builder) {
         this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
     }
 
     public static IngestionStateShardFailure of(

@@ -65,7 +65,7 @@ public class KeywordTokenizer extends TokenizerBase
 
     private KeywordTokenizer(Builder builder) {
         super(builder);
-        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize", 0);
     }
 
     public static KeywordTokenizer of(Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> fn) {

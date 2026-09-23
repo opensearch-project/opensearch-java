@@ -77,7 +77,7 @@ public class CommandCancelAction implements PlainJsonSerializable, ToCopyableBui
         this.allowPrimary = builder.allowPrimary;
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
     }
 
     public static CommandCancelAction of(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {

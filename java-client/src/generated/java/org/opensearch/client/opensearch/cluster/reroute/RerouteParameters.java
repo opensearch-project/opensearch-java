@@ -79,11 +79,11 @@ public class RerouteParameters implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private RerouteParameters(Builder builder) {
-        this.allowPrimary = ApiTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary");
+        this.allowPrimary = ApiTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary", false);
         this.fromNode = builder.fromNode;
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
         this.toNode = builder.toNode;
     }
 

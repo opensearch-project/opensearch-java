@@ -63,7 +63,7 @@ public class FieldNamesField implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private FieldNamesField(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static FieldNamesField of(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {

@@ -78,13 +78,13 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private UploadStatsMetric(Builder builder) {
-        this.duration = ApiTypeHelper.requireNonNull(builder.duration, this, "duration");
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+        this.duration = ApiTypeHelper.requireNonNull(builder.duration, this, "duration", 0L);
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success");
+        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success", 0);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-        this.upload = ApiTypeHelper.requireNonNull(builder.upload, this, "upload");
+        this.upload = ApiTypeHelper.requireNonNull(builder.upload, this, "upload", 0);
     }
 
     public static UploadStatsMetric of(Function<UploadStatsMetric.Builder, ObjectBuilder<UploadStatsMetric>> fn) {
