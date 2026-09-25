@@ -68,7 +68,8 @@ val unitTest = tasks.register<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
-    systemProperty("tests.security.manager", "false")
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 val integrationTest = tasks.register<Test>("integrationTest") {

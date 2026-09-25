@@ -160,6 +160,9 @@ val unitTest = task<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
+    
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 val integrationTest = task<Test>("integrationTest") {
@@ -389,11 +392,27 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       srcDir("src/test/java11")
       srcDir("src/test/java21")
+      srcDir("src/main/java21")
+    }
+  }
+
+  tasks.withType<Jar>() {
+    into("META-INF/versions/21") {
+      from(java21.output.asFileTree.matching {
+        includeEmptyDirs = false
+        exclude("**/*Test*.class")
+        include("**/jackson3/*.class")
+      })
+    }
+
+    manifest {
+      attributes["Multi-Release"] = "true"
     }
   }
 
   configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
   configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+  configurations[java21.compileOnlyConfigurationName].extendsFrom(configurations.compileOnly.get())
 
   dependencies {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
