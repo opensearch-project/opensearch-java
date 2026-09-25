@@ -53,6 +53,7 @@ dependencies {
 
     // Test dependencies
     testImplementation("io.grpc", "grpc-testing", grpcVersion)
+    testImplementation("io.grpc", "grpc-inprocess", grpcVersion)
     testImplementation("junit", "junit", "4.13.2")
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
