@@ -75,6 +75,12 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     private final Integer internalQueueSize;
 
+    @Nonnull
+    private final Map<String, JsonData> mapperSettings;
+
+    @Nullable
+    private final IngestionSourceMapperType mapperType;
+
     @Nullable
     private final Integer numProcessorThreads;
 
@@ -108,6 +114,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         this.allActive = builder.allActive;
         this.errorStrategy = builder.errorStrategy;
         this.internalQueueSize = builder.internalQueueSize;
+        this.mapperSettings = ApiTypeHelper.unmodifiable(builder.mapperSettings);
+        this.mapperType = builder.mapperType;
         this.numProcessorThreads = builder.numProcessorThreads;
         this.param = ApiTypeHelper.unmodifiable(builder.param);
         this.pointer = builder.pointer;
@@ -154,6 +162,28 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     public final Integer internalQueueSize() {
         return this.internalQueueSize;
+    }
+
+    /**
+     * Configuration settings for the selected mapper type.
+     * <p>
+     * API name: {@code mapper_settings}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, JsonData> mapperSettings() {
+        return this.mapperSettings;
+    }
+
+    /**
+     * The type of message mapper used to extract document fields from ingestion messages.
+     * <p>
+     * API name: {@code mapper_type}
+     * </p>
+     */
+    @Nullable
+    public final IngestionSourceMapperType mapperType() {
+        return this.mapperType;
     }
 
     /**
@@ -272,6 +302,21 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             generator.write(this.internalQueueSize);
         }
 
+        if (ApiTypeHelper.isDefined(this.mapperSettings)) {
+            generator.writeKey("mapper_settings");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.mapperSettings.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
+        if (this.mapperType != null) {
+            generator.writeKey("mapper_type");
+            this.mapperType.serialize(generator, mapper);
+        }
+
         if (this.numProcessorThreads != null) {
             generator.writeKey("num_processor_threads");
             generator.write(this.numProcessorThreads);
@@ -347,6 +392,10 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private Integer internalQueueSize;
         @Nullable
+        private Map<String, JsonData> mapperSettings;
+        @Nullable
+        private IngestionSourceMapperType mapperType;
+        @Nullable
         private Integer numProcessorThreads;
         @Nullable
         private Map<String, JsonData> param;
@@ -371,6 +420,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
+            this.mapperSettings = _mapCopy(o.mapperSettings);
+            this.mapperType = o.mapperType;
             this.numProcessorThreads = o.numProcessorThreads;
             this.param = _mapCopy(o.param);
             this.pointer = o.pointer;
@@ -386,6 +437,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
+            this.mapperSettings = _mapCopy(o.mapperSettings);
+            this.mapperType = o.mapperType;
             this.numProcessorThreads = o.numProcessorThreads;
             this.param = _mapCopy(o.param);
             this.pointer = o.pointer;
@@ -436,6 +489,50 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public final Builder internalQueueSize(@Nullable Integer value) {
             this.internalQueueSize = value;
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected mapper type.
+         * <p>
+         * API name: {@code mapper_settings}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>mapperSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperSettings(Map<String, JsonData> map) {
+            this.mapperSettings = _mapPutAll(this.mapperSettings, map);
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected mapper type.
+         * <p>
+         * API name: {@code mapper_settings}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>mapperSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperSettings(String key, JsonData value) {
+            this.mapperSettings = _mapPut(this.mapperSettings, key, value);
+            return this;
+        }
+
+        /**
+         * The type of message mapper used to extract document fields from ingestion messages.
+         * <p>
+         * API name: {@code mapper_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperType(@Nullable IngestionSourceMapperType value) {
+            this.mapperType = value;
             return this;
         }
 
@@ -602,6 +699,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         op.add(Builder::allActive, JsonpDeserializer.booleanDeserializer(), "all_active");
         op.add(Builder::errorStrategy, ErrorPolicy._DESERIALIZER, "error_strategy");
         op.add(Builder::internalQueueSize, JsonpDeserializer.integerDeserializer(), "internal_queue_size");
+        op.add(Builder::mapperSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "mapper_settings");
+        op.add(Builder::mapperType, IngestionSourceMapperType._DESERIALIZER, "mapper_type");
         op.add(Builder::numProcessorThreads, JsonpDeserializer.integerDeserializer(), "num_processor_threads");
         op.add(Builder::param, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "param");
         op.add(Builder::pointer, IngestionSourcePointer._DESERIALIZER, "pointer");
@@ -619,6 +718,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         result = 31 * result + Objects.hashCode(this.allActive);
         result = 31 * result + Objects.hashCode(this.errorStrategy);
         result = 31 * result + Objects.hashCode(this.internalQueueSize);
+        result = 31 * result + Objects.hashCode(this.mapperSettings);
+        result = 31 * result + Objects.hashCode(this.mapperType);
         result = 31 * result + Objects.hashCode(this.numProcessorThreads);
         result = 31 * result + Objects.hashCode(this.param);
         result = 31 * result + Objects.hashCode(this.pointer);
@@ -639,6 +740,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         return Objects.equals(this.allActive, other.allActive)
             && Objects.equals(this.errorStrategy, other.errorStrategy)
             && Objects.equals(this.internalQueueSize, other.internalQueueSize)
+            && Objects.equals(this.mapperSettings, other.mapperSettings)
+            && Objects.equals(this.mapperType, other.mapperType)
             && Objects.equals(this.numProcessorThreads, other.numProcessorThreads)
             && Objects.equals(this.param, other.param)
             && Objects.equals(this.pointer, other.pointer)

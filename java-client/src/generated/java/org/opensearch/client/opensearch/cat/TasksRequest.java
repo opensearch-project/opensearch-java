@@ -139,7 +139,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
 
     /**
      * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
-     * <a href="https://opensearch.org/docs/latest/api-reference/units/">Supported units</a>.
+     * <a href="https://docs.opensearch.org/latest/api-reference/units/">Supported units</a>.
      * <p>
      * API name: {@code time}
      * </p>
@@ -303,7 +303,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
 
         /**
          * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
-         * <a href="https://opensearch.org/docs/latest/api-reference/units/">Supported units</a>.
+         * <a href="https://docs.opensearch.org/latest/api-reference/units/">Supported units</a>.
          * <p>
          * API name: {@code time}
          * </p>

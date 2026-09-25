@@ -431,6 +431,13 @@ public class AggregateBuilders {
     }
 
     /**
+     * Creates a builder for the {@link UnsignedLongTermsAggregate ulterms} {@code Aggregate} variant.
+     */
+    public static UnsignedLongTermsAggregate.Builder ulterms() {
+        return new UnsignedLongTermsAggregate.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link UnmappedRareTermsAggregate umrareterms} {@code Aggregate} variant.
      */
     public static UnmappedRareTermsAggregate.Builder umrareterms() {

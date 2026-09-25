@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ExtendedStatsAggregation extends FormatMetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<ExtendedStatsAggregation.Builder, ExtendedStatsAggregation> {
 
     @Nullable
@@ -72,14 +71,6 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase
 
     public static ExtendedStatsAggregation of(Function<ExtendedStatsAggregation.Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.ExtendedStats;
     }
 
     /**

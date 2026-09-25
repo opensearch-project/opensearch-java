@@ -58,7 +58,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MatrixStatsAggregation extends MatrixAggregation
     implements
-        AggregationVariant,
         ToCopyableBuilder<MatrixStatsAggregation.Builder, MatrixStatsAggregation> {
 
     @Nullable
@@ -73,14 +72,6 @@ public class MatrixStatsAggregation extends MatrixAggregation
 
     public static MatrixStatsAggregation of(Function<MatrixStatsAggregation.Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.MatrixStats;
     }
 
     /**

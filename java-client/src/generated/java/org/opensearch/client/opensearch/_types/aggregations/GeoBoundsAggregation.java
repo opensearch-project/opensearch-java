@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GeoBoundsAggregation extends MetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<GeoBoundsAggregation.Builder, GeoBoundsAggregation> {
 
     @Nullable
@@ -72,14 +71,6 @@ public class GeoBoundsAggregation extends MetricAggregationBase
 
     public static GeoBoundsAggregation of(Function<GeoBoundsAggregation.Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.GeoBounds;
     }
 
     /**

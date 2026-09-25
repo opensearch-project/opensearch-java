@@ -55,10 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MinAggregation extends FormatMetricAggregationBase
-    implements
-        AggregationVariant,
-        ToCopyableBuilder<MinAggregation.Builder, MinAggregation> {
+public class MinAggregation extends FormatMetricAggregationBase implements ToCopyableBuilder<MinAggregation.Builder, MinAggregation> {
 
     @Nullable
     private final ValueType valueType;
@@ -72,14 +69,6 @@ public class MinAggregation extends FormatMetricAggregationBase
 
     public static MinAggregation of(Function<MinAggregation.Builder, ObjectBuilder<MinAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Min;
     }
 
     /**

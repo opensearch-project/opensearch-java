@@ -34,17 +34,18 @@ package org.opensearch.client.opensearch.model;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapperAttributes;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.AvgAggregate;
+import org.opensearch.client.opensearch._types.aggregations.StringRareTermsBucket;
 import org.opensearch.client.opensearch._types.aggregations.StringTermsAggregate;
-import org.opensearch.client.opensearch._types.aggregations.StringTermsBucket;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.search.TotalHitsRelation;
-import org.opensearch.client.util.ListBuilder;
 import org.opensearch.client.util.MapBuilder;
 
 public class TypedKeysTest extends ModelTestCase {
@@ -82,15 +83,19 @@ public class TypedKeysTest extends ModelTestCase {
             _0 -> _0.sumOtherDocCount(1L)
                 .buckets(
                     b -> b.array(
-                        ListBuilder.of(StringTermsBucket.Builder::new)
-                            .add(_1 -> _1.key("key_1").docCount(1).aggregations(MapBuilder.of("bar", avg1)))
-                            .add(_1 -> _1.key("key_2").docCount(2).aggregations(MapBuilder.of("bar", avg2)))
-                            .build()
+                        Arrays.asList(
+                            JsonData.of(
+                                StringRareTermsBucket.builder().key("key_1").docCount(1).aggregations(MapBuilder.of("bar", avg1)).build()
+                            ),
+                            JsonData.of(
+                                StringRareTermsBucket.builder().key("key_2").docCount(2).aggregations(MapBuilder.of("bar", avg2)).build()
+                            )
+                        )
                     )
                 )
         ).toAggregate();
 
-        SearchResponse<Void> resp = new SearchResponse.Builder<Void>().aggregations("foo", aggregate)
+        SearchResponse<?> resp = new SearchResponse.Builder<Void>().aggregations("foo", aggregate)
             // Required properties on a SearchResponse
             .took(1)
             .shards(_1 -> _1.successful(1).failed(0).total(1))
@@ -112,11 +117,11 @@ public class TypedKeysTest extends ModelTestCase {
 
         StringTermsAggregate foo = resp.aggregations().get("foo").sterms();
         assertEquals((Long) 1L, foo.sumOtherDocCount());
-        assertEquals(1, foo.buckets().array().get(0).docCount());
-        assertEquals("key_1", foo.buckets().array().get(0).key());
-        assertEquals(1.0, foo.buckets().array().get(0).aggregations().get("bar").avg().value(), 0.01);
-        assertEquals("key_2", foo.buckets().array().get(1).key());
-        assertEquals(2.0, foo.buckets().array().get(1).aggregations().get("bar").avg().value(), 0.01);
+        assertEquals(1, foo.buckets().array().get(0).to(StringRareTermsBucket.class).docCount());
+        assertEquals("key_1", foo.buckets().array().get(0).to(StringRareTermsBucket.class).key());
+        assertEquals(1.0, foo.buckets().array().get(0).to(StringRareTermsBucket.class).aggregations().get("bar").avg().value(), 0.01);
+        assertEquals("key_2", foo.buckets().array().get(1).to(StringRareTermsBucket.class).key());
+        assertEquals(2.0, foo.buckets().array().get(1).to(StringRareTermsBucket.class).aggregations().get("bar").avg().value(), 0.01);
     }
 
     @Test

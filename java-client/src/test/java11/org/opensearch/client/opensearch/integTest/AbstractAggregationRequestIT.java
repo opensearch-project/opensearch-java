@@ -19,12 +19,12 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.AggregationRange;
-import org.opensearch.client.opensearch._types.aggregations.DateRangeAggregation;
+import org.opensearch.client.opensearch._types.aggregations.DateRangeAggregationFields;
 import org.opensearch.client.opensearch._types.aggregations.DateRangeExpression;
 import org.opensearch.client.opensearch._types.aggregations.FieldDateMath;
 import org.opensearch.client.opensearch._types.aggregations.MultiTermLookup;
-import org.opensearch.client.opensearch._types.aggregations.MultiTermsAggregation;
-import org.opensearch.client.opensearch._types.aggregations.RangeAggregation;
+import org.opensearch.client.opensearch._types.aggregations.MultiTermsAggregationFields;
+import org.opensearch.client.opensearch._types.aggregations.RangeAggregationFields;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.SearchResponse;
 
@@ -105,21 +105,21 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
     }
 
     private Aggregation getExpiryDateRangeAggregation() {
-        DateRangeAggregation expiryDateRangeAggregation = new DateRangeAggregation.Builder().field("expDate")
+        DateRangeAggregationFields expiryDateRangeAggregation = new DateRangeAggregationFields.Builder().field("expDate")
             .ranges(getDateAggregationRanges())
             .build();
         return new Aggregation.Builder().dateRange(expiryDateRangeAggregation).build();
     }
 
     private Aggregation getCostValueRangeAggregation() {
-        RangeAggregation costValueRangeAggregation = new RangeAggregation.Builder().field("cost")
+        RangeAggregationFields costValueRangeAggregation = new RangeAggregationFields.Builder().field("cost")
             .ranges(getValueAggregationRanges())
             .build();
         return new Aggregation.Builder().range(costValueRangeAggregation).build();
     }
 
     private Aggregation getMultiTermsAggregation(Integer size) {
-        MultiTermsAggregation.Builder multiTermsAggregationBuilder = new MultiTermsAggregation.Builder().terms(
+        MultiTermsAggregationFields.Builder multiTermsAggregationBuilder = new MultiTermsAggregationFields.Builder().terms(
             List.of(
                 MultiTermLookup.of(multiTermLookup -> multiTermLookup.field("cost")),
                 MultiTermLookup.of(multiTermLookup -> multiTermLookup.field("expDate"))
@@ -130,7 +130,7 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
             multiTermsAggregationBuilder = multiTermsAggregationBuilder.size(size);
         }
 
-        MultiTermsAggregation multiTermsAggregation = multiTermsAggregationBuilder.build();
+        MultiTermsAggregationFields multiTermsAggregation = multiTermsAggregationBuilder.build();
         return new Aggregation.Builder().multiTerms(multiTermsAggregation).build();
     }
 
