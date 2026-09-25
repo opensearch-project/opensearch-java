@@ -2,6 +2,9 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
+**IMPORTANT CHANGES**: This release comes as multi-release JAR to support Jackson 3.x line (JDK-17 baseline)
+and preserving JDK-8 compatibility at the same time.
+
 ### Added
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
 - Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
@@ -15,6 +18,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Custom unitTest tasks run NO-SOURCE under Gradle 9, so some unit tests never run in CI ([#2174](https://github.com/opensearch-project/opensearch-java/pull/2174))
 
 ### Security
 
