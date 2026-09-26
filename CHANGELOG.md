@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Custom unitTest tasks run NO-SOURCE under Gradle 9, so some unit tests never run in CI ([#2174](https://github.com/opensearch-project/opensearch-java/pull/2174))
 
 ### Security
 
