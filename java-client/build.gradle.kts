@@ -72,8 +72,8 @@ logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
 logger.quiet("=======================================")
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
@@ -160,6 +160,8 @@ val unitTest = task<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 val testcontainersEnabled = System.getProperty("tests.opensearch.testcontainers.enabled", "true")
@@ -189,6 +191,9 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.serviceName", "es"))
     systemProperty("tests.awsSdk2support.domainRegion",
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
+
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 dependencies {
@@ -274,6 +279,12 @@ dependencies {
     testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
 
     testImplementation("io.projectreactor", "reactor-test", "3.8.7")
+    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
+      exclude(group = "org.hamcrest")
+    }
+
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
 licenseReport {
@@ -384,46 +395,4 @@ publishing {
             }
         }
     }
-}
-
-if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
-  val java21: SourceSet = sourceSets.create("java21") {
-    java {
-      compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-      runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-      srcDir("src/test/java11")
-      srcDir("src/test/java21")
-    }
-  }
-
-  configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
-  configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
-
-  dependencies {
-    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
-      exclude(group = "org.hamcrest")
-    }
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
-    testImplementation("org.testcontainers:testcontainers:2.0.5")
-  }
-
-  tasks.named<JavaCompile>("compileJava21Java") {
-    targetCompatibility = JavaVersion.VERSION_21.toString()
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
-  }
-  
-  tasks.named<JavaCompile>("compileTestJava") {
-    targetCompatibility = JavaVersion.VERSION_21.toString()
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
-  }
-
-  tasks.named<Test>("integrationTest") {
-    testClassesDirs += java21.output.classesDirs
-    classpath = sourceSets["java21"].runtimeClasspath
-  }
-
-  tasks.named<Test>("unitTest") {
-    testClassesDirs += java21.output.classesDirs + sourceSets.test.get().output.classesDirs
-    classpath = sourceSets["java21"].runtimeClasspath
- }
 }
