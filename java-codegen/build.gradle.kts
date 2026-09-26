@@ -46,8 +46,8 @@ logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
 logger.quiet("=======================================")
 
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()

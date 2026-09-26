@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
+- Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
 
 ### Deprecated
 
