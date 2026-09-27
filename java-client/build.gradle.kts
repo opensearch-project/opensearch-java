@@ -219,7 +219,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.1.7")
+    api("org.eclipse.parsson:parsson:1.1.9")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
@@ -262,7 +262,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.194")
+    testImplementation("io.github.classgraph:classgraph:4.8.195")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
