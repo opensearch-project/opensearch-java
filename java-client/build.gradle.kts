@@ -162,19 +162,21 @@ val unitTest = task<Test>("unitTest") {
     }
 }
 
+val testcontainersEnabled = System.getProperty("tests.opensearch.testcontainers.enabled", "true")
 val integrationTest = task<Test>("integrationTest") {
     filter {
         includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+        // Testcontainers OpenSearch image has no streaming transport
+        if (testcontainersEnabled.equals("true")) {
+            excludeTestsMatching("org.opensearch.client.opensearch.integTest.*StreamingIT")
+        }
     }
     systemProperty("tests.security.manager", "false")
     // Basic auth settings for integration test
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))
-    systemProperty(
-        "tests.opensearch.testcontainers.enabled",
-        System.getProperty("tests.opensearch.testcontainers.enabled", "true")
-    )
+    systemProperty("tests.opensearch.testcontainers.enabled", testcontainersEnabled)
     systemProperty(
         "tests.opensearch.version",
         System.getProperty("tests.opensearch.version", opensearchDockerVersion)
@@ -270,6 +272,8 @@ dependencies {
     // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
     testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
     testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
+
+    testImplementation("io.projectreactor", "reactor-test", "3.8.7")
 }
 
 licenseReport {
@@ -411,13 +415,13 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
   tasks.named<JavaCompile>("compileTestJava") {
     targetCompatibility = JavaVersion.VERSION_21.toString()
     sourceCompatibility = JavaVersion.VERSION_21.toString()
- }
-  
+  }
+
   tasks.named<Test>("integrationTest") {
     testClassesDirs += java21.output.classesDirs
     classpath = sourceSets["java21"].runtimeClasspath
- }
-  
+  }
+
   tasks.named<Test>("unitTest") {
     testClassesDirs += java21.output.classesDirs + sourceSets.test.get().output.classesDirs
     classpath = sourceSets["java21"].runtimeClasspath
