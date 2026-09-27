@@ -30,37 +30,3 @@ jobs:
           name: test-reports-java${{ matrix.java }}-${{ runner.os }}
           path: java-client/build/reports/
           retention-days: 7
-  
-  test-java8:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    steps:
-      - name: Checkout Java Client
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Set up JDK 8 (Runtime)
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
-        with:
-          java-version: 8
-          distribution: temurin
-          cache: gradle
-
-      - name: Set up JDK 21 (Tools)
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
-        with:
-          java-version: 21
-          distribution: temurin
-          cache: gradle
-
-      - name: Run Unit Test
-        run: ./gradlew clean unitTest -D"runtime.java=8"
-
-      - name: Upload Reports
-        if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        with:
-          name: test-reports-java8-${{ runner.os }}
-          path: java-client/build/reports/
-          retention-days: 7

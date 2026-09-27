@@ -20,8 +20,8 @@ repositories {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
@@ -58,6 +58,12 @@ dependencies {
     testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "auth", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
+    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
+      exclude(group = "org.hamcrest")
+    }
+
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
 tasks.test {
@@ -68,7 +74,8 @@ val unitTest = tasks.register<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
-    systemProperty("tests.security.manager", "false")
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 val integrationTest = tasks.register<Test>("integrationTest") {
@@ -83,44 +90,9 @@ val integrationTest = tasks.register<Test>("integrationTest") {
         System.getProperty("tests.opensearch.testcontainers.enabled", "true"))
     systemProperty("tests.opensearch.version",
         System.getProperty("tests.opensearch.version", opensearchVersion))
-}
 
-// Integration tests require Java 21+ and live in src/test/java11
-val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
-if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
-    val java21: SourceSet = sourceSets.create("java21") {
-        java {
-            compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-            runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-            srcDir("src/test/java11")
-        }
-    }
-
-    configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
-    configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
-
-    dependencies {
-        "java21Implementation"("org.opensearch.test", "framework", opensearchVersion) {
-            exclude(group = "org.hamcrest")
-        }
-        "java21Implementation"("org.opensearch:opensearch-testcontainers:4.1.0")
-        "java21Implementation"("org.testcontainers:testcontainers:2.0.5")
-    }
-
-    tasks.named<JavaCompile>("compileJava21Java") {
-        targetCompatibility = JavaVersion.VERSION_21.toString()
-        sourceCompatibility = JavaVersion.VERSION_21.toString()
-    }
-
-    tasks.named<JavaCompile>("compileTestJava") {
-        targetCompatibility = JavaVersion.VERSION_21.toString()
-        sourceCompatibility = JavaVersion.VERSION_21.toString()
-    }
-
-    integrationTest.configure {
-        testClassesDirs += java21.output.classesDirs
-        classpath = sourceSets["java21"].runtimeClasspath
-    }
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 tasks.withType<Jar> {
