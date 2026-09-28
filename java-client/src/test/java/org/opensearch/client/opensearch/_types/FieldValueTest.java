@@ -76,4 +76,9 @@ public class FieldValueTest {
         FieldValue a = FieldValue.of("test");
         assertNotEquals(a, null);
     }
+    @Test
+    public void testMissingSortConstants() {
+        assertEquals(FieldValue.of("_first"), FieldValue.FIRST);
+        assertEquals(FieldValue.of("_last"), FieldValue.LAST);
+    }
 }
