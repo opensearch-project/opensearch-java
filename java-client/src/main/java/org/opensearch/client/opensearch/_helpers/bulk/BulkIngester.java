@@ -392,7 +392,9 @@ public class BulkIngester<Context> implements AutoCloseable {
                 result = client.bulk(request);
             } catch (IOException e) {
                 // Convert IOException to a failed CompletionStage
-                result = CompletableFuture.failedFuture(e);
+                final CompletableFuture<BulkResponse> f = new CompletableFuture<BulkResponse>();
+                f.completeExceptionally(e);
+                result = f;
             }
             requestsInFlightCount++;
 
