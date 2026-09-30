@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
+- Add `methodParameters` to `NeuralQuery.Builder` [#2188](https://github.com/opensearch-project/opensearch-java/issues/2188)
 
 ### Dependencies
 
