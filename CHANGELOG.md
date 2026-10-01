@@ -30,6 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
+- Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
 
 ### Deprecated
 

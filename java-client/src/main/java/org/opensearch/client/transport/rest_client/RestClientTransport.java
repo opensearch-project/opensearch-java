@@ -84,6 +84,7 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.internal.ByteBufferInputStream;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.MissingRequiredPropertyException;
+import org.opensearch.client.util.NoCopyByteArrayOutputStream;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 
@@ -228,7 +229,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
         Publisher<ByteBuffer> body = null;
         if (endpoint.hasRequestBody()) {
             body = Flux.from(request).map(t -> {
-                final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                final NoCopyByteArrayOutputStream baos = new NoCopyByteArrayOutputStream();
                 if (t instanceof NdJsonpSerializable) {
                     writeNdJson((NdJsonpSerializable) t, baos);
                 } else if (t instanceof GenericSerializable) {
@@ -239,7 +240,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
                         mapper.serialize(t, generator);
                     }
                 }
-                return ByteBuffer.wrap(baos.toByteArray());
+                return baos.asByteBuffer();
             });
         }
 
@@ -309,7 +310,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
 
         if (endpoint.hasRequestBody()) {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            NoCopyByteArrayOutputStream baos = new NoCopyByteArrayOutputStream();
 
             ContentType contentType = JsonContentType;
             if (request instanceof NdJsonpSerializable) {
@@ -322,7 +323,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
                 generator.close();
             }
 
-            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), contentType));
+            clientReq.setEntity(new ByteArrayEntity(baos.array(), 0, baos.size(), contentType));
         }
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
