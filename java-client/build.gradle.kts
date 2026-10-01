@@ -143,7 +143,7 @@ tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
-val opensearchVersion = "3.8.0"
+val opensearchVersion = "3.9.0"
 val opensearchDockerVersion = opensearchVersion.removeSuffix("-SNAPSHOT")
 
 tasks.test {
@@ -195,10 +195,10 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val jacksonVersion = "2.22.2"
-    val jacksonDatabindVersion = "2.22.2"
-    val jackson3Version = "3.2.2"
-    val jackson3DatabindVersion = "3.2.2"
+    val jacksonVersion = "2.22.3"
+    val jacksonDatabindVersion = "2.22.3"
+    val jackson3Version = "3.2.3"
+    val jackson3DatabindVersion = "3.2.3"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.6")
