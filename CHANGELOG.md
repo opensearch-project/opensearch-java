@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
+- Add constants for `_first` and `_last` sort values ([#2189](https://github.com/opensearch-project/opensearch-java/pull/2189))
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
 - Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
 
