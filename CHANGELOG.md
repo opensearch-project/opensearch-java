@@ -6,6 +6,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### BREAKING CHANGES
 - Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
 
+### Added
+- Add constants for `_first` and `_last` sort values (#2189)
+
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
 - Bump `org.junit:junit-bom` from 5.13.3 to 6.0.3 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746), [#1780](https://github.com/opensearch-project/opensearch-java/pull/1780), [#1856](https://github.com/opensearch-project/opensearch-java/pull/1856), [#1885](https://github.com/opensearch-project/opensearch-java/pull/1885))
