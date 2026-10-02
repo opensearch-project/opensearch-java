@@ -52512,7 +52512,9 @@ components:
           items:
             $ref: '#/components/schemas/_core.search___SearchProfile'
         fetch:
-          $ref: '#/components/schemas/_core.search___FetchProfile'
+          type: array
+          items:
+            $ref: '#/components/schemas/_core.search___FetchProfile'
       required:
         - aggregations
         - id
