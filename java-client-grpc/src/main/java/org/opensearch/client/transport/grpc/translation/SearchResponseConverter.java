@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch.core.SearchResponse;
@@ -48,6 +49,27 @@ public class SearchResponseConverter {
         JsonpMapper jsonpMapper,
         Class<TDocument> tDocumentClass
     ) {
+        return fromProto(protoResponse, jsonpMapper, JsonpDeserializer.of(tDocumentClass));
+    }
+
+    /**
+     * Convert a protobuf SearchResponse to an opensearch-java SearchResponse.
+     * <p>
+     * Hit {@code _source} values are deserialized with the supplied deserializer, which the gRPC
+     * transport derives from the endpoint's typed response deserializer so that the caller's
+     * {@code Class<TDocument>} contract is honored (see issue #2123).
+     *
+     * @param protoResponse       the protobuf SearchResponse from the server
+     * @param jsonpMapper         the JSON mapper for _source deserialization
+     * @param documentDeserializer the deserializer for hit _source values
+     * @param <TDocument>         the document type
+     * @return the opensearch-java SearchResponse
+     */
+    public static <TDocument> SearchResponse<TDocument> fromProto(
+        org.opensearch.protobufs.SearchResponse protoResponse,
+        JsonpMapper jsonpMapper,
+        JsonpDeserializer<TDocument> documentDeserializer
+    ) {
         SearchResponse.Builder<TDocument> builder = new SearchResponse.Builder<TDocument>();
 
         // took
@@ -71,7 +93,7 @@ public class SearchResponseConverter {
 
         // hits
         if (protoResponse.hasHits()) {
-            builder.hits(convertHitsMetadata(protoResponse.getHits(), jsonpMapper, tDocumentClass));
+            builder.hits(convertHitsMetadata(protoResponse.getHits(), jsonpMapper, documentDeserializer));
         } else {
             builder.hits(new HitsMetadata.Builder<TDocument>().hits(new ArrayList<>()).build());
         }
@@ -82,7 +104,7 @@ public class SearchResponseConverter {
     private static <TDocument> HitsMetadata<TDocument> convertHitsMetadata(
         org.opensearch.protobufs.HitsMetadata protoHits,
         JsonpMapper jsonpMapper,
-        Class<TDocument> tDocumentClass
+        JsonpDeserializer<TDocument> documentDeserializer
     ) {
         HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
 
@@ -109,7 +131,7 @@ public class SearchResponseConverter {
         // individual hits
         List<Hit<TDocument>> hits = new ArrayList<>();
         for (org.opensearch.protobufs.HitsMetadataHitsInner protoHit : protoHits.getHitsList()) {
-            hits.add(convertHit(protoHit, jsonpMapper, tDocumentClass));
+            hits.add(convertHit(protoHit, jsonpMapper, documentDeserializer));
         }
         builder.hits(hits);
 
@@ -119,7 +141,7 @@ public class SearchResponseConverter {
     private static <TDocument> Hit<TDocument> convertHit(
         org.opensearch.protobufs.HitsMetadataHitsInner protoHit,
         JsonpMapper jsonpMapper,
-        Class<TDocument> tDocumentClass
+        JsonpDeserializer<TDocument> documentDeserializer
     ) {
         Hit.Builder<TDocument> builder = new Hit.Builder<TDocument>();
 
@@ -154,7 +176,7 @@ public class SearchResponseConverter {
 
         // _source — decode bytes and deserialize to TDocument
         if (!protoHit.getXSource().isEmpty()) {
-            TDocument source = deserializeSource(protoHit.getXSource().toByteArray(), jsonpMapper, tDocumentClass);
+            TDocument source = deserializeSource(protoHit.getXSource().toByteArray(), jsonpMapper, documentDeserializer);
             builder.source(source);
         }
 
@@ -165,10 +187,13 @@ public class SearchResponseConverter {
      * Decode _source bytes from protobuf hit to a Java object.
      * The server returns _source as UTF-8 JSON bytes.
      */
-    static <TDocument> TDocument deserializeSource(byte[] sourceBytes, JsonpMapper jsonpMapper, Class<TDocument> tDocumentClass) {
+    static <TDocument> TDocument deserializeSource(
+        byte[] sourceBytes,
+        JsonpMapper jsonpMapper,
+        JsonpDeserializer<TDocument> documentDeserializer
+    ) {
         InputStream stream = new ByteArrayInputStream(sourceBytes);
         jakarta.json.stream.JsonParser parser = jsonpMapper.jsonProvider().createParser(stream);
-        parser.next(); // advance to first token
-        return jsonpMapper.deserialize(parser, tDocumentClass);
+        return documentDeserializer.deserialize(parser, jsonpMapper);
     }
 }
