@@ -97,16 +97,16 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
 
     private Segment(Builder builder) {
         this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-        this.committed = ApiTypeHelper.requireNonNull(builder.committed, this, "committed");
-        this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound");
-        this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs");
-        this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+        this.committed = ApiTypeHelper.requireNonNull(builder.committed, this, "committed", false);
+        this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound", false);
+        this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs", 0);
+        this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation", 0);
         this.memory = builder.memory;
         this.memoryInBytes = builder.memoryInBytes;
-        this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
-        this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+        this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs", 0);
+        this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search", false);
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
 

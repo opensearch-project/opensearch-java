@@ -80,9 +80,9 @@ public class RemoteStoreUploadRefreshSizeLagStats
 
     private RemoteStoreUploadRefreshSizeLagStats(Builder builder) {
         this.max = builder.max;
-        this.maxBytes = ApiTypeHelper.requireNonNull(builder.maxBytes, this, "maxBytes");
+        this.maxBytes = ApiTypeHelper.requireNonNull(builder.maxBytes, this, "maxBytes", 0L);
         this.total = builder.total;
-        this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
+        this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes", 0L);
     }
 
     public static RemoteStoreUploadRefreshSizeLagStats of(

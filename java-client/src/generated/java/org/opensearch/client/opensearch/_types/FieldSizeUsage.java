@@ -72,7 +72,7 @@ public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<
 
     private FieldSizeUsage(Builder builder) {
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
     }
 
     public static FieldSizeUsage of(Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {

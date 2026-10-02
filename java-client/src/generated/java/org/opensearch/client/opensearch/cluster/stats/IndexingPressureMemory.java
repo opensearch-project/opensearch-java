@@ -73,7 +73,7 @@ public class IndexingPressureMemory
 
     private IndexingPressureMemory(Builder builder) {
         this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-        this.limitInBytes = ApiTypeHelper.requireNonNull(builder.limitInBytes, this, "limitInBytes");
+        this.limitInBytes = ApiTypeHelper.requireNonNull(builder.limitInBytes, this, "limitInBytes", 0L);
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
     }
 

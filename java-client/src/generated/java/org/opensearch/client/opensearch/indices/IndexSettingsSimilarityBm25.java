@@ -76,9 +76,9 @@ public class IndexSettingsSimilarityBm25
     // ---------------------------------------------------------------------------------------------
 
     private IndexSettingsSimilarityBm25(Builder builder) {
-        this.b = ApiTypeHelper.requireNonNull(builder.b, this, "b");
-        this.discountOverlaps = ApiTypeHelper.requireNonNull(builder.discountOverlaps, this, "discountOverlaps");
-        this.k1 = ApiTypeHelper.requireNonNull(builder.k1, this, "k1");
+        this.b = ApiTypeHelper.requireNonNull(builder.b, this, "b", 0.0f);
+        this.discountOverlaps = ApiTypeHelper.requireNonNull(builder.discountOverlaps, this, "discountOverlaps", false);
+        this.k1 = ApiTypeHelper.requireNonNull(builder.k1, this, "k1", 0.0f);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 

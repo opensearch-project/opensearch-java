@@ -68,9 +68,9 @@ public class CreateIndexResponse implements PlainJsonSerializable, ToCopyableBui
     // ---------------------------------------------------------------------------------------------
 
     private CreateIndexResponse(Builder builder) {
-        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static CreateIndexResponse of(Function<CreateIndexResponse.Builder, ObjectBuilder<CreateIndexResponse>> fn) {

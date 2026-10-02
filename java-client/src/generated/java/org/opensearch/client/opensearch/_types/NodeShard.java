@@ -100,11 +100,11 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         this.allocationId = ApiTypeHelper.unmodifiable(builder.allocationId);
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.node = builder.node;
-        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
         this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
         this.relocatingNode = builder.relocatingNode;
         this.searchOnly = builder.searchOnly;
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
         this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
         this.unassignedInfo = builder.unassignedInfo;
     }

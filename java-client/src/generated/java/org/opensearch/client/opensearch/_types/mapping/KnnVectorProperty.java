@@ -87,7 +87,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase
         super(builder);
         this.compressionLevel = builder.compressionLevel;
         this.dataType = builder.dataType;
-        this.dimension = ApiTypeHelper.requireNonNull(builder.dimension, this, "dimension");
+        this.dimension = ApiTypeHelper.requireNonNull(builder.dimension, this, "dimension", 0);
         this.method = builder.method;
         this.mode = builder.mode;
         this.modelId = builder.modelId;

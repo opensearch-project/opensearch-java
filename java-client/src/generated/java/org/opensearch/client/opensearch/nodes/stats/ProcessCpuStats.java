@@ -71,9 +71,9 @@ public class ProcessCpuStats implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private ProcessCpuStats(Builder builder) {
-        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent", 0.0);
         this.total = builder.total;
-        this.totalInMillis = ApiTypeHelper.requireNonNull(builder.totalInMillis, this, "totalInMillis");
+        this.totalInMillis = ApiTypeHelper.requireNonNull(builder.totalInMillis, this, "totalInMillis", 0L);
     }
 
     public static ProcessCpuStats of(Function<ProcessCpuStats.Builder, ObjectBuilder<ProcessCpuStats>> fn) {

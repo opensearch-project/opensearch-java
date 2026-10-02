@@ -65,8 +65,8 @@ public class TextIndexPrefixes implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private TextIndexPrefixes(Builder builder) {
-        this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
-        this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars");
+        this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars", 0);
+        this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars", 0);
     }
 
     public static TextIndexPrefixes of(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {

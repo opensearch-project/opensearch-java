@@ -166,11 +166,11 @@ public class AllocationExplainResponse
         this.moveExplanation = builder.moveExplanation;
         this.nodeAllocationDecisions = ApiTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
         this.note = builder.note;
-        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
         this.rebalanceExplanation = builder.rebalanceExplanation;
         this.remainingDelay = builder.remainingDelay;
         this.remainingDelayInMillis = builder.remainingDelayInMillis;
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
         this.unassignedInfo = builder.unassignedInfo;
     }
 

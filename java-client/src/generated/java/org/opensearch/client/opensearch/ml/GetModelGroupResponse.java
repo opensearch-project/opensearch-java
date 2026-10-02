@@ -66,7 +66,7 @@ public class GetModelGroupResponse
         this.createdTime = builder.createdTime;
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
         this.lastUpdatedTime = builder.lastUpdatedTime;
-        this.latestVersion = ApiTypeHelper.requireNonNull(builder.latestVersion, this, "latestVersion");
+        this.latestVersion = ApiTypeHelper.requireNonNull(builder.latestVersion, this, "latestVersion", 0);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.owner = builder.owner;
     }

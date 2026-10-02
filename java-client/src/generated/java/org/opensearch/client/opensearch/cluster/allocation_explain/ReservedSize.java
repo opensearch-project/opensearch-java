@@ -76,7 +76,7 @@ public class ReservedSize implements PlainJsonSerializable, ToCopyableBuilder<Re
         this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
         this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
         this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
     }
 
     public static ReservedSize of(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {

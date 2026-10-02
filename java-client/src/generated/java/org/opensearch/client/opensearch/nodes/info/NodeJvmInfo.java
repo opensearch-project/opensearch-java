@@ -106,14 +106,14 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     // ---------------------------------------------------------------------------------------------
 
     private NodeJvmInfo(Builder builder) {
-        this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+        this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk", false);
         this.gcCollectors = ApiTypeHelper.unmodifiable(builder.gcCollectors);
         this.inputArguments = ApiTypeHelper.unmodifiable(builder.inputArguments);
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
         this.memoryPools = ApiTypeHelper.unmodifiable(builder.memoryPools);
-        this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
+        this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid", 0);
         this.startTime = builder.startTime;
-        this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+        this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0L);
         this.usingBundledJdk = builder.usingBundledJdk;
         this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
         this.version = builder.version;

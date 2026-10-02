@@ -67,7 +67,7 @@ public abstract class MultiBucketBase implements PlainJsonSerializable {
 
     protected MultiBucketBase(AbstractBuilder<?> builder) {
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
-        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0L);
     }
 
     /**

@@ -72,7 +72,7 @@ public class SearchProfile implements PlainJsonSerializable, ToCopyableBuilder<S
     private SearchProfile(Builder builder) {
         this.collector = ApiTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
         this.query = ApiTypeHelper.unmodifiableRequired(builder.query, this, "query");
-        this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
+        this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime", 0L);
     }
 
     public static SearchProfile of(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {

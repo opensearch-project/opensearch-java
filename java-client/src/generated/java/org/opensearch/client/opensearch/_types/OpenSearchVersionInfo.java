@@ -101,7 +101,7 @@ public class OpenSearchVersionInfo
         this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
         this.buildFlavor = builder.buildFlavor;
         this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-        this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
+        this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot", false);
         this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
         this.distribution = ApiTypeHelper.requireNonNull(builder.distribution, this, "distribution");
         this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");

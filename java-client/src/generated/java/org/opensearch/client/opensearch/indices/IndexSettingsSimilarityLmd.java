@@ -72,7 +72,7 @@ public class IndexSettingsSimilarityLmd
     // ---------------------------------------------------------------------------------------------
 
     private IndexSettingsSimilarityLmd(Builder builder) {
-        this.mu = ApiTypeHelper.requireNonNull(builder.mu, this, "mu");
+        this.mu = ApiTypeHelper.requireNonNull(builder.mu, this, "mu", 0.0f);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 

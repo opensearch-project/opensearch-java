@@ -80,7 +80,7 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
     private NodeInfoHttp(Builder builder) {
         this.boundAddress = ApiTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
         this.maxContentLength = builder.maxContentLength;
-        this.maxContentLengthInBytes = ApiTypeHelper.requireNonNull(builder.maxContentLengthInBytes, this, "maxContentLengthInBytes");
+        this.maxContentLengthInBytes = ApiTypeHelper.requireNonNull(builder.maxContentLengthInBytes, this, "maxContentLengthInBytes", 0L);
         this.publishAddress = ApiTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
     }
 

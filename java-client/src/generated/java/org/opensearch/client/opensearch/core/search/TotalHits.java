@@ -67,7 +67,7 @@ public class TotalHits implements PlainJsonSerializable, ToCopyableBuilder<Total
 
     private TotalHits(Builder builder) {
         this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
-        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0L);
     }
 
     public static TotalHits of(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {

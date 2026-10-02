@@ -89,16 +89,16 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     // ---------------------------------------------------------------------------------------------
 
     private GetStats(Builder builder) {
-        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0L);
         this.existsTime = builder.existsTime;
-        this.existsTimeInMillis = ApiTypeHelper.requireNonNull(builder.existsTimeInMillis, this, "existsTimeInMillis");
-        this.existsTotal = ApiTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal");
+        this.existsTimeInMillis = ApiTypeHelper.requireNonNull(builder.existsTimeInMillis, this, "existsTimeInMillis", 0L);
+        this.existsTotal = ApiTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal", 0L);
         this.missingTime = builder.missingTime;
-        this.missingTimeInMillis = ApiTypeHelper.requireNonNull(builder.missingTimeInMillis, this, "missingTimeInMillis");
-        this.missingTotal = ApiTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal");
+        this.missingTimeInMillis = ApiTypeHelper.requireNonNull(builder.missingTimeInMillis, this, "missingTimeInMillis", 0L);
+        this.missingTotal = ApiTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal", 0L);
         this.time = builder.time;
-        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
     }
 
     public static GetStats of(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {

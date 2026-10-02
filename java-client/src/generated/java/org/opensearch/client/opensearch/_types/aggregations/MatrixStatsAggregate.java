@@ -71,7 +71,7 @@ public class MatrixStatsAggregate extends AggregateBase
 
     private MatrixStatsAggregate(Builder builder) {
         super(builder);
-        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0L);
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
     }
 

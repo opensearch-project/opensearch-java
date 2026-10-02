@@ -74,10 +74,10 @@ public class CommandAllocatePrimaryAction
     // ---------------------------------------------------------------------------------------------
 
     private CommandAllocatePrimaryAction(Builder builder) {
-        this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+        this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
     }
 
     public static CommandAllocatePrimaryAction of(

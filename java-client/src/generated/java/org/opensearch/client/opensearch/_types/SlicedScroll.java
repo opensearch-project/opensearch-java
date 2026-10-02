@@ -74,8 +74,8 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
 
     private SlicedScroll(Builder builder) {
         this.field = builder.field;
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
+        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0);
     }
 
     public static SlicedScroll of(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {

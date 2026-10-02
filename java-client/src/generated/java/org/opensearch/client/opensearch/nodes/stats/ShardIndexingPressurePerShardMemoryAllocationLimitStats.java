@@ -73,12 +73,14 @@ public class ShardIndexingPressurePerShardMemoryAllocationLimitStats
         this.currentCoordinatingAndPrimaryLimitsInBytes = ApiTypeHelper.requireNonNull(
             builder.currentCoordinatingAndPrimaryLimitsInBytes,
             this,
-            "currentCoordinatingAndPrimaryLimitsInBytes"
+            "currentCoordinatingAndPrimaryLimitsInBytes",
+            0L
         );
         this.currentReplicaLimitsInBytes = ApiTypeHelper.requireNonNull(
             builder.currentReplicaLimitsInBytes,
             this,
-            "currentReplicaLimitsInBytes"
+            "currentReplicaLimitsInBytes",
+            0L
         );
     }
 

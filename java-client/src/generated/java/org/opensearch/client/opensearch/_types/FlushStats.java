@@ -75,10 +75,10 @@ public class FlushStats implements PlainJsonSerializable, ToCopyableBuilder<Flus
     // ---------------------------------------------------------------------------------------------
 
     private FlushStats(Builder builder) {
-        this.periodic = ApiTypeHelper.requireNonNull(builder.periodic, this, "periodic");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.periodic = ApiTypeHelper.requireNonNull(builder.periodic, this, "periodic", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
         this.totalTime = builder.totalTime;
-        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0L);
     }
 
     public static FlushStats of(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {

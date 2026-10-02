@@ -67,9 +67,9 @@ public class ClusterStatistics implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private ClusterStatistics(Builder builder) {
-        this.skipped = ApiTypeHelper.requireNonNull(builder.skipped, this, "skipped");
-        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.skipped = ApiTypeHelper.requireNonNull(builder.skipped, this, "skipped", 0);
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", 0);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
     }
 
     public static ClusterStatistics of(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {

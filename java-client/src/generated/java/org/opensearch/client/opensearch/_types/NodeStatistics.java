@@ -76,10 +76,10 @@ public class NodeStatistics implements PlainJsonSerializable, ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private NodeStatistics(Builder builder) {
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
         this.failures = ApiTypeHelper.unmodifiable(builder.failures);
-        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", 0);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
     }
 
     public static NodeStatistics of(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {

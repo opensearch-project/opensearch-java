@@ -78,9 +78,9 @@ public class RecoveryStartStatus implements PlainJsonSerializable, ToCopyableBui
 
     private RecoveryStartStatus(Builder builder) {
         this.checkIndexTime = builder.checkIndexTime;
-        this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this, "checkIndexTimeInMillis");
+        this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this, "checkIndexTimeInMillis", 0L);
         this.totalTime = builder.totalTime;
-        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0L);
     }
 
     public static RecoveryStartStatus of(Function<RecoveryStartStatus.Builder, ObjectBuilder<RecoveryStartStatus>> fn) {

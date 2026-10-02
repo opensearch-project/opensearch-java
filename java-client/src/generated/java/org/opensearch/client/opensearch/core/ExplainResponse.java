@@ -87,7 +87,7 @@ public class ExplainResponse<TDocument>
         this.get = builder.get;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
+        this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched", false);
     }
 
     public static <TDocument> ExplainResponse<TDocument> of(

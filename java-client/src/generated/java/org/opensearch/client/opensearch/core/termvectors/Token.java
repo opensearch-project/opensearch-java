@@ -76,7 +76,7 @@ public class Token implements PlainJsonSerializable, ToCopyableBuilder<Token.Bui
     private Token(Builder builder) {
         this.endOffset = builder.endOffset;
         this.payload = builder.payload;
-        this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
+        this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position", 0);
         this.startOffset = builder.startOffset;
     }
 

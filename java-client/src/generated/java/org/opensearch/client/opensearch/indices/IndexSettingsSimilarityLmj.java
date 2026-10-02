@@ -72,7 +72,7 @@ public class IndexSettingsSimilarityLmj
     // ---------------------------------------------------------------------------------------------
 
     private IndexSettingsSimilarityLmj(Builder builder) {
-        this.lambda = ApiTypeHelper.requireNonNull(builder.lambda, this, "lambda");
+        this.lambda = ApiTypeHelper.requireNonNull(builder.lambda, this, "lambda", 0.0f);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 

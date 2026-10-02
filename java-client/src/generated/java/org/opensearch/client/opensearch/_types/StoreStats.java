@@ -74,9 +74,9 @@ public class StoreStats implements PlainJsonSerializable, ToCopyableBuilder<Stor
 
     private StoreStats(Builder builder) {
         this.reserved = builder.reserved;
-        this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
+        this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes", 0L);
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
     }
 
     public static StoreStats of(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {

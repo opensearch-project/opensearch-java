@@ -60,9 +60,14 @@ public abstract class ScriptStatsBase implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     protected ScriptStatsBase(AbstractBuilder<?> builder) {
-        this.cacheEvictions = ApiTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions");
-        this.compilationLimitTriggered = ApiTypeHelper.requireNonNull(builder.compilationLimitTriggered, this, "compilationLimitTriggered");
-        this.compilations = ApiTypeHelper.requireNonNull(builder.compilations, this, "compilations");
+        this.cacheEvictions = ApiTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions", 0L);
+        this.compilationLimitTriggered = ApiTypeHelper.requireNonNull(
+            builder.compilationLimitTriggered,
+            this,
+            "compilationLimitTriggered",
+            0L
+        );
+        this.compilations = ApiTypeHelper.requireNonNull(builder.compilations, this, "compilations", 0L);
     }
 
     /**

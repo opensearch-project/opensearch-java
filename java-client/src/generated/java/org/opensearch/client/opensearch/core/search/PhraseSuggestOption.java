@@ -76,7 +76,7 @@ public class PhraseSuggestOption implements PlainJsonSerializable, ToCopyableBui
     private PhraseSuggestOption(Builder builder) {
         this.collateMatch = builder.collateMatch;
         this.highlighted = builder.highlighted;
-        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0.0);
         this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
     }
 

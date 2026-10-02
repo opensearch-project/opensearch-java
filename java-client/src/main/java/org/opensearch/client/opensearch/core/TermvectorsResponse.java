@@ -67,12 +67,12 @@ public class TermvectorsResponse implements PlainJsonSerializable {
 
     private TermvectorsResponse(Builder builder) {
 
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.termVectors = ApiTypeHelper.unmodifiable(builder.termVectors);
-        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0L);
+        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0L);
 
     }
 

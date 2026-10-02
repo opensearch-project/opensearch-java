@@ -309,6 +309,39 @@ public class ClassStructureTest extends ModelTestCase {
         assertEquals("id", ex.getPropertyName());
     }
 
+    @Test
+    public void testRequiredListAndMapWithChecksDisabled() {
+        // Missing required list or map is rejected
+        assertThrows(MissingRequiredPropertyException.class, () -> ApiTypeHelper.unmodifiableRequired((List<String>) null, this, "l"));
+        assertThrows(
+            MissingRequiredPropertyException.class,
+            () -> ApiTypeHelper.unmodifiableRequired((Map<String, String>) null, this, "m")
+        );
+
+        // Disable checks, missing or undefined required list or map stays undefined
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            assertFalse(ApiTypeHelper.isDefined(ApiTypeHelper.unmodifiableRequired((List<String>) null, this, "l")));
+            assertFalse(ApiTypeHelper.isDefined(ApiTypeHelper.unmodifiableRequired(ApiTypeHelper.<String>undefinedList(), this, "l")));
+            assertFalse(ApiTypeHelper.isDefined(ApiTypeHelper.unmodifiableRequired((Map<String, String>) null, this, "m")));
+            assertFalse(
+                ApiTypeHelper.isDefined(ApiTypeHelper.unmodifiableRequired(ApiTypeHelper.<String, String>undefinedMap(), this, "m"))
+            );
+        }
+    }
+
+    @Test
+    public void testRequiredPrimitiveWithChecksDisabled() {
+        // Missing required primitive is rejected
+        assertThrows(MissingRequiredPropertyException.class, () -> ApiTypeHelper.requireNonNull((Long) null, this, "p", 0L));
+
+        // Disable checks, missing required primitive gets the default value instead of failing on unboxing
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            long p = ApiTypeHelper.requireNonNull((Long) null, this, "p", 0L);
+            assertEquals(0L, p);
+            assertEquals(Long.valueOf(42L), ApiTypeHelper.requireNonNull(42L, this, "p", 0L));
+        }
+    }
+
     private void assertAncestorCount(int count, Object obj) {
         Class<?> clazz = obj.getClass();
         while (count-- >= 0) {

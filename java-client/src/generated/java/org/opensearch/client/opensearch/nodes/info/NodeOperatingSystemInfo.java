@@ -103,13 +103,13 @@ public class NodeOperatingSystemInfo
     private NodeOperatingSystemInfo(Builder builder) {
         this.allocatedProcessors = builder.allocatedProcessors;
         this.arch = builder.arch;
-        this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this, "availableProcessors");
+        this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this, "availableProcessors", 0);
         this.cpu = builder.cpu;
         this.mem = builder.mem;
         this.name = builder.name;
         this.prettyName = builder.prettyName;
         this.refreshInterval = builder.refreshInterval;
-        this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
+        this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis", 0L);
         this.swap = builder.swap;
         this.version = builder.version;
     }

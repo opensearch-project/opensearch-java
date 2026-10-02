@@ -82,13 +82,13 @@ public class MatrixStatsFields implements PlainJsonSerializable, ToCopyableBuild
 
     private MatrixStatsFields(Builder builder) {
         this.correlation = ApiTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0L);
         this.covariance = ApiTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
-        this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
-        this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean");
+        this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis", 0.0);
+        this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean", 0.0);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness");
-        this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
+        this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness", 0.0);
+        this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance", 0.0);
     }
 
     public static MatrixStatsFields of(Function<MatrixStatsFields.Builder, ObjectBuilder<MatrixStatsFields>> fn) {

@@ -66,7 +66,7 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction
 
     private RankFeatureFunctionLogarithm(Builder builder) {
         super(builder);
-        this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
+        this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor", 0.0f);
     }
 
     public static RankFeatureFunctionLogarithm of(

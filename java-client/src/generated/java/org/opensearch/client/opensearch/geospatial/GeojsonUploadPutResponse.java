@@ -74,11 +74,11 @@ public class GeojsonUploadPutResponse
     // ---------------------------------------------------------------------------------------------
 
     private GeojsonUploadPutResponse(Builder builder) {
-        this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors");
-        this.failure = ApiTypeHelper.requireNonNull(builder.failure, this, "failure");
-        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success");
-        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors", false);
+        this.failure = ApiTypeHelper.requireNonNull(builder.failure, this, "failure", 0);
+        this.success = ApiTypeHelper.requireNonNull(builder.success, this, "success", 0);
+        this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
     }
 
     public static GeojsonUploadPutResponse of(Function<GeojsonUploadPutResponse.Builder, ObjectBuilder<GeojsonUploadPutResponse>> fn) {

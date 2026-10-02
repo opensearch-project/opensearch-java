@@ -81,7 +81,7 @@ public class QueryProfile implements PlainJsonSerializable, ToCopyableBuilder<Qu
         this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
         this.children = ApiTypeHelper.unmodifiable(builder.children);
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0L);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 

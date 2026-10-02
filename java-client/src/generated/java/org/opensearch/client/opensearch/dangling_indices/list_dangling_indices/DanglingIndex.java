@@ -79,7 +79,7 @@ public class DanglingIndex implements PlainJsonSerializable, ToCopyableBuilder<D
 
     private DanglingIndex(Builder builder) {
         this.creationDate = builder.creationDate;
-        this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis");
+        this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis", 0L);
         this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
         this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
         this.nodeIds = ApiTypeHelper.unmodifiableRequired(builder.nodeIds, this, "nodeIds");

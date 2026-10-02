@@ -85,17 +85,18 @@ public class IndexingPressureMemorySummary
     // ---------------------------------------------------------------------------------------------
 
     private IndexingPressureMemorySummary(Builder builder) {
-        this.allInBytes = ApiTypeHelper.requireNonNull(builder.allInBytes, this, "allInBytes");
+        this.allInBytes = ApiTypeHelper.requireNonNull(builder.allInBytes, this, "allInBytes", 0L);
         this.combinedCoordinatingAndPrimaryInBytes = ApiTypeHelper.requireNonNull(
             builder.combinedCoordinatingAndPrimaryInBytes,
             this,
-            "combinedCoordinatingAndPrimaryInBytes"
+            "combinedCoordinatingAndPrimaryInBytes",
+            0L
         );
-        this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this, "coordinatingInBytes");
+        this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this, "coordinatingInBytes", 0L);
         this.coordinatingRejections = builder.coordinatingRejections;
-        this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes");
+        this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes", 0L);
         this.primaryRejections = builder.primaryRejections;
-        this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes");
+        this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes", 0L);
         this.replicaRejections = builder.replicaRejections;
     }
 

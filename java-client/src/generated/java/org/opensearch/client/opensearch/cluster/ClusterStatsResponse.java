@@ -90,7 +90,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         this.indices = builder.indices;
         this.nodes = builder.nodes;
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0L);
     }
 
     public static ClusterStatsResponse of(Function<ClusterStatsResponse.Builder, ObjectBuilder<ClusterStatsResponse>> fn) {

@@ -84,7 +84,7 @@ public class GetResult<TDocument> implements PlainJsonSerializable {
 
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.primaryTerm = builder.primaryTerm;
         this.routing = builder.routing;

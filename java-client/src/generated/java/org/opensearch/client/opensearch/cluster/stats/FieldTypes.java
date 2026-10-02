@@ -68,8 +68,8 @@ public class FieldTypes implements PlainJsonSerializable, ToCopyableBuilder<Fiel
     // ---------------------------------------------------------------------------------------------
 
     private FieldTypes(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+        this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount", 0);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
     }
 

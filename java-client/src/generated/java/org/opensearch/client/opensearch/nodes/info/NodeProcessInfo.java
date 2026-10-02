@@ -76,10 +76,10 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private NodeProcessInfo(Builder builder) {
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0L);
+        this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall", false);
         this.refreshInterval = builder.refreshInterval;
-        this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
+        this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis", 0L);
     }
 
     public static NodeProcessInfo of(Function<NodeProcessInfo.Builder, ObjectBuilder<NodeProcessInfo>> fn) {

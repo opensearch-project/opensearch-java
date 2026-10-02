@@ -96,7 +96,7 @@ public class BulkResponseItem implements PlainJsonSerializable {
 
         this.id = builder.id;
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status", 0);
         this.error = builder.error;
         this.primaryTerm = builder.primaryTerm;
         this.result = builder.result;

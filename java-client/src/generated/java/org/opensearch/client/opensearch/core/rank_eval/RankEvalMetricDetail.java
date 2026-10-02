@@ -77,7 +77,7 @@ public class RankEvalMetricDetail implements PlainJsonSerializable, ToCopyableBu
     private RankEvalMetricDetail(Builder builder) {
         this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
         this.metricDetails = ApiTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
-        this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+        this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore", 0.0);
         this.unratedDocs = ApiTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
     }
 

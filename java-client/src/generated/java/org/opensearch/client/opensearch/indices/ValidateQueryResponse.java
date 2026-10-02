@@ -83,7 +83,7 @@ public class ValidateQueryResponse
         this.error = builder.error;
         this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
         this.shards = builder.shards;
-        this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
+        this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid", false);
     }
 
     public static ValidateQueryResponse of(Function<ValidateQueryResponse.Builder, ObjectBuilder<ValidateQueryResponse>> fn) {

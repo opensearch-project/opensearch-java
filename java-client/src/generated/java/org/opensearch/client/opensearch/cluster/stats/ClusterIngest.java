@@ -67,7 +67,7 @@ public class ClusterIngest implements PlainJsonSerializable, ToCopyableBuilder<C
     // ---------------------------------------------------------------------------------------------
 
     private ClusterIngest(Builder builder) {
-        this.numberOfPipelines = ApiTypeHelper.requireNonNull(builder.numberOfPipelines, this, "numberOfPipelines");
+        this.numberOfPipelines = ApiTypeHelper.requireNonNull(builder.numberOfPipelines, this, "numberOfPipelines", 0);
         this.processorStats = ApiTypeHelper.unmodifiableRequired(builder.processorStats, this, "processorStats");
     }
 

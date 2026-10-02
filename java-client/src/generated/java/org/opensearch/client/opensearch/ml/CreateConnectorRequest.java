@@ -82,7 +82,7 @@ public final class CreateConnectorRequest extends RequestBase
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
         this.protocol = ApiTypeHelper.requireNonNull(builder.protocol, this, "protocol");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
     }
 
     public static CreateConnectorRequest of(Function<CreateConnectorRequest.Builder, ObjectBuilder<CreateConnectorRequest>> fn) {

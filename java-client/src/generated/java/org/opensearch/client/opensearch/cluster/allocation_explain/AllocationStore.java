@@ -76,10 +76,10 @@ public class AllocationStore implements PlainJsonSerializable, ToCopyableBuilder
 
     private AllocationStore(Builder builder) {
         this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
-        this.inSync = ApiTypeHelper.requireNonNull(builder.inSync, this, "inSync");
-        this.matchingSizeInBytes = ApiTypeHelper.requireNonNull(builder.matchingSizeInBytes, this, "matchingSizeInBytes");
-        this.matchingSyncId = ApiTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
+        this.inSync = ApiTypeHelper.requireNonNull(builder.inSync, this, "inSync", false);
+        this.matchingSizeInBytes = ApiTypeHelper.requireNonNull(builder.matchingSizeInBytes, this, "matchingSizeInBytes", 0L);
+        this.matchingSyncId = ApiTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId", false);
         this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
     }
 

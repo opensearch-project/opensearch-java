@@ -70,7 +70,7 @@ public class SpanGapQuery implements SpanQueryVariant, PlainJsonSerializable, To
 
     private SpanGapQuery(Builder builder) {
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.spanWidth = ApiTypeHelper.requireNonNull(builder.spanWidth, this, "spanWidth");
+        this.spanWidth = ApiTypeHelper.requireNonNull(builder.spanWidth, this, "spanWidth", 0);
     }
 
     public static SpanGapQuery of(Function<SpanGapQuery.Builder, ObjectBuilder<SpanGapQuery>> fn) {

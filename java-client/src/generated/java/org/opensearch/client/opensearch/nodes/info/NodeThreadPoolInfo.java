@@ -87,7 +87,7 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         this.core = builder.core;
         this.keepAlive = builder.keepAlive;
         this.max = builder.max;
-        this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+        this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize", 0);
         this.size = builder.size;
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }

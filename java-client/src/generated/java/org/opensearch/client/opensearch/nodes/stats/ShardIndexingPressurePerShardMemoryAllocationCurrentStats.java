@@ -73,9 +73,10 @@ public class ShardIndexingPressurePerShardMemoryAllocationCurrentStats
         this.currentCoordinatingAndPrimaryBytes = ApiTypeHelper.requireNonNull(
             builder.currentCoordinatingAndPrimaryBytes,
             this,
-            "currentCoordinatingAndPrimaryBytes"
+            "currentCoordinatingAndPrimaryBytes",
+            0L
         );
-        this.currentReplicaBytes = ApiTypeHelper.requireNonNull(builder.currentReplicaBytes, this, "currentReplicaBytes");
+        this.currentReplicaBytes = ApiTypeHelper.requireNonNull(builder.currentReplicaBytes, this, "currentReplicaBytes", 0L);
     }
 
     public static ShardIndexingPressurePerShardMemoryAllocationCurrentStats of(

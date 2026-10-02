@@ -85,15 +85,15 @@ public class IndexHealthStats implements PlainJsonSerializable, ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private IndexHealthStats(Builder builder) {
-        this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this, "activePrimaryShards");
-        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
-        this.numberOfReplicas = ApiTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas");
-        this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards");
-        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+        this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this, "activePrimaryShards", 0);
+        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
+        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards", 0);
+        this.numberOfReplicas = ApiTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas", 0);
+        this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards", 0);
+        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards", 0);
         this.shards = ApiTypeHelper.unmodifiable(builder.shards);
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards", 0);
     }
 
     public static IndexHealthStats of(Function<IndexHealthStats.Builder, ObjectBuilder<IndexHealthStats>> fn) {

@@ -81,7 +81,7 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
         this.evictions = builder.evictions;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
         this.memorySize = builder.memorySize;
-        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0L);
     }
 
     public static FielddataStats of(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {

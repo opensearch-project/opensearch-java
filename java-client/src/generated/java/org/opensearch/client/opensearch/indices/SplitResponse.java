@@ -67,7 +67,7 @@ public class SplitResponse extends AcknowledgedResponseBase implements ToCopyabl
     private SplitResponse(Builder builder) {
         super(builder);
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static SplitResponse of(Function<SplitResponse.Builder, ObjectBuilder<SplitResponse>> fn) {

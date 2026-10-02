@@ -72,7 +72,7 @@ public class CountResponse implements PlainJsonSerializable, ToCopyableBuilder<C
     // ---------------------------------------------------------------------------------------------
 
     private CountResponse(Builder builder) {
-        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0L);
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
         this.terminatedEarly = builder.terminatedEarly;
     }

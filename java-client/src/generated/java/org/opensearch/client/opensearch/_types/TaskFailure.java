@@ -78,7 +78,7 @@ public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<Tas
         this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-        this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+        this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId", 0);
     }
 
     public static TaskFailure of(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {

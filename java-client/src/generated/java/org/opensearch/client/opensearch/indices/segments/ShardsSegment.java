@@ -75,8 +75,8 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
     // ---------------------------------------------------------------------------------------------
 
     private ShardsSegment(Builder builder) {
-        this.numCommittedSegments = ApiTypeHelper.requireNonNull(builder.numCommittedSegments, this, "numCommittedSegments");
-        this.numSearchSegments = ApiTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
+        this.numCommittedSegments = ApiTypeHelper.requireNonNull(builder.numCommittedSegments, this, "numCommittedSegments", 0);
+        this.numSearchSegments = ApiTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments", 0);
         this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
         this.segments = ApiTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
     }

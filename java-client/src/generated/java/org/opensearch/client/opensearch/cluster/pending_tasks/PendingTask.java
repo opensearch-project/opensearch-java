@@ -85,14 +85,14 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
     // ---------------------------------------------------------------------------------------------
 
     private PendingTask(Builder builder) {
-        this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing");
-        this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
+        this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing", false);
+        this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder", 0);
         this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
         this.timeInExecution = builder.timeInExecution;
         this.timeInExecutionMillis = builder.timeInExecutionMillis;
         this.timeInQueue = builder.timeInQueue;
-        this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
+        this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis", 0L);
     }
 
     public static PendingTask of(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {

@@ -83,13 +83,18 @@ public class ClusterRemoteProxyInfo
     // ---------------------------------------------------------------------------------------------
 
     private ClusterRemoteProxyInfo(Builder builder) {
-        this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+        this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected", false);
         this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this, "initialConnectTimeout");
-        this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this, "maxProxySocketConnections");
-        this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this, "numProxySocketsConnected");
+        this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(
+            builder.maxProxySocketConnections,
+            this,
+            "maxProxySocketConnections",
+            0
+        );
+        this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this, "numProxySocketsConnected", 0);
         this.proxyAddress = ApiTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
         this.serverName = ApiTypeHelper.requireNonNull(builder.serverName, this, "serverName");
-        this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+        this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable", false);
     }
 
     public static ClusterRemoteProxyInfo of(Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {

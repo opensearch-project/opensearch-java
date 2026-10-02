@@ -90,13 +90,13 @@ public class OperatingSystemMemoryInfo
     private OperatingSystemMemoryInfo(Builder builder) {
         this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
         this.free = builder.free;
-        this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-        this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+        this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes", 0L);
+        this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent", 0.0);
         this.total = builder.total;
-        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0L);
         this.used = builder.used;
-        this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
-        this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+        this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes", 0L);
+        this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent", 0.0);
     }
 
     public static OperatingSystemMemoryInfo of(Function<OperatingSystemMemoryInfo.Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {

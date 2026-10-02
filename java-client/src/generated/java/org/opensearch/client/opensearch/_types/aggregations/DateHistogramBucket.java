@@ -67,7 +67,7 @@ public class DateHistogramBucket extends MultiBucketBase implements ToCopyableBu
 
     private DateHistogramBucket(Builder builder) {
         super(builder);
-        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0L);
         this.keyAsString = builder.keyAsString;
     }
 

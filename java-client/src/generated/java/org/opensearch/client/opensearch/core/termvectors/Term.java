@@ -80,7 +80,7 @@ public class Term implements PlainJsonSerializable, ToCopyableBuilder<Term.Build
     private Term(Builder builder) {
         this.docFreq = builder.docFreq;
         this.score = builder.score;
-        this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
+        this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq", 0);
         this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
         this.ttf = builder.ttf;
     }

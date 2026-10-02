@@ -83,9 +83,9 @@ public class ClusterOperatingSystem
     // ---------------------------------------------------------------------------------------------
 
     private ClusterOperatingSystem(Builder builder) {
-        this.allocatedProcessors = ApiTypeHelper.requireNonNull(builder.allocatedProcessors, this, "allocatedProcessors");
+        this.allocatedProcessors = ApiTypeHelper.requireNonNull(builder.allocatedProcessors, this, "allocatedProcessors", 0);
         this.architectures = ApiTypeHelper.unmodifiable(builder.architectures);
-        this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this, "availableProcessors");
+        this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this, "availableProcessors", 0);
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
         this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
         this.prettyNames = ApiTypeHelper.unmodifiableRequired(builder.prettyNames, this, "prettyNames");

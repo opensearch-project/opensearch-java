@@ -75,10 +75,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
     // ---------------------------------------------------------------------------------------------
 
     private RecoveryStats(Builder builder) {
-        this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
-        this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
+        this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource", 0L);
+        this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget", 0L);
         this.throttleTime = builder.throttleTime;
-        this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this, "throttleTimeInMillis");
+        this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this, "throttleTimeInMillis", 0L);
     }
 
     public static RecoveryStats of(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {

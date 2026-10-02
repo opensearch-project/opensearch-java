@@ -72,7 +72,7 @@ public class FieldMemoryUsage implements PlainJsonSerializable, ToCopyableBuilde
 
     private FieldMemoryUsage(Builder builder) {
         this.memorySize = builder.memorySize;
-        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0L);
     }
 
     public static FieldMemoryUsage of(Function<FieldMemoryUsage.Builder, ObjectBuilder<FieldMemoryUsage>> fn) {

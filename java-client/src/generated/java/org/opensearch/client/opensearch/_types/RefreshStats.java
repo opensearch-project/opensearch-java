@@ -82,13 +82,18 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     // ---------------------------------------------------------------------------------------------
 
     private RefreshStats(Builder builder) {
-        this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal");
+        this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal", 0L);
         this.externalTotalTime = builder.externalTotalTime;
-        this.externalTotalTimeInMillis = ApiTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this, "externalTotalTimeInMillis");
-        this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.externalTotalTimeInMillis = ApiTypeHelper.requireNonNull(
+            builder.externalTotalTimeInMillis,
+            this,
+            "externalTotalTimeInMillis",
+            0L
+        );
+        this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
         this.totalTime = builder.totalTime;
-        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0L);
     }
 
     public static RefreshStats of(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {

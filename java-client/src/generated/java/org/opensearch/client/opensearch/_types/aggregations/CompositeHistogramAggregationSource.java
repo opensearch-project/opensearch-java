@@ -64,7 +64,7 @@ public class CompositeHistogramAggregationSource extends CompositeValuesSource
 
     private CompositeHistogramAggregationSource(Builder builder) {
         super(builder);
-        this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
+        this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval", 0.0);
     }
 
     public static CompositeHistogramAggregationSource of(

@@ -76,12 +76,12 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
     // ---------------------------------------------------------------------------------------------
 
     private PhaseTook(Builder builder) {
-        this.canMatch = ApiTypeHelper.requireNonNull(builder.canMatch, this, "canMatch");
-        this.dfsPreQuery = ApiTypeHelper.requireNonNull(builder.dfsPreQuery, this, "dfsPreQuery");
-        this.dfsQuery = ApiTypeHelper.requireNonNull(builder.dfsQuery, this, "dfsQuery");
-        this.expand = ApiTypeHelper.requireNonNull(builder.expand, this, "expand");
-        this.fetch = ApiTypeHelper.requireNonNull(builder.fetch, this, "fetch");
-        this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+        this.canMatch = ApiTypeHelper.requireNonNull(builder.canMatch, this, "canMatch", 0L);
+        this.dfsPreQuery = ApiTypeHelper.requireNonNull(builder.dfsPreQuery, this, "dfsPreQuery", 0L);
+        this.dfsQuery = ApiTypeHelper.requireNonNull(builder.dfsQuery, this, "dfsQuery", 0L);
+        this.expand = ApiTypeHelper.requireNonNull(builder.expand, this, "expand", 0L);
+        this.fetch = ApiTypeHelper.requireNonNull(builder.fetch, this, "fetch", 0L);
+        this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query", 0L);
     }
 
     public static PhaseTook of(Function<PhaseTook.Builder, ObjectBuilder<PhaseTook>> fn) {

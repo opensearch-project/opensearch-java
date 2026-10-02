@@ -85,14 +85,14 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
     // ---------------------------------------------------------------------------------------------
 
     private TranslogStats(Builder builder) {
-        this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this, "earliestLastModifiedAge");
-        this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
+        this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this, "earliestLastModifiedAge", 0L);
+        this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations", 0);
         this.remoteStore = builder.remoteStore;
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-        this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this, "uncommittedOperations");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
+        this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this, "uncommittedOperations", 0);
         this.uncommittedSize = builder.uncommittedSize;
-        this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this, "uncommittedSizeInBytes");
+        this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this, "uncommittedSizeInBytes", 0L);
     }
 
     public static TranslogStats of(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {

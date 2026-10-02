@@ -67,7 +67,7 @@ public class LaplaceSmoothingModel
     // ---------------------------------------------------------------------------------------------
 
     private LaplaceSmoothingModel(Builder builder) {
-        this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha");
+        this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha", 0.0);
     }
 
     public static LaplaceSmoothingModel of(Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {

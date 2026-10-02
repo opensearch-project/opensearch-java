@@ -85,13 +85,13 @@ public class ClusterFileSystem implements PlainJsonSerializable, ToCopyableBuild
 
     private ClusterFileSystem(Builder builder) {
         this.available = builder.available;
-        this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+        this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes", 0L);
         this.cacheReserved = builder.cacheReserved;
         this.cacheReservedInBytes = builder.cacheReservedInBytes;
         this.free = builder.free;
-        this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+        this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes", 0L);
         this.total = builder.total;
-        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0L);
     }
 
     public static ClusterFileSystem of(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {

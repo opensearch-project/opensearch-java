@@ -80,7 +80,7 @@ public class CurrentNode implements PlainJsonSerializable, ToCopyableBuilder<Cur
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-        this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+        this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking", 0);
     }
 
     public static CurrentNode of(Function<CurrentNode.Builder, ObjectBuilder<CurrentNode>> fn) {

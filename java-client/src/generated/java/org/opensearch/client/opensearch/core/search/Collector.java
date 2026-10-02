@@ -78,7 +78,7 @@ public class Collector implements PlainJsonSerializable, ToCopyableBuilder<Colle
         this.children = ApiTypeHelper.unmodifiable(builder.children);
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0L);
     }
 
     public static Collector of(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {

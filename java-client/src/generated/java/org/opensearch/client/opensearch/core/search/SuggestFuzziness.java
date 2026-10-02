@@ -73,10 +73,10 @@ public class SuggestFuzziness implements PlainJsonSerializable, ToCopyableBuilde
 
     private SuggestFuzziness(Builder builder) {
         this.fuzziness = ApiTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
-        this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-        this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
-        this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
-        this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
+        this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength", 0);
+        this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength", 0);
+        this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions", false);
+        this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware", false);
     }
 
     public static SuggestFuzziness of(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {

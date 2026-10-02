@@ -63,7 +63,7 @@ public class IndexField implements PlainJsonSerializable, ToCopyableBuilder<Inde
     // ---------------------------------------------------------------------------------------------
 
     private IndexField(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static IndexField of(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {

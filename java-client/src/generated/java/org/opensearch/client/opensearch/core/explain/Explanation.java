@@ -74,7 +74,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     private Explanation(Builder builder) {
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
         this.details = ApiTypeHelper.unmodifiable(builder.details);
-        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0.0f);
     }
 
     public static Explanation of(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {

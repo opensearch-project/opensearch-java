@@ -70,7 +70,7 @@ public class NodeInfoMemory implements PlainJsonSerializable, ToCopyableBuilder<
 
     private NodeInfoMemory(Builder builder) {
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0L);
     }
 
     public static NodeInfoMemory of(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {

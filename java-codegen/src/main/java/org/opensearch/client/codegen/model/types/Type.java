@@ -182,6 +182,32 @@ public class Type extends TypeRef {
         return PRIMITIVES.contains(name);
     }
 
+    /**
+     * The Java literal for the default value of this primitive type, e.g. {@code 0L} for {@code long}.
+     */
+    public String getPrimitiveDefault() {
+        switch (name) {
+            case "boolean":
+                return "false";
+            case "char":
+                return "'\\0'";
+            case "byte":
+                return "(byte) 0";
+            case "short":
+                return "(short) 0";
+            case "int":
+                return "0";
+            case "long":
+                return "0L";
+            case "float":
+                return "0.0f";
+            case "double":
+                return "0.0";
+            default:
+                throw new IllegalStateException("No default value for type " + name);
+        }
+    }
+
     public boolean isBoxedPrimitive() {
         return BOXED_PRIMITIVES.contains(name);
     }

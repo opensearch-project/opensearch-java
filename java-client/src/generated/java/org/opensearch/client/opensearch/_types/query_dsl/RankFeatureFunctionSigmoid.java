@@ -68,8 +68,8 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction
 
     private RankFeatureFunctionSigmoid(Builder builder) {
         super(builder);
-        this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent");
-        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+        this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent", 0.0f);
+        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot", 0.0f);
     }
 
     public static RankFeatureFunctionSigmoid of(

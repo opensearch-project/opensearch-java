@@ -74,7 +74,7 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
     private CompletionStats(Builder builder) {
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
         this.size = builder.size;
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0L);
     }
 
     public static CompletionStats of(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {

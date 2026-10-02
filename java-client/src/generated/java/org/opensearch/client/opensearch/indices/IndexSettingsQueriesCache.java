@@ -69,7 +69,7 @@ public class IndexSettingsQueriesCache
     // ---------------------------------------------------------------------------------------------
 
     private IndexSettingsQueriesCache(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static IndexSettingsQueriesCache of(Function<IndexSettingsQueriesCache.Builder, ObjectBuilder<IndexSettingsQueriesCache>> fn) {

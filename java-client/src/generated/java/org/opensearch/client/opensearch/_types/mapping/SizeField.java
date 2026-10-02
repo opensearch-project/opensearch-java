@@ -63,7 +63,7 @@ public class SizeField implements PlainJsonSerializable, ToCopyableBuilder<SizeF
     // ---------------------------------------------------------------------------------------------
 
     private SizeField(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static SizeField of(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {

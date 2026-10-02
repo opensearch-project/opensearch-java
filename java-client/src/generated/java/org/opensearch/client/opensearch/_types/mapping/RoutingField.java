@@ -63,7 +63,7 @@ public class RoutingField implements PlainJsonSerializable, ToCopyableBuilder<Ro
     // ---------------------------------------------------------------------------------------------
 
     private RoutingField(Builder builder) {
-        this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
+        this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required", false);
     }
 
     public static RoutingField of(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {

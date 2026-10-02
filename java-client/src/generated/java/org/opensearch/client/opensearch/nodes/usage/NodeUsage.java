@@ -77,8 +77,8 @@ public class NodeUsage implements PlainJsonSerializable, ToCopyableBuilder<NodeU
     private NodeUsage(Builder builder) {
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.restActions = ApiTypeHelper.unmodifiable(builder.restActions);
-        this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
-        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since", 0L);
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0L);
     }
 
     public static NodeUsage of(Function<NodeUsage.Builder, ObjectBuilder<NodeUsage>> fn) {

@@ -110,22 +110,22 @@ public class BulkByScrollTaskStatus
     // ---------------------------------------------------------------------------------------------
 
     private BulkByScrollTaskStatus(Builder builder) {
-        this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
+        this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches", 0);
         this.canceled = builder.canceled;
         this.created = builder.created;
-        this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-        this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
-        this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+        this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", 0L);
+        this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops", 0L);
+        this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0.0f);
         this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
         this.sliceId = builder.sliceId;
         this.slices = ApiTypeHelper.unmodifiable(builder.slices);
         this.throttled = builder.throttled;
-        this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+        this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis", 0L);
         this.throttledUntil = builder.throttledUntil;
-        this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this, "throttledUntilMillis");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this, "throttledUntilMillis", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
         this.updated = builder.updated;
-        this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+        this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts", 0L);
     }
 
     public static BulkByScrollTaskStatus of(Function<BulkByScrollTaskStatus.Builder, ObjectBuilder<BulkByScrollTaskStatus>> fn) {

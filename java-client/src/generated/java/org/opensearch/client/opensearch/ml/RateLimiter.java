@@ -42,7 +42,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
     // ---------------------------------------------------------------------------------------------
 
     private RateLimiter(Builder builder) {
-        this.limit = ApiTypeHelper.requireNonNull(builder.limit, this, "limit");
+        this.limit = ApiTypeHelper.requireNonNull(builder.limit, this, "limit", 0.0);
         this.unit = ApiTypeHelper.requireNonNull(builder.unit, this, "unit");
     }
 

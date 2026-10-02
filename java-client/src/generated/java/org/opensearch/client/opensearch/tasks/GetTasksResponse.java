@@ -75,7 +75,7 @@ public class GetTasksResponse implements PlainJsonSerializable, ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private GetTasksResponse(Builder builder) {
-        this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
+        this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed", false);
         this.error = builder.error;
         this.response = builder.response;
         this.task = ApiTypeHelper.requireNonNull(builder.task, this, "task");

@@ -69,7 +69,7 @@ public class BoostingQuery extends QueryBase implements QueryVariant, ToCopyable
     private BoostingQuery(Builder builder) {
         super(builder);
         this.negative = ApiTypeHelper.requireNonNull(builder.negative, this, "negative");
-        this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
+        this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost", 0.0f);
         this.positive = ApiTypeHelper.requireNonNull(builder.positive, this, "positive");
     }
 

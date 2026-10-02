@@ -74,7 +74,7 @@ public class CommandAllocateReplicaAction
     private CommandAllocateReplicaAction(Builder builder) {
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
     }
 
     public static CommandAllocateReplicaAction of(

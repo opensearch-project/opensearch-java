@@ -70,7 +70,7 @@ public class ResetSettings implements PlainJsonSerializable, ToCopyableBuilder<R
 
     private ResetSettings(Builder builder) {
         this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
         this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
     }
 

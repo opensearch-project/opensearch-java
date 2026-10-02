@@ -67,7 +67,7 @@ public class DoubleTermsBucket extends TermsBucketBase implements ToCopyableBuil
 
     private DoubleTermsBucket(Builder builder) {
         super(builder);
-        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0.0);
         this.keyAsString = builder.keyAsString;
     }
 

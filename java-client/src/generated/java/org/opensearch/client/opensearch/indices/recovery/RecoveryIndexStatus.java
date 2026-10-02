@@ -98,16 +98,18 @@ public class RecoveryIndexStatus implements PlainJsonSerializable, ToCopyableBui
         this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNull(
             builder.sourceThrottleTimeInMillis,
             this,
-            "sourceThrottleTimeInMillis"
+            "sourceThrottleTimeInMillis",
+            0L
         );
         this.targetThrottleTime = builder.targetThrottleTime;
         this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNull(
             builder.targetThrottleTimeInMillis,
             this,
-            "targetThrottleTimeInMillis"
+            "targetThrottleTimeInMillis",
+            0L
         );
         this.totalTime = builder.totalTime;
-        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0L);
     }
 
     public static RecoveryIndexStatus of(Function<RecoveryIndexStatus.Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {

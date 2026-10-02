@@ -76,12 +76,17 @@ public class ShardIndexingPressurePerShardIndexingStats
     // ---------------------------------------------------------------------------------------------
 
     private ShardIndexingPressurePerShardIndexingStats(Builder builder) {
-        this.coordinatingCount = ApiTypeHelper.requireNonNull(builder.coordinatingCount, this, "coordinatingCount");
-        this.coordinatingTimeInMillis = ApiTypeHelper.requireNonNull(builder.coordinatingTimeInMillis, this, "coordinatingTimeInMillis");
-        this.primaryCount = ApiTypeHelper.requireNonNull(builder.primaryCount, this, "primaryCount");
-        this.primaryTimeInMillis = ApiTypeHelper.requireNonNull(builder.primaryTimeInMillis, this, "primaryTimeInMillis");
-        this.replicaCount = ApiTypeHelper.requireNonNull(builder.replicaCount, this, "replicaCount");
-        this.replicaTimeInMillis = ApiTypeHelper.requireNonNull(builder.replicaTimeInMillis, this, "replicaTimeInMillis");
+        this.coordinatingCount = ApiTypeHelper.requireNonNull(builder.coordinatingCount, this, "coordinatingCount", 0L);
+        this.coordinatingTimeInMillis = ApiTypeHelper.requireNonNull(
+            builder.coordinatingTimeInMillis,
+            this,
+            "coordinatingTimeInMillis",
+            0L
+        );
+        this.primaryCount = ApiTypeHelper.requireNonNull(builder.primaryCount, this, "primaryCount", 0L);
+        this.primaryTimeInMillis = ApiTypeHelper.requireNonNull(builder.primaryTimeInMillis, this, "primaryTimeInMillis", 0L);
+        this.replicaCount = ApiTypeHelper.requireNonNull(builder.replicaCount, this, "replicaCount", 0L);
+        this.replicaTimeInMillis = ApiTypeHelper.requireNonNull(builder.replicaTimeInMillis, this, "replicaTimeInMillis", 0L);
     }
 
     public static ShardIndexingPressurePerShardIndexingStats of(

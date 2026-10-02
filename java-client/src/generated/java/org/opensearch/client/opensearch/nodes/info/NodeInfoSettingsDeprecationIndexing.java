@@ -69,7 +69,7 @@ public class NodeInfoSettingsDeprecationIndexing
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSettingsDeprecationIndexing(Builder builder) {
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
     }
 
     public static NodeInfoSettingsDeprecationIndexing of(

@@ -69,7 +69,7 @@ public class RemoteStoreUploadPressureStats
     // ---------------------------------------------------------------------------------------------
 
     private RemoteStoreUploadPressureStats(Builder builder) {
-        this.totalRejections = ApiTypeHelper.requireNonNull(builder.totalRejections, this, "totalRejections");
+        this.totalRejections = ApiTypeHelper.requireNonNull(builder.totalRejections, this, "totalRejections", 0L);
     }
 
     public static RemoteStoreUploadPressureStats of(

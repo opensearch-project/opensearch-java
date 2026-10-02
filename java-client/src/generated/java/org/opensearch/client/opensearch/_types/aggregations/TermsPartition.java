@@ -65,8 +65,8 @@ public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private TermsPartition(Builder builder) {
-        this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
-        this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition");
+        this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions", 0);
+        this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition", 0);
     }
 
     public static TermsPartition of(Function<TermsPartition.Builder, ObjectBuilder<TermsPartition>> fn) {

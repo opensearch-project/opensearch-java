@@ -68,8 +68,8 @@ public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private LatLonGeoLocation(Builder builder) {
-        this.lat = ApiTypeHelper.requireNonNull(builder.lat, this, "lat");
-        this.lon = ApiTypeHelper.requireNonNull(builder.lon, this, "lon");
+        this.lat = ApiTypeHelper.requireNonNull(builder.lat, this, "lat", 0.0);
+        this.lon = ApiTypeHelper.requireNonNull(builder.lon, this, "lon", 0.0);
     }
 
     public static LatLonGeoLocation of(Function<LatLonGeoLocation.Builder, ObjectBuilder<LatLonGeoLocation>> fn) {

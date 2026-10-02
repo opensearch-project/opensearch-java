@@ -75,10 +75,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
     // ---------------------------------------------------------------------------------------------
 
     private WarmerStats(Builder builder) {
-        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0L);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0L);
         this.totalTime = builder.totalTime;
-        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0L);
     }
 
     public static WarmerStats of(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {

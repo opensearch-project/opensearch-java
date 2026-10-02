@@ -75,17 +75,20 @@ public class ShardIndexingPressurePerShardLastSuccessfulTimestamp
         this.coordinatingLastSuccessfulRequestTimestampInMillis = ApiTypeHelper.requireNonNull(
             builder.coordinatingLastSuccessfulRequestTimestampInMillis,
             this,
-            "coordinatingLastSuccessfulRequestTimestampInMillis"
+            "coordinatingLastSuccessfulRequestTimestampInMillis",
+            0L
         );
         this.primaryLastSuccessfulRequestTimestampInMillis = ApiTypeHelper.requireNonNull(
             builder.primaryLastSuccessfulRequestTimestampInMillis,
             this,
-            "primaryLastSuccessfulRequestTimestampInMillis"
+            "primaryLastSuccessfulRequestTimestampInMillis",
+            0L
         );
         this.replicaLastSuccessfulRequestTimestampInMillis = ApiTypeHelper.requireNonNull(
             builder.replicaLastSuccessfulRequestTimestampInMillis,
             this,
-            "replicaLastSuccessfulRequestTimestampInMillis"
+            "replicaLastSuccessfulRequestTimestampInMillis",
+            0L
         );
     }
 

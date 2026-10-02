@@ -75,12 +75,12 @@ public class ShardHealthStats implements PlainJsonSerializable, ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private ShardHealthStats(Builder builder) {
-        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
-        this.primaryActive = ApiTypeHelper.requireNonNull(builder.primaryActive, this, "primaryActive");
-        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+        this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
+        this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards", 0);
+        this.primaryActive = ApiTypeHelper.requireNonNull(builder.primaryActive, this, "primaryActive", false);
+        this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards", 0);
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+        this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards", 0);
     }
 
     public static ShardHealthStats of(Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {

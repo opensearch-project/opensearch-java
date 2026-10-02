@@ -74,10 +74,10 @@ public class PauseResponse implements PlainJsonSerializable, ToCopyableBuilder<P
     // ---------------------------------------------------------------------------------------------
 
     private PauseResponse(Builder builder) {
-        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
         this.error = builder.error;
         this.failures = ApiTypeHelper.unmodifiable(builder.failures);
-        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged", false);
     }
 
     public static PauseResponse of(Function<PauseResponse.Builder, ObjectBuilder<PauseResponse>> fn) {

@@ -94,11 +94,11 @@ public class RecoveryBytes implements PlainJsonSerializable, ToCopyableBuilder<R
         this.recovered = builder.recovered;
         this.recoveredFromSnapshot = builder.recoveredFromSnapshot;
         this.recoveredFromSnapshotInBytes = builder.recoveredFromSnapshotInBytes;
-        this.recoveredInBytes = ApiTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes");
+        this.recoveredInBytes = ApiTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes", 0L);
         this.reused = builder.reused;
-        this.reusedInBytes = ApiTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes");
+        this.reusedInBytes = ApiTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes", 0L);
         this.total = builder.total;
-        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0L);
     }
 
     public static RecoveryBytes of(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {

@@ -58,7 +58,7 @@ public final class UploadChunkRequest extends RequestBase
     private UploadChunkRequest(Builder builder) {
         super(builder);
         this.chunk = ApiTypeHelper.requireNonNull(builder.chunk, this, "chunk");
-        this.chunkNumber = ApiTypeHelper.requireNonNull(builder.chunkNumber, this, "chunkNumber");
+        this.chunkNumber = ApiTypeHelper.requireNonNull(builder.chunkNumber, this, "chunkNumber", 0L);
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
     }
 

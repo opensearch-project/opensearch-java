@@ -82,11 +82,11 @@ public class ShardIndexingPressurePerShardMemoryStatsDetails
 
     private ShardIndexingPressurePerShardMemoryStatsDetails(Builder builder) {
         this.coordinating = builder.coordinating;
-        this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this, "coordinatingInBytes");
+        this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this, "coordinatingInBytes", 0L);
         this.primary = builder.primary;
-        this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes");
+        this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes", 0L);
         this.replica = builder.replica;
-        this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes");
+        this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes", 0L);
     }
 
     public static ShardIndexingPressurePerShardMemoryStatsDetails of(
