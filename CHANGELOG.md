@@ -13,6 +13,7 @@ and preserving JDK-8 compatibility at the same time.
 ### Dependencies
 
 ### Changed
+- Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
 
 ### Deprecated
 
