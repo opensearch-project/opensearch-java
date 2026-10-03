@@ -73,6 +73,9 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     private final String generationThresholdSize;
 
     @Nullable
+    private final String readForward;
+
+    @Nullable
     private final TranslogRetention retention;
 
     @Nullable
@@ -84,6 +87,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         this.durability = builder.durability;
         this.flushThresholdSize = builder.flushThresholdSize;
         this.generationThresholdSize = builder.generationThresholdSize;
+        this.readForward = builder.readForward;
         this.retention = builder.retention;
         this.syncInterval = builder.syncInterval;
     }
@@ -114,6 +118,17 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     @Nullable
     public final String generationThresholdSize() {
         return this.generationThresholdSize;
+    }
+
+    /**
+     * Whether translog read-forward is enabled.
+     * <p>
+     * API name: {@code read_forward}
+     * </p>
+     */
+    @Nullable
+    public final String readForward() {
+        return this.readForward;
     }
 
     /**
@@ -158,6 +173,11 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
             generator.write(this.generationThresholdSize);
         }
 
+        if (this.readForward != null) {
+            generator.writeKey("read_forward");
+            generator.write(this.readForward);
+        }
+
         if (this.retention != null) {
             generator.writeKey("retention");
             this.retention.serialize(generator, mapper);
@@ -193,6 +213,8 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         @Nullable
         private String generationThresholdSize;
         @Nullable
+        private String readForward;
+        @Nullable
         private TranslogRetention retention;
         @Nullable
         private Time syncInterval;
@@ -203,6 +225,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
             this.durability = o.durability;
             this.flushThresholdSize = o.flushThresholdSize;
             this.generationThresholdSize = o.generationThresholdSize;
+            this.readForward = o.readForward;
             this.retention = o.retention;
             this.syncInterval = o.syncInterval;
         }
@@ -211,6 +234,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
             this.durability = o.durability;
             this.flushThresholdSize = o.flushThresholdSize;
             this.generationThresholdSize = o.generationThresholdSize;
+            this.readForward = o.readForward;
             this.retention = o.retention;
             this.syncInterval = o.syncInterval;
         }
@@ -245,6 +269,18 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         @Nonnull
         public final Builder generationThresholdSize(@Nullable String value) {
             this.generationThresholdSize = value;
+            return this;
+        }
+
+        /**
+         * Whether translog read-forward is enabled.
+         * <p>
+         * API name: {@code read_forward}
+         * </p>
+         */
+        @Nonnull
+        public final Builder readForward(@Nullable String value) {
+            this.readForward = value;
             return this;
         }
 
@@ -310,6 +346,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         op.add(Builder::durability, TranslogDurability._DESERIALIZER, "durability");
         op.add(Builder::flushThresholdSize, JsonpDeserializer.stringDeserializer(), "flush_threshold_size");
         op.add(Builder::generationThresholdSize, JsonpDeserializer.stringDeserializer(), "generation_threshold_size");
+        op.add(Builder::readForward, JsonpDeserializer.stringDeserializer(), "read_forward");
         op.add(Builder::retention, TranslogRetention._DESERIALIZER, "retention");
         op.add(Builder::syncInterval, Time._DESERIALIZER, "sync_interval");
     }
@@ -320,6 +357,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         result = 31 * result + Objects.hashCode(this.durability);
         result = 31 * result + Objects.hashCode(this.flushThresholdSize);
         result = 31 * result + Objects.hashCode(this.generationThresholdSize);
+        result = 31 * result + Objects.hashCode(this.readForward);
         result = 31 * result + Objects.hashCode(this.retention);
         result = 31 * result + Objects.hashCode(this.syncInterval);
         return result;
@@ -333,6 +371,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         return Objects.equals(this.durability, other.durability)
             && Objects.equals(this.flushThresholdSize, other.flushThresholdSize)
             && Objects.equals(this.generationThresholdSize, other.generationThresholdSize)
+            && Objects.equals(this.readForward, other.readForward)
             && Objects.equals(this.retention, other.retention)
             && Objects.equals(this.syncInterval, other.syncInterval);
     }

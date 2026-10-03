@@ -88,6 +88,9 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
 
     private final boolean isThrottled;
 
+    @Nullable
+    private final Long maxLastIndexRequestTimestamp;
+
     private final long noopUpdateTotal;
 
     @Nullable
@@ -109,6 +112,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
         this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
         this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
+        this.maxLastIndexRequestTimestamp = builder.maxLastIndexRequestTimestamp;
         this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
         this.throttleTime = builder.throttleTime;
         this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this, "throttleTimeInMillis");
@@ -223,6 +227,18 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * The epoch timestamp, in milliseconds, of the most recent indexing request. A value of -9223372036854775808
+     * (<code>Long.MIN_VALUE</code>) indicates that no request has been recorded.
+     * <p>
+     * API name: {@code max_last_index_request_timestamp}
+     * </p>
+     */
+    @Nullable
+    public final Long maxLastIndexRequestTimestamp() {
+        return this.maxLastIndexRequestTimestamp;
+    }
+
+    /**
      * Required - The total number of noop update operations.
      * <p>
      * API name: {@code noop_update_total}
@@ -303,6 +319,11 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         generator.writeKey("is_throttled");
         generator.write(this.isThrottled);
 
+        if (this.maxLastIndexRequestTimestamp != null) {
+            generator.writeKey("max_last_index_request_timestamp");
+            generator.write(this.maxLastIndexRequestTimestamp);
+        }
+
         generator.writeKey("noop_update_total");
         generator.write(this.noopUpdateTotal);
 
@@ -346,6 +367,8 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         private Long indexTimeInMillis;
         private Long indexTotal;
         private Boolean isThrottled;
+        @Nullable
+        private Long maxLastIndexRequestTimestamp;
         private Long noopUpdateTotal;
         @Nullable
         private Time throttleTime;
@@ -365,6 +388,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
             this.indexTimeInMillis = o.indexTimeInMillis;
             this.indexTotal = o.indexTotal;
             this.isThrottled = o.isThrottled;
+            this.maxLastIndexRequestTimestamp = o.maxLastIndexRequestTimestamp;
             this.noopUpdateTotal = o.noopUpdateTotal;
             this.throttleTime = o.throttleTime;
             this.throttleTimeInMillis = o.throttleTimeInMillis;
@@ -382,6 +406,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
             this.indexTimeInMillis = o.indexTimeInMillis;
             this.indexTotal = o.indexTotal;
             this.isThrottled = o.isThrottled;
+            this.maxLastIndexRequestTimestamp = o.maxLastIndexRequestTimestamp;
             this.noopUpdateTotal = o.noopUpdateTotal;
             this.throttleTime = o.throttleTime;
             this.throttleTimeInMillis = o.throttleTimeInMillis;
@@ -544,6 +569,19 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The epoch timestamp, in milliseconds, of the most recent indexing request. A value of -9223372036854775808
+         * (<code>Long.MIN_VALUE</code>) indicates that no request has been recorded.
+         * <p>
+         * API name: {@code max_last_index_request_timestamp}
+         * </p>
+         */
+        @Nonnull
+        public final Builder maxLastIndexRequestTimestamp(@Nullable Long value) {
+            this.maxLastIndexRequestTimestamp = value;
+            return this;
+        }
+
+        /**
          * Required - The total number of noop update operations.
          * <p>
          * API name: {@code noop_update_total}
@@ -626,6 +664,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::indexTimeInMillis, JsonpDeserializer.longDeserializer(), "index_time_in_millis");
         op.add(Builder::indexTotal, JsonpDeserializer.longDeserializer(), "index_total");
         op.add(Builder::isThrottled, JsonpDeserializer.booleanDeserializer(), "is_throttled");
+        op.add(Builder::maxLastIndexRequestTimestamp, JsonpDeserializer.longDeserializer(), "max_last_index_request_timestamp");
         op.add(Builder::noopUpdateTotal, JsonpDeserializer.longDeserializer(), "noop_update_total");
         op.add(Builder::throttleTime, Time._DESERIALIZER, "throttle_time");
         op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
@@ -645,6 +684,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Long.hashCode(this.indexTimeInMillis);
         result = 31 * result + Long.hashCode(this.indexTotal);
         result = 31 * result + Boolean.hashCode(this.isThrottled);
+        result = 31 * result + Objects.hashCode(this.maxLastIndexRequestTimestamp);
         result = 31 * result + Long.hashCode(this.noopUpdateTotal);
         result = 31 * result + Objects.hashCode(this.throttleTime);
         result = 31 * result + Long.hashCode(this.throttleTimeInMillis);
@@ -667,6 +707,7 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
             && this.indexTimeInMillis == other.indexTimeInMillis
             && this.indexTotal == other.indexTotal
             && this.isThrottled == other.isThrottled
+            && Objects.equals(this.maxLastIndexRequestTimestamp, other.maxLastIndexRequestTimestamp)
             && this.noopUpdateTotal == other.noopUpdateTotal
             && Objects.equals(this.throttleTime, other.throttleTime)
             && this.throttleTimeInMillis == other.throttleTimeInMillis;
