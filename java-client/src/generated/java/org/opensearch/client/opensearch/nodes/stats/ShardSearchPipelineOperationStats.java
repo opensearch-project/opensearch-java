@@ -76,6 +76,9 @@ public class ShardSearchPipelineOperationStats
     private final Time time;
 
     @Nullable
+    private final Long timeInMicros;
+
+    @Nullable
     private final Long timeInMillis;
 
     // ---------------------------------------------------------------------------------------------
@@ -85,6 +88,7 @@ public class ShardSearchPipelineOperationStats
         this.current = builder.current;
         this.failed = builder.failed;
         this.time = builder.time;
+        this.timeInMicros = builder.timeInMicros;
         this.timeInMillis = builder.timeInMillis;
     }
 
@@ -127,6 +131,14 @@ public class ShardSearchPipelineOperationStats
     }
 
     /**
+     * API name: {@code time_in_micros}
+     */
+    @Nullable
+    public final Long timeInMicros() {
+        return this.timeInMicros;
+    }
+
+    /**
      * API name: {@code time_in_millis}
      */
     @Nullable
@@ -165,6 +177,11 @@ public class ShardSearchPipelineOperationStats
             this.time.serialize(generator, mapper);
         }
 
+        if (this.timeInMicros != null) {
+            generator.writeKey("time_in_micros");
+            generator.write(this.timeInMicros);
+        }
+
         if (this.timeInMillis != null) {
             generator.writeKey("time_in_millis");
             generator.write(this.timeInMillis);
@@ -197,6 +214,8 @@ public class ShardSearchPipelineOperationStats
         @Nullable
         private Time time;
         @Nullable
+        private Long timeInMicros;
+        @Nullable
         private Long timeInMillis;
 
         public Builder() {}
@@ -206,6 +225,7 @@ public class ShardSearchPipelineOperationStats
             this.current = o.current;
             this.failed = o.failed;
             this.time = o.time;
+            this.timeInMicros = o.timeInMicros;
             this.timeInMillis = o.timeInMillis;
         }
 
@@ -214,6 +234,7 @@ public class ShardSearchPipelineOperationStats
             this.current = o.current;
             this.failed = o.failed;
             this.time = o.time;
+            this.timeInMicros = o.timeInMicros;
             this.timeInMillis = o.timeInMillis;
         }
 
@@ -268,6 +289,15 @@ public class ShardSearchPipelineOperationStats
         }
 
         /**
+         * API name: {@code time_in_micros}
+         */
+        @Nonnull
+        public final Builder timeInMicros(@Nullable Long value) {
+            this.timeInMicros = value;
+            return this;
+        }
+
+        /**
          * API name: {@code time_in_millis}
          */
         @Nonnull
@@ -307,6 +337,7 @@ public class ShardSearchPipelineOperationStats
         op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
         op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
         op.add(Builder::time, Time._DESERIALIZER, "time");
+        op.add(Builder::timeInMicros, JsonpDeserializer.longDeserializer(), "time_in_micros");
         op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
     }
 
@@ -317,6 +348,7 @@ public class ShardSearchPipelineOperationStats
         result = 31 * result + Objects.hashCode(this.current);
         result = 31 * result + Objects.hashCode(this.failed);
         result = 31 * result + Objects.hashCode(this.time);
+        result = 31 * result + Objects.hashCode(this.timeInMicros);
         result = 31 * result + Objects.hashCode(this.timeInMillis);
         return result;
     }
@@ -330,6 +362,7 @@ public class ShardSearchPipelineOperationStats
             && Objects.equals(this.current, other.current)
             && Objects.equals(this.failed, other.failed)
             && Objects.equals(this.time, other.time)
+            && Objects.equals(this.timeInMicros, other.timeInMicros)
             && Objects.equals(this.timeInMillis, other.timeInMillis);
     }
 }

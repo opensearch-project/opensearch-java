@@ -36,30 +36,47 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.IpRangeAggregate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
+public class IpRangeAggregate
     implements
         AggregateVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<IpRangeAggregate.Builder, IpRangeAggregate> {
+
+    @Nonnull
+    private final Buckets<IpRangeBucket> buckets;
+
+    @Nonnull
+    private final Map<String, JsonData> meta;
 
     // ---------------------------------------------------------------------------------------------
 
     private IpRangeAggregate(Builder builder) {
-        super(builder);
+        this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
     }
 
     public static IpRangeAggregate of(Function<IpRangeAggregate.Builder, ObjectBuilder<IpRangeAggregate>> fn) {
@@ -72,6 +89,47 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
     @Override
     public Aggregate.Kind _aggregateKind() {
         return Aggregate.Kind.IpRange;
+    }
+
+    /**
+     * Required - API name: {@code buckets}
+     */
+    @Nonnull
+    public final Buckets<IpRangeBucket> buckets() {
+        return this.buckets;
+    }
+
+    /**
+     * API name: {@code meta}
+     */
+    @Nonnull
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("buckets");
+        this.buckets.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,18 +148,21 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
     /**
      * Builder for {@link IpRangeAggregate}.
      */
-    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpRangeBucket, Builder>
-        implements
-            CopyableBuilder<Builder, IpRangeAggregate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IpRangeAggregate> {
+        private Buckets<IpRangeBucket> buckets;
+        @Nullable
+        private Map<String, JsonData> meta;
 
         public Builder() {}
 
         private Builder(IpRangeAggregate o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.buckets = o.buckets;
+            this.meta = _mapCopy(o.meta);
         }
 
         @Override
@@ -110,9 +171,46 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * Required - API name: {@code buckets}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder buckets(Buckets<IpRangeBucket> value) {
+            this.buckets = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code buckets}
+         */
+        @Nonnull
+        public final Builder buckets(Function<Buckets.Builder<IpRangeBucket>, ObjectBuilder<Buckets<IpRangeBucket>>> fn) {
+            return buckets(fn.apply(new Buckets.Builder<IpRangeBucket>()).build());
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code meta}
+         *
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
             return this;
         }
 
@@ -141,22 +239,23 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket>
     );
 
     protected static void setupIpRangeAggregateDeserializer(ObjectDeserializer<IpRangeAggregate.Builder> op) {
-        setupMultiBucketAggregateBaseDeserializer(op, IpRangeBucket._DESERIALIZER);
+        op.add(Builder::buckets, Buckets.createBucketsDeserializer(IpRangeBucket._DESERIALIZER), "buckets");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + this.buckets.hashCode();
+        result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        IpRangeAggregate other = (IpRangeAggregate) o;
+        return this.buckets.equals(other.buckets) && Objects.equals(this.meta, other.meta);
     }
 }

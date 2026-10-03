@@ -55,10 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BoxplotAggregation extends MetricAggregationBase
-    implements
-        AggregationVariant,
-        ToCopyableBuilder<BoxplotAggregation.Builder, BoxplotAggregation> {
+public class BoxplotAggregation extends MetricAggregationBase implements ToCopyableBuilder<BoxplotAggregation.Builder, BoxplotAggregation> {
 
     @Nullable
     private final Double compression;
@@ -72,14 +69,6 @@ public class BoxplotAggregation extends MetricAggregationBase
 
     public static BoxplotAggregation of(Function<BoxplotAggregation.Builder, ObjectBuilder<BoxplotAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Boxplot;
     }
 
     /**

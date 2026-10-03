@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CardinalityAggregation extends MetricAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<CardinalityAggregation.Builder, CardinalityAggregation> {
 
     @Nullable
@@ -76,14 +75,6 @@ public class CardinalityAggregation extends MetricAggregationBase
 
     public static CardinalityAggregation of(Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.Cardinality;
     }
 
     /**

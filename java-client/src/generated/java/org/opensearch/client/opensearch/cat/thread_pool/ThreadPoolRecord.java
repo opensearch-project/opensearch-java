@@ -96,6 +96,9 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
     private final String nodeName;
 
     @Nullable
+    private final String parallelism;
+
+    @Nullable
     private final String pid;
 
     @Nullable
@@ -137,6 +140,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
         this.name = builder.name;
         this.nodeId = builder.nodeId;
         this.nodeName = builder.nodeName;
+        this.parallelism = builder.parallelism;
         this.pid = builder.pid;
         this.poolSize = builder.poolSize;
         this.port = builder.port;
@@ -279,6 +283,17 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
     @Nullable
     public final String nodeName() {
         return this.nodeName;
+    }
+
+    /**
+     * The parallelism level of the thread pool; <code>null</code> for non-resizable pools.
+     * <p>
+     * API name: {@code parallelism}
+     * </p>
+     */
+    @Nullable
+    public final String parallelism() {
+        return this.parallelism;
     }
 
     /**
@@ -449,6 +464,11 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
             generator.write(this.nodeName);
         }
 
+        if (this.parallelism != null) {
+            generator.writeKey("parallelism");
+            generator.write(this.parallelism);
+        }
+
         if (this.pid != null) {
             generator.writeKey("pid");
             generator.write(this.pid);
@@ -537,6 +557,8 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
         @Nullable
         private String nodeName;
         @Nullable
+        private String parallelism;
+        @Nullable
         private String pid;
         @Nullable
         private String poolSize;
@@ -570,6 +592,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
             this.name = o.name;
             this.nodeId = o.nodeId;
             this.nodeName = o.nodeName;
+            this.parallelism = o.parallelism;
             this.pid = o.pid;
             this.poolSize = o.poolSize;
             this.port = o.port;
@@ -594,6 +617,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
             this.name = o.name;
             this.nodeId = o.nodeId;
             this.nodeName = o.nodeName;
+            this.parallelism = o.parallelism;
             this.pid = o.pid;
             this.poolSize = o.poolSize;
             this.port = o.port;
@@ -753,6 +777,18 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The parallelism level of the thread pool; <code>null</code> for non-resizable pools.
+         * <p>
+         * API name: {@code parallelism}
+         * </p>
+         */
+        @Nonnull
+        public final Builder parallelism(@Nullable String value) {
+            this.parallelism = value;
+            return this;
+        }
+
+        /**
          * The process identifier.
          * <p>
          * API name: {@code pid}
@@ -895,6 +931,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
         op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+        op.add(Builder::parallelism, JsonpDeserializer.stringDeserializer(), "parallelism");
         op.add(Builder::pid, JsonpDeserializer.stringDeserializer(), "pid");
         op.add(Builder::poolSize, JsonpDeserializer.stringDeserializer(), "pool_size");
         op.add(Builder::port, JsonpDeserializer.stringDeserializer(), "port");
@@ -921,6 +958,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.nodeId);
         result = 31 * result + Objects.hashCode(this.nodeName);
+        result = 31 * result + Objects.hashCode(this.parallelism);
         result = 31 * result + Objects.hashCode(this.pid);
         result = 31 * result + Objects.hashCode(this.poolSize);
         result = 31 * result + Objects.hashCode(this.port);
@@ -950,6 +988,7 @@ public class ThreadPoolRecord implements PlainJsonSerializable, ToCopyableBuilde
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.nodeId, other.nodeId)
             && Objects.equals(this.nodeName, other.nodeName)
+            && Objects.equals(this.parallelism, other.parallelism)
             && Objects.equals(this.pid, other.pid)
             && Objects.equals(this.poolSize, other.poolSize)
             && Objects.equals(this.port, other.port)
