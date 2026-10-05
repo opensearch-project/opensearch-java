@@ -26,6 +26,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
+- Add a node sniffer for `ApacheHttpClient5Transport` and make `ApacheHttpClient5Transport#setNodes` public ([#2200](https://github.com/opensearch-project/opensearch-java/pull/2200))
 
 ### Dependencies
 
