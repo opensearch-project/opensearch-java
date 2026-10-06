@@ -13,7 +13,8 @@ and preserving JDK-8 compatibility at the same time.
 ### Dependencies
 
 ### Changed
-- Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
+- Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport` ([#2199](https://github.com/opensearch-project/opensearch-java/pull/2199))
+- Re-generated client code using latest OpenSearch API specification ([#2201](https://github.com/opensearch-project/opensearch-java/pull/2201))
 
 ### Deprecated
 

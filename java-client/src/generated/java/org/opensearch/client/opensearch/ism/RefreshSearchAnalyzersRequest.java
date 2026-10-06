@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.ism;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -61,13 +62,13 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
         ToCopyableBuilder<RefreshSearchAnalyzersRequest.Builder, RefreshSearchAnalyzersRequest> {
 
     @Nonnull
-    private final String index;
+    private final List<String> index;
 
     // ---------------------------------------------------------------------------------------------
 
     private RefreshSearchAnalyzersRequest(Builder builder) {
         super(builder);
-        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
     }
 
     public static RefreshSearchAnalyzersRequest of(
@@ -77,10 +78,14 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
     }
 
     /**
-     * Required - API name: {@code index}
+     * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+     * (<code>*</code>). To target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * <p>
+     * API name: {@code index}
+     * </p>
      */
     @Nonnull
-    public final String index() {
+    public final List<String> index() {
         return this.index;
     }
 
@@ -103,18 +108,18 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder>
         implements
             CopyableBuilder<Builder, RefreshSearchAnalyzersRequest> {
-        private String index;
+        private List<String> index;
 
         public Builder() {}
 
         private Builder(RefreshSearchAnalyzersRequest o) {
             super(o);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         @Override
@@ -130,11 +135,36 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
         }
 
         /**
-         * Required - API name: {@code index}
+         * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+         * (<code>*</code>). To target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder index(String value) {
-            this.index = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        /**
+         * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+         * (<code>*</code>). To target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
             return this;
         }
 
@@ -165,7 +195,7 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
             request -> {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/_plugins/_refresh_search_analyzers/");
-                SimpleEndpoint.pathEncode(request.index, buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 return buf.toString();
             },
             // Request parameters

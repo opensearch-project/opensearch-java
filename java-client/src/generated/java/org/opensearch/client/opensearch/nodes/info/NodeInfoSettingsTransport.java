@@ -37,11 +37,13 @@
 package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -67,6 +69,9 @@ public class NodeInfoSettingsTransport
         ToCopyableBuilder<NodeInfoSettingsTransport.Builder, NodeInfoSettingsTransport> {
 
     @Nonnull
+    private final Map<String, JsonData> ssl;
+
+    @Nonnull
     private final NodeInfoSettingsTransportType type;
 
     @Nullable
@@ -75,12 +80,24 @@ public class NodeInfoSettingsTransport
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSettingsTransport(Builder builder) {
+        this.ssl = ApiTypeHelper.unmodifiable(builder.ssl);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
         this.typeDefault = builder.typeDefault;
     }
 
     public static NodeInfoSettingsTransport of(Function<NodeInfoSettingsTransport.Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * The transport-layer SSL settings.
+     * <p>
+     * API name: {@code ssl}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, JsonData> ssl() {
+        return this.ssl;
     }
 
     /**
@@ -113,6 +130,16 @@ public class NodeInfoSettingsTransport
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (ApiTypeHelper.isDefined(this.ssl)) {
+            generator.writeKey("ssl");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.ssl.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         generator.writeKey("type");
         this.type.serialize(generator, mapper);
 
@@ -139,6 +166,8 @@ public class NodeInfoSettingsTransport
      * Builder for {@link NodeInfoSettingsTransport}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSettingsTransport> {
+        @Nullable
+        private Map<String, JsonData> ssl;
         private NodeInfoSettingsTransportType type;
         @Nullable
         private String typeDefault;
@@ -146,11 +175,13 @@ public class NodeInfoSettingsTransport
         public Builder() {}
 
         private Builder(NodeInfoSettingsTransport o) {
+            this.ssl = _mapCopy(o.ssl);
             this.type = o.type;
             this.typeDefault = o.typeDefault;
         }
 
         private Builder(Builder o) {
+            this.ssl = _mapCopy(o.ssl);
             this.type = o.type;
             this.typeDefault = o.typeDefault;
         }
@@ -159,6 +190,38 @@ public class NodeInfoSettingsTransport
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * The transport-layer SSL settings.
+         * <p>
+         * API name: {@code ssl}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>ssl</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder ssl(Map<String, JsonData> map) {
+            this.ssl = _mapPutAll(this.ssl, map);
+            return this;
+        }
+
+        /**
+         * The transport-layer SSL settings.
+         * <p>
+         * API name: {@code ssl}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>ssl</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder ssl(String key, JsonData value) {
+            this.ssl = _mapPut(this.ssl, key, value);
+            return this;
         }
 
         /**
@@ -215,6 +278,7 @@ public class NodeInfoSettingsTransport
     );
 
     protected static void setupNodeInfoSettingsTransportDeserializer(ObjectDeserializer<NodeInfoSettingsTransport.Builder> op) {
+        op.add(Builder::ssl, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ssl");
         op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
         op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
     }
@@ -222,6 +286,7 @@ public class NodeInfoSettingsTransport
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.ssl);
         result = 31 * result + this.type.hashCode();
         result = 31 * result + Objects.hashCode(this.typeDefault);
         return result;
@@ -232,6 +297,6 @@ public class NodeInfoSettingsTransport
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeInfoSettingsTransport other = (NodeInfoSettingsTransport) o;
-        return this.type.equals(other.type) && Objects.equals(this.typeDefault, other.typeDefault);
+        return Objects.equals(this.ssl, other.ssl) && this.type.equals(other.type) && Objects.equals(this.typeDefault, other.typeDefault);
     }
 }

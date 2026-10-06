@@ -90,6 +90,25 @@ public class OpenSearchTasksClient extends ApiClient<OpenSearchTransport, OpenSe
         return cancel(new CancelRequest.Builder().build());
     }
 
+    // ----- Endpoint: tasks.delete
+
+    /**
+     * Deletes a stored completed task result.
+     */
+    public DeleteTasksResponse delete(DeleteTasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteTasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a stored completed task result.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteTasksRequest}
+     */
+    public final DeleteTasksResponse delete(Function<DeleteTasksRequest.Builder, ObjectBuilder<DeleteTasksRequest>> fn) throws IOException,
+        OpenSearchException {
+        return delete(fn.apply(new DeleteTasksRequest.Builder()).build());
+    }
+
     // ----- Endpoint: tasks.get
 
     /**
