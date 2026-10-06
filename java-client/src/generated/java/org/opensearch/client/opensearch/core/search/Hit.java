@@ -224,7 +224,11 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The names of queries that matched the document. When <code>include_named_queries_score</code> is false (default), returns an array of
+     * query names. When true, returns an object mapping query names to their scores.
+     * <p>
      * API name: {@code matched_queries}
+     * </p>
      */
     @Nullable
     public final MatchedQueries matchedQueries() {
@@ -772,7 +776,11 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The names of queries that matched the document. When <code>include_named_queries_score</code> is false (default), returns an
+         * array of query names. When true, returns an object mapping query names to their scores.
+         * <p>
          * API name: {@code matched_queries}
+         * </p>
          */
         @Nonnull
         public final Builder<TDocument> matchedQueries(@Nullable MatchedQueries value) {
@@ -781,7 +789,11 @@ public class Hit<TDocument> implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The names of queries that matched the document. When <code>include_named_queries_score</code> is false (default), returns an
+         * array of query names. When true, returns an object mapping query names to their scores.
+         * <p>
          * API name: {@code matched_queries}
+         * </p>
          */
         @Nonnull
         public final Builder<TDocument> matchedQueries(Function<MatchedQueries.Builder, ObjectBuilder<MatchedQueries>> fn) {

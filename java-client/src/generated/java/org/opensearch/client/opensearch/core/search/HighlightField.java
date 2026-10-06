@@ -48,7 +48,6 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -60,9 +59,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class HighlightField extends HighlightBase implements ToCopyableBuilder<HighlightField.Builder, HighlightField> {
 
-    @Nullable
-    private final Analyzer analyzer;
-
     @Nonnull
     private final List<String> matchedFields;
 
@@ -70,20 +66,11 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
 
     private HighlightField(Builder builder) {
         super(builder);
-        this.analyzer = builder.analyzer;
         this.matchedFields = ApiTypeHelper.unmodifiable(builder.matchedFields);
     }
 
     public static HighlightField of(Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * API name: {@code analyzer}
-     */
-    @Nullable
-    public final Analyzer analyzer() {
-        return this.analyzer;
     }
 
     /**
@@ -96,11 +83,6 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
-        if (this.analyzer != null) {
-            generator.writeKey("analyzer");
-            this.analyzer.serialize(generator, mapper);
-        }
-
         if (ApiTypeHelper.isDefined(this.matchedFields)) {
             generator.writeKey("matched_fields");
             generator.writeStartArray();
@@ -129,21 +111,17 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
      */
     public static class Builder extends HighlightBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HighlightField> {
         @Nullable
-        private Analyzer analyzer;
-        @Nullable
         private List<String> matchedFields;
 
         public Builder() {}
 
         private Builder(HighlightField o) {
             super(o);
-            this.analyzer = o.analyzer;
             this.matchedFields = _listCopy(o.matchedFields);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.analyzer = o.analyzer;
             this.matchedFields = _listCopy(o.matchedFields);
         }
 
@@ -157,23 +135,6 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
         @Nonnull
         protected Builder self() {
             return this;
-        }
-
-        /**
-         * API name: {@code analyzer}
-         */
-        @Nonnull
-        public final Builder analyzer(@Nullable Analyzer value) {
-            this.analyzer = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code analyzer}
-         */
-        @Nonnull
-        public final Builder analyzer(Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
-            return analyzer(fn.apply(new Analyzer.Builder()).build());
         }
 
         /**
@@ -228,14 +189,12 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
 
     protected static void setupHighlightFieldDeserializer(ObjectDeserializer<HighlightField.Builder> op) {
         setupHighlightBaseDeserializer(op);
-        op.add(Builder::analyzer, Analyzer._DESERIALIZER, "analyzer");
         op.add(Builder::matchedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "matched_fields");
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.analyzer);
         result = 31 * result + Objects.hashCode(this.matchedFields);
         return result;
     }
@@ -248,6 +207,6 @@ public class HighlightField extends HighlightBase implements ToCopyableBuilder<H
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         HighlightField other = (HighlightField) o;
-        return Objects.equals(this.analyzer, other.analyzer) && Objects.equals(this.matchedFields, other.matchedFields);
+        return Objects.equals(this.matchedFields, other.matchedFields);
     }
 }

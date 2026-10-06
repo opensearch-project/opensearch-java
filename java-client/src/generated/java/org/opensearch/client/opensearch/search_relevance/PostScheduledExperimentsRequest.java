@@ -71,17 +71,17 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         ToCopyableBuilder<PostScheduledExperimentsRequest.Builder, PostScheduledExperimentsRequest> {
 
     @Nullable
-    private final String contextPrefix;
+    private final String cronExpression;
 
     @Nullable
-    private final Integer targetSize;
+    private final String experimentId;
 
     // ---------------------------------------------------------------------------------------------
 
     private PostScheduledExperimentsRequest(Builder builder) {
         super(builder);
-        this.contextPrefix = builder.contextPrefix;
-        this.targetSize = builder.targetSize;
+        this.cronExpression = builder.cronExpression;
+        this.experimentId = builder.experimentId;
     }
 
     public static PostScheduledExperimentsRequest of(
@@ -91,19 +91,19 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     }
 
     /**
-     * API name: {@code context_prefix}
+     * API name: {@code cronExpression}
      */
     @Nullable
-    public final String contextPrefix() {
-        return this.contextPrefix;
+    public final String cronExpression() {
+        return this.cronExpression;
     }
 
     /**
-     * API name: {@code target_size}
+     * API name: {@code experimentId}
      */
     @Nullable
-    public final Integer targetSize() {
-        return this.targetSize;
+    public final String experimentId() {
+        return this.experimentId;
     }
 
     /**
@@ -117,14 +117,14 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.contextPrefix != null) {
-            generator.writeKey("context_prefix");
-            generator.write(this.contextPrefix);
+        if (this.cronExpression != null) {
+            generator.writeKey("cronExpression");
+            generator.write(this.cronExpression);
         }
 
-        if (this.targetSize != null) {
-            generator.writeKey("target_size");
-            generator.write(this.targetSize);
+        if (this.experimentId != null) {
+            generator.writeKey("experimentId");
+            generator.write(this.experimentId);
         }
     }
 
@@ -148,22 +148,22 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         implements
             CopyableBuilder<Builder, PostScheduledExperimentsRequest> {
         @Nullable
-        private String contextPrefix;
+        private String cronExpression;
         @Nullable
-        private Integer targetSize;
+        private String experimentId;
 
         public Builder() {}
 
         private Builder(PostScheduledExperimentsRequest o) {
             super(o);
-            this.contextPrefix = o.contextPrefix;
-            this.targetSize = o.targetSize;
+            this.cronExpression = o.cronExpression;
+            this.experimentId = o.experimentId;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.contextPrefix = o.contextPrefix;
-            this.targetSize = o.targetSize;
+            this.cronExpression = o.cronExpression;
+            this.experimentId = o.experimentId;
         }
 
         @Override
@@ -179,20 +179,20 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         }
 
         /**
-         * API name: {@code context_prefix}
+         * API name: {@code cronExpression}
          */
         @Nonnull
-        public final Builder contextPrefix(@Nullable String value) {
-            this.contextPrefix = value;
+        public final Builder cronExpression(@Nullable String value) {
+            this.cronExpression = value;
             return this;
         }
 
         /**
-         * API name: {@code target_size}
+         * API name: {@code experimentId}
          */
         @Nonnull
-        public final Builder targetSize(@Nullable Integer value) {
-            this.targetSize = value;
+        public final Builder experimentId(@Nullable String value) {
+            this.experimentId = value;
             return this;
         }
 
@@ -221,8 +221,8 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     );
 
     protected static void setupPostScheduledExperimentsRequestDeserializer(ObjectDeserializer<PostScheduledExperimentsRequest.Builder> op) {
-        op.add(Builder::contextPrefix, JsonpDeserializer.stringDeserializer(), "context_prefix");
-        op.add(Builder::targetSize, JsonpDeserializer.integerDeserializer(), "target_size");
+        op.add(Builder::cronExpression, JsonpDeserializer.stringDeserializer(), "cronExpression");
+        op.add(Builder::experimentId, JsonpDeserializer.stringDeserializer(), "experimentId");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -250,8 +250,8 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.contextPrefix);
-        result = 31 * result + Objects.hashCode(this.targetSize);
+        result = 31 * result + Objects.hashCode(this.cronExpression);
+        result = 31 * result + Objects.hashCode(this.experimentId);
         return result;
     }
 
@@ -260,6 +260,6 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PostScheduledExperimentsRequest other = (PostScheduledExperimentsRequest) o;
-        return Objects.equals(this.contextPrefix, other.contextPrefix) && Objects.equals(this.targetSize, other.targetSize);
+        return Objects.equals(this.cronExpression, other.cronExpression) && Objects.equals(this.experimentId, other.experimentId);
     }
 }
