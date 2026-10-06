@@ -56,11 +56,6 @@ public enum VersionType implements JsonEnum {
     ExternalGte("external_gte"),
 
     /**
-     * The version number is forced to be the given value.
-     */
-    Force("force"),
-
-    /**
      * The version number is managed internally by OpenSearch.
      */
     Internal("internal");

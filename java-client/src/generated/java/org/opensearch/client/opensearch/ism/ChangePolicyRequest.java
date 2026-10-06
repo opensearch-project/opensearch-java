@@ -75,8 +75,8 @@ public final class ChangePolicyRequest extends RequestBase
     @Nonnull
     private final List<IncludeState> include;
 
-    @Nullable
-    private final String index;
+    @Nonnull
+    private final List<String> index;
 
     @Nonnull
     private final String policyId;
@@ -89,7 +89,7 @@ public final class ChangePolicyRequest extends RequestBase
     private ChangePolicyRequest(Builder builder) {
         super(builder);
         this.include = ApiTypeHelper.unmodifiable(builder.include);
-        this.index = builder.index;
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
         this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
         this.state = builder.state;
     }
@@ -110,10 +110,14 @@ public final class ChangePolicyRequest extends RequestBase
     }
 
     /**
+     * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+     * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * <p>
      * API name: {@code index}
+     * </p>
      */
-    @Nullable
-    public final String index() {
+    @Nonnull
+    public final List<String> index() {
         return this.index;
     }
 
@@ -188,7 +192,7 @@ public final class ChangePolicyRequest extends RequestBase
         @Nullable
         private List<IncludeState> include;
         @Nullable
-        private String index;
+        private List<String> index;
         private String policyId;
         @Nullable
         private String state;
@@ -198,7 +202,7 @@ public final class ChangePolicyRequest extends RequestBase
         private Builder(ChangePolicyRequest o) {
             super(o);
             this.include = _listCopy(o.include);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
             this.policyId = o.policyId;
             this.state = o.state;
         }
@@ -206,7 +210,7 @@ public final class ChangePolicyRequest extends RequestBase
         private Builder(Builder o) {
             super(o);
             this.include = _listCopy(o.include);
-            this.index = o.index;
+            this.index = _listCopy(o.index);
             this.policyId = o.policyId;
             this.state = o.state;
         }
@@ -271,11 +275,36 @@ public final class ChangePolicyRequest extends RequestBase
         }
 
         /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
          * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder index(@Nullable String value) {
-            this.index = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
             return this;
         }
 
@@ -347,7 +376,7 @@ public final class ChangePolicyRequest extends RequestBase
 
             int propsSet = 0;
 
-            if (request.index() != null) propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
                 return "/_plugins/_ism/change_policy";
@@ -355,7 +384,7 @@ public final class ChangePolicyRequest extends RequestBase
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/_plugins/_ism/change_policy/");
-                SimpleEndpoint.pathEncode(request.index, buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 return buf.toString();
             }
 

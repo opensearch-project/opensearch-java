@@ -60,6 +60,13 @@ public class RequestProcessorBuilders {
     }
 
     /**
+     * Creates a builder for the {@link MLInferenceRequestProcessor ml_inference} {@code RequestProcessor} variant.
+     */
+    public static MLInferenceRequestProcessor.Builder mlInference() {
+        return new MLInferenceRequestProcessor.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link NeuralQueryEnricherRequestProcessor neural_query_enricher} {@code RequestProcessor} variant.
      */
     public static NeuralQueryEnricherRequestProcessor.Builder neuralQueryEnricher() {

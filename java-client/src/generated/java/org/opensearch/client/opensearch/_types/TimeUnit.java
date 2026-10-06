@@ -44,7 +44,7 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 /**
  * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
- * <a href="https://opensearch.org/docs/latest/api-reference/units/">Supported units</a>.
+ * <a href="https://docs.opensearch.org/latest/api-reference/units/">Supported units</a>.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
