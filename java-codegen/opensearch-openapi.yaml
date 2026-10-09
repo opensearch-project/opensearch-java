@@ -51063,6 +51063,10 @@ components:
             min_score:
               type: number
               format: float
+            method_parameters:
+              type: object
+              x-version-added: '2.16'
+              additionalProperties: true
             max_distance:
               type: number
               format: float
