@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
@@ -23,6 +24,8 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.DelegatingJsonEndpoint;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.transport.grpc.translation.BulkRequestConverter;
 import org.opensearch.client.transport.grpc.translation.BulkResponseConverter;
 import org.opensearch.client.transport.grpc.translation.GrpcStatusConverter;
@@ -52,6 +55,12 @@ public class GrpcTransport implements OpenSearchTransport {
 
     private static final java.util.Set<Endpoint<?, ?, ?>> SUPPORTED_ENDPOINTS;
 
+    /**
+     * Mapper attribute name under which {@link org.opensearch.client.opensearch.OpenSearchClient#search}
+     * stores the {@link JsonpDeserializer} bound to the caller's document type.
+     */
+    private static final String SEARCH_TDOCUMENT_ATTR = "org.opensearch.client:Deserializer:_global.search.TDocument";
+
     static {
         java.util.Set<Endpoint<?, ?, ?>> endpoints = new java.util.HashSet<>();
         endpoints.add(BulkRequest._ENDPOINT);
@@ -61,10 +70,23 @@ public class GrpcTransport implements OpenSearchTransport {
     }
 
     /**
+     * Unwraps any {@link DelegatingJsonEndpoint} wrappers (such as the typed
+     * {@link EndpointWithResponseMapperAttr} produced by {@code client.search(request, MyType.class)})
+     * to recover the underlying registered endpoint so it can be matched by identity.
+     */
+    private static Endpoint<?, ?, ?> rootEndpoint(Endpoint<?, ?, ?> endpoint) {
+        Endpoint<?, ?, ?> current = endpoint;
+        while (current instanceof DelegatingJsonEndpoint) {
+            current = ((DelegatingJsonEndpoint<?, ?, ?>) current).endpoint();
+        }
+        return current;
+    }
+
+    /**
      * Returns true if the given endpoint is supported by gRPC transport.
      */
     public static boolean isEndpointSupported(Endpoint<?, ?, ?> endpoint) {
-        return SUPPORTED_ENDPOINTS.contains(endpoint);
+        return SUPPORTED_ENDPOINTS.contains(rootEndpoint(endpoint));
     }
 
     /**
@@ -73,15 +95,16 @@ public class GrpcTransport implements OpenSearchTransport {
      * this method inspects the request to determine if gRPC can handle it.
      */
     public static <RequestT> boolean isEndpointSupported(Endpoint<?, ?, ?> endpoint, RequestT request) {
-        if (!SUPPORTED_ENDPOINTS.contains(endpoint)) {
+        Endpoint<?, ?, ?> root = rootEndpoint(endpoint);
+        if (!SUPPORTED_ENDPOINTS.contains(root)) {
             return false;
         }
         // Bulk: all operations supported
-        if (endpoint == BulkRequest._ENDPOINT) {
+        if (root == BulkRequest._ENDPOINT) {
             return true;
         }
         // Search: only match_all is currently supported
-        if (endpoint == SearchRequest._ENDPOINT && request instanceof SearchRequest) {
+        if (root == SearchRequest._ENDPOINT && request instanceof SearchRequest) {
             SearchRequest searchRequest = (SearchRequest) request;
             if (searchRequest.query() == null) {
                 return true; // No query = match_all by default
@@ -89,6 +112,30 @@ public class GrpcTransport implements OpenSearchTransport {
             return searchRequest.query().isMatchAll();
         }
         return true;
+    }
+
+    /**
+     * Extracts the caller's document deserializer from a (possibly wrapped) search endpoint so that
+     * hit {@code _source} values are deserialized into the requested {@code TDocument} type instead of
+     * a generic {@code Object}/{@code JsonData}. Falls back to {@code Object.class} when no typed
+     * deserializer is present (see issue #2123).
+     */
+    private static <TDocument> JsonpDeserializer<TDocument> searchDocumentDeserializer(Endpoint<?, ?, ?> endpoint) {
+        Endpoint<?, ?, ?> current = endpoint;
+        while (current instanceof DelegatingJsonEndpoint) {
+            if (current instanceof EndpointWithResponseMapperAttr) {
+                EndpointWithResponseMapperAttr<?, ?, ?> attrEndpoint = (EndpointWithResponseMapperAttr<?, ?, ?>) current;
+                if (SEARCH_TDOCUMENT_ATTR.equals(attrEndpoint.attrName()) && attrEndpoint.attrValue() instanceof JsonpDeserializer) {
+                    @SuppressWarnings("unchecked")
+                    JsonpDeserializer<TDocument> deserializer = (JsonpDeserializer<TDocument>) attrEndpoint.attrValue();
+                    return deserializer;
+                }
+            }
+            current = ((DelegatingJsonEndpoint<?, ?, ?>) current).endpoint();
+        }
+        @SuppressWarnings("unchecked")
+        JsonpDeserializer<TDocument> fallback = (JsonpDeserializer<TDocument>) JsonpDeserializer.of(Object.class);
+        return fallback;
     }
 
     // ─── Instance Fields ─────────────────────────────────────────────────────────
@@ -139,12 +186,14 @@ public class GrpcTransport implements OpenSearchTransport {
             );
         }
 
-        // Route to the appropriate gRPC handler
-        if (endpoint == BulkRequest._ENDPOINT) {
+        // Route to the appropriate gRPC handler. The caller may have wrapped the endpoint (e.g. the
+        // typed search endpoint carries the document deserializer), so match on the underlying endpoint.
+        Endpoint<?, ?, ?> root = rootEndpoint(endpoint);
+        if (root == BulkRequest._ENDPOINT) {
             return (ResponseT) performBulk((BulkRequest) request);
         }
-        if (endpoint == SearchRequest._ENDPOINT) {
-            return (ResponseT) performSearch((SearchRequest) request);
+        if (root == SearchRequest._ENDPOINT) {
+            return (ResponseT) performSearch((SearchRequest) request, searchDocumentDeserializer(endpoint));
         }
 
         throw new UnsupportedOperationException("Endpoint registered but no handler: " + endpoint.requestUrl(request));
@@ -271,8 +320,8 @@ public class GrpcTransport implements OpenSearchTransport {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private <TDocument> SearchResponse<TDocument> performSearch(SearchRequest request) throws TransportException {
+    private <TDocument> SearchResponse<TDocument> performSearch(SearchRequest request, JsonpDeserializer<TDocument> documentDeserializer)
+        throws TransportException {
         // Convert client request to protobuf
         org.opensearch.protobufs.SearchRequest protoRequest = org.opensearch.client.transport.grpc.translation.SearchRequestConverter
             .toProto(request, jsonpMapper);
@@ -281,12 +330,12 @@ public class GrpcTransport implements OpenSearchTransport {
         try {
             org.opensearch.protobufs.SearchResponse protoResponse = searchStub.search(protoRequest);
 
-            // Convert response — use Object.class as default; the actual deserialization
-            // is handled by the endpoint's response deserializer in the transport layer
-            return (SearchResponse<TDocument>) org.opensearch.client.transport.grpc.translation.SearchResponseConverter.fromProto(
+            // Deserialize hit _source values with the caller's document deserializer (threaded from the
+            // endpoint) so the typed search contract is honored instead of yielding raw JsonData.
+            return org.opensearch.client.transport.grpc.translation.SearchResponseConverter.fromProto(
                 protoResponse,
                 jsonpMapper,
-                (Class<TDocument>) Object.class
+                documentDeserializer
             );
         } catch (StatusRuntimeException e) {
             throw new TransportException(
