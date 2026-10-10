@@ -95,10 +95,15 @@ public class ObjectBuilderBase {
 
     /** Add all elements of a list to a (possibly {@code null}) list */
     protected static <T> List<T> _listAddAll(List<T> list, List<T> values) {
+        if (values == null) {
+            // Server returned JSON null for a list field; treat as empty to avoid NPE.
+            // See https://github.com/opensearch-project/opensearch-java/issues/1813
+            return list;
+        }
         if (list == null) {
             // Keep the original list to avoid an unnecessary copy.
             // It will be copied if we add more values.
-            return Objects.requireNonNull(values);
+            return values;
         } else {
             list = _mutableList(list);
             list.addAll(values);
