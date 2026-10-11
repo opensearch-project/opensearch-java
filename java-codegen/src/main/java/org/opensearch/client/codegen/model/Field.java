@@ -31,6 +31,7 @@ public class Field {
     @Nonnull
     private final TypeRef type;
     private final boolean required;
+    private final boolean nullable;
     @Nullable
     private final String description;
     @Nullable
@@ -52,6 +53,7 @@ public class Field {
         }
         this.type = Objects.requireNonNull(builder.type, "type must not be null");
         this.required = builder.required;
+        this.nullable = builder.nullable;
         this.description = builder.description;
         this.deprecation = builder.deprecation;
         this.aliases = builder.aliases;
@@ -74,6 +76,23 @@ public class Field {
 
     public boolean isRequired() {
         return required;
+    }
+
+    /**
+     * Whether the schema explicitly admits JSON {@code null} as this field's value (see
+     * {@link org.opensearch.client.codegen.openapi.OpenApiSchema#allowsNull()}) -- distinct from {@link #isRequired()}, which is about
+     * whether the key itself can be absent, not about what a present value can be.
+     */
+    public boolean isNullable() {
+        return nullable;
+    }
+
+    /**
+     * Whether this field needs a deserializer that itself tolerates a top-level JSON {@code null} (e.g. {@code arrayOrNullDeserializer}
+     * instead of {@code arrayDeserializer}) rather than one that only handles the value being absent.
+     */
+    public boolean isNullableList() {
+        return nullable && type.isList();
     }
 
     @Nullable
@@ -111,6 +130,7 @@ public class Field {
         private boolean verbatimName;
         private TypeRef type;
         private boolean required;
+        private boolean nullable;
         private String description;
         private Deprecation deprecation;
         private Set<String> aliases;
@@ -122,6 +142,7 @@ public class Field {
             this.name = f.name;
             this.type = f.type;
             this.required = f.required;
+            this.nullable = f.nullable;
             this.description = f.description;
             this.deprecation = f.deprecation;
             this.aliases = f.aliases != null ? new HashSet<>(f.aliases) : null;
@@ -162,6 +183,12 @@ public class Field {
         @Nonnull
         public Builder withRequired(boolean required) {
             this.required = required;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withNullable(boolean nullable) {
+            this.nullable = nullable;
             return this;
         }
 

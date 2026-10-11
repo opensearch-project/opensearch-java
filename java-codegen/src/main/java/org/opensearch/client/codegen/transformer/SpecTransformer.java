@@ -617,6 +617,7 @@ public class SpecTransformer {
                 .withName(propOverrides.flatMap(PropertyOverride::getName).orElse(null))
                 .withType(type)
                 .withRequired(!canBeNull)
+                .withNullable(v.allowsNull())
                 .withDescription(v.getDescription().orElse(null))
                 .whenPresent(propOverrides.flatMap(PropertyOverride::getAliases), (b, aliases) -> b.withAliases(a -> a.with(aliases)))
                 .build();
