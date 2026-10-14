@@ -9,6 +9,7 @@ and preserving JDK-8 compatibility at the same time.
 - Add constants for `_first` and `_last` sort values ([#2189](https://github.com/opensearch-project/opensearch-java/pull/2189))
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
 - Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
+- Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 
 ### Dependencies
 
