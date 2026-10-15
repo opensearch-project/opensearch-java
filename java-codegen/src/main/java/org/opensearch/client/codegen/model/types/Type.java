@@ -190,6 +190,7 @@ public class Type extends TypeRef {
         return isPrimitive() || isBoxedPrimitive();
     }
 
+    @Override
     public boolean isNumber() {
         return "Number".equals(name);
     }

@@ -88,11 +88,15 @@ public class Field {
     }
 
     /**
-     * Whether this field needs a deserializer that itself tolerates a top-level JSON {@code null} (e.g. {@code arrayOrNullDeserializer}
-     * instead of {@code arrayDeserializer}) rather than one that only handles the value being absent.
+     * The type to request a deserializer for: {@link #getType()}, marked {@link TypeRef#isNullable()} when the
+     * schema allows a top-level JSON {@code null} for this field, so {@code Type/deserializer.mustache} can pick a
+     * null-tolerant variant where one exists (e.g. {@code arrayOrNullDeserializer} instead of {@code
+     * arrayDeserializer} for a list).
      */
-    public boolean isNullableList() {
-        return nullable && type.isList();
+    @Nonnull
+    public TypeRef getDeserializerType() {
+        var resultType = getType();
+        return nullable ? resultType.asNullable() : resultType;
     }
 
     @Nullable
