@@ -46878,6 +46878,25 @@ components:
           type: string
           enum:
             - match_only_text
+        analyzer:
+          type: string
+        boost:
+          type: number
+          format: double
+        eager_global_ordinals:
+          type: boolean
+        fielddata:
+          type: boolean
+        fielddata_frequency_filter:
+          $ref: '#/components/schemas/indices._common___FielddataFrequencyFilter'
+        position_increment_gap:
+          type: integer
+        search_analyzer:
+          type: string
+        term_vector:
+          $ref: '#/components/schemas/_common.mapping___TermVectorOption'
+        index:
+          type: boolean
         fields:
           description: |-
             Multi-fields allow the same string value to be indexed in multiple ways for different purposes, such as one

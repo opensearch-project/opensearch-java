@@ -22,6 +22,7 @@ and preserving JDK-8 compatibility at the same time.
 
 ### Fixed
 - Custom unitTest tasks run NO-SOURCE under Gradle 9, so some unit tests never run in CI ([#2174](https://github.com/opensearch-project/opensearch-java/pull/2174))
+- Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
 
 ### Security
 
