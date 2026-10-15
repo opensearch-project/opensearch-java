@@ -50361,6 +50361,19 @@ components:
       enum:
         - indexed
         - memory
+    _common.query_dsl___GeoJsonGeoShape:
+      type: object
+      description: The shape specified using a GeoJSON object.
+      properties:
+        type:
+          type: string
+          description: The type of the GeoJSON shape (e.g. `envelope`, `polygon`).
+        coordinates:
+          type: array
+          description: The coordinates of the shape.
+      required:
+        - type
+        - coordinates
     _common.query_dsl___GeoPolygonPoints:
       type: object
       properties:
@@ -50387,12 +50400,17 @@ components:
             $ref: '#/components/schemas/_common.query_dsl___GeoPolygonPoints'
           minProperties: 1
     _common.query_dsl___GeoShape:
-      type: object
-      properties:
-        type:
+      description: |-
+        A shape to use in a geo_shape query. It can be specified in the following ways:
+         - As a GeoJSON object with `type` and `coordinates` properties.
+         - As a Well Known Text (WKT) string.
+      oneOf:
+        - title: geoJson
+          description: The shape specified using a GeoJSON object.
+          $ref: '#/components/schemas/_common.query_dsl___GeoJsonGeoShape'
+        - title: wkt
+          description: The shape specified using Well-Known Text (WKT) format.
           type: string
-        coordinates:
-          type: array
     _common.query_dsl___GeoShapeQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'

@@ -5,8 +5,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### BREAKING CHANGES
 - Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
+- `GeoShape` is now a tagged union (`geoJson` | `wkt`) to match server behavior; build the GeoJSON variant with `GeoShape.geoJson(...)` instead of the previous `type()`/`coordinates()` builders ([#2193](https://github.com/opensearch-project/opensearch-java/issues/2193))
 
 ### Added
+- Add support for WKT (Well-Known Text) strings in the `shape` parameter of the `geo_shape` query ([#2193](https://github.com/opensearch-project/opensearch-java/issues/2193))
 - Add constants for `_first` and `_last` sort values (#2189)
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 
