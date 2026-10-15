@@ -36490,7 +36490,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
+            oneOf:
               - $ref: '#/components/schemas/_common___ShardsOperationResponseBase'
               - type: object
                 properties:
