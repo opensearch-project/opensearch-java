@@ -41463,10 +41463,8 @@ components:
           type: string
           description: The roles of the node.
       required:
-        - attributes
         - ephemeral_id
         - name
-        - transport_address
     _common___NodeId:
       type: string
       description: The unique identifier of a node.

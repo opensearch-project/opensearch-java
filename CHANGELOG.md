@@ -38,6 +38,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed `searchShards` response deserialization to accept node metadata without `attributes` and `transport_address`, which managed OpenSearch distributions (e.g. Amazon OpenSearch Service) omit ([#2145](https://github.com/opensearch-project/opensearch-java/issues/2145))
 - Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
 
 ### Security
