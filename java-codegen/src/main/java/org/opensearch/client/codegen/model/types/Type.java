@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.model.types;
 import static org.opensearch.client.codegen.model.types.Types.Client;
 import static org.opensearch.client.codegen.model.types.Types.Java;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nonnull;
@@ -48,12 +49,14 @@ public class Type extends TypeRef {
     @Nullable
     private final TypeRef[] typeParams;
     private final Shape targetShape;
+    private final boolean nullable;
 
     private Type(Builder builder) {
         this.packageName = builder.packageName;
         this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
         this.typeParams = builder.typeParams;
         this.targetShape = builder.targetShape;
+        this.nullable = builder.nullable;
     }
 
     @Nonnull
@@ -190,7 +193,6 @@ public class Type extends TypeRef {
         return isPrimitive() || isBoxedPrimitive();
     }
 
-    @Override
     public boolean isNumber() {
         return "Number".equals(name);
     }
@@ -246,6 +248,10 @@ public class Type extends TypeRef {
         return toBuilder().withTypeParameters(typeParams).build();
     }
 
+    public Type withNullable(boolean nullable) {
+        return toBuilder().withNullable(nullable).build();
+    }
+
     @Override
     public boolean isTypeParameterRef() {
         return false;
@@ -267,6 +273,7 @@ public class Type extends TypeRef {
         private String name;
         private TypeRef[] typeParams;
         private Shape targetShape;
+        private boolean nullable;
 
         private Builder() {}
 
@@ -299,5 +306,16 @@ public class Type extends TypeRef {
             this.targetShape = shape;
             return this;
         }
+
+        @Nonnull
+        public Builder withNullable(boolean nullable) {
+            this.nullable = nullable;
+            return this;
+        }
+    }
+
+    @Override
+    public boolean isNullable() {
+        return nullable || (hasTypeParams() && Arrays.stream(getTypeParams()).anyMatch(TypeRef::isNullable));
     }
 }

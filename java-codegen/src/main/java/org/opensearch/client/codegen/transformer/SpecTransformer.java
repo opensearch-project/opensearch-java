@@ -617,7 +617,6 @@ public class SpecTransformer {
                 .withName(propOverrides.flatMap(PropertyOverride::getName).orElse(null))
                 .withType(type)
                 .withRequired(!canBeNull)
-                .withNullable(v.allowsNull())
                 .withDescription(v.getDescription().orElse(null))
                 .whenPresent(propOverrides.flatMap(PropertyOverride::getAliases), (b, aliases) -> b.withAliases(a -> a.with(aliases)))
                 .build();
@@ -639,7 +638,8 @@ public class SpecTransformer {
                     valueSchema.getTitle().orElse("metadata"),
                     typeMapper.mapType(valueSchema),
                     valueSchema.getResolvedDescription().orElse(null),
-                    schema.isAdditionalPropertiesSingleton()
+                    schema.isAdditionalPropertiesSingleton(),
+                    schema.allowsNull()
                 )
             );
         }

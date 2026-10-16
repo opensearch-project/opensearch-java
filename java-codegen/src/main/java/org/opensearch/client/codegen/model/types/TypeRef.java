@@ -60,30 +60,10 @@ public abstract class TypeRef {
     public abstract boolean isPotentiallyBoxedPrimitive();
 
     /**
-     * Only {@link Type} ever answers {@code true}; a number is never represented via a shape reference or a type
-     * parameter. Declared here (rather than solely on {@link Type}) so a decorator like {@link NullableTypeRef} can
-     * proxy it along with the rest of this class' dispatch surface.
-     */
-    public boolean isNumber() {
-        return false;
-    }
-
-    /**
-     * Whether this reference describes a field the schema explicitly admits a top-level JSON {@code null} for; see
-     * {@link org.opensearch.client.codegen.model.Field#isNullable()}. {@code false} for every ordinary type -- only
-     * {@link #asNullable()}'s result answers {@code true}, and only for the type it directly wraps, not the nested
-     * types (e.g. a list's item type) it delegates to.
+     * Whether this reference describes a field the schema explicitly admits a top-level JSON {@code null} for.
      */
     public boolean isNullable() {
         return false;
-    }
-
-    /**
-     * A view of this type marked {@link #isNullable()}, for templates (see {@code Type/deserializer.mustache}) that
-     * pick a null-tolerant deserializer variant for fields whose schema allows it.
-     */
-    public final TypeRef asNullable() {
-        return new NullableTypeRef(this);
     }
 
     public abstract Optional<Shape> getTargetShape();
