@@ -109,6 +109,9 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     private final long queryCurrent;
 
     @Nullable
+    private final Long queryFailed;
+
+    @Nullable
     private final Time queryTime;
 
     private final long queryTimeInMillis;
@@ -129,6 +132,21 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
 
     @Nullable
     private final Long searchIdleReactivateCountTotal;
+
+    @Nullable
+    private final Long startreeQueryCurrent;
+
+    @Nullable
+    private final Long startreeQueryFailed;
+
+    @Nullable
+    private final Time startreeQueryTime;
+
+    @Nullable
+    private final Long startreeQueryTimeInMillis;
+
+    @Nullable
+    private final Long startreeQueryTotal;
 
     private final long suggestCurrent;
 
@@ -158,6 +176,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         this.pointInTimeTimeInMillis = builder.pointInTimeTimeInMillis;
         this.pointInTimeTotal = builder.pointInTimeTotal;
         this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
+        this.queryFailed = builder.queryFailed;
         this.queryTime = builder.queryTime;
         this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
         this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
@@ -167,6 +186,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis");
         this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
         this.searchIdleReactivateCountTotal = builder.searchIdleReactivateCountTotal;
+        this.startreeQueryCurrent = builder.startreeQueryCurrent;
+        this.startreeQueryFailed = builder.startreeQueryFailed;
+        this.startreeQueryTime = builder.startreeQueryTime;
+        this.startreeQueryTimeInMillis = builder.startreeQueryTimeInMillis;
+        this.startreeQueryTotal = builder.startreeQueryTotal;
         this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
         this.suggestTime = builder.suggestTime;
         this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this, "suggestTimeInMillis");
@@ -345,6 +369,17 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     }
 
     /**
+     * The total number of failed shard query operations.
+     * <p>
+     * API name: {@code query_failed}
+     * </p>
+     */
+    @Nullable
+    public final Long queryFailed() {
+        return this.queryFailed;
+    }
+
+    /**
      * The total amount of time taken to complete all shard query operations.
      * <p>
      * API name: {@code query_time}
@@ -428,7 +463,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     }
 
     /**
-     * The total number of idle search reactivations.
+     * The total number of times an idle search shard was reactivated.
      * <p>
      * API name: {@code search_idle_reactivate_count_total}
      * </p>
@@ -436,6 +471,61 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     @Nullable
     public final Long searchIdleReactivateCountTotal() {
         return this.searchIdleReactivateCountTotal;
+    }
+
+    /**
+     * The number of currently running shard star-tree query operations.
+     * <p>
+     * API name: {@code startree_query_current}
+     * </p>
+     */
+    @Nullable
+    public final Long startreeQueryCurrent() {
+        return this.startreeQueryCurrent;
+    }
+
+    /**
+     * The total number of failed shard star-tree query operations.
+     * <p>
+     * API name: {@code startree_query_failed}
+     * </p>
+     */
+    @Nullable
+    public final Long startreeQueryFailed() {
+        return this.startreeQueryFailed;
+    }
+
+    /**
+     * The total amount of time taken to complete all shard star-tree query operations.
+     * <p>
+     * API name: {@code startree_query_time}
+     * </p>
+     */
+    @Nullable
+    public final Time startreeQueryTime() {
+        return this.startreeQueryTime;
+    }
+
+    /**
+     * The total amount of time taken to complete all shard star-tree query operations, in milliseconds.
+     * <p>
+     * API name: {@code startree_query_time_in_millis}
+     * </p>
+     */
+    @Nullable
+    public final Long startreeQueryTimeInMillis() {
+        return this.startreeQueryTimeInMillis;
+    }
+
+    /**
+     * The total number of shard star-tree query operations.
+     * <p>
+     * API name: {@code startree_query_total}
+     * </p>
+     */
+    @Nullable
+    public final Long startreeQueryTotal() {
+        return this.startreeQueryTotal;
     }
 
     /**
@@ -567,6 +657,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         generator.writeKey("query_current");
         generator.write(this.queryCurrent);
 
+        if (this.queryFailed != null) {
+            generator.writeKey("query_failed");
+            generator.write(this.queryFailed);
+        }
+
         if (this.queryTime != null) {
             generator.writeKey("query_time");
             this.queryTime.serialize(generator, mapper);
@@ -605,6 +700,31 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         if (this.searchIdleReactivateCountTotal != null) {
             generator.writeKey("search_idle_reactivate_count_total");
             generator.write(this.searchIdleReactivateCountTotal);
+        }
+
+        if (this.startreeQueryCurrent != null) {
+            generator.writeKey("startree_query_current");
+            generator.write(this.startreeQueryCurrent);
+        }
+
+        if (this.startreeQueryFailed != null) {
+            generator.writeKey("startree_query_failed");
+            generator.write(this.startreeQueryFailed);
+        }
+
+        if (this.startreeQueryTime != null) {
+            generator.writeKey("startree_query_time");
+            this.startreeQueryTime.serialize(generator, mapper);
+        }
+
+        if (this.startreeQueryTimeInMillis != null) {
+            generator.writeKey("startree_query_time_in_millis");
+            generator.write(this.startreeQueryTimeInMillis);
+        }
+
+        if (this.startreeQueryTotal != null) {
+            generator.writeKey("startree_query_total");
+            generator.write(this.startreeQueryTotal);
         }
 
         generator.writeKey("suggest_current");
@@ -668,6 +788,8 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         private Long pointInTimeTotal;
         private Long queryCurrent;
         @Nullable
+        private Long queryFailed;
+        @Nullable
         private Time queryTime;
         private Long queryTimeInMillis;
         private Long queryTotal;
@@ -680,6 +802,16 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         private Long scrollTotal;
         @Nullable
         private Long searchIdleReactivateCountTotal;
+        @Nullable
+        private Long startreeQueryCurrent;
+        @Nullable
+        private Long startreeQueryFailed;
+        @Nullable
+        private Time startreeQueryTime;
+        @Nullable
+        private Long startreeQueryTimeInMillis;
+        @Nullable
+        private Long startreeQueryTotal;
         private Long suggestCurrent;
         @Nullable
         private Time suggestTime;
@@ -705,6 +837,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             this.pointInTimeTimeInMillis = o.pointInTimeTimeInMillis;
             this.pointInTimeTotal = o.pointInTimeTotal;
             this.queryCurrent = o.queryCurrent;
+            this.queryFailed = o.queryFailed;
             this.queryTime = o.queryTime;
             this.queryTimeInMillis = o.queryTimeInMillis;
             this.queryTotal = o.queryTotal;
@@ -714,6 +847,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             this.scrollTimeInMillis = o.scrollTimeInMillis;
             this.scrollTotal = o.scrollTotal;
             this.searchIdleReactivateCountTotal = o.searchIdleReactivateCountTotal;
+            this.startreeQueryCurrent = o.startreeQueryCurrent;
+            this.startreeQueryFailed = o.startreeQueryFailed;
+            this.startreeQueryTime = o.startreeQueryTime;
+            this.startreeQueryTimeInMillis = o.startreeQueryTimeInMillis;
+            this.startreeQueryTotal = o.startreeQueryTotal;
             this.suggestCurrent = o.suggestCurrent;
             this.suggestTime = o.suggestTime;
             this.suggestTimeInMillis = o.suggestTimeInMillis;
@@ -737,6 +875,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             this.pointInTimeTimeInMillis = o.pointInTimeTimeInMillis;
             this.pointInTimeTotal = o.pointInTimeTotal;
             this.queryCurrent = o.queryCurrent;
+            this.queryFailed = o.queryFailed;
             this.queryTime = o.queryTime;
             this.queryTimeInMillis = o.queryTimeInMillis;
             this.queryTotal = o.queryTotal;
@@ -746,6 +885,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             this.scrollTimeInMillis = o.scrollTimeInMillis;
             this.scrollTotal = o.scrollTotal;
             this.searchIdleReactivateCountTotal = o.searchIdleReactivateCountTotal;
+            this.startreeQueryCurrent = o.startreeQueryCurrent;
+            this.startreeQueryFailed = o.startreeQueryFailed;
+            this.startreeQueryTime = o.startreeQueryTime;
+            this.startreeQueryTimeInMillis = o.startreeQueryTimeInMillis;
+            this.startreeQueryTotal = o.startreeQueryTotal;
             this.suggestCurrent = o.suggestCurrent;
             this.suggestTime = o.suggestTime;
             this.suggestTimeInMillis = o.suggestTimeInMillis;
@@ -1008,6 +1152,18 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
+         * The total number of failed shard query operations.
+         * <p>
+         * API name: {@code query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder queryFailed(@Nullable Long value) {
+            this.queryFailed = value;
+            return this;
+        }
+
+        /**
          * The total amount of time taken to complete all shard query operations.
          * <p>
          * API name: {@code query_time}
@@ -1161,7 +1317,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
-         * The total number of idle search reactivations.
+         * The total number of times an idle search shard was reactivated.
          * <p>
          * API name: {@code search_idle_reactivate_count_total}
          * </p>
@@ -1169,6 +1325,77 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         @Nonnull
         public final Builder searchIdleReactivateCountTotal(@Nullable Long value) {
             this.searchIdleReactivateCountTotal = value;
+            return this;
+        }
+
+        /**
+         * The number of currently running shard star-tree query operations.
+         * <p>
+         * API name: {@code startree_query_current}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryCurrent(@Nullable Long value) {
+            this.startreeQueryCurrent = value;
+            return this;
+        }
+
+        /**
+         * The total number of failed shard star-tree query operations.
+         * <p>
+         * API name: {@code startree_query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryFailed(@Nullable Long value) {
+            this.startreeQueryFailed = value;
+            return this;
+        }
+
+        /**
+         * The total amount of time taken to complete all shard star-tree query operations.
+         * <p>
+         * API name: {@code startree_query_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryTime(@Nullable Time value) {
+            this.startreeQueryTime = value;
+            return this;
+        }
+
+        /**
+         * The total amount of time taken to complete all shard star-tree query operations.
+         * <p>
+         * API name: {@code startree_query_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return startreeQueryTime(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * The total amount of time taken to complete all shard star-tree query operations, in milliseconds.
+         * <p>
+         * API name: {@code startree_query_time_in_millis}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryTimeInMillis(@Nullable Long value) {
+            this.startreeQueryTimeInMillis = value;
+            return this;
+        }
+
+        /**
+         * The total number of shard star-tree query operations.
+         * <p>
+         * API name: {@code startree_query_total}
+         * </p>
+         */
+        @Nonnull
+        public final Builder startreeQueryTotal(@Nullable Long value) {
+            this.startreeQueryTotal = value;
             return this;
         }
 
@@ -1272,6 +1499,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         op.add(Builder::pointInTimeTimeInMillis, JsonpDeserializer.longDeserializer(), "point_in_time_time_in_millis");
         op.add(Builder::pointInTimeTotal, JsonpDeserializer.longDeserializer(), "point_in_time_total");
         op.add(Builder::queryCurrent, JsonpDeserializer.longDeserializer(), "query_current");
+        op.add(Builder::queryFailed, JsonpDeserializer.longDeserializer(), "query_failed");
         op.add(Builder::queryTime, Time._DESERIALIZER, "query_time");
         op.add(Builder::queryTimeInMillis, JsonpDeserializer.longDeserializer(), "query_time_in_millis");
         op.add(Builder::queryTotal, JsonpDeserializer.longDeserializer(), "query_total");
@@ -1281,6 +1509,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         op.add(Builder::scrollTimeInMillis, JsonpDeserializer.longDeserializer(), "scroll_time_in_millis");
         op.add(Builder::scrollTotal, JsonpDeserializer.longDeserializer(), "scroll_total");
         op.add(Builder::searchIdleReactivateCountTotal, JsonpDeserializer.longDeserializer(), "search_idle_reactivate_count_total");
+        op.add(Builder::startreeQueryCurrent, JsonpDeserializer.longDeserializer(), "startree_query_current");
+        op.add(Builder::startreeQueryFailed, JsonpDeserializer.longDeserializer(), "startree_query_failed");
+        op.add(Builder::startreeQueryTime, Time._DESERIALIZER, "startree_query_time");
+        op.add(Builder::startreeQueryTimeInMillis, JsonpDeserializer.longDeserializer(), "startree_query_time_in_millis");
+        op.add(Builder::startreeQueryTotal, JsonpDeserializer.longDeserializer(), "startree_query_total");
         op.add(Builder::suggestCurrent, JsonpDeserializer.longDeserializer(), "suggest_current");
         op.add(Builder::suggestTime, Time._DESERIALIZER, "suggest_time");
         op.add(Builder::suggestTimeInMillis, JsonpDeserializer.longDeserializer(), "suggest_time_in_millis");
@@ -1306,6 +1539,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         result = 31 * result + Objects.hashCode(this.pointInTimeTimeInMillis);
         result = 31 * result + Objects.hashCode(this.pointInTimeTotal);
         result = 31 * result + Long.hashCode(this.queryCurrent);
+        result = 31 * result + Objects.hashCode(this.queryFailed);
         result = 31 * result + Objects.hashCode(this.queryTime);
         result = 31 * result + Long.hashCode(this.queryTimeInMillis);
         result = 31 * result + Long.hashCode(this.queryTotal);
@@ -1315,6 +1549,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         result = 31 * result + Long.hashCode(this.scrollTimeInMillis);
         result = 31 * result + Long.hashCode(this.scrollTotal);
         result = 31 * result + Objects.hashCode(this.searchIdleReactivateCountTotal);
+        result = 31 * result + Objects.hashCode(this.startreeQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.startreeQueryFailed);
+        result = 31 * result + Objects.hashCode(this.startreeQueryTime);
+        result = 31 * result + Objects.hashCode(this.startreeQueryTimeInMillis);
+        result = 31 * result + Objects.hashCode(this.startreeQueryTotal);
         result = 31 * result + Long.hashCode(this.suggestCurrent);
         result = 31 * result + Objects.hashCode(this.suggestTime);
         result = 31 * result + Long.hashCode(this.suggestTimeInMillis);
@@ -1343,6 +1582,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             && Objects.equals(this.pointInTimeTimeInMillis, other.pointInTimeTimeInMillis)
             && Objects.equals(this.pointInTimeTotal, other.pointInTimeTotal)
             && this.queryCurrent == other.queryCurrent
+            && Objects.equals(this.queryFailed, other.queryFailed)
             && Objects.equals(this.queryTime, other.queryTime)
             && this.queryTimeInMillis == other.queryTimeInMillis
             && this.queryTotal == other.queryTotal
@@ -1352,6 +1592,11 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
             && this.scrollTimeInMillis == other.scrollTimeInMillis
             && this.scrollTotal == other.scrollTotal
             && Objects.equals(this.searchIdleReactivateCountTotal, other.searchIdleReactivateCountTotal)
+            && Objects.equals(this.startreeQueryCurrent, other.startreeQueryCurrent)
+            && Objects.equals(this.startreeQueryFailed, other.startreeQueryFailed)
+            && Objects.equals(this.startreeQueryTime, other.startreeQueryTime)
+            && Objects.equals(this.startreeQueryTimeInMillis, other.startreeQueryTimeInMillis)
+            && Objects.equals(this.startreeQueryTotal, other.startreeQueryTotal)
             && this.suggestCurrent == other.suggestCurrent
             && Objects.equals(this.suggestTime, other.suggestTime)
             && this.suggestTimeInMillis == other.suggestTimeInMillis

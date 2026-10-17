@@ -167,6 +167,41 @@ public class OpenSearchSearchRelevanceClient extends ApiClient<OpenSearchTranspo
         return deleteSearchConfigurations(fn.apply(new DeleteSearchConfigurationsRequest.Builder()).build());
     }
 
+    // ----- Endpoint: search_relevance.experiments_search
+
+    /**
+     * Searches for experiments.
+     */
+    public <TDocument> ExperimentsSearchResponse<TDocument> experimentsSearch(
+        ExperimentsSearchRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ExperimentsSearchRequest, ExperimentsSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            ExperimentsSearchRequest,
+            ExperimentsSearchResponse<TDocument>,
+            ErrorResponse>) ExperimentsSearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.experiments_search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Searches for experiments.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExperimentsSearchRequest}
+     */
+    public final <TDocument> ExperimentsSearchResponse<TDocument> experimentsSearch(
+        Function<ExperimentsSearchRequest.Builder, ObjectBuilder<ExperimentsSearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return experimentsSearch(fn.apply(new ExperimentsSearchRequest.Builder()).build(), tDocumentClass);
+    }
+
     // ----- Endpoint: search_relevance.get_experiments
 
     /**
@@ -381,6 +416,39 @@ public class OpenSearchSearchRelevanceClient extends ApiClient<OpenSearchTranspo
         return getStats(new GetStatsRequest.Builder().build());
     }
 
+    // ----- Endpoint: search_relevance.judgments_search
+
+    /**
+     * Searches for judgments.
+     */
+    public <TDocument> JudgmentsSearchResponse<TDocument> judgmentsSearch(JudgmentsSearchRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<JudgmentsSearchRequest, JudgmentsSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            JudgmentsSearchRequest,
+            JudgmentsSearchResponse<TDocument>,
+            ErrorResponse>) JudgmentsSearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.judgments_search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Searches for judgments.
+     *
+     * @param fn a function that initializes a builder to create the {@link JudgmentsSearchRequest}
+     */
+    public final <TDocument> JudgmentsSearchResponse<TDocument> judgmentsSearch(
+        Function<JudgmentsSearchRequest.Builder, ObjectBuilder<JudgmentsSearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return judgmentsSearch(fn.apply(new JudgmentsSearchRequest.Builder()).build(), tDocumentClass);
+    }
+
     // ----- Endpoint: search_relevance.post_query_sets
 
     /**
@@ -539,5 +607,74 @@ public class OpenSearchSearchRelevanceClient extends ApiClient<OpenSearchTranspo
      */
     public final PutSearchConfigurationsResponse putSearchConfigurations() throws IOException, OpenSearchException {
         return putSearchConfigurations(new PutSearchConfigurationsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: search_relevance.query_sets_search
+
+    /**
+     * Searches for queries in the query sets.
+     */
+    public <TDocument> QuerySetsSearchResponse<TDocument> querySetsSearch(QuerySetsSearchRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<QuerySetsSearchRequest, QuerySetsSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            QuerySetsSearchRequest,
+            QuerySetsSearchResponse<TDocument>,
+            ErrorResponse>) QuerySetsSearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.query_sets_search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Searches for queries in the query sets.
+     *
+     * @param fn a function that initializes a builder to create the {@link QuerySetsSearchRequest}
+     */
+    public final <TDocument> QuerySetsSearchResponse<TDocument> querySetsSearch(
+        Function<QuerySetsSearchRequest.Builder, ObjectBuilder<QuerySetsSearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return querySetsSearch(fn.apply(new QuerySetsSearchRequest.Builder()).build(), tDocumentClass);
+    }
+
+    // ----- Endpoint: search_relevance.search_configurations_search
+
+    /**
+     * Searches for search configurations.
+     */
+    public <TDocument> SearchConfigurationsSearchResponse<TDocument> searchConfigurationsSearch(
+        SearchConfigurationsSearchRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchConfigurationsSearchRequest, SearchConfigurationsSearchResponse<TDocument>, ErrorResponse> endpoint =
+            (JsonEndpoint<
+                SearchConfigurationsSearchRequest,
+                SearchConfigurationsSearchResponse<TDocument>,
+                ErrorResponse>) SearchConfigurationsSearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:search_relevance.search_configurations_search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Searches for search configurations.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchConfigurationsSearchRequest}
+     */
+    public final <TDocument> SearchConfigurationsSearchResponse<TDocument> searchConfigurationsSearch(
+        Function<SearchConfigurationsSearchRequest.Builder, ObjectBuilder<SearchConfigurationsSearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return searchConfigurationsSearch(fn.apply(new SearchConfigurationsSearchRequest.Builder()).build(), tDocumentClass);
     }
 }

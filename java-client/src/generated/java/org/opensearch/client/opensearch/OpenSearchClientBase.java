@@ -589,14 +589,14 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     // ----- Endpoint: mtermvectors
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      */
     public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, MtermvectorsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      *
      * @param fn a function that initializes a builder to create the {@link MtermvectorsRequest}
      */
@@ -606,7 +606,7 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     }
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      */
     public final MtermvectorsResponse mtermvectors() throws IOException, OpenSearchException {
         return mtermvectors(new MtermvectorsRequest.Builder().build());

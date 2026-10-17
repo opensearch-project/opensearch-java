@@ -52,6 +52,9 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
     @Nullable
     private final String userRequestedTenant;
 
+    @Nullable
+    private final String userRequestedTenantAccess;
+
     // ---------------------------------------------------------------------------------------------
 
     private Owner(Builder builder) {
@@ -60,6 +63,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.roles = ApiTypeHelper.unmodifiable(builder.roles);
         this.userRequestedTenant = builder.userRequestedTenant;
+        this.userRequestedTenantAccess = builder.userRequestedTenantAccess;
     }
 
     public static Owner of(Function<Owner.Builder, ObjectBuilder<Owner>> fn) {
@@ -119,6 +123,17 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
     }
 
     /**
+     * The user requested tenant access.
+     * <p>
+     * API name: {@code user_requested_tenant_access}
+     * </p>
+     */
+    @Nullable
+    public final String userRequestedTenantAccess() {
+        return this.userRequestedTenantAccess;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -163,6 +178,11 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
             generator.writeKey("user_requested_tenant");
             generator.write(this.userRequestedTenant);
         }
+
+        if (this.userRequestedTenantAccess != null) {
+            generator.writeKey("user_requested_tenant_access");
+            generator.write(this.userRequestedTenantAccess);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -191,6 +211,8 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
         private List<String> roles;
         @Nullable
         private String userRequestedTenant;
+        @Nullable
+        private String userRequestedTenantAccess;
 
         public Builder() {}
 
@@ -200,6 +222,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
             this.name = o.name;
             this.roles = _listCopy(o.roles);
             this.userRequestedTenant = o.userRequestedTenant;
+            this.userRequestedTenantAccess = o.userRequestedTenantAccess;
         }
 
         private Builder(Builder o) {
@@ -208,6 +231,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
             this.name = o.name;
             this.roles = _listCopy(o.roles);
             this.userRequestedTenant = o.userRequestedTenant;
+            this.userRequestedTenantAccess = o.userRequestedTenantAccess;
         }
 
         @Override
@@ -334,6 +358,18 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
         }
 
         /**
+         * The user requested tenant access.
+         * <p>
+         * API name: {@code user_requested_tenant_access}
+         * </p>
+         */
+        @Nonnull
+        public final Builder userRequestedTenantAccess(@Nullable String value) {
+            this.userRequestedTenantAccess = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link Owner}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -367,6 +403,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
         op.add(Builder::userRequestedTenant, JsonpDeserializer.stringDeserializer(), "user_requested_tenant");
+        op.add(Builder::userRequestedTenantAccess, JsonpDeserializer.stringDeserializer(), "user_requested_tenant_access");
     }
 
     @Override
@@ -377,6 +414,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
         result = 31 * result + this.name.hashCode();
         result = 31 * result + Objects.hashCode(this.roles);
         result = 31 * result + Objects.hashCode(this.userRequestedTenant);
+        result = 31 * result + Objects.hashCode(this.userRequestedTenantAccess);
         return result;
     }
 
@@ -389,6 +427,7 @@ public class Owner implements PlainJsonSerializable, ToCopyableBuilder<Owner.Bui
             && Objects.equals(this.customAttributeNames, other.customAttributeNames)
             && this.name.equals(other.name)
             && Objects.equals(this.roles, other.roles)
-            && Objects.equals(this.userRequestedTenant, other.userRequestedTenant);
+            && Objects.equals(this.userRequestedTenant, other.userRequestedTenant)
+            && Objects.equals(this.userRequestedTenantAccess, other.userRequestedTenantAccess);
     }
 }

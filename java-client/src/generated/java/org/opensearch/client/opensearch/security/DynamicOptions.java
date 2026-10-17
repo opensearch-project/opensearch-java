@@ -62,6 +62,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<DynamicOptions.Builder, DynamicOptions> {
 
+    @Nullable
+    private final ApiTokensConfig apiTokens;
+
     @Nonnull
     private final Map<String, JsonData> authFailureListeners;
 
@@ -105,11 +108,15 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
     private final Map<String, JsonData> opensearchDashboards;
 
     @Nullable
+    private final Boolean privilegesEvaluationIgnoreUnauthorizedIndices;
+
+    @Nullable
     private final Boolean respectRequestIndicesOptions;
 
     // ---------------------------------------------------------------------------------------------
 
     private DynamicOptions(Builder builder) {
+        this.apiTokens = builder.apiTokens;
         this.authFailureListeners = ApiTypeHelper.unmodifiable(builder.authFailureListeners);
         this.authc = ApiTypeHelper.unmodifiable(builder.authc);
         this.authz = ApiTypeHelper.unmodifiable(builder.authz);
@@ -124,11 +131,20 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         this.multiRolespanEnabled = builder.multiRolespanEnabled;
         this.onBehalfOf = ApiTypeHelper.unmodifiable(builder.onBehalfOf);
         this.opensearchDashboards = ApiTypeHelper.unmodifiable(builder.opensearchDashboards);
+        this.privilegesEvaluationIgnoreUnauthorizedIndices = builder.privilegesEvaluationIgnoreUnauthorizedIndices;
         this.respectRequestIndicesOptions = builder.respectRequestIndicesOptions;
     }
 
     public static DynamicOptions of(Function<DynamicOptions.Builder, ObjectBuilder<DynamicOptions>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code api_tokens}
+     */
+    @Nullable
+    public final ApiTokensConfig apiTokens() {
+        return this.apiTokens;
     }
 
     /**
@@ -244,6 +260,14 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * API name: {@code privileges_evaluation_ignore_unauthorized_indices}
+     */
+    @Nullable
+    public final Boolean privilegesEvaluationIgnoreUnauthorizedIndices() {
+        return this.privilegesEvaluationIgnoreUnauthorizedIndices;
+    }
+
+    /**
      * API name: {@code respect_request_indices_options}
      */
     @Nullable
@@ -262,6 +286,11 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.apiTokens != null) {
+            generator.writeKey("api_tokens");
+            this.apiTokens.serialize(generator, mapper);
+        }
+
         if (ApiTypeHelper.isDefined(this.authFailureListeners)) {
             generator.writeKey("auth_failure_listeners");
             generator.writeStartObject();
@@ -367,6 +396,11 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
             generator.writeEnd();
         }
 
+        if (this.privilegesEvaluationIgnoreUnauthorizedIndices != null) {
+            generator.writeKey("privileges_evaluation_ignore_unauthorized_indices");
+            generator.write(this.privilegesEvaluationIgnoreUnauthorizedIndices);
+        }
+
         if (this.respectRequestIndicesOptions != null) {
             generator.writeKey("respect_request_indices_options");
             generator.write(this.respectRequestIndicesOptions);
@@ -390,6 +424,8 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
      * Builder for {@link DynamicOptions}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DynamicOptions> {
+        @Nullable
+        private ApiTokensConfig apiTokens;
         @Nullable
         private Map<String, JsonData> authFailureListeners;
         @Nullable
@@ -419,11 +455,14 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Map<String, JsonData> opensearchDashboards;
         @Nullable
+        private Boolean privilegesEvaluationIgnoreUnauthorizedIndices;
+        @Nullable
         private Boolean respectRequestIndicesOptions;
 
         public Builder() {}
 
         private Builder(DynamicOptions o) {
+            this.apiTokens = o.apiTokens;
             this.authFailureListeners = _mapCopy(o.authFailureListeners);
             this.authc = _mapCopy(o.authc);
             this.authz = _mapCopy(o.authz);
@@ -438,10 +477,12 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
             this.multiRolespanEnabled = o.multiRolespanEnabled;
             this.onBehalfOf = _mapCopy(o.onBehalfOf);
             this.opensearchDashboards = _mapCopy(o.opensearchDashboards);
+            this.privilegesEvaluationIgnoreUnauthorizedIndices = o.privilegesEvaluationIgnoreUnauthorizedIndices;
             this.respectRequestIndicesOptions = o.respectRequestIndicesOptions;
         }
 
         private Builder(Builder o) {
+            this.apiTokens = o.apiTokens;
             this.authFailureListeners = _mapCopy(o.authFailureListeners);
             this.authc = _mapCopy(o.authc);
             this.authz = _mapCopy(o.authz);
@@ -456,6 +497,7 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
             this.multiRolespanEnabled = o.multiRolespanEnabled;
             this.onBehalfOf = _mapCopy(o.onBehalfOf);
             this.opensearchDashboards = _mapCopy(o.opensearchDashboards);
+            this.privilegesEvaluationIgnoreUnauthorizedIndices = o.privilegesEvaluationIgnoreUnauthorizedIndices;
             this.respectRequestIndicesOptions = o.respectRequestIndicesOptions;
         }
 
@@ -463,6 +505,23 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code api_tokens}
+         */
+        @Nonnull
+        public final Builder apiTokens(@Nullable ApiTokensConfig value) {
+            this.apiTokens = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code api_tokens}
+         */
+        @Nonnull
+        public final Builder apiTokens(Function<ApiTokensConfig.Builder, ObjectBuilder<ApiTokensConfig>> fn) {
+            return apiTokens(fn.apply(new ApiTokensConfig.Builder()).build());
         }
 
         /**
@@ -711,6 +770,15 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * API name: {@code privileges_evaluation_ignore_unauthorized_indices}
+         */
+        @Nonnull
+        public final Builder privilegesEvaluationIgnoreUnauthorizedIndices(@Nullable Boolean value) {
+            this.privilegesEvaluationIgnoreUnauthorizedIndices = value;
+            return this;
+        }
+
+        /**
          * API name: {@code respect_request_indices_options}
          */
         @Nonnull
@@ -744,6 +812,7 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
     );
 
     protected static void setupDynamicOptionsDeserializer(ObjectDeserializer<DynamicOptions.Builder> op) {
+        op.add(Builder::apiTokens, ApiTokensConfig._DESERIALIZER, "api_tokens");
         op.add(Builder::authFailureListeners, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "auth_failure_listeners");
         op.add(Builder::authc, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "authc");
         op.add(Builder::authz, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "authz");
@@ -758,12 +827,18 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         op.add(Builder::multiRolespanEnabled, JsonpDeserializer.booleanDeserializer(), "multi_rolespan_enabled");
         op.add(Builder::onBehalfOf, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "on_behalf_of");
         op.add(Builder::opensearchDashboards, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "opensearch-dashboards");
+        op.add(
+            Builder::privilegesEvaluationIgnoreUnauthorizedIndices,
+            JsonpDeserializer.booleanDeserializer(),
+            "privileges_evaluation_ignore_unauthorized_indices"
+        );
         op.add(Builder::respectRequestIndicesOptions, JsonpDeserializer.booleanDeserializer(), "respect_request_indices_options");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.apiTokens);
         result = 31 * result + Objects.hashCode(this.authFailureListeners);
         result = 31 * result + Objects.hashCode(this.authc);
         result = 31 * result + Objects.hashCode(this.authz);
@@ -778,6 +853,7 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         result = 31 * result + Objects.hashCode(this.multiRolespanEnabled);
         result = 31 * result + Objects.hashCode(this.onBehalfOf);
         result = 31 * result + Objects.hashCode(this.opensearchDashboards);
+        result = 31 * result + Objects.hashCode(this.privilegesEvaluationIgnoreUnauthorizedIndices);
         result = 31 * result + Objects.hashCode(this.respectRequestIndicesOptions);
         return result;
     }
@@ -787,7 +863,8 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         DynamicOptions other = (DynamicOptions) o;
-        return Objects.equals(this.authFailureListeners, other.authFailureListeners)
+        return Objects.equals(this.apiTokens, other.apiTokens)
+            && Objects.equals(this.authFailureListeners, other.authFailureListeners)
             && Objects.equals(this.authc, other.authc)
             && Objects.equals(this.authz, other.authz)
             && Objects.equals(this.disableIntertransportAuth, other.disableIntertransportAuth)
@@ -801,6 +878,7 @@ public class DynamicOptions implements PlainJsonSerializable, ToCopyableBuilder<
             && Objects.equals(this.multiRolespanEnabled, other.multiRolespanEnabled)
             && Objects.equals(this.onBehalfOf, other.onBehalfOf)
             && Objects.equals(this.opensearchDashboards, other.opensearchDashboards)
+            && Objects.equals(this.privilegesEvaluationIgnoreUnauthorizedIndices, other.privilegesEvaluationIgnoreUnauthorizedIndices)
             && Objects.equals(this.respectRequestIndicesOptions, other.respectRequestIndicesOptions);
     }
 }

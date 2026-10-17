@@ -65,15 +65,24 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public final class CreatePitRequest extends RequestBase implements ToCopyableBuilder<CreatePitRequest.Builder, CreatePitRequest> {
 
     @Nullable
+    private final Boolean allowNoIndices;
+
+    @Nullable
     private final Boolean allowPartialPitCreation;
 
     @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
+    @Nullable
+    private final Boolean ignoreThrottled;
+
+    @Nullable
+    private final Boolean ignoreUnavailable;
+
     @Nonnull
     private final List<String> index;
 
-    @Nullable
+    @Nonnull
     private final Time keepAlive;
 
     @Nullable
@@ -86,16 +95,31 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
 
     private CreatePitRequest(Builder builder) {
         super(builder);
+        this.allowNoIndices = builder.allowNoIndices;
         this.allowPartialPitCreation = builder.allowPartialPitCreation;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+        this.ignoreThrottled = builder.ignoreThrottled;
+        this.ignoreUnavailable = builder.ignoreUnavailable;
         this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-        this.keepAlive = builder.keepAlive;
+        this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
         this.preference = builder.preference;
         this.routing = ApiTypeHelper.unmodifiable(builder.routing);
     }
 
     public static CreatePitRequest of(Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
+     * missing or closed indexes. This behavior applies even if the request targets other open indexes.
+     * <p>
+     * API name: {@code allow_no_indices}
+     * </p>
+     */
+    @Nullable
+    public final Boolean allowNoIndices() {
+        return this.allowNoIndices;
     }
 
     /**
@@ -121,6 +145,28 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
+     * If <code>true</code>, concrete, expanded or aliased indexes will be ignored when frozen.
+     * <p>
+     * API name: {@code ignore_throttled}
+     * </p>
+     */
+    @Nullable
+    public final Boolean ignoreThrottled() {
+        return this.ignoreThrottled;
+    }
+
+    /**
+     * If <code>false</code>, the request returns an error if it targets a missing or closed index.
+     * <p>
+     * API name: {@code ignore_unavailable}
+     * </p>
+     */
+    @Nullable
+    public final Boolean ignoreUnavailable() {
+        return this.ignoreUnavailable;
+    }
+
+    /**
      * Required - A comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
      * <p>
      * API name: {@code index}
@@ -132,12 +178,12 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Specify the keep alive for point in time.
+     * Required - Specify the keep alive for point in time.
      * <p>
      * API name: {@code keep_alive}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final Time keepAlive() {
         return this.keepAlive;
     }
@@ -182,11 +228,16 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CreatePitRequest> {
         @Nullable
+        private Boolean allowNoIndices;
+        @Nullable
         private Boolean allowPartialPitCreation;
         @Nullable
         private List<ExpandWildcard> expandWildcards;
-        private List<String> index;
         @Nullable
+        private Boolean ignoreThrottled;
+        @Nullable
+        private Boolean ignoreUnavailable;
+        private List<String> index;
         private Time keepAlive;
         @Nullable
         private String preference;
@@ -197,8 +248,11 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
 
         private Builder(CreatePitRequest o) {
             super(o);
+            this.allowNoIndices = o.allowNoIndices;
             this.allowPartialPitCreation = o.allowPartialPitCreation;
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreThrottled = o.ignoreThrottled;
+            this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
             this.keepAlive = o.keepAlive;
             this.preference = o.preference;
@@ -207,8 +261,11 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
 
         private Builder(Builder o) {
             super(o);
+            this.allowNoIndices = o.allowNoIndices;
             this.allowPartialPitCreation = o.allowPartialPitCreation;
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreThrottled = o.ignoreThrottled;
+            this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
             this.keepAlive = o.keepAlive;
             this.preference = o.preference;
@@ -224,6 +281,19 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
+         * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
+         * <p>
+         * API name: {@code allow_no_indices}
+         * </p>
+         */
+        @Nonnull
+        public final Builder allowNoIndices(@Nullable Boolean value) {
+            this.allowNoIndices = value;
             return this;
         }
 
@@ -272,6 +342,30 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
+         * If <code>true</code>, concrete, expanded or aliased indexes will be ignored when frozen.
+         * <p>
+         * API name: {@code ignore_throttled}
+         * </p>
+         */
+        @Nonnull
+        public final Builder ignoreThrottled(@Nullable Boolean value) {
+            this.ignoreThrottled = value;
+            return this;
+        }
+
+        /**
+         * If <code>false</code>, the request returns an error if it targets a missing or closed index.
+         * <p>
+         * API name: {@code ignore_unavailable}
+         * </p>
+         */
+        @Nonnull
+        public final Builder ignoreUnavailable(@Nullable Boolean value) {
+            this.ignoreUnavailable = value;
+            return this;
+        }
+
+        /**
          * Required - A comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
          * <p>
          * API name: {@code index}
@@ -304,19 +398,19 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Specify the keep alive for point in time.
+         * Required - Specify the keep alive for point in time.
          * <p>
          * API name: {@code keep_alive}
          * </p>
          */
         @Nonnull
-        public final Builder keepAlive(@Nullable Time value) {
+        public final Builder keepAlive(Time value) {
             this.keepAlive = value;
             return this;
         }
 
         /**
-         * Specify the keep alive for point in time.
+         * Required - Specify the keep alive for point in time.
          * <p>
          * API name: {@code keep_alive}
          * </p>
@@ -389,15 +483,22 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     @Override
     protected void applyQueryParameters(@Nonnull Map<String, String> params) {
         super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
         if (this.allowPartialPitCreation != null) {
             params.put("allow_partial_pit_creation", String.valueOf(this.allowPartialPitCreation));
         }
         if (ApiTypeHelper.isDefined(this.expandWildcards)) {
             params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
         }
-        if (this.keepAlive != null) {
-            params.put("keep_alive", this.keepAlive._toJsonString());
+        if (this.ignoreThrottled != null) {
+            params.put("ignore_throttled", String.valueOf(this.ignoreThrottled));
         }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        params.put("keep_alive", this.keepAlive._toJsonString());
         if (this.preference != null) {
             params.put("preference", this.preference);
         }
@@ -434,10 +535,13 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.allowNoIndices);
         result = 31 * result + Objects.hashCode(this.allowPartialPitCreation);
         result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.ignoreThrottled);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
         result = 31 * result + this.index.hashCode();
-        result = 31 * result + Objects.hashCode(this.keepAlive);
+        result = 31 * result + this.keepAlive.hashCode();
         result = 31 * result + Objects.hashCode(this.preference);
         result = 31 * result + Objects.hashCode(this.routing);
         return result;
@@ -448,10 +552,13 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         CreatePitRequest other = (CreatePitRequest) o;
-        return Objects.equals(this.allowPartialPitCreation, other.allowPartialPitCreation)
+        return Objects.equals(this.allowNoIndices, other.allowNoIndices)
+            && Objects.equals(this.allowPartialPitCreation, other.allowPartialPitCreation)
             && Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.ignoreThrottled, other.ignoreThrottled)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
             && this.index.equals(other.index)
-            && Objects.equals(this.keepAlive, other.keepAlive)
+            && this.keepAlive.equals(other.keepAlive)
             && Objects.equals(this.preference, other.preference)
             && Objects.equals(this.routing, other.routing);
     }

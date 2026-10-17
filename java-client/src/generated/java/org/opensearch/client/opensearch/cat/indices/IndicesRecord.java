@@ -135,6 +135,12 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String indexingIndexTotal;
 
     @Nullable
+    private final String lastIndexRequestTimestamp;
+
+    @Nullable
+    private final String lastIndexRequestTimestampString;
+
+    @Nullable
     private final String memoryTotal;
 
     @Nullable
@@ -157,6 +163,30 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
 
     @Nullable
     private final String mergesTotalTime;
+
+    @Nullable
+    private final String mergesWarmerOngoingCount;
+
+    @Nullable
+    private final String mergesWarmerTotalBytesReceived;
+
+    @Nullable
+    private final String mergesWarmerTotalBytesSent;
+
+    @Nullable
+    private final String mergesWarmerTotalFailureCount;
+
+    @Nullable
+    private final String mergesWarmerTotalInvocations;
+
+    @Nullable
+    private final String mergesWarmerTotalReceiveTime;
+
+    @Nullable
+    private final String mergesWarmerTotalSendTime;
+
+    @Nullable
+    private final String mergesWarmerTotalTime;
 
     @Nullable
     private final String pri;
@@ -243,6 +273,30 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String priMergesTotalTime;
 
     @Nullable
+    private final String priMergesWarmerOngoingCount;
+
+    @Nullable
+    private final String priMergesWarmerTotalBytesReceived;
+
+    @Nullable
+    private final String priMergesWarmerTotalBytesSent;
+
+    @Nullable
+    private final String priMergesWarmerTotalFailureCount;
+
+    @Nullable
+    private final String priMergesWarmerTotalInvocations;
+
+    @Nullable
+    private final String priMergesWarmerTotalReceiveTime;
+
+    @Nullable
+    private final String priMergesWarmerTotalSendTime;
+
+    @Nullable
+    private final String priMergesWarmerTotalTime;
+
+    @Nullable
     private final String priQueryCacheEvictions;
 
     @Nullable
@@ -312,6 +366,9 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String priSearchQueryCurrent;
 
     @Nullable
+    private final String priSearchQueryFailed;
+
+    @Nullable
     private final String priSearchQueryTime;
 
     @Nullable
@@ -325,6 +382,18 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
 
     @Nullable
     private final String priSearchScrollTotal;
+
+    @Nullable
+    private final String priSearchStartreeQueryCurrent;
+
+    @Nullable
+    private final String priSearchStartreeQueryFailed;
+
+    @Nullable
+    private final String priSearchStartreeQueryTime;
+
+    @Nullable
+    private final String priSearchStartreeQueryTotal;
 
     @Nullable
     private final String priSegmentsCount;
@@ -435,6 +504,9 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String searchQueryCurrent;
 
     @Nullable
+    private final String searchQueryFailed;
+
+    @Nullable
     private final String searchQueryTime;
 
     @Nullable
@@ -448,6 +520,18 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
 
     @Nullable
     private final String searchScrollTotal;
+
+    @Nullable
+    private final String searchStartreeQueryCurrent;
+
+    @Nullable
+    private final String searchStartreeQueryFailed;
+
+    @Nullable
+    private final String searchStartreeQueryTime;
+
+    @Nullable
+    private final String searchStartreeQueryTotal;
 
     @Nullable
     private final String searchThrottled;
@@ -522,6 +606,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.indexingIndexFailed = builder.indexingIndexFailed;
         this.indexingIndexTime = builder.indexingIndexTime;
         this.indexingIndexTotal = builder.indexingIndexTotal;
+        this.lastIndexRequestTimestamp = builder.lastIndexRequestTimestamp;
+        this.lastIndexRequestTimestampString = builder.lastIndexRequestTimestampString;
         this.memoryTotal = builder.memoryTotal;
         this.mergesCurrent = builder.mergesCurrent;
         this.mergesCurrentDocs = builder.mergesCurrentDocs;
@@ -530,6 +616,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.mergesTotalDocs = builder.mergesTotalDocs;
         this.mergesTotalSize = builder.mergesTotalSize;
         this.mergesTotalTime = builder.mergesTotalTime;
+        this.mergesWarmerOngoingCount = builder.mergesWarmerOngoingCount;
+        this.mergesWarmerTotalBytesReceived = builder.mergesWarmerTotalBytesReceived;
+        this.mergesWarmerTotalBytesSent = builder.mergesWarmerTotalBytesSent;
+        this.mergesWarmerTotalFailureCount = builder.mergesWarmerTotalFailureCount;
+        this.mergesWarmerTotalInvocations = builder.mergesWarmerTotalInvocations;
+        this.mergesWarmerTotalReceiveTime = builder.mergesWarmerTotalReceiveTime;
+        this.mergesWarmerTotalSendTime = builder.mergesWarmerTotalSendTime;
+        this.mergesWarmerTotalTime = builder.mergesWarmerTotalTime;
         this.pri = builder.pri;
         this.priCompletionSize = builder.priCompletionSize;
         this.priFielddataEvictions = builder.priFielddataEvictions;
@@ -558,6 +652,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.priMergesTotalDocs = builder.priMergesTotalDocs;
         this.priMergesTotalSize = builder.priMergesTotalSize;
         this.priMergesTotalTime = builder.priMergesTotalTime;
+        this.priMergesWarmerOngoingCount = builder.priMergesWarmerOngoingCount;
+        this.priMergesWarmerTotalBytesReceived = builder.priMergesWarmerTotalBytesReceived;
+        this.priMergesWarmerTotalBytesSent = builder.priMergesWarmerTotalBytesSent;
+        this.priMergesWarmerTotalFailureCount = builder.priMergesWarmerTotalFailureCount;
+        this.priMergesWarmerTotalInvocations = builder.priMergesWarmerTotalInvocations;
+        this.priMergesWarmerTotalReceiveTime = builder.priMergesWarmerTotalReceiveTime;
+        this.priMergesWarmerTotalSendTime = builder.priMergesWarmerTotalSendTime;
+        this.priMergesWarmerTotalTime = builder.priMergesWarmerTotalTime;
         this.priQueryCacheEvictions = builder.priQueryCacheEvictions;
         this.priQueryCacheMemorySize = builder.priQueryCacheMemorySize;
         this.priRefreshExternalTime = builder.priRefreshExternalTime;
@@ -581,11 +683,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.priSearchPointInTimeTime = builder.priSearchPointInTimeTime;
         this.priSearchPointInTimeTotal = builder.priSearchPointInTimeTotal;
         this.priSearchQueryCurrent = builder.priSearchQueryCurrent;
+        this.priSearchQueryFailed = builder.priSearchQueryFailed;
         this.priSearchQueryTime = builder.priSearchQueryTime;
         this.priSearchQueryTotal = builder.priSearchQueryTotal;
         this.priSearchScrollCurrent = builder.priSearchScrollCurrent;
         this.priSearchScrollTime = builder.priSearchScrollTime;
         this.priSearchScrollTotal = builder.priSearchScrollTotal;
+        this.priSearchStartreeQueryCurrent = builder.priSearchStartreeQueryCurrent;
+        this.priSearchStartreeQueryFailed = builder.priSearchStartreeQueryFailed;
+        this.priSearchStartreeQueryTime = builder.priSearchStartreeQueryTime;
+        this.priSearchStartreeQueryTotal = builder.priSearchStartreeQueryTotal;
         this.priSegmentsCount = builder.priSegmentsCount;
         this.priSegmentsFixedBitsetMemory = builder.priSegmentsFixedBitsetMemory;
         this.priSegmentsIndexWriterMemory = builder.priSegmentsIndexWriterMemory;
@@ -622,11 +729,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.searchPointInTimeTime = builder.searchPointInTimeTime;
         this.searchPointInTimeTotal = builder.searchPointInTimeTotal;
         this.searchQueryCurrent = builder.searchQueryCurrent;
+        this.searchQueryFailed = builder.searchQueryFailed;
         this.searchQueryTime = builder.searchQueryTime;
         this.searchQueryTotal = builder.searchQueryTotal;
         this.searchScrollCurrent = builder.searchScrollCurrent;
         this.searchScrollTime = builder.searchScrollTime;
         this.searchScrollTotal = builder.searchScrollTotal;
+        this.searchStartreeQueryCurrent = builder.searchStartreeQueryCurrent;
+        this.searchStartreeQueryFailed = builder.searchStartreeQueryFailed;
+        this.searchStartreeQueryTime = builder.searchStartreeQueryTime;
+        this.searchStartreeQueryTotal = builder.searchStartreeQueryTotal;
         this.searchThrottled = builder.searchThrottled;
         this.segmentsCount = builder.segmentsCount;
         this.segmentsFixedBitsetMemory = builder.segmentsFixedBitsetMemory;
@@ -924,6 +1036,28 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * epoch timestamp in milliseconds of the most recent indexing request
+     * <p>
+     * API name: {@code last_index_request_timestamp}
+     * </p>
+     */
+    @Nullable
+    public final String lastIndexRequestTimestamp() {
+        return this.lastIndexRequestTimestamp;
+    }
+
+    /**
+     * human-readable timestamp of the most recent indexing request
+     * <p>
+     * API name: {@code last_index_request_timestamp_string}
+     * </p>
+     */
+    @Nullable
+    public final String lastIndexRequestTimestampString() {
+        return this.lastIndexRequestTimestampString;
+    }
+
+    /**
      * total used memory
      * <p>
      * API name: {@code memory.total}
@@ -1009,6 +1143,94 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     public final String mergesTotalTime() {
         return this.mergesTotalTime;
+    }
+
+    /**
+     * number of currently ongoing merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.ongoing_count}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerOngoingCount() {
+        return this.mergesWarmerOngoingCount;
+    }
+
+    /**
+     * total bytes received during merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_bytes_received}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalBytesReceived() {
+        return this.mergesWarmerTotalBytesReceived;
+    }
+
+    /**
+     * total bytes sent during merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_bytes_sent}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalBytesSent() {
+        return this.mergesWarmerTotalBytesSent;
+    }
+
+    /**
+     * total failed merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_failure_count}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalFailureCount() {
+        return this.mergesWarmerTotalFailureCount;
+    }
+
+    /**
+     * total merge warmer invocations
+     * <p>
+     * API name: {@code merges.warmer.total_invocations}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalInvocations() {
+        return this.mergesWarmerTotalInvocations;
+    }
+
+    /**
+     * total time spent receiving data during merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_receive_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalReceiveTime() {
+        return this.mergesWarmerTotalReceiveTime;
+    }
+
+    /**
+     * total time spent sending data during merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_send_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalSendTime() {
+        return this.mergesWarmerTotalSendTime;
+    }
+
+    /**
+     * total time spent on merge warmer operations
+     * <p>
+     * API name: {@code merges.warmer.total_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalTime() {
+        return this.mergesWarmerTotalTime;
     }
 
     /**
@@ -1320,6 +1542,94 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * number of currently ongoing merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.ongoing_count}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerOngoingCount() {
+        return this.priMergesWarmerOngoingCount;
+    }
+
+    /**
+     * total bytes received during merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_bytes_received}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalBytesReceived() {
+        return this.priMergesWarmerTotalBytesReceived;
+    }
+
+    /**
+     * total bytes sent during merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_bytes_sent}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalBytesSent() {
+        return this.priMergesWarmerTotalBytesSent;
+    }
+
+    /**
+     * total failed merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_failure_count}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalFailureCount() {
+        return this.priMergesWarmerTotalFailureCount;
+    }
+
+    /**
+     * total merge warmer invocations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_invocations}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalInvocations() {
+        return this.priMergesWarmerTotalInvocations;
+    }
+
+    /**
+     * total time spent receiving data during merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_receive_time}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalReceiveTime() {
+        return this.priMergesWarmerTotalReceiveTime;
+    }
+
+    /**
+     * total time spent sending data during merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_send_time}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalSendTime() {
+        return this.priMergesWarmerTotalSendTime;
+    }
+
+    /**
+     * total time spent on merge warmer operations
+     * <p>
+     * API name: {@code pri.merges.warmer.total_time}
+     * </p>
+     */
+    @Nullable
+    public final String priMergesWarmerTotalTime() {
+        return this.priMergesWarmerTotalTime;
+    }
+
+    /**
      * query cache evictions
      * <p>
      * API name: {@code pri.query_cache.evictions}
@@ -1552,6 +1862,17 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * total failed query phase ops
+     * <p>
+     * API name: {@code pri.search.query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String priSearchQueryFailed() {
+        return this.priSearchQueryFailed;
+    }
+
+    /**
      * time spent in query phase
      * <p>
      * API name: {@code pri.search.query_time}
@@ -1604,6 +1925,50 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     public final String priSearchScrollTotal() {
         return this.priSearchScrollTotal;
+    }
+
+    /**
+     * number of currently running star-tree query ops
+     * <p>
+     * API name: {@code pri.search.startree.query_current}
+     * </p>
+     */
+    @Nullable
+    public final String priSearchStartreeQueryCurrent() {
+        return this.priSearchStartreeQueryCurrent;
+    }
+
+    /**
+     * total failed star-tree query ops
+     * <p>
+     * API name: {@code pri.search.startree_query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String priSearchStartreeQueryFailed() {
+        return this.priSearchStartreeQueryFailed;
+    }
+
+    /**
+     * time spent in star-tree queries
+     * <p>
+     * API name: {@code pri.search.startree.query_time}
+     * </p>
+     */
+    @Nullable
+    public final String priSearchStartreeQueryTime() {
+        return this.priSearchStartreeQueryTime;
+    }
+
+    /**
+     * total star-tree query ops
+     * <p>
+     * API name: {@code pri.search.startree.query_total}
+     * </p>
+     */
+    @Nullable
+    public final String priSearchStartreeQueryTotal() {
+        return this.priSearchStartreeQueryTotal;
     }
 
     /**
@@ -1982,6 +2347,17 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * total failed query phase ops
+     * <p>
+     * API name: {@code search.query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String searchQueryFailed() {
+        return this.searchQueryFailed;
+    }
+
+    /**
      * time spent in query phase
      * <p>
      * API name: {@code search.query_time}
@@ -2034,6 +2410,50 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     public final String searchScrollTotal() {
         return this.searchScrollTotal;
+    }
+
+    /**
+     * number of currently running star-tree query ops
+     * <p>
+     * API name: {@code search.startree_query_current}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryCurrent() {
+        return this.searchStartreeQueryCurrent;
+    }
+
+    /**
+     * total failed star-tree query ops
+     * <p>
+     * API name: {@code search.startree_query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryFailed() {
+        return this.searchStartreeQueryFailed;
+    }
+
+    /**
+     * time spent in star-tree queries
+     * <p>
+     * API name: {@code search.startree_query_time}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryTime() {
+        return this.searchStartreeQueryTime;
+    }
+
+    /**
+     * total star-tree query ops
+     * <p>
+     * API name: {@code search.startree_query_total}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryTotal() {
+        return this.searchStartreeQueryTotal;
     }
 
     /**
@@ -2337,6 +2757,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             generator.write(this.indexingIndexTotal);
         }
 
+        if (this.lastIndexRequestTimestamp != null) {
+            generator.writeKey("last_index_request_timestamp");
+            generator.write(this.lastIndexRequestTimestamp);
+        }
+
+        if (this.lastIndexRequestTimestampString != null) {
+            generator.writeKey("last_index_request_timestamp_string");
+            generator.write(this.lastIndexRequestTimestampString);
+        }
+
         if (this.memoryTotal != null) {
             generator.writeKey("memory.total");
             generator.write(this.memoryTotal);
@@ -2375,6 +2805,46 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         if (this.mergesTotalTime != null) {
             generator.writeKey("merges.total_time");
             generator.write(this.mergesTotalTime);
+        }
+
+        if (this.mergesWarmerOngoingCount != null) {
+            generator.writeKey("merges.warmer.ongoing_count");
+            generator.write(this.mergesWarmerOngoingCount);
+        }
+
+        if (this.mergesWarmerTotalBytesReceived != null) {
+            generator.writeKey("merges.warmer.total_bytes_received");
+            generator.write(this.mergesWarmerTotalBytesReceived);
+        }
+
+        if (this.mergesWarmerTotalBytesSent != null) {
+            generator.writeKey("merges.warmer.total_bytes_sent");
+            generator.write(this.mergesWarmerTotalBytesSent);
+        }
+
+        if (this.mergesWarmerTotalFailureCount != null) {
+            generator.writeKey("merges.warmer.total_failure_count");
+            generator.write(this.mergesWarmerTotalFailureCount);
+        }
+
+        if (this.mergesWarmerTotalInvocations != null) {
+            generator.writeKey("merges.warmer.total_invocations");
+            generator.write(this.mergesWarmerTotalInvocations);
+        }
+
+        if (this.mergesWarmerTotalReceiveTime != null) {
+            generator.writeKey("merges.warmer.total_receive_time");
+            generator.write(this.mergesWarmerTotalReceiveTime);
+        }
+
+        if (this.mergesWarmerTotalSendTime != null) {
+            generator.writeKey("merges.warmer.total_send_time");
+            generator.write(this.mergesWarmerTotalSendTime);
+        }
+
+        if (this.mergesWarmerTotalTime != null) {
+            generator.writeKey("merges.warmer.total_time");
+            generator.write(this.mergesWarmerTotalTime);
         }
 
         if (this.pri != null) {
@@ -2517,6 +2987,46 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             generator.write(this.priMergesTotalTime);
         }
 
+        if (this.priMergesWarmerOngoingCount != null) {
+            generator.writeKey("pri.merges.warmer.ongoing_count");
+            generator.write(this.priMergesWarmerOngoingCount);
+        }
+
+        if (this.priMergesWarmerTotalBytesReceived != null) {
+            generator.writeKey("pri.merges.warmer.total_bytes_received");
+            generator.write(this.priMergesWarmerTotalBytesReceived);
+        }
+
+        if (this.priMergesWarmerTotalBytesSent != null) {
+            generator.writeKey("pri.merges.warmer.total_bytes_sent");
+            generator.write(this.priMergesWarmerTotalBytesSent);
+        }
+
+        if (this.priMergesWarmerTotalFailureCount != null) {
+            generator.writeKey("pri.merges.warmer.total_failure_count");
+            generator.write(this.priMergesWarmerTotalFailureCount);
+        }
+
+        if (this.priMergesWarmerTotalInvocations != null) {
+            generator.writeKey("pri.merges.warmer.total_invocations");
+            generator.write(this.priMergesWarmerTotalInvocations);
+        }
+
+        if (this.priMergesWarmerTotalReceiveTime != null) {
+            generator.writeKey("pri.merges.warmer.total_receive_time");
+            generator.write(this.priMergesWarmerTotalReceiveTime);
+        }
+
+        if (this.priMergesWarmerTotalSendTime != null) {
+            generator.writeKey("pri.merges.warmer.total_send_time");
+            generator.write(this.priMergesWarmerTotalSendTime);
+        }
+
+        if (this.priMergesWarmerTotalTime != null) {
+            generator.writeKey("pri.merges.warmer.total_time");
+            generator.write(this.priMergesWarmerTotalTime);
+        }
+
         if (this.priQueryCacheEvictions != null) {
             generator.writeKey("pri.query_cache.evictions");
             generator.write(this.priQueryCacheEvictions);
@@ -2632,6 +3142,11 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             generator.write(this.priSearchQueryCurrent);
         }
 
+        if (this.priSearchQueryFailed != null) {
+            generator.writeKey("pri.search.query_failed");
+            generator.write(this.priSearchQueryFailed);
+        }
+
         if (this.priSearchQueryTime != null) {
             generator.writeKey("pri.search.query_time");
             generator.write(this.priSearchQueryTime);
@@ -2655,6 +3170,26 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         if (this.priSearchScrollTotal != null) {
             generator.writeKey("pri.search.scroll_total");
             generator.write(this.priSearchScrollTotal);
+        }
+
+        if (this.priSearchStartreeQueryCurrent != null) {
+            generator.writeKey("pri.search.startree.query_current");
+            generator.write(this.priSearchStartreeQueryCurrent);
+        }
+
+        if (this.priSearchStartreeQueryFailed != null) {
+            generator.writeKey("pri.search.startree_query_failed");
+            generator.write(this.priSearchStartreeQueryFailed);
+        }
+
+        if (this.priSearchStartreeQueryTime != null) {
+            generator.writeKey("pri.search.startree.query_time");
+            generator.write(this.priSearchStartreeQueryTime);
+        }
+
+        if (this.priSearchStartreeQueryTotal != null) {
+            generator.writeKey("pri.search.startree.query_total");
+            generator.write(this.priSearchStartreeQueryTotal);
         }
 
         if (this.priSegmentsCount != null) {
@@ -2837,6 +3372,11 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             generator.write(this.searchQueryCurrent);
         }
 
+        if (this.searchQueryFailed != null) {
+            generator.writeKey("search.query_failed");
+            generator.write(this.searchQueryFailed);
+        }
+
         if (this.searchQueryTime != null) {
             generator.writeKey("search.query_time");
             generator.write(this.searchQueryTime);
@@ -2860,6 +3400,26 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         if (this.searchScrollTotal != null) {
             generator.writeKey("search.scroll_total");
             generator.write(this.searchScrollTotal);
+        }
+
+        if (this.searchStartreeQueryCurrent != null) {
+            generator.writeKey("search.startree_query_current");
+            generator.write(this.searchStartreeQueryCurrent);
+        }
+
+        if (this.searchStartreeQueryFailed != null) {
+            generator.writeKey("search.startree_query_failed");
+            generator.write(this.searchStartreeQueryFailed);
+        }
+
+        if (this.searchStartreeQueryTime != null) {
+            generator.writeKey("search.startree_query_time");
+            generator.write(this.searchStartreeQueryTime);
+        }
+
+        if (this.searchStartreeQueryTotal != null) {
+            generator.writeKey("search.startree_query_total");
+            generator.write(this.searchStartreeQueryTotal);
         }
 
         if (this.searchThrottled != null) {
@@ -3006,6 +3566,10 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String indexingIndexTotal;
         @Nullable
+        private String lastIndexRequestTimestamp;
+        @Nullable
+        private String lastIndexRequestTimestampString;
+        @Nullable
         private String memoryTotal;
         @Nullable
         private String mergesCurrent;
@@ -3021,6 +3585,22 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         private String mergesTotalSize;
         @Nullable
         private String mergesTotalTime;
+        @Nullable
+        private String mergesWarmerOngoingCount;
+        @Nullable
+        private String mergesWarmerTotalBytesReceived;
+        @Nullable
+        private String mergesWarmerTotalBytesSent;
+        @Nullable
+        private String mergesWarmerTotalFailureCount;
+        @Nullable
+        private String mergesWarmerTotalInvocations;
+        @Nullable
+        private String mergesWarmerTotalReceiveTime;
+        @Nullable
+        private String mergesWarmerTotalSendTime;
+        @Nullable
+        private String mergesWarmerTotalTime;
         @Nullable
         private String pri;
         @Nullable
@@ -3078,6 +3658,22 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String priMergesTotalTime;
         @Nullable
+        private String priMergesWarmerOngoingCount;
+        @Nullable
+        private String priMergesWarmerTotalBytesReceived;
+        @Nullable
+        private String priMergesWarmerTotalBytesSent;
+        @Nullable
+        private String priMergesWarmerTotalFailureCount;
+        @Nullable
+        private String priMergesWarmerTotalInvocations;
+        @Nullable
+        private String priMergesWarmerTotalReceiveTime;
+        @Nullable
+        private String priMergesWarmerTotalSendTime;
+        @Nullable
+        private String priMergesWarmerTotalTime;
+        @Nullable
         private String priQueryCacheEvictions;
         @Nullable
         private String priQueryCacheMemorySize;
@@ -3124,6 +3720,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String priSearchQueryCurrent;
         @Nullable
+        private String priSearchQueryFailed;
+        @Nullable
         private String priSearchQueryTime;
         @Nullable
         private String priSearchQueryTotal;
@@ -3133,6 +3731,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         private String priSearchScrollTime;
         @Nullable
         private String priSearchScrollTotal;
+        @Nullable
+        private String priSearchStartreeQueryCurrent;
+        @Nullable
+        private String priSearchStartreeQueryFailed;
+        @Nullable
+        private String priSearchStartreeQueryTime;
+        @Nullable
+        private String priSearchStartreeQueryTotal;
         @Nullable
         private String priSegmentsCount;
         @Nullable
@@ -3206,6 +3812,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String searchQueryCurrent;
         @Nullable
+        private String searchQueryFailed;
+        @Nullable
         private String searchQueryTime;
         @Nullable
         private String searchQueryTotal;
@@ -3215,6 +3823,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         private String searchScrollTime;
         @Nullable
         private String searchScrollTotal;
+        @Nullable
+        private String searchStartreeQueryCurrent;
+        @Nullable
+        private String searchStartreeQueryFailed;
+        @Nullable
+        private String searchStartreeQueryTime;
+        @Nullable
+        private String searchStartreeQueryTotal;
         @Nullable
         private String searchThrottled;
         @Nullable
@@ -3274,6 +3890,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.indexingIndexFailed = o.indexingIndexFailed;
             this.indexingIndexTime = o.indexingIndexTime;
             this.indexingIndexTotal = o.indexingIndexTotal;
+            this.lastIndexRequestTimestamp = o.lastIndexRequestTimestamp;
+            this.lastIndexRequestTimestampString = o.lastIndexRequestTimestampString;
             this.memoryTotal = o.memoryTotal;
             this.mergesCurrent = o.mergesCurrent;
             this.mergesCurrentDocs = o.mergesCurrentDocs;
@@ -3282,6 +3900,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.mergesTotalDocs = o.mergesTotalDocs;
             this.mergesTotalSize = o.mergesTotalSize;
             this.mergesTotalTime = o.mergesTotalTime;
+            this.mergesWarmerOngoingCount = o.mergesWarmerOngoingCount;
+            this.mergesWarmerTotalBytesReceived = o.mergesWarmerTotalBytesReceived;
+            this.mergesWarmerTotalBytesSent = o.mergesWarmerTotalBytesSent;
+            this.mergesWarmerTotalFailureCount = o.mergesWarmerTotalFailureCount;
+            this.mergesWarmerTotalInvocations = o.mergesWarmerTotalInvocations;
+            this.mergesWarmerTotalReceiveTime = o.mergesWarmerTotalReceiveTime;
+            this.mergesWarmerTotalSendTime = o.mergesWarmerTotalSendTime;
+            this.mergesWarmerTotalTime = o.mergesWarmerTotalTime;
             this.pri = o.pri;
             this.priCompletionSize = o.priCompletionSize;
             this.priFielddataEvictions = o.priFielddataEvictions;
@@ -3310,6 +3936,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.priMergesTotalDocs = o.priMergesTotalDocs;
             this.priMergesTotalSize = o.priMergesTotalSize;
             this.priMergesTotalTime = o.priMergesTotalTime;
+            this.priMergesWarmerOngoingCount = o.priMergesWarmerOngoingCount;
+            this.priMergesWarmerTotalBytesReceived = o.priMergesWarmerTotalBytesReceived;
+            this.priMergesWarmerTotalBytesSent = o.priMergesWarmerTotalBytesSent;
+            this.priMergesWarmerTotalFailureCount = o.priMergesWarmerTotalFailureCount;
+            this.priMergesWarmerTotalInvocations = o.priMergesWarmerTotalInvocations;
+            this.priMergesWarmerTotalReceiveTime = o.priMergesWarmerTotalReceiveTime;
+            this.priMergesWarmerTotalSendTime = o.priMergesWarmerTotalSendTime;
+            this.priMergesWarmerTotalTime = o.priMergesWarmerTotalTime;
             this.priQueryCacheEvictions = o.priQueryCacheEvictions;
             this.priQueryCacheMemorySize = o.priQueryCacheMemorySize;
             this.priRefreshExternalTime = o.priRefreshExternalTime;
@@ -3333,11 +3967,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.priSearchPointInTimeTime = o.priSearchPointInTimeTime;
             this.priSearchPointInTimeTotal = o.priSearchPointInTimeTotal;
             this.priSearchQueryCurrent = o.priSearchQueryCurrent;
+            this.priSearchQueryFailed = o.priSearchQueryFailed;
             this.priSearchQueryTime = o.priSearchQueryTime;
             this.priSearchQueryTotal = o.priSearchQueryTotal;
             this.priSearchScrollCurrent = o.priSearchScrollCurrent;
             this.priSearchScrollTime = o.priSearchScrollTime;
             this.priSearchScrollTotal = o.priSearchScrollTotal;
+            this.priSearchStartreeQueryCurrent = o.priSearchStartreeQueryCurrent;
+            this.priSearchStartreeQueryFailed = o.priSearchStartreeQueryFailed;
+            this.priSearchStartreeQueryTime = o.priSearchStartreeQueryTime;
+            this.priSearchStartreeQueryTotal = o.priSearchStartreeQueryTotal;
             this.priSegmentsCount = o.priSegmentsCount;
             this.priSegmentsFixedBitsetMemory = o.priSegmentsFixedBitsetMemory;
             this.priSegmentsIndexWriterMemory = o.priSegmentsIndexWriterMemory;
@@ -3374,11 +4013,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.searchPointInTimeTime = o.searchPointInTimeTime;
             this.searchPointInTimeTotal = o.searchPointInTimeTotal;
             this.searchQueryCurrent = o.searchQueryCurrent;
+            this.searchQueryFailed = o.searchQueryFailed;
             this.searchQueryTime = o.searchQueryTime;
             this.searchQueryTotal = o.searchQueryTotal;
             this.searchScrollCurrent = o.searchScrollCurrent;
             this.searchScrollTime = o.searchScrollTime;
             this.searchScrollTotal = o.searchScrollTotal;
+            this.searchStartreeQueryCurrent = o.searchStartreeQueryCurrent;
+            this.searchStartreeQueryFailed = o.searchStartreeQueryFailed;
+            this.searchStartreeQueryTime = o.searchStartreeQueryTime;
+            this.searchStartreeQueryTotal = o.searchStartreeQueryTotal;
             this.searchThrottled = o.searchThrottled;
             this.segmentsCount = o.segmentsCount;
             this.segmentsFixedBitsetMemory = o.segmentsFixedBitsetMemory;
@@ -3422,6 +4066,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.indexingIndexFailed = o.indexingIndexFailed;
             this.indexingIndexTime = o.indexingIndexTime;
             this.indexingIndexTotal = o.indexingIndexTotal;
+            this.lastIndexRequestTimestamp = o.lastIndexRequestTimestamp;
+            this.lastIndexRequestTimestampString = o.lastIndexRequestTimestampString;
             this.memoryTotal = o.memoryTotal;
             this.mergesCurrent = o.mergesCurrent;
             this.mergesCurrentDocs = o.mergesCurrentDocs;
@@ -3430,6 +4076,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.mergesTotalDocs = o.mergesTotalDocs;
             this.mergesTotalSize = o.mergesTotalSize;
             this.mergesTotalTime = o.mergesTotalTime;
+            this.mergesWarmerOngoingCount = o.mergesWarmerOngoingCount;
+            this.mergesWarmerTotalBytesReceived = o.mergesWarmerTotalBytesReceived;
+            this.mergesWarmerTotalBytesSent = o.mergesWarmerTotalBytesSent;
+            this.mergesWarmerTotalFailureCount = o.mergesWarmerTotalFailureCount;
+            this.mergesWarmerTotalInvocations = o.mergesWarmerTotalInvocations;
+            this.mergesWarmerTotalReceiveTime = o.mergesWarmerTotalReceiveTime;
+            this.mergesWarmerTotalSendTime = o.mergesWarmerTotalSendTime;
+            this.mergesWarmerTotalTime = o.mergesWarmerTotalTime;
             this.pri = o.pri;
             this.priCompletionSize = o.priCompletionSize;
             this.priFielddataEvictions = o.priFielddataEvictions;
@@ -3458,6 +4112,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.priMergesTotalDocs = o.priMergesTotalDocs;
             this.priMergesTotalSize = o.priMergesTotalSize;
             this.priMergesTotalTime = o.priMergesTotalTime;
+            this.priMergesWarmerOngoingCount = o.priMergesWarmerOngoingCount;
+            this.priMergesWarmerTotalBytesReceived = o.priMergesWarmerTotalBytesReceived;
+            this.priMergesWarmerTotalBytesSent = o.priMergesWarmerTotalBytesSent;
+            this.priMergesWarmerTotalFailureCount = o.priMergesWarmerTotalFailureCount;
+            this.priMergesWarmerTotalInvocations = o.priMergesWarmerTotalInvocations;
+            this.priMergesWarmerTotalReceiveTime = o.priMergesWarmerTotalReceiveTime;
+            this.priMergesWarmerTotalSendTime = o.priMergesWarmerTotalSendTime;
+            this.priMergesWarmerTotalTime = o.priMergesWarmerTotalTime;
             this.priQueryCacheEvictions = o.priQueryCacheEvictions;
             this.priQueryCacheMemorySize = o.priQueryCacheMemorySize;
             this.priRefreshExternalTime = o.priRefreshExternalTime;
@@ -3481,11 +4143,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.priSearchPointInTimeTime = o.priSearchPointInTimeTime;
             this.priSearchPointInTimeTotal = o.priSearchPointInTimeTotal;
             this.priSearchQueryCurrent = o.priSearchQueryCurrent;
+            this.priSearchQueryFailed = o.priSearchQueryFailed;
             this.priSearchQueryTime = o.priSearchQueryTime;
             this.priSearchQueryTotal = o.priSearchQueryTotal;
             this.priSearchScrollCurrent = o.priSearchScrollCurrent;
             this.priSearchScrollTime = o.priSearchScrollTime;
             this.priSearchScrollTotal = o.priSearchScrollTotal;
+            this.priSearchStartreeQueryCurrent = o.priSearchStartreeQueryCurrent;
+            this.priSearchStartreeQueryFailed = o.priSearchStartreeQueryFailed;
+            this.priSearchStartreeQueryTime = o.priSearchStartreeQueryTime;
+            this.priSearchStartreeQueryTotal = o.priSearchStartreeQueryTotal;
             this.priSegmentsCount = o.priSegmentsCount;
             this.priSegmentsFixedBitsetMemory = o.priSegmentsFixedBitsetMemory;
             this.priSegmentsIndexWriterMemory = o.priSegmentsIndexWriterMemory;
@@ -3522,11 +4189,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.searchPointInTimeTime = o.searchPointInTimeTime;
             this.searchPointInTimeTotal = o.searchPointInTimeTotal;
             this.searchQueryCurrent = o.searchQueryCurrent;
+            this.searchQueryFailed = o.searchQueryFailed;
             this.searchQueryTime = o.searchQueryTime;
             this.searchQueryTotal = o.searchQueryTotal;
             this.searchScrollCurrent = o.searchScrollCurrent;
             this.searchScrollTime = o.searchScrollTime;
             this.searchScrollTotal = o.searchScrollTotal;
+            this.searchStartreeQueryCurrent = o.searchStartreeQueryCurrent;
+            this.searchStartreeQueryFailed = o.searchStartreeQueryFailed;
+            this.searchStartreeQueryTime = o.searchStartreeQueryTime;
+            this.searchStartreeQueryTotal = o.searchStartreeQueryTotal;
             this.searchThrottled = o.searchThrottled;
             this.segmentsCount = o.segmentsCount;
             this.segmentsFixedBitsetMemory = o.segmentsFixedBitsetMemory;
@@ -3851,6 +4523,30 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * epoch timestamp in milliseconds of the most recent indexing request
+         * <p>
+         * API name: {@code last_index_request_timestamp}
+         * </p>
+         */
+        @Nonnull
+        public final Builder lastIndexRequestTimestamp(@Nullable String value) {
+            this.lastIndexRequestTimestamp = value;
+            return this;
+        }
+
+        /**
+         * human-readable timestamp of the most recent indexing request
+         * <p>
+         * API name: {@code last_index_request_timestamp_string}
+         * </p>
+         */
+        @Nonnull
+        public final Builder lastIndexRequestTimestampString(@Nullable String value) {
+            this.lastIndexRequestTimestampString = value;
+            return this;
+        }
+
+        /**
          * total used memory
          * <p>
          * API name: {@code memory.total}
@@ -3943,6 +4639,102 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nonnull
         public final Builder mergesTotalTime(@Nullable String value) {
             this.mergesTotalTime = value;
+            return this;
+        }
+
+        /**
+         * number of currently ongoing merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.ongoing_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerOngoingCount(@Nullable String value) {
+            this.mergesWarmerOngoingCount = value;
+            return this;
+        }
+
+        /**
+         * total bytes received during merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_bytes_received}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalBytesReceived(@Nullable String value) {
+            this.mergesWarmerTotalBytesReceived = value;
+            return this;
+        }
+
+        /**
+         * total bytes sent during merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_bytes_sent}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalBytesSent(@Nullable String value) {
+            this.mergesWarmerTotalBytesSent = value;
+            return this;
+        }
+
+        /**
+         * total failed merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_failure_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalFailureCount(@Nullable String value) {
+            this.mergesWarmerTotalFailureCount = value;
+            return this;
+        }
+
+        /**
+         * total merge warmer invocations
+         * <p>
+         * API name: {@code merges.warmer.total_invocations}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalInvocations(@Nullable String value) {
+            this.mergesWarmerTotalInvocations = value;
+            return this;
+        }
+
+        /**
+         * total time spent receiving data during merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_receive_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalReceiveTime(@Nullable String value) {
+            this.mergesWarmerTotalReceiveTime = value;
+            return this;
+        }
+
+        /**
+         * total time spent sending data during merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_send_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalSendTime(@Nullable String value) {
+            this.mergesWarmerTotalSendTime = value;
+            return this;
+        }
+
+        /**
+         * total time spent on merge warmer operations
+         * <p>
+         * API name: {@code merges.warmer.total_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalTime(@Nullable String value) {
+            this.mergesWarmerTotalTime = value;
             return this;
         }
 
@@ -4283,6 +5075,102 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * number of currently ongoing merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.ongoing_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerOngoingCount(@Nullable String value) {
+            this.priMergesWarmerOngoingCount = value;
+            return this;
+        }
+
+        /**
+         * total bytes received during merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_bytes_received}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalBytesReceived(@Nullable String value) {
+            this.priMergesWarmerTotalBytesReceived = value;
+            return this;
+        }
+
+        /**
+         * total bytes sent during merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_bytes_sent}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalBytesSent(@Nullable String value) {
+            this.priMergesWarmerTotalBytesSent = value;
+            return this;
+        }
+
+        /**
+         * total failed merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_failure_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalFailureCount(@Nullable String value) {
+            this.priMergesWarmerTotalFailureCount = value;
+            return this;
+        }
+
+        /**
+         * total merge warmer invocations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_invocations}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalInvocations(@Nullable String value) {
+            this.priMergesWarmerTotalInvocations = value;
+            return this;
+        }
+
+        /**
+         * total time spent receiving data during merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_receive_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalReceiveTime(@Nullable String value) {
+            this.priMergesWarmerTotalReceiveTime = value;
+            return this;
+        }
+
+        /**
+         * total time spent sending data during merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_send_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalSendTime(@Nullable String value) {
+            this.priMergesWarmerTotalSendTime = value;
+            return this;
+        }
+
+        /**
+         * total time spent on merge warmer operations
+         * <p>
+         * API name: {@code pri.merges.warmer.total_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priMergesWarmerTotalTime(@Nullable String value) {
+            this.priMergesWarmerTotalTime = value;
+            return this;
+        }
+
+        /**
          * query cache evictions
          * <p>
          * API name: {@code pri.query_cache.evictions}
@@ -4538,6 +5426,18 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * total failed query phase ops
+         * <p>
+         * API name: {@code pri.search.query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priSearchQueryFailed(@Nullable String value) {
+            this.priSearchQueryFailed = value;
+            return this;
+        }
+
+        /**
          * time spent in query phase
          * <p>
          * API name: {@code pri.search.query_time}
@@ -4594,6 +5494,54 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nonnull
         public final Builder priSearchScrollTotal(@Nullable String value) {
             this.priSearchScrollTotal = value;
+            return this;
+        }
+
+        /**
+         * number of currently running star-tree query ops
+         * <p>
+         * API name: {@code pri.search.startree.query_current}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priSearchStartreeQueryCurrent(@Nullable String value) {
+            this.priSearchStartreeQueryCurrent = value;
+            return this;
+        }
+
+        /**
+         * total failed star-tree query ops
+         * <p>
+         * API name: {@code pri.search.startree_query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priSearchStartreeQueryFailed(@Nullable String value) {
+            this.priSearchStartreeQueryFailed = value;
+            return this;
+        }
+
+        /**
+         * time spent in star-tree queries
+         * <p>
+         * API name: {@code pri.search.startree.query_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priSearchStartreeQueryTime(@Nullable String value) {
+            this.priSearchStartreeQueryTime = value;
+            return this;
+        }
+
+        /**
+         * total star-tree query ops
+         * <p>
+         * API name: {@code pri.search.startree.query_total}
+         * </p>
+         */
+        @Nonnull
+        public final Builder priSearchStartreeQueryTotal(@Nullable String value) {
+            this.priSearchStartreeQueryTotal = value;
             return this;
         }
 
@@ -5010,6 +5958,18 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * total failed query phase ops
+         * <p>
+         * API name: {@code search.query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchQueryFailed(@Nullable String value) {
+            this.searchQueryFailed = value;
+            return this;
+        }
+
+        /**
          * time spent in query phase
          * <p>
          * API name: {@code search.query_time}
@@ -5066,6 +6026,54 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nonnull
         public final Builder searchScrollTotal(@Nullable String value) {
             this.searchScrollTotal = value;
+            return this;
+        }
+
+        /**
+         * number of currently running star-tree query ops
+         * <p>
+         * API name: {@code search.startree_query_current}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryCurrent(@Nullable String value) {
+            this.searchStartreeQueryCurrent = value;
+            return this;
+        }
+
+        /**
+         * total failed star-tree query ops
+         * <p>
+         * API name: {@code search.startree_query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryFailed(@Nullable String value) {
+            this.searchStartreeQueryFailed = value;
+            return this;
+        }
+
+        /**
+         * time spent in star-tree queries
+         * <p>
+         * API name: {@code search.startree_query_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryTime(@Nullable String value) {
+            this.searchStartreeQueryTime = value;
+            return this;
+        }
+
+        /**
+         * total star-tree query ops
+         * <p>
+         * API name: {@code search.startree_query_total}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryTotal(@Nullable String value) {
+            this.searchStartreeQueryTotal = value;
             return this;
         }
 
@@ -5300,6 +6308,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::indexingIndexFailed, JsonpDeserializer.stringDeserializer(), "indexing.index_failed");
         op.add(Builder::indexingIndexTime, JsonpDeserializer.stringDeserializer(), "indexing.index_time");
         op.add(Builder::indexingIndexTotal, JsonpDeserializer.stringDeserializer(), "indexing.index_total");
+        op.add(Builder::lastIndexRequestTimestamp, JsonpDeserializer.stringDeserializer(), "last_index_request_timestamp");
+        op.add(Builder::lastIndexRequestTimestampString, JsonpDeserializer.stringDeserializer(), "last_index_request_timestamp_string");
         op.add(Builder::memoryTotal, JsonpDeserializer.stringDeserializer(), "memory.total");
         op.add(Builder::mergesCurrent, JsonpDeserializer.stringDeserializer(), "merges.current");
         op.add(Builder::mergesCurrentDocs, JsonpDeserializer.stringDeserializer(), "merges.current_docs");
@@ -5308,6 +6318,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::mergesTotalDocs, JsonpDeserializer.stringDeserializer(), "merges.total_docs");
         op.add(Builder::mergesTotalSize, JsonpDeserializer.stringDeserializer(), "merges.total_size");
         op.add(Builder::mergesTotalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time");
+        op.add(Builder::mergesWarmerOngoingCount, JsonpDeserializer.stringDeserializer(), "merges.warmer.ongoing_count");
+        op.add(Builder::mergesWarmerTotalBytesReceived, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_bytes_received");
+        op.add(Builder::mergesWarmerTotalBytesSent, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_bytes_sent");
+        op.add(Builder::mergesWarmerTotalFailureCount, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_failure_count");
+        op.add(Builder::mergesWarmerTotalInvocations, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_invocations");
+        op.add(Builder::mergesWarmerTotalReceiveTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_receive_time");
+        op.add(Builder::mergesWarmerTotalSendTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_send_time");
+        op.add(Builder::mergesWarmerTotalTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_time");
         op.add(Builder::pri, JsonpDeserializer.stringDeserializer(), "pri");
         op.add(Builder::priCompletionSize, JsonpDeserializer.stringDeserializer(), "pri.completion.size");
         op.add(Builder::priFielddataEvictions, JsonpDeserializer.stringDeserializer(), "pri.fielddata.evictions");
@@ -5336,6 +6354,18 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::priMergesTotalDocs, JsonpDeserializer.stringDeserializer(), "pri.merges.total_docs");
         op.add(Builder::priMergesTotalSize, JsonpDeserializer.stringDeserializer(), "pri.merges.total_size");
         op.add(Builder::priMergesTotalTime, JsonpDeserializer.stringDeserializer(), "pri.merges.total_time");
+        op.add(Builder::priMergesWarmerOngoingCount, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.ongoing_count");
+        op.add(
+            Builder::priMergesWarmerTotalBytesReceived,
+            JsonpDeserializer.stringDeserializer(),
+            "pri.merges.warmer.total_bytes_received"
+        );
+        op.add(Builder::priMergesWarmerTotalBytesSent, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_bytes_sent");
+        op.add(Builder::priMergesWarmerTotalFailureCount, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_failure_count");
+        op.add(Builder::priMergesWarmerTotalInvocations, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_invocations");
+        op.add(Builder::priMergesWarmerTotalReceiveTime, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_receive_time");
+        op.add(Builder::priMergesWarmerTotalSendTime, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_send_time");
+        op.add(Builder::priMergesWarmerTotalTime, JsonpDeserializer.stringDeserializer(), "pri.merges.warmer.total_time");
         op.add(Builder::priQueryCacheEvictions, JsonpDeserializer.stringDeserializer(), "pri.query_cache.evictions");
         op.add(Builder::priQueryCacheMemorySize, JsonpDeserializer.stringDeserializer(), "pri.query_cache.memory_size");
         op.add(Builder::priRefreshExternalTime, JsonpDeserializer.stringDeserializer(), "pri.refresh.external_time");
@@ -5359,11 +6389,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::priSearchPointInTimeTime, JsonpDeserializer.stringDeserializer(), "pri.search.point_in_time_time");
         op.add(Builder::priSearchPointInTimeTotal, JsonpDeserializer.stringDeserializer(), "pri.search.point_in_time_total");
         op.add(Builder::priSearchQueryCurrent, JsonpDeserializer.stringDeserializer(), "pri.search.query_current");
+        op.add(Builder::priSearchQueryFailed, JsonpDeserializer.stringDeserializer(), "pri.search.query_failed");
         op.add(Builder::priSearchQueryTime, JsonpDeserializer.stringDeserializer(), "pri.search.query_time");
         op.add(Builder::priSearchQueryTotal, JsonpDeserializer.stringDeserializer(), "pri.search.query_total");
         op.add(Builder::priSearchScrollCurrent, JsonpDeserializer.stringDeserializer(), "pri.search.scroll_current");
         op.add(Builder::priSearchScrollTime, JsonpDeserializer.stringDeserializer(), "pri.search.scroll_time");
         op.add(Builder::priSearchScrollTotal, JsonpDeserializer.stringDeserializer(), "pri.search.scroll_total");
+        op.add(Builder::priSearchStartreeQueryCurrent, JsonpDeserializer.stringDeserializer(), "pri.search.startree.query_current");
+        op.add(Builder::priSearchStartreeQueryFailed, JsonpDeserializer.stringDeserializer(), "pri.search.startree_query_failed");
+        op.add(Builder::priSearchStartreeQueryTime, JsonpDeserializer.stringDeserializer(), "pri.search.startree.query_time");
+        op.add(Builder::priSearchStartreeQueryTotal, JsonpDeserializer.stringDeserializer(), "pri.search.startree.query_total");
         op.add(Builder::priSegmentsCount, JsonpDeserializer.stringDeserializer(), "pri.segments.count");
         op.add(Builder::priSegmentsFixedBitsetMemory, JsonpDeserializer.stringDeserializer(), "pri.segments.fixed_bitset_memory");
         op.add(Builder::priSegmentsIndexWriterMemory, JsonpDeserializer.stringDeserializer(), "pri.segments.index_writer_memory");
@@ -5400,11 +6435,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::searchPointInTimeTime, JsonpDeserializer.stringDeserializer(), "search.point_in_time_time");
         op.add(Builder::searchPointInTimeTotal, JsonpDeserializer.stringDeserializer(), "search.point_in_time_total");
         op.add(Builder::searchQueryCurrent, JsonpDeserializer.stringDeserializer(), "search.query_current");
+        op.add(Builder::searchQueryFailed, JsonpDeserializer.stringDeserializer(), "search.query_failed");
         op.add(Builder::searchQueryTime, JsonpDeserializer.stringDeserializer(), "search.query_time");
         op.add(Builder::searchQueryTotal, JsonpDeserializer.stringDeserializer(), "search.query_total");
         op.add(Builder::searchScrollCurrent, JsonpDeserializer.stringDeserializer(), "search.scroll_current");
         op.add(Builder::searchScrollTime, JsonpDeserializer.stringDeserializer(), "search.scroll_time");
         op.add(Builder::searchScrollTotal, JsonpDeserializer.stringDeserializer(), "search.scroll_total");
+        op.add(Builder::searchStartreeQueryCurrent, JsonpDeserializer.stringDeserializer(), "search.startree_query_current");
+        op.add(Builder::searchStartreeQueryFailed, JsonpDeserializer.stringDeserializer(), "search.startree_query_failed");
+        op.add(Builder::searchStartreeQueryTime, JsonpDeserializer.stringDeserializer(), "search.startree_query_time");
+        op.add(Builder::searchStartreeQueryTotal, JsonpDeserializer.stringDeserializer(), "search.startree_query_total");
         op.add(Builder::searchThrottled, JsonpDeserializer.stringDeserializer(), "search.throttled");
         op.add(Builder::segmentsCount, JsonpDeserializer.stringDeserializer(), "segments.count");
         op.add(Builder::segmentsFixedBitsetMemory, JsonpDeserializer.stringDeserializer(), "segments.fixed_bitset_memory");
@@ -5450,6 +6490,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.indexingIndexFailed);
         result = 31 * result + Objects.hashCode(this.indexingIndexTime);
         result = 31 * result + Objects.hashCode(this.indexingIndexTotal);
+        result = 31 * result + Objects.hashCode(this.lastIndexRequestTimestamp);
+        result = 31 * result + Objects.hashCode(this.lastIndexRequestTimestampString);
         result = 31 * result + Objects.hashCode(this.memoryTotal);
         result = 31 * result + Objects.hashCode(this.mergesCurrent);
         result = 31 * result + Objects.hashCode(this.mergesCurrentDocs);
@@ -5458,6 +6500,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.mergesTotalDocs);
         result = 31 * result + Objects.hashCode(this.mergesTotalSize);
         result = 31 * result + Objects.hashCode(this.mergesTotalTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerOngoingCount);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalBytesReceived);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalBytesSent);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalFailureCount);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalInvocations);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalReceiveTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalSendTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalTime);
         result = 31 * result + Objects.hashCode(this.pri);
         result = 31 * result + Objects.hashCode(this.priCompletionSize);
         result = 31 * result + Objects.hashCode(this.priFielddataEvictions);
@@ -5486,6 +6536,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.priMergesTotalDocs);
         result = 31 * result + Objects.hashCode(this.priMergesTotalSize);
         result = 31 * result + Objects.hashCode(this.priMergesTotalTime);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerOngoingCount);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalBytesReceived);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalBytesSent);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalFailureCount);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalInvocations);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalReceiveTime);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalSendTime);
+        result = 31 * result + Objects.hashCode(this.priMergesWarmerTotalTime);
         result = 31 * result + Objects.hashCode(this.priQueryCacheEvictions);
         result = 31 * result + Objects.hashCode(this.priQueryCacheMemorySize);
         result = 31 * result + Objects.hashCode(this.priRefreshExternalTime);
@@ -5509,11 +6567,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.priSearchPointInTimeTime);
         result = 31 * result + Objects.hashCode(this.priSearchPointInTimeTotal);
         result = 31 * result + Objects.hashCode(this.priSearchQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.priSearchQueryFailed);
         result = 31 * result + Objects.hashCode(this.priSearchQueryTime);
         result = 31 * result + Objects.hashCode(this.priSearchQueryTotal);
         result = 31 * result + Objects.hashCode(this.priSearchScrollCurrent);
         result = 31 * result + Objects.hashCode(this.priSearchScrollTime);
         result = 31 * result + Objects.hashCode(this.priSearchScrollTotal);
+        result = 31 * result + Objects.hashCode(this.priSearchStartreeQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.priSearchStartreeQueryFailed);
+        result = 31 * result + Objects.hashCode(this.priSearchStartreeQueryTime);
+        result = 31 * result + Objects.hashCode(this.priSearchStartreeQueryTotal);
         result = 31 * result + Objects.hashCode(this.priSegmentsCount);
         result = 31 * result + Objects.hashCode(this.priSegmentsFixedBitsetMemory);
         result = 31 * result + Objects.hashCode(this.priSegmentsIndexWriterMemory);
@@ -5550,11 +6613,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.searchPointInTimeTime);
         result = 31 * result + Objects.hashCode(this.searchPointInTimeTotal);
         result = 31 * result + Objects.hashCode(this.searchQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.searchQueryFailed);
         result = 31 * result + Objects.hashCode(this.searchQueryTime);
         result = 31 * result + Objects.hashCode(this.searchQueryTotal);
         result = 31 * result + Objects.hashCode(this.searchScrollCurrent);
         result = 31 * result + Objects.hashCode(this.searchScrollTime);
         result = 31 * result + Objects.hashCode(this.searchScrollTotal);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryFailed);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryTime);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryTotal);
         result = 31 * result + Objects.hashCode(this.searchThrottled);
         result = 31 * result + Objects.hashCode(this.segmentsCount);
         result = 31 * result + Objects.hashCode(this.segmentsFixedBitsetMemory);
@@ -5603,6 +6671,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.indexingIndexFailed, other.indexingIndexFailed)
             && Objects.equals(this.indexingIndexTime, other.indexingIndexTime)
             && Objects.equals(this.indexingIndexTotal, other.indexingIndexTotal)
+            && Objects.equals(this.lastIndexRequestTimestamp, other.lastIndexRequestTimestamp)
+            && Objects.equals(this.lastIndexRequestTimestampString, other.lastIndexRequestTimestampString)
             && Objects.equals(this.memoryTotal, other.memoryTotal)
             && Objects.equals(this.mergesCurrent, other.mergesCurrent)
             && Objects.equals(this.mergesCurrentDocs, other.mergesCurrentDocs)
@@ -5611,6 +6681,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.mergesTotalDocs, other.mergesTotalDocs)
             && Objects.equals(this.mergesTotalSize, other.mergesTotalSize)
             && Objects.equals(this.mergesTotalTime, other.mergesTotalTime)
+            && Objects.equals(this.mergesWarmerOngoingCount, other.mergesWarmerOngoingCount)
+            && Objects.equals(this.mergesWarmerTotalBytesReceived, other.mergesWarmerTotalBytesReceived)
+            && Objects.equals(this.mergesWarmerTotalBytesSent, other.mergesWarmerTotalBytesSent)
+            && Objects.equals(this.mergesWarmerTotalFailureCount, other.mergesWarmerTotalFailureCount)
+            && Objects.equals(this.mergesWarmerTotalInvocations, other.mergesWarmerTotalInvocations)
+            && Objects.equals(this.mergesWarmerTotalReceiveTime, other.mergesWarmerTotalReceiveTime)
+            && Objects.equals(this.mergesWarmerTotalSendTime, other.mergesWarmerTotalSendTime)
+            && Objects.equals(this.mergesWarmerTotalTime, other.mergesWarmerTotalTime)
             && Objects.equals(this.pri, other.pri)
             && Objects.equals(this.priCompletionSize, other.priCompletionSize)
             && Objects.equals(this.priFielddataEvictions, other.priFielddataEvictions)
@@ -5639,6 +6717,14 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.priMergesTotalDocs, other.priMergesTotalDocs)
             && Objects.equals(this.priMergesTotalSize, other.priMergesTotalSize)
             && Objects.equals(this.priMergesTotalTime, other.priMergesTotalTime)
+            && Objects.equals(this.priMergesWarmerOngoingCount, other.priMergesWarmerOngoingCount)
+            && Objects.equals(this.priMergesWarmerTotalBytesReceived, other.priMergesWarmerTotalBytesReceived)
+            && Objects.equals(this.priMergesWarmerTotalBytesSent, other.priMergesWarmerTotalBytesSent)
+            && Objects.equals(this.priMergesWarmerTotalFailureCount, other.priMergesWarmerTotalFailureCount)
+            && Objects.equals(this.priMergesWarmerTotalInvocations, other.priMergesWarmerTotalInvocations)
+            && Objects.equals(this.priMergesWarmerTotalReceiveTime, other.priMergesWarmerTotalReceiveTime)
+            && Objects.equals(this.priMergesWarmerTotalSendTime, other.priMergesWarmerTotalSendTime)
+            && Objects.equals(this.priMergesWarmerTotalTime, other.priMergesWarmerTotalTime)
             && Objects.equals(this.priQueryCacheEvictions, other.priQueryCacheEvictions)
             && Objects.equals(this.priQueryCacheMemorySize, other.priQueryCacheMemorySize)
             && Objects.equals(this.priRefreshExternalTime, other.priRefreshExternalTime)
@@ -5662,11 +6748,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.priSearchPointInTimeTime, other.priSearchPointInTimeTime)
             && Objects.equals(this.priSearchPointInTimeTotal, other.priSearchPointInTimeTotal)
             && Objects.equals(this.priSearchQueryCurrent, other.priSearchQueryCurrent)
+            && Objects.equals(this.priSearchQueryFailed, other.priSearchQueryFailed)
             && Objects.equals(this.priSearchQueryTime, other.priSearchQueryTime)
             && Objects.equals(this.priSearchQueryTotal, other.priSearchQueryTotal)
             && Objects.equals(this.priSearchScrollCurrent, other.priSearchScrollCurrent)
             && Objects.equals(this.priSearchScrollTime, other.priSearchScrollTime)
             && Objects.equals(this.priSearchScrollTotal, other.priSearchScrollTotal)
+            && Objects.equals(this.priSearchStartreeQueryCurrent, other.priSearchStartreeQueryCurrent)
+            && Objects.equals(this.priSearchStartreeQueryFailed, other.priSearchStartreeQueryFailed)
+            && Objects.equals(this.priSearchStartreeQueryTime, other.priSearchStartreeQueryTime)
+            && Objects.equals(this.priSearchStartreeQueryTotal, other.priSearchStartreeQueryTotal)
             && Objects.equals(this.priSegmentsCount, other.priSegmentsCount)
             && Objects.equals(this.priSegmentsFixedBitsetMemory, other.priSegmentsFixedBitsetMemory)
             && Objects.equals(this.priSegmentsIndexWriterMemory, other.priSegmentsIndexWriterMemory)
@@ -5703,11 +6794,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.searchPointInTimeTime, other.searchPointInTimeTime)
             && Objects.equals(this.searchPointInTimeTotal, other.searchPointInTimeTotal)
             && Objects.equals(this.searchQueryCurrent, other.searchQueryCurrent)
+            && Objects.equals(this.searchQueryFailed, other.searchQueryFailed)
             && Objects.equals(this.searchQueryTime, other.searchQueryTime)
             && Objects.equals(this.searchQueryTotal, other.searchQueryTotal)
             && Objects.equals(this.searchScrollCurrent, other.searchScrollCurrent)
             && Objects.equals(this.searchScrollTime, other.searchScrollTime)
             && Objects.equals(this.searchScrollTotal, other.searchScrollTotal)
+            && Objects.equals(this.searchStartreeQueryCurrent, other.searchStartreeQueryCurrent)
+            && Objects.equals(this.searchStartreeQueryFailed, other.searchStartreeQueryFailed)
+            && Objects.equals(this.searchStartreeQueryTime, other.searchStartreeQueryTime)
+            && Objects.equals(this.searchStartreeQueryTotal, other.searchStartreeQueryTotal)
             && Objects.equals(this.searchThrottled, other.searchThrottled)
             && Objects.equals(this.segmentsCount, other.segmentsCount)
             && Objects.equals(this.segmentsFixedBitsetMemory, other.segmentsFixedBitsetMemory)

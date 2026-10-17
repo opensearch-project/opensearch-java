@@ -66,6 +66,12 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
     private final ErrorPolicy errorPolicy;
 
     @Nullable
+    private final Boolean isPrimary;
+
+    @Nullable
+    private final String node;
+
+    @Nullable
     private final Boolean pollerPaused;
 
     @Nullable
@@ -82,6 +88,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
     private ShardIngestionState(Builder builder) {
         this.batchStartPointer = builder.batchStartPointer;
         this.errorPolicy = builder.errorPolicy;
+        this.isPrimary = builder.isPrimary;
+        this.node = builder.node;
         this.pollerPaused = builder.pollerPaused;
         this.pollerState = builder.pollerState;
         this.shard = builder.shard;
@@ -112,6 +120,28 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
     @Nullable
     public final ErrorPolicy errorPolicy() {
         return this.errorPolicy;
+    }
+
+    /**
+     * Indicates whether this is the primary shard.
+     * <p>
+     * API name: {@code is_primary}
+     * </p>
+     */
+    @Nullable
+    public final Boolean isPrimary() {
+        return this.isPrimary;
+    }
+
+    /**
+     * The node on which the shard is located.
+     * <p>
+     * API name: {@code node}
+     * </p>
+     */
+    @Nullable
+    public final String node() {
+        return this.node;
     }
 
     /**
@@ -179,6 +209,16 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
             this.errorPolicy.serialize(generator, mapper);
         }
 
+        if (this.isPrimary != null) {
+            generator.writeKey("is_primary");
+            generator.write(this.isPrimary);
+        }
+
+        if (this.node != null) {
+            generator.writeKey("node");
+            generator.write(this.node);
+        }
+
         if (this.pollerPaused != null) {
             generator.writeKey("poller_paused");
             generator.write(this.pollerPaused);
@@ -222,6 +262,10 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         @Nullable
         private ErrorPolicy errorPolicy;
         @Nullable
+        private Boolean isPrimary;
+        @Nullable
+        private String node;
+        @Nullable
         private Boolean pollerPaused;
         @Nullable
         private PollerState pollerState;
@@ -235,6 +279,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         private Builder(ShardIngestionState o) {
             this.batchStartPointer = o.batchStartPointer;
             this.errorPolicy = o.errorPolicy;
+            this.isPrimary = o.isPrimary;
+            this.node = o.node;
             this.pollerPaused = o.pollerPaused;
             this.pollerState = o.pollerState;
             this.shard = o.shard;
@@ -244,6 +290,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         private Builder(Builder o) {
             this.batchStartPointer = o.batchStartPointer;
             this.errorPolicy = o.errorPolicy;
+            this.isPrimary = o.isPrimary;
+            this.node = o.node;
             this.pollerPaused = o.pollerPaused;
             this.pollerState = o.pollerState;
             this.shard = o.shard;
@@ -277,6 +325,30 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         @Nonnull
         public final Builder errorPolicy(@Nullable ErrorPolicy value) {
             this.errorPolicy = value;
+            return this;
+        }
+
+        /**
+         * Indicates whether this is the primary shard.
+         * <p>
+         * API name: {@code is_primary}
+         * </p>
+         */
+        @Nonnull
+        public final Builder isPrimary(@Nullable Boolean value) {
+            this.isPrimary = value;
+            return this;
+        }
+
+        /**
+         * The node on which the shard is located.
+         * <p>
+         * API name: {@code node}
+         * </p>
+         */
+        @Nonnull
+        public final Builder node(@Nullable String value) {
+            this.node = value;
             return this;
         }
 
@@ -355,6 +427,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
     protected static void setupShardIngestionStateDeserializer(ObjectDeserializer<ShardIngestionState.Builder> op) {
         op.add(Builder::batchStartPointer, JsonpDeserializer.stringDeserializer(), "batch_start_pointer");
         op.add(Builder::errorPolicy, ErrorPolicy._DESERIALIZER, "error_policy");
+        op.add(Builder::isPrimary, JsonpDeserializer.booleanDeserializer(), "is_primary");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::pollerPaused, JsonpDeserializer.booleanDeserializer(), "poller_paused");
         op.add(Builder::pollerState, PollerState._DESERIALIZER, "poller_state");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
@@ -366,6 +440,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         int result = 17;
         result = 31 * result + Objects.hashCode(this.batchStartPointer);
         result = 31 * result + Objects.hashCode(this.errorPolicy);
+        result = 31 * result + Objects.hashCode(this.isPrimary);
+        result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + Objects.hashCode(this.pollerPaused);
         result = 31 * result + Objects.hashCode(this.pollerState);
         result = 31 * result + Objects.hashCode(this.shard);
@@ -380,6 +456,8 @@ public class ShardIngestionState implements PlainJsonSerializable, ToCopyableBui
         ShardIngestionState other = (ShardIngestionState) o;
         return Objects.equals(this.batchStartPointer, other.batchStartPointer)
             && Objects.equals(this.errorPolicy, other.errorPolicy)
+            && Objects.equals(this.isPrimary, other.isPrimary)
+            && Objects.equals(this.node, other.node)
             && Objects.equals(this.pollerPaused, other.pollerPaused)
             && Objects.equals(this.pollerState, other.pollerState)
             && Objects.equals(this.shard, other.shard)
