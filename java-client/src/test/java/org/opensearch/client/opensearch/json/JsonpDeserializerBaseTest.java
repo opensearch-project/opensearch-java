@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.model.ModelTestCase;
+import org.opensearch.client.opensearch.security.GetSslinfoResponse;
 
 public class JsonpDeserializerBaseTest extends ModelTestCase {
 
@@ -47,5 +48,67 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
             assertTrue(valueList.get(1).isNull());
             assertEquals("c", valueList.get(2)._get());
         }
+    }
+
+    @Test
+    public void testPlainArrayDoesNotAdvertiseTopLevelNull() {
+        // arrayDeserializer is for array fields generally and must stay strict: only a field
+        // whose schema explicitly allows null (arrayOrNullDeserializer, below) should tolerate
+        // this. ObjectDeserializer's real field dispatch (see testOnlyNullableFieldToleratesNull,
+        // below) decides whether to even call a field's deserializer for a given event based on
+        // this flag, so this is the property that actually matters -- not calling deserialize()
+        // directly, which has its own unrelated top-level-null handling at the interface's
+        // 2-arg convenience overload that would mask a regression here.
+        JsonpDeserializer<String> stringDeser = JsonpDeserializer.stringDeserializer();
+        assertFalse(JsonpDeserializer.arrayDeserializer(stringDeser).accepts(JsonParser.Event.VALUE_NULL));
+    }
+
+    @Test
+    public void testArrayOrNullAcceptsTopLevelNull() {
+        // A JSON null for the whole array field (as opposed to an item within it) is treated as
+        // an empty list rather than null, so it can flow into builder setters (via _listAddAll)
+        // the same way an absent/empty array would, instead of throwing. Only used for fields
+        // whose schema explicitly allows null, e.g. ism_template in ISM Policy.
+        // See https://github.com/opensearch-project/opensearch-java/issues/1813
+        String json = "null";
+
+        JsonpDeserializer<String> stringDeser = JsonpDeserializer.stringDeserializer();
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+
+        assertTrue(JsonpDeserializer.arrayOrNullDeserializer(stringDeser).accepts(JsonParser.Event.VALUE_NULL));
+        List<String> stringList = JsonpDeserializer.arrayOrNullDeserializer(stringDeser).deserialize(parser, mapper);
+        assertNotNull(stringList);
+        assertTrue(stringList.isEmpty());
+    }
+
+    @Test
+    public void testArrayOrNullStillDeserializesRealArray() {
+        // Opting into null-tolerance must not change how an actual array is handled.
+        String json = "[\"a\", \"b\"]";
+
+        JsonpDeserializer<String> stringDeser = JsonpDeserializer.stringDeserializer();
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+
+        List<String> stringList = JsonpDeserializer.arrayOrNullDeserializer(stringDeser).deserialize(parser, mapper);
+        assertEquals(List.of("a", "b"), stringList);
+    }
+
+    @Test
+    public void testOnlyNullableFieldToleratesNull() {
+        // End-to-end through the real generated class and its real ObjectDeserializer field
+        // dispatch (op.add(...)), not the deserializer in isolation. GetSslinfoResponse has two
+        // sibling List<String> fields with the same item type -- local_certificates_list (plain
+        // array, per the spec) and peer_certificates_list (schema explicitly allows null, the
+        // #1813 fix) -- so this is a direct A/B on real production code: the same bug, one field
+        // fixed, one deliberately left strict.
+        String required = "\"peer_certificates\":\"x\","
+            + "\"ssl_provider_transport_client\":\"x\","
+            + "\"ssl_provider_transport_server\":\"x\"";
+
+        GetSslinfoResponse ok = fromJson("{" + required + ",\"peer_certificates_list\":null}", GetSslinfoResponse.class);
+        assertNotNull(ok.peerCertificatesList());
+        assertTrue(ok.peerCertificatesList().isEmpty());
+
+        assertThrows(Exception.class, () -> fromJson("{" + required + ",\"local_certificates_list\":null}", GetSslinfoResponse.class));
     }
 }

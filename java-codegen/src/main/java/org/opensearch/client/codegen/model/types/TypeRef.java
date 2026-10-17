@@ -59,6 +59,13 @@ public abstract class TypeRef {
 
     public abstract boolean isPotentiallyBoxedPrimitive();
 
+    /**
+     * Whether this reference describes a field the schema explicitly admits a top-level JSON {@code null} for.
+     */
+    public boolean isNullable() {
+        return false;
+    }
+
     public abstract Optional<Shape> getTargetShape();
 
     public abstract TypeRef getBoxed();
