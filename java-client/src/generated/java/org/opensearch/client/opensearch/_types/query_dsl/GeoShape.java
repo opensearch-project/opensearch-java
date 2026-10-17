@@ -37,42 +37,65 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import org.opensearch.client.util.ToCopyableBuilder;
+import org.opensearch.client.util.TaggedUnion;
+import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: _types.query_dsl.GeoShape
 
+/**
+ * <p>
+ * A shape to use in a geo_shape query. It can be specified in the following ways:
+ * </p>
+ * <ul>
+ * <li>As a GeoJSON object with <code>type</code> and <code>coordinates</code> properties.</li>
+ * <li>As a Well Known Text (WKT) string.</li>
+ * </ul>
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoShape implements PlainJsonSerializable, ToCopyableBuilder<GeoShape.Builder, GeoShape> {
+public class GeoShape implements TaggedUnion<GeoShape.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link GeoShape} variant kinds.
+     */
+    public enum Kind {
+        GeoJson,
+        Wkt
+    }
 
-    @Nonnull
-    private final List<JsonData> coordinates;
+    private final Kind _kind;
+    private final Object _value;
 
-    @Nullable
-    private final String type;
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-    // ---------------------------------------------------------------------------------------------
+    @Override
+    public final Object _get() {
+        return _value;
+    }
+
+    private GeoShape(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
     private GeoShape(Builder builder) {
-        this.coordinates = ApiTypeHelper.unmodifiable(builder.coordinates);
-        this.type = builder.type;
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
 
     public static GeoShape of(Function<GeoShape.Builder, ObjectBuilder<GeoShape>> fn) {
@@ -80,50 +103,50 @@ public class GeoShape implements PlainJsonSerializable, ToCopyableBuilder<GeoSha
     }
 
     /**
-     * API name: {@code coordinates}
+     * Is this variant instance of kind {@code geoJson}?
      */
-    @Nonnull
-    public final List<JsonData> coordinates() {
-        return this.coordinates;
+    public boolean isGeoJson() {
+        return _kind == Kind.GeoJson;
     }
 
     /**
-     * API name: {@code type}
+     * Get the {@code geoJson} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code geoJson} kind.
      */
-    @Nullable
-    public final String type() {
-        return this.type;
+    public GeoJsonGeoShape geoJson() {
+        return TaggedUnionUtils.get(this, Kind.GeoJson);
     }
 
     /**
-     * Serialize this object to JSON.
+     * Is this variant instance of kind {@code wkt}?
      */
+    public boolean isWkt() {
+        return _kind == Kind.Wkt;
+    }
+
+    /**
+     * Get the {@code wkt} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code wkt} kind.
+     */
+    public String wkt() {
+        return TaggedUnionUtils.get(this, Kind.Wkt);
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.coordinates)) {
-            generator.writeKey("coordinates");
-            generator.writeStartArray();
-            for (JsonData item0 : this.coordinates) {
-                item0.serialize(generator, mapper);
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Wkt:
+                    generator.write(((String) this._value));
+                    break;
             }
-            generator.writeEnd();
-        }
-
-        if (this.type != null) {
-            generator.writeKey("type");
-            generator.write(this.type);
         }
     }
 
-    // ---------------------------------------------------------------------------------------------
-
-    @Override
     @Nonnull
     public Builder toBuilder() {
         return new Builder(this);
@@ -134,102 +157,54 @@ public class GeoShape implements PlainJsonSerializable, ToCopyableBuilder<GeoSha
         return new Builder();
     }
 
-    /**
-     * Builder for {@link GeoShape}.
-     */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoShape> {
-        @Nullable
-        private List<JsonData> coordinates;
-        @Nullable
-        private String type;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoShape> {
+        private Kind _kind;
+        private Object _value;
 
         public Builder() {}
 
         private Builder(GeoShape o) {
-            this.coordinates = _listCopy(o.coordinates);
-            this.type = o.type;
+            this._kind = o._kind;
+            this._value = o._value;
         }
 
-        private Builder(Builder o) {
-            this.coordinates = _listCopy(o.coordinates);
-            this.type = o.type;
+        public ObjectBuilder<GeoShape> geoJson(GeoJsonGeoShape v) {
+            this._kind = Kind.GeoJson;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<GeoShape> geoJson(Function<GeoJsonGeoShape.Builder, ObjectBuilder<GeoJsonGeoShape>> fn) {
+            return this.geoJson(fn.apply(new GeoJsonGeoShape.Builder()).build());
+        }
+
+        public ObjectBuilder<GeoShape> wkt(String v) {
+            this._kind = Kind.Wkt;
+            this._value = v;
+            return this;
         }
 
         @Override
-        @Nonnull
-        public Builder copy() {
-            return new Builder(this);
-        }
-
-        /**
-         * API name: {@code coordinates}
-         *
-         * <p>
-         * Adds all elements of <code>list</code> to <code>coordinates</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder coordinates(List<JsonData> list) {
-            this.coordinates = _listAddAll(this.coordinates, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code coordinates}
-         *
-         * <p>
-         * Adds one or more values to <code>coordinates</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder coordinates(JsonData value, JsonData... values) {
-            this.coordinates = _listAdd(this.coordinates, value, values);
-            return this;
-        }
-
-        /**
-         * API name: {@code type}
-         */
-        @Nonnull
-        public final Builder type(@Nullable String value) {
-            this.type = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link GeoShape}.
-         *
-         * @throws NullPointerException if some of the required fields are null.
-         */
-        @Override
-        @Nonnull
         public GeoShape build() {
             _checkSingleUse();
-
             return new GeoShape(this);
         }
     }
 
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Json deserializer for {@link GeoShape}
-     */
-    public static final JsonpDeserializer<GeoShape> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        GeoShape::setupGeoShapeDeserializer
-    );
-
-    protected static void setupGeoShapeDeserializer(ObjectDeserializer<GeoShape.Builder> op) {
-        op.add(Builder::coordinates, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "coordinates");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+    private static JsonpDeserializer<GeoShape> buildGeoShapeDeserializer() {
+        return new UnionDeserializer.Builder<GeoShape, Kind, Object>(GeoShape::new, false).addMember(
+            Kind.GeoJson,
+            GeoJsonGeoShape._DESERIALIZER
+        ).addMember(Kind.Wkt, JsonpDeserializer.stringDeserializer()).build();
     }
+
+    public static final JsonpDeserializer<GeoShape> _DESERIALIZER = JsonpDeserializer.lazy(GeoShape::buildGeoShapeDeserializer);
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.coordinates);
-        result = 31 * result + Objects.hashCode(this.type);
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
         return result;
     }
 
@@ -238,6 +213,6 @@ public class GeoShape implements PlainJsonSerializable, ToCopyableBuilder<GeoSha
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         GeoShape other = (GeoShape) o;
-        return Objects.equals(this.coordinates, other.coordinates) && Objects.equals(this.type, other.type);
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
     }
 }
