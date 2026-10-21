@@ -252,6 +252,7 @@ For more elaborate and advanced instrumentation options, check [official Microme
 - [Data Stream APIs](./guides/data_stream.md)
 - [Point-in-Time APIs](./guides/point_in_time.md)
 - [Search](./guides/search.md)
+- [Node Sniffing](./guides/sniffer.md)
 - [Generic Client](./guides/generic.md)
 - [Json](./guides/json.md)
 
