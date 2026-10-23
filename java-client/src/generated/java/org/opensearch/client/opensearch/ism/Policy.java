@@ -522,7 +522,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
         op.add(Builder::defaultState, JsonpDeserializer.stringDeserializer(), "default_state");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::errorNotification, ErrorNotification._DESERIALIZER, "error_notification");
-        op.add(Builder::ismTemplate, JsonpDeserializer.arrayDeserializer(IsmTemplate._DESERIALIZER), "ism_template");
+        op.add(Builder::ismTemplate, JsonpDeserializer.arrayOrNullDeserializer(IsmTemplate._DESERIALIZER), "ism_template");
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.integerDeserializer(), "last_updated_time");
         op.add(Builder::policyId, JsonpDeserializer.stringDeserializer(), "policy_id");
         op.add(Builder::schemaVersion, JsonpDeserializer.numberDeserializer(), "schema_version");
