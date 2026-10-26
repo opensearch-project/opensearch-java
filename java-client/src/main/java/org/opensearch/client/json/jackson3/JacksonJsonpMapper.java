@@ -147,7 +147,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
             tools.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
 
             try {
-                return objectMapper.readValue(jkParser, clazz);
+                return objectMapper.readerFor(clazz).without(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).readValue(jkParser);
             } catch (JacksonException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }
