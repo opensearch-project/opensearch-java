@@ -228,28 +228,9 @@ public class TypeMapper {
         }
 
         if (allOf.size() > 1) {
-            OpenApiSchema primary = null;
-            for (final OpenApiSchema schema : allOf) {
-                if (schema.hasAllOf() || schema.hasOneOf()) {
-                    primary = schema;
-                    break;
-                }
-            }
-
-            if (primary == null) {
-                for (final OpenApiSchema schema : allOf) {
-                    if (schema.has$ref()) {
-                        primary = schema;
-                        break;
-                    }
-                }
-            }
-
-            if (primary != null) {
-                primary = allOf.get(allOf.size() - 1);
-            }
-
-            return mapType(primary);
+            // Later allOf members specialize earlier ones, so the last member is the most specific type,
+            // e.g. a generic `Buckets` narrowed to a concrete bucket type in each multi-bucket aggregate.
+            return mapType(allOf.get(allOf.size() - 1));
         }
 
         throw new UnsupportedOperationException("Can not get type name for allOf: " + allOf);
