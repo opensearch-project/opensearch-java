@@ -94,7 +94,25 @@ public final class ObjectFlatteningVisitor extends OpenApiVisitorBase {
         schema = schema.has$ref() ? walker.walkSchema(schema.resolve(), this) : schema;
 
         if (schema.hasAllOf()) {
-            return calculateCombinator(schema.getAllOf().orElseThrow(), OpenApiSchema.Builder::withAllOf, Set::addAll, Boolean::logicalOr);
+            final var components = schema.getAllOf()
+                .map(s -> s.stream().map(p -> calculate(p, true)).collect(Collectors.toCollection(ArrayList::new)))
+                .orElseGet(ArrayList::new);
+
+            //
+            // Handling the case when spec has:
+            // type: ...
+            // properties
+            // ...
+            // allOf:
+            // - anyOf (or oneOf):
+            // - type: ...
+            // properties:
+            // ...
+            if (schema.hasProperties() || schema.getRequired().isPresent()) {
+                components.add(0, calculateSimple(schema));
+            }
+
+            return calculateCombinatorProperties(components, OpenApiSchema.Builder::withAllOf, Set::addAll, Boolean::logicalOr);
         } else if (schema.hasAnyOf()) {
             return calculateCombinator(
                 schema.getAnyOf().orElseThrow(),
