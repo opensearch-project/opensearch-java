@@ -48,6 +48,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -62,14 +63,30 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     @Nullable
     private final String id;
 
+    @Nonnull
+    private final String index;
+
+    @Nonnull
+    private final String path;
+
     @Nullable
     private final Query query;
+
+    @Nullable
+    private final String routing;
+
+    @Nullable
+    private final Boolean store;
 
     // ---------------------------------------------------------------------------------------------
 
     private TermsLookup(Builder builder) {
         this.id = builder.id;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
         this.query = builder.query;
+        this.routing = builder.routing;
+        this.store = builder.store;
     }
 
     public static TermsLookup of(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> fn) {
@@ -85,11 +102,43 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     }
 
     /**
+     * Required - API name: {@code index}
+     */
+    @Nonnull
+    public final String index() {
+        return this.index;
+    }
+
+    /**
+     * Required - API name: {@code path}
+     */
+    @Nonnull
+    public final String path() {
+        return this.path;
+    }
+
+    /**
      * API name: {@code query}
      */
     @Nullable
     public final Query query() {
         return this.query;
+    }
+
+    /**
+     * API name: {@code routing}
+     */
+    @Nullable
+    public final String routing() {
+        return this.routing;
+    }
+
+    /**
+     * API name: {@code store}
+     */
+    @Nullable
+    public final Boolean store() {
+        return this.store;
     }
 
     /**
@@ -108,9 +157,25 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
             generator.write(this.id);
         }
 
+        generator.writeKey("index");
+        generator.write(this.index);
+
+        generator.writeKey("path");
+        generator.write(this.path);
+
         if (this.query != null) {
             generator.writeKey("query");
             this.query.serialize(generator, mapper);
+        }
+
+        if (this.routing != null) {
+            generator.writeKey("routing");
+            generator.write(this.routing);
+        }
+
+        if (this.store != null) {
+            generator.writeKey("store");
+            generator.write(this.store);
         }
     }
 
@@ -133,19 +198,33 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsLookup> {
         @Nullable
         private String id;
+        private String index;
+        private String path;
         @Nullable
         private Query query;
+        @Nullable
+        private String routing;
+        @Nullable
+        private Boolean store;
 
         public Builder() {}
 
         private Builder(TermsLookup o) {
             this.id = o.id;
+            this.index = o.index;
+            this.path = o.path;
             this.query = o.query;
+            this.routing = o.routing;
+            this.store = o.store;
         }
 
         private Builder(Builder o) {
             this.id = o.id;
+            this.index = o.index;
+            this.path = o.path;
             this.query = o.query;
+            this.routing = o.routing;
+            this.store = o.store;
         }
 
         @Override
@@ -164,6 +243,24 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         }
 
         /**
+         * Required - API name: {@code index}
+         */
+        @Nonnull
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code path}
+         */
+        @Nonnull
+        public final Builder path(String value) {
+            this.path = value;
+            return this;
+        }
+
+        /**
          * API name: {@code query}
          */
         @Nonnull
@@ -178,6 +275,24 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         @Nonnull
         public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
             return query(fn.apply(new Query.Builder()).build());
+        }
+
+        /**
+         * API name: {@code routing}
+         */
+        @Nonnull
+        public final Builder routing(@Nullable String value) {
+            this.routing = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code store}
+         */
+        @Nonnull
+        public final Builder store(@Nullable Boolean value) {
+            this.store = value;
+            return this;
         }
 
         /**
@@ -206,14 +321,22 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
 
     protected static void setupTermsLookupDeserializer(ObjectDeserializer<TermsLookup.Builder> op) {
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
         op.add(Builder::query, Query._DESERIALIZER, "query");
+        op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+        op.add(Builder::store, JsonpDeserializer.booleanDeserializer(), "store");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + this.path.hashCode();
         result = 31 * result + Objects.hashCode(this.query);
+        result = 31 * result + Objects.hashCode(this.routing);
+        result = 31 * result + Objects.hashCode(this.store);
         return result;
     }
 
@@ -222,6 +345,11 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TermsLookup other = (TermsLookup) o;
-        return Objects.equals(this.id, other.id) && Objects.equals(this.query, other.query);
+        return Objects.equals(this.id, other.id)
+            && this.index.equals(other.index)
+            && this.path.equals(other.path)
+            && Objects.equals(this.query, other.query)
+            && Objects.equals(this.routing, other.routing)
+            && Objects.equals(this.store, other.store);
     }
 }
