@@ -1972,6 +1972,27 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/cluster.put_settings___200'
+  /_cluster/settings/_describe:
+    get:
+      operationId: cluster.describe_settings.0
+      x-operation-group: cluster.describe_settings
+      tags:
+        - Cluster
+      x-version-added: '3.10'
+      description: Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or defaults.
+      externalDocs:
+        url: https://docs.opensearch.org/latest/api-reference/cluster-api/describe-cluster-settings/
+      parameters:
+        - $ref: '#/components/parameters/cluster.describe_settings___query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/cluster.describe_settings___query.settings'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/cluster.describe_settings___200'
   /_cluster/state:
     get:
       operationId: cluster.state.0
@@ -21667,6 +21688,23 @@ components:
         type: boolean
         default: true
       style: form
+    cluster.describe_settings___query.cluster_manager_timeout:
+      name: cluster_manager_timeout
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
+      in: query
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      x-version-added: '3.10'
+    cluster.describe_settings___query.settings:
+      name: settings
+      in: query
+      required: true
+      description: A comma-separated list of exact setting names to describe. Wildcards are not supported; each name must be an exact, valid setting key. At least one name is required.
+      schema:
+        $ref: '#/components/schemas/_common___StringOrStringArray'
+      style: form
+      explode: false
+      x-version-added: '3.10'
     cluster.exists_component_template___path.name:
       in: path
       name: name
@@ -35495,6 +35533,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+      description: ''
+    cluster.describe_settings___200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                type: object
+                description: |-
+                  A map of setting names to their definition metadata. Setting names are returned in sorted order.
+                  A requested name is omitted if it is unknown or filtered.
+                additionalProperties:
+                  $ref: '#/components/schemas/cluster._common___SettingMetadata'
+            required:
+              - settings
       description: ''
     cluster.exists_component_template___200:
       content:
@@ -49567,6 +49621,31 @@ components:
           type: string
         method:
           $ref: '#/components/schemas/_common.mapping___KnnVectorMethod'
+    _common.mapping___SemanticModelLanguageOption:
+      x-version-added: '3.9'
+      type: string
+      enum:
+        - ENGLISH
+        - MULTILINGUAL
+    _common.mapping___SemanticModelSelection:
+      x-version-added: '3.9'
+      type: object
+      description: |-
+        Resolves the model to use for a semantic field from cluster settings instead of a hard-coded `model_id`.
+        The `model_type` and `language_option` pair maps to the cluster setting
+        `plugins.neural_search.model_selection.model_id.<model_type>.<language_option>` (lower-cased),
+        whose value is the resolved model id.
+      properties:
+        language_option:
+          $ref: '#/components/schemas/_common.mapping___SemanticModelLanguageOption'
+        model_type:
+          $ref: '#/components/schemas/_common.mapping___SemanticModelType'
+    _common.mapping___SemanticModelType:
+      x-version-added: '3.9'
+      type: string
+      enum:
+        - DENSE
+        - SPARSE
     _common.mapping___SemanticProperty:
       x-version-added: '3.1'
       type: object
@@ -49579,6 +49658,9 @@ components:
           type: string
         model_id:
           type: string
+        model_selection:
+          $ref: '#/components/schemas/_common.mapping___SemanticModelSelection'
+          x-version-added: '3.9'
         search_model_id:
           type: string
         semantic_info_field_name:
@@ -49599,8 +49681,22 @@ components:
           type: boolean
           default: false
       required:
-        - model_id
         - type
+      allOf:
+        - anyOf:
+            - type: object
+              properties:
+                model_id:
+                  type: string
+              required:
+                - model_id
+            - type: object
+              x-version-added: '3.9'
+              properties:
+                model_selection:
+                  $ref: '#/components/schemas/_common.mapping___SemanticModelSelection'
+              required:
+                - model_selection
     _common.mapping___SemanticSparseEncodingConfig:
       type: object
       properties:
@@ -57301,6 +57397,14 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/indices._common___AliasDefinition'
+    cluster._common___SettingMetadata:
+      type: object
+      properties:
+        dynamic:
+          type: boolean
+          description: Whether the setting is dynamic. A dynamic setting can be updated on a running cluster; a static setting requires a node restart to change.
+      required:
+        - dynamic
     cluster._common___WaitForNodes:
       description: Waits until the specified number of nodes (`N`) is available. Accepts `>=N`, `<=N`, `>N`, and `<N`. You can also use `ge(N)`, `le(N)`, `gt(N)`, and `lt(N)` notation.
       oneOf:
