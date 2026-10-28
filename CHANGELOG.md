@@ -12,6 +12,7 @@ and preserving JDK-8 compatibility at the same time.
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 
 ### Dependencies
+- Bump Jackson to 2.22.4 / 3.2.4 ([#2231](https://github.com/opensearch-project/opensearch-java/pull/2231), [#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport` ([#2199](https://github.com/opensearch-project/opensearch-java/pull/2199))
