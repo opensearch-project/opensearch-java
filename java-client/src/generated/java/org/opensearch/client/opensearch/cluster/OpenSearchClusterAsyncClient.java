@@ -203,6 +203,29 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
         return deleteWeightedRouting(new DeleteWeightedRoutingRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.describe_settings
+
+    /**
+     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
+     * defaults.
+     */
+    public CompletableFuture<DescribeSettingsResponse> describeSettings(DescribeSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DescribeSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
+     * defaults.
+     *
+     * @param fn a function that initializes a builder to create the {@link DescribeSettingsRequest}
+     */
+    public final CompletableFuture<DescribeSettingsResponse> describeSettings(
+        Function<DescribeSettingsRequest.Builder, ObjectBuilder<DescribeSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return describeSettings(fn.apply(new DescribeSettingsRequest.Builder()).build());
+    }
+
     // ----- Endpoint: cluster.exists_component_template
 
     /**
