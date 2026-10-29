@@ -33,6 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
+- `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Deprecated
 
