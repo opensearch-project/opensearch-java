@@ -88,6 +88,13 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
     }
 
     /**
+     * The data line of this update operation ({@code doc}, {@code upsert}, {@code script}, etc.).
+     */
+    public final UpdateOperationData<TDocument> data() {
+        return this.data;
+    }
+
+    /**
      * API name: {@code require_alias}
      */
     @Nullable
