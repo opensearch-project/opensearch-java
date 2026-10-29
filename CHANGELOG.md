@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Add constants for `_first` and `_last` sort values (#2189)
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
+- Add getters for the data of `UpdateOperation` (`UpdateOperation#data()` and the `UpdateOperationData` getters) ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
@@ -32,6 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
+- `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Deprecated
 
