@@ -307,7 +307,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
     static class ArrayDeserializer<T> implements JsonpDeserializer<List<T>> {
         private final JsonpDeserializer<T> itemDeserializer;
-        private EnumSet<Event> acceptedEvents;
+        private volatile EnumSet<Event> acceptedEvents;
         private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.START_ARRAY);
 
         protected ArrayDeserializer(JsonpDeserializer<T> itemDeserializer) {
@@ -322,12 +322,15 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         @Override
         public EnumSet<Event> acceptedEvents() {
             // Accepted events is computed lazily
-            // no need for double-checked lock, we don't care about computing it several times
-            if (acceptedEvents == null) {
-                acceptedEvents = EnumSet.of(Event.START_ARRAY);
-                acceptedEvents.addAll(itemDeserializer.acceptedEvents());
+            // no need for double-checked lock, we don't care about computing it several times,
+            // but the set is only published once it is complete, so no thread sees it half-built
+            EnumSet<Event> events = acceptedEvents;
+            if (events == null) {
+                events = EnumSet.of(Event.START_ARRAY);
+                events.addAll(itemDeserializer.acceptedEvents());
+                acceptedEvents = events;
             }
-            return acceptedEvents;
+            return events;
         }
 
         @Override
