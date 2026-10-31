@@ -39,7 +39,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
-- Fix `_source` deserialization failing with a user-supplied Jackson 3 `ObjectMapper` ([#2236](https://github.com/opensearch-project/opensearch-java/issues/2236))
+- Fix Jackson 3 `JacksonJsonpParserTest` importing Jackson 2 classes and document that a user-supplied Jackson 3 `ObjectMapper` needs `FAIL_ON_TRAILING_TOKENS` disabled ([#2237](https://github.com/opensearch-project/opensearch-java/pull/2237))
 
 ### Security
 

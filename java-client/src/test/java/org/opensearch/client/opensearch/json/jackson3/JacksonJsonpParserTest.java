@@ -43,6 +43,7 @@ import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.model.ModelTestCase;
+import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 public class JacksonJsonpParserTest extends ModelTestCase {
@@ -192,10 +193,8 @@ public class JacksonJsonpParserTest extends ModelTestCase {
             + "\"hits\":{\"total\":{\"value\":1,\"relation\":\"eq\"},\"max_score\":1.0,"
             + "\"hits\":[{\"_index\":\"foo\",\"_id\":\"1\",\"_score\":1.0,\"_source\":{\"x\":1,\"y\":true}}]}}";
 
-        JsonpMapper mapper = new JacksonJsonpMapper(JsonMapper.builder().build()).withAttribute(
-            "org.opensearch.client:Deserializer:_global.search.TDocument",
-            JsonpDeserializer.of(Foo.class)
-        );
+        JsonpMapper mapper = new JacksonJsonpMapper(JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).build())
+            .withAttribute("org.opensearch.client:Deserializer:_global.search.TDocument", JsonpDeserializer.of(Foo.class));
 
         @SuppressWarnings("unchecked")
         SearchResponse<Foo> response = fromJson(json, SearchResponse.class, mapper);
