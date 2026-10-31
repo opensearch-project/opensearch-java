@@ -43,6 +43,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
 - Fix code generation failing with a `NullPointerException` on an `allOf` with no `$ref` or composition member, such as `allOf: [{ properties }, { anyOf }]` (`SemanticProperty` in the normalized spec). `allOf` now always maps to its last, most specific member, which is what it already did whenever it did not fail ([#2238](https://github.com/opensearch-project/opensearch-java/pull/2238))
 - Fix a race in `JsonpDeserializer.arrayDeserializer` and `arrayOrNullDeserializer` where a thread could see its accepted events before the item events were added, and reject a single value in place of a list ([#2254](https://github.com/opensearch-project/opensearch-java/pull/2254))
+- Fix Jackson 3 `JacksonJsonpParserTest` importing Jackson 2 classes and document that a user-supplied Jackson 3 `ObjectMapper` needs `FAIL_ON_TRAILING_TOKENS` disabled ([#2237](https://github.com/opensearch-project/opensearch-java/pull/2237))
 
 ### Security
 
