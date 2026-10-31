@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -45,27 +44,23 @@ public class TypeMapper {
     }
 
     public TypeRef mapType(OpenApiSchema schema) {
-        return mapType(schema, false);
+        return mapType(schema, false, schema.allowsNull());
     }
 
-    public TypeRef mapType(OpenApiSchema schema, boolean boxed) {
-        return (boxed ? mapTypeBoxedMemo : mapTypeMemo).get(schema);
+    public TypeRef mapType(OpenApiSchema schema, boolean boxed, boolean nullable) {
+        return (boxed ? mapTypeBoxedMemo : mapTypeMemo).get(schema, nullable);
     }
 
     private final Memoizer<OpenApiSchema, TypeRef> mapTypeMemo = new Memoizer<>(this::mapTypeInner);
-    private final Memoizer<OpenApiSchema, TypeRef> mapTypeBoxedMemo = new Memoizer<>(s -> mapTypeMemo.get(s).getBoxed());
+    private final Memoizer<OpenApiSchema, TypeRef> mapTypeBoxedMemo = new Memoizer<>(
+        (s, nullable) -> mapTypeMemo.get(s, nullable).getBoxed()
+    );
 
-    private TypeRef mapTypeInner(OpenApiSchema schema) {
-        var overriddenMappedType = getOverriddenMappedType(schema);
-
-        if (overriddenMappedType.isPresent()) {
-            return overriddenMappedType.get();
-        }
-
+    private TypeRef mapTypeInner(OpenApiSchema schema, boolean nullable) {
         if (schema.has$ref()) {
             schema = schema.resolve();
 
-            overriddenMappedType = getOverriddenMappedType(schema);
+            var overriddenMappedType = overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
 
             if (overriddenMappedType.isPresent()) {
                 return overriddenMappedType.get();
@@ -136,9 +131,9 @@ public class TypeMapper {
 
         switch (types.iterator().next()) {
             case Object:
-                return mapObject(schema);
+                return mapObject(schema, nullable);
             case Array:
-                return mapArray(schema);
+                return mapArray(schema, nullable);
             case String:
                 return Types.Java.Lang.String;
             case Boolean:
@@ -152,17 +147,15 @@ public class TypeMapper {
         throw new UnsupportedOperationException("Can not get type name for: " + types);
     }
 
-    private Optional<TypeRef> getOverriddenMappedType(OpenApiSchema schema) {
-        return overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
-    }
-
     private TypeRef mapOneOf(List<OpenApiSchema> oneOf) {
+        final boolean nullable = oneOf.stream().anyMatch(OpenApiSchema::isNull);
         oneOf = oneOf.stream().filter(s -> !s.isNull()).collect(Collectors.toList());
 
         if (oneOf.size() == 1) {
             return mapType(oneOf.get(0));
         } else if (isOneOfSingleAndArray(oneOf)) {
-            return mapType(oneOf.stream().filter(OpenApiSchema::isArray).findFirst().orElseThrow());
+            final OpenApiSchema type = oneOf.stream().filter(OpenApiSchema::isArray).findFirst().orElseThrow();
+            return mapType(type, false, nullable);
         }
 
         var types = oneOf.stream().flatMap(s -> s.getTypes().orElseThrow().stream()).collect(Collectors.toSet());
@@ -247,14 +240,14 @@ public class TypeMapper {
         throw new UnsupportedOperationException("Can not get type name for allOf: " + allOf);
     }
 
-    private Type mapObject(OpenApiSchema schema) {
-        var values = schema.getAdditionalProperties().map(s -> mapType(s, true)).orElse(Types.Client.Json.JsonData);
-        return Types.Java.Util.Map(Types.Java.Lang.String, values);
+    private Type mapObject(OpenApiSchema schema, boolean nullable) {
+        var values = schema.getAdditionalProperties().map(s -> mapType(s, true, nullable)).orElse(Types.Client.Json.JsonData);
+        return Types.Java.Util.Map(Types.Java.Lang.String, values, nullable);
     }
 
-    private Type mapArray(OpenApiSchema schema) {
-        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Client.Json.JsonData);
-        return Types.Java.Util.List(items);
+    private Type mapArray(OpenApiSchema schema, boolean nullable) {
+        var items = schema.getItems().map(i -> mapType(i, true, nullable)).orElse(Types.Client.Json.JsonData);
+        return Types.Java.Util.List(items, nullable);
     }
 
     private Type mapInteger(OpenApiSchema schema) {
