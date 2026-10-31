@@ -197,10 +197,10 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val jacksonVersion = "2.22.3"
-    val jacksonDatabindVersion = "2.22.3"
-    val jackson3Version = "3.2.3"
-    val jackson3DatabindVersion = "3.2.3"
+    val jacksonVersion = "2.22.4"
+    val jacksonDatabindVersion = "2.22.4"
+    val jackson3Version = "3.2.4"
+    val jackson3DatabindVersion = "3.2.4"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.4.0")
@@ -267,7 +267,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.197")
+    testImplementation("io.github.classgraph:classgraph:5.0.0")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {

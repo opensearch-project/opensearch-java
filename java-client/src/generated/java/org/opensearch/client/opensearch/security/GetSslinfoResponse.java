@@ -734,7 +734,7 @@ public class GetSslinfoResponse implements PlainJsonSerializable, ToCopyableBuil
         op.add(Builder::peerCertificates, JsonpDeserializer.stringDeserializer(), "peer_certificates");
         op.add(
             Builder::peerCertificatesList,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+            JsonpDeserializer.arrayOrNullDeserializer(JsonpDeserializer.stringDeserializer()),
             "peer_certificates_list"
         );
         op.add(Builder::principal, JsonpDeserializer.stringDeserializer(), "principal");
