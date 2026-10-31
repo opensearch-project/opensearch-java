@@ -194,12 +194,12 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-dependencies {
-    val jacksonVersion = "2.22.4"
-    val jacksonDatabindVersion = "2.22.4"
-    val jackson3Version = "3.2.4"
-    val jackson3DatabindVersion = "3.2.4"
+val jacksonVersion = "2.22.4"
+val jacksonDatabindVersion = "2.22.4"
+val jackson3Version = "3.2.4"
+val jackson3DatabindVersion = "3.2.4"
 
+dependencies {
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.6")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -424,6 +424,8 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     }
     testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
+    testImplementation("tools.jackson.core:jackson-core:${jackson3Version}")
+    testImplementation("tools.jackson.core:jackson-databind:${jackson3DatabindVersion}")
   }
 
   tasks.named<JavaCompile>("compileJava21Java") {
