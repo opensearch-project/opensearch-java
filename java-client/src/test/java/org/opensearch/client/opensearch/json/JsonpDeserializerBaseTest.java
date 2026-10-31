@@ -9,10 +9,20 @@
 package org.opensearch.client.opensearch.json;
 
 import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
 import java.io.StringReader;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.opensearch.security.GetSslinfoResponse;
@@ -110,5 +120,70 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
         assertTrue(ok.peerCertificatesList().isEmpty());
 
         assertThrows(Exception.class, () -> fromJson("{" + required + ",\"local_certificates_list\":null}", GetSslinfoResponse.class));
+    }
+
+    @Test
+    public void testArrayAcceptedEventsAreCompleteWhileAnotherThreadComputesThem() throws Exception {
+        assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(JsonpDeserializer::arrayDeserializer, EnumSet.of(Event.VALUE_STRING));
+    }
+
+    @Test
+    public void testArrayOrNullAcceptedEventsAreCompleteWhileAnotherThreadComputesThem() throws Exception {
+        assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(
+            JsonpDeserializer::arrayOrNullDeserializer,
+            EnumSet.of(Event.VALUE_STRING, Event.VALUE_NULL)
+        );
+    }
+
+    private void assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(
+        Function<JsonpDeserializer<String>, JsonpDeserializer<List<String>>> arrayOf,
+        EnumSet<Event> expected
+    ) throws Exception {
+        JsonpDeserializer<String> strings = JsonpDeserializer.stringDeserializer();
+        CountDownLatch firstComputationStarted = new CountDownLatch(1);
+        CountDownLatch otherThreadRead = new CountDownLatch(1);
+        AtomicBoolean firstCall = new AtomicBoolean(true);
+
+        // The first call holds the array deserializer mid-computation until another thread has read its accepted events
+        JsonpDeserializer<String> item = new JsonpDeserializer<String>() {
+            @Override
+            public EnumSet<Event> nativeEvents() {
+                return strings.nativeEvents();
+            }
+
+            @Override
+            public EnumSet<Event> acceptedEvents() {
+                if (firstCall.getAndSet(false)) {
+                    firstComputationStarted.countDown();
+                    try {
+                        otherThreadRead.await(10, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+                return strings.acceptedEvents();
+            }
+
+            @Override
+            public String deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                return strings.deserialize(parser, mapper, event);
+            }
+        };
+        JsonpDeserializer<List<String>> arrays = arrayOf.apply(item);
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        try {
+            Future<EnumSet<Event>> first = executor.submit(arrays::acceptedEvents);
+            assertTrue(firstComputationStarted.await(10, TimeUnit.SECONDS));
+
+            // Copied before releasing the first thread, as the check in JsonpUtils.ensureAccepts happens at that point
+            EnumSet<Event> seen = EnumSet.copyOf(arrays.acceptedEvents());
+            otherThreadRead.countDown();
+
+            assertTrue(seen.toString(), seen.containsAll(expected));
+            assertTrue(first.get(10, TimeUnit.SECONDS).containsAll(expected));
+        } finally {
+            executor.shutdownNow();
+        }
     }
 }
