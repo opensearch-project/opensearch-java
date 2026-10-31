@@ -94,8 +94,8 @@ public final class Types {
             public static final Type Objects = type(PACKAGE, "Objects");
             public static final Type HashMap = type(PACKAGE, "HashMap");
 
-            public static Type Map(TypeRef keyType, TypeRef valueType) {
-                return Map.withTypeParameters(keyType, valueType);
+            public static Type Map(TypeRef keyType, TypeRef valueType, boolean nullable) {
+                return Map.withTypeParameters(keyType, valueType).withNullable(nullable);
             }
 
             public static final Type Map = type(PACKAGE, "Map");
@@ -106,8 +106,8 @@ public final class Types {
 
             public static final Type MapEntry = type(PACKAGE, "Map.Entry");
 
-            public static Type List(TypeRef valueType) {
-                return List.withTypeParameters(valueType);
+            public static Type List(TypeRef valueType, boolean nullable) {
+                return List.withTypeParameters(valueType).withNullable(nullable);
             }
 
             public static final Type List = type(PACKAGE, "List");
