@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up JDK
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           java-version: 21
           distribution: 'temurin'
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up JDK
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           java-version: 21
           distribution: 'temurin'
@@ -64,20 +64,12 @@ jobs:
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
-      - name: Generate GitHub App Token
-        if: github.repository == 'opensearch-project/opensearch-java'
-        id: github_app_token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
-          token: ${{ steps.github_app_token.outputs.token || secrets.GITHUB_TOKEN }}
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          token: ${{ steps.github_app_token.outputs.token || secrets.OPENSEARCH_CI_BOT_TOKEN }}
+          committer: opensearch-ci-bot[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: opensearch-ci-bot[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           commit-message: Re-generate client code using latest OpenSearch API specification (${{ steps.date.outputs.date }})
           title: Re-generated client code using latest OpenSearch API specification
           body: |
@@ -87,3 +79,5 @@ jobs:
           signoff: true
           labels: |
             autocut
+          delete-branch: true
+          push-to-fork: opensearch-ci-bot/opensearch-java
