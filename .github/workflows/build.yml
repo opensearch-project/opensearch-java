@@ -7,8 +7,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        java: [ 21, 25 ]
-        os: [ubuntu-latest, windows-latest, macOS-14, macOS-latest]
+        java: [ 21, 25, 27 ]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
