@@ -55,6 +55,16 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     private final JacksonJsonProvider provider;
     private final ObjectMapper objectMapper;
 
+    /**
+     * Creates a mapper that uses the supplied {@link ObjectMapper} as is.
+     * <p>
+     * Application classes, such as documents in {@code _source}, are deserialized from the middle of a response, so the
+     * supplied mapper should have {@link DeserializationFeature#FAIL_ON_TRAILING_TOKENS} disabled. Jackson 3 enables it by
+     * default:
+     * <pre>{@code
+     * new JacksonJsonpMapper(JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).build());
+     * }</pre>
+     */
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
         // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
         this(objectMapper, objectMapper.tokenStreamFactory());
