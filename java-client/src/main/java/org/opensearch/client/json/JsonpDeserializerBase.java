@@ -373,7 +373,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         // latter, so this is correctly recognized if it is ever used as a union member, not
         // only when it is the sole deserializer for a named field (its only use today).
         private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.START_ARRAY, Event.VALUE_NULL);
-        private EnumSet<Event> acceptedEvents;
+        private volatile EnumSet<Event> acceptedEvents;
 
         ArrayOrNullDeserializer(JsonpDeserializer<T> itemDeserializer) {
             super(itemDeserializer);
@@ -386,11 +386,14 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
         @Override
         public EnumSet<Event> acceptedEvents() {
-            if (acceptedEvents == null) {
-                acceptedEvents = EnumSet.copyOf(super.acceptedEvents());
-                acceptedEvents.add(Event.VALUE_NULL);
+            // Same as ArrayDeserializer: only publish the set once it is complete
+            EnumSet<Event> events = acceptedEvents;
+            if (events == null) {
+                events = EnumSet.copyOf(super.acceptedEvents());
+                events.add(Event.VALUE_NULL);
+                acceptedEvents = events;
             }
-            return acceptedEvents;
+            return events;
         }
 
         @Override

@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -123,6 +124,21 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
 
     @Test
     public void testArrayAcceptedEventsAreCompleteWhileAnotherThreadComputesThem() throws Exception {
+        assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(JsonpDeserializer::arrayDeserializer, EnumSet.of(Event.VALUE_STRING));
+    }
+
+    @Test
+    public void testArrayOrNullAcceptedEventsAreCompleteWhileAnotherThreadComputesThem() throws Exception {
+        assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(
+            JsonpDeserializer::arrayOrNullDeserializer,
+            EnumSet.of(Event.VALUE_STRING, Event.VALUE_NULL)
+        );
+    }
+
+    private void assertAcceptedEventsCompleteWhileAnotherThreadComputesThem(
+        Function<JsonpDeserializer<String>, JsonpDeserializer<List<String>>> arrayOf,
+        EnumSet<Event> expected
+    ) throws Exception {
         JsonpDeserializer<String> strings = JsonpDeserializer.stringDeserializer();
         CountDownLatch firstComputationStarted = new CountDownLatch(1);
         CountDownLatch otherThreadRead = new CountDownLatch(1);
@@ -153,7 +169,7 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
                 return strings.deserialize(parser, mapper, event);
             }
         };
-        JsonpDeserializer<List<String>> arrays = JsonpDeserializer.arrayDeserializer(item);
+        JsonpDeserializer<List<String>> arrays = arrayOf.apply(item);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         try {
@@ -164,8 +180,8 @@ public class JsonpDeserializerBaseTest extends ModelTestCase {
             EnumSet<Event> seen = EnumSet.copyOf(arrays.acceptedEvents());
             otherThreadRead.countDown();
 
-            assertTrue(seen.toString(), seen.contains(Event.VALUE_STRING));
-            assertTrue(first.get(10, TimeUnit.SECONDS).contains(Event.VALUE_STRING));
+            assertTrue(seen.toString(), seen.containsAll(expected));
+            assertTrue(first.get(10, TimeUnit.SECONDS).containsAll(expected));
         } finally {
             executor.shutdownNow();
         }
