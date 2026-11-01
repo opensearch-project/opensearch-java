@@ -4,7 +4,12 @@
     {{/isPotentiallyBoxedPrimitive}}
     {{^isPotentiallyBoxedPrimitive}}
         {{#isList}}
-            {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+            {{#isNullable}}
+                {{TYPES.Client.Json.JsonpDeserializer}}.arrayOrNullDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+            {{/isNullable}}
+            {{^isNullable}}
+                {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+            {{/isNullable}}
         {{/isList}}
         {{#isMap}}
             {{#mapValueType.targetShape.usesTypedKeys}}

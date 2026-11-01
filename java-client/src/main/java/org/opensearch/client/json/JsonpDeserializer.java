@@ -223,6 +223,15 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.ArrayDeserializer<>(itemDeserializer);
     }
 
+    /**
+     * Like {@link #arrayDeserializer}, but also accepts a top-level JSON {@code null}, treating
+     * it as an empty list. For a field whose schema explicitly allows {@code null} as a value, not
+     * for array fields generally.
+     */
+    static <T> JsonpDeserializer<List<T>> arrayOrNullDeserializer(JsonpDeserializer<T> itemDeserializer) {
+        return new JsonpDeserializerBase.ArrayOrNullDeserializer<>(itemDeserializer);
+    }
+
     static <T> JsonpDeserializer<Map<String, T>> stringMapDeserializer(JsonpDeserializer<T> itemDeserializer) {
         return new JsonpDeserializerBase.StringMapDeserializer<T>(itemDeserializer);
     }

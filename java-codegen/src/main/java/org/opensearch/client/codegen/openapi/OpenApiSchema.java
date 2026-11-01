@@ -291,6 +291,22 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         return is(OpenApiSchemaType.Null);
     }
 
+    /**
+     * Whether the schema explicitly admits the JSON {@code null} literal as a value -- distinct from whether the property is optional
+     * (absent from the parent's {@code required} list). A {@code oneOf}/{@code anyOf} member of {@code type: 'null'}, or {@code Null} among
+     * this schema's own {@code type}, means the server can send literal JSON {@code null} here; an optional key only means it can be
+     * omitted, which a deserializer never has to handle because it is never invoked for a key that is not there.
+     */
+    public boolean allowsNull() {
+        if (getTypes().map(t -> t.contains(OpenApiSchemaType.Null)).orElse(false)) {
+            return true;
+        }
+        if (getOneOf().map(s -> s.stream().anyMatch(OpenApiSchema::isNull)).orElse(false)) {
+            return true;
+        }
+        return getAnyOf().map(s -> s.stream().anyMatch(OpenApiSchema::isNull)).orElse(false);
+    }
+
     public boolean isNumber() {
         return is(OpenApiSchemaType.Number);
     }
