@@ -9727,6 +9727,30 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: security.create_action_groups.0
+      x-operation-group: security.create_action_groups
+      tags:
+        - Security
+      x-version-added: '3.10'
+      description: Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before any changes are written.
+      externalDocs:
+        url: https://docs.opensearch.org/latest/security/api/action-groups/create-action-group/
+      requestBody:
+        $ref: '#/components/requestBodies/security.create_action_groups'
+      responses:
+        '200':
+          $ref: '#/components/responses/security.create_action_groups___200'
+        '400':
+          $ref: '#/components/responses/security.create_action_groups___400'
+        '403':
+          $ref: '#/components/responses/security.create_action_groups___403'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
   /_plugins/_security/api/actiongroups/{action_group}:
     delete:
       operationId: security.delete_action_group.0
@@ -10591,6 +10615,33 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: security.create_role_mappings.0
+      x-operation-group: security.create_role_mappings
+      tags:
+        - Security
+      x-version-added: '3.10'
+      description: Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and all entries are validated before any changes are written.
+      externalDocs:
+        url: https://docs.opensearch.org/latest/security/api/role-mappings/create-role-mapping/
+      parameters:
+        - $ref: '#/components/parameters/security.create_role_mappings___query.wait_for_completion'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/security.create_role_mappings'
+      responses:
+        '200':
+          $ref: '#/components/responses/security.create_role_mappings___200'
+        '400':
+          $ref: '#/components/responses/security.create_role_mappings___400'
+        '403':
+          $ref: '#/components/responses/security.create_role_mappings___403'
+        '404':
+          $ref: '#/components/responses/security.create_role_mappings___404'
   /_plugins/_security/api/rolesmapping/{role}:
     delete:
       operationId: security.delete_role_mapping.0
@@ -30721,6 +30772,13 @@ components:
       schema:
         type: string
       required: true
+    security.create_role_mappings___query.wait_for_completion:
+      name: wait_for_completion
+      in: query
+      description: If false, returns a task ID after validation and runs the configuration write and reload asynchronously.
+      schema:
+        type: boolean
+        default: true
     security.create_role___path.role:
       name: role
       in: path
@@ -34598,6 +34656,16 @@ components:
           schema:
             $ref: '#/components/schemas/security._common___ActionGroup'
       required: true
+    security.create_action_groups:
+      content:
+        application/json:
+          schema:
+            type: object
+            description: A non-empty object mapping action group names to complete action group definitions.
+            minProperties: 1
+            additionalProperties:
+              $ref: '#/components/schemas/security._common___ActionGroup'
+      required: true
     security.create_allowlist:
       content:
         application/json:
@@ -34615,6 +34683,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common___RoleMapping'
+      required: true
+    security.create_role_mappings:
+      content:
+        application/json:
+          schema:
+            type: object
+            description: A non-empty object mapping existing role names to complete role mapping definitions.
+            minProperties: 1
+            additionalProperties:
+              $ref: '#/components/schemas/security._common___RoleMapping'
       required: true
     security.create_tenant:
       content:
@@ -39076,6 +39154,24 @@ components:
           schema:
             $ref: '#/components/schemas/security._common___Created'
       description: ''
+    security.create_action_groups___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Ok'
+      description: ''
+    security.create_action_groups___400:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Error'
+      description: ''
+    security.create_action_groups___403:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Error'
+      description: ''
     security.create_allowlist___200:
       content:
         application/json:
@@ -39099,6 +39195,37 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common___Created'
+      description: ''
+    security.create_role_mappings___200:
+      content:
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/security._common___Ok'
+              - type: object
+                required:
+                  - task
+                properties:
+                  task:
+                    $ref: '#/components/schemas/_common___TaskId'
+      description: ''
+    security.create_role_mappings___400:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Error'
+      description: ''
+    security.create_role_mappings___403:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Error'
+      description: ''
+    security.create_role_mappings___404:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Error'
       description: ''
     security.create_role___200:
       content:
