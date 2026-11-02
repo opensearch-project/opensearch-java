@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Add constants for `_first` and `_last` sort values (#2189)
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
+- Add opt-in `BulkIngester.Builder#strictMaxSize(boolean)` so bulk requests never exceed `maxSize` unless they contain a single oversized operation ([#2194](https://github.com/opensearch-project/opensearch-java/issues/2194))
 
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))

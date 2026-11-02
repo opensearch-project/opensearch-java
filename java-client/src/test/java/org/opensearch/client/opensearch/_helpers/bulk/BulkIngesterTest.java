@@ -37,8 +37,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -46,6 +49,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,6 +61,7 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 import org.opensearch.client.opensearch.core.bulk.BulkResponseItem;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
+import org.opensearch.client.transport.BackoffPolicy;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -221,6 +226,257 @@ public class BulkIngesterTest extends Assert {
 
         assertEquals(10, ingester.operationsCount());
         assertEquals(5, ingester.requestCount());
+    }
+
+    private static BulkOperation docOperation(String id, int length) {
+        final var doc = Map.of("text", "x".repeat(length));
+        return BulkOperation.of(op -> op.index(i -> i.index("foo").id(id).document(doc)));
+    }
+
+    private static long operationSize(BulkOperation op, JsonpMapper mapper) {
+        return IngesterOperation.of(new RetryableBulkOperation<>(op, null, null), mapper).size();
+    }
+
+    private static long requestSize(BulkRequest request, JsonpMapper mapper) {
+        return request.operations().stream().mapToLong(op -> operationSize(op, mapper)).sum();
+    }
+
+    private static void assertRequestsWithinMaxSize(List<BulkRequest> requests, long maxSize, JsonpMapper mapper) {
+        synchronized (requests) {
+            for (final var request : requests) {
+                if (request.operations().size() > 1) {
+                    assertTrue(
+                        "Request with " + request.operations().size() + " operations exceeds maxSize",
+                        requestSize(request, mapper) <= maxSize
+                    );
+                }
+            }
+        }
+    }
+
+    @Test
+    public void strictSizeLimitMixedOperationsTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var small = docOperation("small", 100);
+        final var large = docOperation("large", 1000);
+        // Two large operations fit, adding a small one would exceed maxSize
+        final var maxSize = 2 * operationSize(large, mapper) + operationSize(small, mapper) - 1;
+        final var sequence = List.of(large, large, small, large, small, small, large, large, small, large, small, small);
+
+        final var strictTransport = new TestTransport();
+        final var strictIngester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(strictTransport)).maxOperations(-1).maxSize(maxSize).strictMaxSize(true)
+        );
+        sequence.forEach(strictIngester::add);
+        strictIngester.close();
+        strictTransport.close();
+
+        assertTrue(strictIngester.strictMaxSize());
+        assertEquals(sequence.size(), strictTransport.operations.get());
+        assertRequestsWithinMaxSize(strictTransport.requests, maxSize, mapper);
+
+        // Default (non-strict) behaviour is unchanged: requests may exceed maxSize by up to one operation
+        final var defaultTransport = new TestTransport();
+        final var defaultIngester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(defaultTransport)).maxOperations(-1).maxSize(maxSize)
+        );
+        sequence.forEach(defaultIngester::add);
+        defaultIngester.close();
+        defaultTransport.close();
+
+        assertFalse(defaultIngester.strictMaxSize());
+        assertEquals(sequence.size(), defaultTransport.operations.get());
+        assertTrue(defaultTransport.requests.stream().anyMatch(r -> requestSize(r, mapper) > maxSize));
+    }
+
+    @Test
+    public void strictSizeLimitOversizedOperationTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var small = docOperation("small", 10);
+        final var huge = docOperation("huge", 10_000);
+        final var maxSize = 3 * operationSize(small, mapper);
+        assertTrue(operationSize(huge, mapper) > maxSize);
+
+        final var transport = new TestTransport();
+        final var ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport)).maxOperations(-1).maxSize(maxSize).strictMaxSize(true)
+        );
+        ingester.add(small);
+        ingester.add(small);
+        ingester.add(huge);
+        ingester.add(small);
+        ingester.add(small);
+        ingester.close();
+        transport.close();
+
+        assertEquals(5, ingester.operationsCount());
+        assertEquals(3, ingester.requestCount());
+        assertEquals(2, transport.requests.get(0).operations().size());
+        assertEquals("huge", transport.requests.get(1).operations().get(0).index().id());
+        assertEquals(1, transport.requests.get(1).operations().size());
+        assertEquals(2, transport.requests.get(2).operations().size());
+    }
+
+    @Test
+    public void strictSizeLimitWithMaxOperationsTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var operationSize = operationSize(operation, mapper);
+
+        // maxOperations is reached first
+        final var transport1 = new TestTransport();
+        final var ingester1 = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport1)).maxOperations(3).maxSize(10 * operationSize).strictMaxSize(true)
+        );
+        for (int i = 0; i < 10; i++) {
+            ingester1.add(operation);
+        }
+        ingester1.close();
+        transport1.close();
+
+        assertEquals(10, transport1.operations.get());
+        assertEquals(4, ingester1.requestCount());
+
+        // maxSize is reached first: a third operation would exceed it
+        final var transport2 = new TestTransport();
+        final var ingester2 = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport2)).maxOperations(3).maxSize(2 * operationSize + 1).strictMaxSize(true)
+        );
+        for (int i = 0; i < 10; i++) {
+            ingester2.add(operation);
+        }
+        ingester2.close();
+        transport2.close();
+
+        assertEquals(10, transport2.operations.get());
+        assertEquals(5, ingester2.requestCount());
+        assertRequestsWithinMaxSize(transport2.requests, 2 * operationSize + 1, mapper);
+    }
+
+    @Test
+    public void strictSizeLimitWithFlushIntervalTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var maxSize = 2 * operationSize(operation, mapper) + 1;
+
+        final var transport = new TestTransport();
+        final var ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport))
+                .flushInterval(50, TimeUnit.MILLISECONDS)
+                .maxOperations(-1)
+                .maxSize(maxSize)
+                .strictMaxSize(true)
+        );
+
+        // A single operation is sent by the periodic flush
+        ingester.add(operation);
+        awaitRequestCount(ingester, 1);
+
+        // Two requests are sent because of maxSize, the remaining operation by the periodic flush
+        for (int i = 0; i < 5; i++) {
+            ingester.add(operation);
+        }
+        awaitRequestCount(ingester, 4);
+
+        ingester.close();
+        transport.close();
+
+        assertEquals(6, transport.operations.get());
+        assertRequestsWithinMaxSize(transport.requests, maxSize, mapper);
+    }
+
+    @Test
+    public void strictSizeLimitWithBackPressureTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var maxSize = 2 * operationSize(operation, mapper) + 1;
+
+        final var transport = new TestTransport();
+        final var gate = new CountDownLatch(1);
+        transport.responseGate = gate;
+
+        final var ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport))
+                .maxOperations(-1)
+                .maxSize(maxSize)
+                .strictMaxSize(true)
+                .maxConcurrentRequests(1)
+        );
+
+        final var producer = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                ingester.add(operation);
+            }
+        });
+        producer.start();
+
+        // The first request is in flight and never completes until the gate is opened: the producer must block
+        // instead of adding operations to the full buffer.
+        long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+        while (transport.requestsStarted.get() < 1 || ingester.requestContentionsCount() < 1) {
+            if (System.nanoTime() - deadline > 0) {
+                fail("Timed out waiting for the producer to block");
+            }
+            Thread.sleep(5);
+        }
+        assertTrue(producer.isAlive());
+        assertEquals(1, transport.requestsStarted.get());
+        assertTrue(ingester.pendingOperationsSize() <= maxSize);
+
+        gate.countDown();
+        producer.join(TimeUnit.SECONDS.toMillis(10));
+        assertFalse(producer.isAlive());
+
+        ingester.close();
+        transport.close();
+
+        assertEquals(10, transport.operations.get());
+        assertEquals(5, ingester.requestCount());
+        assertRequestsWithinMaxSize(transport.requests, maxSize, mapper);
+    }
+
+    @Test
+    public void strictSizeLimitWithRetriesTest() throws Exception {
+        final var mapper = new JacksonJsonpMapper();
+        final var operations = new ArrayList<BulkOperation>();
+        for (int i = 0; i < 6; i++) {
+            operations.add(docOperation("id-" + i, 100));
+        }
+        final var maxSize = 2 * operationSize(operations.get(0), mapper) + 1;
+
+        // The operations of the first request are rejected with a 429 the first time they are sent.
+        // Only a few operations are rejected: retries that are not yet sendable occupy the buffer and
+        // could otherwise block all retry threads.
+        final var rejectedIds = Set.of("id-0", "id-1");
+        final var attempts = new ConcurrentHashMap<String, AtomicInteger>();
+        final var transport = new TestTransport();
+        transport.itemProvider = op -> {
+            final var id = op.index().id();
+            final var attempt = attempts.computeIfAbsent(id, k -> new AtomicInteger()).getAndIncrement();
+            if (rejectedIds.contains(id) && attempt == 0) {
+                return BulkResponseItem.of(
+                    i -> i.index("foo")
+                        .id(id)
+                        .status(429)
+                        .operationType(OperationType.Index)
+                        .error(e -> e.type("es_rejected_execution_exception").reason("rejected"))
+                );
+            }
+            return BulkResponseItem.of(i -> i.index("foo").id(id).status(201).operationType(OperationType.Index));
+        };
+
+        final var ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport))
+                .maxOperations(-1)
+                .maxSize(maxSize)
+                .strictMaxSize(true)
+                .backoffPolicy(BackoffPolicy.constantBackoff(10L, 3))
+        );
+        operations.forEach(ingester::add);
+        ingester.close();
+        transport.close();
+
+        // Rejected operations were sent twice, the others once
+        assertEquals(8, transport.operations.get());
+        attempts.forEach((id, count) -> assertEquals(id, rejectedIds.contains(id) ? 2 : 1, count.get()));
+        assertRequestsWithinMaxSize(transport.requests, maxSize, mapper);
     }
 
     /**
@@ -513,6 +769,12 @@ public class BulkIngesterTest extends Assert {
         public final AtomicInteger requestsStarted = new AtomicInteger();
         public final AtomicInteger requestsCompleted = new AtomicInteger();
         public final AtomicInteger operations = new AtomicInteger();
+        public final List<BulkRequest> requests = Collections.synchronizedList(new ArrayList<>());
+
+        // Optional: creates the response item for an operation, defaults to a successful item
+        public volatile Function<BulkOperation, BulkResponseItem> itemProvider = op -> successItem;
+        // Optional: responses are only completed once this latch is released
+        public volatile CountDownLatch responseGate = null;
 
         private final ExecutorService executor = Executors.newCachedThreadPool();
 
@@ -533,6 +795,7 @@ public class BulkIngesterTest extends Assert {
         ) {
 
             BulkRequest bulk = (BulkRequest) request;
+            requests.add(bulk);
             requestsStarted.incrementAndGet();
             operations.addAndGet(bulk.operations().size());
 
@@ -541,12 +804,20 @@ public class BulkIngesterTest extends Assert {
             }
 
             List<BulkResponseItem> items = new ArrayList<>();
-            for (int i = 0; i < bulk.operations().size(); i++) {
-                items.add(successItem);
+            for (BulkOperation op : bulk.operations()) {
+                items.add(itemProvider.apply(op));
             }
 
             CompletableFuture<BulkResponse> response = new CompletableFuture<>();
+            final var gate = responseGate;
             executor.submit(() -> {
+                if (gate != null) {
+                    try {
+                        gate.await();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
                 requestsCompleted.incrementAndGet();
                 response.complete(BulkResponse.of(r -> r.errors(false).items(items).took(3)));
             });

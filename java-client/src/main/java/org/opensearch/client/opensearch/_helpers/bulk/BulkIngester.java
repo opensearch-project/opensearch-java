@@ -114,6 +114,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private final @Nullable BulkRequest globalSettings;
     private final int maxRequests;
     private final long maxSize;
+    private final boolean strictMaxSize;
     private final int maxOperations;
     private final @Nullable BulkListener<Context> listener;
     private final Long flushIntervalMillis;
@@ -158,6 +159,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         this.globalSettings = builder.globalSettings;
         this.maxRequests = builder.maxConcurrentRequests;
         this.maxSize = builder.bulkSize < 0 ? Long.MAX_VALUE : builder.bulkSize;
+        this.strictMaxSize = builder.strictMaxSize;
         this.maxOperations = builder.bulkOperations < 0 ? Integer.MAX_VALUE : builder.bulkOperations;
         this.listener = builder.listener;
         this.backoffPolicy = builder.backoffPolicy;
@@ -208,11 +210,21 @@ public class BulkIngester<Context> implements AutoCloseable {
     }
 
     /**
-     * The configured maximum size in bytes for a bulk request. Operations are added to the request until
-     * adding an operation leads the request to exceed this size.
+     * The configured maximum size in bytes for a bulk request. By default, operations are added to the request
+     * until adding an operation leads the request to exceed this size. If {@link #strictMaxSize()} is enabled,
+     * a request never exceeds this size, unless it contains a single operation that is larger than this size.
      */
     public long maxSize() {
         return this.maxSize;
+    }
+
+    /**
+     * Whether {@link #maxSize()} is a strict upper bound for the size of a bulk request.
+     *
+     * @see Builder#strictMaxSize(boolean)
+     */
+    public boolean strictMaxSize() {
+        return this.strictMaxSize;
     }
 
     /**
@@ -351,8 +363,27 @@ public class BulkIngester<Context> implements AutoCloseable {
      * <p>
      * This method is useful when you want to ensure operations are sent without waiting for
      * automatic flush triggers (maxOperations, maxSize, or flushInterval).
+     * <p>
+     * If {@link Builder#strictMaxSize(boolean) strictMaxSize} is enabled, the buffered operations may be
+     * sent in several requests so that no request exceeds {@link #maxSize()}.
      */
     public void flush() {
+        if (!strictMaxSize) {
+            sendBulkRequest();
+            return;
+        }
+        // Each request is bounded by maxSize, keep sending until all sendable operations are gone
+        while (sendBulkRequest()) {
+            // Nothing to do, sendBulkRequest() does the work
+        }
+    }
+
+    /**
+     * Sends one bulk request with the buffered operations that can be sent immediately.
+     *
+     * @return {@code true} if a request was sent, {@code false} if there was nothing to send.
+     */
+    private boolean sendBulkRequest() {
         List<IngesterOperation<Context>> sentRequests = new ArrayList<>();
         RequestExecution<Context> exec = sendRequestCondition.whenReadyIf(() -> {
             // May happen on manual and periodic flushes
@@ -362,14 +393,20 @@ public class BulkIngester<Context> implements AutoCloseable {
             // Dividing actual operations from contexts
             List<BulkOperation> immediateOps = new ArrayList<>();
             List<Context> contexts = new ArrayList<>();
+            long requestSize = 0;
 
             for (Iterator<IngesterOperation<Context>> it = operations.iterator(); it.hasNext();) {
                 IngesterOperation<Context> op = it.next();
                 if (op.isSendable()) {
+                    if (strictMaxSize && !immediateOps.isEmpty() && op.size() > maxSize - requestSize) {
+                        // Leave the remaining operations for the next request to keep this one within maxSize
+                        break;
+                    }
                     immediateOps.add(op.operation());
                     contexts.add(op.context());
 
                     sentRequests.add(op);
+                    requestSize += op.size();
                     currentSize -= op.size();
                     it.remove();
                 }
@@ -483,6 +520,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                 return null;
             });
         }
+        return exec != null;
     }
 
     private void selectingRetries(
@@ -593,6 +631,14 @@ public class BulkIngester<Context> implements AutoCloseable {
         IngesterOperation<Context> ingestOp = IngesterOperation.of(repeatableOp, client._transport().jsonpMapper());
 
         addCondition.whenReady(() -> {
+            if (strictMaxSize) {
+                // Send the buffered operations first if adding this one would make the request exceed maxSize.
+                // Also re-check the buffer limits as other threads may have added operations while waiting.
+                while (!operations.isEmpty() && (ingestOp.size() > maxSize - currentSize || !canAddOperation()) && sendBulkRequest()) {
+                    // Nothing to do, sendBulkRequest() does the work
+                }
+            }
+
             operations.add(ingestOp);
             currentSize += ingestOp.size();
 
@@ -684,6 +730,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         private BulkRequest globalSettings;
         private int bulkOperations = 1000;
         private long bulkSize = 5 * 1024 * 1024;
+        private boolean strictMaxSize = false;
         private int maxConcurrentRequests = 1;
         private Long flushIntervalMillis;
         private BulkListener<Context> listener;
@@ -719,9 +766,12 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         /**
-         * Sets when to flush a new bulk request based on the size in bytes of actions currently added. A
-         * request is sent
-         * once that size has been exceeded. Defaults to 5 megabytes. Can be set to {@code -1} to disable it.
+         * Sets when to flush a new bulk request based on the size in bytes of actions currently added. Defaults to 5
+         * megabytes. Can be set to {@code -1} to disable it.
+         * <p>
+         * By default, a request is sent once that size has been reached or exceeded, so a request can be larger than
+         * this size by up to the size of one operation. Use {@link #strictMaxSize(boolean)} to make this size a strict
+         * upper bound for requests.
          *
          * @throws IllegalArgumentException if less than -1.
          */
@@ -730,6 +780,23 @@ public class BulkIngester<Context> implements AutoCloseable {
                 throw new IllegalArgumentException("Max size should be at least -1");
             }
             this.bulkSize = bytes;
+            return this;
+        }
+
+        /**
+         * Sets whether {@link #maxSize(long)} is a strict upper bound for the size of a bulk request. Defaults to
+         * {@code false}.
+         * <p>
+         * If enabled, the buffered operations are sent before adding an operation that would make the request exceed
+         * {@link #maxSize(long)}. A request therefore never exceeds that size, unless it contains a single operation
+         * that is larger than that size on its own: such an operation is still accepted and sent in a request of its
+         * own. This results in more, smaller requests than with the default behaviour.
+         * <p>
+         * Like when the buffer is full, adding an operation blocks if the buffered operations cannot be sent because
+         * {@link #maxConcurrentRequests(int)} has been reached.
+         */
+        public Builder<Context> strictMaxSize(boolean strictMaxSize) {
+            this.strictMaxSize = strictMaxSize;
             return this;
         }
 
