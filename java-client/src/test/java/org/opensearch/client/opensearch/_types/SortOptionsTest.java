@@ -33,4 +33,32 @@ public class SortOptionsTest {
         assertEquals("entityId", fieldSort.field());
         assertEquals(SortOrder.Asc, fieldSort.order());
     }
+
+    @Test
+    public void testScoreSortOrderShorthand() {
+        String jsonString = "[{\"_score\":\"asc\"}]";
+        StringReader reader = new StringReader(jsonString);
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        JsonParser parser = mapper.jsonProvider().createParser(reader);
+
+        List<SortOptions> sortOptions = JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER).deserialize(parser, mapper);
+        assertEquals(1, sortOptions.size());
+        assertEquals(SortOptions.Kind.Score, sortOptions.get(0)._kind());
+        ScoreSort scoreSort = (ScoreSort) sortOptions.get(0)._get();
+        assertEquals(SortOrder.Asc, scoreSort.order());
+    }
+
+    @Test
+    public void testDocSortOrderShorthand() {
+        String jsonString = "[{\"_doc\":\"desc\"}]";
+        StringReader reader = new StringReader(jsonString);
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        JsonParser parser = mapper.jsonProvider().createParser(reader);
+
+        List<SortOptions> sortOptions = JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER).deserialize(parser, mapper);
+        assertEquals(1, sortOptions.size());
+        assertEquals(SortOptions.Kind.Doc, sortOptions.get(0)._kind());
+        ScoreSort scoreSort = (ScoreSort) sortOptions.get(0)._get();
+        assertEquals(SortOrder.Desc, scoreSort.order());
+    }
 }
