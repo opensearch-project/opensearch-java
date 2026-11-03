@@ -68,9 +68,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
     @Nullable
     private final Boolean ignoreMalformed;
 
-    @Nonnull
-    private final String name;
-
     @Nullable
     private final String prefilterField;
 
@@ -88,7 +85,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
     private DerivedField(Builder builder) {
         this.format = builder.format;
         this.ignoreMalformed = builder.ignoreMalformed;
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.prefilterField = builder.prefilterField;
         this.properties = ApiTypeHelper.unmodifiable(builder.properties);
         this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
@@ -113,14 +109,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
     @Nullable
     public final Boolean ignoreMalformed() {
         return this.ignoreMalformed;
-    }
-
-    /**
-     * Required - API name: {@code name}
-     */
-    @Nonnull
-    public final String name() {
-        return this.name;
     }
 
     /**
@@ -176,9 +164,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
             generator.write(this.ignoreMalformed);
         }
 
-        generator.writeKey("name");
-        generator.write(this.name);
-
         if (this.prefilterField != null) {
             generator.writeKey("prefilter_field");
             generator.write(this.prefilterField);
@@ -222,7 +207,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         private String format;
         @Nullable
         private Boolean ignoreMalformed;
-        private String name;
         @Nullable
         private String prefilterField;
         @Nullable
@@ -235,7 +219,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         private Builder(DerivedField o) {
             this.format = o.format;
             this.ignoreMalformed = o.ignoreMalformed;
-            this.name = o.name;
             this.prefilterField = o.prefilterField;
             this.properties = _mapCopy(o.properties);
             this.script = o.script;
@@ -245,7 +228,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         private Builder(Builder o) {
             this.format = o.format;
             this.ignoreMalformed = o.ignoreMalformed;
-            this.name = o.name;
             this.prefilterField = o.prefilterField;
             this.properties = _mapCopy(o.properties);
             this.script = o.script;
@@ -273,15 +255,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code name}
-         */
-        @Nonnull
-        public final Builder name(String value) {
-            this.name = value;
             return this;
         }
 
@@ -373,7 +346,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
     protected static void setupDerivedFieldDeserializer(ObjectDeserializer<DerivedField.Builder> op) {
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::prefilterField, JsonpDeserializer.stringDeserializer(), "prefilter_field");
         op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "properties");
         op.add(Builder::script, Script._DESERIALIZER, "script");
@@ -385,7 +357,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         int result = 17;
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.ignoreMalformed);
-        result = 31 * result + this.name.hashCode();
         result = 31 * result + Objects.hashCode(this.prefilterField);
         result = 31 * result + Objects.hashCode(this.properties);
         result = 31 * result + this.script.hashCode();
@@ -400,7 +371,6 @@ public class DerivedField implements PlainJsonSerializable, ToCopyableBuilder<De
         DerivedField other = (DerivedField) o;
         return Objects.equals(this.format, other.format)
             && Objects.equals(this.ignoreMalformed, other.ignoreMalformed)
-            && this.name.equals(other.name)
             && Objects.equals(this.prefilterField, other.prefilterField)
             && Objects.equals(this.properties, other.properties)
             && this.script.equals(other.script)
