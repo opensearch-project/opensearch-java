@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Add constants for `_first` and `_last` sort values (#2189)
+- Translate more of `SearchRequest` for the gRPC transport: `term`, `terms`, `range`, `bool`, `exists`, `ids`, `prefix`, `wildcard`, `match_none` and `constant_score` queries, `post_filter`, `docvalue_fields`, `terminate_after`, `timeout`, `track_total_hits`, routing, preference and index options
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 
 ### Dependencies
@@ -32,6 +33,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
+- Give gRPC Search and Bulk calls a deadline of 30s by default, the default response timeout of `ApacheHttpClient5Transport`, so that they do not wait forever for a server that stalls or over a connection that silently drops; `GrpcTransportOptions.Builder#deadline(0, unit)` sets no deadline
 - Stop calling the deprecated no-op `ClientTlsStrategyBuilder#setTlsDetailsFactory` in `ApacheHttpClient5TransportBuilder` ([#1613](https://github.com/opensearch-project/opensearch-java/issues/1613))
 
 ### Deprecated
@@ -39,6 +41,16 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Sign gRPC calls with the SHA-256 hash of the request they send in `GrpcSigV4Interceptor`, as Amazon OpenSearch Service requires, instead of the hash of an empty body; a call that cannot be signed fails with `UNAUTHENTICATED` instead of being sent unsigned
+- Route `OpenSearchClient.search(request, Class)` over `GrpcTransport` and `HybridTransport` to gRPC, with hits deserialized to the requested document class (including `JsonData` and other classes with their own deserializer) and carrying their `fields`, `matched_queries`, `_routing` and `_ignored`, and with skipped shards, shard failures and `_clusters`, as over REST; endpoints wrapped otherwise than by `EndpointWithResponseMapperAttr`, which may change the URL or query parameters, are not sent over gRPC
+- Send the headers of the request's `TransportOptions` as metadata of gRPC Search and Bulk calls, with an `Authorization` header in place of the credentials of `basicAuth` or `jwtAuth`, as over REST
+- Apply the deadline set with `GrpcTransportOptions.Builder#deadline` to gRPC Search and Bulk calls; a bulk whose deadline expired, or that failed with `UNAVAILABLE` after its request was sent (as when the connection drops), is not retried, since it may have run
+- Send over REST with `HybridTransport` a request whose options set query parameters (including the request parameters of `RestClientOptions`), headers that gRPC metadata cannot carry, or settings a gRPC call cannot apply (a warnings handler, the request config or response consumer factory of `ApacheHttpClient5Options` and `RestClientOptions`, the credentials, signing clock or mapper of `AwsSdk2TransportOptions`)
+- Run the calls of `GrpcTransport.performRequestAsync` on virtual threads instead of the common `ForkJoinPool`, whose threads they held while waiting for the server
+- Report a gRPC message larger than its receiver accepts (`GrpcTransportOptions.maxInboundMessageSize` for responses) as such rather than as `Rate limited (429)`, and do not retry the bulk
+- Never drop search options the gRPC transport cannot send: such searches go over REST with `HybridTransport`, and fail with `UnsupportedOperationException` with `GrpcTransport`; integer range bounds are sent exactly, so that epoch millis on date fields and longs past 2^53 match as over REST
+- Map gRPC search errors like bulk errors, e.g. `INVALID_ARGUMENT` to an `OpenSearchException` with status 400
+- Require TLS to be enabled in `AwsGrpcTransport`
 - Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
 - Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
 - Fix code generation failing with a `NullPointerException` on an `allOf` with no `$ref` or composition member, such as `allOf: [{ properties }, { anyOf }]` (`SemanticProperty` in the normalized spec). `allOf` now always maps to its last, most specific member, which is what it already did whenever it did not fail ([#2238](https://github.com/opensearch-project/opensearch-java/pull/2238))

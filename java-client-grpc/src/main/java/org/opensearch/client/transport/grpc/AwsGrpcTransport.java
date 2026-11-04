@@ -22,7 +22,7 @@ import org.opensearch.client.transport.TransportOptions;
  * <p>
  * Usage:
  * <pre>{@code
- * var grpcTransport = AwsGrpcTransport.builder("domain.us-east-1.es.amazonaws.com", 9400)
+ * var grpcTransport = AwsGrpcTransport.awsBuilder("domain.us-east-1.es.amazonaws.com", 443)
  *     .jsonpMapper(new JacksonJsonpMapper())
  *     .tls(GrpcTlsConfig.builder().build())
  *     .sigV4(GrpcSigV4Config.builder()
@@ -32,28 +32,18 @@ import org.opensearch.client.transport.TransportOptions;
  *         .build())
  *     .build();
  * }</pre>
+ * <p>
+ * Every call is signed by {@link GrpcSigV4Interceptor} with the SHA-256 hash of the request it sends.
  */
 public class AwsGrpcTransport extends GrpcTransport {
-
-    private final GrpcSigV4Interceptor sigV4Interceptor;
 
     AwsGrpcTransport(
         ManagedChannel channel,
         JsonpMapper jsonpMapper,
         GrpcTransportOptions grpcOptions,
-        @Nullable TransportOptions transportOptions,
-        GrpcSigV4Interceptor sigV4Interceptor
+        @Nullable TransportOptions transportOptions
     ) {
         super(channel, jsonpMapper, grpcOptions, transportOptions);
-        this.sigV4Interceptor = sigV4Interceptor;
-    }
-
-    @Override
-    protected void preProcessBulk(org.opensearch.protobufs.BulkRequest protoRequest) {
-        if (sigV4Interceptor != null) {
-            String payloadHash = GrpcSigV4Interceptor.computePayloadHash(protoRequest.toByteArray());
-            sigV4Interceptor.setPayloadHash(payloadHash);
-        }
     }
 
     /**
@@ -130,18 +120,15 @@ public class AwsGrpcTransport extends GrpcTransport {
             if (sigV4Config == null) {
                 throw new IllegalArgumentException("sigV4 config is required for AwsGrpcTransport. Use GrpcTransport for non-AWS usage.");
             }
-            if (tlsConfig == null) {
+            if (tlsConfig == null || tlsConfig.isEnabled() == false) {
                 throw new IllegalStateException("TLS is required when using SigV4 signing. Configure TLS with .tls() before .sigV4().");
             }
 
             ManagedChannel ch = this.channel;
-            GrpcSigV4Interceptor sigV4InterceptorRef = null;
 
             if (ch == null) {
                 java.util.List<io.grpc.ClientInterceptor> interceptors = new java.util.ArrayList<>();
-
-                sigV4InterceptorRef = new GrpcSigV4Interceptor(sigV4Config, host);
-                interceptors.add(sigV4InterceptorRef);
+                interceptors.add(new GrpcSigV4Interceptor(sigV4Config, host));
 
                 try {
                     ch = GrpcChannelFactory.createChannel(host, port, tlsConfig, grpcOptions, interceptors);
@@ -150,7 +137,7 @@ public class AwsGrpcTransport extends GrpcTransport {
                 }
             }
 
-            return new AwsGrpcTransport(ch, jsonpMapper, grpcOptions, transportOptions, sigV4InterceptorRef);
+            return new AwsGrpcTransport(ch, jsonpMapper, grpcOptions, transportOptions);
         }
     }
 }

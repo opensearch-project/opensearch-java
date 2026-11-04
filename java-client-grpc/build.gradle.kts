@@ -51,8 +51,12 @@ dependencies {
     compileOnly("software.amazon.awssdk", "auth", "[2.21,3.0)")
     compileOnly("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
 
+    // For the per-request settings of RestClientOptions (optional, compile-only)
+    compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
+
     // Test dependencies
     testImplementation("io.grpc", "grpc-testing", grpcVersion)
+    testImplementation("io.grpc", "grpc-inprocess", grpcVersion)
     testImplementation("junit", "junit", "4.13.2")
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")

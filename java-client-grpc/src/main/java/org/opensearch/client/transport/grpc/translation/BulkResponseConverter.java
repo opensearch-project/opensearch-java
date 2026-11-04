@@ -140,7 +140,7 @@ public final class BulkResponseConverter {
     /**
      * Converts a protobuf ErrorCause to a client ErrorCause.
      */
-    private static ErrorCause convertErrorCause(org.opensearch.protobufs.ErrorCause protoError) {
+    static ErrorCause convertErrorCause(org.opensearch.protobufs.ErrorCause protoError) {
         ErrorCause.Builder builder = ErrorCause.builder();
         builder.type(protoError.getType());
         if (protoError.hasReason()) {

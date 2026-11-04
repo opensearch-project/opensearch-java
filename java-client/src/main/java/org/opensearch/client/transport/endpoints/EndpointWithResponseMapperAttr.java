@@ -53,6 +53,20 @@ public class EndpointWithResponseMapperAttr<Req, Res, Err> extends DelegatingJso
         this.attrValue = attrValue;
     }
 
+    /**
+     * Returns the name of the mapper attribute set when deserializing the response.
+     */
+    public String attributeName() {
+        return attrName;
+    }
+
+    /**
+     * Returns the value of the mapper attribute set when deserializing the response, such as a document deserializer.
+     */
+    public Object attributeValue() {
+        return attrValue;
+    }
+
     @Nullable
     @Override
     public JsonpDeserializer<Res> responseDeserializer() {
