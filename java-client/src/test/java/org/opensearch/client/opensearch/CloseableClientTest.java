@@ -89,7 +89,7 @@ public class CloseableClientTest extends Assert {
         }
         assertEquals(1, closeCount.get());
 
-        final OpenSearchTransport  asyncTransport = countingTransport();
+        final OpenSearchTransport asyncTransport = countingTransport();
         try (final CloseableOpenSearchAsyncClient asyncClient = new CloseableOpenSearchAsyncClient(asyncTransport, originalOptions)) {
             assertSame(originalOptions, asyncClient._transportOptions());
             final OpenSearchAsyncClient asyncDerived = asyncClient.withTransportOptions(options);
