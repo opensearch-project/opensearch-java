@@ -38,4 +38,6 @@ application {
 
 tasks.named<JavaExec>("run") {
     systemProperty("samples.mainClass", System.getProperty("samples.mainClass"))
+    // Arrow's memory module reads direct buffer addresses (GrpcArrowSearch).
+    jvmArgs("--add-opens=java.base/java.nio=ALL-UNNAMED")
 }

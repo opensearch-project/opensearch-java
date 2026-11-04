@@ -31,6 +31,8 @@ val opensearchVersion = "3.9.0-SNAPSHOT"
 val grpcVersion = "1.68.0"
 val protobufVersion = "3.25.5"
 val opensearchProtobufVersion = "1.2.0"
+// The Arrow version of the arrow-search plugin, whose IPC stream the Arrow search API reads
+val arrowVersion = "18.1.0"
 
 dependencies {
     // Depend on java-client core
@@ -45,6 +47,12 @@ dependencies {
 
     // OpenSearch Protobufs (compiled protobuf Java classes)
     api("org.opensearch", "protobufs", opensearchProtobufVersion)
+
+    // Arrow streaming search (OpenSearchArrowClient): Arrow types are part of its API
+    api("org.apache.arrow", "arrow-vector", arrowVersion)
+    api("org.apache.arrow", "arrow-memory-core", arrowVersion)
+    // The default Arrow allocator backend; it needs no unshaded Netty next to grpc-netty-shaded
+    runtimeOnly("org.apache.arrow", "arrow-memory-unsafe", arrowVersion)
 
     // For AwsSdk2 SigV4 support (optional, compile-only)
     compileOnly("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
@@ -68,6 +76,13 @@ dependencies {
 
     testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
+}
+
+// Arrow memory needs access to java.nio internals on Java 17 and later.
+val arrowJvmArgs = listOf("--add-opens=java.base/java.nio=ALL-UNNAMED")
+
+tasks.withType<Test>().configureEach {
+    jvmArgs(arrowJvmArgs)
 }
 
 tasks.test {
