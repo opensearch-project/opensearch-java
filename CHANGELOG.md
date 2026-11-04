@@ -10,6 +10,7 @@ and preserving JDK-8 compatibility at the same time.
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
 - Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
+- Add `CloseableOpenSearchClient` and `CloseableOpenSearchAsyncClient` which close the underlying transport ([#2173](https://github.com/opensearch-project/opensearch-java/issues/2173))
 
 ### Dependencies
 - Bump Jackson to 2.22.4 / 3.2.4 ([#2231](https://github.com/opensearch-project/opensearch-java/pull/2231), [#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
