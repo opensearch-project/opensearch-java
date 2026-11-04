@@ -29,7 +29,7 @@ public class CloseableClientTest extends Assert {
         return (OpenSearchTransport) Proxy.newProxyInstance(
             getClass().getClassLoader(),
             new Class<?>[] { OpenSearchTransport.class },
-            (final var proxy, final var method, final var args) -> {
+            (proxy, method, args) -> {
                 if (method.getName().equals("close")) {
                     closeCount.incrementAndGet();
                     if (closeFailure != null) {
