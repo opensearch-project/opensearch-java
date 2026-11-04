@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Add constants for `_first` and `_last` sort values (#2189)
+- Add server-streaming gRPC calls: `GrpcStreamingTransport`, implemented by `GrpcTransport` and `HybridTransport`, makes a call described by a `GrpcStreamingEndpoint` and returns a pull-based `GrpcServerStream` with gRPC flow control, cancellation and error mapping; the headers of its `TransportOptions` are sent as for unary calls, and options a gRPC call cannot carry fail it with `UnsupportedOperationException` before anything is sent
 - Translate more of `SearchRequest` for the gRPC transport: `term`, `terms`, `range`, `bool`, `exists`, `ids`, `prefix`, `wildcard`, `match_none` and `constant_score` queries, `post_filter`, `docvalue_fields`, `terminate_after`, `timeout`, `track_total_hits`, routing, preference and index options
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 

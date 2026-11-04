@@ -29,7 +29,7 @@ import org.opensearch.client.transport.TransportOptions;
  * fallback to REST for supported endpoints. This ensures users know
  * immediately when their gRPC configuration is not working.
  */
-public class HybridTransport implements OpenSearchTransport {
+public class HybridTransport implements GrpcStreamingTransport {
 
     private static final Logger logger = Logger.getLogger(HybridTransport.class.getName());
 
@@ -81,6 +81,18 @@ public class HybridTransport implements OpenSearchTransport {
 
         // gRPC-supported endpoints go over gRPC — errors propagate to caller
         return grpcTransport.performRequestAsync(request, endpoint, options);
+    }
+
+    /**
+     * Server-streaming calls go over gRPC; there is no REST equivalent to fall back to.
+     */
+    @Override
+    public <RequestT, ProtoT, MessageT> GrpcServerStream<MessageT> serverStream(
+        RequestT request,
+        GrpcStreamingEndpoint<RequestT, ProtoT, MessageT> endpoint,
+        @Nullable TransportOptions options
+    ) throws IOException {
+        return grpcTransport.serverStream(request, endpoint, options != null ? options : grpcTransport.options());
     }
 
     @Override

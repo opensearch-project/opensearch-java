@@ -79,7 +79,7 @@ import org.opensearch.protobufs.services.SearchServiceGrpc;
  * client.bulk(bulkRequest); // goes over gRPC
  * }</pre>
  */
-public class GrpcTransport implements OpenSearchTransport {
+public class GrpcTransport implements GrpcStreamingTransport {
 
     // ─── Supported Endpoints Registry ────────────────────────────────────────────
 
@@ -307,6 +307,34 @@ public class GrpcTransport implements OpenSearchTransport {
             channel.shutdownNow();
             Thread.currentThread().interrupt();
         }
+    }
+
+    @Override
+    public <RequestT, ProtoT, MessageT> GrpcServerStream<MessageT> serverStream(
+        RequestT request,
+        GrpcStreamingEndpoint<RequestT, ProtoT, MessageT> endpoint,
+        @Nullable TransportOptions options
+    ) throws IOException {
+        if (channel == null) {
+            throw new IllegalStateException("gRPC transport has no channel");
+        }
+        // As for unary calls, options the call cannot carry fail it before anything is sent; there is no REST equivalent.
+        TransportOptions requestOptions = options != null ? options : transportOptions;
+        String unsupported = unsupportedOptions(requestOptions);
+        if (unsupported != null) {
+            throw new UnsupportedOperationException(unsupported);
+        }
+        ProtoT message = endpoint.toProto(request, jsonpMapper);
+        GrpcServerStreamCall<RequestT, ProtoT, MessageT> call = new GrpcServerStreamCall<>(
+            channel,
+            endpoint,
+            message,
+            GrpcServerStreamCall.headers(request, endpoint, requestOptions),
+            grpcOptions.maxRetries(),
+            grpcOptions.retryBackoffMs()
+        );
+        call.start();
+        return call;
     }
 
     /**
