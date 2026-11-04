@@ -52,7 +52,7 @@ public class CloseableClientTest extends Assert {
 
     @Test
     public void closingAsyncClientClosesTransport() throws IOException {
-        try (final CloseableOpenSearchClient client = new CloseableOpenSearchAsyncClient(countingTransport())) {
+        try (final CloseableOpenSearchAsyncClient client = new CloseableOpenSearchAsyncClient(countingTransport())) {
             assertEquals(0, closeCount.get());
         }
         assertEquals(1, closeCount.get());
@@ -89,10 +89,10 @@ public class CloseableClientTest extends Assert {
         }
         assertEquals(1, closeCount.get());
 
-        final var asyncTransport = countingTransport();
-        try (final var asyncClient = new CloseableOpenSearchAsyncClient(asyncTransport, originalOptions)) {
+        final OpenSearchTransport  asyncTransport = countingTransport();
+        try (final CloseableOpenSearchAsyncClient asyncClient = new CloseableOpenSearchAsyncClient(asyncTransport, originalOptions)) {
             assertSame(originalOptions, asyncClient._transportOptions());
-            final var asyncDerived = asyncClient.withTransportOptions(options);
+            final OpenSearchAsyncClient asyncDerived = asyncClient.withTransportOptions(options);
 
             assertNotSame(asyncClient, asyncDerived);
             assertFalse(asyncDerived instanceof Closeable);
@@ -100,7 +100,7 @@ public class CloseableClientTest extends Assert {
             assertSame(options, asyncDerived._transportOptions());
             assertSame(originalOptions, asyncClient._transportOptions());
 
-            final var asyncChained = asyncDerived.withTransportOptions(originalOptions);
+            final OpenSearchAsyncClient asyncChained = asyncDerived.withTransportOptions(originalOptions);
             assertFalse(asyncChained instanceof Closeable);
             assertSame(asyncTransport, asyncChained._transport());
             assertSame(originalOptions, asyncChained._transportOptions());
@@ -111,8 +111,8 @@ public class CloseableClientTest extends Assert {
 
     @Test
     public void closingSyncClientPropagatesTransportFailure() {
-        final var failure = new IOException("Transport close failed");
-        final var client = new CloseableOpenSearchClient(countingTransport(failure));
+        final IOException failure = new IOException("Transport close failed");
+        final CloseableOpenSearchClient client = new CloseableOpenSearchClient(countingTransport(failure));
 
         assertSame(failure, assertThrows(IOException.class, client::close));
         assertEquals(1, closeCount.get());
@@ -120,8 +120,8 @@ public class CloseableClientTest extends Assert {
 
     @Test
     public void closingAsyncClientPropagatesTransportFailure() {
-        final var failure = new IOException("Transport close failed");
-        final var client = new CloseableOpenSearchAsyncClient(countingTransport(failure));
+        final IOException failure = new IOException("Transport close failed");
+        final CloseableOpenSearchAsyncClient client = new CloseableOpenSearchAsyncClient(countingTransport(failure));
 
         assertSame(failure, assertThrows(IOException.class, client::close));
         assertEquals(1, closeCount.get());
