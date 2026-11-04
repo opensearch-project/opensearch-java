@@ -44,7 +44,7 @@ public class CloseableClientTest extends Assert {
 
     @Test
     public void closingSyncClientClosesTransport() throws IOException {
-        try (final var client = new CloseableOpenSearchClient(countingTransport())) {
+        try (final CloseableOpenSearchClient client = new CloseableOpenSearchClient(countingTransport())) {
             assertEquals(0, closeCount.get());
         }
         assertEquals(1, closeCount.get());
@@ -52,7 +52,7 @@ public class CloseableClientTest extends Assert {
 
     @Test
     public void closingAsyncClientClosesTransport() throws IOException {
-        try (final var client = new CloseableOpenSearchAsyncClient(countingTransport())) {
+        try (final CloseableOpenSearchClient client = new CloseableOpenSearchAsyncClient(countingTransport())) {
             assertEquals(0, closeCount.get());
         }
         assertEquals(1, closeCount.get());
@@ -69,11 +69,11 @@ public class CloseableClientTest extends Assert {
     }
 
     private void assertWithTransportOptions(final TransportOptions options) throws IOException {
-        final var transport = countingTransport();
-        final var originalOptions = TransportOptions.builder().addHeader("X-Original", "value").build();
-        try (final var client = new CloseableOpenSearchClient(transport, originalOptions)) {
+        final OpenSearchTransport transport = countingTransport();
+        final TransportOptions originalOptions = TransportOptions.builder().addHeader("X-Original", "value").build();
+        try (final CloseableOpenSearchClient client = new CloseableOpenSearchClient(transport, originalOptions)) {
             assertSame(originalOptions, client._transportOptions());
-            final var derived = client.withTransportOptions(options);
+            final OpenSearchClient derived = client.withTransportOptions(options);
 
             assertNotSame(client, derived);
             assertFalse(derived instanceof Closeable);
@@ -81,7 +81,7 @@ public class CloseableClientTest extends Assert {
             assertSame(options, derived._transportOptions());
             assertSame(originalOptions, client._transportOptions());
 
-            final var chained = derived.withTransportOptions(originalOptions);
+            final OpenSearchClient chained = derived.withTransportOptions(originalOptions);
             assertFalse(chained instanceof Closeable);
             assertSame(transport, chained._transport());
             assertSame(originalOptions, chained._transportOptions());
