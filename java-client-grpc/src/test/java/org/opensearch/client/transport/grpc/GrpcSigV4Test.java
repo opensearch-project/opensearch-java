@@ -8,11 +8,17 @@
 
 package org.opensearch.client.transport.grpc;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import io.grpc.KnownLength;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
@@ -339,5 +345,68 @@ public class GrpcSigV4Test {
         try {
             t.close();
         } catch (Exception e) { /* */ }
+    }
+
+    // ═══ Request body ════════════════════════════════════════════════════════════
+
+    /**
+     * A stream of known length that records the requested length of each read into an array. It stands in for the
+     * stream of a protobuf message, which copies the whole message aside when read in parts.
+     */
+    private static final class KnownLengthStream extends InputStream implements KnownLength {
+        private final byte[] content;
+        private final int announced;
+        private int position;
+        final List<Integer> reads = new ArrayList<>();
+
+        KnownLengthStream(byte[] content, int announced) {
+            this.content = content;
+            this.announced = announced;
+        }
+
+        @Override
+        public int available() {
+            return Math.max(0, announced - position);
+        }
+
+        @Override
+        public int read() {
+            return position < content.length ? content[position++] & 0xff : -1;
+        }
+
+        @Override
+        public int read(byte[] b, int off, int len) {
+            reads.add(len);
+            if (position >= content.length) {
+                return -1;
+            }
+            int n = Math.min(len, content.length - position);
+            System.arraycopy(content, position, b, off, n);
+            position += n;
+            return n;
+        }
+    }
+
+    private static byte[] content(int length) {
+        byte[] content = new byte[length];
+        for (int i = 0; i < length; i++) {
+            content[i] = (byte) i;
+        }
+        return content;
+    }
+
+    @Test
+    public void testRequestBodyOfKnownLengthIsReadAtOnce() throws IOException {
+        byte[] content = content(100_000);
+        KnownLengthStream in = new KnownLengthStream(content, content.length);
+        assertArrayEquals(content, GrpcSigV4Interceptor.readBody(in));
+        assertEquals("the whole body is read into one array", Integer.valueOf(content.length), in.reads.get(0));
+    }
+
+    @Test
+    public void testRequestBodyOfAnotherLengthThanAnnouncedIsReadWhole() throws IOException {
+        byte[] content = content(10);
+        assertArrayEquals(content, GrpcSigV4Interceptor.readBody(new KnownLengthStream(content, 4)));
+        assertArrayEquals(Arrays.copyOf(content, 6), GrpcSigV4Interceptor.readBody(new KnownLengthStream(Arrays.copyOf(content, 6), 10)));
     }
 }
