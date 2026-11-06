@@ -92,10 +92,10 @@ public class SearchRequestConverterTest {
     @Test(expected = UnsupportedOperationException.class)
     public void testUnsupportedQueryTypeThrows() {
         SearchRequest request = new SearchRequest.Builder().index("test-index")
-            .query(q -> q.term(t -> t.field("status").value(v -> v.stringValue("active"))))
+            .query(q -> q.match(m -> m.field("title").query(fv -> fv.stringValue("hello"))))
             .build();
 
-        // Should throw UnsupportedOperationException for term query
+        // Should throw UnsupportedOperationException for match query
         SearchRequestConverter.toProto(request, mapper);
     }
 }

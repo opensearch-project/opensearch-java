@@ -45,6 +45,13 @@ public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, 
         this.endpoint = endpoint;
     }
 
+    /**
+     * Returns the endpoint this one delegates to, so that a transport can recognize the API behind a wrapped endpoint.
+     */
+    public JsonEndpoint<Req, Res, Err> unwrap() {
+        return endpoint;
+    }
+
     @Override
     public String method(Req request) {
         return endpoint.method(request);

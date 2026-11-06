@@ -22,7 +22,8 @@ import org.opensearch.client.transport.TransportOptions;
  * operations to REST.
  * <p>
  * Supported endpoints (e.g., Bulk) are sent over gRPC for better performance.
- * Unsupported endpoints are sent over REST automatically.
+ * Unsupported endpoints are sent over REST automatically, as are requests gRPC cannot
+ * send without dropping some of their options (see {@link GrpcTransport#isSupported}).
  * <p>
  * gRPC errors are propagated directly to the caller — there is no silent
  * fallback to REST for supported endpoints. This ensures users know
@@ -59,7 +60,7 @@ public class HybridTransport implements OpenSearchTransport {
     ) throws IOException {
 
         // Route unsupported endpoints/requests directly to REST
-        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
+        if (!grpcTransport.isSupported(endpoint, request, options)) {
             return restTransport.performRequest(request, endpoint, options);
         }
 
@@ -74,7 +75,7 @@ public class HybridTransport implements OpenSearchTransport {
         @Nullable TransportOptions options
     ) {
         // Route unsupported endpoints/requests directly to REST
-        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
+        if (!grpcTransport.isSupported(endpoint, request, options)) {
             return restTransport.performRequestAsync(request, endpoint, options);
         }
 

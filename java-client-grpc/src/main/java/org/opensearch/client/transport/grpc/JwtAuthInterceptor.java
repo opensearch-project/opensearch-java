@@ -23,7 +23,8 @@ import java.util.function.Supplier;
  * <p>
  * Attaches the {@code Authorization: Bearer <token>} header as gRPC metadata.
  * The token is obtained from a {@link Supplier} on every call to support
- * automatic token refresh/rotation.
+ * automatic token refresh/rotation. A call that already carries an {@code Authorization} header, such as one set in
+ * the request's {@code TransportOptions}, is sent with that header instead, as over REST.
  * <p>
  * Usage:
  * <pre>{@code
@@ -70,6 +71,10 @@ public class JwtAuthInterceptor implements ClientInterceptor {
         return new SimpleForwardingClientCall<ReqT, RespT>(next.newCall(method, callOptions)) {
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
+                if (headers.containsKey(AUTHORIZATION_KEY)) {
+                    super.start(responseListener, headers);
+                    return;
+                }
                 String token = tokenSupplier.get();
                 if (token == null || token.isEmpty()) {
                     throw new IllegalStateException(
