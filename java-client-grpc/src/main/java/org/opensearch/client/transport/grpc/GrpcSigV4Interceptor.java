@@ -13,12 +13,20 @@ import io.grpc.Channel;
 import io.grpc.ClientCall;
 import io.grpc.ClientInterceptor;
 import io.grpc.ForwardingClientCall.SimpleForwardingClientCall;
+import io.grpc.KnownLength;
 import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
+import io.grpc.Status;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,24 +48,17 @@ import software.amazon.awssdk.http.auth.spi.signer.SignedRequest;
  *       X-Amz-Content-SHA256) and attaches them as gRPC metadata</li>
  * </ol>
  * <p>
- * Supports two payload signing modes:
+ * The payload is signed with its SHA-256 hash, which Amazon OpenSearch Service requires:
  * <ul>
- *   <li><b>Unsigned payload</b> (default): Uses "UNSIGNED-PAYLOAD" as the content hash.
- *       Simpler and works when the server doesn't validate body hash.</li>
- *   <li><b>Signed payload</b>: Computes SHA-256 of the actual serialized protobuf bytes.
- *       More secure, required if the server validates the content hash.
- *       Set via {@link #setPayloadHash(String)} before the call.</li>
+ *   <li>A call that sends exactly one request message (unary and server-streaming methods, such as Bulk, Search and
+ *       ServerStreamSearch) starts only once its message is sent: the interceptor serializes the message, signs those
+ *       bytes, then starts the call and sends the same bytes. Each attempt, including a retry, is signed for its own
+ *       message.</li>
+ *   <li>Calls that stream request messages (client-streaming and bidirectional methods) are signed with
+ *       {@link #UNSIGNED_PAYLOAD}, since their body is not known when the call starts.</li>
  * </ul>
  * <p>
- * For body-aware signing (matching the sample OpenSearchGrpcClient pattern), use the
- * static helper {@link #computePayloadHash(byte[])} to pre-compute the hash:
- * <pre>{@code
- * // Pre-compute hash from serialized protobuf
- * String payloadHash = GrpcSigV4Interceptor.computePayloadHash(protoRequest.toByteArray());
- *
- * // Or use unsigned payload
- * String payloadHash = GrpcSigV4Interceptor.UNSIGNED_PAYLOAD;
- * }</pre>
+ * A call that cannot be signed fails with {@code UNAUTHENTICATED} and sends nothing.
  * <p>
  * Credentials are resolved on every call (not cached) to handle temporary credential rotation.
  *
@@ -67,14 +68,11 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
 
     private static final Logger logger = Logger.getLogger(GrpcSigV4Interceptor.class.getName());
 
-    /** Use this as payloadHash when you don't want to sign the body content. */
+    /** The payload hash of a call whose body is not signed. */
     public static final String UNSIGNED_PAYLOAD = "UNSIGNED-PAYLOAD";
 
     private final GrpcSigV4Config config;
     private final String host;
-
-    // Thread-local payload hash for per-call body signing
-    private final ThreadLocal<String> payloadHashHolder = new ThreadLocal<>();
 
     /**
      * Creates a SigV4 interceptor.
@@ -94,25 +92,19 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
     }
 
     /**
-     * Sets the payload hash for the next gRPC call on the current thread.
-     * <p>
-     * Call this before invoking the gRPC stub if you want body-aware signing:
-     * <pre>{@code
-     * interceptor.setPayloadHash(GrpcSigV4Interceptor.computePayloadHash(request.toByteArray()));
-     * stub.bulk(request);
-     * }</pre>
-     * <p>
-     * If not set, defaults to {@link #UNSIGNED_PAYLOAD}.
+     * Does nothing: each call is signed for the bytes it sends.
      *
-     * @param payloadHash the pre-computed SHA-256 hex of the request body, or {@link #UNSIGNED_PAYLOAD}
+     * @param payloadHash ignored
+     * @deprecated Calls that send one request message are signed with the hash of the bytes they send, and other calls
+     *             with {@link #UNSIGNED_PAYLOAD}.
      */
+    @Deprecated
     public void setPayloadHash(String payloadHash) {
-        payloadHashHolder.set(payloadHash);
+        // Signing does not depend on state set by the caller.
     }
 
     /**
      * Computes the SHA-256 hex hash of the given bytes.
-     * Use this to pre-compute the payload hash for body-aware signing.
      *
      * @param payload the serialized protobuf request bytes
      * @return lowercase hex-encoded SHA-256 hash
@@ -137,38 +129,269 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
         CallOptions callOptions,
         Channel next
     ) {
+        if (method.getType().clientSendsOneMessage()) {
+            return new BodySigningCall<>(method, callOptions, next);
+        }
         return new SimpleForwardingClientCall<ReqT, RespT>(next.newCall(method, callOptions)) {
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
+                final Map<String, List<String>> signedHeaders;
                 try {
-                    // Get payload hash: use pre-set value or default to UNSIGNED-PAYLOAD
-                    String payloadHash = payloadHashHolder.get();
-                    if (payloadHash == null) {
-                        payloadHash = UNSIGNED_PAYLOAD;
-                    }
-                    // Clear after use (one-shot per call)
-                    payloadHashHolder.remove();
-
-                    // Sign using the gRPC method path
-                    Map<String, List<String>> signedHeaders = signRequest(method.getFullMethodName(), payloadHash);
-
-                    // Attach signed headers as gRPC metadata
-                    for (Map.Entry<String, List<String>> entry : signedHeaders.entrySet()) {
-                        String key = entry.getKey().toLowerCase();
-                        if (isSigningHeader(key)) {
-                            Metadata.Key<String> metadataKey = Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER);
-                            for (String value : entry.getValue()) {
-                                headers.put(metadataKey, value);
-                            }
-                        }
-                    }
-                } catch (Exception e) {
+                    signedHeaders = signRequest(method.getFullMethodName(), UNSIGNED_PAYLOAD);
+                } catch (RuntimeException e) {
                     logger.log(Level.WARNING, "Failed to sign gRPC request: " + e.getMessage(), e);
+                    responseListener.onClose(signingFailed(e), new Metadata());
+                    return;
                 }
-
+                addSigningHeaders(signedHeaders, headers);
                 super.start(responseListener, headers);
             }
         };
+    }
+
+    /**
+     * A call that sends one request message, signed with the hash of that message. It starts the underlying call only
+     * once the message is sent, and sends the bytes it signed.
+     * <p>
+     * gRPC calls this class from one thread at a time, except {@link #request(int)}, which may come from any thread. So
+     * the start of the underlying call and the replay of earlier requests happen under one lock.
+     */
+    private final class BodySigningCall<ReqT, RespT> extends ClientCall<ReqT, RespT> {
+        private final MethodDescriptor<ReqT, RespT> method;
+        private final SignedBodyMarshaller<ReqT> marshaller;
+        private final ClientCall<ReqT, RespT> delegate;
+
+        private final Object lock = new Object();
+        private Listener<RespT> listener;
+        private Metadata headers;
+        /** Whether the underlying call started. */
+        private boolean started;
+        /** Whether the call ended here, before the underlying call started. */
+        private boolean closedLocally;
+        private int pendingRequests;
+
+        BodySigningCall(MethodDescriptor<ReqT, RespT> method, CallOptions callOptions, Channel next) {
+            this.method = method;
+            this.marshaller = new SignedBodyMarshaller<>(method.getRequestMarshaller());
+            // The same method with a request marshaller that sends the bytes signed below; name and type are unchanged.
+            this.delegate = next.newCall(method.toBuilder(marshaller, method.getResponseMarshaller()).build(), callOptions);
+        }
+
+        @Override
+        public void start(Listener<RespT> responseListener, Metadata headers) {
+            synchronized (lock) {
+                this.listener = responseListener;
+                this.headers = headers;
+            }
+        }
+
+        @Override
+        public void request(int numMessages) {
+            synchronized (lock) {
+                if (started == false) {
+                    pendingRequests += numMessages;
+                    return;
+                }
+            }
+            delegate.request(numMessages);
+        }
+
+        @Override
+        public void sendMessage(ReqT message) {
+            synchronized (lock) {
+                if (closedLocally) {
+                    return;
+                }
+                if (started) {
+                    // Not expected for a method that sends one message; gRPC itself rejects a second one.
+                    delegate.sendMessage(message);
+                    return;
+                }
+            }
+            final byte[] body;
+            try {
+                body = marshaller.serialize(message);
+            } catch (IOException | RuntimeException e) {
+                closeLocally(Status.INTERNAL.withDescription("Failed to serialize gRPC request: " + e.getMessage()).withCause(e));
+                return;
+            }
+            if (signAndStart(body)) {
+                delegate.sendMessage(message);
+            }
+        }
+
+        @Override
+        public void halfClose() {
+            final boolean notStarted;
+            synchronized (lock) {
+                if (closedLocally) {
+                    return;
+                }
+                notStarted = started == false;
+            }
+            // A call half-closed without a message is signed for an empty body; the server rejects it as usual.
+            if (notStarted && signAndStart(new byte[0]) == false) {
+                return;
+            }
+            delegate.halfClose();
+        }
+
+        @Override
+        public void cancel(String message, Throwable cause) {
+            final boolean notStarted;
+            synchronized (lock) {
+                if (closedLocally) {
+                    return;
+                }
+                notStarted = started == false;
+            }
+            if (notStarted) {
+                closeLocally(Status.CANCELLED.withDescription(message).withCause(cause));
+                return;
+            }
+            delegate.cancel(message, cause);
+        }
+
+        @Override
+        public boolean isReady() {
+            synchronized (lock) {
+                if (started == false) {
+                    return false;
+                }
+            }
+            return delegate.isReady();
+        }
+
+        @Override
+        public void setMessageCompression(boolean enabled) {
+            delegate.setMessageCompression(enabled);
+        }
+
+        @Override
+        public io.grpc.Attributes getAttributes() {
+            return delegate.getAttributes();
+        }
+
+        /**
+         * Signs the call for {@code body} and starts the underlying call, replaying the requests made meanwhile.
+         *
+         * @return whether the call started; a call that cannot be signed fails with {@code UNAUTHENTICATED} instead
+         */
+        private boolean signAndStart(byte[] body) {
+            final Map<String, List<String>> signedHeaders;
+            try {
+                signedHeaders = signRequest(method.getFullMethodName(), body);
+            } catch (RuntimeException e) {
+                logger.log(Level.WARNING, "Failed to sign gRPC request: " + e.getMessage(), e);
+                closeLocally(signingFailed(e));
+                return false;
+            }
+            synchronized (lock) {
+                if (closedLocally || started) {
+                    return started;
+                }
+                addSigningHeaders(signedHeaders, headers);
+                started = true;
+                delegate.start(listener, headers);
+                if (pendingRequests > 0) {
+                    delegate.request(pendingRequests);
+                    pendingRequests = 0;
+                }
+                return true;
+            }
+        }
+
+        /** Ends the call before the underlying call started: nothing was sent. */
+        private void closeLocally(Status status) {
+            final Listener<RespT> closing;
+            synchronized (lock) {
+                if (closedLocally || started) {
+                    return;
+                }
+                closedLocally = true;
+                closing = listener;
+            }
+            if (closing != null) {
+                closing.onClose(status, new Metadata());
+            }
+        }
+    }
+
+    /**
+     * Serializes a request message once, for signing, and hands the same bytes to gRPC when the call sends it.
+     */
+    private static final class SignedBodyMarshaller<T> implements MethodDescriptor.Marshaller<T> {
+        private final MethodDescriptor.Marshaller<T> delegate;
+        private volatile T signedMessage;
+        private volatile byte[] signedBody;
+
+        SignedBodyMarshaller(MethodDescriptor.Marshaller<T> delegate) {
+            this.delegate = delegate;
+        }
+
+        byte[] serialize(T message) throws IOException {
+            final byte[] body;
+            try (InputStream in = delegate.stream(message)) {
+                body = readBody(in);
+            }
+            signedMessage = message;
+            signedBody = body;
+            return body;
+        }
+
+        @Override
+        public InputStream stream(T value) {
+            final byte[] body = signedBody;
+            if (body != null && value == signedMessage) {
+                return new ByteArrayInputStream(body);
+            }
+            return delegate.stream(value);
+        }
+
+        @Override
+        public T parse(InputStream stream) {
+            return delegate.parse(stream);
+        }
+    }
+
+    /**
+     * Reads a serialized message in one copy when its stream knows its length. The stream of a protobuf message writes
+     * the message straight into an array of that length; read in chunks, it would first copy the whole message aside.
+     */
+    static byte[] readBody(InputStream in) throws IOException {
+        if (in instanceof KnownLength == false) {
+            return in.readAllBytes();
+        }
+        byte[] body = new byte[in.available()];
+        int read = in.readNBytes(body, 0, body.length);
+        int next = in.read();
+        if (next == -1) {
+            return read == body.length ? body : Arrays.copyOf(body, read);
+        }
+        // The stream holds more than it announced
+        ByteArrayOutputStream rest = new ByteArrayOutputStream();
+        rest.write(body, 0, read);
+        rest.write(next);
+        in.transferTo(rest);
+        return rest.toByteArray();
+    }
+
+    private static Status signingFailed(Exception e) {
+        return Status.UNAUTHENTICATED.withDescription("Failed to sign gRPC request with AWS SigV4: " + e.getMessage()).withCause(e);
+    }
+
+    /** Copies the AWS signing headers into the call's gRPC metadata. */
+    private static void addSigningHeaders(Map<String, List<String>> signedHeaders, Metadata headers) {
+        for (Map.Entry<String, List<String>> entry : signedHeaders.entrySet()) {
+            String key = entry.getKey().toLowerCase(Locale.ROOT);
+            if (isSigningHeader(key)) {
+                Metadata.Key<String> metadataKey = Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER);
+                headers.removeAll(metadataKey);
+                for (String value : entry.getValue()) {
+                    headers.put(metadataKey, value);
+                }
+            }
+        }
     }
 
     /**
@@ -179,6 +402,27 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
      * @return map of signed header names to their values
      */
     Map<String, List<String>> signRequest(String grpcMethodPath, String payloadHash) {
+        return sign(grpcMethodPath, payloadHash, new byte[0]);
+    }
+
+    /**
+     * Signs a synthetic HTTP request representing a gRPC call whose request body is {@code body}.
+     *
+     * @param grpcMethodPath the full gRPC method name
+     * @param body           the serialized request message, as sent on the wire
+     * @return map of signed header names to their values
+     */
+    Map<String, List<String>> signRequest(String grpcMethodPath, byte[] body) {
+        // The signer hashes the body itself and sets x-amz-content-sha256
+        return sign(grpcMethodPath, null, body);
+    }
+
+    /**
+     * Signs a synthetic HTTP POST to the gRPC method path.
+     *
+     * @param payloadHash the payload hash to send, or {@code null} to sign the payload, whose hash the signer computes
+     */
+    private Map<String, List<String>> sign(String grpcMethodPath, String payloadHash, byte[] body) {
         String path = "/" + grpcMethodPath;
         String url = "https://" + host + path;
 
@@ -186,13 +430,16 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
         SdkHttpFullRequest.Builder requestBuilder = SdkHttpFullRequest.builder()
             .method(SdkHttpMethod.POST)
             .uri(URI.create(url))
-            .putHeader("host", host)
-            .putHeader("x-amz-content-sha256", payloadHash);
+            .putHeader("host", host);
+        if (payloadHash != null) {
+            requestBuilder.putHeader("x-amz-content-sha256", payloadHash);
+        }
 
-        // For signed payload, we pass the actual bytes; for unsigned, empty
-        ContentStreamProvider bodyProvider = ContentStreamProvider.fromByteArrayUnsafe(new byte[0]);
+        ContentStreamProvider bodyProvider = ContentStreamProvider.fromByteArrayUnsafe(body);
 
-        // Sign the request
+        // Without payload signing the signer sends UNSIGNED-PAYLOAD; with it, it hashes the body it is given (and would
+        // replace a preset UNSIGNED-PAYLOAD with the hash of an empty body).
+        boolean signPayload = UNSIGNED_PAYLOAD.equals(payloadHash) == false;
         SignedRequest signedRequest = AwsV4HttpSigner.create()
             .sign(
                 b -> b.identity(config.credentialsProvider().resolveCredentials())
@@ -200,6 +447,7 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
                     .payload(bodyProvider)
                     .putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, config.service())
                     .putProperty(AwsV4HttpSigner.REGION_NAME, config.region().id())
+                    .putProperty(AwsV4HttpSigner.PAYLOAD_SIGNING_ENABLED, signPayload)
             );
 
         return signedRequest.request().headers();

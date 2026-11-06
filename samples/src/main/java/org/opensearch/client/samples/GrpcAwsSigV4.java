@@ -50,7 +50,7 @@ import software.amazon.awssdk.regions.Region;
  * Environment variables:
  * - OPENSEARCH_DOMAIN: domain endpoint (e.g., search-my-domain.us-east-1.es.amazonaws.com)
  * - AWS_REGION: AWS region (default: us-east-1)
- * - GRPC_PORT: gRPC port (default: 9400)
+ * - GRPC_PORT: gRPC port (default: 443, the domain endpoint)
  */
 public class GrpcAwsSigV4 {
     private static final Logger LOGGER = LogManager.getLogger(GrpcAwsSigV4.class);
@@ -60,7 +60,7 @@ public class GrpcAwsSigV4 {
             var env = System.getenv();
             var domain = env.getOrDefault("OPENSEARCH_DOMAIN", "search-my-domain.us-east-1.es.amazonaws.com");
             var region = Region.of(env.getOrDefault("AWS_REGION", "us-east-1"));
-            var grpcPort = Integer.parseInt(env.getOrDefault("GRPC_PORT", "9400"));
+            var grpcPort = Integer.parseInt(env.getOrDefault("GRPC_PORT", "443"));
             var service = env.getOrDefault("OPENSEARCH_SERVICE", "es"); // "es" or "aoss"
 
             LOGGER.info("Connecting to {} in {} (service={})", domain, region, service);

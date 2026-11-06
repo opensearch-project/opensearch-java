@@ -32,7 +32,8 @@ import org.opensearch.client.transport.TransportException;
  *   <li>NOT_FOUND (5)         → OpenSearchException (404)</li>
  *   <li>ALREADY_EXISTS (6)    → OpenSearchException (409)</li>
  *   <li>PERMISSION_DENIED (7) → TransportException (403)</li>
- *   <li>RESOURCE_EXHAUSTED(8) → TransportException (429)</li>
+ *   <li>RESOURCE_EXHAUSTED(8) → TransportException (429), or for a message larger than the limit of its receiver,
+ *       TransportException naming the limits</li>
  *   <li>FAILED_PRECONDITION(9)→ OpenSearchException (412)</li>
  *   <li>ABORTED (10)          → OpenSearchException (409)</li>
  *   <li>OUT_OF_RANGE (11)     → OpenSearchException (400)</li>
@@ -78,6 +79,15 @@ public final class GrpcStatusConverter {
                 return new TransportException("Forbidden access (403): " + description, e);
 
             case RESOURCE_EXHAUSTED:
+                if (isMessageTooLarge(status)) {
+                    return new TransportException(
+                        "gRPC message too large: "
+                            + description
+                            + ". Responses are limited by GrpcTransportOptions.maxInboundMessageSize, requests by the server's "
+                            + "grpc.netty.max_msg_size.",
+                        e
+                    );
+                }
                 return new TransportException("Rate limited (429): " + description, e);
 
             case INTERNAL:
@@ -147,6 +157,19 @@ public final class GrpcStatusConverter {
         ErrorCause errorCause = ErrorCause.of(b -> b.type(type).reason(reason));
         ErrorResponse errorResponse = ErrorResponse.of(b -> b.status(status).error(errorCause));
         return new OpenSearchException(errorResponse);
+    }
+
+    /**
+     * Returns whether the status reports a message larger than its receiver accepts. gRPC fails such a call with
+     * {@code RESOURCE_EXHAUSTED}, as a server that throttles requests does.
+     *
+     * @param status the status of a failed call
+     * @return true if a message of the call exceeded the maximum message size of the client or the server
+     */
+    public static boolean isMessageTooLarge(Status status) {
+        return status.getCode() == Status.Code.RESOURCE_EXHAUSTED
+            && status.getDescription() != null
+            && status.getDescription().contains("exceeds maximum size");
     }
 
     /**

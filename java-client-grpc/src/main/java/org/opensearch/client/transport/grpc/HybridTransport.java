@@ -22,13 +22,14 @@ import org.opensearch.client.transport.TransportOptions;
  * operations to REST.
  * <p>
  * Supported endpoints (e.g., Bulk) are sent over gRPC for better performance.
- * Unsupported endpoints are sent over REST automatically.
+ * Unsupported endpoints are sent over REST automatically, as are requests gRPC cannot
+ * send without dropping some of their options (see {@link GrpcTransport#isSupported}).
  * <p>
  * gRPC errors are propagated directly to the caller — there is no silent
  * fallback to REST for supported endpoints. This ensures users know
  * immediately when their gRPC configuration is not working.
  */
-public class HybridTransport implements OpenSearchTransport {
+public class HybridTransport implements GrpcStreamingTransport {
 
     private static final Logger logger = Logger.getLogger(HybridTransport.class.getName());
 
@@ -59,7 +60,7 @@ public class HybridTransport implements OpenSearchTransport {
     ) throws IOException {
 
         // Route unsupported endpoints/requests directly to REST
-        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
+        if (!grpcTransport.isSupported(endpoint, request, options)) {
             return restTransport.performRequest(request, endpoint, options);
         }
 
@@ -74,12 +75,24 @@ public class HybridTransport implements OpenSearchTransport {
         @Nullable TransportOptions options
     ) {
         // Route unsupported endpoints/requests directly to REST
-        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
+        if (!grpcTransport.isSupported(endpoint, request, options)) {
             return restTransport.performRequestAsync(request, endpoint, options);
         }
 
         // gRPC-supported endpoints go over gRPC — errors propagate to caller
         return grpcTransport.performRequestAsync(request, endpoint, options);
+    }
+
+    /**
+     * Server-streaming calls go over gRPC; there is no REST equivalent to fall back to.
+     */
+    @Override
+    public <RequestT, ProtoT, MessageT> GrpcServerStream<MessageT> serverStream(
+        RequestT request,
+        GrpcStreamingEndpoint<RequestT, ProtoT, MessageT> endpoint,
+        @Nullable TransportOptions options
+    ) throws IOException {
+        return grpcTransport.serverStream(request, endpoint, options != null ? options : grpcTransport.options());
     }
 
     @Override

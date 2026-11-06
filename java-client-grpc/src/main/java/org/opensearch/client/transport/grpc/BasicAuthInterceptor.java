@@ -26,7 +26,9 @@ import java.util.Base64;
  * which the OpenSearch server reads for authentication.
  * <p>
  * This is the gRPC equivalent of the REST client's basic auth configuration
- * ({@code UsernamePasswordCredentials} on the HTTP client).
+ * ({@code UsernamePasswordCredentials} on the HTTP client). As there, a call that already carries an
+ * {@code Authorization} header, such as one set in the request's {@code TransportOptions}, is sent with that header
+ * instead.
  * <p>
  * Usage:
  * <pre>{@code
@@ -70,7 +72,9 @@ class BasicAuthInterceptor implements ClientInterceptor {
         return new SimpleForwardingClientCall<ReqT, RespT>(next.newCall(method, callOptions)) {
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
-                headers.put(AUTHORIZATION_KEY, authHeaderValue);
+                if (headers.containsKey(AUTHORIZATION_KEY) == false) {
+                    headers.put(AUTHORIZATION_KEY, authHeaderValue);
+                }
                 super.start(responseListener, headers);
             }
         };

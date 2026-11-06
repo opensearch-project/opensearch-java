@@ -48,6 +48,8 @@ public class GrpcTransportTest {
         assertFalse(o.keepAliveWithoutCalls());
         assertEquals(3, o.maxRetries());
         assertEquals(100, o.retryBackoffMs());
+        // The default response timeout of the REST transport
+        assertEquals(30_000, o.deadlineMs());
     }
 
     @Test
@@ -94,11 +96,22 @@ public class GrpcTransportTest {
     }
 
     @Test
-    public void testSearchTermQueryNotSupportedWithRequest() {
+    public void testSearchTermQuerySupportedWithRequest() {
         SearchRequest request = new SearchRequest.Builder().index("test")
             .query(q -> q.term(t -> t.field("status").value(v -> v.stringValue("active"))))
             .build();
-        assertFalse(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
+        assertTrue(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, request));
+    }
+
+    @Test
+    public void testSearchWithAnOptionGrpcCannotSendIsNotSupported() {
+        // gRPC cannot send these options, so the search is not sent over gRPC with them dropped.
+        SearchRequest sorted = new SearchRequest.Builder().index("test").sort(s -> s.field(f -> f.field("ts"))).build();
+        assertFalse(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, sorted));
+        SearchRequest aggregated = new SearchRequest.Builder().index("test")
+            .aggregations("by_status", a -> a.terms(t -> t.field("status")))
+            .build();
+        assertFalse(GrpcTransport.isEndpointSupported(SearchRequest._ENDPOINT, aggregated));
     }
 
     @Test
