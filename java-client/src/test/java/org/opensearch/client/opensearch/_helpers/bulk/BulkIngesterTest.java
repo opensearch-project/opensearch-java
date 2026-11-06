@@ -57,6 +57,7 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 import org.opensearch.client.opensearch.core.bulk.BulkResponseItem;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
+import org.opensearch.client.transport.BackoffPolicy;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -89,6 +90,16 @@ public class BulkIngesterTest extends Assert {
     );
 
     private static final BulkOperation operation = BulkOperation.of(op -> op.delete(d -> d.index("foo").id("bar")));
+
+    private static BulkResponseItem rejectedItem(int position) {
+        return BulkResponseItem.of(
+            i -> i.index("foo")
+                .id(String.valueOf(position))
+                .status(429)
+                .operationType(OperationType.Delete)
+                .error(e -> e.type("rejected_execution_exception").reason("rejected"))
+        );
+    }
 
     private void printStats(BulkIngester<?> ingester) {
         System.out.printf(
@@ -221,6 +232,41 @@ public class BulkIngesterTest extends Assert {
 
         assertEquals(10, ingester.operationsCount());
         assertEquals(5, ingester.requestCount());
+    }
+
+    @Test(timeout = 30_000)
+    public void retriesFillingTheBufferDoNotBlockTheirFlush() throws Exception {
+        retriesFillingTheBufferTest(200L);
+    }
+
+    @Test(timeout = 30_000)
+    public void retriesWithShortBackoffAreFlushedOnceAddedToTheBuffer() throws Exception {
+        // The scheduled flushes are likely to run while the retries are still waiting for space in the buffer
+        retriesFillingTheBufferTest(1L);
+    }
+
+    private void retriesFillingTheBufferTest(long retryDelayMillis) throws Exception {
+        int numOperations = 10;
+        TestTransport transport = new TestTransport();
+        transport.itemsToReject.set(6);
+
+        // No flushInterval: nothing but the retry flushes can drain a buffer full of operations waiting for their backoff
+        BulkIngester<Void> ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport))
+                .maxOperations(2)
+                .maxConcurrentRequests(1)
+                .backoffPolicy(BackoffPolicy.constantBackoff(retryDelayMillis, 5))
+        );
+
+        for (int i = 0; i < numOperations; i++) {
+            ingester.add(operation);
+        }
+
+        ingester.close();
+        transport.close();
+
+        assertEquals(0, transport.itemsToReject.get());
+        assertEquals(numOperations + 6, transport.operations.get());
     }
 
     /**
@@ -513,6 +559,8 @@ public class BulkIngesterTest extends Assert {
         public final AtomicInteger requestsStarted = new AtomicInteger();
         public final AtomicInteger requestsCompleted = new AtomicInteger();
         public final AtomicInteger operations = new AtomicInteger();
+        // Number of operations that will still be answered with a 429 status
+        public final AtomicInteger itemsToReject = new AtomicInteger();
 
         private final ExecutorService executor = Executors.newCachedThreadPool();
 
@@ -542,7 +590,11 @@ public class BulkIngesterTest extends Assert {
 
             List<BulkResponseItem> items = new ArrayList<>();
             for (int i = 0; i < bulk.operations().size(); i++) {
-                items.add(successItem);
+                if (itemsToReject.getAndUpdate(remaining -> Math.max(0, remaining - 1)) > 0) {
+                    items.add(rejectedItem(i));
+                } else {
+                    items.add(successItem);
+                }
             }
 
             CompletableFuture<BulkResponse> response = new CompletableFuture<>();

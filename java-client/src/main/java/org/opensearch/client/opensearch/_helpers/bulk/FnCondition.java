@@ -115,6 +115,8 @@ class FnCondition {
             }
 
             if (canRun != null && !canRun.getAsBoolean()) {
+                // This thread may have used up a signal without doing anything with it: pass it on to the next one
+                condition.signal();
                 return null;
             }
 
