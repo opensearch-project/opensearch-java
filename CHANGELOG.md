@@ -26,6 +26,7 @@ and preserving JDK-8 compatibility at the same time.
 
 ### Fixed
 - Custom unitTest tasks run NO-SOURCE under Gradle 9, so some unit tests never run in CI ([#2174](https://github.com/opensearch-project/opensearch-java/pull/2174))
+- Thread the caller's document type through the gRPC transport typed search path so hit `_source` values deserialize to `TDocument` instead of being silently cast from `Object`/`JsonData`, fixing a runtime `ClassCastException` ([#2123](https://github.com/opensearch-project/opensearch-java/issues/2123), [#2160](https://github.com/opensearch-project/opensearch-java/pull/2160))
 - Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
 - Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
 - Fix code generation failing with a `NullPointerException` on an `allOf` with no `$ref` or composition member, such as `allOf: [{ properties }, { anyOf }]` (`SemanticProperty` in the normalized spec). `allOf` now always maps to its last, most specific member, which is what it already did whenever it did not fail ([#2238](https://github.com/opensearch-project/opensearch-java/pull/2238))
