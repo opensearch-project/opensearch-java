@@ -81,6 +81,12 @@ public class IndexRoutingAllocation
     private final Integer totalPrimaryShardsPerNode;
 
     @Nullable
+    private final Integer totalRemoteCapablePrimaryShardsPerNode;
+
+    @Nullable
+    private final Integer totalRemoteCapableShardsPerNode;
+
+    @Nullable
     private final Integer totalShardsPerNode;
 
     // ---------------------------------------------------------------------------------------------
@@ -91,6 +97,8 @@ public class IndexRoutingAllocation
         this.include = builder.include;
         this.initialRecovery = builder.initialRecovery;
         this.totalPrimaryShardsPerNode = builder.totalPrimaryShardsPerNode;
+        this.totalRemoteCapablePrimaryShardsPerNode = builder.totalRemoteCapablePrimaryShardsPerNode;
+        this.totalRemoteCapableShardsPerNode = builder.totalRemoteCapableShardsPerNode;
         this.totalShardsPerNode = builder.totalShardsPerNode;
     }
 
@@ -139,6 +147,22 @@ public class IndexRoutingAllocation
     }
 
     /**
+     * API name: {@code total_remote_capable_primary_shards_per_node}
+     */
+    @Nullable
+    public final Integer totalRemoteCapablePrimaryShardsPerNode() {
+        return this.totalRemoteCapablePrimaryShardsPerNode;
+    }
+
+    /**
+     * API name: {@code total_remote_capable_shards_per_node}
+     */
+    @Nullable
+    public final Integer totalRemoteCapableShardsPerNode() {
+        return this.totalRemoteCapableShardsPerNode;
+    }
+
+    /**
      * API name: {@code total_shards_per_node}
      */
     @Nullable
@@ -182,6 +206,16 @@ public class IndexRoutingAllocation
             generator.write(this.totalPrimaryShardsPerNode);
         }
 
+        if (this.totalRemoteCapablePrimaryShardsPerNode != null) {
+            generator.writeKey("total_remote_capable_primary_shards_per_node");
+            generator.write(this.totalRemoteCapablePrimaryShardsPerNode);
+        }
+
+        if (this.totalRemoteCapableShardsPerNode != null) {
+            generator.writeKey("total_remote_capable_shards_per_node");
+            generator.write(this.totalRemoteCapableShardsPerNode);
+        }
+
         if (this.totalShardsPerNode != null) {
             generator.writeKey("total_shards_per_node");
             generator.write(this.totalShardsPerNode);
@@ -216,6 +250,10 @@ public class IndexRoutingAllocation
         @Nullable
         private Integer totalPrimaryShardsPerNode;
         @Nullable
+        private Integer totalRemoteCapablePrimaryShardsPerNode;
+        @Nullable
+        private Integer totalRemoteCapableShardsPerNode;
+        @Nullable
         private Integer totalShardsPerNode;
 
         public Builder() {}
@@ -226,6 +264,8 @@ public class IndexRoutingAllocation
             this.include = o.include;
             this.initialRecovery = o.initialRecovery;
             this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
+            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
+            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
             this.totalShardsPerNode = o.totalShardsPerNode;
         }
 
@@ -235,6 +275,8 @@ public class IndexRoutingAllocation
             this.include = o.include;
             this.initialRecovery = o.initialRecovery;
             this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
+            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
+            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
             this.totalShardsPerNode = o.totalShardsPerNode;
         }
 
@@ -316,6 +358,24 @@ public class IndexRoutingAllocation
         }
 
         /**
+         * API name: {@code total_remote_capable_primary_shards_per_node}
+         */
+        @Nonnull
+        public final Builder totalRemoteCapablePrimaryShardsPerNode(@Nullable Integer value) {
+            this.totalRemoteCapablePrimaryShardsPerNode = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code total_remote_capable_shards_per_node}
+         */
+        @Nonnull
+        public final Builder totalRemoteCapableShardsPerNode(@Nullable Integer value) {
+            this.totalRemoteCapableShardsPerNode = value;
+            return this;
+        }
+
+        /**
          * API name: {@code total_shards_per_node}
          */
         @Nonnull
@@ -354,6 +414,12 @@ public class IndexRoutingAllocation
         op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
         op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
         op.add(Builder::totalPrimaryShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_primary_shards_per_node");
+        op.add(
+            Builder::totalRemoteCapablePrimaryShardsPerNode,
+            JsonpDeserializer.integerDeserializer(),
+            "total_remote_capable_primary_shards_per_node"
+        );
+        op.add(Builder::totalRemoteCapableShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_remote_capable_shards_per_node");
         op.add(Builder::totalShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_shards_per_node");
     }
 
@@ -365,6 +431,8 @@ public class IndexRoutingAllocation
         result = 31 * result + Objects.hashCode(this.include);
         result = 31 * result + Objects.hashCode(this.initialRecovery);
         result = 31 * result + Objects.hashCode(this.totalPrimaryShardsPerNode);
+        result = 31 * result + Objects.hashCode(this.totalRemoteCapablePrimaryShardsPerNode);
+        result = 31 * result + Objects.hashCode(this.totalRemoteCapableShardsPerNode);
         result = 31 * result + Objects.hashCode(this.totalShardsPerNode);
         return result;
     }
@@ -379,6 +447,8 @@ public class IndexRoutingAllocation
             && Objects.equals(this.include, other.include)
             && Objects.equals(this.initialRecovery, other.initialRecovery)
             && Objects.equals(this.totalPrimaryShardsPerNode, other.totalPrimaryShardsPerNode)
+            && Objects.equals(this.totalRemoteCapablePrimaryShardsPerNode, other.totalRemoteCapablePrimaryShardsPerNode)
+            && Objects.equals(this.totalRemoteCapableShardsPerNode, other.totalRemoteCapableShardsPerNode)
             && Objects.equals(this.totalShardsPerNode, other.totalShardsPerNode);
     }
 }

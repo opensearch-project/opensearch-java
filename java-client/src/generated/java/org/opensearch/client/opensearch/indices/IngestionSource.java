@@ -75,6 +75,12 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     private final Integer internalQueueSize;
 
+    @Nonnull
+    private final Map<String, JsonData> mapperSettings;
+
+    @Nullable
+    private final IngestionSourceMapperType mapperType;
+
     @Nullable
     private final Integer numProcessorThreads;
 
@@ -85,10 +91,13 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     private final IngestionSourcePointer pointer;
 
     @Nullable
+    private final String pointerBasedLagUpdateInterval;
+
+    @Nullable
     private final IngestionSourcePointerInitReset pointerInitReset;
 
     @Nullable
-    private final String pointerInitResetValue;
+    private final Long pointerInitResetValue;
 
     @Nullable
     private final IngestionSourcePoll poll;
@@ -102,21 +111,28 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     private final IngestionSourceType type;
 
+    @Nullable
+    private final IngestionSourceWarmup warmup;
+
     // ---------------------------------------------------------------------------------------------
 
     private IngestionSource(Builder builder) {
         this.allActive = builder.allActive;
         this.errorStrategy = builder.errorStrategy;
         this.internalQueueSize = builder.internalQueueSize;
+        this.mapperSettings = ApiTypeHelper.unmodifiable(builder.mapperSettings);
+        this.mapperType = builder.mapperType;
         this.numProcessorThreads = builder.numProcessorThreads;
         this.param = ApiTypeHelper.unmodifiable(builder.param);
         this.pointer = builder.pointer;
+        this.pointerBasedLagUpdateInterval = builder.pointerBasedLagUpdateInterval;
         this.pointerInitReset = builder.pointerInitReset;
         this.pointerInitResetValue = builder.pointerInitResetValue;
         this.poll = builder.poll;
         this.pollMaxBatchSize = builder.pollMaxBatchSize;
         this.pollTimeout = builder.pollTimeout;
         this.type = builder.type;
+        this.warmup = builder.warmup;
     }
 
     public static IngestionSource of(Function<IngestionSource.Builder, ObjectBuilder<IngestionSource>> fn) {
@@ -157,6 +173,28 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * Configuration settings for the selected mapper type.
+     * <p>
+     * API name: {@code mapper_settings}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, JsonData> mapperSettings() {
+        return this.mapperSettings;
+    }
+
+    /**
+     * The type of message mapper used to extract document fields from ingestion messages.
+     * <p>
+     * API name: {@code mapper_type}
+     * </p>
+     */
+    @Nullable
+    public final IngestionSourceMapperType mapperType() {
+        return this.mapperType;
+    }
+
+    /**
      * Defines the number of processor or writer threads.
      * <p>
      * API name: {@code num_processor_threads}
@@ -187,6 +225,17 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The interval for pointer-based lag updates.
+     * <p>
+     * API name: {@code pointer_based_lag_update_interval}
+     * </p>
+     */
+    @Nullable
+    public final String pointerBasedLagUpdateInterval() {
+        return this.pointerBasedLagUpdateInterval;
+    }
+
+    /**
      * API name: {@code pointer.init.reset}
      */
     @Nullable
@@ -201,7 +250,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
      * </p>
      */
     @Nullable
-    public final String pointerInitResetValue() {
+    public final Long pointerInitResetValue() {
         return this.pointerInitResetValue;
     }
 
@@ -247,6 +296,14 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * API name: {@code warmup}
+     */
+    @Nullable
+    public final IngestionSourceWarmup warmup() {
+        return this.warmup;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -272,6 +329,21 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             generator.write(this.internalQueueSize);
         }
 
+        if (ApiTypeHelper.isDefined(this.mapperSettings)) {
+            generator.writeKey("mapper_settings");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.mapperSettings.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
+        if (this.mapperType != null) {
+            generator.writeKey("mapper_type");
+            this.mapperType.serialize(generator, mapper);
+        }
+
         if (this.numProcessorThreads != null) {
             generator.writeKey("num_processor_threads");
             generator.write(this.numProcessorThreads);
@@ -290,6 +362,11 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         if (this.pointer != null) {
             generator.writeKey("pointer");
             this.pointer.serialize(generator, mapper);
+        }
+
+        if (this.pointerBasedLagUpdateInterval != null) {
+            generator.writeKey("pointer_based_lag_update_interval");
+            generator.write(this.pointerBasedLagUpdateInterval);
         }
 
         if (this.pointerInitReset != null) {
@@ -321,6 +398,11 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             generator.writeKey("type");
             this.type.serialize(generator, mapper);
         }
+
+        if (this.warmup != null) {
+            generator.writeKey("warmup");
+            this.warmup.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -347,15 +429,21 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private Integer internalQueueSize;
         @Nullable
+        private Map<String, JsonData> mapperSettings;
+        @Nullable
+        private IngestionSourceMapperType mapperType;
+        @Nullable
         private Integer numProcessorThreads;
         @Nullable
         private Map<String, JsonData> param;
         @Nullable
         private IngestionSourcePointer pointer;
         @Nullable
+        private String pointerBasedLagUpdateInterval;
+        @Nullable
         private IngestionSourcePointerInitReset pointerInitReset;
         @Nullable
-        private String pointerInitResetValue;
+        private Long pointerInitResetValue;
         @Nullable
         private IngestionSourcePoll poll;
         @Nullable
@@ -364,6 +452,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         private Integer pollTimeout;
         @Nullable
         private IngestionSourceType type;
+        @Nullable
+        private IngestionSourceWarmup warmup;
 
         public Builder() {}
 
@@ -371,30 +461,38 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
+            this.mapperSettings = _mapCopy(o.mapperSettings);
+            this.mapperType = o.mapperType;
             this.numProcessorThreads = o.numProcessorThreads;
             this.param = _mapCopy(o.param);
             this.pointer = o.pointer;
+            this.pointerBasedLagUpdateInterval = o.pointerBasedLagUpdateInterval;
             this.pointerInitReset = o.pointerInitReset;
             this.pointerInitResetValue = o.pointerInitResetValue;
             this.poll = o.poll;
             this.pollMaxBatchSize = o.pollMaxBatchSize;
             this.pollTimeout = o.pollTimeout;
             this.type = o.type;
+            this.warmup = o.warmup;
         }
 
         private Builder(Builder o) {
             this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
+            this.mapperSettings = _mapCopy(o.mapperSettings);
+            this.mapperType = o.mapperType;
             this.numProcessorThreads = o.numProcessorThreads;
             this.param = _mapCopy(o.param);
             this.pointer = o.pointer;
+            this.pointerBasedLagUpdateInterval = o.pointerBasedLagUpdateInterval;
             this.pointerInitReset = o.pointerInitReset;
             this.pointerInitResetValue = o.pointerInitResetValue;
             this.poll = o.poll;
             this.pollMaxBatchSize = o.pollMaxBatchSize;
             this.pollTimeout = o.pollTimeout;
             this.type = o.type;
+            this.warmup = o.warmup;
         }
 
         @Override
@@ -436,6 +534,50 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public final Builder internalQueueSize(@Nullable Integer value) {
             this.internalQueueSize = value;
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected mapper type.
+         * <p>
+         * API name: {@code mapper_settings}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>mapperSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperSettings(Map<String, JsonData> map) {
+            this.mapperSettings = _mapPutAll(this.mapperSettings, map);
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected mapper type.
+         * <p>
+         * API name: {@code mapper_settings}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>mapperSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperSettings(String key, JsonData value) {
+            this.mapperSettings = _mapPut(this.mapperSettings, key, value);
+            return this;
+        }
+
+        /**
+         * The type of message mapper used to extract document fields from ingestion messages.
+         * <p>
+         * API name: {@code mapper_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mapperType(@Nullable IngestionSourceMapperType value) {
+            this.mapperType = value;
             return this;
         }
 
@@ -501,6 +643,18 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The interval for pointer-based lag updates.
+         * <p>
+         * API name: {@code pointer_based_lag_update_interval}
+         * </p>
+         */
+        @Nonnull
+        public final Builder pointerBasedLagUpdateInterval(@Nullable String value) {
+            this.pointerBasedLagUpdateInterval = value;
+            return this;
+        }
+
+        /**
          * API name: {@code pointer.init.reset}
          */
         @Nonnull
@@ -516,7 +670,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder pointerInitResetValue(@Nullable String value) {
+        public final Builder pointerInitResetValue(@Nullable Long value) {
             this.pointerInitResetValue = value;
             return this;
         }
@@ -575,6 +729,23 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * API name: {@code warmup}
+         */
+        @Nonnull
+        public final Builder warmup(@Nullable IngestionSourceWarmup value) {
+            this.warmup = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code warmup}
+         */
+        @Nonnull
+        public final Builder warmup(Function<IngestionSourceWarmup.Builder, ObjectBuilder<IngestionSourceWarmup>> fn) {
+            return warmup(fn.apply(new IngestionSourceWarmup.Builder()).build());
+        }
+
+        /**
          * Builds a {@link IngestionSource}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -602,15 +773,19 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         op.add(Builder::allActive, JsonpDeserializer.booleanDeserializer(), "all_active");
         op.add(Builder::errorStrategy, ErrorPolicy._DESERIALIZER, "error_strategy");
         op.add(Builder::internalQueueSize, JsonpDeserializer.integerDeserializer(), "internal_queue_size");
+        op.add(Builder::mapperSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "mapper_settings");
+        op.add(Builder::mapperType, IngestionSourceMapperType._DESERIALIZER, "mapper_type");
         op.add(Builder::numProcessorThreads, JsonpDeserializer.integerDeserializer(), "num_processor_threads");
         op.add(Builder::param, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "param");
         op.add(Builder::pointer, IngestionSourcePointer._DESERIALIZER, "pointer");
+        op.add(Builder::pointerBasedLagUpdateInterval, JsonpDeserializer.stringDeserializer(), "pointer_based_lag_update_interval");
         op.add(Builder::pointerInitReset, IngestionSourcePointerInitReset._DESERIALIZER, "pointer.init.reset");
-        op.add(Builder::pointerInitResetValue, JsonpDeserializer.stringDeserializer(), "pointer.init.reset.value");
+        op.add(Builder::pointerInitResetValue, JsonpDeserializer.longDeserializer(), "pointer.init.reset.value");
         op.add(Builder::poll, IngestionSourcePoll._DESERIALIZER, "poll");
         op.add(Builder::pollMaxBatchSize, JsonpDeserializer.longDeserializer(), "poll.max_batch_size");
         op.add(Builder::pollTimeout, JsonpDeserializer.integerDeserializer(), "poll.timeout");
         op.add(Builder::type, IngestionSourceType._DESERIALIZER, "type");
+        op.add(Builder::warmup, IngestionSourceWarmup._DESERIALIZER, "warmup");
     }
 
     @Override
@@ -619,15 +794,19 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         result = 31 * result + Objects.hashCode(this.allActive);
         result = 31 * result + Objects.hashCode(this.errorStrategy);
         result = 31 * result + Objects.hashCode(this.internalQueueSize);
+        result = 31 * result + Objects.hashCode(this.mapperSettings);
+        result = 31 * result + Objects.hashCode(this.mapperType);
         result = 31 * result + Objects.hashCode(this.numProcessorThreads);
         result = 31 * result + Objects.hashCode(this.param);
         result = 31 * result + Objects.hashCode(this.pointer);
+        result = 31 * result + Objects.hashCode(this.pointerBasedLagUpdateInterval);
         result = 31 * result + Objects.hashCode(this.pointerInitReset);
         result = 31 * result + Objects.hashCode(this.pointerInitResetValue);
         result = 31 * result + Objects.hashCode(this.poll);
         result = 31 * result + Objects.hashCode(this.pollMaxBatchSize);
         result = 31 * result + Objects.hashCode(this.pollTimeout);
         result = 31 * result + Objects.hashCode(this.type);
+        result = 31 * result + Objects.hashCode(this.warmup);
         return result;
     }
 
@@ -639,14 +818,18 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         return Objects.equals(this.allActive, other.allActive)
             && Objects.equals(this.errorStrategy, other.errorStrategy)
             && Objects.equals(this.internalQueueSize, other.internalQueueSize)
+            && Objects.equals(this.mapperSettings, other.mapperSettings)
+            && Objects.equals(this.mapperType, other.mapperType)
             && Objects.equals(this.numProcessorThreads, other.numProcessorThreads)
             && Objects.equals(this.param, other.param)
             && Objects.equals(this.pointer, other.pointer)
+            && Objects.equals(this.pointerBasedLagUpdateInterval, other.pointerBasedLagUpdateInterval)
             && Objects.equals(this.pointerInitReset, other.pointerInitReset)
             && Objects.equals(this.pointerInitResetValue, other.pointerInitResetValue)
             && Objects.equals(this.poll, other.poll)
             && Objects.equals(this.pollMaxBatchSize, other.pollMaxBatchSize)
             && Objects.equals(this.pollTimeout, other.pollTimeout)
-            && Objects.equals(this.type, other.type);
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.warmup, other.warmup);
     }
 }

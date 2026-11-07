@@ -72,6 +72,9 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
     private final IndexSettingsMappingLimitDimensionFields dimensionFields;
 
     @Nullable
+    private final IndexSettingsMappingDynamicProperties dynamicProperties;
+
+    @Nullable
     private final IndexSettingsMappingLimitFieldNameLength fieldNameLength;
 
     @Nullable
@@ -92,6 +95,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
         this.coerce = builder.coerce;
         this.depth = builder.depth;
         this.dimensionFields = builder.dimensionFields;
+        this.dynamicProperties = builder.dynamicProperties;
         this.fieldNameLength = builder.fieldNameLength;
         this.ignoreMalformed = builder.ignoreMalformed;
         this.nestedFields = builder.nestedFields;
@@ -125,6 +129,14 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
     @Nullable
     public final IndexSettingsMappingLimitDimensionFields dimensionFields() {
         return this.dimensionFields;
+    }
+
+    /**
+     * API name: {@code dynamic_properties}
+     */
+    @Nullable
+    public final IndexSettingsMappingDynamicProperties dynamicProperties() {
+        return this.dynamicProperties;
     }
 
     /**
@@ -193,6 +205,11 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
             this.dimensionFields.serialize(generator, mapper);
         }
 
+        if (this.dynamicProperties != null) {
+            generator.writeKey("dynamic_properties");
+            this.dynamicProperties.serialize(generator, mapper);
+        }
+
         if (this.fieldNameLength != null) {
             generator.writeKey("field_name_length");
             this.fieldNameLength.serialize(generator, mapper);
@@ -243,6 +260,8 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
         @Nullable
         private IndexSettingsMappingLimitDimensionFields dimensionFields;
         @Nullable
+        private IndexSettingsMappingDynamicProperties dynamicProperties;
+        @Nullable
         private IndexSettingsMappingLimitFieldNameLength fieldNameLength;
         @Nullable
         private Boolean ignoreMalformed;
@@ -259,6 +278,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
             this.coerce = o.coerce;
             this.depth = o.depth;
             this.dimensionFields = o.dimensionFields;
+            this.dynamicProperties = o.dynamicProperties;
             this.fieldNameLength = o.fieldNameLength;
             this.ignoreMalformed = o.ignoreMalformed;
             this.nestedFields = o.nestedFields;
@@ -270,6 +290,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
             this.coerce = o.coerce;
             this.depth = o.depth;
             this.dimensionFields = o.dimensionFields;
+            this.dynamicProperties = o.dynamicProperties;
             this.fieldNameLength = o.fieldNameLength;
             this.ignoreMalformed = o.ignoreMalformed;
             this.nestedFields = o.nestedFields;
@@ -326,6 +347,25 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
             Function<IndexSettingsMappingLimitDimensionFields.Builder, ObjectBuilder<IndexSettingsMappingLimitDimensionFields>> fn
         ) {
             return dimensionFields(fn.apply(new IndexSettingsMappingLimitDimensionFields.Builder()).build());
+        }
+
+        /**
+         * API name: {@code dynamic_properties}
+         */
+        @Nonnull
+        public final Builder dynamicProperties(@Nullable IndexSettingsMappingDynamicProperties value) {
+            this.dynamicProperties = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code dynamic_properties}
+         */
+        @Nonnull
+        public final Builder dynamicProperties(
+            Function<IndexSettingsMappingDynamicProperties.Builder, ObjectBuilder<IndexSettingsMappingDynamicProperties>> fn
+        ) {
+            return dynamicProperties(fn.apply(new IndexSettingsMappingDynamicProperties.Builder()).build());
         }
 
         /**
@@ -441,6 +481,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
         op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
         op.add(Builder::depth, IndexSettingsMappingLimitDepth._DESERIALIZER, "depth");
         op.add(Builder::dimensionFields, IndexSettingsMappingLimitDimensionFields._DESERIALIZER, "dimension_fields");
+        op.add(Builder::dynamicProperties, IndexSettingsMappingDynamicProperties._DESERIALIZER, "dynamic_properties");
         op.add(Builder::fieldNameLength, IndexSettingsMappingLimitFieldNameLength._DESERIALIZER, "field_name_length");
         op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
         op.add(Builder::nestedFields, IndexSettingsMappingLimitNestedFields._DESERIALIZER, "nested_fields");
@@ -454,6 +495,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
         result = 31 * result + Objects.hashCode(this.coerce);
         result = 31 * result + Objects.hashCode(this.depth);
         result = 31 * result + Objects.hashCode(this.dimensionFields);
+        result = 31 * result + Objects.hashCode(this.dynamicProperties);
         result = 31 * result + Objects.hashCode(this.fieldNameLength);
         result = 31 * result + Objects.hashCode(this.ignoreMalformed);
         result = 31 * result + Objects.hashCode(this.nestedFields);
@@ -470,6 +512,7 @@ public class IndexSettingsMapping implements PlainJsonSerializable, ToCopyableBu
         return Objects.equals(this.coerce, other.coerce)
             && Objects.equals(this.depth, other.depth)
             && Objects.equals(this.dimensionFields, other.dimensionFields)
+            && Objects.equals(this.dynamicProperties, other.dynamicProperties)
             && Objects.equals(this.fieldNameLength, other.fieldNameLength)
             && Objects.equals(this.ignoreMalformed, other.ignoreMalformed)
             && Objects.equals(this.nestedFields, other.nestedFields)

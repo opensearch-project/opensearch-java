@@ -65,7 +65,13 @@ public class PostDashboardsInfoResponse
         ToCopyableBuilder<PostDashboardsInfoResponse.Builder, PostDashboardsInfoResponse> {
 
     @Nullable
+    private final Boolean apiTokensEnabled;
+
+    @Nullable
     private final String defaultTenant;
+
+    @Nullable
+    private final Long maxDurationSeconds;
 
     @Nullable
     private final Boolean multitenancyEnabled;
@@ -88,8 +94,14 @@ public class PostDashboardsInfoResponse
     @Nullable
     private final String passwordValidationRegex;
 
+    @Nonnull
+    private final List<String> preferredTenants;
+
     @Nullable
     private final Boolean privateTenantEnabled;
+
+    @Nullable
+    private final Boolean resourceSharingEnabled;
 
     @Nonnull
     private final List<String> signInOptions;
@@ -100,7 +112,9 @@ public class PostDashboardsInfoResponse
     // ---------------------------------------------------------------------------------------------
 
     private PostDashboardsInfoResponse(Builder builder) {
+        this.apiTokensEnabled = builder.apiTokensEnabled;
         this.defaultTenant = builder.defaultTenant;
+        this.maxDurationSeconds = builder.maxDurationSeconds;
         this.multitenancyEnabled = builder.multitenancyEnabled;
         this.notFailOnForbiddenEnabled = builder.notFailOnForbiddenEnabled;
         this.opensearchDashboardsIndex = builder.opensearchDashboardsIndex;
@@ -108,7 +122,9 @@ public class PostDashboardsInfoResponse
         this.opensearchDashboardsServerUser = builder.opensearchDashboardsServerUser;
         this.passwordValidationErrorMessage = builder.passwordValidationErrorMessage;
         this.passwordValidationRegex = builder.passwordValidationRegex;
+        this.preferredTenants = ApiTypeHelper.unmodifiable(builder.preferredTenants);
         this.privateTenantEnabled = builder.privateTenantEnabled;
+        this.resourceSharingEnabled = builder.resourceSharingEnabled;
         this.signInOptions = ApiTypeHelper.unmodifiable(builder.signInOptions);
         this.userName = builder.userName;
     }
@@ -120,6 +136,17 @@ public class PostDashboardsInfoResponse
     }
 
     /**
+     * Indicates whether API tokens are enabled.
+     * <p>
+     * API name: {@code api_tokens_enabled}
+     * </p>
+     */
+    @Nullable
+    public final Boolean apiTokensEnabled() {
+        return this.apiTokensEnabled;
+    }
+
+    /**
      * The default tenant setting for the dashboard.
      * <p>
      * API name: {@code default_tenant}
@@ -128,6 +155,17 @@ public class PostDashboardsInfoResponse
     @Nullable
     public final String defaultTenant() {
         return this.defaultTenant;
+    }
+
+    /**
+     * The maximum duration, in seconds, for an API token.
+     * <p>
+     * API name: {@code max_duration_seconds}
+     * </p>
+     */
+    @Nullable
+    public final Long maxDurationSeconds() {
+        return this.maxDurationSeconds;
     }
 
     /**
@@ -208,6 +246,17 @@ public class PostDashboardsInfoResponse
     }
 
     /**
+     * The list of preferred tenants.
+     * <p>
+     * API name: {@code preferred_tenants}
+     * </p>
+     */
+    @Nonnull
+    public final List<String> preferredTenants() {
+        return this.preferredTenants;
+    }
+
+    /**
      * Indicates whether a private tenant is enabled for all users.
      * <p>
      * API name: {@code private_tenant_enabled}
@@ -216,6 +265,17 @@ public class PostDashboardsInfoResponse
     @Nullable
     public final Boolean privateTenantEnabled() {
         return this.privateTenantEnabled;
+    }
+
+    /**
+     * Indicates whether resource sharing is enabled.
+     * <p>
+     * API name: {@code resource_sharing_enabled}
+     * </p>
+     */
+    @Nullable
+    public final Boolean resourceSharingEnabled() {
+        return this.resourceSharingEnabled;
     }
 
     /**
@@ -251,9 +311,19 @@ public class PostDashboardsInfoResponse
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.apiTokensEnabled != null) {
+            generator.writeKey("api_tokens_enabled");
+            generator.write(this.apiTokensEnabled);
+        }
+
         if (this.defaultTenant != null) {
             generator.writeKey("default_tenant");
             generator.write(this.defaultTenant);
+        }
+
+        if (this.maxDurationSeconds != null) {
+            generator.writeKey("max_duration_seconds");
+            generator.write(this.maxDurationSeconds);
         }
 
         if (this.multitenancyEnabled != null) {
@@ -291,9 +361,23 @@ public class PostDashboardsInfoResponse
             generator.write(this.passwordValidationRegex);
         }
 
+        if (ApiTypeHelper.isDefined(this.preferredTenants)) {
+            generator.writeKey("preferred_tenants");
+            generator.writeStartArray();
+            for (String item0 : this.preferredTenants) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
+        }
+
         if (this.privateTenantEnabled != null) {
             generator.writeKey("private_tenant_enabled");
             generator.write(this.privateTenantEnabled);
+        }
+
+        if (this.resourceSharingEnabled != null) {
+            generator.writeKey("resource_sharing_enabled");
+            generator.write(this.resourceSharingEnabled);
         }
 
         if (ApiTypeHelper.isDefined(this.signInOptions)) {
@@ -329,7 +413,11 @@ public class PostDashboardsInfoResponse
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PostDashboardsInfoResponse> {
         @Nullable
+        private Boolean apiTokensEnabled;
+        @Nullable
         private String defaultTenant;
+        @Nullable
+        private Long maxDurationSeconds;
         @Nullable
         private Boolean multitenancyEnabled;
         @Nullable
@@ -345,7 +433,11 @@ public class PostDashboardsInfoResponse
         @Nullable
         private String passwordValidationRegex;
         @Nullable
+        private List<String> preferredTenants;
+        @Nullable
         private Boolean privateTenantEnabled;
+        @Nullable
+        private Boolean resourceSharingEnabled;
         @Nullable
         private List<String> signInOptions;
         @Nullable
@@ -354,7 +446,9 @@ public class PostDashboardsInfoResponse
         public Builder() {}
 
         private Builder(PostDashboardsInfoResponse o) {
+            this.apiTokensEnabled = o.apiTokensEnabled;
             this.defaultTenant = o.defaultTenant;
+            this.maxDurationSeconds = o.maxDurationSeconds;
             this.multitenancyEnabled = o.multitenancyEnabled;
             this.notFailOnForbiddenEnabled = o.notFailOnForbiddenEnabled;
             this.opensearchDashboardsIndex = o.opensearchDashboardsIndex;
@@ -362,13 +456,17 @@ public class PostDashboardsInfoResponse
             this.opensearchDashboardsServerUser = o.opensearchDashboardsServerUser;
             this.passwordValidationErrorMessage = o.passwordValidationErrorMessage;
             this.passwordValidationRegex = o.passwordValidationRegex;
+            this.preferredTenants = _listCopy(o.preferredTenants);
             this.privateTenantEnabled = o.privateTenantEnabled;
+            this.resourceSharingEnabled = o.resourceSharingEnabled;
             this.signInOptions = _listCopy(o.signInOptions);
             this.userName = o.userName;
         }
 
         private Builder(Builder o) {
+            this.apiTokensEnabled = o.apiTokensEnabled;
             this.defaultTenant = o.defaultTenant;
+            this.maxDurationSeconds = o.maxDurationSeconds;
             this.multitenancyEnabled = o.multitenancyEnabled;
             this.notFailOnForbiddenEnabled = o.notFailOnForbiddenEnabled;
             this.opensearchDashboardsIndex = o.opensearchDashboardsIndex;
@@ -376,7 +474,9 @@ public class PostDashboardsInfoResponse
             this.opensearchDashboardsServerUser = o.opensearchDashboardsServerUser;
             this.passwordValidationErrorMessage = o.passwordValidationErrorMessage;
             this.passwordValidationRegex = o.passwordValidationRegex;
+            this.preferredTenants = _listCopy(o.preferredTenants);
             this.privateTenantEnabled = o.privateTenantEnabled;
+            this.resourceSharingEnabled = o.resourceSharingEnabled;
             this.signInOptions = _listCopy(o.signInOptions);
             this.userName = o.userName;
         }
@@ -388,6 +488,18 @@ public class PostDashboardsInfoResponse
         }
 
         /**
+         * Indicates whether API tokens are enabled.
+         * <p>
+         * API name: {@code api_tokens_enabled}
+         * </p>
+         */
+        @Nonnull
+        public final Builder apiTokensEnabled(@Nullable Boolean value) {
+            this.apiTokensEnabled = value;
+            return this;
+        }
+
+        /**
          * The default tenant setting for the dashboard.
          * <p>
          * API name: {@code default_tenant}
@@ -396,6 +508,18 @@ public class PostDashboardsInfoResponse
         @Nonnull
         public final Builder defaultTenant(@Nullable String value) {
             this.defaultTenant = value;
+            return this;
+        }
+
+        /**
+         * The maximum duration, in seconds, for an API token.
+         * <p>
+         * API name: {@code max_duration_seconds}
+         * </p>
+         */
+        @Nonnull
+        public final Builder maxDurationSeconds(@Nullable Long value) {
+            this.maxDurationSeconds = value;
             return this;
         }
 
@@ -484,6 +608,38 @@ public class PostDashboardsInfoResponse
         }
 
         /**
+         * The list of preferred tenants.
+         * <p>
+         * API name: {@code preferred_tenants}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>preferredTenants</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder preferredTenants(List<String> list) {
+            this.preferredTenants = _listAddAll(this.preferredTenants, list);
+            return this;
+        }
+
+        /**
+         * The list of preferred tenants.
+         * <p>
+         * API name: {@code preferred_tenants}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>preferredTenants</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder preferredTenants(String value, String... values) {
+            this.preferredTenants = _listAdd(this.preferredTenants, value, values);
+            return this;
+        }
+
+        /**
          * Indicates whether a private tenant is enabled for all users.
          * <p>
          * API name: {@code private_tenant_enabled}
@@ -492,6 +648,18 @@ public class PostDashboardsInfoResponse
         @Nonnull
         public final Builder privateTenantEnabled(@Nullable Boolean value) {
             this.privateTenantEnabled = value;
+            return this;
+        }
+
+        /**
+         * Indicates whether resource sharing is enabled.
+         * <p>
+         * API name: {@code resource_sharing_enabled}
+         * </p>
+         */
+        @Nonnull
+        public final Builder resourceSharingEnabled(@Nullable Boolean value) {
+            this.resourceSharingEnabled = value;
             return this;
         }
 
@@ -564,7 +732,9 @@ public class PostDashboardsInfoResponse
     );
 
     protected static void setupPostDashboardsInfoResponseDeserializer(ObjectDeserializer<PostDashboardsInfoResponse.Builder> op) {
+        op.add(Builder::apiTokensEnabled, JsonpDeserializer.booleanDeserializer(), "api_tokens_enabled");
         op.add(Builder::defaultTenant, JsonpDeserializer.stringDeserializer(), "default_tenant");
+        op.add(Builder::maxDurationSeconds, JsonpDeserializer.longDeserializer(), "max_duration_seconds");
         op.add(Builder::multitenancyEnabled, JsonpDeserializer.booleanDeserializer(), "multitenancy_enabled");
         op.add(Builder::notFailOnForbiddenEnabled, JsonpDeserializer.booleanDeserializer(), "not_fail_on_forbidden_enabled");
         op.add(Builder::opensearchDashboardsIndex, JsonpDeserializer.stringDeserializer(), "opensearch_dashboards_index");
@@ -572,7 +742,9 @@ public class PostDashboardsInfoResponse
         op.add(Builder::opensearchDashboardsServerUser, JsonpDeserializer.stringDeserializer(), "opensearch_dashboards_server_user");
         op.add(Builder::passwordValidationErrorMessage, JsonpDeserializer.stringDeserializer(), "password_validation_error_message");
         op.add(Builder::passwordValidationRegex, JsonpDeserializer.stringDeserializer(), "password_validation_regex");
+        op.add(Builder::preferredTenants, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preferred_tenants");
         op.add(Builder::privateTenantEnabled, JsonpDeserializer.booleanDeserializer(), "private_tenant_enabled");
+        op.add(Builder::resourceSharingEnabled, JsonpDeserializer.booleanDeserializer(), "resource_sharing_enabled");
         op.add(Builder::signInOptions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sign_in_options");
         op.add(Builder::userName, JsonpDeserializer.stringDeserializer(), "user_name");
     }
@@ -580,7 +752,9 @@ public class PostDashboardsInfoResponse
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.apiTokensEnabled);
         result = 31 * result + Objects.hashCode(this.defaultTenant);
+        result = 31 * result + Objects.hashCode(this.maxDurationSeconds);
         result = 31 * result + Objects.hashCode(this.multitenancyEnabled);
         result = 31 * result + Objects.hashCode(this.notFailOnForbiddenEnabled);
         result = 31 * result + Objects.hashCode(this.opensearchDashboardsIndex);
@@ -588,7 +762,9 @@ public class PostDashboardsInfoResponse
         result = 31 * result + Objects.hashCode(this.opensearchDashboardsServerUser);
         result = 31 * result + Objects.hashCode(this.passwordValidationErrorMessage);
         result = 31 * result + Objects.hashCode(this.passwordValidationRegex);
+        result = 31 * result + Objects.hashCode(this.preferredTenants);
         result = 31 * result + Objects.hashCode(this.privateTenantEnabled);
+        result = 31 * result + Objects.hashCode(this.resourceSharingEnabled);
         result = 31 * result + Objects.hashCode(this.signInOptions);
         result = 31 * result + Objects.hashCode(this.userName);
         return result;
@@ -599,7 +775,9 @@ public class PostDashboardsInfoResponse
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PostDashboardsInfoResponse other = (PostDashboardsInfoResponse) o;
-        return Objects.equals(this.defaultTenant, other.defaultTenant)
+        return Objects.equals(this.apiTokensEnabled, other.apiTokensEnabled)
+            && Objects.equals(this.defaultTenant, other.defaultTenant)
+            && Objects.equals(this.maxDurationSeconds, other.maxDurationSeconds)
             && Objects.equals(this.multitenancyEnabled, other.multitenancyEnabled)
             && Objects.equals(this.notFailOnForbiddenEnabled, other.notFailOnForbiddenEnabled)
             && Objects.equals(this.opensearchDashboardsIndex, other.opensearchDashboardsIndex)
@@ -607,7 +785,9 @@ public class PostDashboardsInfoResponse
             && Objects.equals(this.opensearchDashboardsServerUser, other.opensearchDashboardsServerUser)
             && Objects.equals(this.passwordValidationErrorMessage, other.passwordValidationErrorMessage)
             && Objects.equals(this.passwordValidationRegex, other.passwordValidationRegex)
+            && Objects.equals(this.preferredTenants, other.preferredTenants)
             && Objects.equals(this.privateTenantEnabled, other.privateTenantEnabled)
+            && Objects.equals(this.resourceSharingEnabled, other.resourceSharingEnabled)
             && Objects.equals(this.signInOptions, other.signInOptions)
             && Objects.equals(this.userName, other.userName);
     }

@@ -57,7 +57,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SerialDifferencingAggregation extends PipelineAggregationBase
     implements
-        AggregationVariant,
         ToCopyableBuilder<SerialDifferencingAggregation.Builder, SerialDifferencingAggregation> {
 
     @Nullable
@@ -74,14 +73,6 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase
         Function<SerialDifferencingAggregation.Builder, ObjectBuilder<SerialDifferencingAggregation>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.SerialDiff;
     }
 
     /**

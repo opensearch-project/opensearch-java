@@ -275,6 +275,13 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a builder for the {@link NeuralSparseQuery neural_sparse} {@code Query} variant.
+     */
+    public static NeuralSparseQuery.Builder neuralSparse() {
+        return new NeuralSparseQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ParentIdQuery parent_id} {@code Query} variant.
      */
     public static ParentIdQuery.Builder parentId() {
@@ -342,6 +349,13 @@ public class QueryBuilders {
      */
     public static SimpleQueryStringQuery.Builder simpleQueryString() {
         return new SimpleQueryStringQuery.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link StoredLtrQuery sltr} {@code Query} variant.
+     */
+    public static StoredLtrQuery.Builder sltr() {
+        return new StoredLtrQuery.Builder();
     }
 
     /**

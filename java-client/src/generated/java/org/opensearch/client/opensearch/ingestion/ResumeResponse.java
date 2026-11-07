@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.ingestion;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -67,7 +68,7 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
     private final String error;
 
     @Nonnull
-    private final List<IngestionStateShardFailure> failures;
+    private final Map<String, List<IngestionStateShardFailure>> failures;
 
     private final boolean shardsAcknowledged;
 
@@ -103,10 +104,13 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * Shard-level failures grouped by index name.
+     * <p>
      * API name: {@code failures}
+     * </p>
      */
     @Nonnull
-    public final List<IngestionStateShardFailure> failures() {
+    public final Map<String, List<IngestionStateShardFailure>> failures() {
         return this.failures;
     }
 
@@ -141,9 +145,16 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
 
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
-            generator.writeStartArray();
-            for (IngestionStateShardFailure item0 : this.failures) {
-                item0.serialize(generator, mapper);
+            generator.writeStartObject();
+            for (Map.Entry<String, List<IngestionStateShardFailure>> item0 : this.failures.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.writeStartArray();
+                if (item0.getValue() != null) {
+                    for (IngestionStateShardFailure item1 : item0.getValue()) {
+                        item1.serialize(generator, mapper);
+                    }
+                }
+                generator.writeEnd();
             }
             generator.writeEnd();
         }
@@ -173,7 +184,7 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private String error;
         @Nullable
-        private List<IngestionStateShardFailure> failures;
+        private Map<String, List<IngestionStateShardFailure>> failures;
         private Boolean shardsAcknowledged;
 
         public Builder() {}
@@ -181,14 +192,14 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
         private Builder(ResumeResponse o) {
             this.acknowledged = o.acknowledged;
             this.error = o.error;
-            this.failures = _listCopy(o.failures);
+            this.failures = _mapCopy(o.failures);
             this.shardsAcknowledged = o.shardsAcknowledged;
         }
 
         private Builder(Builder o) {
             this.acknowledged = o.acknowledged;
             this.error = o.error;
-            this.failures = _listCopy(o.failures);
+            this.failures = _mapCopy(o.failures);
             this.shardsAcknowledged = o.shardsAcknowledged;
         }
 
@@ -220,41 +231,35 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * Shard-level failures grouped by index name.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
-         * Adds all elements of <code>list</code> to <code>failures</code>.
+         * Adds all elements of <code>map</code> to <code>failures</code>.
          * </p>
          */
         @Nonnull
-        public final Builder failures(List<IngestionStateShardFailure> list) {
-            this.failures = _listAddAll(this.failures, list);
+        public final Builder failures(Map<String, List<IngestionStateShardFailure>> map) {
+            this.failures = _mapPutAll(this.failures, map);
             return this;
         }
 
         /**
+         * Shard-level failures grouped by index name.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
-         * Adds one or more values to <code>failures</code>.
+         * Adds an entry to <code>failures</code>.
          * </p>
          */
         @Nonnull
-        public final Builder failures(IngestionStateShardFailure value, IngestionStateShardFailure... values) {
-            this.failures = _listAdd(this.failures, value, values);
+        public final Builder failures(String key, List<IngestionStateShardFailure> value) {
+            this.failures = _mapPut(this.failures, key, value);
             return this;
-        }
-
-        /**
-         * API name: {@code failures}
-         *
-         * <p>
-         * Adds a value to <code>failures</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder failures(Function<IngestionStateShardFailure.Builder, ObjectBuilder<IngestionStateShardFailure>> fn) {
-            return failures(fn.apply(new IngestionStateShardFailure.Builder()).build());
         }
 
         /**
@@ -296,7 +301,11 @@ public class ResumeResponse implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupResumeResponseDeserializer(ObjectDeserializer<ResumeResponse.Builder> op) {
         op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
         op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
-        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(IngestionStateShardFailure._DESERIALIZER), "failures");
+        op.add(
+            Builder::failures,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(IngestionStateShardFailure._DESERIALIZER)),
+            "failures"
+        );
         op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
     }
 

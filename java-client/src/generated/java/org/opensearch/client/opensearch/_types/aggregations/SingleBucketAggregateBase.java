@@ -69,6 +69,9 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
         this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
     }
 
+    /**
+     * Nested aggregations.
+     */
     @Nonnull
     public final Map<String, Aggregate> aggregations() {
         return this.aggregations;
@@ -111,6 +114,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
         }
 
         /**
+         * Nested aggregations.
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>aggregations</code>.
@@ -123,6 +127,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
         }
 
         /**
+         * Nested aggregations.
          *
          * <p>
          * Adds an entry to <code>aggregations</code>.
@@ -135,6 +140,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
         }
 
         /**
+         * Nested aggregations.
          *
          * <p>
          * Adds a value to <code>aggregations</code> using a builder lambda.

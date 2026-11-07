@@ -37,17 +37,16 @@
 package org.opensearch.client.opensearch.core.pit;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -59,17 +58,16 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<DeletedPit.Builder, DeletedPit> {
 
-    @Nullable
+    @Nonnull
     private final String pitId;
 
-    @Nullable
-    private final Boolean successful;
+    private final boolean successful;
 
     // ---------------------------------------------------------------------------------------------
 
     private DeletedPit(Builder builder) {
-        this.pitId = builder.pitId;
-        this.successful = builder.successful;
+        this.pitId = ApiTypeHelper.requireNonNull(builder.pitId, this, "pitId");
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
     }
 
     public static DeletedPit of(Function<DeletedPit.Builder, ObjectBuilder<DeletedPit>> fn) {
@@ -77,18 +75,17 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
     }
 
     /**
-     * API name: {@code pit_id}
+     * Required - API name: {@code pit_id}
      */
-    @Nullable
+    @Nonnull
     public final String pitId() {
         return this.pitId;
     }
 
     /**
-     * API name: {@code successful}
+     * Required - API name: {@code successful}
      */
-    @Nullable
-    public final Boolean successful() {
+    public final boolean successful() {
         return this.successful;
     }
 
@@ -103,15 +100,11 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.pitId != null) {
-            generator.writeKey("pit_id");
-            generator.write(this.pitId);
-        }
+        generator.writeKey("pit_id");
+        generator.write(this.pitId);
 
-        if (this.successful != null) {
-            generator.writeKey("successful");
-            generator.write(this.successful);
-        }
+        generator.writeKey("successful");
+        generator.write(this.successful);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -131,9 +124,7 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
      * Builder for {@link DeletedPit}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeletedPit> {
-        @Nullable
         private String pitId;
-        @Nullable
         private Boolean successful;
 
         public Builder() {}
@@ -155,19 +146,19 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
         }
 
         /**
-         * API name: {@code pit_id}
+         * Required - API name: {@code pit_id}
          */
         @Nonnull
-        public final Builder pitId(@Nullable String value) {
+        public final Builder pitId(String value) {
             this.pitId = value;
             return this;
         }
 
         /**
-         * API name: {@code successful}
+         * Required - API name: {@code successful}
          */
         @Nonnull
-        public final Builder successful(@Nullable Boolean value) {
+        public final Builder successful(boolean value) {
             this.successful = value;
             return this;
         }
@@ -204,8 +195,8 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.pitId);
-        result = 31 * result + Objects.hashCode(this.successful);
+        result = 31 * result + this.pitId.hashCode();
+        result = 31 * result + Boolean.hashCode(this.successful);
         return result;
     }
 
@@ -214,6 +205,6 @@ public class DeletedPit implements PlainJsonSerializable, ToCopyableBuilder<Dele
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         DeletedPit other = (DeletedPit) o;
-        return Objects.equals(this.pitId, other.pitId) && Objects.equals(this.successful, other.successful);
+        return this.pitId.equals(other.pitId) && this.successful == other.successful;
     }
 }

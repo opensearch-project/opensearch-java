@@ -62,10 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TopHitsAggregation extends MetricAggregationBase
-    implements
-        AggregationVariant,
-        ToCopyableBuilder<TopHitsAggregation.Builder, TopHitsAggregation> {
+public class TopHitsAggregation extends MetricAggregationBase implements ToCopyableBuilder<TopHitsAggregation.Builder, TopHitsAggregation> {
 
     @Nonnull
     private final List<String> docvalueFields;
@@ -123,14 +120,6 @@ public class TopHitsAggregation extends MetricAggregationBase
 
     public static TopHitsAggregation of(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.TopHits;
     }
 
     /**

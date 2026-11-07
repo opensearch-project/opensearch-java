@@ -109,6 +109,12 @@ public enum NodeRole implements JsonEnum {
     RemoteClusterClient("remote_cluster_client"),
 
     /**
+     * The node can host search replicas (search-only shards). This role must not be combined with any other role on a node. Introduced in
+     * 3.0; not to be confused with the pre-3.0 <code>search</code> role that was renamed to <code>warm</code>.
+     */
+    Search("search"),
+
+    /**
      * The node can perform transform operations.
      */
     Transform("transform"),
@@ -116,7 +122,12 @@ public enum NodeRole implements JsonEnum {
     /**
      * The node can only vote in cluster decisions.
      */
-    VotingOnly("voting_only");
+    VotingOnly("voting_only"),
+
+    /**
+     * The node can hold warm indexes for searchable snapshots. Before 3.0 this role was named <code>search</code>.
+     */
+    Warm("warm");
 
     private final String jsonValue;
 

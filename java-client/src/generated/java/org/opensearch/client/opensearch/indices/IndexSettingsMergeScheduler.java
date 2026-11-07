@@ -69,6 +69,9 @@ public class IndexSettingsMergeScheduler
     private final Boolean autoThrottle;
 
     @Nullable
+    private final String maxForceMergeMbPerSec;
+
+    @Nullable
     private final Integer maxMergeCount;
 
     @Nullable
@@ -78,6 +81,7 @@ public class IndexSettingsMergeScheduler
 
     private IndexSettingsMergeScheduler(Builder builder) {
         this.autoThrottle = builder.autoThrottle;
+        this.maxForceMergeMbPerSec = builder.maxForceMergeMbPerSec;
         this.maxMergeCount = builder.maxMergeCount;
         this.maxThreadCount = builder.maxThreadCount;
     }
@@ -94,6 +98,17 @@ public class IndexSettingsMergeScheduler
     @Nullable
     public final Boolean autoThrottle() {
         return this.autoThrottle;
+    }
+
+    /**
+     * The maximum bytes-per-second merge throttle; may be <code>Infinity</code>.
+     * <p>
+     * API name: {@code max_force_merge_mb_per_sec}
+     * </p>
+     */
+    @Nullable
+    public final String maxForceMergeMbPerSec() {
+        return this.maxForceMergeMbPerSec;
     }
 
     /**
@@ -128,6 +143,11 @@ public class IndexSettingsMergeScheduler
             generator.write(this.autoThrottle);
         }
 
+        if (this.maxForceMergeMbPerSec != null) {
+            generator.writeKey("max_force_merge_mb_per_sec");
+            generator.write(this.maxForceMergeMbPerSec);
+        }
+
         if (this.maxMergeCount != null) {
             generator.writeKey("max_merge_count");
             generator.write(this.maxMergeCount);
@@ -159,6 +179,8 @@ public class IndexSettingsMergeScheduler
         @Nullable
         private Boolean autoThrottle;
         @Nullable
+        private String maxForceMergeMbPerSec;
+        @Nullable
         private Integer maxMergeCount;
         @Nullable
         private Integer maxThreadCount;
@@ -167,12 +189,14 @@ public class IndexSettingsMergeScheduler
 
         private Builder(IndexSettingsMergeScheduler o) {
             this.autoThrottle = o.autoThrottle;
+            this.maxForceMergeMbPerSec = o.maxForceMergeMbPerSec;
             this.maxMergeCount = o.maxMergeCount;
             this.maxThreadCount = o.maxThreadCount;
         }
 
         private Builder(Builder o) {
             this.autoThrottle = o.autoThrottle;
+            this.maxForceMergeMbPerSec = o.maxForceMergeMbPerSec;
             this.maxMergeCount = o.maxMergeCount;
             this.maxThreadCount = o.maxThreadCount;
         }
@@ -189,6 +213,18 @@ public class IndexSettingsMergeScheduler
         @Nonnull
         public final Builder autoThrottle(@Nullable Boolean value) {
             this.autoThrottle = value;
+            return this;
+        }
+
+        /**
+         * The maximum bytes-per-second merge throttle; may be <code>Infinity</code>.
+         * <p>
+         * API name: {@code max_force_merge_mb_per_sec}
+         * </p>
+         */
+        @Nonnull
+        public final Builder maxForceMergeMbPerSec(@Nullable String value) {
+            this.maxForceMergeMbPerSec = value;
             return this;
         }
 
@@ -236,6 +272,7 @@ public class IndexSettingsMergeScheduler
 
     protected static void setupIndexSettingsMergeSchedulerDeserializer(ObjectDeserializer<IndexSettingsMergeScheduler.Builder> op) {
         op.add(Builder::autoThrottle, JsonpDeserializer.booleanDeserializer(), "auto_throttle");
+        op.add(Builder::maxForceMergeMbPerSec, JsonpDeserializer.stringDeserializer(), "max_force_merge_mb_per_sec");
         op.add(Builder::maxMergeCount, JsonpDeserializer.integerDeserializer(), "max_merge_count");
         op.add(Builder::maxThreadCount, JsonpDeserializer.integerDeserializer(), "max_thread_count");
     }
@@ -244,6 +281,7 @@ public class IndexSettingsMergeScheduler
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.autoThrottle);
+        result = 31 * result + Objects.hashCode(this.maxForceMergeMbPerSec);
         result = 31 * result + Objects.hashCode(this.maxMergeCount);
         result = 31 * result + Objects.hashCode(this.maxThreadCount);
         return result;
@@ -255,6 +293,7 @@ public class IndexSettingsMergeScheduler
         if (o == null || this.getClass() != o.getClass()) return false;
         IndexSettingsMergeScheduler other = (IndexSettingsMergeScheduler) o;
         return Objects.equals(this.autoThrottle, other.autoThrottle)
+            && Objects.equals(this.maxForceMergeMbPerSec, other.maxForceMergeMbPerSec)
             && Objects.equals(this.maxMergeCount, other.maxMergeCount)
             && Objects.equals(this.maxThreadCount, other.maxThreadCount);
     }

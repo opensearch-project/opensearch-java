@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.aggregations;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -54,7 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
+public class LongTermsAggregate extends TermsAggregateBase<JsonData>
     implements
         AggregateVariant,
         ToCopyableBuilder<LongTermsAggregate.Builder, LongTermsAggregate> {
@@ -93,7 +94,7 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
     /**
      * Builder for {@link LongTermsAggregate}.
      */
-    public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<JsonData, Builder>
         implements
             CopyableBuilder<Builder, LongTermsAggregate> {
 
@@ -144,7 +145,7 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
     );
 
     protected static void setupLongTermsAggregateDeserializer(ObjectDeserializer<LongTermsAggregate.Builder> op) {
-        setupTermsAggregateBaseDeserializer(op, LongTermsBucket._DESERIALIZER);
+        setupTermsAggregateBaseDeserializer(op, JsonData._DESERIALIZER);
     }
 
     @Override

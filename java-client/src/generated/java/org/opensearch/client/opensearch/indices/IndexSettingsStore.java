@@ -66,6 +66,12 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     private final Boolean allowMmap;
 
     @Nullable
+    private final String dataLocality;
+
+    @Nullable
+    private final String factory;
+
+    @Nullable
     private final IndexSettingsStoreFs fs;
 
     @Nullable
@@ -84,6 +90,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
 
     private IndexSettingsStore(Builder builder) {
         this.allowMmap = builder.allowMmap;
+        this.dataLocality = builder.dataLocality;
+        this.factory = builder.factory;
         this.fs = builder.fs;
         this.hybrid = builder.hybrid;
         this.preload = ApiTypeHelper.unmodifiable(builder.preload);
@@ -106,6 +114,28 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     @Nullable
     public final Boolean allowMmap() {
         return this.allowMmap;
+    }
+
+    /**
+     * The store data locality setting.
+     * <p>
+     * API name: {@code data_locality}
+     * </p>
+     */
+    @Nullable
+    public final String dataLocality() {
+        return this.dataLocality;
+    }
+
+    /**
+     * The store factory setting.
+     * <p>
+     * API name: {@code factory}
+     * </p>
+     */
+    @Nullable
+    public final String factory() {
+        return this.factory;
     }
 
     /**
@@ -167,6 +197,16 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
             generator.write(this.allowMmap);
         }
 
+        if (this.dataLocality != null) {
+            generator.writeKey("data_locality");
+            generator.write(this.dataLocality);
+        }
+
+        if (this.factory != null) {
+            generator.writeKey("factory");
+            generator.write(this.factory);
+        }
+
         if (this.fs != null) {
             generator.writeKey("fs");
             this.fs.serialize(generator, mapper);
@@ -215,6 +255,10 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         @Nullable
         private Boolean allowMmap;
         @Nullable
+        private String dataLocality;
+        @Nullable
+        private String factory;
+        @Nullable
         private IndexSettingsStoreFs fs;
         @Nullable
         private IndexSettingsStoreHybrid hybrid;
@@ -228,6 +272,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
 
         private Builder(IndexSettingsStore o) {
             this.allowMmap = o.allowMmap;
+            this.dataLocality = o.dataLocality;
+            this.factory = o.factory;
             this.fs = o.fs;
             this.hybrid = o.hybrid;
             this.preload = _listCopy(o.preload);
@@ -237,6 +283,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
 
         private Builder(Builder o) {
             this.allowMmap = o.allowMmap;
+            this.dataLocality = o.dataLocality;
+            this.factory = o.factory;
             this.fs = o.fs;
             this.hybrid = o.hybrid;
             this.preload = _listCopy(o.preload);
@@ -262,6 +310,30 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         @Nonnull
         public final Builder allowMmap(@Nullable Boolean value) {
             this.allowMmap = value;
+            return this;
+        }
+
+        /**
+         * The store data locality setting.
+         * <p>
+         * API name: {@code data_locality}
+         * </p>
+         */
+        @Nonnull
+        public final Builder dataLocality(@Nullable String value) {
+            this.dataLocality = value;
+            return this;
+        }
+
+        /**
+         * The store factory setting.
+         * <p>
+         * API name: {@code factory}
+         * </p>
+         */
+        @Nonnull
+        public final Builder factory(@Nullable String value) {
+            this.factory = value;
             return this;
         }
 
@@ -391,6 +463,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
 
     protected static void setupIndexSettingsStoreDeserializer(ObjectDeserializer<IndexSettingsStore.Builder> op) {
         op.add(Builder::allowMmap, JsonpDeserializer.booleanDeserializer(), "allow_mmap");
+        op.add(Builder::dataLocality, JsonpDeserializer.stringDeserializer(), "data_locality");
+        op.add(Builder::factory, JsonpDeserializer.stringDeserializer(), "factory");
         op.add(Builder::fs, IndexSettingsStoreFs._DESERIALIZER, "fs");
         op.add(Builder::hybrid, IndexSettingsStoreHybrid._DESERIALIZER, "hybrid");
         op.add(Builder::preload, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preload");
@@ -402,6 +476,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.allowMmap);
+        result = 31 * result + Objects.hashCode(this.dataLocality);
+        result = 31 * result + Objects.hashCode(this.factory);
         result = 31 * result + Objects.hashCode(this.fs);
         result = 31 * result + Objects.hashCode(this.hybrid);
         result = 31 * result + Objects.hashCode(this.preload);
@@ -416,6 +492,8 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         if (o == null || this.getClass() != o.getClass()) return false;
         IndexSettingsStore other = (IndexSettingsStore) o;
         return Objects.equals(this.allowMmap, other.allowMmap)
+            && Objects.equals(this.dataLocality, other.dataLocality)
+            && Objects.equals(this.factory, other.factory)
             && Objects.equals(this.fs, other.fs)
             && Objects.equals(this.hybrid, other.hybrid)
             && Objects.equals(this.preload, other.preload)

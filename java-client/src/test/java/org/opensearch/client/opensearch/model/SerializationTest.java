@@ -52,7 +52,12 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void loadAllDeserializers() throws Exception {
 
-        ScanResult scan = new ClassGraph().acceptPackages("org.opensearch.client").enableAnnotationInfo().enableFieldInfo().scan();
+        ScanResult scan = new ClassGraph().acceptPackages("org.opensearch.client")
+            .enableClasspath()
+            .enableAnnotationInfo()
+            .enableFieldInfo()
+            .enableClassInfo()
+            .scan();
 
         ClassInfoList withAnnotation = scan.getClassesWithAnnotation(JsonpDeserializable.class.getName());
 
