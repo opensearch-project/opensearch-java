@@ -86,9 +86,6 @@ final class OpenSearchGrpcTestContainerRule extends ExternalResource {
             ? new OpenSearchContainer<>(image)
             : new OpenSearchContainer<>(OpenSearchDockerImage.ofVersion(requiredVersion()));
 
-        // Disable security for plaintext testing
-        openSearch.withEnv("plugins.security.disabled", "true");
-
         // Enable gRPC transport (we only reach here for 3.5.0+)
         openSearch.withEnv("aux.transport.types", "transport-grpc");
         openSearch.withEnv("aux.transport.transport-grpc.port", String.valueOf(GRPC_PORT));
