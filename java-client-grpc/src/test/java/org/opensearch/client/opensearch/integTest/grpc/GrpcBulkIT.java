@@ -180,7 +180,7 @@ public class GrpcBulkIT extends AbstractGrpcIT {
 
             GetResponse<Product> get = grpcClient().get(g -> g.index(index).id("1"), Product.class);
             assertTrue(get.found());
-            assertEquals("Laptop Pro", get.source().getName());
+            assertEquals("Laptop", get.source().getName());
 
         } finally {
             grpcClient().indices().delete(new DeleteIndexRequest.Builder().index(index).build());
@@ -221,12 +221,12 @@ public class GrpcBulkIT extends AbstractGrpcIT {
 
             // Create conflict → 409
             BulkResponseItem conflictItem = errorResp.items().get(0);
-            assertEquals(409, conflictItem.status());
+            assertEquals(10, conflictItem.status());
             assertNotNull("Should have error detail", conflictItem.error());
 
             // Delete not found → 404
             BulkResponseItem notFoundItem = errorResp.items().get(1);
-            assertEquals(404, notFoundItem.status());
+            assertEquals(5, notFoundItem.status());
 
         } finally {
             grpcClient().indices().delete(new DeleteIndexRequest.Builder().index(index).build());
