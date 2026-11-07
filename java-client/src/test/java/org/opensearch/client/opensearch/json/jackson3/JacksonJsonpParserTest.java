@@ -38,10 +38,13 @@ import java.io.StringReader;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jackson.JacksonJsonProvider;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson3.JacksonJsonProvider;
+import org.opensearch.client.json.jackson3.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.MsearchResponse;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.model.ModelTestCase;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 public class JacksonJsonpParserTest extends ModelTestCase {
 
@@ -181,6 +184,22 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         assertEquals(2, response.responses().size());
         assertEquals(404, response.responses().get(0).failure().status().intValue());
         assertEquals((Integer) 200, response.responses().get(1).result().status());
+    }
+
+    @Test
+    public void testSearchResponseWithUserSuppliedMapper() {
+        String json = "{\"took\":1,\"timed_out\":false,"
+            + "\"_shards\":{\"total\":1,\"successful\":1,\"skipped\":0,\"failed\":0},"
+            + "\"hits\":{\"total\":{\"value\":1,\"relation\":\"eq\"},\"max_score\":1.0,"
+            + "\"hits\":[{\"_index\":\"foo\",\"_id\":\"1\",\"_score\":1.0,\"_source\":{\"x\":1,\"y\":true}}]}}";
+
+        JsonpMapper mapper = new JacksonJsonpMapper(JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).build())
+            .withAttribute("org.opensearch.client:Deserializer:_global.search.TDocument", JsonpDeserializer.of(Foo.class));
+
+        @SuppressWarnings("unchecked")
+        SearchResponse<Foo> response = fromJson(json, SearchResponse.class, mapper);
+
+        assertEquals(1, response.hits().hits().get(0).source().getX());
     }
 
     public static class Foo {

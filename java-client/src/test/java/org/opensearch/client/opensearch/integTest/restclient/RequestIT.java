@@ -21,7 +21,6 @@ import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
 import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
-import org.apache.hc.core5.reactor.ssl.TlsDetails;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.Assume;
 import org.junit.Test;
@@ -64,7 +63,6 @@ public class RequestIT extends AbstractRequestIT {
                     final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
                         .setSslContext(SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build())
                         .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                        .setTlsDetailsFactory(sslEngine -> new TlsDetails(sslEngine.getSession(), sslEngine.getApplicationProtocol()))
                         .build();
 
                     final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()

@@ -307,7 +307,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
     static class ArrayDeserializer<T> implements JsonpDeserializer<List<T>> {
         private final JsonpDeserializer<T> itemDeserializer;
-        private EnumSet<Event> acceptedEvents;
+        private volatile EnumSet<Event> acceptedEvents;
         private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.START_ARRAY);
 
         protected ArrayDeserializer(JsonpDeserializer<T> itemDeserializer) {
@@ -322,12 +322,15 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         @Override
         public EnumSet<Event> acceptedEvents() {
             // Accepted events is computed lazily
-            // no need for double-checked lock, we don't care about computing it several times
-            if (acceptedEvents == null) {
-                acceptedEvents = EnumSet.of(Event.START_ARRAY);
-                acceptedEvents.addAll(itemDeserializer.acceptedEvents());
+            // no need for double-checked lock, we don't care about computing it several times,
+            // but the set is only published once it is complete, so no thread sees it half-built
+            EnumSet<Event> events = acceptedEvents;
+            if (events == null) {
+                events = EnumSet.of(Event.START_ARRAY);
+                events.addAll(itemDeserializer.acceptedEvents());
+                acceptedEvents = events;
             }
-            return acceptedEvents;
+            return events;
         }
 
         @Override
@@ -349,6 +352,56 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
                 JsonpUtils.ensureAccepts(itemDeserializer, parser, event);
                 return Collections.singletonList(itemDeserializer.deserialize(parser, mapper, event));
             }
+        }
+    }
+
+    /**
+     * Like {@link ArrayDeserializer}, but also accepts a top-level JSON {@code null} -- for a
+     * field whose schema explicitly allows it (see
+     * {@code org.opensearch.client.codegen.openapi.OpenApiSchema#allowsNull()} on the generator
+     * side), as opposed to every array field unconditionally. A {@code null} value is treated as
+     * an empty list rather than Java {@code null}, so it flows into builder setters the same way
+     * an absent or empty array would.
+     *
+     * See https://github.com/opensearch-project/opensearch-java/issues/1813 -- {@code ism_template}
+     * in ISM {@code Policy} is the first field needing this: the server can send {@code null} for
+     * it, and the plain {@link ArrayDeserializer} throws rather than accepting that.
+     */
+    static final class ArrayOrNullDeserializer<T> extends ArrayDeserializer<T> {
+        // Matches the pattern of the other OrNull deserializers (DoubleOrNullDeserializer et
+        // al.): VALUE_NULL is added to both nativeEvents and acceptedEvents, not just the
+        // latter, so this is correctly recognized if it is ever used as a union member, not
+        // only when it is the sole deserializer for a named field (its only use today).
+        private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.START_ARRAY, Event.VALUE_NULL);
+        private volatile EnumSet<Event> acceptedEvents;
+
+        ArrayOrNullDeserializer(JsonpDeserializer<T> itemDeserializer) {
+            super(itemDeserializer);
+        }
+
+        @Override
+        public EnumSet<Event> nativeEvents() {
+            return nativeEvents;
+        }
+
+        @Override
+        public EnumSet<Event> acceptedEvents() {
+            // Same as ArrayDeserializer: only publish the set once it is complete
+            EnumSet<Event> events = acceptedEvents;
+            if (events == null) {
+                events = EnumSet.copyOf(super.acceptedEvents());
+                events.add(Event.VALUE_NULL);
+                acceptedEvents = events;
+            }
+            return events;
+        }
+
+        @Override
+        public List<T> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                return new ArrayList<>();
+            }
+            return super.deserialize(parser, mapper, event);
         }
     }
 

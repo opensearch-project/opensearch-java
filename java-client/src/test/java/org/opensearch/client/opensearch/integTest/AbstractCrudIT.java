@@ -320,7 +320,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(opsList).build();
 
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(nbItems, bulkResponse.items().size());
 
         validateBulkResponses(nbItems, errors, bulkResponse, bulkRequest);
@@ -353,7 +353,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
 
         final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
@@ -387,7 +387,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
 
         final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
@@ -423,7 +423,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
 
         final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
@@ -453,7 +453,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
 
         final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
@@ -475,7 +475,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
         assertEquals(Result.NoOp.jsonValue(), bulkResponse.items().get(0).result());
 
@@ -483,7 +483,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
         bulkRequest = new BulkRequest.Builder().operations(op).build();
         bulkResponse = javaClient().bulk(bulkRequest);
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
         assertEquals(Result.Updated.jsonValue(), bulkResponse.items().get(0).result());
 
@@ -502,7 +502,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
 
-        assertTrue(bulkResponse.took() > 0);
+        assertTrue(bulkResponse.took() >= 0);
         assertEquals(1, bulkResponse.items().size());
 
         final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);

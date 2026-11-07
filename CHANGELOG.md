@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add constants for `_first` and `_last` sort values (#2189)
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 - Add getters for the data of `UpdateOperation` (`UpdateOperation#data()` and the `UpdateOperationData` getters) ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
+- Add `CloseableOpenSearchClient` and `CloseableOpenSearchAsyncClient` which close the underlying transport ([#2173](https://github.com/opensearch-project/opensearch-java/issues/2173))
 
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
@@ -34,14 +35,19 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
 - `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
+- Stop calling the deprecated no-op `ClientTlsStrategyBuilder#setTlsDetailsFactory` in `ApacheHttpClient5TransportBuilder` ([#1613](https://github.com/opensearch-project/opensearch-java/issues/1613))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- Thread the caller's document type through the gRPC transport typed search path so hit `_source` values deserialize to `TDocument` instead of being silently cast from `Object`/`JsonData`, fixing a runtime `ClassCastException` ([#2123](https://github.com/opensearch-project/opensearch-java/issues/2123), [#2160](https://github.com/opensearch-project/opensearch-java/pull/2160))
 - Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
+- Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
 - Fix code generation failing with a `NullPointerException` on an `allOf` with no `$ref` or composition member, such as `allOf: [{ properties }, { anyOf }]` (`SemanticProperty` in the normalized spec). `allOf` now always maps to its last, most specific member, which is what it already did whenever it did not fail ([#2238](https://github.com/opensearch-project/opensearch-java/pull/2238))
+- Fix a race in `JsonpDeserializer.arrayDeserializer` and `arrayOrNullDeserializer` where a thread could see its accepted events before the item events were added, and reject a single value in place of a list ([#2254](https://github.com/opensearch-project/opensearch-java/pull/2254))
+- Fix Jackson 3 `JacksonJsonpParserTest` importing Jackson 2 classes and document that a user-supplied Jackson 3 `ObjectMapper` needs `FAIL_ON_TRAILING_TOKENS` disabled ([#2237](https://github.com/opensearch-project/opensearch-java/pull/2237))
 
 ### Security
 

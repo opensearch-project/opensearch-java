@@ -192,6 +192,7 @@ public class ObjectShapeBase extends Shape {
         private final TypeRef valueType;
         private final String valueDescription;
         private final boolean singleton;
+        private final boolean nullable;
 
         public AdditionalProperties(
             String keyName,
@@ -200,7 +201,8 @@ public class ObjectShapeBase extends Shape {
             String valueName,
             TypeRef valueType,
             String valueDescription,
-            boolean singleton
+            boolean singleton,
+            boolean nullable
         ) {
             this.keyName = NameSanitizer.fieldName(keyName);
             this.keyType = keyType;
@@ -209,6 +211,7 @@ public class ObjectShapeBase extends Shape {
             this.valueType = valueType;
             this.valueDescription = valueDescription;
             this.singleton = singleton;
+            this.nullable = nullable;
         }
 
         public List<Field> getFields() {
@@ -223,7 +226,7 @@ public class ObjectShapeBase extends Shape {
         }
 
         public TypeRef getMapType() {
-            return Types.Java.Util.Map(keyType, valueType);
+            return Types.Java.Util.Map(keyType, valueType, nullable);
         }
 
         public boolean usesTypedKeys() {
