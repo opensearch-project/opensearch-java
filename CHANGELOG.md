@@ -35,6 +35,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
 - Stop calling the deprecated no-op `ClientTlsStrategyBuilder#setTlsDetailsFactory` in `ApacheHttpClient5TransportBuilder` ([#1613](https://github.com/opensearch-project/opensearch-java/issues/1613))
+- `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Deprecated
 
