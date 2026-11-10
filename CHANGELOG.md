@@ -11,6 +11,7 @@ and preserving JDK-8 compatibility at the same time.
 - Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 - Add `CloseableOpenSearchClient` and `CloseableOpenSearchAsyncClient` which close the underlying transport ([#2173](https://github.com/opensearch-project/opensearch-java/issues/2173))
+- Add getters for the document, upsert, flags, script, source and document serializer of `UpdateOperation` ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Dependencies
 - Bump Jackson to 2.22.4 / 3.2.4 ([#2231](https://github.com/opensearch-project/opensearch-java/pull/2231), [#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
@@ -19,6 +20,7 @@ and preserving JDK-8 compatibility at the same time.
 - Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport` ([#2199](https://github.com/opensearch-project/opensearch-java/pull/2199))
 - Re-generated client code using latest OpenSearch API specification ([#2201](https://github.com/opensearch-project/opensearch-java/pull/2201))
 - Stop calling the deprecated no-op `ClientTlsStrategyBuilder#setTlsDetailsFactory` in `ApacheHttpClient5TransportBuilder` ([#1613](https://github.com/opensearch-project/opensearch-java/issues/1613))
+- `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Deprecated
 
