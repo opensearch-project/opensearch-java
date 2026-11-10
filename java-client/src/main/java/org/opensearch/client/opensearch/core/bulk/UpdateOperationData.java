@@ -55,6 +55,62 @@ public class UpdateOperationData<TDocument> implements PlainJsonSerializable {
         this.source = builder.source;
     }
 
+    /**
+     * API name: {@code doc}
+     */
+    @Nullable
+    final TDocument document() {
+        return this.document;
+    }
+
+    /**
+     * API name: {@code doc_as_upsert}
+     */
+    @Nullable
+    final Boolean docAsUpsert() {
+        return this.docAsUpsert;
+    }
+
+    /**
+     * API name: {@code scripted_upsert}
+     */
+    @Nullable
+    final Boolean scriptedUpsert() {
+        return this.scriptedUpsert;
+    }
+
+    /**
+     * API name: {@code detect_noop}
+     */
+    @Nullable
+    final Boolean detectNoop() {
+        return this.detectNoop;
+    }
+
+    /**
+     * API name: {@code upsert}
+     */
+    @Nullable
+    final TDocument upsert() {
+        return this.upsert;
+    }
+
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    final Script script() {
+        return this.script;
+    }
+
+    /**
+     * API name: {@code _source}
+     */
+    @Nullable
+    final SourceConfig source() {
+        return this.source;
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
