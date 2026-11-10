@@ -88,6 +88,70 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
     }
 
     /**
+     * API name: {@code doc}
+     */
+    @Nullable
+    public final TDocument document() {
+        return this.data.document();
+    }
+
+    /**
+     * API name: {@code doc_as_upsert}
+     */
+    @Nullable
+    public final Boolean docAsUpsert() {
+        return this.data.docAsUpsert();
+    }
+
+    /**
+     * API name: {@code scripted_upsert}
+     */
+    @Nullable
+    public final Boolean scriptedUpsert() {
+        return this.data.scriptedUpsert();
+    }
+
+    /**
+     * API name: {@code detect_noop}
+     */
+    @Nullable
+    public final Boolean detectNoop() {
+        return this.data.detectNoop();
+    }
+
+    /**
+     * API name: {@code upsert}
+     */
+    @Nullable
+    public final TDocument upsert() {
+        return this.data.upsert();
+    }
+
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.data.script();
+    }
+
+    /**
+     * API name: {@code _source}
+     */
+    @Nullable
+    public final SourceConfig source() {
+        return this.data.source();
+    }
+
+    /**
+     * Serializer for TDocument, if one was set explicitly.
+     */
+    @Nullable
+    public final JsonpSerializer<TDocument> tDocumentSerializer() {
+        return this.tDocumentSerializer;
+    }
+
+    /**
      * API name: {@code require_alias}
      */
     @Nullable
