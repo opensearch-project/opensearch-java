@@ -223,12 +223,12 @@ public class GrpcBulkIT extends AbstractGrpcIT {
 
             // Create conflict → 409
             BulkResponseItem conflictItem = errorResp.items().get(0);
-            assertEquals(10, conflictItem.status());
+            assertEquals(409, conflictItem.status());
             assertNotNull("Should have error detail", conflictItem.error());
 
             // Delete not found → 404
             BulkResponseItem notFoundItem = errorResp.items().get(1);
-            assertEquals(5, notFoundItem.status());
+            assertEquals(404, notFoundItem.status());
 
         } finally {
             grpcClient().indices().delete(new DeleteIndexRequest.Builder().index(index).build());
