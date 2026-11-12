@@ -7,6 +7,24 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
 
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.11.0] - 11/12/2026
+**IMPORTANT CHANGES**: This release comes as multi-release JAR to support Jackson 3.x line (JDK-17 baseline)
+and preserving JDK-8 compatibility at the same time.
+
+### Added
 - Add constants for `_first` and `_last` sort values (#2189)
 - Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
 - Add `CloseableOpenSearchClient` and `CloseableOpenSearchAsyncClient` which close the underlying transport ([#2173](https://github.com/opensearch-project/opensearch-java/issues/2173))
@@ -734,8 +752,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.11.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...v3.11.0
 [3.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.9.0...v3.10.0
 [3.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...v3.9.0
 [3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
