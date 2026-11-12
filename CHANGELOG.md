@@ -2,6 +2,22 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
+
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.11.0] - 11/12/2026
 **IMPORTANT CHANGES**: This release comes as multi-release JAR to support Jackson 3.x line (JDK-17 baseline)
 and preserving JDK-8 compatibility at the same time.
 
@@ -733,8 +749,9 @@ and preserving JDK-8 compatibility at the same time.
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.11.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...v3.11.0
 [3.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.9.0...v3.10.0
 [3.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...v3.9.0
 [3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
