@@ -121,6 +121,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private @Nullable ScheduledFuture<?> flushTask;
     private @Nullable ScheduledExecutorService scheduler;
     private @Nullable ScheduledExecutorService retryScheduler;
+    private @Nullable ScheduledExecutorService retryFlushScheduler;
     private boolean isExternalScheduler = false;
     private BackoffPolicy backoffPolicy;
 
@@ -187,7 +188,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         if (backoffPolicy == null) {
             backoffPolicy = BackoffPolicy.noBackoff();
         }
-        // preparing a scheduler that will trigger flushes to retry failed requests
+        // preparing the schedulers that will add failed requests back to the buffer and trigger flushes to retry them
         else {
             retryScheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
                 Thread t = Executors.defaultThreadFactory().newThread(r);
@@ -195,6 +196,18 @@ public class BulkIngester<Context> implements AutoCloseable {
                 t.setDaemon(true);
                 return t;
             });
+            // Separate from retryScheduler, whose threads can all be blocked waiting for space in the buffer
+            // that only these flushes can free. The periodic flush scheduler already is.
+            if (flushIntervalMillis != null) {
+                retryFlushScheduler = scheduler;
+            } else {
+                retryFlushScheduler = Executors.newSingleThreadScheduledExecutor((r) -> {
+                    Thread t = Executors.defaultThreadFactory().newThread(r);
+                    t.setName("bulk-ingester-retry-flush#" + ingesterId + "#" + t.getId());
+                    t.setDaemon(true);
+                    return t;
+                });
+            }
         }
     }
 
@@ -482,6 +495,9 @@ public class BulkIngester<Context> implements AutoCloseable {
                 });
                 return null;
             });
+        } else {
+            // A flush woken up by a completed request may have found nothing to send: wake up the next waiting one
+            sendRequestCondition.signalIfReady();
         }
     }
 
@@ -545,8 +561,8 @@ public class BulkIngester<Context> implements AutoCloseable {
             .summaryStatistics();
 
         // scheduling earlier and latest delay
-        retryScheduler.schedule(this::flush, statsDelays.getMin(), TimeUnit.MILLISECONDS);
-        retryScheduler.schedule(this::flush, statsDelays.getMax(), TimeUnit.MILLISECONDS);
+        retryFlushScheduler.schedule(this::flush, statsDelays.getMin(), TimeUnit.MILLISECONDS);
+        retryFlushScheduler.schedule(this::flush, statsDelays.getMax(), TimeUnit.MILLISECONDS);
 
     }
 
@@ -581,6 +597,10 @@ public class BulkIngester<Context> implements AutoCloseable {
         retryScheduler.submit(() -> {
             try {
                 innerAdd(repeatableOp);
+                // The scheduled flushes may have run while this operation was waiting for space in the buffer
+                if (repeatableOp.isSendable()) {
+                    flush();
+                }
             } finally {
                 if (retriesInProgressCount.decrementAndGet() == 0) {
                     closeCondition.signalIfReady();
@@ -670,6 +690,10 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         if (retryScheduler != null) {
             retryScheduler.shutdownNow();
+        }
+
+        if (retryFlushScheduler != null && retryFlushScheduler != scheduler) {
+            retryFlushScheduler.shutdownNow();
         }
     }
 
