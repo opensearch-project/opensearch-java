@@ -197,13 +197,17 @@ public class BulkIngester<Context> implements AutoCloseable {
                 return t;
             });
             // Separate from retryScheduler, whose threads can all be blocked waiting for space in the buffer
-            // that only these flushes can free
-            retryFlushScheduler = Executors.newSingleThreadScheduledExecutor((r) -> {
-                Thread t = Executors.defaultThreadFactory().newThread(r);
-                t.setName("bulk-ingester-retry-flush#" + ingesterId + "#" + t.getId());
-                t.setDaemon(true);
-                return t;
-            });
+            // that only these flushes can free. The periodic flush scheduler already is.
+            if (flushIntervalMillis != null) {
+                retryFlushScheduler = scheduler;
+            } else {
+                retryFlushScheduler = Executors.newSingleThreadScheduledExecutor((r) -> {
+                    Thread t = Executors.defaultThreadFactory().newThread(r);
+                    t.setName("bulk-ingester-retry-flush#" + ingesterId + "#" + t.getId());
+                    t.setDaemon(true);
+                    return t;
+                });
+            }
         }
     }
 
@@ -491,6 +495,9 @@ public class BulkIngester<Context> implements AutoCloseable {
                 });
                 return null;
             });
+        } else {
+            // A flush woken up by a completed request may have found nothing to send: wake up the next waiting one
+            sendRequestCondition.signalIfReady();
         }
     }
 
@@ -685,7 +692,7 @@ public class BulkIngester<Context> implements AutoCloseable {
             retryScheduler.shutdownNow();
         }
 
-        if (retryFlushScheduler != null) {
+        if (retryFlushScheduler != null && retryFlushScheduler != scheduler) {
             retryFlushScheduler.shutdownNow();
         }
     }

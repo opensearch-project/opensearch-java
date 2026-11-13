@@ -236,27 +236,81 @@ public class BulkIngesterTest extends Assert {
 
     @Test(timeout = 30_000)
     public void retriesFillingTheBufferDoNotBlockTheirFlush() throws Exception {
-        retriesFillingTheBufferTest(200L);
+        retriesFillingTheBufferTest(200L, null);
     }
 
     @Test(timeout = 30_000)
-    public void retriesWithShortBackoffAreFlushedOnceAddedToTheBuffer() throws Exception {
-        // The scheduled flushes are likely to run while the retries are still waiting for space in the buffer
-        retriesFillingTheBufferTest(1L);
+    public void retriesFillingTheBufferDoNotBlockTheirFlushOnTheFlushIntervalScheduler() throws Exception {
+        // The retry flushes then run on the periodic flush scheduler, and the period is too long to help them
+        retriesFillingTheBufferTest(200L, 1L);
     }
 
-    private void retriesFillingTheBufferTest(long retryDelayMillis) throws Exception {
+    @Test(timeout = 30_000)
+    public void retryAddedAfterItsScheduledFlushesIsSent() throws Exception {
+        TestTransport transport = new TestTransport();
+        transport.itemsToReject.set(1);
+        CountDownLatch retryWaiting = new CountDownLatch(1);
+        CountDownLatch releaseRetry = new CountDownLatch(1);
+        transport.beforeRetryAdd = () -> {
+            retryWaiting.countDown();
+            try {
+                releaseRetry.await();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
+
+        // No flushInterval and a buffer that never fills up: only a flush triggered by the retry itself can send it
+        BulkIngester<Void> ingester = BulkIngester.of(
+            b -> b.client(new OpenSearchAsyncClient(transport))
+                .maxOperations(10)
+                .maxConcurrentRequests(1)
+                .backoffPolicy(BackoffPolicy.constantBackoff(1L, 5))
+        );
+
+        ingester.add(operation);
+        ingester.flush();
+        retryWaiting.await();
+
+        // The retry flushes are scheduled before the request is released, and run while the retry is held back
+        while (ingester.pendingRequests() > 0 || retryFlushThreadIsBusy()) {
+            Thread.sleep(5);
+        }
+        releaseRetry.countDown();
+
+        awaitRequestCount(ingester, 2);
+
+        ingester.close();
+        transport.close();
+
+        assertEquals(2, transport.operations.get());
+    }
+
+    private static boolean retryFlushThreadIsBusy() {
+        // Idle once both scheduled flushes have run: its queue is empty and it waits for a new task
+        return Thread.getAllStackTraces()
+            .keySet()
+            .stream()
+            .filter(t -> t.getName().startsWith("bulk-ingester-retry-flush#"))
+            .anyMatch(t -> t.getState() != Thread.State.WAITING);
+    }
+
+    private void retriesFillingTheBufferTest(long retryDelayMillis, @Nullable Long flushIntervalHours) throws Exception {
         int numOperations = 10;
         TestTransport transport = new TestTransport();
         transport.itemsToReject.set(6);
 
-        // No flushInterval: nothing but the retry flushes can drain a buffer full of operations waiting for their backoff
-        BulkIngester<Void> ingester = BulkIngester.of(
-            b -> b.client(new OpenSearchAsyncClient(transport))
+        // Nothing but the retry flushes can drain a buffer full of operations waiting for their backoff
+        BulkIngester<Void> ingester = BulkIngester.of(b -> {
+            b.client(new OpenSearchAsyncClient(transport))
                 .maxOperations(2)
                 .maxConcurrentRequests(1)
-                .backoffPolicy(BackoffPolicy.constantBackoff(retryDelayMillis, 5))
-        );
+                .backoffPolicy(BackoffPolicy.constantBackoff(retryDelayMillis, 5));
+            if (flushIntervalHours != null) {
+                b.flushInterval(flushIntervalHours, TimeUnit.HOURS);
+            }
+            return b;
+        });
 
         for (int i = 0; i < numOperations; i++) {
             ingester.add(operation);
@@ -561,6 +615,8 @@ public class BulkIngesterTest extends Assert {
         public final AtomicInteger operations = new AtomicInteger();
         // Number of operations that will still be answered with a 429 status
         public final AtomicInteger itemsToReject = new AtomicInteger();
+        // Runs on the retry thread before a retried operation is added back to the buffer
+        public volatile Runnable beforeRetryAdd;
 
         private final ExecutorService executor = Executors.newCachedThreadPool();
 
@@ -610,6 +666,11 @@ public class BulkIngesterTest extends Assert {
 
         @Override
         public JsonpMapper jsonpMapper() {
+            Runnable beforeRetryAdd = this.beforeRetryAdd;
+            if (beforeRetryAdd != null && Thread.currentThread().getName().startsWith("bulk-ingester-retry#")) {
+                // The ingester gets the mapper to measure an operation just before adding it to the buffer
+                beforeRetryAdd.run();
+            }
             return new JacksonJsonpMapper();
         }
 
