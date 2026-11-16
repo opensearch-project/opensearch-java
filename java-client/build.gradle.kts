@@ -217,6 +217,14 @@ dependencies {
     api("org.apache.httpcomponents.core5:httpcore5:5.4.4")
     api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.4")
 
+    // Used by the streaming support of ApacheHttpClient5Transport
+    // MIT-0
+    // https://github.com/reactive-streams/reactive-streams-jvm
+    api("org.reactivestreams:reactive-streams:1.0.4")
+    // Apache 2.0
+    implementation("org.apache.httpcomponents.core5:httpcore5-reactive:5.4.4")
+    implementation("io.projectreactor:reactor-core:3.8.7")
+
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     api("com.google.code.findbugs:jsr305:3.0.2")
