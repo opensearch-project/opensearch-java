@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
 
 ### Added
+- Add an experimental, opt-in way for the code generator to read the types from the specification's client model (`./gradlew :java-codegen:run -PfromClientModel`) ([#2298](https://github.com/opensearch-project/opensearch-java/pull/2298))
 
 ### Dependencies
 
@@ -17,6 +18,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix the `NullPointerException` in the code generator when a generic type is instantiated inside its own reference cycle ([#2298](https://github.com/opensearch-project/opensearch-java/pull/2298))
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
 
 ### Security
