@@ -426,11 +426,13 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
     }
 
     /**
-     * Replaces the nodes with which the client communicates.
+     * Replaces the nodes with which the client communicates, without rebuilding the transport.
      *
-     * @param nodes the new nodes to communicate with.
+     * @param nodes the new nodes to communicate with
+     * @throws IllegalArgumentException if {@code nodes} is {@code null} or empty
+     * @throws NullPointerException if {@code nodes} contains a {@code null} element
      */
-    private void setNodes(Collection<Node> nodes) {
+    public void setNodes(Collection<Node> nodes) {
         if (nodes == null || nodes.isEmpty()) {
             throw new IllegalArgumentException("nodes must not be null or empty");
         }
