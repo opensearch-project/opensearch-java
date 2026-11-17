@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
 
 ### Added
+- Make `ApacheHttpClient5Transport.setNodes(Collection<Node>)` public so the nodes of an existing transport can be replaced without rebuilding it ([#2299](https://github.com/opensearch-project/opensearch-java/pull/2299))
 
 ### Dependencies
 
