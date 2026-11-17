@@ -23,6 +23,21 @@ import org.opensearch.client.codegen.utils.Maps;
 public final class SpecificationRewriter {
     @Nonnull
     public static OpenApiSpecification rewrite(@Nonnull OpenApiSpecification specification, @Nonnull Overrides overrides) {
+        return rewrite(specification, overrides, 1);
+    }
+
+    /**
+     * {@code genericLabelingPasses}: generic labels are derived from the labels of the schemas a schema refers to, and a single pass reads
+     * a label inside a reference cycle (Hit -> inner_hits -> HitsMetadata -> Hit&lt;TDocument&gt;) before it is set, depending on where the
+     * walk enters the cycle. The specification as written is labeled in one pass, as before; a specification rewritten from the client
+     * model enters its cycles elsewhere and needs more.
+     */
+    @Nonnull
+    public static OpenApiSpecification rewrite(
+        @Nonnull OpenApiSpecification specification,
+        @Nonnull Overrides overrides,
+        int genericLabelingPasses
+    ) {
         var visitorChain = new ArrayList<Function<OpenApiWalker, OpenApiVisitor>>();
 
         visitorChain.add(w -> new ExtendsAllOfRewritingVisitor());
@@ -30,7 +45,9 @@ public final class SpecificationRewriter {
         visitorChain.add(TypeDeterminingVisitor::new);
         visitorChain.add(w -> new ObjectFlatteningVisitor(overrides, w));
         visitorChain.add(w -> new ResponseSchemaVisitor());
-        visitorChain.add(GenericLabelingVisitor::new);
+        for (int pass = 0; pass < genericLabelingPasses; pass++) {
+            visitorChain.add(GenericLabelingVisitor::new);
+        }
 
         for (var visitorFactory : visitorChain) {
             var walker = new OpenApiWalker();
