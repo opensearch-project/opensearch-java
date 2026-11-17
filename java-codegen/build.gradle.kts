@@ -76,12 +76,16 @@ tasks.register<Download>("downloadLatestSpec") {
     dest(localSpecification)
 }
 
+// `-PfromClientModel` reads the types from the client model vendored next to the specification
+// (opensearch-client-model.json) instead of interpreting allOf/oneOf/anyOf of the specification (experimental).
+val clientModel = file("$projectDir/opensearch-client-model.json").path
+
 tasks.named<JavaExec>("run") {
     args = listOf(
         "--input", localSpecification,
         "--eclipse-config", "$rootDir/buildSrc/formatterConfig-generated.xml",
         "--output", "${project(":java-client").projectDir}/src/generated/java/"
-    )
+    ) + (if (project.hasProperty("fromClientModel")) listOf("--model", clientModel) else listOf())
 }
 
 tasks.withType<ProcessResources> {
