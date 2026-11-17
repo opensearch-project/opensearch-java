@@ -48,6 +48,7 @@ and preserving JDK-8 compatibility at the same time.
 
 ### Added
 - Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
+- Add a node sniffer for `ApacheHttpClient5Transport` and make `ApacheHttpClient5Transport#setNodes` public ([#2200](https://github.com/opensearch-project/opensearch-java/pull/2200))
 
 ### Dependencies
 

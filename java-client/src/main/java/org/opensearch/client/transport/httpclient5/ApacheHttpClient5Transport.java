@@ -426,11 +426,16 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
     }
 
     /**
-     * Replaces the nodes with which the client communicates.
+     * Replaces the nodes with which the client communicates and clears the per-host failure denylist.
+     * Used by the {@link org.opensearch.client.transport.httpclient5.sniffer.Sniffer}, and may be called
+     * directly to drive custom node discovery.
+     * <p>
+     * Expects a single writer at a time. Requests see either the complete old or the complete new node
+     * set. Concurrent callers are not serialized (last writer wins).
      *
-     * @param nodes the new nodes to communicate with.
+     * @param nodes the new nodes to communicate with; must be non-null and non-empty.
      */
-    private void setNodes(Collection<Node> nodes) {
+    public void setNodes(List<Node> nodes) {
         if (nodes == null || nodes.isEmpty()) {
             throw new IllegalArgumentException("nodes must not be null or empty");
         }
@@ -443,6 +448,8 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
             nodesByHost.put(node.getHost(), node);
             authCache.put(node.getHost(), new BasicScheme());
         }
+        // Publish nodeTuple before clearing the denylist: the reverse order lets a reader pair the old
+        // nodes with an empty denylist and resurrect a host that is still denylisted.
         this.nodeTuple = new NodeTuple<>(Collections.unmodifiableList(new ArrayList<>(nodesByHost.values())), authCache);
         this.denylist.clear();
     }
