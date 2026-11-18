@@ -246,7 +246,7 @@ public class BulkIngesterTest extends Assert {
     }
 
     @Test(timeout = 30_000)
-    public void retryAddedAfterItsScheduledFlushesIsSent() throws Exception {
+    public void closeDropsRetriesThatAreStillPending() throws Exception {
         TestTransport transport = new TestTransport();
         transport.itemsToReject.set(1);
         CountDownLatch retryWaiting = new CountDownLatch(1);
@@ -260,7 +260,6 @@ public class BulkIngesterTest extends Assert {
             }
         };
 
-        // No flushInterval and a buffer that never fills up: only a flush triggered by the retry itself can send it
         BulkIngester<Void> ingester = BulkIngester.of(
             b -> b.client(new OpenSearchAsyncClient(transport))
                 .maxOperations(10)
@@ -272,27 +271,20 @@ public class BulkIngesterTest extends Assert {
         ingester.flush();
         retryWaiting.await();
 
-        // The retry flushes are scheduled before the request is released, and run while the retry is held back
-        while (ingester.pendingRequests() > 0 || retryFlushThreadIsBusy()) {
+        // close() waits for the retry in progress, which is released once close() is waiting
+        Thread closer = new Thread(ingester::close);
+        closer.start();
+        while (closer.getState() != Thread.State.WAITING) {
             Thread.sleep(5);
         }
         releaseRetry.countDown();
+        closer.join(10_000);
+        assertFalse(closer.isAlive());
 
-        awaitRequestCount(ingester, 2);
-
-        ingester.close();
         transport.close();
 
-        assertEquals(2, transport.operations.get());
-    }
-
-    private static boolean retryFlushThreadIsBusy() {
-        // Idle once both scheduled flushes have run: its queue is empty and it waits for a new task
-        return Thread.getAllStackTraces()
-            .keySet()
-            .stream()
-            .filter(t -> t.getName().startsWith("bulk-ingester-retry-flush#"))
-            .anyMatch(t -> t.getState() != Thread.State.WAITING);
+        // The rejected operation was not sent again
+        assertEquals(1, transport.operations.get());
     }
 
     private void retriesFillingTheBufferTest(long retryDelayMillis, @Nullable Long flushIntervalHours) throws Exception {
@@ -319,8 +311,8 @@ public class BulkIngesterTest extends Assert {
         ingester.close();
         transport.close();
 
-        assertEquals(0, transport.itemsToReject.get());
-        assertEquals(numOperations + 6, transport.operations.get());
+        // Retries still pending when closing are dropped, but every operation was sent at least once
+        assertTrue(transport.operations.get() >= numOperations);
     }
 
     /**

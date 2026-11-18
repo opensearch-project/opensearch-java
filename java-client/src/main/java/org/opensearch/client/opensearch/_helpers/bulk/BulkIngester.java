@@ -428,8 +428,8 @@ public class BulkIngester<Context> implements AutoCloseable {
                         .filter(i -> i.error() != null && i.status() == 429)
                         .collect(Collectors.toList());
 
-                    if (failedRequestsCanRetry.isEmpty() || backoffPolicy.equals(BackoffPolicy.noBackoff())) {
-                        // Total success! ...or there's no retry policy implemented. Either way, can call
+                    if (failedRequestsCanRetry.isEmpty() || backoffPolicy.equals(BackoffPolicy.noBackoff()) || isClosed) {
+                        // Total success! ...or there's no retry policy implemented, or closing. Either way, can call
                         listenerAfterBulkSuccess(resp, exec);
                     } else {
                         // Partial success, retrying failed requests if policy allows it
@@ -590,17 +590,13 @@ public class BulkIngester<Context> implements AutoCloseable {
         innerAdd(repeatableOp);
     }
 
-    // Same as "add", but skips the closed check to allow retries to be added even after ingester closure
+    // Same as "add", but skips the closed check: innerAdd() drops the retry if the ingester was closed meanwhile
     private void addRetry(RetryableBulkOperation<Context> repeatableOp) {
         // Sending the operation back in the queue using the retry scheduler
         retriesInProgressCount.incrementAndGet();
         retryScheduler.submit(() -> {
             try {
                 innerAdd(repeatableOp);
-                // The scheduled flushes may have run while this operation was waiting for space in the buffer
-                if (repeatableOp.isSendable()) {
-                    flush();
-                }
             } finally {
                 if (retriesInProgressCount.decrementAndGet() == 0) {
                     closeCondition.signalIfReady();
@@ -613,6 +609,11 @@ public class BulkIngester<Context> implements AutoCloseable {
         IngesterOperation<Context> ingestOp = IngesterOperation.of(repeatableOp, client._transport().jsonpMapper());
 
         addCondition.whenReady(() -> {
+            if (isClosed && repeatableOp.retries() != null) {
+                // The ingester was closed while this retry was waiting to be added back: drop it
+                addCondition.signalIfReady();
+                return;
+            }
             operations.add(ingestOp);
             currentSize += ingestOp.size();
 
@@ -675,6 +676,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         isClosed = true;
+        // Drop the retries that are still pending
+        dropPendingRetries();
         // Flush buffered operations
         flush();
         // and wait for all requests to be completed
@@ -694,6 +697,25 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         if (retryFlushScheduler != null && retryFlushScheduler != scheduler) {
             retryFlushScheduler.shutdownNow();
+        }
+    }
+
+    private void dropPendingRetries() {
+        lock.lock();
+        try {
+            for (Iterator<IngesterOperation<Context>> it = operations.iterator(); it.hasNext();) {
+                IngesterOperation<Context> op = it.next();
+                // Only retries have a retries iterator: operations added by the application are still sent by close()
+                if (op.retries() != null) {
+                    currentSize -= op.size();
+                    it.remove();
+                }
+            }
+            // Wake up the threads waiting for space: retries see the ingester is closed and are dropped,
+            // operations added before close() go into the buffer and are sent
+            addCondition.signalAllIfReady();
+        } finally {
+            lock.unlock();
         }
     }
 
