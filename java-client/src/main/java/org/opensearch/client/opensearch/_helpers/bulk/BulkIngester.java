@@ -121,6 +121,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private @Nullable ScheduledFuture<?> flushTask;
     private @Nullable ScheduledExecutorService scheduler;
     private @Nullable ScheduledExecutorService retryScheduler;
+    private @Nullable ScheduledExecutorService retryFlushScheduler;
     private boolean isExternalScheduler = false;
     private BackoffPolicy backoffPolicy;
 
@@ -187,7 +188,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         if (backoffPolicy == null) {
             backoffPolicy = BackoffPolicy.noBackoff();
         }
-        // preparing a scheduler that will trigger flushes to retry failed requests
+        // preparing the schedulers that will add failed requests back to the buffer and trigger flushes to retry them
         else {
             retryScheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
                 Thread t = Executors.defaultThreadFactory().newThread(r);
@@ -195,6 +196,18 @@ public class BulkIngester<Context> implements AutoCloseable {
                 t.setDaemon(true);
                 return t;
             });
+            // Separate from retryScheduler, whose threads can all be blocked waiting for space in the buffer
+            // that only these flushes can free. The periodic flush scheduler already is.
+            if (flushIntervalMillis != null) {
+                retryFlushScheduler = scheduler;
+            } else {
+                retryFlushScheduler = Executors.newSingleThreadScheduledExecutor((r) -> {
+                    Thread t = Executors.defaultThreadFactory().newThread(r);
+                    t.setName("bulk-ingester-retry-flush#" + ingesterId + "#" + t.getId());
+                    t.setDaemon(true);
+                    return t;
+                });
+            }
         }
     }
 
@@ -415,8 +428,8 @@ public class BulkIngester<Context> implements AutoCloseable {
                         .filter(i -> i.error() != null && i.status() == 429)
                         .collect(Collectors.toList());
 
-                    if (failedRequestsCanRetry.isEmpty() || backoffPolicy.equals(BackoffPolicy.noBackoff())) {
-                        // Total success! ...or there's no retry policy implemented. Either way, can call
+                    if (failedRequestsCanRetry.isEmpty() || backoffPolicy.equals(BackoffPolicy.noBackoff()) || isClosed) {
+                        // Total success! ...or there's no retry policy implemented, or closing. Either way, can call
                         listenerAfterBulkSuccess(resp, exec);
                     } else {
                         // Partial success, retrying failed requests if policy allows it
@@ -482,6 +495,9 @@ public class BulkIngester<Context> implements AutoCloseable {
                 });
                 return null;
             });
+        } else {
+            // A flush woken up by a completed request may have found nothing to send: wake up the next waiting one
+            sendRequestCondition.signalIfReady();
         }
     }
 
@@ -545,8 +561,8 @@ public class BulkIngester<Context> implements AutoCloseable {
             .summaryStatistics();
 
         // scheduling earlier and latest delay
-        retryScheduler.schedule(this::flush, statsDelays.getMin(), TimeUnit.MILLISECONDS);
-        retryScheduler.schedule(this::flush, statsDelays.getMax(), TimeUnit.MILLISECONDS);
+        retryFlushScheduler.schedule(this::flush, statsDelays.getMin(), TimeUnit.MILLISECONDS);
+        retryFlushScheduler.schedule(this::flush, statsDelays.getMax(), TimeUnit.MILLISECONDS);
 
     }
 
@@ -574,7 +590,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         innerAdd(repeatableOp);
     }
 
-    // Same as "add", but skips the closed check to allow retries to be added even after ingester closure
+    // Same as "add", but skips the closed check: innerAdd() drops the retry if the ingester was closed meanwhile
     private void addRetry(RetryableBulkOperation<Context> repeatableOp) {
         // Sending the operation back in the queue using the retry scheduler
         retriesInProgressCount.incrementAndGet();
@@ -593,6 +609,11 @@ public class BulkIngester<Context> implements AutoCloseable {
         IngesterOperation<Context> ingestOp = IngesterOperation.of(repeatableOp, client._transport().jsonpMapper());
 
         addCondition.whenReady(() -> {
+            if (isClosed && repeatableOp.retries() != null) {
+                // The ingester was closed while this retry was waiting to be added back: drop it
+                addCondition.signalIfReady();
+                return;
+            }
             operations.add(ingestOp);
             currentSize += ingestOp.size();
 
@@ -655,6 +676,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         isClosed = true;
+        // Drop the retries that are still pending
+        dropPendingRetries();
         // Flush buffered operations
         flush();
         // and wait for all requests to be completed
@@ -670,6 +693,29 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         if (retryScheduler != null) {
             retryScheduler.shutdownNow();
+        }
+
+        if (retryFlushScheduler != null && retryFlushScheduler != scheduler) {
+            retryFlushScheduler.shutdownNow();
+        }
+    }
+
+    private void dropPendingRetries() {
+        lock.lock();
+        try {
+            for (Iterator<IngesterOperation<Context>> it = operations.iterator(); it.hasNext();) {
+                IngesterOperation<Context> op = it.next();
+                // Only retries have a retries iterator: operations added by the application are still sent by close()
+                if (op.retries() != null) {
+                    currentSize -= op.size();
+                    it.remove();
+                }
+            }
+            // Wake up the threads waiting for space: retries see the ingester is closed and are dropped,
+            // operations added before close() go into the buffer and are sent
+            addCondition.signalAllIfReady();
+        } finally {
+            lock.unlock();
         }
     }
 
