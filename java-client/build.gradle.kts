@@ -291,7 +291,7 @@ dependencies {
       exclude(group = "org.hamcrest")
     }
 
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.1")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
