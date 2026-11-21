@@ -367,6 +367,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
         ContentStreamProvider bodyProvider = body != null ? ContentStreamProvider.fromByteArrayUnsafe(body.getByteArray()) : null;
 
+        endpoint.headers(request).forEach(req::appendHeader);
         applyHeadersPreSigning(req, options, body);
 
         final AwsCredentialsProvider credentials = getOption(options, AwsSdk2TransportOptions::credentials).orElseGet(

@@ -793,7 +793,9 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
         }
 
         if (options != null) {
-            setHeaders(clientReq, options.headers());
+            final Collection<Entry<String, String>> headers = new ArrayList<>(endpoint.headers(request).entrySet());
+            headers.addAll(options.headers());
+            setHeaders(clientReq, headers);
 
             if (options.getRequestConfig() != null) {
                 clientReq.setConfig(options.getRequestConfig());
