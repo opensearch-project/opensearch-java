@@ -27,8 +27,10 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -400,6 +402,22 @@ public class AwsSdk2TransportTests {
                 "2c3b08c49f0e45906f99cef144b3ba780c5c0d38cb9e2bcc75d34087172a254f"
             )
         );
+    }
+
+    // Scenario: a generic request carries a custom header. Expected: the server receives it.
+    @Test
+    public void testGenericRequestHeadersAreSent() throws Exception {
+        Requests.JsonBodyBuilder request = Requests.builder()
+            .method("POST")
+            .endpoint("/")
+            .headers(Collections.singletonList(new AbstractMap.SimpleEntry<>("X-Test-Header", "test-value")))
+            .json("{}");
+
+        getTestClient().generic().execute(request.build());
+
+        ReceivedRequest req = receivedRequests.poll();
+        assertNotNull(req);
+        assertEquals("test-value", req.getHeader("X-Test-Header"));
     }
 
     private void assertSigV4Request(

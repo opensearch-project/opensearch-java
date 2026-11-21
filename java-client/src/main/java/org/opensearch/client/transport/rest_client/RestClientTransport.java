@@ -302,6 +302,13 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
             ? transportOptions.restClientRequestOptions()
             : RestClientOptions.of(options).restClientRequestOptions();
 
+        final Map<String, String> endpointHeaders = endpoint.headers(request);
+        if (endpointHeaders.isEmpty() == false) {
+            final RequestOptions.Builder restOptionsBuilder = (restOptions == null ? RequestOptions.DEFAULT : restOptions).toBuilder();
+            endpointHeaders.forEach(restOptionsBuilder::addHeader);
+            restOptions = restOptionsBuilder.build();
+        }
+
         if (restOptions != null) {
             clientReq.setOptions(restOptions);
         }
