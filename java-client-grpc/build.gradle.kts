@@ -104,7 +104,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
         "java21Implementation"("org.opensearch.test", "framework", opensearchVersion) {
             exclude(group = "org.hamcrest")
         }
-        "java21Implementation"("org.opensearch:opensearch-testcontainers:4.1.0")
+        "java21Implementation"("org.opensearch:opensearch-testcontainers:4.1.1")
         "java21Implementation"("org.testcontainers:testcontainers:2.0.5")
     }
 

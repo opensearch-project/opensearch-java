@@ -430,7 +430,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
       exclude(group = "org.hamcrest")
     }
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.1")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
     testImplementation("tools.jackson.core:jackson-core:${jackson3Version}")
     testImplementation("tools.jackson.core:jackson-databind:${jackson3DatabindVersion}")
