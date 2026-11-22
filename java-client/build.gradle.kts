@@ -223,7 +223,7 @@ dependencies {
     // https://github.com/reactive-streams/reactive-streams-jvm
     api("org.reactivestreams:reactive-streams:1.0.4")
     // Apache 2.0
-    api("io.projectreactor:reactor-core:3.8.7")
+    api("io.projectreactor:reactor-core:3.8.8")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -291,7 +291,7 @@ dependencies {
       exclude(group = "org.hamcrest")
     }
 
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.1")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
