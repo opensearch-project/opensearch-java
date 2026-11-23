@@ -197,10 +197,10 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val jacksonVersion = "2.22.4"
-    val jacksonDatabindVersion = "2.22.4"
-    val jackson3Version = "3.2.4"
-    val jackson3DatabindVersion = "3.2.4"
+    val jacksonVersion = "2.23.0"
+    val jacksonDatabindVersion = "2.23.0"
+    val jackson3Version = "3.3.0"
+    val jackson3DatabindVersion = "3.3.0"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.4.0")
@@ -223,7 +223,7 @@ dependencies {
     // https://github.com/reactive-streams/reactive-streams-jvm
     api("org.reactivestreams:reactive-streams:1.0.4")
     // Apache 2.0
-    api("io.projectreactor:reactor-core:3.8.7")
+    api("io.projectreactor:reactor-core:3.8.8")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -291,7 +291,7 @@ dependencies {
       exclude(group = "org.hamcrest")
     }
 
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.1")
     testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
