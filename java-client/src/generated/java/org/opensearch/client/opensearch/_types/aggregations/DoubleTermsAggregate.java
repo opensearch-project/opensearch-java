@@ -39,7 +39,6 @@ package org.opensearch.client.opensearch._types.aggregations;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -55,7 +54,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DoubleTermsAggregate extends TermsAggregateBase<JsonData>
+public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket>
     implements
         AggregateVariant,
         ToCopyableBuilder<DoubleTermsAggregate.Builder, DoubleTermsAggregate> {
@@ -94,7 +93,7 @@ public class DoubleTermsAggregate extends TermsAggregateBase<JsonData>
     /**
      * Builder for {@link DoubleTermsAggregate}.
      */
-    public static class Builder extends TermsAggregateBase.AbstractBuilder<JsonData, Builder>
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<DoubleTermsBucket, Builder>
         implements
             CopyableBuilder<Builder, DoubleTermsAggregate> {
 
@@ -145,7 +144,7 @@ public class DoubleTermsAggregate extends TermsAggregateBase<JsonData>
     );
 
     protected static void setupDoubleTermsAggregateDeserializer(ObjectDeserializer<DoubleTermsAggregate.Builder> op) {
-        setupTermsAggregateBaseDeserializer(op, JsonData._DESERIALIZER);
+        setupTermsAggregateBaseDeserializer(op, DoubleTermsBucket._DESERIALIZER);
     }
 
     @Override
