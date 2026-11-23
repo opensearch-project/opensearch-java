@@ -46,7 +46,7 @@ indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("2").docume
 client.index(indexRequest);
 ```
 
-[IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](../samples/samples-java/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
 ## Search API
 
@@ -104,7 +104,7 @@ for (var hit : searchResponse.hits().hits()) {
 
 ### Search documents using suggesters
 
-[AppData](../samples/src/main/java/org/opensearch/client/samples/util/AppData.java) refers to the sample data class used in the below samples.
+[AppData](../samples/samples-java/src/main/java/org/opensearch/client/samples/util/AppData.java) refers to the sample data class used in the below samples.
 
 #### Using completion suggester
 
@@ -321,4 +321,4 @@ for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
 }
 ```
 
-You can find a working sample of the above code in [Search.java](../samples/src/main/java/org/opensearch/client/samples/Search.java).
+You can find a working sample of the above code in [Search.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/Search.java).
