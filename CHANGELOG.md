@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump Jackson to 2.23.0 / 3.3.0 ([#2292](https://github.com/opensearch-project/opensearch-java/pull/2292))
 
 ### Changed
+- Branch off Java and Kotlin based samples ([#2301](https://github.com/opensearch-project/opensearch-java/pull/2301))
 
 ### Deprecated
 

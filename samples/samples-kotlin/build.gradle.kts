@@ -8,28 +8,24 @@
 
 plugins {
     java
+    kotlin("jvm") version "2.3.21"
     application
 
     id("opensearch-java.spotless-conventions")
 }
 
-java {
-    targetCompatibility = JavaVersion.VERSION_21
-    sourceCompatibility = JavaVersion.VERSION_21
+kotlin {
+    jvmToolchain(21)
 }
 
 dependencies {
     implementation(project(":java-client"))
-    implementation(project(":java-client-grpc"))
     implementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)")
     implementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)")
     implementation("org.apache.logging.log4j", "log4j-slf4j2-impl","[2.17.1,3.0)")
     implementation("commons-logging", "commons-logging", "1.2")
-    implementation("tools.jackson.core", "jackson-databind", "3.3.0")
-    implementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
-    implementation("software.amazon.awssdk", "auth", "[2.21,3.0)")
-    implementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
-    implementation("software.amazon.awssdk", "apache-client", "[2.21,3.0)")
+    implementation("tools.jackson.core", "jackson-core", "3.2.4")
+    implementation("tools.jackson.core", "jackson-databind", "3.2.4")
 }
 
 application {

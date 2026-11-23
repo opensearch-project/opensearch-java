@@ -81,7 +81,7 @@ final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
-See [SampleClient.java](./samples/src/main/java/org/opensearch/client/samples/SampleClient.java) for a working sample.
+See [SampleClient.java](./samples/samples-java/src/main/java/org/opensearch/client/samples/SampleClient.java) for a working sample.
 
 #### Using `RestClientTransport` (deprecated)
 
@@ -150,12 +150,12 @@ final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().i
 client.indices().create(createIndexRequest);
 ```
 
-You can find a working sample of the above code in [FlatObjectBasics.java](./samples/src/main/java/org/opensearch/client/samples/FlatObjectBasics.java).
+You can find a working sample of the above code in [FlatObjectBasics.java](./samples/samples-java/src/main/java/org/opensearch/client/samples/FlatObjectBasics.java).
 
 
 ### Indexing data
 
-[IndexData](./samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](./samples/samples-java/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
 ```java
 IndexData indexData = new IndexData("Document 1", "Text for document 1");
@@ -191,7 +191,7 @@ DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest.Builder().index(i
 DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexRequest);
 ```
 
-You can find a working sample of the above code in [IndexingBasics.java](./samples/src/main/java/org/opensearch/client/samples/IndexingBasics.java).
+You can find a working sample of the above code in [IndexingBasics.java](./samples/samples-java/src/main/java/org/opensearch/client/samples/IndexingBasics.java).
 
 ## Metrics
 

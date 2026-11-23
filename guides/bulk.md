@@ -40,9 +40,9 @@ ingester.add(op -> op.index(i -> i.index(indexName).id("id3").document(doc3)));
 ingester.close();
 ```
 
-[IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](../samples/samples-java/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
-You can find a working sample of the above code in [BulkIngesterBasics.java](../samples/src/main/java/org/opensearch/client/samples/BulkIngesterBasics.java).
+You can find a working sample of the above code in [BulkIngesterBasics.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/BulkIngesterBasics.java).
 
 
 ## Bulk requests
@@ -73,6 +73,6 @@ BulkRequest.Builder bulkReq = new BulkRequest.Builder()
 BulkResponse bulkResponse = client.bulk(bulkReq.build());
 ```
 
-[IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](../samples/samples-java/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
-You can find a working sample of the above code in [Bulk.java](../samples/src/main/java/org/opensearch/client/samples/Bulk.java).
+You can find a working sample of the above code in [Bulk.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/Bulk.java).

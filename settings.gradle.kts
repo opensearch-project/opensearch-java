@@ -38,4 +38,5 @@ rootProject.name = "opensearch-java"
 include("java-client")
 include("java-client-grpc")
 include("java-codegen")
-include("samples")
+include("samples:samples-java")
+include("samples:samples-kotlin")
