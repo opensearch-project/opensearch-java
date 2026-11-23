@@ -367,8 +367,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
         ContentStreamProvider bodyProvider = body != null ? ContentStreamProvider.fromByteArrayUnsafe(body.getByteArray()) : null;
 
-        endpoint.headers(request).forEach(req::appendHeader);
-        applyHeadersPreSigning(req, options, body);
+        applyHeadersPreSigning(req, endpoint.headers(request), options, body);
 
         final AwsCredentialsProvider credentials = getOption(options, AwsSdk2TransportOptions::credentials).orElseGet(
             DefaultCredentialsProvider::create
@@ -393,9 +392,21 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return signedReq.toBuilder().request(httpRequest.build()).build();
     }
 
-    private void applyHeadersPreSigning(SdkHttpRequest.Builder req, TransportOptions options, OpenSearchRequestBodyBuffer body) {
+    private void applyHeadersPreSigning(
+        SdkHttpRequest.Builder req,
+        Map<String, String> endpointHeaders,
+        TransportOptions options,
+        OpenSearchRequestBodyBuffer body
+    ) {
         applyOptionsHeaders(req, transportOptions);
         applyOptionsHeaders(req, options);
+
+        // Headers of the options take precedence over the headers of the endpoint
+        endpointHeaders.forEach((name, value) -> {
+            if (req.firstMatchingHeader(name).isPresent() == false) {
+                req.appendHeader(name, value);
+            }
+        });
 
         if (body != null) {
             req.putHeader("Content-Type", body.getContentType());

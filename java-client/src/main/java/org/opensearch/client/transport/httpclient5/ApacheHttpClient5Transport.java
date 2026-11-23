@@ -792,11 +792,18 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
             addRequestBody(clientReq, new ByteArrayEntity(baos.array(), 0, baos.size(), contentType));
         }
 
-        if (options != null) {
-            final Collection<Entry<String, String>> headers = new ArrayList<>(endpoint.headers(request).entrySet());
-            headers.addAll(options.headers());
-            setHeaders(clientReq, headers);
+        // Headers of the options take precedence over the headers of the endpoint
+        final Collection<Entry<String, String>> optionHeaders = options == null ? Collections.emptyList() : options.headers();
+        final Collection<Entry<String, String>> headers = new ArrayList<>();
+        for (Entry<String, String> endpointHeader : endpoint.headers(request).entrySet()) {
+            if (optionHeaders.stream().noneMatch(h -> h.getKey().equalsIgnoreCase(endpointHeader.getKey()))) {
+                headers.add(endpointHeader);
+            }
+        }
+        headers.addAll(optionHeaders);
+        setHeaders(clientReq, headers);
 
+        if (options != null) {
             if (options.getRequestConfig() != null) {
                 clientReq.setConfig(options.getRequestConfig());
             }

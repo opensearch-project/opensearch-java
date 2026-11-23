@@ -15,6 +15,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.apache.hc.core5.http.HttpHost;
@@ -73,11 +74,12 @@ public class RequestHeadersTest extends Assert {
         }
     }
 
-    // Scenario: a generic request has a header and the transport options have another one.
-    // Expected: the server receives both of them.
+    // Scenario: a generic request has two headers and the transport options have another one plus one of the same name (different
+    // letter case) as a request header.
+    // Expected: the server receives all the distinct headers, and only the value of the options for the shared one.
     private void assertHeadersSent(OpenSearchTransport transport) throws IOException {
         OpenSearchClient client = new OpenSearchClient(transport).withTransportOptions(
-            transport.options().with(b -> b.addHeader("X-Option-Header", "option-value"))
+            transport.options().with(b -> b.addHeader("X-Option-Header", "option-value").addHeader("x-shared-header", "option-shared"))
         );
 
         client.generic()
@@ -85,7 +87,12 @@ public class RequestHeadersTest extends Assert {
                 Requests.builder()
                     .method("POST")
                     .endpoint("/")
-                    .headers(Collections.singletonList(new AbstractMap.SimpleEntry<>("X-Request-Header", "request-value")))
+                    .headers(
+                        Arrays.asList(
+                            new AbstractMap.SimpleEntry<>("X-Request-Header", "request-value"),
+                            new AbstractMap.SimpleEntry<>("X-Shared-Header", "request-shared")
+                        )
+                    )
                     .json("{}")
                     .build()
             );
@@ -94,5 +101,6 @@ public class RequestHeadersTest extends Assert {
         Headers headers = receivedHeaders.get(0);
         assertEquals("request-value", headers.getFirst("X-Request-Header"));
         assertEquals("option-value", headers.getFirst("X-Option-Header"));
+        assertEquals(Collections.singletonList("option-shared"), headers.get("X-Shared-Header"));
     }
 }

@@ -31,6 +31,7 @@ import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -212,6 +213,10 @@ public class AwsSdk2TransportTests {
 
         public String getHeader(String name) throws ProtocolException {
             return Optional.ofNullable(request.getHeader(name)).map(Header::getValue).orElse(null);
+        }
+
+        public List<String> getHeaderValues(String name) {
+            return Arrays.stream(request.getHeaders(name)).map(Header::getValue).collect(Collectors.toList());
         }
     }
 
@@ -418,6 +423,28 @@ public class AwsSdk2TransportTests {
         ReceivedRequest req = receivedRequests.poll();
         assertNotNull(req);
         assertEquals("test-value", req.getHeader("X-Test-Header"));
+    }
+
+    // Scenario: a generic request and the transport options set the same header, with different letter case.
+    // Expected: the server receives only the value of the transport options.
+    @Test
+    public void testOptionHeadersTakePrecedenceOverGenericRequestHeaders() throws Exception {
+        OpenSearchClient client = getTestClient();
+        client = client.withTransportOptions(client._transport().options().with(b -> b.addHeader("x-test-header", "option-value")));
+
+        client.generic()
+            .execute(
+                Requests.builder()
+                    .method("POST")
+                    .endpoint("/")
+                    .headers(Collections.singletonList(new AbstractMap.SimpleEntry<>("X-Test-Header", "request-value")))
+                    .json("{}")
+                    .build()
+            );
+
+        ReceivedRequest req = receivedRequests.poll();
+        assertNotNull(req);
+        assertEquals(Collections.singletonList("option-value"), req.getHeaderValues("X-Test-Header"));
     }
 
     private void assertSigV4Request(

@@ -303,9 +303,14 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
             : RestClientOptions.of(options).restClientRequestOptions();
 
         final Map<String, String> endpointHeaders = endpoint.headers(request);
-        if (endpointHeaders.isEmpty() == false) {
-            final RequestOptions.Builder restOptionsBuilder = (restOptions == null ? RequestOptions.DEFAULT : restOptions).toBuilder();
-            endpointHeaders.forEach(restOptionsBuilder::addHeader);
+        if (endpointHeaders.isEmpty() == false) {// Headers of the options take precedence over the headers of the endpoint
+            final RequestOptions baseOptions = restOptions == null ? RequestOptions.DEFAULT : restOptions;
+            final RequestOptions.Builder restOptionsBuilder = baseOptions.toBuilder();
+            endpointHeaders.forEach((name, value) -> {
+                if (baseOptions.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(name))) {
+                    restOptionsBuilder.addHeader(name, value);
+                }
+            });
             restOptions = restOptionsBuilder.build();
         }
 
