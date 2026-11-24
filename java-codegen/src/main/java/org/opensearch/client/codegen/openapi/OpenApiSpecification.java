@@ -13,6 +13,7 @@ import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.ParseOptions;
+import io.swagger.v3.parser.util.DeserializationUtils;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +38,15 @@ public final class OpenApiSpecification extends OpenApiElement<OpenApiSpecificat
     private static final ParseOptions PARSE_OPTIONS = new ParseOptions();
     private static final OpenAPIV3Parser PARSER = new OpenAPIV3Parser();
     private static final Map<URI, OpenApiSpecification> SPECS = new HashMap<>();
+    /**
+     * The largest specification, in code points, read: the YAML parser stops at 3 MiB by default, and a specification that carries the
+     * client model in its {@code x-model} extensions (opensearch-api-specification#1329) is about 5 MiB.
+     */
+    public static final int MAX_YAML_CODE_POINTS = 64 * 1024 * 1024;
+
+    static {
+        DeserializationUtils.getOptions().setMaxYamlCodePoints(MAX_YAML_CODE_POINTS);
+    }
 
     public static OpenApiSpecification retrieve(URI location) {
         if (SPECS.containsKey(location)) {
