@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Make `ApacheHttpClient5Transport.setNodes(Collection<Node>)` public so the nodes of an existing transport can be replaced without rebuilding it ([#2299](https://github.com/opensearch-project/opensearch-java/pull/2299))
 - Add the `semantic` value to the `FieldType` enum ([#2317](https://github.com/opensearch-project/opensearch-java/pull/2317))
+- Add an experimental, opt-in way for the code generator to read the types from the client model the specification carries in its `x-model` extensions (`./gradlew :java-codegen:run -PfromClientModel`) ([#2298](https://github.com/opensearch-project/opensearch-java/pull/2298))
 
 ### Dependencies
 - Bump Jackson to 2.23.0 / 3.3.0 ([#2292](https://github.com/opensearch-project/opensearch-java/pull/2292))
@@ -21,6 +22,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix the `NullPointerException` in the code generator when a generic type is instantiated inside its own reference cycle ([#2298](https://github.com/opensearch-project/opensearch-java/pull/2298))
+- Fix the code generator failing to parse a specification of more than 3 MiB, such as one that carries the client model ([#2298](https://github.com/opensearch-project/opensearch-java/pull/2298))
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
 
 ### Security
