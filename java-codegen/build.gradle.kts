@@ -76,12 +76,15 @@ tasks.register<Download>("downloadLatestSpec") {
     dest(localSpecification)
 }
 
+// `-PfromClientModel` reads the types from the client model the specification carries in its `x-model` extensions
+// instead of interpreting allOf/oneOf/anyOf of the specification (experimental). The specification must be one merged
+// by opensearch-api-specification#1329 or later (`components.x-model`); the generator fails without it.
 tasks.named<JavaExec>("run") {
     args = listOf(
         "--input", localSpecification,
         "--eclipse-config", "$rootDir/buildSrc/formatterConfig-generated.xml",
         "--output", "${project(":java-client").projectDir}/src/generated/java/"
-    )
+    ) + (if (project.hasProperty("fromClientModel")) listOf("--from-client-model") else listOf())
 }
 
 tasks.withType<ProcessResources> {

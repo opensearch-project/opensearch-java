@@ -32,6 +32,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.opensearch.client.codegen.clientmodel.ClientModelLowering;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
@@ -126,11 +127,22 @@ public class CodeGenerator {
             .hasArg()
             .required()
             .build();
+        var modelOpt = Option.builder()
+            .longOpt("from-client-model")
+            .desc(
+                "Read the types from the client model the specification carries in its x-model extensions"
+                    + " (experimental; needs a specification merged by opensearch-api-specification#1329 or later)"
+            )
+            .build();
         var helpOpt = Option.builder("h").longOpt("help").desc("Print this help information").build();
         final var usageString =
             "CodeGenerator.class --input https://.../opensearch-openapi.yaml --eclipse-config ./buildSrc/formatterConfig.xml --output ./java-client/src/generated/java";
 
-        var options = new Options().addOption(inputOpt).addOption(eclipseConfigOpt).addOption(outputOpt).addOption(helpOpt);
+        var options = new Options().addOption(inputOpt)
+            .addOption(eclipseConfigOpt)
+            .addOption(outputOpt)
+            .addOption(modelOpt)
+            .addOption(helpOpt);
 
         var cliParser = new DefaultParser();
 
@@ -149,8 +161,12 @@ public class CodeGenerator {
             LOGGER.info("Specification Location: {}", specLocation);
             LOGGER.info("Eclipse Configuration: {}", eclipseConfig);
             LOGGER.info("Output Directory: {}", outputDir);
+            var fromModel = cli.hasOption(modelOpt);
+            if (fromModel) {
+                specLocation = ClientModelLowering.lower(specLocation);
+            }
 
-            Namespace root = parseSpec(specLocation);
+            Namespace root = parseSpec(specLocation, fromModel ? 3 : 1);
 
             cleanDirectory(outputDir);
 
@@ -178,9 +194,9 @@ public class CodeGenerator {
         }
     }
 
-    private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
+    private static Namespace parseSpec(URI location, int genericLabelingPasses) throws ApiSpecificationParseException {
         var spec = OpenApiSpecification.retrieve(location);
-        spec = SpecificationRewriter.rewrite(spec, Overrides.OVERRIDES);
+        spec = SpecificationRewriter.rewrite(spec, Overrides.OVERRIDES, genericLabelingPasses);
         var transformer = new SpecTransformer(OPERATION_MATCHER, Overrides.OVERRIDES);
         transformer.visit(spec);
         return transformer.getRoot();
