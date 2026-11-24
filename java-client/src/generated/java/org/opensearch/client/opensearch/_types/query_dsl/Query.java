@@ -125,7 +125,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         Type("type"),
         Wildcard("wildcard"),
         Wrapper("wrapper"),
-        XyShape("xy_shape");
+        XyShape("xy_shape"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -141,6 +143,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
 
     private final Kind _kind;
     private final Object _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -152,14 +155,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     public Query(QueryVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._queryKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
     }
 
     private Query(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static Query of(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -1126,10 +1138,29 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        generator.writeKey(_kind.jsonValue());
+        generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         } else {
@@ -1160,12 +1191,14 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
         private Kind _kind;
         private Object _value;
+        private String _customKind;
 
         public Builder() {}
 
         private Builder(Query o) {
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         public ObjectBuilder<Query> agentic(AgenticQuery v) {
@@ -1764,6 +1797,19 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
             return this.xyShape(fn.apply(new XyShapeQuery.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<Query> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public Query build() {
             _checkSingleUse();
@@ -1832,6 +1878,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
         op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
         op.add(Builder::xyShape, XyShapeQuery._DESERIALIZER, "xy_shape");
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -1845,6 +1894,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         return result;
     }
 
@@ -1853,6 +1903,43 @@ public class Query implements TaggedUnion<Query.Kind, Object>, PlainJsonSerializ
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Query other = (Query) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements QueryVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _queryKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }

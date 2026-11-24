@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -73,7 +74,9 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         SpanNot("span_not"),
         SpanOr("span_or"),
         SpanTerm("span_term"),
-        SpanWithin("span_within");
+        SpanWithin("span_within"),
+        /** A custom variant type not natively supported by this client. */
+        _Custom(null);
 
         private final String jsonValue;
 
@@ -89,6 +92,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
 
     private final Kind _kind;
     private final SpanQueryVariant _value;
+    private final String _customKind;
 
     @Override
     public final Kind _kind() {
@@ -100,14 +104,23 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         return _value;
     }
 
+    /**
+     * Returns the actual type name when {@code _kind() == Kind._Custom}, otherwise {@code null}.
+     */
+    public final String _customKind() {
+        return _customKind;
+    }
+
     public SpanQuery(SpanQueryVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._spanQueryKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._customKind = null;
     }
 
     private SpanQuery(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._customKind = builder._customKind;
     }
 
     public static SpanQuery of(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
@@ -274,10 +287,29 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         return TaggedUnionUtils.get(this, Kind.SpanWithin);
     }
 
+    /**
+     * Is this variant instance of kind {@code _custom}?
+     */
+    public boolean _isCustom() {
+        return _kind == Kind._Custom;
+    }
+
+    /**
+     * Get the raw JSON data for a custom (plugin-provided) variant type.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code _custom} kind.
+     */
+    public JsonData _custom() {
+        if (_kind != Kind._Custom) {
+            throw new IllegalStateException("Expected variant kind '_custom' but got '" + _kind + "'");
+        }
+        return ((CustomVariant) _value).data();
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        generator.writeKey(_kind.jsonValue());
+        generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
@@ -297,12 +329,14 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanQuery> {
         private Kind _kind;
         private SpanQueryVariant _value;
+        private String _customKind;
 
         public Builder() {}
 
         private Builder(SpanQuery o) {
             this._kind = o._kind;
             this._value = o._value;
+            this._customKind = o._customKind;
         }
 
         public ObjectBuilder<SpanQuery> fieldMaskingSpan(SpanFieldMaskingQuery v) {
@@ -405,6 +439,19 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
             return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
         }
 
+        /**
+         * Set a custom (plugin-provided) variant.
+         *
+         * @param type the variant type name as returned by the server
+         * @param data the raw JSON body of the variant result
+         */
+        public ObjectBuilder<SpanQuery> _custom(String type, JsonData data) {
+            this._kind = Kind._Custom;
+            this._customKind = ApiTypeHelper.requireNonNull(type, this, "<custom variant type>");
+            this._value = new CustomVariant(ApiTypeHelper.requireNonNull(data, this, "<custom variant data>"));
+            return this;
+        }
+
         @Override
         public SpanQuery build() {
             _checkSingleUse();
@@ -423,6 +470,9 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         op.add(Builder::spanOr, SpanOrQuery._DESERIALIZER, "span_or");
         op.add(Builder::spanTerm, SpanTermQuery._DESERIALIZER, "span_term");
         op.add(Builder::spanWithin, SpanWithinQuery._DESERIALIZER, "span_within");
+        op.setUnknownFieldHandler(
+            (builder, name, parser, mapper) -> builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper))
+        );
     }
 
     public static final JsonpDeserializer<SpanQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -436,6 +486,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this._customKind);
         return result;
     }
 
@@ -444,6 +495,43 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>,
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SpanQuery other = (SpanQuery) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this._customKind, other._customKind);
+    }
+
+    // Wrapper so JsonData fits the variant interface slot for custom/plugin types
+    private static final class CustomVariant implements SpanQueryVariant, PlainJsonSerializable {
+        private final JsonData data;
+
+        CustomVariant(JsonData data) {
+            this.data = data;
+        }
+
+        public JsonData data() {
+            return data;
+        }
+
+        @Override
+        public Kind _spanQueryKind() {
+            return Kind._Custom;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            data.serialize(generator, mapper);
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            return data.equals(((CustomVariant) o).data);
+        }
     }
 }
