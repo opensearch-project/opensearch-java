@@ -400,13 +400,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         applyOptionsHeaders(req, transportOptions);
         applyOptionsHeaders(req, options);
-
-        // Headers of the options take precedence over the headers of the endpoint
-        endpointHeaders.forEach((name, value) -> {
-            if (req.firstMatchingHeader(name).isPresent() == false) {
-                req.appendHeader(name, value);
-            }
-        });
+        applyEndpointHeaders(req, endpointHeaders);
 
         if (body != null) {
             req.putHeader("Content-Type", body.getContentType());
@@ -453,6 +447,17 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             for (Map.Entry<String, String> header : headers) {
                 builder.appendHeader(header.getKey(), header.getValue());
             }
+        }
+    }
+
+    private void applyEndpointHeaders(SdkHttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null && !headers.isEmpty()) {
+            // Headers of the options take precedence over the headers of the endpoint
+            headers.forEach((name, value) -> {
+                if (builder.firstMatchingHeader(name).isPresent() == false) {
+                    builder.appendHeader(name, value);
+                }
+            });
         }
     }
 
