@@ -39,6 +39,8 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
+import org.opensearch.client.opensearch.core.BulkStreamingRequest;
+import org.opensearch.client.opensearch.core.BulkStreamingResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
@@ -55,7 +57,9 @@ import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchStreamingTransport;
 import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.StreamingEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
@@ -124,6 +128,25 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
 
     public BulkResponse bulk() throws IOException, OpenSearchException {
         return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to perform multiple index/update/delete operations in a single
+     * streaming request.
+     *
+     *
+     */
+    public BulkStreamingResponse bulk(BulkStreamingRequest request) throws IOException, OpenSearchException {
+        final StreamingEndpoint<BulkStreamingRequest, BulkStreamingResponse, ErrorResponse> endpoint = (StreamingEndpoint<
+            BulkStreamingRequest,
+            BulkStreamingResponse,
+            ErrorResponse>) BulkStreamingRequest._ENDPOINT;
+
+        if (this.transport instanceof OpenSearchStreamingTransport) {
+            return ((OpenSearchStreamingTransport) this.transport).stream(request, endpoint, this.transportOptions);
+        } else {
+            throw new UnsupportedOperationException("Please use OpenSearchStreamingTransport");
+        }
     }
 
     // ----- Endpoint: create

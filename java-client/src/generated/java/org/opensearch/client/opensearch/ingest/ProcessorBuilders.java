@@ -236,6 +236,13 @@ public class ProcessorBuilders {
     }
 
     /**
+     * Creates a builder for the {@link SparseEncodingProcessor sparse_encoding} {@code Processor} variant.
+     */
+    public static SparseEncodingProcessor.Builder sparseEncoding() {
+        return new SparseEncodingProcessor.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link SplitProcessor split} {@code Processor} variant.
      */
     public static SplitProcessor.Builder split() {
@@ -243,10 +250,24 @@ public class ProcessorBuilders {
     }
 
     /**
+     * Creates a builder for the {@link TextChunkingProcessor text_chunking} {@code Processor} variant.
+     */
+    public static TextChunkingProcessor.Builder textChunking() {
+        return new TextChunkingProcessor.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link TextEmbeddingProcessor text_embedding} {@code Processor} variant.
      */
     public static TextEmbeddingProcessor.Builder textEmbedding() {
         return new TextEmbeddingProcessor.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link TextImageEmbeddingProcessor text_image_embedding} {@code Processor} variant.
+     */
+    public static TextImageEmbeddingProcessor.Builder textImageEmbedding() {
+        return new TextImageEmbeddingProcessor.Builder();
     }
 
     /**

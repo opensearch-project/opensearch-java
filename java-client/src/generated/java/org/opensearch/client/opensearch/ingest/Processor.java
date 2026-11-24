@@ -93,8 +93,11 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
         Set("set"),
         SetSecurityUser("set_security_user"),
         Sort("sort"),
+        SparseEncoding("sparse_encoding"),
         Split("split"),
+        TextChunking("text_chunking"),
         TextEmbedding("text_embedding"),
+        TextImageEmbedding("text_image_embedding"),
         Trim("trim"),
         Uppercase("uppercase"),
         Urldecode("urldecode"),
@@ -584,6 +587,22 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
     }
 
     /**
+     * Is this variant instance of kind {@code sparse_encoding}?
+     */
+    public boolean isSparseEncoding() {
+        return _kind == Kind.SparseEncoding;
+    }
+
+    /**
+     * Get the {@code sparse_encoding} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code sparse_encoding} kind.
+     */
+    public SparseEncodingProcessor sparseEncoding() {
+        return TaggedUnionUtils.get(this, Kind.SparseEncoding);
+    }
+
+    /**
      * Is this variant instance of kind {@code split}?
      */
     public boolean isSplit() {
@@ -600,6 +619,22 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
     }
 
     /**
+     * Is this variant instance of kind {@code text_chunking}?
+     */
+    public boolean isTextChunking() {
+        return _kind == Kind.TextChunking;
+    }
+
+    /**
+     * Get the {@code text_chunking} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code text_chunking} kind.
+     */
+    public TextChunkingProcessor textChunking() {
+        return TaggedUnionUtils.get(this, Kind.TextChunking);
+    }
+
+    /**
      * Is this variant instance of kind {@code text_embedding}?
      */
     public boolean isTextEmbedding() {
@@ -613,6 +648,22 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
      */
     public TextEmbeddingProcessor textEmbedding() {
         return TaggedUnionUtils.get(this, Kind.TextEmbedding);
+    }
+
+    /**
+     * Is this variant instance of kind {@code text_image_embedding}?
+     */
+    public boolean isTextImageEmbedding() {
+        return _kind == Kind.TextImageEmbedding;
+    }
+
+    /**
+     * Get the {@code text_image_embedding} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code text_image_embedding} kind.
+     */
+    public TextImageEmbeddingProcessor textImageEmbedding() {
+        return TaggedUnionUtils.get(this, Kind.TextImageEmbedding);
     }
 
     /**
@@ -1003,6 +1054,18 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
             return this.sort(fn.apply(new SortProcessor.Builder()).build());
         }
 
+        public ObjectBuilder<Processor> sparseEncoding(SparseEncodingProcessor v) {
+            this._kind = Kind.SparseEncoding;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Processor> sparseEncoding(
+            Function<SparseEncodingProcessor.Builder, ObjectBuilder<SparseEncodingProcessor>> fn
+        ) {
+            return this.sparseEncoding(fn.apply(new SparseEncodingProcessor.Builder()).build());
+        }
+
         public ObjectBuilder<Processor> split(SplitProcessor v) {
             this._kind = Kind.Split;
             this._value = v;
@@ -1013,6 +1076,16 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
             return this.split(fn.apply(new SplitProcessor.Builder()).build());
         }
 
+        public ObjectBuilder<Processor> textChunking(TextChunkingProcessor v) {
+            this._kind = Kind.TextChunking;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Processor> textChunking(Function<TextChunkingProcessor.Builder, ObjectBuilder<TextChunkingProcessor>> fn) {
+            return this.textChunking(fn.apply(new TextChunkingProcessor.Builder()).build());
+        }
+
         public ObjectBuilder<Processor> textEmbedding(TextEmbeddingProcessor v) {
             this._kind = Kind.TextEmbedding;
             this._value = v;
@@ -1021,6 +1094,18 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
 
         public ObjectBuilder<Processor> textEmbedding(Function<TextEmbeddingProcessor.Builder, ObjectBuilder<TextEmbeddingProcessor>> fn) {
             return this.textEmbedding(fn.apply(new TextEmbeddingProcessor.Builder()).build());
+        }
+
+        public ObjectBuilder<Processor> textImageEmbedding(TextImageEmbeddingProcessor v) {
+            this._kind = Kind.TextImageEmbedding;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Processor> textImageEmbedding(
+            Function<TextImageEmbeddingProcessor.Builder, ObjectBuilder<TextImageEmbeddingProcessor>> fn
+        ) {
+            return this.textImageEmbedding(fn.apply(new TextImageEmbeddingProcessor.Builder()).build());
         }
 
         public ObjectBuilder<Processor> trim(TrimProcessor v) {
@@ -1111,8 +1196,11 @@ public class Processor implements TaggedUnion<Processor.Kind, ProcessorVariant>,
         op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
         op.add(Builder::setSecurityUser, SetSecurityUserProcessor._DESERIALIZER, "set_security_user");
         op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
+        op.add(Builder::sparseEncoding, SparseEncodingProcessor._DESERIALIZER, "sparse_encoding");
         op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");
+        op.add(Builder::textChunking, TextChunkingProcessor._DESERIALIZER, "text_chunking");
         op.add(Builder::textEmbedding, TextEmbeddingProcessor._DESERIALIZER, "text_embedding");
+        op.add(Builder::textImageEmbedding, TextImageEmbeddingProcessor._DESERIALIZER, "text_image_embedding");
         op.add(Builder::trim, TrimProcessor._DESERIALIZER, "trim");
         op.add(Builder::uppercase, UppercaseProcessor._DESERIALIZER, "uppercase");
         op.add(Builder::urldecode, UrlDecodeProcessor._DESERIALIZER, "urldecode");

@@ -44,18 +44,17 @@ public final class SpecificationRewriter {
     }
 
     private static void patchSpecification(OpenApiSpecification specification) {
+        OpenApiSchema additionalProperties = OpenApiSchema.builder()
+            .withDescription("Nested aggregations.")
+            .withTitle("aggregations")
+            .with$ref(RelativeRef.parse("#/components/schemas/_common.aggregations___Aggregate"))
+            .build();
+
         // TODO: Workaround difficulty in representing the MultiBucketBase nested aggregations in the upstream OpenAPI specification
-        specification.getComponents()
-            .flatMap(OpenApiComponents::getSchemas)
-            .flatMap(s -> Maps.tryGet(s, "_common.aggregations___MultiBucketBase"))
-            .ifPresent(
-                s -> s.setAdditionalProperties(
-                    OpenApiSchema.builder()
-                        .withDescription("Nested aggregations.")
-                        .withTitle("aggregations")
-                        .with$ref(RelativeRef.parse("#/components/schemas/_common.aggregations___Aggregate"))
-                        .build()
-                )
-            );
+        specification.getComponents().flatMap(OpenApiComponents::getSchemas).ifPresent(schemas -> {
+            Maps.tryGet(schemas, "_common.aggregations___MultiBucketBase").ifPresent(s -> s.setAdditionalProperties(additionalProperties));
+            Maps.tryGet(schemas, "_common.aggregations___SingleBucketAggregateBase")
+                .ifPresent(s -> s.setAdditionalProperties(additionalProperties));
+        });
     }
 }

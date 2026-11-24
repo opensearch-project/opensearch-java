@@ -210,6 +210,36 @@ public class OpenSearchSecurityClient extends ApiClient<OpenSearchTransport, Ope
         return createActionGroup(fn.apply(new CreateActionGroupRequest.Builder()).build());
     }
 
+    // ----- Endpoint: security.create_action_groups
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     */
+    public CreateActionGroupsResponse createActionGroups(CreateActionGroupsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateActionGroupsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateActionGroupsRequest}
+     */
+    public final CreateActionGroupsResponse createActionGroups(
+        Function<CreateActionGroupsRequest.Builder, ObjectBuilder<CreateActionGroupsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createActionGroups(fn.apply(new CreateActionGroupsRequest.Builder()).build());
+    }
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     */
+    public final CreateActionGroupsResponse createActionGroups() throws IOException, OpenSearchException {
+        return createActionGroups(new CreateActionGroupsRequest.Builder().build());
+    }
+
     // ----- Endpoint: security.create_allowlist
 
     /**
@@ -273,6 +303,36 @@ public class OpenSearchSecurityClient extends ApiClient<OpenSearchTransport, Ope
         Function<CreateRoleMappingRequest.Builder, ObjectBuilder<CreateRoleMappingRequest>> fn
     ) throws IOException, OpenSearchException {
         return createRoleMapping(fn.apply(new CreateRoleMappingRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: security.create_role_mappings
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     */
+    public CreateRoleMappingsResponse createRoleMappings(CreateRoleMappingsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateRoleMappingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateRoleMappingsRequest}
+     */
+    public final CreateRoleMappingsResponse createRoleMappings(
+        Function<CreateRoleMappingsRequest.Builder, ObjectBuilder<CreateRoleMappingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createRoleMappings(fn.apply(new CreateRoleMappingsRequest.Builder()).build());
+    }
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     */
+    public final CreateRoleMappingsResponse createRoleMappings() throws IOException, OpenSearchException {
+        return createRoleMappings(new CreateRoleMappingsRequest.Builder().build());
     }
 
     // ----- Endpoint: security.create_tenant

@@ -2,6 +2,40 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 4.x]
+
+### BREAKING CHANGES
+- Set the Java 21 as a minimum supported version ([#2175](https://github.com/opensearch-project/opensearch-java/pull/2175))
+
+### Added
+- Make `ApacheHttpClient5Transport.setNodes(Collection<Node>)` public so the nodes of an existing transport can be replaced without rebuilding it ([#2299](https://github.com/opensearch-project/opensearch-java/pull/2299))
+- Add the `semantic` value to the `FieldType` enum ([#2317](https://github.com/opensearch-project/opensearch-java/pull/2317))
+- Add `_Custom` variant kind to non-exhaustive tagged unions (e.g. `Aggregate`, `Query`, `Property`, `Processor`) to gracefully handle plugin-provided types without deserialization failures ([#2083](https://github.com/opensearch-project/opensearch-java/pull/2083))
+
+### Dependencies
+- Bump Jackson to 2.23.0 / 3.3.0 ([#2292](https://github.com/opensearch-project/opensearch-java/pull/2292))
+
+### Changed
+- Branch off Java and Kotlin based samples ([#2301](https://github.com/opensearch-project/opensearch-java/pull/2301))
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
+
+### Security
+
+## [3.11.0] - 11/12/2026
+**IMPORTANT CHANGES**: This release comes as multi-release JAR to support Jackson 3.x line (JDK-17 baseline)
+and preserving JDK-8 compatibility at the same time.
+
+### Added
+- Add constants for `_first` and `_last` sort values (#2189)
+- Add support for the `search_pipeline` parameter in `_msearch` sub-requests ([#2061](https://github.com/opensearch-project/opensearch-java/issues/2061))
+- Add `CloseableOpenSearchClient` and `CloseableOpenSearchAsyncClient` which close the underlying transport ([#2173](https://github.com/opensearch-project/opensearch-java/issues/2173))
+- Add getters for the document, upsert, flags, script, source and document serializer of `UpdateOperation` ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
+
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
 - Bump `org.junit:junit-bom` from 5.13.3 to 6.0.3 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746), [#1780](https://github.com/opensearch-project/opensearch-java/pull/1780), [#1856](https://github.com/opensearch-project/opensearch-java/pull/1856), [#1885](https://github.com/opensearch-project/opensearch-java/pull/1885))
@@ -15,35 +49,56 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `commons-logging:commons-logging` from 1.3.5 to 1.3.6 ([#1922](https://github.com/opensearch-project/opensearch-java/pull/1922))
 - Bump `gradle-wrapper` from 9.3.1 to 9.5.0 ([#1930](https://github.com/opensearch-project/opensearch-java/pull/1930), [#1934](https://github.com/opensearch-project/opensearch-java/pull/1934), [#1973](https://github.com/opensearch-project/opensearch-java/pull/1973))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.6 to 5.6.1 ([#1967](https://github.com/opensearch-project/opensearch-java/pull/1967))
+- Bump Jackson to 2.22.4 / 3.2.4 ([#2231](https://github.com/opensearch-project/opensearch-java/pull/2231), [#2125](https://github.com/opensearch-project/opensearch-java/pull/2125))
 
 ### Added
-- Add `_Custom` variant kind to non-exhaustive tagged unions (e.g. `Aggregate`, `Suggest`, `Query`, `Property`, `Processor`) to gracefully handle plugin-provided types without deserialization failures
-- Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
-- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
-- Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
-- Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
-- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
-- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
-
-### Fixed
-- Fix `JsonData._DESERIALIZER` to correctly handle a pre-consumed parser event in the three-argument `deserialize` overload
-
-## [Unreleased 3.x]
-### Added
+- Introduce OpenSearchStreamingTransport ([#2144](https://github.com/opensearch-project/opensearch-java/pull/2144))
 
 ### Dependencies
 
 ### Changed
+- Avoid copying the whole request body when sending requests with `RestClientTransport` and `ApacheHttpClient5Transport`
+- Stop calling the deprecated no-op `ClientTlsStrategyBuilder#setTlsDetailsFactory` in `ApacheHttpClient5TransportBuilder` ([#1613](https://github.com/opensearch-project/opensearch-java/issues/1613))
+- `BulkIngester` now keeps the `doc` and `upsert` of `update` operations in binary form, like it does for `index` and `create`. This avoids serializing them twice, lowers heap usage and makes the size accounting for `maxSize` more accurate ([#2195](https://github.com/opensearch-project/opensearch-java/issues/2195))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- Thread the caller's document type through the gRPC transport typed search path so hit `_source` values deserialize to `TDocument` instead of being silently cast from `Object`/`JsonData`, fixing a runtime `ClassCastException` ([#2123](https://github.com/opensearch-project/opensearch-java/issues/2123), [#2160](https://github.com/opensearch-project/opensearch-java/pull/2160))
+- Add missing `analyzer`, `search_analyzer` and other supported parameters to `MatchOnlyTextProperty` ([#2217](https://github.com/opensearch-project/opensearch-java/pull/2217))
+- Fix `NullPointerException` in `_listAddAll` when server returns JSON `null` for a list field ([#2041](https://github.com/opensearch-project/opensearch-java/pull/2041))
+- Fix code generation failing with a `NullPointerException` on an `allOf` with no `$ref` or composition member, such as `allOf: [{ properties }, { anyOf }]` (`SemanticProperty` in the normalized spec). `allOf` now always maps to its last, most specific member, which is what it already did whenever it did not fail ([#2238](https://github.com/opensearch-project/opensearch-java/pull/2238))
+- Fix a race in `JsonpDeserializer.arrayDeserializer` and `arrayOrNullDeserializer` where a thread could see its accepted events before the item events were added, and reject a single value in place of a list ([#2254](https://github.com/opensearch-project/opensearch-java/pull/2254))
+- Fix Jackson 3 `JacksonJsonpParserTest` importing Jackson 2 classes and document that a user-supplied Jackson 3 `ObjectMapper` needs `FAIL_ON_TRAILING_TOKENS` disabled ([#2237](https://github.com/opensearch-project/opensearch-java/pull/2237))
+- Convert GRPC status to HTTP status for each BulkResponseItem ([#2277](https://github.com/opensearch-project/opensearch-java/pull/2277))
 
 ### Security
 
-## [Unreleased 2.x]
+## [3.10.0] - 09/01/2026
+### Added
+- Run Java client integration tests with a Testcontainers-managed OpenSearch instance by default ([#2033](https://github.com/opensearch-project/opensearch-java/pull/2033))
+- Detect AWS SDK `Apache5HttpClient` in `AwsSdk2Transport` body-method guardrail ([#1903](https://github.com/opensearch-project/opensearch-java/pull/1970))
+- Support Jackson 3.x release line ([#1810](https://github.com/opensearch-project/opensearch-java/pull/1810))
+- Added `equals()` and `hashCode()` implementations to `FieldValue` ([#1998](https://github.com/opensearch-project/opensearch-java/pull/1998))
+- Add document lifecycle guide and runnable sample ([#2017](https://github.com/opensearch-project/opensearch-java/pull/2017))
+- Add transparent gRPC transport with HybridTransport (bulk over gRPC, REST fallback), translation layer, TLS, basic auth, AWS SigV4, and JWT support ([#2062](https://github.com/opensearch-project/opensearch-java/pull/2062))
+- Add search over gRPC with match_all query support, SearchRequestConverter, SearchResponseConverter, and _source deserialization ([#2071](https://github.com/opensearch-project/opensearch-java/pull/2071))
+- Add `setAutomaticRetriesDisabled` to `ApacheHttpClient5TransportBuilder` to allow enabling automatic retries ([#2086](https://github.com/opensearch-project/opensearch-java/pull/2086))
+- Added typed support for scored named queries by mapping the polymorphic `Hit.matched_queries` field to a new `MatchedQueries` tagged union, whose `names` variant carries a `List<String>` and whose `scores` variant carries a `Map<String, Double>`, and by sending `include_named_queries_score` as a query parameter ([#2098](https://github.com/opensearch-project/opensearch-java/pull/2098))
+- Document the `java-codegen` OpenAPI spec update and code regeneration workflow in the developer guide ([#2161](https://github.com/opensearch-project/opensearch-java/pull/2161))
+
+### Fixed
+- Fix `unitTest` task not running the tests in the `test` source set ([#2074](https://github.com/opensearch-project/opensearch-java/pull/2074))
+- Run model tests against both JSON mappers instead of picking one at random ([#2085](https://github.com/opensearch-project/opensearch-java/pull/2085))
+- Fix currentSize calculation in BulkIngester ([#2113](https://github.com/opensearch-project/opensearch-java/pull/2113))
+- Use protocol version from response (rather than request) ([#2118](https://github.com/opensearch-project/opensearch-java/pull/2118))
+
+### Changed
+- Updated API spec download URL to `https://api-spec.opensearch.org` ([#2116](https://github.com/opensearch-project/opensearch-java/pull/2116))
+
+## [3.9.0] - 05/28/2026
 ### Added
 
 ### Dependencies
@@ -703,8 +758,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
 [Unreleased 4.x]: https://github.com/opensearch-project/opensearch-java/compare/3.x...main
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...3.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.11.0...3.x
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.10.0...v3.11.0
+[3.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.9.0...v3.10.0
+[3.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.8.0...v3.9.0
 [3.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.5.0...v3.6.0

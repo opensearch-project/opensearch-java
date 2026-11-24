@@ -37,9 +37,13 @@
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -67,12 +71,16 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
     @Nonnull
     private final String nodeName;
 
+    @Nonnull
+    private final Map<String, JsonData> nodeResourceUsageStats;
+
     // ---------------------------------------------------------------------------------------------
 
     private NodeDiskUsage(Builder builder) {
         this.leastAvailable = ApiTypeHelper.requireNonNull(builder.leastAvailable, this, "leastAvailable");
         this.mostAvailable = ApiTypeHelper.requireNonNull(builder.mostAvailable, this, "mostAvailable");
         this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+        this.nodeResourceUsageStats = ApiTypeHelper.unmodifiable(builder.nodeResourceUsageStats);
     }
 
     public static NodeDiskUsage of(Function<NodeDiskUsage.Builder, ObjectBuilder<NodeDiskUsage>> fn) {
@@ -104,6 +112,14 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
     }
 
     /**
+     * API name: {@code node_resource_usage_stats}
+     */
+    @Nonnull
+    public final Map<String, JsonData> nodeResourceUsageStats() {
+        return this.nodeResourceUsageStats;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -122,6 +138,16 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
 
         generator.writeKey("node_name");
         generator.write(this.nodeName);
+
+        if (ApiTypeHelper.isDefined(this.nodeResourceUsageStats)) {
+            generator.writeKey("node_resource_usage_stats");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.nodeResourceUsageStats.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -144,6 +170,8 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
         private DiskUsage leastAvailable;
         private DiskUsage mostAvailable;
         private String nodeName;
+        @Nullable
+        private Map<String, JsonData> nodeResourceUsageStats;
 
         public Builder() {}
 
@@ -151,12 +179,14 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
             this.leastAvailable = o.leastAvailable;
             this.mostAvailable = o.mostAvailable;
             this.nodeName = o.nodeName;
+            this.nodeResourceUsageStats = _mapCopy(o.nodeResourceUsageStats);
         }
 
         private Builder(Builder o) {
             this.leastAvailable = o.leastAvailable;
             this.mostAvailable = o.mostAvailable;
             this.nodeName = o.nodeName;
+            this.nodeResourceUsageStats = _mapCopy(o.nodeResourceUsageStats);
         }
 
         @Override
@@ -209,6 +239,32 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
+         * API name: {@code node_resource_usage_stats}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>nodeResourceUsageStats</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder nodeResourceUsageStats(Map<String, JsonData> map) {
+            this.nodeResourceUsageStats = _mapPutAll(this.nodeResourceUsageStats, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code node_resource_usage_stats}
+         *
+         * <p>
+         * Adds an entry to <code>nodeResourceUsageStats</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder nodeResourceUsageStats(String key, JsonData value) {
+            this.nodeResourceUsageStats = _mapPut(this.nodeResourceUsageStats, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link NodeDiskUsage}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -236,6 +292,11 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
         op.add(Builder::leastAvailable, DiskUsage._DESERIALIZER, "least_available");
         op.add(Builder::mostAvailable, DiskUsage._DESERIALIZER, "most_available");
         op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+        op.add(
+            Builder::nodeResourceUsageStats,
+            JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+            "node_resource_usage_stats"
+        );
     }
 
     @Override
@@ -244,6 +305,7 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
         result = 31 * result + this.leastAvailable.hashCode();
         result = 31 * result + this.mostAvailable.hashCode();
         result = 31 * result + this.nodeName.hashCode();
+        result = 31 * result + Objects.hashCode(this.nodeResourceUsageStats);
         return result;
     }
 
@@ -254,6 +316,7 @@ public class NodeDiskUsage implements PlainJsonSerializable, ToCopyableBuilder<N
         NodeDiskUsage other = (NodeDiskUsage) o;
         return this.leastAvailable.equals(other.leastAvailable)
             && this.mostAvailable.equals(other.mostAvailable)
-            && this.nodeName.equals(other.nodeName);
+            && this.nodeName.equals(other.nodeName)
+            && Objects.equals(this.nodeResourceUsageStats, other.nodeResourceUsageStats);
     }
 }

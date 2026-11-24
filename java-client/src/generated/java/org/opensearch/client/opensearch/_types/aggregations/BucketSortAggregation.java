@@ -48,19 +48,21 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.BucketSortAggregation
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BucketSortAggregation extends AggregationBase
+public class BucketSortAggregation
     implements
-        AggregationVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<BucketSortAggregation.Builder, BucketSortAggregation> {
 
     @Nullable
@@ -78,7 +80,6 @@ public class BucketSortAggregation extends AggregationBase
     // ---------------------------------------------------------------------------------------------
 
     private BucketSortAggregation(Builder builder) {
-        super(builder);
         this.from = builder.from;
         this.gapPolicy = builder.gapPolicy;
         this.size = builder.size;
@@ -87,14 +88,6 @@ public class BucketSortAggregation extends AggregationBase
 
     public static BucketSortAggregation of(Function<BucketSortAggregation.Builder, ObjectBuilder<BucketSortAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.BucketSort;
     }
 
     /**
@@ -135,8 +128,17 @@ public class BucketSortAggregation extends AggregationBase
         return this.sort;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.from != null) {
             generator.writeKey("from");
             generator.write(this.from);
@@ -178,9 +180,7 @@ public class BucketSortAggregation extends AggregationBase
     /**
      * Builder for {@link BucketSortAggregation}.
      */
-    public static class Builder extends AggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, BucketSortAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, BucketSortAggregation> {
         @Nullable
         private Integer from;
         @Nullable
@@ -193,7 +193,6 @@ public class BucketSortAggregation extends AggregationBase
         public Builder() {}
 
         private Builder(BucketSortAggregation o) {
-            super(o);
             this.from = o.from;
             this.gapPolicy = o.gapPolicy;
             this.size = o.size;
@@ -201,7 +200,6 @@ public class BucketSortAggregation extends AggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.from = o.from;
             this.gapPolicy = o.gapPolicy;
             this.size = o.size;
@@ -212,12 +210,6 @@ public class BucketSortAggregation extends AggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -316,7 +308,6 @@ public class BucketSortAggregation extends AggregationBase
     );
 
     protected static void setupBucketSortAggregationDeserializer(ObjectDeserializer<BucketSortAggregation.Builder> op) {
-        setupAggregationBaseDeserializer(op);
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
@@ -325,7 +316,7 @@ public class BucketSortAggregation extends AggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.from);
         result = 31 * result + Objects.hashCode(this.gapPolicy);
         result = 31 * result + Objects.hashCode(this.size);
@@ -335,9 +326,6 @@ public class BucketSortAggregation extends AggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         BucketSortAggregation other = (BucketSortAggregation) o;

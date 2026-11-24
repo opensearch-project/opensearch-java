@@ -571,7 +571,8 @@ public final class SearchRequest extends RequestBase
     }
 
     /**
-     * Whether to return scores with named queries. Default is false.
+     * Indicates whether <code>hit.matched_queries</code> should be rendered as a map that includes the name of the matched query associated
+     * with its score (true) or as an array containing the name of the matched queries (false)
      * <p>
      * API name: {@code include_named_queries_score}
      * </p>
@@ -1053,11 +1054,6 @@ public final class SearchRequest extends RequestBase
         if (this.highlight != null) {
             generator.writeKey("highlight");
             this.highlight.serialize(generator, mapper);
-        }
-
-        if (this.includeNamedQueriesScore != null) {
-            generator.writeKey("include_named_queries_score");
-            generator.write(this.includeNamedQueriesScore);
         }
 
         if (ApiTypeHelper.isDefined(this.indicesBoost)) {
@@ -1954,7 +1950,8 @@ public final class SearchRequest extends RequestBase
         }
 
         /**
-         * Whether to return scores with named queries. Default is false.
+         * Indicates whether <code>hit.matched_queries</code> should be rendered as a map that includes the name of the matched query
+         * associated with its score (true) or as an array containing the name of the matched queries (false)
          * <p>
          * API name: {@code include_named_queries_score}
          * </p>
@@ -2728,7 +2725,6 @@ public final class SearchRequest extends RequestBase
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
-        op.add(Builder::includeNamedQueriesScore, JsonpDeserializer.booleanDeserializer(), "include_named_queries_score");
         op.add(
             Builder::indicesBoost,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer())),
@@ -2800,6 +2796,9 @@ public final class SearchRequest extends RequestBase
         }
         if (this.ignoreUnavailable != null) {
             params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.includeNamedQueriesScore != null) {
+            params.put("include_named_queries_score", String.valueOf(this.includeNamedQueriesScore));
         }
         if (this.lenient != null) {
             params.put("lenient", String.valueOf(this.lenient));

@@ -60,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<TermsLookup.Builder, TermsLookup> {
 
-    @Nonnull
+    @Nullable
     private final String id;
 
     @Nonnull
@@ -68,6 +68,9 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
 
     @Nonnull
     private final String path;
+
+    @Nullable
+    private final Query query;
 
     @Nullable
     private final String routing;
@@ -78,9 +81,10 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     // ---------------------------------------------------------------------------------------------
 
     private TermsLookup(Builder builder) {
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.id = builder.id;
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+        this.query = builder.query;
         this.routing = builder.routing;
         this.store = builder.store;
     }
@@ -90,9 +94,9 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     }
 
     /**
-     * Required - API name: {@code id}
+     * API name: {@code id}
      */
-    @Nonnull
+    @Nullable
     public final String id() {
         return this.id;
     }
@@ -111,6 +115,14 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     @Nonnull
     public final String path() {
         return this.path;
+    }
+
+    /**
+     * API name: {@code query}
+     */
+    @Nullable
+    public final Query query() {
+        return this.query;
     }
 
     /**
@@ -140,14 +152,21 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("id");
-        generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("id");
+            generator.write(this.id);
+        }
 
         generator.writeKey("index");
         generator.write(this.index);
 
         generator.writeKey("path");
         generator.write(this.path);
+
+        if (this.query != null) {
+            generator.writeKey("query");
+            this.query.serialize(generator, mapper);
+        }
 
         if (this.routing != null) {
             generator.writeKey("routing");
@@ -177,9 +196,12 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
      * Builder for {@link TermsLookup}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsLookup> {
+        @Nullable
         private String id;
         private String index;
         private String path;
+        @Nullable
+        private Query query;
         @Nullable
         private String routing;
         @Nullable
@@ -191,6 +213,7 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
             this.id = o.id;
             this.index = o.index;
             this.path = o.path;
+            this.query = o.query;
             this.routing = o.routing;
             this.store = o.store;
         }
@@ -199,6 +222,7 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
             this.id = o.id;
             this.index = o.index;
             this.path = o.path;
+            this.query = o.query;
             this.routing = o.routing;
             this.store = o.store;
         }
@@ -210,10 +234,10 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         }
 
         /**
-         * Required - API name: {@code id}
+         * API name: {@code id}
          */
         @Nonnull
-        public final Builder id(String value) {
+        public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
         }
@@ -234,6 +258,23 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         public final Builder path(String value) {
             this.path = value;
             return this;
+        }
+
+        /**
+         * API name: {@code query}
+         */
+        @Nonnull
+        public final Builder query(@Nullable Query value) {
+            this.query = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code query}
+         */
+        @Nonnull
+        public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return query(fn.apply(new Query.Builder()).build());
         }
 
         /**
@@ -282,6 +323,7 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+        op.add(Builder::query, Query._DESERIALIZER, "query");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
         op.add(Builder::store, JsonpDeserializer.booleanDeserializer(), "store");
     }
@@ -289,9 +331,10 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.id.hashCode();
+        result = 31 * result + Objects.hashCode(this.id);
         result = 31 * result + this.index.hashCode();
         result = 31 * result + this.path.hashCode();
+        result = 31 * result + Objects.hashCode(this.query);
         result = 31 * result + Objects.hashCode(this.routing);
         result = 31 * result + Objects.hashCode(this.store);
         return result;
@@ -302,9 +345,10 @@ public class TermsLookup implements PlainJsonSerializable, ToCopyableBuilder<Ter
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TermsLookup other = (TermsLookup) o;
-        return this.id.equals(other.id)
+        return Objects.equals(this.id, other.id)
             && this.index.equals(other.index)
             && this.path.equals(other.path)
+            && Objects.equals(this.query, other.query)
             && Objects.equals(this.routing, other.routing)
             && Objects.equals(this.store, other.store);
     }

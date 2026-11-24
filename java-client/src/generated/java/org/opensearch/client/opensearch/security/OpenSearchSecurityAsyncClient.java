@@ -215,6 +215,37 @@ public class OpenSearchSecurityAsyncClient extends ApiClient<OpenSearchTransport
         return createActionGroup(fn.apply(new CreateActionGroupRequest.Builder()).build());
     }
 
+    // ----- Endpoint: security.create_action_groups
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     */
+    public CompletableFuture<CreateActionGroupsResponse> createActionGroups(CreateActionGroupsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateActionGroupsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateActionGroupsRequest}
+     */
+    public final CompletableFuture<CreateActionGroupsResponse> createActionGroups(
+        Function<CreateActionGroupsRequest.Builder, ObjectBuilder<CreateActionGroupsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createActionGroups(fn.apply(new CreateActionGroupsRequest.Builder()).build());
+    }
+
+    /**
+     * Creates or replaces multiple action groups. Action groups omitted from the request are unchanged. All entries are validated before
+     * any changes are written.
+     */
+    public final CompletableFuture<CreateActionGroupsResponse> createActionGroups() throws IOException, OpenSearchException {
+        return createActionGroups(new CreateActionGroupsRequest.Builder().build());
+    }
+
     // ----- Endpoint: security.create_allowlist
 
     /**
@@ -281,6 +312,37 @@ public class OpenSearchSecurityAsyncClient extends ApiClient<OpenSearchTransport
         Function<CreateRoleMappingRequest.Builder, ObjectBuilder<CreateRoleMappingRequest>> fn
     ) throws IOException, OpenSearchException {
         return createRoleMapping(fn.apply(new CreateRoleMappingRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: security.create_role_mappings
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     */
+    public CompletableFuture<CreateRoleMappingsResponse> createRoleMappings(CreateRoleMappingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateRoleMappingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateRoleMappingsRequest}
+     */
+    public final CompletableFuture<CreateRoleMappingsResponse> createRoleMappings(
+        Function<CreateRoleMappingsRequest.Builder, ObjectBuilder<CreateRoleMappingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createRoleMappings(fn.apply(new CreateRoleMappingsRequest.Builder()).build());
+    }
+
+    /**
+     * Creates or replaces multiple role mappings. Role mappings omitted from the request are unchanged. Every named role must exist, and
+     * all entries are validated before any changes are written.
+     */
+    public final CompletableFuture<CreateRoleMappingsResponse> createRoleMappings() throws IOException, OpenSearchException {
+        return createRoleMappings(new CreateRoleMappingsRequest.Builder().build());
     }
 
     // ----- Endpoint: security.create_tenant

@@ -15,16 +15,22 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.DelegatingJsonEndpoint;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.transport.grpc.translation.BulkRequestConverter;
 import org.opensearch.client.transport.grpc.translation.BulkResponseConverter;
 import org.opensearch.client.transport.grpc.translation.GrpcStatusConverter;
 import org.opensearch.protobufs.services.DocumentServiceGrpc;
+import org.opensearch.protobufs.services.SearchServiceGrpc;
 
 /**
  * Pure gRPC transport for OpenSearch. Implements {@link OpenSearchTransport} and routes
@@ -52,21 +58,61 @@ public class GrpcTransport implements OpenSearchTransport {
     static {
         java.util.Set<Endpoint<?, ?, ?>> endpoints = new java.util.HashSet<>();
         endpoints.add(BulkRequest._ENDPOINT);
-        // Future: SearchRequest._ENDPOINT, KnnSearchRequest._ENDPOINT
+        endpoints.add(SearchRequest._ENDPOINT);
+        // Future: KnnSearchRequest._ENDPOINT
         SUPPORTED_ENDPOINTS = java.util.Collections.unmodifiableSet(endpoints);
+    }
+
+    /**
+     * Unwraps any {@link DelegatingJsonEndpoint} wrappers (such as the typed
+     * {@link EndpointWithResponseMapperAttr} produced by {@code client.search(request, MyType.class)})
+     * to recover the underlying registered endpoint so it can be matched by identity.
+     */
+    private static Endpoint<?, ?, ?> rootEndpoint(Endpoint<?, ?, ?> endpoint) {
+        Endpoint<?, ?, ?> current = endpoint;
+        while (current instanceof DelegatingJsonEndpoint) {
+            current = ((DelegatingJsonEndpoint<?, ?, ?>) current).endpoint();
+        }
+        return current;
     }
 
     /**
      * Returns true if the given endpoint is supported by gRPC transport.
      */
     public static boolean isEndpointSupported(Endpoint<?, ?, ?> endpoint) {
-        return SUPPORTED_ENDPOINTS.contains(endpoint);
+        return SUPPORTED_ENDPOINTS.contains(rootEndpoint(endpoint));
+    }
+
+    /**
+     * Returns true if the given endpoint and request can be handled by gRPC transport.
+     * For endpoints that only partially support gRPC (e.g., search with limited query types),
+     * this method inspects the request to determine if gRPC can handle it.
+     */
+    public static <RequestT> boolean isEndpointSupported(Endpoint<?, ?, ?> endpoint, RequestT request) {
+        Endpoint<?, ?, ?> root = rootEndpoint(endpoint);
+        if (!SUPPORTED_ENDPOINTS.contains(root)) {
+            return false;
+        }
+        // Bulk: all operations supported
+        if (root == BulkRequest._ENDPOINT) {
+            return true;
+        }
+        // Search: only match_all is currently supported
+        if (root == SearchRequest._ENDPOINT && request instanceof SearchRequest) {
+            SearchRequest searchRequest = (SearchRequest) request;
+            if (searchRequest.query() == null) {
+                return true; // No query = match_all by default
+            }
+            return searchRequest.query().isMatchAll();
+        }
+        return true;
     }
 
     // ─── Instance Fields ─────────────────────────────────────────────────────────
 
     private final ManagedChannel channel;
     private final DocumentServiceGrpc.DocumentServiceBlockingStub documentStub;
+    private final SearchServiceGrpc.SearchServiceBlockingStub searchStub;
     private final JsonpMapper jsonpMapper;
     private final GrpcTransportOptions grpcOptions;
     private final TransportOptions transportOptions;
@@ -81,6 +127,7 @@ public class GrpcTransport implements OpenSearchTransport {
     ) {
         this.channel = channel;
         this.documentStub = channel != null ? DocumentServiceGrpc.newBlockingStub(channel) : null;
+        this.searchStub = channel != null ? SearchServiceGrpc.newBlockingStub(channel) : null;
         this.jsonpMapper = jsonpMapper;
         this.grpcOptions = grpcOptions;
         this.transportOptions = transportOptions;
@@ -101,7 +148,7 @@ public class GrpcTransport implements OpenSearchTransport {
         @Nullable TransportOptions options
     ) throws IOException {
 
-        if (!GrpcTransport.isEndpointSupported(endpoint)) {
+        if (!GrpcTransport.isEndpointSupported(endpoint, request)) {
             throw new UnsupportedOperationException(
                 "Endpoint not supported by gRPC transport: "
                     + endpoint.requestUrl(request)
@@ -109,9 +156,17 @@ public class GrpcTransport implements OpenSearchTransport {
             );
         }
 
-        // Route to the appropriate gRPC handler
-        if (endpoint == BulkRequest._ENDPOINT) {
+        // Route to the appropriate gRPC handler. The caller may have wrapped the endpoint (e.g. the
+        // typed search endpoint carries the document deserializer), so match on the underlying endpoint.
+        Endpoint<?, ?, ?> root = rootEndpoint(endpoint);
+        if (root == BulkRequest._ENDPOINT) {
             return (ResponseT) performBulk((BulkRequest) request);
+        }
+        if (root == SearchRequest._ENDPOINT && endpoint instanceof EndpointWithResponseMapperAttr) {
+            return (ResponseT) performSearch(
+                (SearchRequest) request,
+                (EndpointWithResponseMapperAttr<RequestT, ResponseT, ErrorT>) endpoint
+            );
         }
 
         throw new UnsupportedOperationException("Endpoint registered but no handler: " + endpoint.requestUrl(request));
@@ -235,6 +290,31 @@ public class GrpcTransport implements OpenSearchTransport {
                     throw new TransportException("gRPC error: " + e.getMessage(), e);
                 }
             }
+        }
+    }
+
+    private <RequestT, ResponseT, ErrorT, TDocument> SearchResponse<TDocument> performSearch(
+        SearchRequest request,
+        final EndpointWithResponseMapperAttr<RequestT, ResponseT, ErrorT> endpoint
+    ) throws TransportException {
+        // Convert client request to protobuf
+        org.opensearch.protobufs.SearchRequest protoRequest = org.opensearch.client.transport.grpc.translation.SearchRequestConverter
+            .toProto(request, jsonpMapper);
+
+        // Execute gRPC call
+        try {
+            org.opensearch.protobufs.SearchResponse protoResponse = searchStub.search(protoRequest);
+
+            // Deserialize hit _source values with the caller's document deserializer (threaded from the
+            // endpoint) so the typed search contract is honored instead of yielding raw JsonData.
+            final JsonpMapper mapper = jsonpMapper.withAttribute(endpoint.attrName(), endpoint.attrValue());
+            final NamedDeserializer<TDocument> deserializer = new NamedDeserializer<>(endpoint.attrName());
+            return org.opensearch.client.transport.grpc.translation.SearchResponseConverter.fromProto(protoResponse, mapper, deserializer);
+        } catch (StatusRuntimeException e) {
+            throw new TransportException(
+                "gRPC search request failed: " + e.getStatus().getDescription(),
+                new org.opensearch.client.transport.TransportException(e.getMessage(), e)
+            );
         }
     }
 

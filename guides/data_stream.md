@@ -51,4 +51,4 @@ DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Bu
 DeleteDataStreamResponse deleteDataStreamResponse = client.indices().deleteDataStream(deleteDataStreamRequest);
 ```
 
-You can find a working sample of the above code in [DataStreamBasics.java](../samples/src/main/java/org/opensearch/client/samples/DataStreamBasics.java).
+You can find a working sample of the above code in [DataStreamBasics.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/DataStreamBasics.java).

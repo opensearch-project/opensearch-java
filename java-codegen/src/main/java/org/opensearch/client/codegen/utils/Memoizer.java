@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 public class Memoizer<I, O> {
@@ -21,19 +21,19 @@ public class Memoizer<I, O> {
     @Nonnull
     private final Set<I> calculating = ConcurrentHashMap.newKeySet();
     @Nonnull
-    private final Function<I, O> getter;
+    private final BiFunction<I, Boolean, O> getter;
 
-    public Memoizer(@Nonnull Function<I, O> getter) {
+    public Memoizer(@Nonnull BiFunction<I, Boolean, O> getter) {
         this.getter = Objects.requireNonNull(getter, "getter cannot be null");
     }
 
     @Nonnull
-    public O get(@Nonnull I input) {
+    public O get(@Nonnull I input, boolean nullable) {
         if (cache.containsKey(Objects.requireNonNull(input, "input cannot be null"))) {
             return cache.get(input);
         }
         var alreadyCalculating = !calculating.add(input);
-        var result = getter.apply(input);
+        var result = getter.apply(input, nullable);
         if (!alreadyCalculating) {
             cache.put(input, result);
             calculating.remove(input);

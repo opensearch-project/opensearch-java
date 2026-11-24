@@ -39,12 +39,12 @@ package org.opensearch.client.opensearch.knn;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.core.search.SearchResult;
+import org.opensearch.client.opensearch.core.search.SearchResultJsonValue;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
@@ -53,59 +53,61 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SearchModelsResponse extends SearchResult<JsonData>
+public class SearchModelsResponse<TDocument> extends SearchResultJsonValue<TDocument>
     implements
-        ToCopyableBuilder<SearchModelsResponse.Builder, SearchModelsResponse> {
+        ToCopyableBuilder<SearchModelsResponse.Builder<TDocument>, SearchModelsResponse<TDocument>> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private SearchModelsResponse(Builder builder) {
+    private SearchModelsResponse(Builder<TDocument> builder) {
         super(builder);
     }
 
-    public static SearchModelsResponse of(Function<SearchModelsResponse.Builder, ObjectBuilder<SearchModelsResponse>> fn) {
-        return fn.apply(new Builder()).build();
+    public static <TDocument> SearchModelsResponse<TDocument> of(
+        Function<SearchModelsResponse.Builder<TDocument>, ObjectBuilder<SearchModelsResponse<TDocument>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Override
     @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
     }
 
     @Nonnull
-    public static Builder builder() {
-        return new Builder();
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
     }
 
     /**
      * Builder for {@link SearchModelsResponse}.
      */
-    public static class Builder extends SearchResult.AbstractBuilder<JsonData, Builder>
+    public static class Builder<TDocument> extends SearchResultJsonValue.AbstractBuilder<TDocument, Builder<TDocument>>
         implements
-            CopyableBuilder<Builder, SearchModelsResponse> {
+            CopyableBuilder<Builder<TDocument>, SearchModelsResponse<TDocument>> {
 
         public Builder() {}
 
-        private Builder(SearchModelsResponse o) {
+        private Builder(SearchModelsResponse<TDocument> o) {
             super(o);
         }
 
-        private Builder(Builder o) {
+        private Builder(Builder<TDocument> o) {
             super(o);
         }
 
         @Override
         @Nonnull
-        public Builder copy() {
-            return new Builder(this);
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
         }
 
         @Override
         @Nonnull
-        protected Builder self() {
+        protected Builder<TDocument> self() {
             return this;
         }
 
@@ -116,25 +118,39 @@ public class SearchModelsResponse extends SearchResult<JsonData>
          */
         @Override
         @Nonnull
-        public SearchModelsResponse build() {
+        public SearchModelsResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new SearchModelsResponse(this);
+            return new SearchModelsResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SearchModelsResponse}
+     * Create a JSON deserializer for SearchModelsResponse.
      */
-    public static final JsonpDeserializer<SearchModelsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        SearchModelsResponse::setupSearchModelsResponseDeserializer
+    public static <TDocument> JsonpDeserializer<SearchModelsResponse<TDocument>> createSearchModelsResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            Builder<TDocument>::new,
+            op -> SearchModelsResponse.setupSearchModelsResponseDeserializer(op, tDocumentDeserializer)
+        );
+    }
+
+    /**
+     * Json deserializer for {@link SearchModelsResponse} based on named deserializers provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<SearchModelsResponse<Object>> _DESERIALIZER = createSearchModelsResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:knn.search_models.TDocument")
     );
 
-    protected static void setupSearchModelsResponseDeserializer(ObjectDeserializer<SearchModelsResponse.Builder> op) {
-        setupSearchResultDeserializer(op, JsonData._DESERIALIZER);
+    protected static <TDocument> void setupSearchModelsResponseDeserializer(
+        ObjectDeserializer<SearchModelsResponse.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        setupSearchResultJsonValueDeserializer(op, tDocumentDeserializer);
     }
 
     @Override

@@ -709,14 +709,14 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     // ----- Endpoint: mtermvectors
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      */
     public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, MtermvectorsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      *
      * @param fn a function that initializes a builder to create the {@link MtermvectorsRequest}
      */
@@ -727,7 +727,7 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     }
 
     /**
-     * Returns multiple termvectors in one request.
+     * Returns multiple term vectors in one request.
      */
     public final CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException, OpenSearchException {
         return mtermvectors(new MtermvectorsRequest.Builder().build());

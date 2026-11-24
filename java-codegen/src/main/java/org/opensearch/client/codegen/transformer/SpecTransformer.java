@@ -640,7 +640,8 @@ public class SpecTransformer {
                     valueSchema.getTitle().orElse("metadata"),
                     typeMapper.mapType(valueSchema),
                     valueSchema.getResolvedDescription().orElse(null),
-                    schema.isAdditionalPropertiesSingleton()
+                    schema.isAdditionalPropertiesSingleton(),
+                    schema.allowsNull()
                 )
             );
         }

@@ -15,6 +15,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -37,19 +38,22 @@ public class ApacheHttpClient5Options implements TransportOptions {
         Collections.emptyList(),
         HttpAsyncResponseConsumerFactory.HeapBufferedResponseConsumerFactory.DEFAULT,
         null,
-        null
+        null,
+        Collections.emptyMap()
     ).build();
 
     private final List<Header> headers;
     private final HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory;
     private final WarningsHandler warningsHandler;
     private final RequestConfig requestConfig;
+    private Map<String, String> queryParameters;
 
     private ApacheHttpClient5Options(Builder builder) {
         this.headers = Collections.unmodifiableList(new ArrayList<>(builder.headers));
         this.httpAsyncResponseConsumerFactory = builder.httpAsyncResponseConsumerFactory;
         this.warningsHandler = builder.warningsHandler;
         this.requestConfig = builder.requestConfig;
+        this.queryParameters = Collections.unmodifiableMap(new HashMap<>(builder.queryParameters));
     }
 
     public HttpAsyncResponseConsumerFactory getHttpAsyncResponseConsumerFactory() {
@@ -71,7 +75,7 @@ public class ApacheHttpClient5Options implements TransportOptions {
 
     @Override
     public Map<String, String> queryParameters() {
-        return null;
+        return queryParameters;
     }
 
     @Override
@@ -85,7 +89,7 @@ public class ApacheHttpClient5Options implements TransportOptions {
 
     @Override
     public Builder toBuilder() {
-        return new Builder(headers, httpAsyncResponseConsumerFactory, warningsHandler, requestConfig);
+        return new Builder(headers, httpAsyncResponseConsumerFactory, warningsHandler, requestConfig, queryParameters);
     }
 
     public static class Builder implements TransportOptions.Builder {
@@ -93,21 +97,30 @@ public class ApacheHttpClient5Options implements TransportOptions {
         private HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory;
         private WarningsHandler warningsHandler;
         private RequestConfig requestConfig;
+        private Map<String, String> queryParameters;
 
         private Builder(Builder builder) {
-            this(builder.headers, builder.httpAsyncResponseConsumerFactory, builder.warningsHandler, builder.requestConfig);
+            this(
+                builder.headers,
+                builder.httpAsyncResponseConsumerFactory,
+                builder.warningsHandler,
+                builder.requestConfig,
+                builder.queryParameters
+            );
         }
 
         private Builder(
             List<Header> headers,
             HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory,
             WarningsHandler warningsHandler,
-            RequestConfig requestConfig
+            RequestConfig requestConfig,
+            Map<String, String> queryParameters
         ) {
             this.headers = new ArrayList<>(headers);
             this.httpAsyncResponseConsumerFactory = httpAsyncResponseConsumerFactory;
             this.warningsHandler = warningsHandler;
             this.requestConfig = requestConfig;
+            this.queryParameters = new HashMap<>(queryParameters);
         }
 
         /**
@@ -127,6 +140,9 @@ public class ApacheHttpClient5Options implements TransportOptions {
 
         @Override
         public TransportOptions.Builder setParameter(String name, String value) {
+            Objects.requireNonNull(name, "parameter name cannot be null");
+            Objects.requireNonNull(value, "parameter value cannot be null");
+            queryParameters.put(name, value);
             return this;
         }
 

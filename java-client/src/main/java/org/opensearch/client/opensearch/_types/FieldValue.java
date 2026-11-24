@@ -70,6 +70,8 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
     public static final FieldValue NULL = new FieldValue(Kind.Null, null);
     public static final FieldValue TRUE = new FieldValue(Kind.Boolean, Boolean.TRUE);
     public static final FieldValue FALSE = new FieldValue(Kind.Boolean, Boolean.FALSE);
+    public static final FieldValue FIRST = new FieldValue(Kind.String, "_first");
+    public static final FieldValue LAST = new FieldValue(Kind.String, "_last");
 
     public enum Kind {
         Double,

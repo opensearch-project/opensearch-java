@@ -70,6 +70,9 @@ public class CreateUpdateTenancyConfigResponse
     @Nullable
     private final Boolean multitenancyEnabled;
 
+    @Nonnull
+    private final List<String> preferredTenants;
+
     @Nullable
     private final Boolean privateTenantEnabled;
 
@@ -81,6 +84,7 @@ public class CreateUpdateTenancyConfigResponse
     private CreateUpdateTenancyConfigResponse(Builder builder) {
         this.defaultTenant = builder.defaultTenant;
         this.multitenancyEnabled = builder.multitenancyEnabled;
+        this.preferredTenants = ApiTypeHelper.unmodifiable(builder.preferredTenants);
         this.privateTenantEnabled = builder.privateTenantEnabled;
         this.signInOptions = ApiTypeHelper.unmodifiable(builder.signInOptions);
     }
@@ -105,6 +109,14 @@ public class CreateUpdateTenancyConfigResponse
     @Nullable
     public final Boolean multitenancyEnabled() {
         return this.multitenancyEnabled;
+    }
+
+    /**
+     * API name: {@code preferred_tenants}
+     */
+    @Nonnull
+    public final List<String> preferredTenants() {
+        return this.preferredTenants;
     }
 
     /**
@@ -144,6 +156,15 @@ public class CreateUpdateTenancyConfigResponse
             generator.write(this.multitenancyEnabled);
         }
 
+        if (ApiTypeHelper.isDefined(this.preferredTenants)) {
+            generator.writeKey("preferred_tenants");
+            generator.writeStartArray();
+            for (String item0 : this.preferredTenants) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
+        }
+
         if (this.privateTenantEnabled != null) {
             generator.writeKey("private_tenant_enabled");
             generator.write(this.privateTenantEnabled);
@@ -181,6 +202,8 @@ public class CreateUpdateTenancyConfigResponse
         @Nullable
         private Boolean multitenancyEnabled;
         @Nullable
+        private List<String> preferredTenants;
+        @Nullable
         private Boolean privateTenantEnabled;
         @Nullable
         private List<String> signInOptions;
@@ -190,6 +213,7 @@ public class CreateUpdateTenancyConfigResponse
         private Builder(CreateUpdateTenancyConfigResponse o) {
             this.defaultTenant = o.defaultTenant;
             this.multitenancyEnabled = o.multitenancyEnabled;
+            this.preferredTenants = _listCopy(o.preferredTenants);
             this.privateTenantEnabled = o.privateTenantEnabled;
             this.signInOptions = _listCopy(o.signInOptions);
         }
@@ -197,6 +221,7 @@ public class CreateUpdateTenancyConfigResponse
         private Builder(Builder o) {
             this.defaultTenant = o.defaultTenant;
             this.multitenancyEnabled = o.multitenancyEnabled;
+            this.preferredTenants = _listCopy(o.preferredTenants);
             this.privateTenantEnabled = o.privateTenantEnabled;
             this.signInOptions = _listCopy(o.signInOptions);
         }
@@ -222,6 +247,32 @@ public class CreateUpdateTenancyConfigResponse
         @Nonnull
         public final Builder multitenancyEnabled(@Nullable Boolean value) {
             this.multitenancyEnabled = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code preferred_tenants}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>preferredTenants</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder preferredTenants(List<String> list) {
+            this.preferredTenants = _listAddAll(this.preferredTenants, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code preferred_tenants}
+         *
+         * <p>
+         * Adds one or more values to <code>preferredTenants</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder preferredTenants(String value, String... values) {
+            this.preferredTenants = _listAdd(this.preferredTenants, value, values);
             return this;
         }
 
@@ -289,6 +340,7 @@ public class CreateUpdateTenancyConfigResponse
     ) {
         op.add(Builder::defaultTenant, JsonpDeserializer.stringDeserializer(), "default_tenant");
         op.add(Builder::multitenancyEnabled, JsonpDeserializer.booleanDeserializer(), "multitenancy_enabled");
+        op.add(Builder::preferredTenants, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preferred_tenants");
         op.add(Builder::privateTenantEnabled, JsonpDeserializer.booleanDeserializer(), "private_tenant_enabled");
         op.add(Builder::signInOptions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sign_in_options");
     }
@@ -298,6 +350,7 @@ public class CreateUpdateTenancyConfigResponse
         int result = 17;
         result = 31 * result + Objects.hashCode(this.defaultTenant);
         result = 31 * result + Objects.hashCode(this.multitenancyEnabled);
+        result = 31 * result + Objects.hashCode(this.preferredTenants);
         result = 31 * result + Objects.hashCode(this.privateTenantEnabled);
         result = 31 * result + Objects.hashCode(this.signInOptions);
         return result;
@@ -310,6 +363,7 @@ public class CreateUpdateTenancyConfigResponse
         CreateUpdateTenancyConfigResponse other = (CreateUpdateTenancyConfigResponse) o;
         return Objects.equals(this.defaultTenant, other.defaultTenant)
             && Objects.equals(this.multitenancyEnabled, other.multitenancyEnabled)
+            && Objects.equals(this.preferredTenants, other.preferredTenants)
             && Objects.equals(this.privateTenantEnabled, other.privateTenantEnabled)
             && Objects.equals(this.signInOptions, other.signInOptions);
     }

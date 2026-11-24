@@ -16,6 +16,7 @@ import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch._types.mapping.FieldType;
 
 public class SortOptionsTest {
 
@@ -32,5 +33,17 @@ public class SortOptionsTest {
         FieldSort fieldSort = (FieldSort) sortOptions.get(0)._get();
         assertEquals("entityId", fieldSort.field());
         assertEquals(SortOrder.Asc, fieldSort.order());
+    }
+
+    // Scenario: sort options carry unmapped_type "semantic". Expected: it deserializes to FieldType.Semantic.
+    @Test
+    public void testUnmappedTypeSemantic() {
+        String jsonString = "{\"entityId\":{\"unmapped_type\":\"semantic\"}}";
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(jsonString));
+
+        SortOptions sortOptions = SortOptions._DESERIALIZER.deserialize(parser, mapper);
+        assertEquals(FieldType.Semantic, sortOptions.field().unmappedType());
+        assertEquals("semantic", FieldType.Semantic.jsonValue());
     }
 }

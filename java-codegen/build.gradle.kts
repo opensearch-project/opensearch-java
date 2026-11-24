@@ -24,14 +24,14 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.8.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.9.0")
     }
 }
 
 plugins {
     application
-    id("com.github.jk1.dependency-license-report") version "3.1.4"
-    id("org.owasp.dependencycheck") version "12.2.2"
+    id("com.github.jk1.dependency-license-report") version "3.1.5"
+    id("org.owasp.dependencycheck") version "13.0.0"
     id("de.undercouch.download") version "5.7.0"
 
     id("opensearch-java.spotless-conventions")
@@ -46,8 +46,8 @@ logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
 logger.quiet("=======================================")
 
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
@@ -72,7 +72,7 @@ application {
 val localSpecification = file("$projectDir/opensearch-openapi.yaml").toURI().toString()
 
 tasks.register<Download>("downloadLatestSpec") {
-    src("https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml")
+    src("https://api-spec.opensearch.org/opensearch-openapi.yaml")
     dest(localSpecification)
 }
 
@@ -150,8 +150,8 @@ dependencies {
     implementation("org.apache.logging.log4j", "log4j-slf4j2-impl", "[2.17.1,3.0)")
 
     // Apache 2.0
-    implementation("com.fasterxml.jackson.core", "jackson-core", "2.17.1")
-    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.1")
+    implementation("com.fasterxml.jackson.core", "jackson-core", "2.23.0")
+    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.23.0")
 
     // Apache 2.0
     implementation("com.diffplug.spotless", "spotless-lib", "2.45.0")
@@ -175,7 +175,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:6.1.2"))
+    testImplementation(platform("org.junit:junit-bom:5.14.4"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }

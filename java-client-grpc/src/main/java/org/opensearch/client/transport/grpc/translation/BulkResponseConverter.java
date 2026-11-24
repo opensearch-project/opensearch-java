@@ -98,7 +98,7 @@ public final class BulkResponseConverter {
 
         builder.operationType(opType);
         builder.index(proto.getXIndex());
-        builder.status(proto.getStatus());
+        builder.status(GrpcStatusConverter.toHttpStatus(proto.getStatus()));
 
         if (proto.hasXId()) {
             builder.id(proto.getXId());

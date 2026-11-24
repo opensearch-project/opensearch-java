@@ -43,7 +43,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.8.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.9.0")
     }
 }
 
@@ -51,8 +51,8 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "3.1.4"
-    id("org.owasp.dependencycheck") version "12.2.2"
+    id("com.github.jk1.dependency-license-report") version "3.1.5"
+    id("org.owasp.dependencycheck") version "13.0.0"
 
     id("opensearch-java.spotless-conventions")
 }
@@ -72,8 +72,8 @@ logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
 logger.quiet("=======================================")
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
@@ -143,7 +143,7 @@ tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
-val opensearchVersion = "3.5.0-SNAPSHOT"
+val opensearchVersion = "3.10.0-SNAPSHOT"
 val opensearchDockerVersion = opensearchVersion.removeSuffix("-SNAPSHOT")
 
 tasks.test {
@@ -160,21 +160,25 @@ val unitTest = task<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
+val testcontainersEnabled = System.getProperty("tests.opensearch.testcontainers.enabled", "true")
 val integrationTest = task<Test>("integrationTest") {
     filter {
         includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+        // Testcontainers OpenSearch image has no streaming transport
+        if (testcontainersEnabled.equals("true")) {
+            excludeTestsMatching("org.opensearch.client.opensearch.integTest.*StreamingIT")
+        }
     }
     systemProperty("tests.security.manager", "false")
     // Basic auth settings for integration test
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))
-    systemProperty(
-        "tests.opensearch.testcontainers.enabled",
-        System.getProperty("tests.opensearch.testcontainers.enabled", "true")
-    )
+    systemProperty("tests.opensearch.testcontainers.enabled", testcontainersEnabled)
     systemProperty(
         "tests.opensearch.version",
         System.getProperty("tests.opensearch.version", opensearchDockerVersion)
@@ -187,28 +191,39 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.serviceName", "es"))
     systemProperty("tests.awsSdk2support.domainRegion",
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
+
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
 }
 
 dependencies {
-    val jacksonVersion = "2.21.2"
-    val jacksonDatabindVersion = "2.21.2"
-    val jackson3Version = "3.1.1"
-    val jackson3DatabindVersion = "3.1.1"
+    val jacksonVersion = "2.23.0"
+    val jacksonDatabindVersion = "2.23.0"
+    val jackson3Version = "3.3.0"
+    val jackson3DatabindVersion = "3.3.0"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.4.0")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.hamcrest:hamcrest:3.0")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.9.1") {
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.9.2") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.6.2") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.6.5") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.4.3")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.3")
+    api("org.apache.httpcomponents.core5:httpcore5:5.4.4")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.4")
+    api("org.apache.httpcomponents.core5:httpcore5-reactive:5.4.4")
+
+    // Used by the streaming support of ApacheHttpClient5Transport
+    // MIT-0
+    // https://github.com/reactive-streams/reactive-streams-jvm
+    api("org.reactivestreams:reactive-streams:1.0.4")
+    // Apache 2.0
+    api("io.projectreactor:reactor-core:3.8.8")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -260,7 +275,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.184")
+    testImplementation("io.github.classgraph:classgraph:5.0.0")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -270,6 +285,14 @@ dependencies {
     // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
     testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
     testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
+
+    testImplementation("io.projectreactor", "reactor-test", "3.8.7")
+    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
+      exclude(group = "org.hamcrest")
+    }
+
+    testImplementation("org.opensearch:opensearch-testcontainers:4.1.1")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
 }
 
 licenseReport {
@@ -380,46 +403,4 @@ publishing {
             }
         }
     }
-}
-
-if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
-  val java21: SourceSet = sourceSets.create("java21") {
-    java {
-      compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-      runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-      srcDir("src/test/java11")
-      srcDir("src/test/java21")
-    }
-  }
-
-  configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
-  configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
-
-  dependencies {
-    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
-      exclude(group = "org.hamcrest")
-    }
-    testImplementation("org.opensearch:opensearch-testcontainers:4.1.0")
-    testImplementation("org.testcontainers:testcontainers:2.0.5")
-  }
-
-  tasks.named<JavaCompile>("compileJava21Java") {
-    targetCompatibility = JavaVersion.VERSION_21.toString()
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
-  }
-  
-  tasks.named<JavaCompile>("compileTestJava") {
-    targetCompatibility = JavaVersion.VERSION_21.toString()
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
- }
-  
-  tasks.named<Test>("integrationTest") {
-    testClassesDirs += java21.output.classesDirs
-    classpath = sourceSets["java21"].runtimeClasspath
- }
-  
-  tasks.named<Test>("unitTest") {
-    testClassesDirs += java21.output.classesDirs
-    classpath = sourceSets["java21"].runtimeClasspath
- }
 }

@@ -104,7 +104,7 @@ public final class Requests {
         }
 
         public JsonBodyBuilder method(final String method) {
-            this.method = Objects.requireNonNull(method, "headers cannot be null");
+            this.method = Objects.requireNonNull(method, "method cannot be null");
             return this;
         }
 

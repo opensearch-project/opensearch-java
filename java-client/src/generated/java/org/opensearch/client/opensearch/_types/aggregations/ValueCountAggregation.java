@@ -53,7 +53,6 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ValueCountAggregation extends FormattableMetricAggregation
     implements
-        AggregationVariant,
         ToCopyableBuilder<ValueCountAggregation.Builder, ValueCountAggregation> {
 
     // ---------------------------------------------------------------------------------------------
@@ -64,14 +63,6 @@ public class ValueCountAggregation extends FormattableMetricAggregation
 
     public static ValueCountAggregation of(Function<ValueCountAggregation.Builder, ObjectBuilder<ValueCountAggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.ValueCount;
     }
 
     // ---------------------------------------------------------------------------------------------

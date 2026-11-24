@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -73,15 +74,15 @@ public final class ExplainPolicyRequest extends RequestBase
     @Nonnull
     private final JsonData body;
 
-    @Nullable
-    private final String index;
+    @Nonnull
+    private final List<String> index;
 
     // ---------------------------------------------------------------------------------------------
 
     private ExplainPolicyRequest(Builder builder) {
         super(builder);
         this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
-        this.index = builder.index;
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
     }
 
     public static ExplainPolicyRequest of(Function<ExplainPolicyRequest.Builder, ObjectBuilder<ExplainPolicyRequest>> fn) {
@@ -97,10 +98,14 @@ public final class ExplainPolicyRequest extends RequestBase
     }
 
     /**
+     * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+     * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * <p>
      * API name: {@code index}
+     * </p>
      */
-    @Nullable
-    public final String index() {
+    @Nonnull
+    public final List<String> index() {
         return this.index;
     }
 
@@ -131,20 +136,20 @@ public final class ExplainPolicyRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExplainPolicyRequest> {
         private JsonData body;
         @Nullable
-        private String index;
+        private List<String> index;
 
         public Builder() {}
 
         private Builder(ExplainPolicyRequest o) {
             super(o);
             this.body = o.body;
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         private Builder(Builder o) {
             super(o);
             this.body = o.body;
-            this.index = o.index;
+            this.index = _listCopy(o.index);
         }
 
         @Override
@@ -169,11 +174,36 @@ public final class ExplainPolicyRequest extends RequestBase
         }
 
         /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
          * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder index(@Nullable String value) {
-            this.index = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        /**
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
             return this;
         }
 
@@ -217,7 +247,7 @@ public final class ExplainPolicyRequest extends RequestBase
 
             int propsSet = 0;
 
-            if (request.index() != null) propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
                 return "/_plugins/_ism/explain";
@@ -225,7 +255,7 @@ public final class ExplainPolicyRequest extends RequestBase
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/_plugins/_ism/explain/");
-                SimpleEndpoint.pathEncode(request.index, buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 return buf.toString();
             }
 

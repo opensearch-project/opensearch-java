@@ -649,6 +649,27 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getTemplate(new GetTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.modify_data_stream
+
+    /**
+     * Adds or removes backing indexes of a data stream with metadata-only actions. This is an experimental API.
+     */
+    public CompletableFuture<ModifyDataStreamResponse> modifyDataStream(ModifyDataStreamRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, ModifyDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Adds or removes backing indexes of a data stream with metadata-only actions. This is an experimental API.
+     *
+     * @param fn a function that initializes a builder to create the {@link ModifyDataStreamRequest}
+     */
+    public final CompletableFuture<ModifyDataStreamResponse> modifyDataStream(
+        Function<ModifyDataStreamRequest.Builder, ObjectBuilder<ModifyDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return modifyDataStream(fn.apply(new ModifyDataStreamRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.open
 
     /**

@@ -219,6 +219,30 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
     private final String mergesTotalTime;
 
     @Nullable
+    private final String mergesWarmerOngoingCount;
+
+    @Nullable
+    private final String mergesWarmerTotalBytesReceived;
+
+    @Nullable
+    private final String mergesWarmerTotalBytesSent;
+
+    @Nullable
+    private final String mergesWarmerTotalFailureCount;
+
+    @Nullable
+    private final String mergesWarmerTotalInvocations;
+
+    @Nullable
+    private final String mergesWarmerTotalReceiveTime;
+
+    @Nullable
+    private final String mergesWarmerTotalSendTime;
+
+    @Nullable
+    private final String mergesWarmerTotalTime;
+
+    @Nullable
     private final String name;
 
     @Nullable
@@ -327,6 +351,9 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
     private final String searchQueryCurrent;
 
     @Nullable
+    private final String searchQueryFailed;
+
+    @Nullable
     private final String searchQueryTime;
 
     @Nullable
@@ -340,6 +367,18 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
 
     @Nullable
     private final String searchScrollTotal;
+
+    @Nullable
+    private final String searchStartreeQueryCurrent;
+
+    @Nullable
+    private final String searchStartreeQueryFailed;
+
+    @Nullable
+    private final String searchStartreeQueryTime;
+
+    @Nullable
+    private final String searchStartreeQueryTotal;
 
     @Nullable
     private final String segmentsCount;
@@ -430,6 +469,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         this.mergesTotalDocs = builder.mergesTotalDocs;
         this.mergesTotalSize = builder.mergesTotalSize;
         this.mergesTotalTime = builder.mergesTotalTime;
+        this.mergesWarmerOngoingCount = builder.mergesWarmerOngoingCount;
+        this.mergesWarmerTotalBytesReceived = builder.mergesWarmerTotalBytesReceived;
+        this.mergesWarmerTotalBytesSent = builder.mergesWarmerTotalBytesSent;
+        this.mergesWarmerTotalFailureCount = builder.mergesWarmerTotalFailureCount;
+        this.mergesWarmerTotalInvocations = builder.mergesWarmerTotalInvocations;
+        this.mergesWarmerTotalReceiveTime = builder.mergesWarmerTotalReceiveTime;
+        this.mergesWarmerTotalSendTime = builder.mergesWarmerTotalSendTime;
+        this.mergesWarmerTotalTime = builder.mergesWarmerTotalTime;
         this.name = builder.name;
         this.nodeRole = builder.nodeRole;
         this.nodeRoles = builder.nodeRoles;
@@ -466,11 +513,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         this.searchPointInTimeTime = builder.searchPointInTimeTime;
         this.searchPointInTimeTotal = builder.searchPointInTimeTotal;
         this.searchQueryCurrent = builder.searchQueryCurrent;
+        this.searchQueryFailed = builder.searchQueryFailed;
         this.searchQueryTime = builder.searchQueryTime;
         this.searchQueryTotal = builder.searchQueryTotal;
         this.searchScrollCurrent = builder.searchScrollCurrent;
         this.searchScrollTime = builder.searchScrollTime;
         this.searchScrollTotal = builder.searchScrollTotal;
+        this.searchStartreeQueryCurrent = builder.searchStartreeQueryCurrent;
+        this.searchStartreeQueryFailed = builder.searchStartreeQueryFailed;
+        this.searchStartreeQueryTime = builder.searchStartreeQueryTime;
+        this.searchStartreeQueryTotal = builder.searchStartreeQueryTotal;
         this.segmentsCount = builder.segmentsCount;
         this.segmentsFixedBitsetMemory = builder.segmentsFixedBitsetMemory;
         this.segmentsIndexWriterMemory = builder.segmentsIndexWriterMemory;
@@ -1053,6 +1105,94 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * The number of currently ongoing merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.ongoing_count}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerOngoingCount() {
+        return this.mergesWarmerOngoingCount;
+    }
+
+    /**
+     * The total number of bytes received during merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_bytes_received}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalBytesReceived() {
+        return this.mergesWarmerTotalBytesReceived;
+    }
+
+    /**
+     * The total number of bytes sent during merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_bytes_sent}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalBytesSent() {
+        return this.mergesWarmerTotalBytesSent;
+    }
+
+    /**
+     * The total number of failed merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_failure_count}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalFailureCount() {
+        return this.mergesWarmerTotalFailureCount;
+    }
+
+    /**
+     * The total number of merge warmer invocations.
+     * <p>
+     * API name: {@code merges.warmer.total_invocations}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalInvocations() {
+        return this.mergesWarmerTotalInvocations;
+    }
+
+    /**
+     * The total time spent receiving data during merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_receive_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalReceiveTime() {
+        return this.mergesWarmerTotalReceiveTime;
+    }
+
+    /**
+     * The total time spent sending data during merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_send_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalSendTime() {
+        return this.mergesWarmerTotalSendTime;
+    }
+
+    /**
+     * The total time spent on merge warmer operations.
+     * <p>
+     * API name: {@code merges.warmer.total_time}
+     * </p>
+     */
+    @Nullable
+    public final String mergesWarmerTotalTime() {
+        return this.mergesWarmerTotalTime;
+    }
+
+    /**
      * API name: {@code name}
      */
     @Nullable
@@ -1427,6 +1567,17 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * The total number of failed query phase operations.
+     * <p>
+     * API name: {@code search.query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String searchQueryFailed() {
+        return this.searchQueryFailed;
+    }
+
+    /**
      * The time spent in query phase.
      * <p>
      * API name: {@code search.query_time}
@@ -1479,6 +1630,50 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
     @Nullable
     public final String searchScrollTotal() {
         return this.searchScrollTotal;
+    }
+
+    /**
+     * The number of currently running star-tree query operations.
+     * <p>
+     * API name: {@code search.startree_query_current}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryCurrent() {
+        return this.searchStartreeQueryCurrent;
+    }
+
+    /**
+     * The total number of failed star-tree query operations.
+     * <p>
+     * API name: {@code search.startree_query_failed}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryFailed() {
+        return this.searchStartreeQueryFailed;
+    }
+
+    /**
+     * The time spent in star-tree queries.
+     * <p>
+     * API name: {@code search.startree_query_time}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryTime() {
+        return this.searchStartreeQueryTime;
+    }
+
+    /**
+     * The total number of star-tree query operations.
+     * <p>
+     * API name: {@code search.startree_query_total}
+     * </p>
+     */
+    @Nullable
+    public final String searchStartreeQueryTotal() {
+        return this.searchStartreeQueryTotal;
     }
 
     /**
@@ -1876,6 +2071,46 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             generator.write(this.mergesTotalTime);
         }
 
+        if (this.mergesWarmerOngoingCount != null) {
+            generator.writeKey("merges.warmer.ongoing_count");
+            generator.write(this.mergesWarmerOngoingCount);
+        }
+
+        if (this.mergesWarmerTotalBytesReceived != null) {
+            generator.writeKey("merges.warmer.total_bytes_received");
+            generator.write(this.mergesWarmerTotalBytesReceived);
+        }
+
+        if (this.mergesWarmerTotalBytesSent != null) {
+            generator.writeKey("merges.warmer.total_bytes_sent");
+            generator.write(this.mergesWarmerTotalBytesSent);
+        }
+
+        if (this.mergesWarmerTotalFailureCount != null) {
+            generator.writeKey("merges.warmer.total_failure_count");
+            generator.write(this.mergesWarmerTotalFailureCount);
+        }
+
+        if (this.mergesWarmerTotalInvocations != null) {
+            generator.writeKey("merges.warmer.total_invocations");
+            generator.write(this.mergesWarmerTotalInvocations);
+        }
+
+        if (this.mergesWarmerTotalReceiveTime != null) {
+            generator.writeKey("merges.warmer.total_receive_time");
+            generator.write(this.mergesWarmerTotalReceiveTime);
+        }
+
+        if (this.mergesWarmerTotalSendTime != null) {
+            generator.writeKey("merges.warmer.total_send_time");
+            generator.write(this.mergesWarmerTotalSendTime);
+        }
+
+        if (this.mergesWarmerTotalTime != null) {
+            generator.writeKey("merges.warmer.total_time");
+            generator.write(this.mergesWarmerTotalTime);
+        }
+
         if (this.name != null) {
             generator.writeKey("name");
             generator.write(this.name);
@@ -2056,6 +2291,11 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             generator.write(this.searchQueryCurrent);
         }
 
+        if (this.searchQueryFailed != null) {
+            generator.writeKey("search.query_failed");
+            generator.write(this.searchQueryFailed);
+        }
+
         if (this.searchQueryTime != null) {
             generator.writeKey("search.query_time");
             generator.write(this.searchQueryTime);
@@ -2079,6 +2319,26 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         if (this.searchScrollTotal != null) {
             generator.writeKey("search.scroll_total");
             generator.write(this.searchScrollTotal);
+        }
+
+        if (this.searchStartreeQueryCurrent != null) {
+            generator.writeKey("search.startree_query_current");
+            generator.write(this.searchStartreeQueryCurrent);
+        }
+
+        if (this.searchStartreeQueryFailed != null) {
+            generator.writeKey("search.startree_query_failed");
+            generator.write(this.searchStartreeQueryFailed);
+        }
+
+        if (this.searchStartreeQueryTime != null) {
+            generator.writeKey("search.startree_query_time");
+            generator.write(this.searchStartreeQueryTime);
+        }
+
+        if (this.searchStartreeQueryTotal != null) {
+            generator.writeKey("search.startree_query_total");
+            generator.write(this.searchStartreeQueryTotal);
         }
 
         if (this.segmentsCount != null) {
@@ -2261,6 +2521,22 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         @Nullable
         private String mergesTotalTime;
         @Nullable
+        private String mergesWarmerOngoingCount;
+        @Nullable
+        private String mergesWarmerTotalBytesReceived;
+        @Nullable
+        private String mergesWarmerTotalBytesSent;
+        @Nullable
+        private String mergesWarmerTotalFailureCount;
+        @Nullable
+        private String mergesWarmerTotalInvocations;
+        @Nullable
+        private String mergesWarmerTotalReceiveTime;
+        @Nullable
+        private String mergesWarmerTotalSendTime;
+        @Nullable
+        private String mergesWarmerTotalTime;
+        @Nullable
         private String name;
         @Nullable
         private String nodeRole;
@@ -2333,6 +2609,8 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         @Nullable
         private String searchQueryCurrent;
         @Nullable
+        private String searchQueryFailed;
+        @Nullable
         private String searchQueryTime;
         @Nullable
         private String searchQueryTotal;
@@ -2342,6 +2620,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         private String searchScrollTime;
         @Nullable
         private String searchScrollTotal;
+        @Nullable
+        private String searchStartreeQueryCurrent;
+        @Nullable
+        private String searchStartreeQueryFailed;
+        @Nullable
+        private String searchStartreeQueryTime;
+        @Nullable
+        private String searchStartreeQueryTotal;
         @Nullable
         private String segmentsCount;
         @Nullable
@@ -2421,6 +2707,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.mergesTotalDocs = o.mergesTotalDocs;
             this.mergesTotalSize = o.mergesTotalSize;
             this.mergesTotalTime = o.mergesTotalTime;
+            this.mergesWarmerOngoingCount = o.mergesWarmerOngoingCount;
+            this.mergesWarmerTotalBytesReceived = o.mergesWarmerTotalBytesReceived;
+            this.mergesWarmerTotalBytesSent = o.mergesWarmerTotalBytesSent;
+            this.mergesWarmerTotalFailureCount = o.mergesWarmerTotalFailureCount;
+            this.mergesWarmerTotalInvocations = o.mergesWarmerTotalInvocations;
+            this.mergesWarmerTotalReceiveTime = o.mergesWarmerTotalReceiveTime;
+            this.mergesWarmerTotalSendTime = o.mergesWarmerTotalSendTime;
+            this.mergesWarmerTotalTime = o.mergesWarmerTotalTime;
             this.name = o.name;
             this.nodeRole = o.nodeRole;
             this.nodeRoles = o.nodeRoles;
@@ -2457,11 +2751,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.searchPointInTimeTime = o.searchPointInTimeTime;
             this.searchPointInTimeTotal = o.searchPointInTimeTotal;
             this.searchQueryCurrent = o.searchQueryCurrent;
+            this.searchQueryFailed = o.searchQueryFailed;
             this.searchQueryTime = o.searchQueryTime;
             this.searchQueryTotal = o.searchQueryTotal;
             this.searchScrollCurrent = o.searchScrollCurrent;
             this.searchScrollTime = o.searchScrollTime;
             this.searchScrollTotal = o.searchScrollTotal;
+            this.searchStartreeQueryCurrent = o.searchStartreeQueryCurrent;
+            this.searchStartreeQueryFailed = o.searchStartreeQueryFailed;
+            this.searchStartreeQueryTime = o.searchStartreeQueryTime;
+            this.searchStartreeQueryTotal = o.searchStartreeQueryTotal;
             this.segmentsCount = o.segmentsCount;
             this.segmentsFixedBitsetMemory = o.segmentsFixedBitsetMemory;
             this.segmentsIndexWriterMemory = o.segmentsIndexWriterMemory;
@@ -2529,6 +2828,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.mergesTotalDocs = o.mergesTotalDocs;
             this.mergesTotalSize = o.mergesTotalSize;
             this.mergesTotalTime = o.mergesTotalTime;
+            this.mergesWarmerOngoingCount = o.mergesWarmerOngoingCount;
+            this.mergesWarmerTotalBytesReceived = o.mergesWarmerTotalBytesReceived;
+            this.mergesWarmerTotalBytesSent = o.mergesWarmerTotalBytesSent;
+            this.mergesWarmerTotalFailureCount = o.mergesWarmerTotalFailureCount;
+            this.mergesWarmerTotalInvocations = o.mergesWarmerTotalInvocations;
+            this.mergesWarmerTotalReceiveTime = o.mergesWarmerTotalReceiveTime;
+            this.mergesWarmerTotalSendTime = o.mergesWarmerTotalSendTime;
+            this.mergesWarmerTotalTime = o.mergesWarmerTotalTime;
             this.name = o.name;
             this.nodeRole = o.nodeRole;
             this.nodeRoles = o.nodeRoles;
@@ -2565,11 +2872,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.searchPointInTimeTime = o.searchPointInTimeTime;
             this.searchPointInTimeTotal = o.searchPointInTimeTotal;
             this.searchQueryCurrent = o.searchQueryCurrent;
+            this.searchQueryFailed = o.searchQueryFailed;
             this.searchQueryTime = o.searchQueryTime;
             this.searchQueryTotal = o.searchQueryTotal;
             this.searchScrollCurrent = o.searchScrollCurrent;
             this.searchScrollTime = o.searchScrollTime;
             this.searchScrollTotal = o.searchScrollTotal;
+            this.searchStartreeQueryCurrent = o.searchStartreeQueryCurrent;
+            this.searchStartreeQueryFailed = o.searchStartreeQueryFailed;
+            this.searchStartreeQueryTime = o.searchStartreeQueryTime;
+            this.searchStartreeQueryTotal = o.searchStartreeQueryTotal;
             this.segmentsCount = o.segmentsCount;
             this.segmentsFixedBitsetMemory = o.segmentsFixedBitsetMemory;
             this.segmentsIndexWriterMemory = o.segmentsIndexWriterMemory;
@@ -3207,6 +3519,102 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The number of currently ongoing merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.ongoing_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerOngoingCount(@Nullable String value) {
+            this.mergesWarmerOngoingCount = value;
+            return this;
+        }
+
+        /**
+         * The total number of bytes received during merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_bytes_received}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalBytesReceived(@Nullable String value) {
+            this.mergesWarmerTotalBytesReceived = value;
+            return this;
+        }
+
+        /**
+         * The total number of bytes sent during merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_bytes_sent}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalBytesSent(@Nullable String value) {
+            this.mergesWarmerTotalBytesSent = value;
+            return this;
+        }
+
+        /**
+         * The total number of failed merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_failure_count}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalFailureCount(@Nullable String value) {
+            this.mergesWarmerTotalFailureCount = value;
+            return this;
+        }
+
+        /**
+         * The total number of merge warmer invocations.
+         * <p>
+         * API name: {@code merges.warmer.total_invocations}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalInvocations(@Nullable String value) {
+            this.mergesWarmerTotalInvocations = value;
+            return this;
+        }
+
+        /**
+         * The total time spent receiving data during merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_receive_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalReceiveTime(@Nullable String value) {
+            this.mergesWarmerTotalReceiveTime = value;
+            return this;
+        }
+
+        /**
+         * The total time spent sending data during merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_send_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalSendTime(@Nullable String value) {
+            this.mergesWarmerTotalSendTime = value;
+            return this;
+        }
+
+        /**
+         * The total time spent on merge warmer operations.
+         * <p>
+         * API name: {@code merges.warmer.total_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder mergesWarmerTotalTime(@Nullable String value) {
+            this.mergesWarmerTotalTime = value;
+            return this;
+        }
+
+        /**
          * API name: {@code name}
          */
         @Nonnull
@@ -3617,6 +4025,18 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The total number of failed query phase operations.
+         * <p>
+         * API name: {@code search.query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchQueryFailed(@Nullable String value) {
+            this.searchQueryFailed = value;
+            return this;
+        }
+
+        /**
          * The time spent in query phase.
          * <p>
          * API name: {@code search.query_time}
@@ -3673,6 +4093,54 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         @Nonnull
         public final Builder searchScrollTotal(@Nullable String value) {
             this.searchScrollTotal = value;
+            return this;
+        }
+
+        /**
+         * The number of currently running star-tree query operations.
+         * <p>
+         * API name: {@code search.startree_query_current}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryCurrent(@Nullable String value) {
+            this.searchStartreeQueryCurrent = value;
+            return this;
+        }
+
+        /**
+         * The total number of failed star-tree query operations.
+         * <p>
+         * API name: {@code search.startree_query_failed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryFailed(@Nullable String value) {
+            this.searchStartreeQueryFailed = value;
+            return this;
+        }
+
+        /**
+         * The time spent in star-tree queries.
+         * <p>
+         * API name: {@code search.startree_query_time}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryTime(@Nullable String value) {
+            this.searchStartreeQueryTime = value;
+            return this;
+        }
+
+        /**
+         * The total number of star-tree query operations.
+         * <p>
+         * API name: {@code search.startree_query_total}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchStartreeQueryTotal(@Nullable String value) {
+            this.searchStartreeQueryTotal = value;
             return this;
         }
 
@@ -3884,6 +4352,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         op.add(Builder::mergesTotalDocs, JsonpDeserializer.stringDeserializer(), "merges.total_docs");
         op.add(Builder::mergesTotalSize, JsonpDeserializer.stringDeserializer(), "merges.total_size");
         op.add(Builder::mergesTotalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time");
+        op.add(Builder::mergesWarmerOngoingCount, JsonpDeserializer.stringDeserializer(), "merges.warmer.ongoing_count");
+        op.add(Builder::mergesWarmerTotalBytesReceived, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_bytes_received");
+        op.add(Builder::mergesWarmerTotalBytesSent, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_bytes_sent");
+        op.add(Builder::mergesWarmerTotalFailureCount, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_failure_count");
+        op.add(Builder::mergesWarmerTotalInvocations, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_invocations");
+        op.add(Builder::mergesWarmerTotalReceiveTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_receive_time");
+        op.add(Builder::mergesWarmerTotalSendTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_send_time");
+        op.add(Builder::mergesWarmerTotalTime, JsonpDeserializer.stringDeserializer(), "merges.warmer.total_time");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::nodeRole, JsonpDeserializer.stringDeserializer(), "node.role");
         op.add(Builder::nodeRoles, JsonpDeserializer.stringDeserializer(), "node.roles");
@@ -3920,11 +4396,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         op.add(Builder::searchPointInTimeTime, JsonpDeserializer.stringDeserializer(), "search.point_in_time_time");
         op.add(Builder::searchPointInTimeTotal, JsonpDeserializer.stringDeserializer(), "search.point_in_time_total");
         op.add(Builder::searchQueryCurrent, JsonpDeserializer.stringDeserializer(), "search.query_current");
+        op.add(Builder::searchQueryFailed, JsonpDeserializer.stringDeserializer(), "search.query_failed");
         op.add(Builder::searchQueryTime, JsonpDeserializer.stringDeserializer(), "search.query_time");
         op.add(Builder::searchQueryTotal, JsonpDeserializer.stringDeserializer(), "search.query_total");
         op.add(Builder::searchScrollCurrent, JsonpDeserializer.stringDeserializer(), "search.scroll_current");
         op.add(Builder::searchScrollTime, JsonpDeserializer.stringDeserializer(), "search.scroll_time");
         op.add(Builder::searchScrollTotal, JsonpDeserializer.stringDeserializer(), "search.scroll_total");
+        op.add(Builder::searchStartreeQueryCurrent, JsonpDeserializer.stringDeserializer(), "search.startree_query_current");
+        op.add(Builder::searchStartreeQueryFailed, JsonpDeserializer.stringDeserializer(), "search.startree_query_failed");
+        op.add(Builder::searchStartreeQueryTime, JsonpDeserializer.stringDeserializer(), "search.startree_query_time");
+        op.add(Builder::searchStartreeQueryTotal, JsonpDeserializer.stringDeserializer(), "search.startree_query_total");
         op.add(Builder::segmentsCount, JsonpDeserializer.stringDeserializer(), "segments.count");
         op.add(Builder::segmentsFixedBitsetMemory, JsonpDeserializer.stringDeserializer(), "segments.fixed_bitset_memory");
         op.add(Builder::segmentsIndexWriterMemory, JsonpDeserializer.stringDeserializer(), "segments.index_writer_memory");
@@ -3994,6 +4475,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         result = 31 * result + Objects.hashCode(this.mergesTotalDocs);
         result = 31 * result + Objects.hashCode(this.mergesTotalSize);
         result = 31 * result + Objects.hashCode(this.mergesTotalTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerOngoingCount);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalBytesReceived);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalBytesSent);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalFailureCount);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalInvocations);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalReceiveTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalSendTime);
+        result = 31 * result + Objects.hashCode(this.mergesWarmerTotalTime);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.nodeRole);
         result = 31 * result + Objects.hashCode(this.nodeRoles);
@@ -4030,11 +4519,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
         result = 31 * result + Objects.hashCode(this.searchPointInTimeTime);
         result = 31 * result + Objects.hashCode(this.searchPointInTimeTotal);
         result = 31 * result + Objects.hashCode(this.searchQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.searchQueryFailed);
         result = 31 * result + Objects.hashCode(this.searchQueryTime);
         result = 31 * result + Objects.hashCode(this.searchQueryTotal);
         result = 31 * result + Objects.hashCode(this.searchScrollCurrent);
         result = 31 * result + Objects.hashCode(this.searchScrollTime);
         result = 31 * result + Objects.hashCode(this.searchScrollTotal);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryCurrent);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryFailed);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryTime);
+        result = 31 * result + Objects.hashCode(this.searchStartreeQueryTotal);
         result = 31 * result + Objects.hashCode(this.segmentsCount);
         result = 31 * result + Objects.hashCode(this.segmentsFixedBitsetMemory);
         result = 31 * result + Objects.hashCode(this.segmentsIndexWriterMemory);
@@ -4107,6 +4601,14 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             && Objects.equals(this.mergesTotalDocs, other.mergesTotalDocs)
             && Objects.equals(this.mergesTotalSize, other.mergesTotalSize)
             && Objects.equals(this.mergesTotalTime, other.mergesTotalTime)
+            && Objects.equals(this.mergesWarmerOngoingCount, other.mergesWarmerOngoingCount)
+            && Objects.equals(this.mergesWarmerTotalBytesReceived, other.mergesWarmerTotalBytesReceived)
+            && Objects.equals(this.mergesWarmerTotalBytesSent, other.mergesWarmerTotalBytesSent)
+            && Objects.equals(this.mergesWarmerTotalFailureCount, other.mergesWarmerTotalFailureCount)
+            && Objects.equals(this.mergesWarmerTotalInvocations, other.mergesWarmerTotalInvocations)
+            && Objects.equals(this.mergesWarmerTotalReceiveTime, other.mergesWarmerTotalReceiveTime)
+            && Objects.equals(this.mergesWarmerTotalSendTime, other.mergesWarmerTotalSendTime)
+            && Objects.equals(this.mergesWarmerTotalTime, other.mergesWarmerTotalTime)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.nodeRole, other.nodeRole)
             && Objects.equals(this.nodeRoles, other.nodeRoles)
@@ -4143,11 +4645,16 @@ public class NodesRecord implements PlainJsonSerializable, ToCopyableBuilder<Nod
             && Objects.equals(this.searchPointInTimeTime, other.searchPointInTimeTime)
             && Objects.equals(this.searchPointInTimeTotal, other.searchPointInTimeTotal)
             && Objects.equals(this.searchQueryCurrent, other.searchQueryCurrent)
+            && Objects.equals(this.searchQueryFailed, other.searchQueryFailed)
             && Objects.equals(this.searchQueryTime, other.searchQueryTime)
             && Objects.equals(this.searchQueryTotal, other.searchQueryTotal)
             && Objects.equals(this.searchScrollCurrent, other.searchScrollCurrent)
             && Objects.equals(this.searchScrollTime, other.searchScrollTime)
             && Objects.equals(this.searchScrollTotal, other.searchScrollTotal)
+            && Objects.equals(this.searchStartreeQueryCurrent, other.searchStartreeQueryCurrent)
+            && Objects.equals(this.searchStartreeQueryFailed, other.searchStartreeQueryFailed)
+            && Objects.equals(this.searchStartreeQueryTime, other.searchStartreeQueryTime)
+            && Objects.equals(this.searchStartreeQueryTotal, other.searchStartreeQueryTotal)
             && Objects.equals(this.segmentsCount, other.segmentsCount)
             && Objects.equals(this.segmentsFixedBitsetMemory, other.segmentsFixedBitsetMemory)
             && Objects.equals(this.segmentsIndexWriterMemory, other.segmentsIndexWriterMemory)

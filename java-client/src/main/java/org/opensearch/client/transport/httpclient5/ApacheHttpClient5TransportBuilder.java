@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
 import org.apache.hc.client5.http.auth.CredentialsProvider;
 import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.config.RequestConfig;
@@ -29,11 +28,9 @@ import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
 import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
-import org.apache.hc.core5.function.Factory;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
-import org.apache.hc.core5.reactor.ssl.TlsDetails;
 import org.apache.hc.core5.util.Timeout;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -72,6 +69,7 @@ public class ApacheHttpClient5TransportBuilder {
     private HttpClientConfigCallback httpClientConfigCallback;
     private RequestConfigCallback requestConfigCallback;
     private ConnectionConfigCallback connectionConfigCallback;
+    private boolean automaticRetriesDisabled = true;
     private String pathPrefix;
     private NodeSelector nodeSelector = NodeSelector.ANY;
     private boolean strictDeprecationMode = false;
@@ -160,6 +158,19 @@ public class ApacheHttpClient5TransportBuilder {
     public ApacheHttpClient5TransportBuilder setConnectionConfigCallback(ConnectionConfigCallback connectionConfigCallback) {
         Objects.requireNonNull(connectionConfigCallback, "connectionConfigCallback must not be null");
         this.connectionConfigCallback = connectionConfigCallback;
+        return this;
+    }
+
+    /**
+     * Whether the http client should automatically retry requests. Automatic retries are disabled
+     * by default, on par with the previous 4.x http client.
+     *
+     * When enabled, the http client's default retry strategy is used, and a custom
+     * {@link org.apache.hc.client5.http.HttpRequestRetryStrategy} can be set through
+     * {@link HttpClientConfigCallback}.
+     */
+    public ApacheHttpClient5TransportBuilder setAutomaticRetriesDisabled(boolean automaticRetriesDisabled) {
+        this.automaticRetriesDisabled = automaticRetriesDisabled;
         return this;
     }
 
@@ -357,16 +368,7 @@ public class ApacheHttpClient5TransportBuilder {
         }
 
         try {
-            final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
-                .setSslContext(SSLContext.getDefault())
-                // See https://issues.apache.org/jira/browse/HTTPCLIENT-2219
-                .setTlsDetailsFactory(new Factory<SSLEngine, TlsDetails>() {
-                    @Override
-                    public TlsDetails create(final SSLEngine sslEngine) {
-                        return new TlsDetails(sslEngine.getSession(), sslEngine.getApplicationProtocol());
-                    }
-                })
-                .build();
+            final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create().setSslContext(SSLContext.getDefault()).build();
 
             final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
                 .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
@@ -378,8 +380,11 @@ public class ApacheHttpClient5TransportBuilder {
             HttpAsyncClientBuilder httpClientBuilder = HttpAsyncClientBuilder.create()
                 .setDefaultRequestConfig(requestConfigBuilder.build())
                 .setConnectionManager(connectionManager)
-                .setTargetAuthenticationStrategy(DefaultAuthenticationStrategy.INSTANCE)
-                .disableAutomaticRetries();
+                .setTargetAuthenticationStrategy(DefaultAuthenticationStrategy.INSTANCE);
+            if (automaticRetriesDisabled) {
+                // Keep behavior on par with the 4.x http client, which had no automatic retries
+                httpClientBuilder = httpClientBuilder.disableAutomaticRetries();
+            }
             if (httpClientConfigCallback != null) {
                 httpClientBuilder = httpClientConfigCallback.customizeHttpClient(httpClientBuilder);
             }

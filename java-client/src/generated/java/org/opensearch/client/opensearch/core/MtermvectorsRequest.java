@@ -65,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: _global.mtermvectors.Request
 
 /**
- * Returns multiple termvectors in one request.
+ * Returns multiple term vectors in one request.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

@@ -47,17 +47,19 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WeightedAverageAggregation extends AggregationBase
+public class WeightedAverageAggregation
     implements
-        AggregationVariant,
+        PlainJsonSerializable,
         ToCopyableBuilder<WeightedAverageAggregation.Builder, WeightedAverageAggregation> {
 
     @Nullable
@@ -75,7 +77,6 @@ public class WeightedAverageAggregation extends AggregationBase
     // ---------------------------------------------------------------------------------------------
 
     private WeightedAverageAggregation(Builder builder) {
-        super(builder);
         this.format = builder.format;
         this.value = builder.value;
         this.valueType = builder.valueType;
@@ -86,14 +87,6 @@ public class WeightedAverageAggregation extends AggregationBase
         Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> fn
     ) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * {@link Aggregation} variant kind.
-     */
-    @Override
-    public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.WeightedAvg;
     }
 
     /**
@@ -131,8 +124,17 @@ public class WeightedAverageAggregation extends AggregationBase
         return this.weight;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.format != null) {
             generator.writeKey("format");
             generator.write(this.format);
@@ -170,9 +172,7 @@ public class WeightedAverageAggregation extends AggregationBase
     /**
      * Builder for {@link WeightedAverageAggregation}.
      */
-    public static class Builder extends AggregationBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, WeightedAverageAggregation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, WeightedAverageAggregation> {
         @Nullable
         private String format;
         @Nullable
@@ -185,7 +185,6 @@ public class WeightedAverageAggregation extends AggregationBase
         public Builder() {}
 
         private Builder(WeightedAverageAggregation o) {
-            super(o);
             this.format = o.format;
             this.value = o.value;
             this.valueType = o.valueType;
@@ -193,7 +192,6 @@ public class WeightedAverageAggregation extends AggregationBase
         }
 
         private Builder(Builder o) {
-            super(o);
             this.format = o.format;
             this.value = o.value;
             this.valueType = o.valueType;
@@ -204,12 +202,6 @@ public class WeightedAverageAggregation extends AggregationBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -292,7 +284,6 @@ public class WeightedAverageAggregation extends AggregationBase
     );
 
     protected static void setupWeightedAverageAggregationDeserializer(ObjectDeserializer<WeightedAverageAggregation.Builder> op) {
-        setupAggregationBaseDeserializer(op);
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::value, WeightedAverageValue._DESERIALIZER, "value");
         op.add(Builder::valueType, ValueType._DESERIALIZER, "value_type");
@@ -301,7 +292,7 @@ public class WeightedAverageAggregation extends AggregationBase
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.value);
         result = 31 * result + Objects.hashCode(this.valueType);
@@ -311,9 +302,6 @@ public class WeightedAverageAggregation extends AggregationBase
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         WeightedAverageAggregation other = (WeightedAverageAggregation) o;
