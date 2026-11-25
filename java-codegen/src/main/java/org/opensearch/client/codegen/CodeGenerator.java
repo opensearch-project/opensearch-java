@@ -61,8 +61,6 @@ public class CodeGenerator {
                     isOneOf(
                         "chunk_model",
                         "execute_algorithm",
-                        "predict",
-                        "predict_model",
                         "search_agents",
                         "search_connectors",
                         "search_memory",

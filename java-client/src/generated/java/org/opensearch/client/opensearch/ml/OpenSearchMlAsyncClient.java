@@ -942,6 +942,45 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
         return loadModel(fn.apply(new LoadModelRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.predict
+
+    /**
+     * Predicts new data with trained model.
+     */
+    public CompletableFuture<PredictResponse> predict(PredictRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PredictRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Predicts new data with trained model.
+     *
+     * @param fn a function that initializes a builder to create the {@link PredictRequest}
+     */
+    public final CompletableFuture<PredictResponse> predict(Function<PredictRequest.Builder, ObjectBuilder<PredictRequest>> fn)
+        throws IOException, OpenSearchException {
+        return predict(fn.apply(new PredictRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.predict_model
+
+    /**
+     * Predicts a model.
+     */
+    public CompletableFuture<PredictModelResponse> predictModel(PredictModelRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PredictModelRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Predicts a model.
+     *
+     * @param fn a function that initializes a builder to create the {@link PredictModelRequest}
+     */
+    public final CompletableFuture<PredictModelResponse> predictModel(
+        Function<PredictModelRequest.Builder, ObjectBuilder<PredictModelRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return predictModel(fn.apply(new PredictModelRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.predict_model_stream
 
     /**
