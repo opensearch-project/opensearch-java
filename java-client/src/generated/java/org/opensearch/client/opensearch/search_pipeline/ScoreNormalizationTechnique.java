@@ -42,12 +42,18 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: search_pipeline.ScoreNormalizationTechnique
 
+/**
+ * The score normalization technique. <code>z_score</code> is available since OpenSearch 3.0 and can only be combined with the
+ * <code>arithmetic_mean</code> combination technique.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ScoreNormalizationTechnique implements JsonEnum {
     L2("l2"),
 
-    MinMax("min_max");
+    MinMax("min_max"),
+
+    ZScore("z_score");
 
     private final String jsonValue;
 

@@ -37,16 +37,17 @@
 package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -61,13 +62,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoSearch.Builder, NodeInfoSearch> {
 
-    @Nonnull
+    @Nullable
     private final NodeInfoSearchRemote remote;
 
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSearch(Builder builder) {
-        this.remote = ApiTypeHelper.requireNonNull(builder.remote, this, "remote");
+        this.remote = builder.remote;
     }
 
     public static NodeInfoSearch of(Function<NodeInfoSearch.Builder, ObjectBuilder<NodeInfoSearch>> fn) {
@@ -75,9 +76,9 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code remote}
+     * API name: {@code remote}
      */
-    @Nonnull
+    @Nullable
     public final NodeInfoSearchRemote remote() {
         return this.remote;
     }
@@ -93,8 +94,10 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("remote");
-        this.remote.serialize(generator, mapper);
+        if (this.remote != null) {
+            generator.writeKey("remote");
+            this.remote.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -114,6 +117,7 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
      * Builder for {@link NodeInfoSearch}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSearch> {
+        @Nullable
         private NodeInfoSearchRemote remote;
 
         public Builder() {}
@@ -133,16 +137,16 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code remote}
+         * API name: {@code remote}
          */
         @Nonnull
-        public final Builder remote(NodeInfoSearchRemote value) {
+        public final Builder remote(@Nullable NodeInfoSearchRemote value) {
             this.remote = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code remote}
+         * API name: {@code remote}
          */
         @Nonnull
         public final Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
@@ -180,7 +184,7 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.remote.hashCode();
+        result = 31 * result + Objects.hashCode(this.remote);
         return result;
     }
 
@@ -189,6 +193,6 @@ public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeInfoSearch other = (NodeInfoSearch) o;
-        return this.remote.equals(other.remote);
+        return Objects.equals(this.remote, other.remote);
     }
 }

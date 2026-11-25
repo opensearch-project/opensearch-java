@@ -248,7 +248,10 @@ public class NodeStats implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     }
 
     /**
+     * The amount of native memory used by loaded graphs, in kilobytes.
+     * <p>
      * API name: {@code graph_memory_usage}
+     * </p>
      */
     @Nullable
     public final Long graphMemoryUsage() {
@@ -456,7 +459,10 @@ public class NodeStats implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     }
 
     /**
+     * The amount of native memory used by training data, in kilobytes.
+     * <p>
      * API name: {@code training_memory_usage}
+     * </p>
      */
     @Nullable
     public final Long trainingMemoryUsage() {
@@ -880,7 +886,10 @@ public class NodeStats implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The amount of native memory used by loaded graphs, in kilobytes.
+         * <p>
          * API name: {@code graph_memory_usage}
+         * </p>
          */
         @Nonnull
         public final Builder graphMemoryUsage(@Nullable Long value) {
@@ -1149,7 +1158,10 @@ public class NodeStats implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The amount of native memory used by training data, in kilobytes.
+         * <p>
          * API name: {@code training_memory_usage}
+         * </p>
          */
         @Nonnull
         public final Builder trainingMemoryUsage(@Nullable Long value) {

@@ -56,7 +56,7 @@ public abstract class Metadata implements PlainJsonSerializable {
     private final String id;
 
     @Nullable
-    private final Number primaryTerm;
+    private final Long primaryTerm;
 
     @Nullable
     private final Long seqNo;
@@ -88,7 +88,7 @@ public abstract class Metadata implements PlainJsonSerializable {
      * </p>
      */
     @Nullable
-    public final Number primaryTerm() {
+    public final Long primaryTerm() {
         return this.primaryTerm;
     }
 
@@ -126,7 +126,7 @@ public abstract class Metadata implements PlainJsonSerializable {
 
         if (this.primaryTerm != null) {
             generator.writeKey("_primary_term");
-            generator.write(this.primaryTerm.doubleValue());
+            generator.write(this.primaryTerm);
         }
 
         if (this.seqNo != null) {
@@ -146,7 +146,7 @@ public abstract class Metadata implements PlainJsonSerializable {
         @Nullable
         private String id;
         @Nullable
-        private Number primaryTerm;
+        private Long primaryTerm;
         @Nullable
         private Long seqNo;
         @Nullable
@@ -187,7 +187,7 @@ public abstract class Metadata implements PlainJsonSerializable {
          * </p>
          */
         @Nonnull
-        public final BuilderT primaryTerm(@Nullable Number value) {
+        public final BuilderT primaryTerm(@Nullable Long value) {
             this.primaryTerm = value;
             return self();
         }
@@ -215,7 +215,7 @@ public abstract class Metadata implements PlainJsonSerializable {
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetadataDeserializer(ObjectDeserializer<BuilderT> op) {
         op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
-        op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+        op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
         op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
         op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
     }

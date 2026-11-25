@@ -45,13 +45,16 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.SortOrder;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -71,18 +74,63 @@ public final class ExplainPolicyRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<ExplainPolicyRequest.Builder, ExplainPolicyRequest> {
 
-    @Nonnull
-    private final JsonData body;
+    @Nullable
+    private final Time clusterManagerTimeout;
+
+    @Nullable
+    private final ExplainFilter filter;
+
+    @Nullable
+    private final Integer from;
 
     @Nonnull
     private final List<String> index;
+
+    @Nullable
+    private final Boolean local;
+
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
+
+    @Nullable
+    private final String queryString;
+
+    @Nullable
+    private final Boolean showPolicy;
+
+    @Nullable
+    private final Integer size;
+
+    @Nullable
+    private final String sortField;
+
+    @Nullable
+    private final SortOrder sortOrder;
+
+    @Nullable
+    private final String type;
+
+    @Nullable
+    private final Boolean validateAction;
 
     // ---------------------------------------------------------------------------------------------
 
     private ExplainPolicyRequest(Builder builder) {
         super(builder);
-        this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.filter = builder.filter;
+        this.from = builder.from;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
+        this.local = builder.local;
+        this.masterTimeout = builder.masterTimeout;
+        this.queryString = builder.queryString;
+        this.showPolicy = builder.showPolicy;
+        this.size = builder.size;
+        this.sortField = builder.sortField;
+        this.sortOrder = builder.sortOrder;
+        this.type = builder.type;
+        this.validateAction = builder.validateAction;
     }
 
     public static ExplainPolicyRequest of(Function<ExplainPolicyRequest.Builder, ObjectBuilder<ExplainPolicyRequest>> fn) {
@@ -90,11 +138,33 @@ public final class ExplainPolicyRequest extends RequestBase
     }
 
     /**
-     * Required - Request body.
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
      */
-    @Nonnull
-    public final JsonData body() {
-        return this.body;
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final ExplainFilter filter() {
+        return this.filter;
+    }
+
+    /**
+     * The starting index of the managed indexes to return.
+     * <p>
+     * API name: {@code from}
+     * </p>
+     */
+    @Nullable
+    public final Integer from() {
+        return this.from;
     }
 
     /**
@@ -110,11 +180,120 @@ public final class ExplainPolicyRequest extends RequestBase
     }
 
     /**
-     * Serialize this value to JSON.
+     * Whether to return information from the local node only instead of from the cluster manager node.
+     * <p>
+     * API name: {@code local}
+     * </p>
+     */
+    @Nullable
+    public final Boolean local() {
+        return this.local;
+    }
+
+    /**
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code master_timeout}
+     * </p>
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
+
+    /**
+     * A query string that filters the managed indexes.
+     * <p>
+     * API name: {@code queryString}
+     * </p>
+     */
+    @Nullable
+    public final String queryString() {
+        return this.queryString;
+    }
+
+    /**
+     * Whether to include the policy of each managed index in the response.
+     * <p>
+     * API name: {@code show_policy}
+     * </p>
+     */
+    @Nullable
+    public final Boolean showPolicy() {
+        return this.showPolicy;
+    }
+
+    /**
+     * The number of managed indexes to return.
+     * <p>
+     * API name: {@code size}
+     * </p>
+     */
+    @Nullable
+    public final Integer size() {
+        return this.size;
+    }
+
+    /**
+     * The field to sort the managed indexes by.
+     * <p>
+     * API name: {@code sortField}
+     * </p>
+     */
+    @Nullable
+    public final String sortField() {
+        return this.sortField;
+    }
+
+    /**
+     * The sort order of the managed indexes.
+     * <p>
+     * API name: {@code sortOrder}
+     * </p>
+     */
+    @Nullable
+    public final SortOrder sortOrder() {
+        return this.sortOrder;
+    }
+
+    /**
+     * The type of the index metadata provider.
+     * <p>
+     * API name: {@code type}
+     * </p>
+     */
+    @Nullable
+    public final String type() {
+        return this.type;
+    }
+
+    /**
+     * Whether to include the validation result of the current action of each managed index in the response.
+     * <p>
+     * API name: {@code validate_action}
+     * </p>
+     */
+    @Nullable
+    public final Boolean validateAction() {
+        return this.validateAction;
+    }
+
+    /**
+     * Serialize this object to JSON.
      */
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        this.body.serialize(generator, mapper);
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -134,22 +313,67 @@ public final class ExplainPolicyRequest extends RequestBase
      * Builder for {@link ExplainPolicyRequest}.
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExplainPolicyRequest> {
-        private JsonData body;
+        @Nullable
+        private Time clusterManagerTimeout;
+        @Nullable
+        private ExplainFilter filter;
+        @Nullable
+        private Integer from;
         @Nullable
         private List<String> index;
+        @Nullable
+        private Boolean local;
+        @Nullable
+        private Time masterTimeout;
+        @Nullable
+        private String queryString;
+        @Nullable
+        private Boolean showPolicy;
+        @Nullable
+        private Integer size;
+        @Nullable
+        private String sortField;
+        @Nullable
+        private SortOrder sortOrder;
+        @Nullable
+        private String type;
+        @Nullable
+        private Boolean validateAction;
 
         public Builder() {}
 
         private Builder(ExplainPolicyRequest o) {
             super(o);
-            this.body = o.body;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.filter = o.filter;
+            this.from = o.from;
             this.index = _listCopy(o.index);
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.queryString = o.queryString;
+            this.showPolicy = o.showPolicy;
+            this.size = o.size;
+            this.sortField = o.sortField;
+            this.sortOrder = o.sortOrder;
+            this.type = o.type;
+            this.validateAction = o.validateAction;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.body = o.body;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.filter = o.filter;
+            this.from = o.from;
             this.index = _listCopy(o.index);
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.queryString = o.queryString;
+            this.showPolicy = o.showPolicy;
+            this.size = o.size;
+            this.sortField = o.sortField;
+            this.sortOrder = o.sortOrder;
+            this.type = o.type;
+            this.validateAction = o.validateAction;
         }
 
         @Override
@@ -165,11 +389,54 @@ public final class ExplainPolicyRequest extends RequestBase
         }
 
         /**
-         * Required - Request body.
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
          */
         @Nonnull
-        public final Builder body(JsonData value) {
-            this.body = value;
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * API name: {@code filter}
+         */
+        @Nonnull
+        public final Builder filter(@Nullable ExplainFilter value) {
+            this.filter = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code filter}
+         */
+        @Nonnull
+        public final Builder filter(Function<ExplainFilter.Builder, ObjectBuilder<ExplainFilter>> fn) {
+            return filter(fn.apply(new ExplainFilter.Builder()).build());
+        }
+
+        /**
+         * The starting index of the managed indexes to return.
+         * <p>
+         * API name: {@code from}
+         * </p>
+         */
+        @Nonnull
+        public final Builder from(@Nullable Integer value) {
+            this.from = value;
             return this;
         }
 
@@ -208,6 +475,127 @@ public final class ExplainPolicyRequest extends RequestBase
         }
 
         /**
+         * Whether to return information from the local node only instead of from the cluster manager node.
+         * <p>
+         * API name: {@code local}
+         * </p>
+         */
+        @Nonnull
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * A query string that filters the managed indexes.
+         * <p>
+         * API name: {@code queryString}
+         * </p>
+         */
+        @Nonnull
+        public final Builder queryString(@Nullable String value) {
+            this.queryString = value;
+            return this;
+        }
+
+        /**
+         * Whether to include the policy of each managed index in the response.
+         * <p>
+         * API name: {@code show_policy}
+         * </p>
+         */
+        @Nonnull
+        public final Builder showPolicy(@Nullable Boolean value) {
+            this.showPolicy = value;
+            return this;
+        }
+
+        /**
+         * The number of managed indexes to return.
+         * <p>
+         * API name: {@code size}
+         * </p>
+         */
+        @Nonnull
+        public final Builder size(@Nullable Integer value) {
+            this.size = value;
+            return this;
+        }
+
+        /**
+         * The field to sort the managed indexes by.
+         * <p>
+         * API name: {@code sortField}
+         * </p>
+         */
+        @Nonnull
+        public final Builder sortField(@Nullable String value) {
+            this.sortField = value;
+            return this;
+        }
+
+        /**
+         * The sort order of the managed indexes.
+         * <p>
+         * API name: {@code sortOrder}
+         * </p>
+         */
+        @Nonnull
+        public final Builder sortOrder(@Nullable SortOrder value) {
+            this.sortOrder = value;
+            return this;
+        }
+
+        /**
+         * The type of the index metadata provider.
+         * <p>
+         * API name: {@code type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder type(@Nullable String value) {
+            this.type = value;
+            return this;
+        }
+
+        /**
+         * Whether to include the validation result of the current action of each managed index in the response.
+         * <p>
+         * API name: {@code validate_action}
+         * </p>
+         */
+        @Nonnull
+        public final Builder validateAction(@Nullable Boolean value) {
+            this.validateAction = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link ExplainPolicyRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -223,17 +611,57 @@ public final class ExplainPolicyRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
-    public static final JsonpDeserializer<ExplainPolicyRequest> _DESERIALIZER = createExplainPolicyRequestDeserializer();
+    /**
+     * Json deserializer for {@link ExplainPolicyRequest}
+     */
+    public static final JsonpDeserializer<ExplainPolicyRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExplainPolicyRequest::setupExplainPolicyRequestDeserializer
+    );
 
-    protected static JsonpDeserializer<ExplainPolicyRequest> createExplainPolicyRequestDeserializer() {
-        JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
-        return JsonpDeserializer.of(
-            valueDeserializer.acceptedEvents(),
-            (parser, mapper) -> new Builder().body(valueDeserializer.deserialize(parser, mapper)).build()
-        );
+    protected static void setupExplainPolicyRequestDeserializer(ObjectDeserializer<ExplainPolicyRequest.Builder> op) {
+        op.add(Builder::filter, ExplainFilter._DESERIALIZER, "filter");
     }
 
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.from != null) {
+            params.put("from", String.valueOf(this.from));
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.queryString != null) {
+            params.put("queryString", this.queryString);
+        }
+        if (this.showPolicy != null) {
+            params.put("show_policy", String.valueOf(this.showPolicy));
+        }
+        if (this.size != null) {
+            params.put("size", String.valueOf(this.size));
+        }
+        if (this.sortField != null) {
+            params.put("sortField", this.sortField);
+        }
+        if (this.sortOrder != null) {
+            params.put("sortOrder", this.sortOrder.jsonValue());
+        }
+        if (this.type != null) {
+            params.put("type", this.type);
+        }
+        if (this.validateAction != null) {
+            params.put("validate_action", String.valueOf(this.validateAction));
+        }
+    }
 
     /**
      * Endpoint "{@code ism.explain_policy}".
@@ -275,8 +703,19 @@ public final class ExplainPolicyRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.body.hashCode();
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.filter);
+        result = 31 * result + Objects.hashCode(this.from);
         result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.local);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.queryString);
+        result = 31 * result + Objects.hashCode(this.showPolicy);
+        result = 31 * result + Objects.hashCode(this.size);
+        result = 31 * result + Objects.hashCode(this.sortField);
+        result = 31 * result + Objects.hashCode(this.sortOrder);
+        result = 31 * result + Objects.hashCode(this.type);
+        result = 31 * result + Objects.hashCode(this.validateAction);
         return result;
     }
 
@@ -285,6 +724,18 @@ public final class ExplainPolicyRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ExplainPolicyRequest other = (ExplainPolicyRequest) o;
-        return this.body.equals(other.body) && Objects.equals(this.index, other.index);
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.filter, other.filter)
+            && Objects.equals(this.from, other.from)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.local, other.local)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.queryString, other.queryString)
+            && Objects.equals(this.showPolicy, other.showPolicy)
+            && Objects.equals(this.size, other.size)
+            && Objects.equals(this.sortField, other.sortField)
+            && Objects.equals(this.sortOrder, other.sortOrder)
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.validateAction, other.validateAction);
     }
 }

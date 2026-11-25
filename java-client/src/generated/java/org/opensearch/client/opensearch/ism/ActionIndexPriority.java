@@ -37,17 +37,16 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -59,13 +58,12 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBuilder<ActionIndexPriority.Builder, ActionIndexPriority> {
 
-    @Nullable
-    private final Number priority;
+    private final int priority;
 
     // ---------------------------------------------------------------------------------------------
 
     private ActionIndexPriority(Builder builder) {
-        this.priority = builder.priority;
+        this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
     }
 
     public static ActionIndexPriority of(Function<ActionIndexPriority.Builder, ObjectBuilder<ActionIndexPriority>> fn) {
@@ -73,13 +71,12 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * The priority to set for the index.
+     * Required - The priority to set for the index.
      * <p>
      * API name: {@code priority}
      * </p>
      */
-    @Nullable
-    public final Number priority() {
+    public final int priority() {
         return this.priority;
     }
 
@@ -94,10 +91,8 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.priority != null) {
-            generator.writeKey("priority");
-            generator.write(this.priority.doubleValue());
-        }
+        generator.writeKey("priority");
+        generator.write(this.priority);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -117,8 +112,7 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
      * Builder for {@link ActionIndexPriority}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ActionIndexPriority> {
-        @Nullable
-        private Number priority;
+        private Integer priority;
 
         public Builder() {}
 
@@ -137,13 +131,13 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * The priority to set for the index.
+         * Required - The priority to set for the index.
          * <p>
          * API name: {@code priority}
          * </p>
          */
         @Nonnull
-        public final Builder priority(@Nullable Number value) {
+        public final Builder priority(int value) {
             this.priority = value;
             return this;
         }
@@ -173,13 +167,13 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
     );
 
     protected static void setupActionIndexPriorityDeserializer(ObjectDeserializer<ActionIndexPriority.Builder> op) {
-        op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
+        op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.priority);
+        result = 31 * result + Integer.hashCode(this.priority);
         return result;
     }
 
@@ -188,6 +182,6 @@ public class ActionIndexPriority implements PlainJsonSerializable, ToCopyableBui
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ActionIndexPriority other = (ActionIndexPriority) o;
-        return Objects.equals(this.priority, other.priority);
+        return this.priority == other.priority;
     }
 }

@@ -67,6 +67,9 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
     @Nullable
     private final Boolean detailed;
 
+    @Nullable
+    private final Integer limit;
+
     @Nonnull
     private final List<String> nodes;
 
@@ -82,6 +85,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         super(builder);
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
         this.detailed = builder.detailed;
+        this.limit = builder.limit;
         this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
         this.parentTaskId = builder.parentTaskId;
         this.time = builder.time;
@@ -111,6 +115,17 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
     @Nullable
     public final Boolean detailed() {
         return this.detailed;
+    }
+
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
     }
 
     /**
@@ -171,6 +186,8 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         @Nullable
         private Boolean detailed;
         @Nullable
+        private Integer limit;
+        @Nullable
         private List<String> nodes;
         @Nullable
         private String parentTaskId;
@@ -183,6 +200,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
             super(o);
             this.actions = _listCopy(o.actions);
             this.detailed = o.detailed;
+            this.limit = o.limit;
             this.nodes = _listCopy(o.nodes);
             this.parentTaskId = o.parentTaskId;
             this.time = o.time;
@@ -192,6 +210,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
             super(o);
             this.actions = _listCopy(o.actions);
             this.detailed = o.detailed;
+            this.limit = o.limit;
             this.nodes = _listCopy(o.nodes);
             this.parentTaskId = o.parentTaskId;
             this.time = o.time;
@@ -250,6 +269,18 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         @Nonnull
         public final Builder detailed(@Nullable Boolean value) {
             this.detailed = value;
+            return this;
+        }
+
+        /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
             return this;
         }
 
@@ -339,6 +370,9 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         if (this.detailed != null) {
             params.put("detailed", String.valueOf(this.detailed));
         }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
+        }
         if (ApiTypeHelper.isDefined(this.nodes)) {
             params.put("nodes", String.join(",", this.nodes));
         }
@@ -374,6 +408,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         int result = 17;
         result = 31 * result + Objects.hashCode(this.actions);
         result = 31 * result + Objects.hashCode(this.detailed);
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.nodes);
         result = 31 * result + Objects.hashCode(this.parentTaskId);
         result = 31 * result + Objects.hashCode(this.time);
@@ -387,6 +422,7 @@ public final class TasksRequest extends CatRequestBase implements ToCopyableBuil
         TasksRequest other = (TasksRequest) o;
         return Objects.equals(this.actions, other.actions)
             && Objects.equals(this.detailed, other.detailed)
+            && Objects.equals(this.limit, other.limit)
             && Objects.equals(this.nodes, other.nodes)
             && Objects.equals(this.parentTaskId, other.parentTaskId)
             && Objects.equals(this.time, other.time);

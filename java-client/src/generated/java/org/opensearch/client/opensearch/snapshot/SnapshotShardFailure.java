@@ -63,13 +63,16 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
     private final String index;
 
     @Nullable
+    private final String indexUuid;
+
+    @Nullable
     private final String nodeId;
 
     @Nullable
     private final String reason;
 
     @Nullable
-    private final String shardId;
+    private final Integer shardId;
 
     @Nullable
     private final String status;
@@ -78,6 +81,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
 
     private SnapshotShardFailure(Builder builder) {
         this.index = builder.index;
+        this.indexUuid = builder.indexUuid;
         this.nodeId = builder.nodeId;
         this.reason = builder.reason;
         this.shardId = builder.shardId;
@@ -97,6 +101,18 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
     @Nullable
     public final String index() {
         return this.index;
+    }
+
+    /**
+     * The name of the index containing the failed shard. Despite the field name, the server writes the index name here rather than a UUID,
+     * so the value matches <code>index</code>.
+     * <p>
+     * API name: {@code index_uuid}
+     * </p>
+     */
+    @Nullable
+    public final String indexUuid() {
+        return this.indexUuid;
     }
 
     /**
@@ -128,7 +144,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
      * </p>
      */
     @Nullable
-    public final String shardId() {
+    public final Integer shardId() {
         return this.shardId;
     }
 
@@ -157,6 +173,11 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
+        }
+
+        if (this.indexUuid != null) {
+            generator.writeKey("index_uuid");
+            generator.write(this.indexUuid);
         }
 
         if (this.nodeId != null) {
@@ -200,11 +221,13 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
         @Nullable
         private String index;
         @Nullable
+        private String indexUuid;
+        @Nullable
         private String nodeId;
         @Nullable
         private String reason;
         @Nullable
-        private String shardId;
+        private Integer shardId;
         @Nullable
         private String status;
 
@@ -212,6 +235,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
 
         private Builder(SnapshotShardFailure o) {
             this.index = o.index;
+            this.indexUuid = o.indexUuid;
             this.nodeId = o.nodeId;
             this.reason = o.reason;
             this.shardId = o.shardId;
@@ -220,6 +244,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
 
         private Builder(Builder o) {
             this.index = o.index;
+            this.indexUuid = o.indexUuid;
             this.nodeId = o.nodeId;
             this.reason = o.reason;
             this.shardId = o.shardId;
@@ -241,6 +266,19 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
         @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
+            return this;
+        }
+
+        /**
+         * The name of the index containing the failed shard. Despite the field name, the server writes the index name here rather than a
+         * UUID, so the value matches <code>index</code>.
+         * <p>
+         * API name: {@code index_uuid}
+         * </p>
+         */
+        @Nonnull
+        public final Builder indexUuid(@Nullable String value) {
+            this.indexUuid = value;
             return this;
         }
 
@@ -275,7 +313,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
          * </p>
          */
         @Nonnull
-        public final Builder shardId(@Nullable String value) {
+        public final Builder shardId(@Nullable Integer value) {
             this.shardId = value;
             return this;
         }
@@ -318,9 +356,10 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
 
     protected static void setupSnapshotShardFailureDeserializer(ObjectDeserializer<SnapshotShardFailure.Builder> op) {
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
         op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
         op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-        op.add(Builder::shardId, JsonpDeserializer.stringDeserializer(), "shard_id");
+        op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
 
@@ -328,6 +367,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.indexUuid);
         result = 31 * result + Objects.hashCode(this.nodeId);
         result = 31 * result + Objects.hashCode(this.reason);
         result = 31 * result + Objects.hashCode(this.shardId);
@@ -341,6 +381,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBu
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotShardFailure other = (SnapshotShardFailure) o;
         return Objects.equals(this.index, other.index)
+            && Objects.equals(this.indexUuid, other.indexUuid)
             && Objects.equals(this.nodeId, other.nodeId)
             && Objects.equals(this.reason, other.reason)
             && Objects.equals(this.shardId, other.shardId)

@@ -50,6 +50,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -74,6 +75,9 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     @Nullable
     private final ActionClose close;
 
+    @Nullable
+    private final ActionConvertIndexToRemote convertIndexToRemote;
+
     @Nonnull
     private final Map<String, JsonData> custom;
 
@@ -86,11 +90,14 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     @Nullable
     private final ActionIndexPriority indexPriority;
 
-    @Nonnull
-    private final Map<String, JsonData> notification;
+    @Nullable
+    private final ActionNotification notification;
 
     @Nullable
     private final ActionOpen open;
+
+    @Nullable
+    private final ActionPublishFieldDomains publishFieldDomains;
 
     @Nullable
     private final ActionReadOnly readOnly;
@@ -107,20 +114,26 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     @Nullable
     private final ActionRollover rollover;
 
-    @Nonnull
-    private final Map<String, JsonData> rollup;
+    @Nullable
+    private final ActionRollup rollup;
 
-    @Nonnull
-    private final Map<String, JsonData> shrink;
+    @Nullable
+    private final ActionSearchOnly searchOnly;
+
+    @Nullable
+    private final ActionShrink shrink;
 
     @Nullable
     private final ActionSnapshot snapshot;
 
     @Nullable
-    private final ActionTimeout timeout;
+    private final ActionStopReplication stopReplication;
 
-    @Nonnull
-    private final Map<String, JsonData> transform;
+    @Nullable
+    private final Time timeout;
+
+    @Nullable
+    private final ActionTransform transform;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -128,22 +141,26 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         this.alias = builder.alias;
         this.allocation = builder.allocation;
         this.close = builder.close;
+        this.convertIndexToRemote = builder.convertIndexToRemote;
         this.custom = ApiTypeHelper.unmodifiable(builder.custom);
         this.delete = builder.delete;
         this.forceMerge = builder.forceMerge;
         this.indexPriority = builder.indexPriority;
-        this.notification = ApiTypeHelper.unmodifiable(builder.notification);
+        this.notification = builder.notification;
         this.open = builder.open;
+        this.publishFieldDomains = builder.publishFieldDomains;
         this.readOnly = builder.readOnly;
         this.readWrite = builder.readWrite;
         this.replicaCount = builder.replicaCount;
         this.retry = builder.retry;
         this.rollover = builder.rollover;
-        this.rollup = ApiTypeHelper.unmodifiable(builder.rollup);
-        this.shrink = ApiTypeHelper.unmodifiable(builder.shrink);
+        this.rollup = builder.rollup;
+        this.searchOnly = builder.searchOnly;
+        this.shrink = builder.shrink;
         this.snapshot = builder.snapshot;
+        this.stopReplication = builder.stopReplication;
         this.timeout = builder.timeout;
-        this.transform = ApiTypeHelper.unmodifiable(builder.transform);
+        this.transform = builder.transform;
     }
 
     public static Action of(Function<Action.Builder, ObjectBuilder<Action>> fn) {
@@ -181,6 +198,17 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     @Nullable
     public final ActionClose close() {
         return this.close;
+    }
+
+    /**
+     * Restores the index from a snapshot as a remote snapshot index.
+     * <p>
+     * API name: {@code convert_index_to_remote}
+     * </p>
+     */
+    @Nullable
+    public final ActionConvertIndexToRemote convertIndexToRemote() {
+        return this.convertIndexToRemote;
     }
 
     /**
@@ -233,8 +261,8 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
      * API name: {@code notification}
      * </p>
      */
-    @Nonnull
-    public final Map<String, JsonData> notification() {
+    @Nullable
+    public final ActionNotification notification() {
         return this.notification;
     }
 
@@ -247,6 +275,17 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     @Nullable
     public final ActionOpen open() {
         return this.open;
+    }
+
+    /**
+     * Computes and publishes the value domains of index fields.
+     * <p>
+     * API name: {@code publish_field_domains}
+     * </p>
+     */
+    @Nullable
+    public final ActionPublishFieldDomains publishFieldDomains() {
+        return this.publishFieldDomains;
     }
 
     /**
@@ -310,9 +349,20 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
      * API name: {@code rollup}
      * </p>
      */
-    @Nonnull
-    public final Map<String, JsonData> rollup() {
+    @Nullable
+    public final ActionRollup rollup() {
         return this.rollup;
+    }
+
+    /**
+     * Scales the index to search-only mode.
+     * <p>
+     * API name: {@code search_only}
+     * </p>
+     */
+    @Nullable
+    public final ActionSearchOnly searchOnly() {
+        return this.searchOnly;
     }
 
     /**
@@ -321,8 +371,8 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
      * API name: {@code shrink}
      * </p>
      */
-    @Nonnull
-    public final Map<String, JsonData> shrink() {
+    @Nullable
+    public final ActionShrink shrink() {
         return this.shrink;
     }
 
@@ -338,13 +388,24 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
     }
 
     /**
+     * Stops cross-cluster replication on a follower index.
+     * <p>
+     * API name: {@code stop_replication}
+     * </p>
+     */
+    @Nullable
+    public final ActionStopReplication stopReplication() {
+        return this.stopReplication;
+    }
+
+    /**
      * The amount of time to wait before the action fails.
      * <p>
      * API name: {@code timeout}
      * </p>
      */
     @Nullable
-    public final ActionTimeout timeout() {
+    public final Time timeout() {
         return this.timeout;
     }
 
@@ -354,8 +415,8 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
      * API name: {@code transform}
      * </p>
      */
-    @Nonnull
-    public final Map<String, JsonData> transform() {
+    @Nullable
+    public final ActionTransform transform() {
         return this.transform;
     }
 
@@ -385,6 +446,11 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
             this.close.serialize(generator, mapper);
         }
 
+        if (this.convertIndexToRemote != null) {
+            generator.writeKey("convert_index_to_remote");
+            this.convertIndexToRemote.serialize(generator, mapper);
+        }
+
         if (ApiTypeHelper.isDefined(this.custom)) {
             generator.writeKey("custom");
             generator.writeStartObject();
@@ -410,19 +476,19 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
             this.indexPriority.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.notification)) {
+        if (this.notification != null) {
             generator.writeKey("notification");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.notification.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.notification.serialize(generator, mapper);
         }
 
         if (this.open != null) {
             generator.writeKey("open");
             this.open.serialize(generator, mapper);
+        }
+
+        if (this.publishFieldDomains != null) {
+            generator.writeKey("publish_field_domains");
+            this.publishFieldDomains.serialize(generator, mapper);
         }
 
         if (this.readOnly != null) {
@@ -450,24 +516,19 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
             this.rollover.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.rollup)) {
+        if (this.rollup != null) {
             generator.writeKey("rollup");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.rollup.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.rollup.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.shrink)) {
+        if (this.searchOnly != null) {
+            generator.writeKey("search_only");
+            this.searchOnly.serialize(generator, mapper);
+        }
+
+        if (this.shrink != null) {
             generator.writeKey("shrink");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.shrink.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.shrink.serialize(generator, mapper);
         }
 
         if (this.snapshot != null) {
@@ -475,19 +536,19 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
             this.snapshot.serialize(generator, mapper);
         }
 
+        if (this.stopReplication != null) {
+            generator.writeKey("stop_replication");
+            this.stopReplication.serialize(generator, mapper);
+        }
+
         if (this.timeout != null) {
             generator.writeKey("timeout");
             this.timeout.serialize(generator, mapper);
         }
 
-        if (ApiTypeHelper.isDefined(this.transform)) {
+        if (this.transform != null) {
             generator.writeKey("transform");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.transform.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.transform.serialize(generator, mapper);
         }
     }
 
@@ -515,6 +576,8 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         @Nullable
         private ActionClose close;
         @Nullable
+        private ActionConvertIndexToRemote convertIndexToRemote;
+        @Nullable
         private Map<String, JsonData> custom;
         @Nullable
         private ActionDelete delete;
@@ -523,9 +586,11 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         @Nullable
         private ActionIndexPriority indexPriority;
         @Nullable
-        private Map<String, JsonData> notification;
+        private ActionNotification notification;
         @Nullable
         private ActionOpen open;
+        @Nullable
+        private ActionPublishFieldDomains publishFieldDomains;
         @Nullable
         private ActionReadOnly readOnly;
         @Nullable
@@ -537,15 +602,19 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         @Nullable
         private ActionRollover rollover;
         @Nullable
-        private Map<String, JsonData> rollup;
+        private ActionRollup rollup;
         @Nullable
-        private Map<String, JsonData> shrink;
+        private ActionSearchOnly searchOnly;
+        @Nullable
+        private ActionShrink shrink;
         @Nullable
         private ActionSnapshot snapshot;
         @Nullable
-        private ActionTimeout timeout;
+        private ActionStopReplication stopReplication;
         @Nullable
-        private Map<String, JsonData> transform;
+        private Time timeout;
+        @Nullable
+        private ActionTransform transform;
 
         public Builder() {}
 
@@ -553,44 +622,52 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
             this.alias = o.alias;
             this.allocation = o.allocation;
             this.close = o.close;
+            this.convertIndexToRemote = o.convertIndexToRemote;
             this.custom = _mapCopy(o.custom);
             this.delete = o.delete;
             this.forceMerge = o.forceMerge;
             this.indexPriority = o.indexPriority;
-            this.notification = _mapCopy(o.notification);
+            this.notification = o.notification;
             this.open = o.open;
+            this.publishFieldDomains = o.publishFieldDomains;
             this.readOnly = o.readOnly;
             this.readWrite = o.readWrite;
             this.replicaCount = o.replicaCount;
             this.retry = o.retry;
             this.rollover = o.rollover;
-            this.rollup = _mapCopy(o.rollup);
-            this.shrink = _mapCopy(o.shrink);
+            this.rollup = o.rollup;
+            this.searchOnly = o.searchOnly;
+            this.shrink = o.shrink;
             this.snapshot = o.snapshot;
+            this.stopReplication = o.stopReplication;
             this.timeout = o.timeout;
-            this.transform = _mapCopy(o.transform);
+            this.transform = o.transform;
         }
 
         private Builder(Builder o) {
             this.alias = o.alias;
             this.allocation = o.allocation;
             this.close = o.close;
+            this.convertIndexToRemote = o.convertIndexToRemote;
             this.custom = _mapCopy(o.custom);
             this.delete = o.delete;
             this.forceMerge = o.forceMerge;
             this.indexPriority = o.indexPriority;
-            this.notification = _mapCopy(o.notification);
+            this.notification = o.notification;
             this.open = o.open;
+            this.publishFieldDomains = o.publishFieldDomains;
             this.readOnly = o.readOnly;
             this.readWrite = o.readWrite;
             this.replicaCount = o.replicaCount;
             this.retry = o.retry;
             this.rollover = o.rollover;
-            this.rollup = _mapCopy(o.rollup);
-            this.shrink = _mapCopy(o.shrink);
+            this.rollup = o.rollup;
+            this.searchOnly = o.searchOnly;
+            this.shrink = o.shrink;
             this.snapshot = o.snapshot;
+            this.stopReplication = o.stopReplication;
             this.timeout = o.timeout;
-            this.transform = _mapCopy(o.transform);
+            this.transform = o.transform;
         }
 
         @Override
@@ -666,6 +743,31 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         @Nonnull
         public final Builder close(Function<ActionClose.Builder, ObjectBuilder<ActionClose>> fn) {
             return close(fn.apply(new ActionClose.Builder()).build());
+        }
+
+        /**
+         * Restores the index from a snapshot as a remote snapshot index.
+         * <p>
+         * API name: {@code convert_index_to_remote}
+         * </p>
+         */
+        @Nonnull
+        public final Builder convertIndexToRemote(@Nullable ActionConvertIndexToRemote value) {
+            this.convertIndexToRemote = value;
+            return this;
+        }
+
+        /**
+         * Restores the index from a snapshot as a remote snapshot index.
+         * <p>
+         * API name: {@code convert_index_to_remote}
+         * </p>
+         */
+        @Nonnull
+        public final Builder convertIndexToRemote(
+            Function<ActionConvertIndexToRemote.Builder, ObjectBuilder<ActionConvertIndexToRemote>> fn
+        ) {
+            return convertIndexToRemote(fn.apply(new ActionConvertIndexToRemote.Builder()).build());
         }
 
         /**
@@ -774,14 +876,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code notification}
          * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>notification</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder notification(Map<String, JsonData> map) {
-            this.notification = _mapPutAll(this.notification, map);
+        public final Builder notification(@Nullable ActionNotification value) {
+            this.notification = value;
             return this;
         }
 
@@ -790,15 +888,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code notification}
          * </p>
-         *
-         * <p>
-         * Adds an entry to <code>notification</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder notification(String key, JsonData value) {
-            this.notification = _mapPut(this.notification, key, value);
-            return this;
+        public final Builder notification(Function<ActionNotification.Builder, ObjectBuilder<ActionNotification>> fn) {
+            return notification(fn.apply(new ActionNotification.Builder()).build());
         }
 
         /**
@@ -822,6 +915,29 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         @Nonnull
         public final Builder open(Function<ActionOpen.Builder, ObjectBuilder<ActionOpen>> fn) {
             return open(fn.apply(new ActionOpen.Builder()).build());
+        }
+
+        /**
+         * Computes and publishes the value domains of index fields.
+         * <p>
+         * API name: {@code publish_field_domains}
+         * </p>
+         */
+        @Nonnull
+        public final Builder publishFieldDomains(@Nullable ActionPublishFieldDomains value) {
+            this.publishFieldDomains = value;
+            return this;
+        }
+
+        /**
+         * Computes and publishes the value domains of index fields.
+         * <p>
+         * API name: {@code publish_field_domains}
+         * </p>
+         */
+        @Nonnull
+        public final Builder publishFieldDomains(Function<ActionPublishFieldDomains.Builder, ObjectBuilder<ActionPublishFieldDomains>> fn) {
+            return publishFieldDomains(fn.apply(new ActionPublishFieldDomains.Builder()).build());
         }
 
         /**
@@ -944,14 +1060,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code rollup}
          * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>rollup</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder rollup(Map<String, JsonData> map) {
-            this.rollup = _mapPutAll(this.rollup, map);
+        public final Builder rollup(@Nullable ActionRollup value) {
+            this.rollup = value;
             return this;
         }
 
@@ -960,14 +1072,44 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code rollup}
          * </p>
-         *
+         */
+        @Nonnull
+        public final Builder rollup(Function<ActionRollup.Builder, ObjectBuilder<ActionRollup>> fn) {
+            return rollup(fn.apply(new ActionRollup.Builder()).build());
+        }
+
+        /**
+         * Scales the index to search-only mode.
          * <p>
-         * Adds an entry to <code>rollup</code>.
+         * API name: {@code search_only}
          * </p>
          */
         @Nonnull
-        public final Builder rollup(String key, JsonData value) {
-            this.rollup = _mapPut(this.rollup, key, value);
+        public final Builder searchOnly(@Nullable ActionSearchOnly value) {
+            this.searchOnly = value;
+            return this;
+        }
+
+        /**
+         * Scales the index to search-only mode.
+         * <p>
+         * API name: {@code search_only}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchOnly(Function<ActionSearchOnly.Builder, ObjectBuilder<ActionSearchOnly>> fn) {
+            return searchOnly(fn.apply(new ActionSearchOnly.Builder()).build());
+        }
+
+        /**
+         * Determines when to shrink the index.
+         * <p>
+         * API name: {@code shrink}
+         * </p>
+         */
+        @Nonnull
+        public final Builder shrink(@Nullable ActionShrink value) {
+            this.shrink = value;
             return this;
         }
 
@@ -976,31 +1118,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code shrink}
          * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>shrink</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder shrink(Map<String, JsonData> map) {
-            this.shrink = _mapPutAll(this.shrink, map);
-            return this;
-        }
-
-        /**
-         * Determines when to shrink the index.
-         * <p>
-         * API name: {@code shrink}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>shrink</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder shrink(String key, JsonData value) {
-            this.shrink = _mapPut(this.shrink, key, value);
-            return this;
+        public final Builder shrink(Function<ActionShrink.Builder, ObjectBuilder<ActionShrink>> fn) {
+            return shrink(fn.apply(new ActionShrink.Builder()).build());
         }
 
         /**
@@ -1027,13 +1148,36 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         }
 
         /**
+         * Stops cross-cluster replication on a follower index.
+         * <p>
+         * API name: {@code stop_replication}
+         * </p>
+         */
+        @Nonnull
+        public final Builder stopReplication(@Nullable ActionStopReplication value) {
+            this.stopReplication = value;
+            return this;
+        }
+
+        /**
+         * Stops cross-cluster replication on a follower index.
+         * <p>
+         * API name: {@code stop_replication}
+         * </p>
+         */
+        @Nonnull
+        public final Builder stopReplication(Function<ActionStopReplication.Builder, ObjectBuilder<ActionStopReplication>> fn) {
+            return stopReplication(fn.apply(new ActionStopReplication.Builder()).build());
+        }
+
+        /**
          * The amount of time to wait before the action fails.
          * <p>
          * API name: {@code timeout}
          * </p>
          */
         @Nonnull
-        public final Builder timeout(@Nullable ActionTimeout value) {
+        public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
         }
@@ -1045,8 +1189,8 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * </p>
          */
         @Nonnull
-        public final Builder timeout(Function<ActionTimeout.Builder, ObjectBuilder<ActionTimeout>> fn) {
-            return timeout(fn.apply(new ActionTimeout.Builder()).build());
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -1054,14 +1198,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code transform}
          * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>transform</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder transform(Map<String, JsonData> map) {
-            this.transform = _mapPutAll(this.transform, map);
+        public final Builder transform(@Nullable ActionTransform value) {
+            this.transform = value;
             return this;
         }
 
@@ -1070,15 +1210,10 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
          * <p>
          * API name: {@code transform}
          * </p>
-         *
-         * <p>
-         * Adds an entry to <code>transform</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder transform(String key, JsonData value) {
-            this.transform = _mapPut(this.transform, key, value);
-            return this;
+        public final Builder transform(Function<ActionTransform.Builder, ObjectBuilder<ActionTransform>> fn) {
+            return transform(fn.apply(new ActionTransform.Builder()).build());
         }
 
         /**
@@ -1109,22 +1244,26 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         op.add(Builder::alias, ActionAlias._DESERIALIZER, "alias");
         op.add(Builder::allocation, ActionAllocation._DESERIALIZER, "allocation");
         op.add(Builder::close, ActionClose._DESERIALIZER, "close");
+        op.add(Builder::convertIndexToRemote, ActionConvertIndexToRemote._DESERIALIZER, "convert_index_to_remote");
         op.add(Builder::custom, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "custom");
         op.add(Builder::delete, ActionDelete._DESERIALIZER, "delete");
         op.add(Builder::forceMerge, ActionForceMerge._DESERIALIZER, "force_merge");
         op.add(Builder::indexPriority, ActionIndexPriority._DESERIALIZER, "index_priority");
-        op.add(Builder::notification, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "notification");
+        op.add(Builder::notification, ActionNotification._DESERIALIZER, "notification");
         op.add(Builder::open, ActionOpen._DESERIALIZER, "open");
+        op.add(Builder::publishFieldDomains, ActionPublishFieldDomains._DESERIALIZER, "publish_field_domains");
         op.add(Builder::readOnly, ActionReadOnly._DESERIALIZER, "read_only");
         op.add(Builder::readWrite, ActionReadWrite._DESERIALIZER, "read_write");
         op.add(Builder::replicaCount, ActionReplicaCount._DESERIALIZER, "replica_count");
         op.add(Builder::retry, ActionRetry._DESERIALIZER, "retry");
         op.add(Builder::rollover, ActionRollover._DESERIALIZER, "rollover");
-        op.add(Builder::rollup, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "rollup");
-        op.add(Builder::shrink, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "shrink");
+        op.add(Builder::rollup, ActionRollup._DESERIALIZER, "rollup");
+        op.add(Builder::searchOnly, ActionSearchOnly._DESERIALIZER, "search_only");
+        op.add(Builder::shrink, ActionShrink._DESERIALIZER, "shrink");
         op.add(Builder::snapshot, ActionSnapshot._DESERIALIZER, "snapshot");
-        op.add(Builder::timeout, ActionTimeout._DESERIALIZER, "timeout");
-        op.add(Builder::transform, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "transform");
+        op.add(Builder::stopReplication, ActionStopReplication._DESERIALIZER, "stop_replication");
+        op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+        op.add(Builder::transform, ActionTransform._DESERIALIZER, "transform");
     }
 
     @Override
@@ -1133,20 +1272,24 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         result = 31 * result + Objects.hashCode(this.alias);
         result = 31 * result + Objects.hashCode(this.allocation);
         result = 31 * result + Objects.hashCode(this.close);
+        result = 31 * result + Objects.hashCode(this.convertIndexToRemote);
         result = 31 * result + Objects.hashCode(this.custom);
         result = 31 * result + Objects.hashCode(this.delete);
         result = 31 * result + Objects.hashCode(this.forceMerge);
         result = 31 * result + Objects.hashCode(this.indexPriority);
         result = 31 * result + Objects.hashCode(this.notification);
         result = 31 * result + Objects.hashCode(this.open);
+        result = 31 * result + Objects.hashCode(this.publishFieldDomains);
         result = 31 * result + Objects.hashCode(this.readOnly);
         result = 31 * result + Objects.hashCode(this.readWrite);
         result = 31 * result + Objects.hashCode(this.replicaCount);
         result = 31 * result + Objects.hashCode(this.retry);
         result = 31 * result + Objects.hashCode(this.rollover);
         result = 31 * result + Objects.hashCode(this.rollup);
+        result = 31 * result + Objects.hashCode(this.searchOnly);
         result = 31 * result + Objects.hashCode(this.shrink);
         result = 31 * result + Objects.hashCode(this.snapshot);
+        result = 31 * result + Objects.hashCode(this.stopReplication);
         result = 31 * result + Objects.hashCode(this.timeout);
         result = 31 * result + Objects.hashCode(this.transform);
         return result;
@@ -1160,20 +1303,24 @@ public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.B
         return Objects.equals(this.alias, other.alias)
             && Objects.equals(this.allocation, other.allocation)
             && Objects.equals(this.close, other.close)
+            && Objects.equals(this.convertIndexToRemote, other.convertIndexToRemote)
             && Objects.equals(this.custom, other.custom)
             && Objects.equals(this.delete, other.delete)
             && Objects.equals(this.forceMerge, other.forceMerge)
             && Objects.equals(this.indexPriority, other.indexPriority)
             && Objects.equals(this.notification, other.notification)
             && Objects.equals(this.open, other.open)
+            && Objects.equals(this.publishFieldDomains, other.publishFieldDomains)
             && Objects.equals(this.readOnly, other.readOnly)
             && Objects.equals(this.readWrite, other.readWrite)
             && Objects.equals(this.replicaCount, other.replicaCount)
             && Objects.equals(this.retry, other.retry)
             && Objects.equals(this.rollover, other.rollover)
             && Objects.equals(this.rollup, other.rollup)
+            && Objects.equals(this.searchOnly, other.searchOnly)
             && Objects.equals(this.shrink, other.shrink)
             && Objects.equals(this.snapshot, other.snapshot)
+            && Objects.equals(this.stopReplication, other.stopReplication)
             && Objects.equals(this.timeout, other.timeout)
             && Objects.equals(this.transform, other.transform);
     }

@@ -71,10 +71,13 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
     private final String sha256Hash;
 
     @Nullable
+    private final String updatedAt;
+
+    @Nullable
     private final Long updatedAtInEpochMillis;
 
     @Nullable
-    private final Integer validForInDays;
+    private final Long validForInDays;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -82,6 +85,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
         this.provider = builder.provider;
         this.sha256Hash = builder.sha256Hash;
+        this.updatedAt = builder.updatedAt;
         this.updatedAtInEpochMillis = builder.updatedAtInEpochMillis;
         this.validForInDays = builder.validForInDays;
     }
@@ -115,6 +119,17 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
     }
 
     /**
+     * Human-readable timestamp of when the database was updated.
+     * <p>
+     * API name: {@code updated_at}
+     * </p>
+     */
+    @Nullable
+    public final String updatedAt() {
+        return this.updatedAt;
+    }
+
+    /**
      * API name: {@code updated_at_in_epoch_millis}
      */
     @Nullable
@@ -126,7 +141,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
      * API name: {@code valid_for_in_days}
      */
     @Nullable
-    public final Integer validForInDays() {
+    public final Long validForInDays() {
         return this.validForInDays;
     }
 
@@ -158,6 +173,11 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         if (this.sha256Hash != null) {
             generator.writeKey("sha256_hash");
             generator.write(this.sha256Hash);
+        }
+
+        if (this.updatedAt != null) {
+            generator.writeKey("updated_at");
+            generator.write(this.updatedAt);
         }
 
         if (this.updatedAtInEpochMillis != null) {
@@ -195,9 +215,11 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         @Nullable
         private String sha256Hash;
         @Nullable
+        private String updatedAt;
+        @Nullable
         private Long updatedAtInEpochMillis;
         @Nullable
-        private Integer validForInDays;
+        private Long validForInDays;
 
         public Builder() {}
 
@@ -205,6 +227,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
             this.fields = _listCopy(o.fields);
             this.provider = o.provider;
             this.sha256Hash = o.sha256Hash;
+            this.updatedAt = o.updatedAt;
             this.updatedAtInEpochMillis = o.updatedAtInEpochMillis;
             this.validForInDays = o.validForInDays;
         }
@@ -213,6 +236,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
             this.fields = _listCopy(o.fields);
             this.provider = o.provider;
             this.sha256Hash = o.sha256Hash;
+            this.updatedAt = o.updatedAt;
             this.updatedAtInEpochMillis = o.updatedAtInEpochMillis;
             this.validForInDays = o.validForInDays;
         }
@@ -268,6 +292,18 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         }
 
         /**
+         * Human-readable timestamp of when the database was updated.
+         * <p>
+         * API name: {@code updated_at}
+         * </p>
+         */
+        @Nonnull
+        public final Builder updatedAt(@Nullable String value) {
+            this.updatedAt = value;
+            return this;
+        }
+
+        /**
          * API name: {@code updated_at_in_epoch_millis}
          */
         @Nonnull
@@ -280,7 +316,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
          * API name: {@code valid_for_in_days}
          */
         @Nonnull
-        public final Builder validForInDays(@Nullable Integer value) {
+        public final Builder validForInDays(@Nullable Long value) {
             this.validForInDays = value;
             return this;
         }
@@ -313,8 +349,9 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
         op.add(Builder::provider, JsonpDeserializer.stringDeserializer(), "provider");
         op.add(Builder::sha256Hash, JsonpDeserializer.stringDeserializer(), "sha256_hash");
+        op.add(Builder::updatedAt, JsonpDeserializer.stringDeserializer(), "updated_at");
         op.add(Builder::updatedAtInEpochMillis, JsonpDeserializer.longDeserializer(), "updated_at_in_epoch_millis");
-        op.add(Builder::validForInDays, JsonpDeserializer.integerDeserializer(), "valid_for_in_days");
+        op.add(Builder::validForInDays, JsonpDeserializer.longDeserializer(), "valid_for_in_days");
     }
 
     @Override
@@ -323,6 +360,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         result = 31 * result + Objects.hashCode(this.fields);
         result = 31 * result + Objects.hashCode(this.provider);
         result = 31 * result + Objects.hashCode(this.sha256Hash);
+        result = 31 * result + Objects.hashCode(this.updatedAt);
         result = 31 * result + Objects.hashCode(this.updatedAtInEpochMillis);
         result = 31 * result + Objects.hashCode(this.validForInDays);
         return result;
@@ -336,6 +374,7 @@ public class Database implements PlainJsonSerializable, ToCopyableBuilder<Databa
         return Objects.equals(this.fields, other.fields)
             && Objects.equals(this.provider, other.provider)
             && Objects.equals(this.sha256Hash, other.sha256Hash)
+            && Objects.equals(this.updatedAt, other.updatedAt)
             && Objects.equals(this.updatedAtInEpochMillis, other.updatedAtInEpochMillis)
             && Objects.equals(this.validForInDays, other.validForInDays);
     }

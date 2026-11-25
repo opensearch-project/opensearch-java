@@ -237,6 +237,12 @@ public final class Types {
                 public static final class Search {
                     public static final String PACKAGE = Core.PACKAGE + ".search";
 
+                    public static final Type Hit = type(PACKAGE, "Hit");
+
+                    public static Type Hit(TypeRef documentType) {
+                        return Hit.withTypeParameters(documentType);
+                    }
+
                     public static final Type MatchedQueries = type(PACKAGE, "MatchedQueries");
                 }
             }

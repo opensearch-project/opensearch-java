@@ -37,13 +37,11 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -65,17 +63,17 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Transition.Builder, Transition> {
 
-    @Nonnull
-    private final Map<String, JsonData> conditions;
-
     @Nullable
+    private final TransitionConditions conditions;
+
+    @Nonnull
     private final String stateName;
 
     // ---------------------------------------------------------------------------------------------
 
     private Transition(Builder builder) {
-        this.conditions = ApiTypeHelper.unmodifiable(builder.conditions);
-        this.stateName = builder.stateName;
+        this.conditions = builder.conditions;
+        this.stateName = ApiTypeHelper.requireNonNull(builder.stateName, this, "stateName");
     }
 
     public static Transition of(Function<Transition.Builder, ObjectBuilder<Transition>> fn) {
@@ -83,23 +81,20 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
     }
 
     /**
-     * The conditions for the transition.
-     * <p>
      * API name: {@code conditions}
-     * </p>
      */
-    @Nonnull
-    public final Map<String, JsonData> conditions() {
+    @Nullable
+    public final TransitionConditions conditions() {
         return this.conditions;
     }
 
     /**
-     * The name of the state to transition to.
+     * Required - The name of the state to transition to.
      * <p>
      * API name: {@code state_name}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final String stateName() {
         return this.stateName;
     }
@@ -115,20 +110,13 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.conditions)) {
+        if (this.conditions != null) {
             generator.writeKey("conditions");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.conditions.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.conditions.serialize(generator, mapper);
         }
 
-        if (this.stateName != null) {
-            generator.writeKey("state_name");
-            generator.write(this.stateName);
-        }
+        generator.writeKey("state_name");
+        generator.write(this.stateName);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -149,19 +137,18 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Transition> {
         @Nullable
-        private Map<String, JsonData> conditions;
-        @Nullable
+        private TransitionConditions conditions;
         private String stateName;
 
         public Builder() {}
 
         private Builder(Transition o) {
-            this.conditions = _mapCopy(o.conditions);
+            this.conditions = o.conditions;
             this.stateName = o.stateName;
         }
 
         private Builder(Builder o) {
-            this.conditions = _mapCopy(o.conditions);
+            this.conditions = o.conditions;
             this.stateName = o.stateName;
         }
 
@@ -172,45 +159,30 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
         }
 
         /**
-         * The conditions for the transition.
-         * <p>
          * API name: {@code conditions}
-         * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>conditions</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder conditions(Map<String, JsonData> map) {
-            this.conditions = _mapPutAll(this.conditions, map);
+        public final Builder conditions(@Nullable TransitionConditions value) {
+            this.conditions = value;
             return this;
         }
 
         /**
-         * The conditions for the transition.
-         * <p>
          * API name: {@code conditions}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>conditions</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder conditions(String key, JsonData value) {
-            this.conditions = _mapPut(this.conditions, key, value);
-            return this;
+        public final Builder conditions(Function<TransitionConditions.Builder, ObjectBuilder<TransitionConditions>> fn) {
+            return conditions(fn.apply(new TransitionConditions.Builder()).build());
         }
 
         /**
-         * The name of the state to transition to.
+         * Required - The name of the state to transition to.
          * <p>
          * API name: {@code state_name}
          * </p>
          */
         @Nonnull
-        public final Builder stateName(@Nullable String value) {
+        public final Builder stateName(String value) {
             this.stateName = value;
             return this;
         }
@@ -240,7 +212,7 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
     );
 
     protected static void setupTransitionDeserializer(ObjectDeserializer<Transition.Builder> op) {
-        op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "conditions");
+        op.add(Builder::conditions, TransitionConditions._DESERIALIZER, "conditions");
         op.add(Builder::stateName, JsonpDeserializer.stringDeserializer(), "state_name");
     }
 
@@ -248,7 +220,7 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.conditions);
-        result = 31 * result + Objects.hashCode(this.stateName);
+        result = 31 * result + this.stateName.hashCode();
         return result;
     }
 
@@ -257,6 +229,6 @@ public class Transition implements PlainJsonSerializable, ToCopyableBuilder<Tran
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Transition other = (Transition) o;
-        return Objects.equals(this.conditions, other.conditions) && Objects.equals(this.stateName, other.stateName);
+        return Objects.equals(this.conditions, other.conditions) && this.stateName.equals(other.stateName);
     }
 }

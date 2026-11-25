@@ -60,6 +60,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public final class HealthRequest extends CatRequestBase implements ToCopyableBuilder<HealthRequest.Builder, HealthRequest> {
 
     @Nullable
+    private final Integer limit;
+
+    @Nullable
     private final TimeUnit time;
 
     @Nullable
@@ -69,12 +72,24 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
 
     private HealthRequest(Builder builder) {
         super(builder);
+        this.limit = builder.limit;
         this.time = builder.time;
         this.ts = builder.ts;
     }
 
     public static HealthRequest of(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
     }
 
     /**
@@ -117,6 +132,8 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
      */
     public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HealthRequest> {
         @Nullable
+        private Integer limit;
+        @Nullable
         private TimeUnit time;
         @Nullable
         private Boolean ts;
@@ -125,12 +142,14 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
 
         private Builder(HealthRequest o) {
             super(o);
+            this.limit = o.limit;
             this.time = o.time;
             this.ts = o.ts;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.limit = o.limit;
             this.time = o.time;
             this.ts = o.ts;
         }
@@ -144,6 +163,18 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
             return this;
         }
 
@@ -190,6 +221,9 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
     @Override
     protected void applyQueryParameters(@Nonnull Map<String, String> params) {
         super.applyQueryParameters(params);
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
+        }
         if (this.time != null) {
             params.put("time", this.time.jsonValue());
         }
@@ -220,6 +254,7 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.time);
         result = 31 * result + Objects.hashCode(this.ts);
         return result;
@@ -230,6 +265,6 @@ public final class HealthRequest extends CatRequestBase implements ToCopyableBui
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         HealthRequest other = (HealthRequest) o;
-        return Objects.equals(this.time, other.time) && Objects.equals(this.ts, other.ts);
+        return Objects.equals(this.limit, other.limit) && Objects.equals(this.time, other.time) && Objects.equals(this.ts, other.ts);
     }
 }

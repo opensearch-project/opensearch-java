@@ -49,7 +49,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch.indices.IndexRouting;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -84,7 +83,7 @@ public class NodeInfoSettingsCluster
     private final String name;
 
     @Nullable
-    private final IndexRouting routing;
+    private final NodeInfoSettingsClusterRouting routing;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -145,7 +144,7 @@ public class NodeInfoSettingsCluster
      * API name: {@code routing}
      */
     @Nullable
-    public final IndexRouting routing() {
+    public final NodeInfoSettingsClusterRouting routing() {
         return this.routing;
     }
 
@@ -224,7 +223,7 @@ public class NodeInfoSettingsCluster
         private List<String> initialMasterNodes;
         private String name;
         @Nullable
-        private IndexRouting routing;
+        private NodeInfoSettingsClusterRouting routing;
 
         public Builder() {}
 
@@ -355,7 +354,7 @@ public class NodeInfoSettingsCluster
          * API name: {@code routing}
          */
         @Nonnull
-        public final Builder routing(@Nullable IndexRouting value) {
+        public final Builder routing(@Nullable NodeInfoSettingsClusterRouting value) {
             this.routing = value;
             return this;
         }
@@ -364,8 +363,8 @@ public class NodeInfoSettingsCluster
          * API name: {@code routing}
          */
         @Nonnull
-        public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
-            return routing(fn.apply(new IndexRouting.Builder()).build());
+        public final Builder routing(Function<NodeInfoSettingsClusterRouting.Builder, ObjectBuilder<NodeInfoSettingsClusterRouting>> fn) {
+            return routing(fn.apply(new NodeInfoSettingsClusterRouting.Builder()).build());
         }
 
         /**
@@ -406,7 +405,7 @@ public class NodeInfoSettingsCluster
             "initial_master_nodes"
         );
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing");
+        op.add(Builder::routing, NodeInfoSettingsClusterRouting._DESERIALIZER, "routing");
     }
 
     @Override

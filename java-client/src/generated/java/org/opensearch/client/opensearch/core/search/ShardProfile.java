@@ -64,11 +64,17 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
     @Nonnull
     private final List<AggregationProfile> aggregations;
 
-    @Nullable
-    private final FetchProfile fetch;
+    @Nonnull
+    private final List<FetchProfile> fetch;
 
     @Nonnull
     private final String id;
+
+    @Nullable
+    private final Long inboundNetworkTimeInMillis;
+
+    @Nullable
+    private final Long outboundNetworkTimeInMillis;
 
     @Nonnull
     private final List<SearchProfile> searches;
@@ -77,8 +83,10 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
 
     private ShardProfile(Builder builder) {
         this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
-        this.fetch = builder.fetch;
+        this.fetch = ApiTypeHelper.unmodifiable(builder.fetch);
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.inboundNetworkTimeInMillis = builder.inboundNetworkTimeInMillis;
+        this.outboundNetworkTimeInMillis = builder.outboundNetworkTimeInMillis;
         this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
     }
 
@@ -97,8 +105,8 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
     /**
      * API name: {@code fetch}
      */
-    @Nullable
-    public final FetchProfile fetch() {
+    @Nonnull
+    public final List<FetchProfile> fetch() {
         return this.fetch;
     }
 
@@ -108,6 +116,22 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
     @Nonnull
     public final String id() {
         return this.id;
+    }
+
+    /**
+     * API name: {@code inbound_network_time_in_millis}
+     */
+    @Nullable
+    public final Long inboundNetworkTimeInMillis() {
+        return this.inboundNetworkTimeInMillis;
+    }
+
+    /**
+     * API name: {@code outbound_network_time_in_millis}
+     */
+    @Nullable
+    public final Long outboundNetworkTimeInMillis() {
+        return this.outboundNetworkTimeInMillis;
     }
 
     /**
@@ -136,13 +160,27 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
         generator.writeEnd();
 
-        if (this.fetch != null) {
+        if (ApiTypeHelper.isDefined(this.fetch)) {
             generator.writeKey("fetch");
-            this.fetch.serialize(generator, mapper);
+            generator.writeStartArray();
+            for (FetchProfile item0 : this.fetch) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
 
         generator.writeKey("id");
         generator.write(this.id);
+
+        if (this.inboundNetworkTimeInMillis != null) {
+            generator.writeKey("inbound_network_time_in_millis");
+            generator.write(this.inboundNetworkTimeInMillis);
+        }
+
+        if (this.outboundNetworkTimeInMillis != null) {
+            generator.writeKey("outbound_network_time_in_millis");
+            generator.write(this.outboundNetworkTimeInMillis);
+        }
 
         generator.writeKey("searches");
         generator.writeStartArray();
@@ -171,23 +209,31 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardProfile> {
         private List<AggregationProfile> aggregations;
         @Nullable
-        private FetchProfile fetch;
+        private List<FetchProfile> fetch;
         private String id;
+        @Nullable
+        private Long inboundNetworkTimeInMillis;
+        @Nullable
+        private Long outboundNetworkTimeInMillis;
         private List<SearchProfile> searches;
 
         public Builder() {}
 
         private Builder(ShardProfile o) {
             this.aggregations = _listCopy(o.aggregations);
-            this.fetch = o.fetch;
+            this.fetch = _listCopy(o.fetch);
             this.id = o.id;
+            this.inboundNetworkTimeInMillis = o.inboundNetworkTimeInMillis;
+            this.outboundNetworkTimeInMillis = o.outboundNetworkTimeInMillis;
             this.searches = _listCopy(o.searches);
         }
 
         private Builder(Builder o) {
             this.aggregations = _listCopy(o.aggregations);
-            this.fetch = o.fetch;
+            this.fetch = _listCopy(o.fetch);
             this.id = o.id;
+            this.inboundNetworkTimeInMillis = o.inboundNetworkTimeInMillis;
+            this.outboundNetworkTimeInMillis = o.outboundNetworkTimeInMillis;
             this.searches = _listCopy(o.searches);
         }
 
@@ -237,15 +283,36 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
 
         /**
          * API name: {@code fetch}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>fetch</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder fetch(@Nullable FetchProfile value) {
-            this.fetch = value;
+        public final Builder fetch(List<FetchProfile> list) {
+            this.fetch = _listAddAll(this.fetch, list);
             return this;
         }
 
         /**
          * API name: {@code fetch}
+         *
+         * <p>
+         * Adds one or more values to <code>fetch</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder fetch(FetchProfile value, FetchProfile... values) {
+            this.fetch = _listAdd(this.fetch, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code fetch}
+         *
+         * <p>
+         * Adds a value to <code>fetch</code> using a builder lambda.
+         * </p>
          */
         @Nonnull
         public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
@@ -258,6 +325,24 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
         @Nonnull
         public final Builder id(String value) {
             this.id = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code inbound_network_time_in_millis}
+         */
+        @Nonnull
+        public final Builder inboundNetworkTimeInMillis(@Nullable Long value) {
+            this.inboundNetworkTimeInMillis = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code outbound_network_time_in_millis}
+         */
+        @Nonnull
+        public final Builder outboundNetworkTimeInMillis(@Nullable Long value) {
+            this.outboundNetworkTimeInMillis = value;
             return this;
         }
 
@@ -325,8 +410,10 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
 
     protected static void setupShardProfileDeserializer(ObjectDeserializer<ShardProfile.Builder> op) {
         op.add(Builder::aggregations, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER), "aggregations");
-        op.add(Builder::fetch, FetchProfile._DESERIALIZER, "fetch");
+        op.add(Builder::fetch, JsonpDeserializer.arrayDeserializer(FetchProfile._DESERIALIZER), "fetch");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::inboundNetworkTimeInMillis, JsonpDeserializer.longDeserializer(), "inbound_network_time_in_millis");
+        op.add(Builder::outboundNetworkTimeInMillis, JsonpDeserializer.longDeserializer(), "outbound_network_time_in_millis");
         op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
     }
 
@@ -336,6 +423,8 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
         result = 31 * result + this.aggregations.hashCode();
         result = 31 * result + Objects.hashCode(this.fetch);
         result = 31 * result + this.id.hashCode();
+        result = 31 * result + Objects.hashCode(this.inboundNetworkTimeInMillis);
+        result = 31 * result + Objects.hashCode(this.outboundNetworkTimeInMillis);
         result = 31 * result + this.searches.hashCode();
         return result;
     }
@@ -348,6 +437,8 @@ public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<Sh
         return this.aggregations.equals(other.aggregations)
             && Objects.equals(this.fetch, other.fetch)
             && this.id.equals(other.id)
+            && Objects.equals(this.inboundNetworkTimeInMillis, other.inboundNetworkTimeInMillis)
+            && Objects.equals(this.outboundNetworkTimeInMillis, other.outboundNetworkTimeInMillis)
             && this.searches.equals(other.searches);
     }
 }

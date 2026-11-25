@@ -37,17 +37,16 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -59,13 +58,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel.Builder, Channel> {
 
-    @Nullable
+    @Nonnull
     private final String id;
 
     // ---------------------------------------------------------------------------------------------
 
     private Channel(Builder builder) {
-        this.id = builder.id;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
     }
 
     public static Channel of(Function<Channel.Builder, ObjectBuilder<Channel>> fn) {
@@ -73,12 +72,12 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
     }
 
     /**
-     * The ID of the notification channel.
+     * Required - The ID of the notification channel.
      * <p>
      * API name: {@code id}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final String id() {
         return this.id;
     }
@@ -94,10 +93,8 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.id != null) {
-            generator.writeKey("id");
-            generator.write(this.id);
-        }
+        generator.writeKey("id");
+        generator.write(this.id);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -117,7 +114,6 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
      * Builder for {@link Channel}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Channel> {
-        @Nullable
         private String id;
 
         public Builder() {}
@@ -137,13 +133,13 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
         }
 
         /**
-         * The ID of the notification channel.
+         * Required - The ID of the notification channel.
          * <p>
          * API name: {@code id}
          * </p>
          */
         @Nonnull
-        public final Builder id(@Nullable String value) {
+        public final Builder id(String value) {
             this.id = value;
             return this;
         }
@@ -179,7 +175,7 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + this.id.hashCode();
         return result;
     }
 
@@ -188,6 +184,6 @@ public class Channel implements PlainJsonSerializable, ToCopyableBuilder<Channel
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Channel other = (Channel) o;
-        return Objects.equals(this.id, other.id);
+        return this.id.equals(other.id);
     }
 }

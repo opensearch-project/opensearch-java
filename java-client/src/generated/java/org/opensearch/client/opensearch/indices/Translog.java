@@ -64,6 +64,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Translog.Builder, Translog> {
 
     @Nullable
+    private final TranslogBatchAppend batchAppend;
+
+    @Nullable
     private final TranslogDurability durability;
 
     @Nullable
@@ -84,6 +87,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     // ---------------------------------------------------------------------------------------------
 
     private Translog(Builder builder) {
+        this.batchAppend = builder.batchAppend;
         this.durability = builder.durability;
         this.flushThresholdSize = builder.flushThresholdSize;
         this.generationThresholdSize = builder.generationThresholdSize;
@@ -94,6 +98,14 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
 
     public static Translog of(Function<Translog.Builder, ObjectBuilder<Translog>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code batch_append}
+     */
+    @Nullable
+    public final TranslogBatchAppend batchAppend() {
+        return this.batchAppend;
     }
 
     /**
@@ -158,6 +170,11 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.batchAppend != null) {
+            generator.writeKey("batch_append");
+            this.batchAppend.serialize(generator, mapper);
+        }
+
         if (this.durability != null) {
             generator.writeKey("durability");
             this.durability.serialize(generator, mapper);
@@ -207,6 +224,8 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Translog> {
         @Nullable
+        private TranslogBatchAppend batchAppend;
+        @Nullable
         private TranslogDurability durability;
         @Nullable
         private String flushThresholdSize;
@@ -222,6 +241,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         public Builder() {}
 
         private Builder(Translog o) {
+            this.batchAppend = o.batchAppend;
             this.durability = o.durability;
             this.flushThresholdSize = o.flushThresholdSize;
             this.generationThresholdSize = o.generationThresholdSize;
@@ -231,6 +251,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         }
 
         private Builder(Builder o) {
+            this.batchAppend = o.batchAppend;
             this.durability = o.durability;
             this.flushThresholdSize = o.flushThresholdSize;
             this.generationThresholdSize = o.generationThresholdSize;
@@ -243,6 +264,23 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code batch_append}
+         */
+        @Nonnull
+        public final Builder batchAppend(@Nullable TranslogBatchAppend value) {
+            this.batchAppend = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code batch_append}
+         */
+        @Nonnull
+        public final Builder batchAppend(Function<TranslogBatchAppend.Builder, ObjectBuilder<TranslogBatchAppend>> fn) {
+            return batchAppend(fn.apply(new TranslogBatchAppend.Builder()).build());
         }
 
         /**
@@ -343,6 +381,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     );
 
     protected static void setupTranslogDeserializer(ObjectDeserializer<Translog.Builder> op) {
+        op.add(Builder::batchAppend, TranslogBatchAppend._DESERIALIZER, "batch_append");
         op.add(Builder::durability, TranslogDurability._DESERIALIZER, "durability");
         op.add(Builder::flushThresholdSize, JsonpDeserializer.stringDeserializer(), "flush_threshold_size");
         op.add(Builder::generationThresholdSize, JsonpDeserializer.stringDeserializer(), "generation_threshold_size");
@@ -354,6 +393,7 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.batchAppend);
         result = 31 * result + Objects.hashCode(this.durability);
         result = 31 * result + Objects.hashCode(this.flushThresholdSize);
         result = 31 * result + Objects.hashCode(this.generationThresholdSize);
@@ -368,7 +408,8 @@ public class Translog implements PlainJsonSerializable, ToCopyableBuilder<Transl
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Translog other = (Translog) o;
-        return Objects.equals(this.durability, other.durability)
+        return Objects.equals(this.batchAppend, other.batchAppend)
+            && Objects.equals(this.durability, other.durability)
             && Objects.equals(this.flushThresholdSize, other.flushThresholdSize)
             && Objects.equals(this.generationThresholdSize, other.generationThresholdSize)
             && Objects.equals(this.readForward, other.readForward)

@@ -67,7 +67,7 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
     @Nonnull
     private final List<Action> actions;
 
-    @Nullable
+    @Nonnull
     private final String name;
 
     @Nonnull
@@ -77,7 +77,7 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
 
     private States(Builder builder) {
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
-        this.name = builder.name;
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.transitions = ApiTypeHelper.unmodifiable(builder.transitions);
     }
 
@@ -97,12 +97,12 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
     }
 
     /**
-     * The name of the state.
+     * Required - The name of the state.
      * <p>
      * API name: {@code name}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -138,10 +138,8 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
             generator.writeEnd();
         }
 
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
-        }
+        generator.writeKey("name");
+        generator.write(this.name);
 
         if (ApiTypeHelper.isDefined(this.transitions)) {
             generator.writeKey("transitions");
@@ -172,7 +170,6 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, States> {
         @Nullable
         private List<Action> actions;
-        @Nullable
         private String name;
         @Nullable
         private List<Transition> transitions;
@@ -245,13 +242,13 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
         }
 
         /**
-         * The name of the state.
+         * Required - The name of the state.
          * <p>
          * API name: {@code name}
          * </p>
          */
         @Nonnull
-        public final Builder name(@Nullable String value) {
+        public final Builder name(String value) {
             this.name = value;
             return this;
         }
@@ -337,7 +334,7 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.actions);
-        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + this.name.hashCode();
         result = 31 * result + Objects.hashCode(this.transitions);
         return result;
     }
@@ -348,7 +345,7 @@ public class States implements PlainJsonSerializable, ToCopyableBuilder<States.B
         if (o == null || this.getClass() != o.getClass()) return false;
         States other = (States) o;
         return Objects.equals(this.actions, other.actions)
-            && Objects.equals(this.name, other.name)
+            && this.name.equals(other.name)
             && Objects.equals(this.transitions, other.transitions);
     }
 }

@@ -75,6 +75,9 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
     private final List<String> index;
 
     @Nullable
+    private final Integer limit;
+
+    @Nullable
     private final TimeUnit time;
 
     // ---------------------------------------------------------------------------------------------
@@ -85,6 +88,7 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
         this.bytes = builder.bytes;
         this.detailed = builder.detailed;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
+        this.limit = builder.limit;
         this.time = builder.time;
     }
 
@@ -138,6 +142,17 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
     }
 
     /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
+    }
+
+    /**
      * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
      * <a href="https://docs.opensearch.org/latest/api-reference/units/">Supported units</a>.
      * <p>
@@ -175,6 +190,8 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
         @Nullable
         private List<String> index;
         @Nullable
+        private Integer limit;
+        @Nullable
         private TimeUnit time;
 
         public Builder() {}
@@ -185,6 +202,7 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
             this.bytes = o.bytes;
             this.detailed = o.detailed;
             this.index = _listCopy(o.index);
+            this.limit = o.limit;
             this.time = o.time;
         }
 
@@ -194,6 +212,7 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
             this.bytes = o.bytes;
             this.detailed = o.detailed;
             this.index = _listCopy(o.index);
+            this.limit = o.limit;
             this.time = o.time;
         }
 
@@ -280,6 +299,18 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
         }
 
         /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
+            return this;
+        }
+
+        /**
          * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
          * <a href="https://docs.opensearch.org/latest/api-reference/units/">Supported units</a>.
          * <p>
@@ -319,6 +350,9 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
         }
         if (this.detailed != null) {
             params.put("detailed", String.valueOf(this.detailed));
+        }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
         }
         if (this.time != null) {
             params.put("time", this.time.jsonValue());
@@ -369,6 +403,7 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
         result = 31 * result + Objects.hashCode(this.bytes);
         result = 31 * result + Objects.hashCode(this.detailed);
         result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.time);
         return result;
     }
@@ -382,6 +417,7 @@ public final class RecoveryRequest extends CatRequestBase implements ToCopyableB
             && Objects.equals(this.bytes, other.bytes)
             && Objects.equals(this.detailed, other.detailed)
             && Objects.equals(this.index, other.index)
+            && Objects.equals(this.limit, other.limit)
             && Objects.equals(this.time, other.time);
     }
 }

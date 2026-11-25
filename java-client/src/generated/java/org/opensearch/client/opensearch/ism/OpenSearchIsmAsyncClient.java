@@ -164,6 +164,13 @@ public class OpenSearchIsmAsyncClient extends ApiClient<OpenSearchTransport, Ope
         return explainPolicy(fn.apply(new ExplainPolicyRequest.Builder()).build());
     }
 
+    /**
+     * Retrieves the currently applied policy on the specified indexes.
+     */
+    public final CompletableFuture<ExplainPolicyResponse> explainPolicy() throws IOException, OpenSearchException {
+        return explainPolicy(new ExplainPolicyRequest.Builder().build());
+    }
+
     // ----- Endpoint: ism.get_policies
 
     /**
@@ -314,5 +321,12 @@ public class OpenSearchIsmAsyncClient extends ApiClient<OpenSearchTransport, Ope
     public final CompletableFuture<RetryIndexResponse> retryIndex(Function<RetryIndexRequest.Builder, ObjectBuilder<RetryIndexRequest>> fn)
         throws IOException, OpenSearchException {
         return retryIndex(fn.apply(new RetryIndexRequest.Builder()).build());
+    }
+
+    /**
+     * Retries the failed action for an index.
+     */
+    public final CompletableFuture<RetryIndexResponse> retryIndex() throws IOException, OpenSearchException {
+        return retryIndex(new RetryIndexRequest.Builder().build());
     }
 }

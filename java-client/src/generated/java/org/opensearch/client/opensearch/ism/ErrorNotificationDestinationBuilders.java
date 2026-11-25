@@ -34,36 +34,35 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.core.search;
+package org.opensearch.client.opensearch.ism;
 
 import javax.annotation.Generated;
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: core.search.TotalHitsRelation
-
-@JsonpDeserializable
+/**
+ * Builders for {@link ErrorNotificationDestination} variants.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum TotalHitsRelation implements JsonEnum {
-    /**
-     * Accurate.
-     */
-    Eq("eq"),
+public class ErrorNotificationDestinationBuilders {
+    private ErrorNotificationDestinationBuilders() {}
 
     /**
-     * Lower bound, including returned events or sequences.
+     * Creates a builder for the {@link ErrorNotificationChime chime} {@code ErrorNotificationDestination} variant.
      */
-    Gte("gte");
-
-    private final String jsonValue;
-
-    TotalHitsRelation(String jsonValue) {
-        this.jsonValue = jsonValue;
+    public static ErrorNotificationChime.Builder chime() {
+        return new ErrorNotificationChime.Builder();
     }
 
-    public String jsonValue() {
-        return this.jsonValue;
+    /**
+     * Creates a builder for the {@link ErrorNotificationCustomWebhook custom_webhook} {@code ErrorNotificationDestination} variant.
+     */
+    public static ErrorNotificationCustomWebhook.Builder customWebhook() {
+        return new ErrorNotificationCustomWebhook.Builder();
     }
 
-    public static final JsonEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(TotalHitsRelation.values());
+    /**
+     * Creates a builder for the {@link ErrorNotificationSlack slack} {@code ErrorNotificationDestination} variant.
+     */
+    public static ErrorNotificationSlack.Builder slack() {
+        return new ErrorNotificationSlack.Builder();
+    }
 }

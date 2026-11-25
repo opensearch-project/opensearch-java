@@ -72,7 +72,13 @@ public class RemoteVectorIndexClientStats
     private final Long indexBuildFailureCount;
 
     @Nullable
+    private final Long indexBuildMergeAbortException;
+
+    @Nullable
     private final Long indexBuildSuccessCount;
+
+    @Nullable
+    private final Long indexBuildTerminalException;
 
     @Nullable
     private final Long statusRequestFailureCount;
@@ -89,7 +95,9 @@ public class RemoteVectorIndexClientStats
         this.buildRequestFailureCount = builder.buildRequestFailureCount;
         this.buildRequestSuccessCount = builder.buildRequestSuccessCount;
         this.indexBuildFailureCount = builder.indexBuildFailureCount;
+        this.indexBuildMergeAbortException = builder.indexBuildMergeAbortException;
         this.indexBuildSuccessCount = builder.indexBuildSuccessCount;
+        this.indexBuildTerminalException = builder.indexBuildTerminalException;
         this.statusRequestFailureCount = builder.statusRequestFailureCount;
         this.statusRequestSuccessCount = builder.statusRequestSuccessCount;
         this.waitingTimeInMs = builder.waitingTimeInMs;
@@ -126,11 +134,27 @@ public class RemoteVectorIndexClientStats
     }
 
     /**
+     * API name: {@code index_build_merge_abort_exception}
+     */
+    @Nullable
+    public final Long indexBuildMergeAbortException() {
+        return this.indexBuildMergeAbortException;
+    }
+
+    /**
      * API name: {@code index_build_success_count}
      */
     @Nullable
     public final Long indexBuildSuccessCount() {
         return this.indexBuildSuccessCount;
+    }
+
+    /**
+     * API name: {@code index_build_terminal_exception}
+     */
+    @Nullable
+    public final Long indexBuildTerminalException() {
+        return this.indexBuildTerminalException;
     }
 
     /**
@@ -183,9 +207,19 @@ public class RemoteVectorIndexClientStats
             generator.write(this.indexBuildFailureCount);
         }
 
+        if (this.indexBuildMergeAbortException != null) {
+            generator.writeKey("index_build_merge_abort_exception");
+            generator.write(this.indexBuildMergeAbortException);
+        }
+
         if (this.indexBuildSuccessCount != null) {
             generator.writeKey("index_build_success_count");
             generator.write(this.indexBuildSuccessCount);
+        }
+
+        if (this.indexBuildTerminalException != null) {
+            generator.writeKey("index_build_terminal_exception");
+            generator.write(this.indexBuildTerminalException);
         }
 
         if (this.statusRequestFailureCount != null) {
@@ -228,7 +262,11 @@ public class RemoteVectorIndexClientStats
         @Nullable
         private Long indexBuildFailureCount;
         @Nullable
+        private Long indexBuildMergeAbortException;
+        @Nullable
         private Long indexBuildSuccessCount;
+        @Nullable
+        private Long indexBuildTerminalException;
         @Nullable
         private Long statusRequestFailureCount;
         @Nullable
@@ -242,7 +280,9 @@ public class RemoteVectorIndexClientStats
             this.buildRequestFailureCount = o.buildRequestFailureCount;
             this.buildRequestSuccessCount = o.buildRequestSuccessCount;
             this.indexBuildFailureCount = o.indexBuildFailureCount;
+            this.indexBuildMergeAbortException = o.indexBuildMergeAbortException;
             this.indexBuildSuccessCount = o.indexBuildSuccessCount;
+            this.indexBuildTerminalException = o.indexBuildTerminalException;
             this.statusRequestFailureCount = o.statusRequestFailureCount;
             this.statusRequestSuccessCount = o.statusRequestSuccessCount;
             this.waitingTimeInMs = o.waitingTimeInMs;
@@ -252,7 +292,9 @@ public class RemoteVectorIndexClientStats
             this.buildRequestFailureCount = o.buildRequestFailureCount;
             this.buildRequestSuccessCount = o.buildRequestSuccessCount;
             this.indexBuildFailureCount = o.indexBuildFailureCount;
+            this.indexBuildMergeAbortException = o.indexBuildMergeAbortException;
             this.indexBuildSuccessCount = o.indexBuildSuccessCount;
+            this.indexBuildTerminalException = o.indexBuildTerminalException;
             this.statusRequestFailureCount = o.statusRequestFailureCount;
             this.statusRequestSuccessCount = o.statusRequestSuccessCount;
             this.waitingTimeInMs = o.waitingTimeInMs;
@@ -292,11 +334,29 @@ public class RemoteVectorIndexClientStats
         }
 
         /**
+         * API name: {@code index_build_merge_abort_exception}
+         */
+        @Nonnull
+        public final Builder indexBuildMergeAbortException(@Nullable Long value) {
+            this.indexBuildMergeAbortException = value;
+            return this;
+        }
+
+        /**
          * API name: {@code index_build_success_count}
          */
         @Nonnull
         public final Builder indexBuildSuccessCount(@Nullable Long value) {
             this.indexBuildSuccessCount = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code index_build_terminal_exception}
+         */
+        @Nonnull
+        public final Builder indexBuildTerminalException(@Nullable Long value) {
+            this.indexBuildTerminalException = value;
             return this;
         }
 
@@ -355,7 +415,9 @@ public class RemoteVectorIndexClientStats
         op.add(Builder::buildRequestFailureCount, JsonpDeserializer.longDeserializer(), "build_request_failure_count");
         op.add(Builder::buildRequestSuccessCount, JsonpDeserializer.longDeserializer(), "build_request_success_count");
         op.add(Builder::indexBuildFailureCount, JsonpDeserializer.longDeserializer(), "index_build_failure_count");
+        op.add(Builder::indexBuildMergeAbortException, JsonpDeserializer.longDeserializer(), "index_build_merge_abort_exception");
         op.add(Builder::indexBuildSuccessCount, JsonpDeserializer.longDeserializer(), "index_build_success_count");
+        op.add(Builder::indexBuildTerminalException, JsonpDeserializer.longDeserializer(), "index_build_terminal_exception");
         op.add(Builder::statusRequestFailureCount, JsonpDeserializer.longDeserializer(), "status_request_failure_count");
         op.add(Builder::statusRequestSuccessCount, JsonpDeserializer.longDeserializer(), "status_request_success_count");
         op.add(Builder::waitingTimeInMs, JsonpDeserializer.longDeserializer(), "waiting_time_in_ms");
@@ -367,7 +429,9 @@ public class RemoteVectorIndexClientStats
         result = 31 * result + Objects.hashCode(this.buildRequestFailureCount);
         result = 31 * result + Objects.hashCode(this.buildRequestSuccessCount);
         result = 31 * result + Objects.hashCode(this.indexBuildFailureCount);
+        result = 31 * result + Objects.hashCode(this.indexBuildMergeAbortException);
         result = 31 * result + Objects.hashCode(this.indexBuildSuccessCount);
+        result = 31 * result + Objects.hashCode(this.indexBuildTerminalException);
         result = 31 * result + Objects.hashCode(this.statusRequestFailureCount);
         result = 31 * result + Objects.hashCode(this.statusRequestSuccessCount);
         result = 31 * result + Objects.hashCode(this.waitingTimeInMs);
@@ -382,7 +446,9 @@ public class RemoteVectorIndexClientStats
         return Objects.equals(this.buildRequestFailureCount, other.buildRequestFailureCount)
             && Objects.equals(this.buildRequestSuccessCount, other.buildRequestSuccessCount)
             && Objects.equals(this.indexBuildFailureCount, other.indexBuildFailureCount)
+            && Objects.equals(this.indexBuildMergeAbortException, other.indexBuildMergeAbortException)
             && Objects.equals(this.indexBuildSuccessCount, other.indexBuildSuccessCount)
+            && Objects.equals(this.indexBuildTerminalException, other.indexBuildTerminalException)
             && Objects.equals(this.statusRequestFailureCount, other.statusRequestFailureCount)
             && Objects.equals(this.statusRequestSuccessCount, other.statusRequestSuccessCount)
             && Objects.equals(this.waitingTimeInMs, other.waitingTimeInMs);

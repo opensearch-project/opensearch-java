@@ -139,7 +139,10 @@ public final class FieldCapsRequest extends RequestBase
     }
 
     /**
+     * A comma-separated list of fields to retrieve capabilities for. Wildcard (<code>*</code>) expressions are supported.
+     * <p>
      * API name: {@code fields}
+     * </p>
      */
     @Nonnull
     public final List<String> fields() {
@@ -199,15 +202,6 @@ public final class FieldCapsRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.fields)) {
-            generator.writeKey("fields");
-            generator.writeStartArray();
-            for (String item0 : this.fields) {
-                generator.write(item0);
-            }
-            generator.writeEnd();
-        }
-
         if (this.indexFilter != null) {
             generator.writeKey("index_filter");
             this.indexFilter.serialize(generator, mapper);
@@ -331,7 +325,10 @@ public final class FieldCapsRequest extends RequestBase
         }
 
         /**
+         * A comma-separated list of fields to retrieve capabilities for. Wildcard (<code>*</code>) expressions are supported.
+         * <p>
          * API name: {@code fields}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -344,7 +341,10 @@ public final class FieldCapsRequest extends RequestBase
         }
 
         /**
+         * A comma-separated list of fields to retrieve capabilities for. Wildcard (<code>*</code>) expressions are supported.
+         * <p>
          * API name: {@code fields}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>fields</code>.
@@ -456,7 +456,6 @@ public final class FieldCapsRequest extends RequestBase
     );
 
     protected static void setupFieldCapsRequestDeserializer(ObjectDeserializer<FieldCapsRequest.Builder> op) {
-        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
         op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
     }
 
@@ -470,6 +469,9 @@ public final class FieldCapsRequest extends RequestBase
         }
         if (ApiTypeHelper.isDefined(this.expandWildcards)) {
             params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (ApiTypeHelper.isDefined(this.fields)) {
+            params.put("fields", String.join(",", this.fields));
         }
         if (this.ignoreUnavailable != null) {
             params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));

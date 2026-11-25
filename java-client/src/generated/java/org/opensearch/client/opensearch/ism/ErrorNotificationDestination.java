@@ -37,50 +37,76 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
+import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import org.opensearch.client.util.ToCopyableBuilder;
+import org.opensearch.client.util.TaggedUnion;
+import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: ism.ErrorNotificationDestination
 
+/**
+ * The notification destination. Requires exactly one of <code>chime</code>, <code>slack</code> or <code>custom_webhook</code>.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ErrorNotificationDestination
     implements
-        PlainJsonSerializable,
-        ToCopyableBuilder<ErrorNotificationDestination.Builder, ErrorNotificationDestination> {
+        TaggedUnion<ErrorNotificationDestination.Kind, ErrorNotificationDestinationVariant>,
+        PlainJsonSerializable {
+    /**
+     * {@link ErrorNotificationDestination} variant kinds.
+     */
+    public enum Kind implements JsonEnum {
+        Chime("chime"),
+        CustomWebhook("custom_webhook"),
+        Slack("slack");
 
-    @Nullable
-    private final Integer lastUpdateTime;
+        private final String jsonValue;
 
-    @Nonnull
-    private final Map<String, Map<String, JsonData>> metadata;
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
 
-    @Nullable
-    private final String name;
+        @Override
+        public String jsonValue() {
+            return jsonValue;
+        }
+    }
 
-    // ---------------------------------------------------------------------------------------------
+    private final Kind _kind;
+    private final ErrorNotificationDestinationVariant _value;
+
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
+
+    @Override
+    public final ErrorNotificationDestinationVariant _get() {
+        return _value;
+    }
+
+    public ErrorNotificationDestination(ErrorNotificationDestinationVariant value) {
+        this._kind = ApiTypeHelper.requireNonNull(value._errorNotificationDestinationKind(), this, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+    }
 
     private ErrorNotificationDestination(Builder builder) {
-        this.lastUpdateTime = builder.lastUpdateTime;
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-        this.name = builder.name;
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
 
     public static ErrorNotificationDestination of(
@@ -90,66 +116,63 @@ public class ErrorNotificationDestination
     }
 
     /**
-     * When the notification destination was last updated.
-     * <p>
-     * API name: {@code last_update_time}
-     * </p>
+     * Is this variant instance of kind {@code chime}?
      */
-    @Nullable
-    public final Integer lastUpdateTime() {
-        return this.lastUpdateTime;
-    }
-
-    @Nonnull
-    public final Map<String, Map<String, JsonData>> metadata() {
-        return this.metadata;
+    public boolean isChime() {
+        return _kind == Kind.Chime;
     }
 
     /**
-     * The name of the notification destination.
-     * <p>
-     * API name: {@code name}
-     * </p>
+     * Get the {@code chime} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code chime} kind.
      */
-    @Nullable
-    public final String name() {
-        return this.name;
+    public ErrorNotificationChime chime() {
+        return TaggedUnionUtils.get(this, Kind.Chime);
     }
 
     /**
-     * Serialize this object to JSON.
+     * Is this variant instance of kind {@code custom_webhook}?
      */
+    public boolean isCustomWebhook() {
+        return _kind == Kind.CustomWebhook;
+    }
+
+    /**
+     * Get the {@code custom_webhook} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code custom_webhook} kind.
+     */
+    public ErrorNotificationCustomWebhook customWebhook() {
+        return TaggedUnionUtils.get(this, Kind.CustomWebhook);
+    }
+
+    /**
+     * Is this variant instance of kind {@code slack}?
+     */
+    public boolean isSlack() {
+        return _kind == Kind.Slack;
+    }
+
+    /**
+     * Get the {@code slack} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code slack} kind.
+     */
+    public ErrorNotificationSlack slack() {
+        return TaggedUnionUtils.get(this, Kind.Slack);
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        serializeInternal(generator, mapper);
+        generator.writeKey(_kind.jsonValue());
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        }
         generator.writeEnd();
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        for (Map.Entry<String, Map<String, JsonData>> item0 : this.metadata.entrySet()) {
-            generator.writeKey(item0.getKey());
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
-                generator.writeKey(item1.getKey());
-                item1.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-        if (this.lastUpdateTime != null) {
-            generator.writeKey("last_update_time");
-            generator.write(this.lastUpdateTime);
-        }
-
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
-        }
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    @Override
     @Nonnull
     public Builder toBuilder() {
         return new Builder(this);
@@ -160,126 +183,77 @@ public class ErrorNotificationDestination
         return new Builder();
     }
 
-    /**
-     * Builder for {@link ErrorNotificationDestination}.
-     */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ErrorNotificationDestination> {
-        @Nullable
-        private Integer lastUpdateTime;
-        @Nullable
-        private Map<String, Map<String, JsonData>> metadata;
-        @Nullable
-        private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorNotificationDestination> {
+        private Kind _kind;
+        private ErrorNotificationDestinationVariant _value;
 
         public Builder() {}
 
         private Builder(ErrorNotificationDestination o) {
-            this.lastUpdateTime = o.lastUpdateTime;
-            this.metadata = _mapCopy(o.metadata);
-            this.name = o.name;
+            this._kind = o._kind;
+            this._value = o._value;
         }
 
-        private Builder(Builder o) {
-            this.lastUpdateTime = o.lastUpdateTime;
-            this.metadata = _mapCopy(o.metadata);
-            this.name = o.name;
+        public ObjectBuilder<ErrorNotificationDestination> chime(ErrorNotificationChime v) {
+            this._kind = Kind.Chime;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<ErrorNotificationDestination> chime(
+            Function<ErrorNotificationChime.Builder, ObjectBuilder<ErrorNotificationChime>> fn
+        ) {
+            return this.chime(fn.apply(new ErrorNotificationChime.Builder()).build());
+        }
+
+        public ObjectBuilder<ErrorNotificationDestination> customWebhook(ErrorNotificationCustomWebhook v) {
+            this._kind = Kind.CustomWebhook;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<ErrorNotificationDestination> customWebhook(
+            Function<ErrorNotificationCustomWebhook.Builder, ObjectBuilder<ErrorNotificationCustomWebhook>> fn
+        ) {
+            return this.customWebhook(fn.apply(new ErrorNotificationCustomWebhook.Builder()).build());
+        }
+
+        public ObjectBuilder<ErrorNotificationDestination> slack(ErrorNotificationSlack v) {
+            this._kind = Kind.Slack;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<ErrorNotificationDestination> slack(
+            Function<ErrorNotificationSlack.Builder, ObjectBuilder<ErrorNotificationSlack>> fn
+        ) {
+            return this.slack(fn.apply(new ErrorNotificationSlack.Builder()).build());
         }
 
         @Override
-        @Nonnull
-        public Builder copy() {
-            return new Builder(this);
-        }
-
-        /**
-         * When the notification destination was last updated.
-         * <p>
-         * API name: {@code last_update_time}
-         * </p>
-         */
-        @Nonnull
-        public final Builder lastUpdateTime(@Nullable Integer value) {
-            this.lastUpdateTime = value;
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(Map<String, Map<String, JsonData>> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(String key, Map<String, JsonData> value) {
-            this.metadata = _mapPut(this.metadata, key, value);
-            return this;
-        }
-
-        /**
-         * The name of the notification destination.
-         * <p>
-         * API name: {@code name}
-         * </p>
-         */
-        @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link ErrorNotificationDestination}.
-         *
-         * @throws NullPointerException if some of the required fields are null.
-         */
-        @Override
-        @Nonnull
         public ErrorNotificationDestination build() {
             _checkSingleUse();
-
             return new ErrorNotificationDestination(this);
         }
     }
 
-    // ---------------------------------------------------------------------------------------------
+    protected static void setupErrorNotificationDestinationDeserializer(ObjectDeserializer<Builder> op) {
+        op.add(Builder::chime, ErrorNotificationChime._DESERIALIZER, "chime");
+        op.add(Builder::customWebhook, ErrorNotificationCustomWebhook._DESERIALIZER, "custom_webhook");
+        op.add(Builder::slack, ErrorNotificationSlack._DESERIALIZER, "slack");
+    }
 
-    /**
-     * Json deserializer for {@link ErrorNotificationDestination}
-     */
     public static final JsonpDeserializer<ErrorNotificationDestination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ErrorNotificationDestination::setupErrorNotificationDestinationDeserializer
+        ErrorNotificationDestination::setupErrorNotificationDestinationDeserializer,
+        Builder::build
     );
-
-    protected static void setupErrorNotificationDestinationDeserializer(ObjectDeserializer<ErrorNotificationDestination.Builder> op) {
-        op.add(Builder::lastUpdateTime, JsonpDeserializer.integerDeserializer(), "last_update_time");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-            if (builder.metadata == null) {
-                builder.metadata = new HashMap<>();
-            }
-            builder.metadata.put(name, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER).deserialize(parser, mapper));
-        });
-    }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.lastUpdateTime);
-        result = 31 * result + Objects.hashCode(this.metadata);
-        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
         return result;
     }
 
@@ -288,8 +262,6 @@ public class ErrorNotificationDestination
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ErrorNotificationDestination other = (ErrorNotificationDestination) o;
-        return Objects.equals(this.lastUpdateTime, other.lastUpdateTime)
-            && Objects.equals(this.metadata, other.metadata)
-            && Objects.equals(this.name, other.name);
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
     }
 }

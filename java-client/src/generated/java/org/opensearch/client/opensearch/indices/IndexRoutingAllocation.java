@@ -91,7 +91,7 @@ public class IndexRoutingAllocation
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexRoutingAllocation(Builder builder) {
+    protected IndexRoutingAllocation(AbstractBuilder<?> builder) {
         this.disk = builder.disk;
         this.enable = builder.enable;
         this.include = builder.include;
@@ -102,7 +102,9 @@ public class IndexRoutingAllocation
         this.totalShardsPerNode = builder.totalShardsPerNode;
     }
 
-    public static IndexRoutingAllocation of(Function<IndexRoutingAllocation.Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
+    public static IndexRoutingAllocation indexRoutingAllocationOf(
+        Function<IndexRoutingAllocation.Builder, ObjectBuilder<IndexRoutingAllocation>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -231,53 +233,24 @@ public class IndexRoutingAllocation
     }
 
     @Nonnull
-    public static Builder builder() {
+    public static Builder indexRoutingAllocationBuilder() {
         return new Builder();
     }
 
     /**
      * Builder for {@link IndexRoutingAllocation}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexRoutingAllocation> {
-        @Nullable
-        private IndexRoutingAllocationDisk disk;
-        @Nullable
-        private IndexRoutingAllocationOptions enable;
-        @Nullable
-        private IndexRoutingAllocationInclude include;
-        @Nullable
-        private IndexRoutingAllocationInitialRecovery initialRecovery;
-        @Nullable
-        private Integer totalPrimaryShardsPerNode;
-        @Nullable
-        private Integer totalRemoteCapablePrimaryShardsPerNode;
-        @Nullable
-        private Integer totalRemoteCapableShardsPerNode;
-        @Nullable
-        private Integer totalShardsPerNode;
-
+    public static class Builder extends IndexRoutingAllocation.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IndexRoutingAllocation> {
         public Builder() {}
 
         private Builder(IndexRoutingAllocation o) {
-            this.disk = o.disk;
-            this.enable = o.enable;
-            this.include = o.include;
-            this.initialRecovery = o.initialRecovery;
-            this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
-            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
-            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
-            this.totalShardsPerNode = o.totalShardsPerNode;
+            super(o);
         }
 
         private Builder(Builder o) {
-            this.disk = o.disk;
-            this.enable = o.enable;
-            this.include = o.include;
-            this.initialRecovery = o.initialRecovery;
-            this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
-            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
-            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
-            this.totalShardsPerNode = o.totalShardsPerNode;
+            super(o);
         }
 
         @Override
@@ -286,101 +259,9 @@ public class IndexRoutingAllocation
             return new Builder(this);
         }
 
-        /**
-         * API name: {@code disk}
-         */
+        @Override
         @Nonnull
-        public final Builder disk(@Nullable IndexRoutingAllocationDisk value) {
-            this.disk = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code disk}
-         */
-        @Nonnull
-        public final Builder disk(Function<IndexRoutingAllocationDisk.Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
-            return disk(fn.apply(new IndexRoutingAllocationDisk.Builder()).build());
-        }
-
-        /**
-         * API name: {@code enable}
-         */
-        @Nonnull
-        public final Builder enable(@Nullable IndexRoutingAllocationOptions value) {
-            this.enable = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code include}
-         */
-        @Nonnull
-        public final Builder include(@Nullable IndexRoutingAllocationInclude value) {
-            this.include = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code include}
-         */
-        @Nonnull
-        public final Builder include(Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
-            return include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
-        }
-
-        /**
-         * API name: {@code initial_recovery}
-         */
-        @Nonnull
-        public final Builder initialRecovery(@Nullable IndexRoutingAllocationInitialRecovery value) {
-            this.initialRecovery = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code initial_recovery}
-         */
-        @Nonnull
-        public final Builder initialRecovery(
-            Function<IndexRoutingAllocationInitialRecovery.Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn
-        ) {
-            return initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
-        }
-
-        /**
-         * API name: {@code total_primary_shards_per_node}
-         */
-        @Nonnull
-        public final Builder totalPrimaryShardsPerNode(@Nullable Integer value) {
-            this.totalPrimaryShardsPerNode = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code total_remote_capable_primary_shards_per_node}
-         */
-        @Nonnull
-        public final Builder totalRemoteCapablePrimaryShardsPerNode(@Nullable Integer value) {
-            this.totalRemoteCapablePrimaryShardsPerNode = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code total_remote_capable_shards_per_node}
-         */
-        @Nonnull
-        public final Builder totalRemoteCapableShardsPerNode(@Nullable Integer value) {
-            this.totalRemoteCapableShardsPerNode = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code total_shards_per_node}
-         */
-        @Nonnull
-        public final Builder totalShardsPerNode(@Nullable Integer value) {
-            this.totalShardsPerNode = value;
+        protected Builder self() {
             return this;
         }
 
@@ -398,6 +279,150 @@ public class IndexRoutingAllocation
         }
     }
 
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private IndexRoutingAllocationDisk disk;
+        @Nullable
+        private IndexRoutingAllocationOptions enable;
+        @Nullable
+        private IndexRoutingAllocationInclude include;
+        @Nullable
+        private IndexRoutingAllocationInitialRecovery initialRecovery;
+        @Nullable
+        private Integer totalPrimaryShardsPerNode;
+        @Nullable
+        private Integer totalRemoteCapablePrimaryShardsPerNode;
+        @Nullable
+        private Integer totalRemoteCapableShardsPerNode;
+        @Nullable
+        private Integer totalShardsPerNode;
+
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(IndexRoutingAllocation o) {
+            this.disk = o.disk;
+            this.enable = o.enable;
+            this.include = o.include;
+            this.initialRecovery = o.initialRecovery;
+            this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
+            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
+            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
+            this.totalShardsPerNode = o.totalShardsPerNode;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.disk = o.disk;
+            this.enable = o.enable;
+            this.include = o.include;
+            this.initialRecovery = o.initialRecovery;
+            this.totalPrimaryShardsPerNode = o.totalPrimaryShardsPerNode;
+            this.totalRemoteCapablePrimaryShardsPerNode = o.totalRemoteCapablePrimaryShardsPerNode;
+            this.totalRemoteCapableShardsPerNode = o.totalRemoteCapableShardsPerNode;
+            this.totalShardsPerNode = o.totalShardsPerNode;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
+        /**
+         * API name: {@code disk}
+         */
+        @Nonnull
+        public final BuilderT disk(@Nullable IndexRoutingAllocationDisk value) {
+            this.disk = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code disk}
+         */
+        @Nonnull
+        public final BuilderT disk(Function<IndexRoutingAllocationDisk.Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+            return disk(fn.apply(new IndexRoutingAllocationDisk.Builder()).build());
+        }
+
+        /**
+         * API name: {@code enable}
+         */
+        @Nonnull
+        public final BuilderT enable(@Nullable IndexRoutingAllocationOptions value) {
+            this.enable = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code include}
+         */
+        @Nonnull
+        public final BuilderT include(@Nullable IndexRoutingAllocationInclude value) {
+            this.include = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code include}
+         */
+        @Nonnull
+        public final BuilderT include(Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+            return include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
+        }
+
+        /**
+         * API name: {@code initial_recovery}
+         */
+        @Nonnull
+        public final BuilderT initialRecovery(@Nullable IndexRoutingAllocationInitialRecovery value) {
+            this.initialRecovery = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code initial_recovery}
+         */
+        @Nonnull
+        public final BuilderT initialRecovery(
+            Function<IndexRoutingAllocationInitialRecovery.Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn
+        ) {
+            return initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
+        }
+
+        /**
+         * API name: {@code total_primary_shards_per_node}
+         */
+        @Nonnull
+        public final BuilderT totalPrimaryShardsPerNode(@Nullable Integer value) {
+            this.totalPrimaryShardsPerNode = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code total_remote_capable_primary_shards_per_node}
+         */
+        @Nonnull
+        public final BuilderT totalRemoteCapablePrimaryShardsPerNode(@Nullable Integer value) {
+            this.totalRemoteCapablePrimaryShardsPerNode = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code total_remote_capable_shards_per_node}
+         */
+        @Nonnull
+        public final BuilderT totalRemoteCapableShardsPerNode(@Nullable Integer value) {
+            this.totalRemoteCapableShardsPerNode = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code total_shards_per_node}
+         */
+        @Nonnull
+        public final BuilderT totalShardsPerNode(@Nullable Integer value) {
+            this.totalShardsPerNode = value;
+            return self();
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -408,19 +433,25 @@ public class IndexRoutingAllocation
         IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer
     );
 
-    protected static void setupIndexRoutingAllocationDeserializer(ObjectDeserializer<IndexRoutingAllocation.Builder> op) {
-        op.add(Builder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
-        op.add(Builder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
-        op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
-        op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
-        op.add(Builder::totalPrimaryShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_primary_shards_per_node");
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndexRoutingAllocationDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        op.add(AbstractBuilder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
+        op.add(AbstractBuilder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
+        op.add(AbstractBuilder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
+        op.add(AbstractBuilder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
+        op.add(AbstractBuilder::totalPrimaryShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_primary_shards_per_node");
         op.add(
-            Builder::totalRemoteCapablePrimaryShardsPerNode,
+            AbstractBuilder::totalRemoteCapablePrimaryShardsPerNode,
             JsonpDeserializer.integerDeserializer(),
             "total_remote_capable_primary_shards_per_node"
         );
-        op.add(Builder::totalRemoteCapableShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_remote_capable_shards_per_node");
-        op.add(Builder::totalShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_shards_per_node");
+        op.add(
+            AbstractBuilder::totalRemoteCapableShardsPerNode,
+            JsonpDeserializer.integerDeserializer(),
+            "total_remote_capable_shards_per_node"
+        );
+        op.add(AbstractBuilder::totalShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_shards_per_node");
     }
 
     @Override

@@ -95,6 +95,9 @@ public final class SegmentReplicationRequest extends CatRequestBase
     @Nonnull
     private final List<String> index;
 
+    @Nullable
+    private final Integer limit;
+
     @Nonnull
     private final List<String> shards;
 
@@ -117,6 +120,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
         this.ignoreThrottled = builder.ignoreThrottled;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
+        this.limit = builder.limit;
         this.shards = ApiTypeHelper.unmodifiable(builder.shards);
         this.time = builder.time;
         this.timeout = builder.timeout;
@@ -228,6 +232,17 @@ public final class SegmentReplicationRequest extends CatRequestBase
     }
 
     /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
+    }
+
+    /**
      * A comma-separated list of shards to display.
      * <p>
      * API name: {@code shards}
@@ -299,6 +314,8 @@ public final class SegmentReplicationRequest extends CatRequestBase
         @Nullable
         private List<String> index;
         @Nullable
+        private Integer limit;
+        @Nullable
         private List<String> shards;
         @Nullable
         private TimeUnit time;
@@ -318,6 +335,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
             this.ignoreThrottled = o.ignoreThrottled;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
+            this.limit = o.limit;
             this.shards = _listCopy(o.shards);
             this.time = o.time;
             this.timeout = o.timeout;
@@ -334,6 +352,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
             this.ignoreThrottled = o.ignoreThrottled;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
+            this.limit = o.limit;
             this.shards = _listCopy(o.shards);
             this.time = o.time;
             this.timeout = o.timeout;
@@ -503,6 +522,18 @@ public final class SegmentReplicationRequest extends CatRequestBase
         }
 
         /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
+            return this;
+        }
+
+        /**
          * A comma-separated list of shards to display.
          * <p>
          * API name: {@code shards}
@@ -613,6 +644,9 @@ public final class SegmentReplicationRequest extends CatRequestBase
         if (this.ignoreUnavailable != null) {
             params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
         }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
+        }
         if (ApiTypeHelper.isDefined(this.shards)) {
             params.put("shards", String.join(",", this.shards));
         }
@@ -673,6 +707,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
         result = 31 * result + Objects.hashCode(this.ignoreThrottled);
         result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
         result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.shards);
         result = 31 * result + Objects.hashCode(this.time);
         result = 31 * result + Objects.hashCode(this.timeout);
@@ -693,6 +728,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
             && Objects.equals(this.ignoreThrottled, other.ignoreThrottled)
             && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
             && Objects.equals(this.index, other.index)
+            && Objects.equals(this.limit, other.limit)
             && Objects.equals(this.shards, other.shards)
             && Objects.equals(this.time, other.time)
             && Objects.equals(this.timeout, other.timeout);

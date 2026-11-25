@@ -47,6 +47,8 @@ import org.opensearch.client.json.JsonpDeserializable;
 public enum DynamicMapping implements JsonEnum {
     False("false"),
 
+    FalseAllowTemplates("false_allow_templates"),
+
     Strict("strict"),
 
     StrictAllowTemplates("strict_allow_templates"),

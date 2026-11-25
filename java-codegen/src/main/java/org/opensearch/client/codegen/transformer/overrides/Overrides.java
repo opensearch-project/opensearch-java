@@ -18,6 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeParameterRef;
 import org.opensearch.client.codegen.model.types.Types;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
@@ -159,19 +160,29 @@ public class Overrides {
                 .with(schema("_core.search", "TermSuggestOption"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(
                     schema("_core.search", "Hit"),
-                    so -> so.withProperties(
-                        p -> p.with("matched_queries", po -> po.withMappedType(Types.Client.OpenSearch.Core.Search.MatchedQueries))
-                    )
+                    so -> so.withShouldGenerate(ShouldGenerate.Always)
+                        .withProperties(
+                            p -> p.with("matched_queries", po -> po.withMappedType(Types.Client.OpenSearch.Core.Search.MatchedQueries))
+                        )
                 )
                 .with(
                     schema("_core.search", "HitsMetadata"),
                     so -> so.withProperties(
                         p -> p.with(
-                            "total",
+                            "hits",
                             po -> po.withMappedType(
-                                Type.builder().withPackage(Types.Client.OpenSearch.PACKAGE + ".core.search").withName("TotalHits").build()
+                                Types.Java.Util.List(Types.Client.OpenSearch.Core.Search.Hit(new TypeParameterRef("TDocument")), false)
                             )
                         )
+                            .with(
+                                "total",
+                                po -> po.withMappedType(
+                                    Type.builder()
+                                        .withPackage(Types.Client.OpenSearch.PACKAGE + ".core.search")
+                                        .withName("TotalHits")
+                                        .build()
+                                )
+                            )
                     )
                 )
                 .with(schema("_core.search", "TotalHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))

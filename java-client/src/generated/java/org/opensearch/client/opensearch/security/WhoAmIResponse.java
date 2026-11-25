@@ -66,6 +66,9 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
     private final Boolean isAdmin;
 
     @Nullable
+    private final Boolean isAuthenticated;
+
+    @Nullable
     private final Boolean isNodeCertificateRequest;
 
     // ---------------------------------------------------------------------------------------------
@@ -73,6 +76,7 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
     private WhoAmIResponse(Builder builder) {
         this.dn = builder.dn;
         this.isAdmin = builder.isAdmin;
+        this.isAuthenticated = builder.isAuthenticated;
         this.isNodeCertificateRequest = builder.isNodeCertificateRequest;
     }
 
@@ -94,6 +98,14 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
     @Nullable
     public final Boolean isAdmin() {
         return this.isAdmin;
+    }
+
+    /**
+     * API name: {@code is_authenticated}
+     */
+    @Nullable
+    public final Boolean isAuthenticated() {
+        return this.isAuthenticated;
     }
 
     /**
@@ -125,6 +137,11 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
             generator.write(this.isAdmin);
         }
 
+        if (this.isAuthenticated != null) {
+            generator.writeKey("is_authenticated");
+            generator.write(this.isAuthenticated);
+        }
+
         if (this.isNodeCertificateRequest != null) {
             generator.writeKey("is_node_certificate_request");
             generator.write(this.isNodeCertificateRequest);
@@ -153,6 +170,8 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Boolean isAdmin;
         @Nullable
+        private Boolean isAuthenticated;
+        @Nullable
         private Boolean isNodeCertificateRequest;
 
         public Builder() {}
@@ -160,12 +179,14 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
         private Builder(WhoAmIResponse o) {
             this.dn = o.dn;
             this.isAdmin = o.isAdmin;
+            this.isAuthenticated = o.isAuthenticated;
             this.isNodeCertificateRequest = o.isNodeCertificateRequest;
         }
 
         private Builder(Builder o) {
             this.dn = o.dn;
             this.isAdmin = o.isAdmin;
+            this.isAuthenticated = o.isAuthenticated;
             this.isNodeCertificateRequest = o.isNodeCertificateRequest;
         }
 
@@ -190,6 +211,15 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
         @Nonnull
         public final Builder isAdmin(@Nullable Boolean value) {
             this.isAdmin = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code is_authenticated}
+         */
+        @Nonnull
+        public final Builder isAuthenticated(@Nullable Boolean value) {
+            this.isAuthenticated = value;
             return this;
         }
 
@@ -229,6 +259,7 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupWhoAmIResponseDeserializer(ObjectDeserializer<WhoAmIResponse.Builder> op) {
         op.add(Builder::dn, JsonpDeserializer.stringDeserializer(), "dn");
         op.add(Builder::isAdmin, JsonpDeserializer.booleanDeserializer(), "is_admin");
+        op.add(Builder::isAuthenticated, JsonpDeserializer.booleanDeserializer(), "is_authenticated");
         op.add(Builder::isNodeCertificateRequest, JsonpDeserializer.booleanDeserializer(), "is_node_certificate_request");
     }
 
@@ -237,6 +268,7 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
         int result = 17;
         result = 31 * result + Objects.hashCode(this.dn);
         result = 31 * result + Objects.hashCode(this.isAdmin);
+        result = 31 * result + Objects.hashCode(this.isAuthenticated);
         result = 31 * result + Objects.hashCode(this.isNodeCertificateRequest);
         return result;
     }
@@ -248,6 +280,7 @@ public class WhoAmIResponse implements PlainJsonSerializable, ToCopyableBuilder<
         WhoAmIResponse other = (WhoAmIResponse) o;
         return Objects.equals(this.dn, other.dn)
             && Objects.equals(this.isAdmin, other.isAdmin)
+            && Objects.equals(this.isAuthenticated, other.isAuthenticated)
             && Objects.equals(this.isNodeCertificateRequest, other.isNodeCertificateRequest);
     }
 }

@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -74,12 +75,16 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     @Nonnull
     private final String name;
 
+    @Nonnull
+    private final List<String> roles;
+
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSettingsNode(Builder builder) {
         this.attr = ApiTypeHelper.unmodifiable(builder.attr);
         this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.roles = ApiTypeHelper.unmodifiable(builder.roles);
     }
 
     public static NodeInfoSettingsNode of(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
@@ -117,6 +122,17 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The roles assigned to the node.
+     * <p>
+     * API name: {@code roles}
+     * </p>
+     */
+    @Nonnull
+    public final List<String> roles() {
+        return this.roles;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -144,6 +160,15 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
 
         generator.writeKey("name");
         generator.write(this.name);
+
+        if (ApiTypeHelper.isDefined(this.roles)) {
+            generator.writeKey("roles");
+            generator.writeStartArray();
+            for (String item0 : this.roles) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -168,6 +193,8 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         @Nullable
         private String maxLocalStorageNodes;
         private String name;
+        @Nullable
+        private List<String> roles;
 
         public Builder() {}
 
@@ -175,12 +202,14 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
             this.attr = _mapCopy(o.attr);
             this.maxLocalStorageNodes = o.maxLocalStorageNodes;
             this.name = o.name;
+            this.roles = _listCopy(o.roles);
         }
 
         private Builder(Builder o) {
             this.attr = _mapCopy(o.attr);
             this.maxLocalStorageNodes = o.maxLocalStorageNodes;
             this.name = o.name;
+            this.roles = _listCopy(o.roles);
         }
 
         @Override
@@ -243,6 +272,38 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The roles assigned to the node.
+         * <p>
+         * API name: {@code roles}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>roles</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder roles(List<String> list) {
+            this.roles = _listAddAll(this.roles, list);
+            return this;
+        }
+
+        /**
+         * The roles assigned to the node.
+         * <p>
+         * API name: {@code roles}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>roles</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder roles(String value, String... values) {
+            this.roles = _listAdd(this.roles, value, values);
+            return this;
+        }
+
+        /**
          * Builds a {@link NodeInfoSettingsNode}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -270,6 +331,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "attr");
         op.add(Builder::maxLocalStorageNodes, JsonpDeserializer.stringDeserializer(), "max_local_storage_nodes");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
     }
 
     @Override
@@ -278,6 +340,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         result = 31 * result + Objects.hashCode(this.attr);
         result = 31 * result + Objects.hashCode(this.maxLocalStorageNodes);
         result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.roles);
         return result;
     }
 
@@ -288,6 +351,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         NodeInfoSettingsNode other = (NodeInfoSettingsNode) o;
         return Objects.equals(this.attr, other.attr)
             && Objects.equals(this.maxLocalStorageNodes, other.maxLocalStorageNodes)
-            && this.name.equals(other.name);
+            && this.name.equals(other.name)
+            && Objects.equals(this.roles, other.roles);
     }
 }
