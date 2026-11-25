@@ -818,15 +818,14 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
             addRequestBody(clientReq, new ByteArrayEntity(baos.array(), 0, baos.size(), contentType));
         }
 
+        final ApacheHttpClient5Options requestOptions = getRequestOptions(request, endpoint, options);
+        setHeaders(clientReq, requestOptions.headers());
         if (options != null) {
-            setHeaders(clientReq, options.headers());
-
             if (options.getRequestConfig() != null) {
                 clientReq.setConfig(options.getRequestConfig());
             }
         }
 
-        setHeaders(clientReq, endpoint.headers(request));
         return clientReq;
     }
 
@@ -954,15 +953,6 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
         }
         if (compressionEnabled) {
             httpRequest.addHeader("Accept-Encoding", "gzip");
-        }
-    }
-
-    private void setHeaders(HttpRequest httpRequest, Map<String, String> headers) {
-        for (Map.Entry<String, String> header : headers.entrySet()) {
-            // Headers of the options take precedence over the headers of the endpoint
-            if (httpRequest.getFirstHeader(header.getKey()) == null) {
-                httpRequest.addHeader(new BasicHeader(header.getKey(), header.getValue()));
-            }
         }
     }
 
