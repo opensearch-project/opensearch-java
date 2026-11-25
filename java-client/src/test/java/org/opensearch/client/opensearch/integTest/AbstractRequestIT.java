@@ -49,7 +49,6 @@ import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
-import org.opensearch.client.opensearch._types.aggregations.MultiTermsBucket;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
@@ -478,8 +477,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
         Aggregate prices = searchResponse.aggregations().get("price")._get().toAggregate();
-        assertEquals(1, prices.dterms().buckets().array().get(0).to(MultiTermsBucket.class).docCount());
-        assertEquals(1, prices.dterms().buckets().array().get(1).to(MultiTermsBucket.class).docCount());
+        assertEquals(1, prices.dterms().buckets().array().get(0).docCount());
+        assertEquals(1, prices.dterms().buckets().array().get(1).docCount());
 
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());

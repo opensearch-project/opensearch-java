@@ -8,11 +8,14 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Make `ApacheHttpClient5Transport.setNodes(Collection<Node>)` public so the nodes of an existing transport can be replaced without rebuilding it ([#2299](https://github.com/opensearch-project/opensearch-java/pull/2299))
+- Add the `semantic` value to the `FieldType` enum ([#2317](https://github.com/opensearch-project/opensearch-java/pull/2317))
+- Generate the ML Commons `predict` and `predict_model` operations ([#2319](https://github.com/opensearch-project/opensearch-java/pull/2319))
 
 ### Dependencies
 - Bump Jackson to 2.23.0 / 3.3.0 ([#2292](https://github.com/opensearch-project/opensearch-java/pull/2292))
 
 ### Changed
+- Branch off Java and Kotlin based samples ([#2301](https://github.com/opensearch-project/opensearch-java/pull/2301))
 
 ### Deprecated
 
@@ -20,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Send the headers declared by an `Endpoint` (e.g. the headers of a generic client `Request`) from `RestClientTransport`, `ApacheHttpClient5Transport` and `AwsSdk2Transport`; they were silently dropped ([#1234](https://github.com/opensearch-project/opensearch-java/issues/1234))
+- Restore the typed buckets of the `terms` aggregates (`StringTermsAggregate` etc. extended `TermsAggregateBase<JsonData>` since the October regeneration) by binding a generic type parameter from the narrowed union branch of an instantiation; `TermsBucketBase` regains `doc_count_error_upper_bound` ([#2302](https://github.com/opensearch-project/opensearch-java/issues/2302))
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
 
 ### Security

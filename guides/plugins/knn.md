@@ -14,7 +14,7 @@ Short for k-nearest neighbors, the k-NN plugin enables users to search for the k
 
 ## Basic Approximate k-NN
 
-In the following example we create a 5-dimensional k-NN index with random data. You can find a synchronous version of this working sample in [samples/src/main/java/org/opensearch/client/samples/knn/KnnBasics.java](../../samples/src/main/java/org/opensearch/client/samples/knn/KnnBasics.java).
+In the following example we create a 5-dimensional k-NN index with random data. You can find a synchronous version of this working sample in [samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnBasics.java](../../samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnBasics.java).
 
 ```bash
 $ ./gradlew :samples:run -Dsamples.mainClass=knn.KnnBasics
@@ -117,7 +117,7 @@ for (var hit : searchResponse.hits().hits()) {
 
 ## Approximate k-NN with a Boolean Filter
 
-In the [KnnBooleanFilter.java sample](../../samples/src/main/java/org/opensearch/client/samples/knn/KnnBooleanFilter.java) we create a 5-dimensional k-NN index with random data and a `metadata` field that contains a book genre (e.g. `fiction`). The search query is a k-NN search filtered by genre. The filter clause is outside the k-NN query clause and is applied after the k-NN search.
+In the [KnnBooleanFilter.java sample](../../samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnBooleanFilter.java) we create a 5-dimensional k-NN index with random data and a `metadata` field that contains a book genre (e.g. `fiction`). The search query is a k-NN search filtered by genre. The filter clause is outside the k-NN query clause and is applied after the k-NN search.
 
 ```java
 var searchResponse = client.search(s -> s
@@ -153,7 +153,7 @@ $ ./gradlew :samples:run -Dsamples.mainClass=knn.KnnBooleanFilter
 
 ## Approximate k-NN with an Efficient Filter
 
-In the [KnnEfficientFilter.java sample](../../samples/src/main/java/org/opensearch/client/samples/knn/KnnEfficientFilter.java) we implement the example in [the k-NN documentation](https://opensearch.org/docs/latest/search-plugins/knn/filter-search-knn/), which creates an index that uses the Lucene engine and HNSW as the method in the mapping, containing hotel location and parking data, then search for the top three hotels near the location with the coordinates `[5, 4]` that are rated between 8 and 10, inclusive, and provide parking.
+In the [KnnEfficientFilter.java sample](../../samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnEfficientFilter.java) we implement the example in [the k-NN documentation](https://opensearch.org/docs/latest/search-plugins/knn/filter-search-knn/), which creates an index that uses the Lucene engine and HNSW as the method in the mapping, containing hotel location and parking data, then search for the top three hotels near the location with the coordinates `[5, 4]` that are rated between 8 and 10, inclusive, and provide parking.
 
 ```java
 var searchResponse = client.search(s -> s
@@ -207,7 +207,7 @@ $ ./gradlew :samples:run -Dsamples.mainClass=knn.KnnEfficientFilter
 
 ## Exact k-NN with a scoring script
 
-In the [KnnScriptScore.java sample](../../samples/src/main/java/org/opensearch/client/samples/knn/KnnScriptScore.java) we create a 5-dimensional k-NN index with random data. The search query uses the [k-NN scoring script](https://opensearch.org/docs/latest/search-plugins/knn/knn-score-script/) to calculate exact nearest neighbors.
+In the [KnnScriptScore.java sample](../../samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnScriptScore.java) we create a 5-dimensional k-NN index with random data. The search query uses the [k-NN scoring script](https://opensearch.org/docs/latest/search-plugins/knn/knn-score-script/) to calculate exact nearest neighbors.
 
 ```java
 var searchResponse = client.search(s -> s
@@ -249,7 +249,7 @@ $ ./gradlew :samples:run -Dsamples.mainClass=knn.KnnScriptScore
 
 ## Exact k-NN with the Painless scripting extensions
 
-In the [KnnPainlessScript.java sample](../../samples/src/main/java/org/opensearch/client/samples/knn/KnnPainlessScript.java) we create a 5-dimensional k-NN index with random data. The search query uses the [k-NN Painless extensions](https://opensearch.org/docs/latest/search-plugins/knn/painless-functions/) to calculate exact nearest neighbors.
+In the [KnnPainlessScript.java sample](../../samples/samples-java/src/main/java/org/opensearch/client/samples/knn/KnnPainlessScript.java) we create a 5-dimensional k-NN index with random data. The search query uses the [k-NN Painless extensions](https://opensearch.org/docs/latest/search-plugins/knn/painless-functions/) to calculate exact nearest neighbors.
 
 ```java
 var searchResponse = client.search(s -> s

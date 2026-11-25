@@ -117,7 +117,9 @@ public enum FieldType implements JsonEnum {
 
     AggregateMetricDouble("aggregate_metric_double"),
 
-    KnnVector("knn_vector"),;
+    KnnVector("knn_vector"),
+
+    Semantic("semantic"),;
 
     private final String jsonValue;
 
