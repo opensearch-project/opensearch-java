@@ -16,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Restore the typed buckets of the `terms` aggregates (`StringTermsAggregate` etc. extended `TermsAggregateBase<JsonData>` since the October regeneration) by binding a generic type parameter from the narrowed union branch of an instantiation; `TermsBucketBase` regains `doc_count_error_upper_bound` ([#2302](https://github.com/opensearch-project/opensearch-java/issues/2302))
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
 
 ### Security

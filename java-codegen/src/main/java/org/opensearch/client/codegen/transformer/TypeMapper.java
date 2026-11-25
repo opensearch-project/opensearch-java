@@ -9,10 +9,13 @@
 package org.opensearch.client.codegen.transformer;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -285,8 +288,11 @@ public class TypeMapper {
         var $extends = schema.get$extends().orElseThrow();
         var type = mapType($extends);
         var shape = type.getTargetShape().orElseThrow();
-        var typeParameterDefs = shape.getTypeParameters().getTypeParameterDefinitions();
-        var typeParameters = new HashMap<String, TypeRef>();
+        // The generic shape's type parameters are collected as its fields are added. When it is instantiated while it is
+        // still being visited (a cycle: Hit -> inner_hits -> HitsMetadata -> Hit<TDocument>), none are known yet, and the
+        // parameters found by zipping the generic schema with this instantiation are used instead.
+        var shapeTypeParameters = shape.getTypeParameters();
+        var typeParameters = new LinkedHashMap<String, TypeRef>();
 
         while ($extends != null) {
             $extends = $extends.resolve();
@@ -294,24 +300,65 @@ public class TypeMapper {
             new ZippedOpenApiWalker().walkSchema($extends, schema, new ZippedOpenApiVisitorBase() {
                 @Override
                 public void visitSchemaEnd(@Nullable OpenApiSchema left, @Nullable OpenApiSchema right) {
-                    if (left == null || right == null || !left.isGenericTypeParameter()) {
+                    if (left == null || right == null) {
                         return;
                     }
-                    typeParameters.put(getTypeParamName(left.resolve()), mapType(right));
+                    if (left.isGenericTypeParameter()) {
+                        typeParameters.put(getTypeParamName(left.resolve()), mapType(right));
+                        return;
+                    }
+                    // A generic union narrowed to one of its branches: the generic declares e.g. `Buckets<TBucket>` as
+                    // `oneOf: [map of TBucket, array of TBucket]` while the instantiation declares only `array of X`.
+                    // The zipped walk never pairs TBucket with X, so bind it from the branch whose container kind matches.
+                    var leftOneOf = left.getOneOf();
+                    if (leftOneOf.isEmpty() || right.hasOneOf()) {
+                        return;
+                    }
+                    for (var branch : leftOneOf.get()) {
+                        var resolvedBranch = branch.resolve();
+                        bindIfTypeParameter(resolvedBranch.getItems(), right.getItems());
+                        bindIfTypeParameter(resolvedBranch.getAdditionalProperties(), right.getAdditionalProperties());
+                    }
+                }
+
+                private void bindIfTypeParameter(Optional<OpenApiSchema> leftChild, Optional<OpenApiSchema> rightChild) {
+                    if (leftChild.isEmpty() || rightChild.isEmpty()) {
+                        return;
+                    }
+                    var resolvedLeft = leftChild.get().resolve();
+                    if (resolvedLeft.isGenericTypeParameter()) {
+                        typeParameters.put(getTypeParamName(resolvedLeft), mapType(rightChild.get()));
+                    }
                 }
             });
 
             $extends = $extends.get$extends().orElse(null);
         }
 
+        var typeParameterNames = shapeTypeParameters != null
+            ? Arrays.stream(shapeTypeParameters.getTypeParameterDefinitions()).map(TypeParameterDefinition::getName)
+            : genericParameterNames(schema.get$extends().orElseThrow()).stream();
         return shape.getMaterializedType()
             .withTypeParameters(
-                Arrays.stream(typeParameterDefs)
-                    .map(TypeParameterDefinition::getName)
-                    .map(n -> typeParameters.getOrDefault(n, Types.Client.Json.JsonData))
+                typeParameterNames.map(n -> typeParameters.getOrDefault(n, Types.Client.Json.JsonData))
                     .map(TypeRef::getBoxed)
                     .toArray(TypeRef[]::new)
             );
+    }
+
+    // The generic type parameters a generic schema (and the schemas it extends) declares, in the order they appear.
+    private static Set<String> genericParameterNames(OpenApiSchema generic) {
+        var names = new LinkedHashSet<String>();
+        for (var schema = generic; schema != null; schema = schema.resolve().get$extends().orElse(null)) {
+            var resolved = schema.resolve();
+            new ZippedOpenApiWalker().walkSchema(resolved, resolved, new ZippedOpenApiVisitorBase() {
+                @Override
+                public void visitSchemaEnd(@Nullable OpenApiSchema left, @Nullable OpenApiSchema right) {
+                    if (left != null && left.isGenericTypeParameter()) names.add(getTypeParamName(left.resolve()));
+                }
+            });
+        }
+        return names;
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
