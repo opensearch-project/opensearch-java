@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Make `ApacheHttpClient5Transport.setNodes(Collection<Node>)` public so the nodes of an existing transport can be replaced without rebuilding it ([#2299](https://github.com/opensearch-project/opensearch-java/pull/2299))
 - Add the `semantic` value to the `FieldType` enum ([#2317](https://github.com/opensearch-project/opensearch-java/pull/2317))
+- Generate the ML Commons `predict` and `predict_model` operations ([#2319](https://github.com/opensearch-project/opensearch-java/pull/2319))
 
 ### Dependencies
 
