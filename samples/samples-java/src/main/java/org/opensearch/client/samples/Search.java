@@ -22,7 +22,6 @@ import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationFields;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
-import org.opensearch.client.opensearch._types.aggregations.StringRareTermsBucket;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
@@ -108,13 +107,7 @@ public class Search {
             searchResponse = client.search(searchRequest, IndexData.class);
             for (Map.Entry<String, Aggregate> entry : searchResponse.aggregations().entrySet()) {
                 LOGGER.info("Agg - {}", entry.getKey());
-                entry.getValue()
-                    .sterms()
-                    .buckets()
-                    .array()
-                    .stream()
-                    .map(b -> b.to(StringRareTermsBucket.class))
-                    .forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
+                entry.getValue().sterms().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
             }
 
             // Custom Aggregations
