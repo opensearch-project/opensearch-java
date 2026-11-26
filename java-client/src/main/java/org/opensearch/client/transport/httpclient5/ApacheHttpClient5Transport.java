@@ -219,7 +219,7 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
         StreamingEndpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        final ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
+        final ApacheHttpClient5Options requestOptions = getRequestOptions(request, endpoint, options);
 
         final WarningsHandler warningsHandler = (requestOptions.getWarningsHandler() == null)
             ? this.warningsHandler
@@ -243,6 +243,32 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
     @Override
     public void close() throws IOException {
         client.close();
+    }
+
+    private <RequestT> ApacheHttpClient5Options getRequestOptions(
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        TransportOptions options
+    ) {
+        ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
+
+        final Map<String, String> endpointHeaders = endpoint.headers(request);
+        if (endpointHeaders.isEmpty() == true) {
+            return requestOptions;
+        } else if (requestOptions == null) {
+            requestOptions = ApacheHttpClient5Options.DEFAULT;
+        }
+
+        // Headers of the options take precedence over the headers of the endpoint
+        final ApacheHttpClient5Options.Builder restOptionsBuilder = requestOptions.toBuilder();
+        final Collection<Map.Entry<String, String>> headers = requestOptions.headers();
+        endpointHeaders.forEach((name, value) -> {
+            if (headers.stream().noneMatch(h -> h.getKey().equalsIgnoreCase(name))) {
+                restOptionsBuilder.addHeader(name, value);
+            }
+        });
+
+        return restOptionsBuilder.build();
     }
 
     /**
@@ -792,9 +818,9 @@ public class ApacheHttpClient5Transport implements OpenSearchStreamingTransport 
             addRequestBody(clientReq, new ByteArrayEntity(baos.array(), 0, baos.size(), contentType));
         }
 
+        final ApacheHttpClient5Options requestOptions = getRequestOptions(request, endpoint, options);
+        setHeaders(clientReq, requestOptions.headers());
         if (options != null) {
-            setHeaders(clientReq, options.headers());
-
             if (options.getRequestConfig() != null) {
                 clientReq.setConfig(options.getRequestConfig());
             }
