@@ -112,6 +112,7 @@ and preserving JDK-8 compatibility at the same time.
 ### Removed
 
 ### Fixed
+- Fixed deserialization failure when OpenSearch returns shard failures without the `primary` field in error responses by upgrading version of `opensearch-api-specification`
 
 ### Security
 
