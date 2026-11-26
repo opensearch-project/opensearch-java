@@ -27,8 +27,11 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -210,6 +213,10 @@ public class AwsSdk2TransportTests {
 
         public String getHeader(String name) throws ProtocolException {
             return Optional.ofNullable(request.getHeader(name)).map(Header::getValue).orElse(null);
+        }
+
+        public List<String> getHeaderValues(String name) {
+            return Arrays.stream(request.getHeaders(name)).map(Header::getValue).collect(Collectors.toList());
         }
     }
 
@@ -400,6 +407,44 @@ public class AwsSdk2TransportTests {
                 "2c3b08c49f0e45906f99cef144b3ba780c5c0d38cb9e2bcc75d34087172a254f"
             )
         );
+    }
+
+    // Scenario: a generic request carries a custom header. Expected: the server receives it.
+    @Test
+    public void testGenericRequestHeadersAreSent() throws Exception {
+        Requests.JsonBodyBuilder request = Requests.builder()
+            .method("POST")
+            .endpoint("/")
+            .headers(Collections.singletonList(new AbstractMap.SimpleEntry<>("X-Test-Header", "test-value")))
+            .json("{}");
+
+        getTestClient().generic().execute(request.build());
+
+        ReceivedRequest req = receivedRequests.poll();
+        assertNotNull(req);
+        assertEquals("test-value", req.getHeader("X-Test-Header"));
+    }
+
+    // Scenario: a generic request and the transport options set the same header, with different letter case.
+    // Expected: the server receives only the value of the transport options.
+    @Test
+    public void testOptionHeadersTakePrecedenceOverGenericRequestHeaders() throws Exception {
+        OpenSearchClient client = getTestClient();
+        client = client.withTransportOptions(client._transport().options().with(b -> b.addHeader("x-test-header", "option-value")));
+
+        client.generic()
+            .execute(
+                Requests.builder()
+                    .method("POST")
+                    .endpoint("/")
+                    .headers(Collections.singletonList(new AbstractMap.SimpleEntry<>("X-Test-Header", "request-value")))
+                    .json("{}")
+                    .build()
+            );
+
+        ReceivedRequest req = receivedRequests.poll();
+        assertNotNull(req);
+        assertEquals(Collections.singletonList("option-value"), req.getHeaderValues("X-Test-Header"));
     }
 
     private void assertSigV4Request(

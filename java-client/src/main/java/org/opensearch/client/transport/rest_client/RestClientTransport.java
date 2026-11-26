@@ -43,6 +43,7 @@ import java.nio.ByteBuffer;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -50,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
@@ -222,10 +224,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
 
-        RequestOptions restOptions = options == null
-            ? transportOptions.restClientRequestOptions()
-            : RestClientOptions.of(options).restClientRequestOptions();
-
+        final RequestOptions restOptions = getRequestOptions(request, endpoint, options);
         Publisher<ByteBuffer> body = null;
         if (endpoint.hasRequestBody()) {
             body = Flux.from(request).map(t -> {
@@ -298,10 +297,7 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
 
         org.opensearch.client.Request clientReq = new org.opensearch.client.Request(method, path);
 
-        RequestOptions restOptions = options == null
-            ? transportOptions.restClientRequestOptions()
-            : RestClientOptions.of(options).restClientRequestOptions();
-
+        final RequestOptions restOptions = getRequestOptions(request, endpoint, options);
         if (restOptions != null) {
             clientReq.setOptions(restOptions);
         }
@@ -328,6 +324,30 @@ public class RestClientTransport implements OpenSearchStreamingTransport {
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
+    }
+
+    private <RequestT> RequestOptions getRequestOptions(RequestT request, Endpoint<RequestT, ?, ?> endpoint, TransportOptions options) {
+        RequestOptions restOptions = options == null
+            ? transportOptions.restClientRequestOptions()
+            : RestClientOptions.of(options).restClientRequestOptions();
+
+        final Map<String, String> endpointHeaders = endpoint.headers(request);
+        if (endpointHeaders.isEmpty() == true) {
+            return restOptions;
+        } else if (restOptions == null) {
+            restOptions = RequestOptions.DEFAULT;
+        }
+
+        // Headers of the options take precedence over the headers of the endpoint
+        final RequestOptions.Builder restOptionsBuilder = restOptions.toBuilder();
+        final List<Header> headers = restOptions.getHeaders();
+        endpointHeaders.forEach((name, value) -> {
+            if (headers.stream().noneMatch(h -> h.getName().equalsIgnoreCase(name))) {
+                restOptionsBuilder.addHeader(name, value);
+            }
+        });
+
+        return restOptionsBuilder.build();
     }
 
     /**
