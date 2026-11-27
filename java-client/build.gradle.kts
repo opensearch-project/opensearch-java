@@ -221,7 +221,7 @@ dependencies {
     // https://github.com/reactive-streams/reactive-streams-jvm
     api("org.reactivestreams:reactive-streams:1.0.4")
     // Apache 2.0
-    api("io.projectreactor:reactor-core:3.8.8")
+    api("io.projectreactor:reactor-core:3.9.0")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
