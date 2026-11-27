@@ -25,7 +25,7 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 
 ## Compatibility with the AWS SDK for Java
 
-The request signing support (`AwsSdk2Transport` and the SigV4 signing of the gRPC transport) works with [AWS SDK for Java 2.x](https://github.com/aws/aws-sdk-java-v2) version 2.21.0 and newer. The SDK is not bundled and must be supplied by the application. With an older version, requests fail at runtime with a `NoSuchMethodError`.
+The `AwsSdk2Transport` and the SigV4 signing of the gRPC transport works with [AWS SDK for Java 2.x](https://github.com/aws/aws-sdk-java-v2) version 2.21.0 and newer. 
 
 ## Upgrading
 
