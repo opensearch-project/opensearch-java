@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
+- Make `AwsSdk2Transport` and the gRPC `GrpcSigV4Interceptor` work with AWS SDK versions older than 2.26.0, where they failed with `NoSuchMethodError: ContentStreamProvider.fromByteArrayUnsafe`, and document the supported AWS SDK versions ([#2339](https://github.com/opensearch-project/opensearch-java/issues/2339))
 
 ### Security
 

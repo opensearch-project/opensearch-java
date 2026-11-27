@@ -15,6 +15,7 @@ import io.grpc.ClientInterceptor;
 import io.grpc.ForwardingClientCall.SimpleForwardingClientCall;
 import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
+import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -190,7 +191,8 @@ public class GrpcSigV4Interceptor implements ClientInterceptor {
             .putHeader("x-amz-content-sha256", payloadHash);
 
         // For signed payload, we pass the actual bytes; for unsigned, empty
-        ContentStreamProvider bodyProvider = ContentStreamProvider.fromByteArrayUnsafe(new byte[0]);
+        // Not ContentStreamProvider.fromByteArrayUnsafe: it only exists since AWS SDK 2.26.0, while the supported versions start at 2.21
+        ContentStreamProvider bodyProvider = () -> new ByteArrayInputStream(new byte[0]);
 
         // Sign the request
         SignedRequest signedRequest = AwsV4HttpSigner.create()
