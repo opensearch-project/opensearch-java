@@ -446,9 +446,19 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
     sourceCompatibility = JavaVersion.VERSION_21.toString()
   }
 
+  // The 'main' source set contains the placeholders for the classes of the 
+  // multi-release JAR (see please src/main/java21), exclude them from the classpath
+  // to not conflict with the JDK 21 ones.
+  val mainWithoutJackson3 = tasks.register<Sync>("mainWithoutJackson3") {
+    from(sourceSets.main.get().output.classesDirs) {
+      exclude("**/jackson3/**")
+    }
+    into(layout.buildDirectory.dir("classes/java/main-without-jackson3"))
+  }
+
   tasks.named<Test>("integrationTest") {
     testClassesDirs += java21.output.classesDirs
-    classpath = sourceSets["java21"].runtimeClasspath
+    classpath = sourceSets["java21"].runtimeClasspath - sourceSets.main.get().output.classesDirs + files(mainWithoutJackson3)
   }
 
   tasks.named<Test>("unitTest") {
