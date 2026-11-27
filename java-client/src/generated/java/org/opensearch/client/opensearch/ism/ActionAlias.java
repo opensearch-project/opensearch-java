@@ -37,13 +37,10 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.Objects;
+import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -63,12 +60,12 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<ActionAlias.Builder, ActionAlias> {
 
     @Nonnull
-    private final Map<String, JsonData> actions;
+    private final List<ActionAliasAction> actions;
 
     // ---------------------------------------------------------------------------------------------
 
     private ActionAlias(Builder builder) {
-        this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+        this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
     }
 
     public static ActionAlias of(Function<ActionAlias.Builder, ObjectBuilder<ActionAlias>> fn) {
@@ -76,13 +73,13 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
     }
 
     /**
-     * The alias actions to perform.
+     * Required - The alias actions to perform.
      * <p>
      * API name: {@code actions}
      * </p>
      */
     @Nonnull
-    public final Map<String, JsonData> actions() {
+    public final List<ActionAliasAction> actions() {
         return this.actions;
     }
 
@@ -97,15 +94,12 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.actions)) {
-            generator.writeKey("actions");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.actions.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+        generator.writeKey("actions");
+        generator.writeStartArray();
+        for (ActionAliasAction item0 : this.actions) {
+            item0.serialize(generator, mapper);
         }
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -125,17 +119,16 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
      * Builder for {@link ActionAlias}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ActionAlias> {
-        @Nullable
-        private Map<String, JsonData> actions;
+        private List<ActionAliasAction> actions;
 
         public Builder() {}
 
         private Builder(ActionAlias o) {
-            this.actions = _mapCopy(o.actions);
+            this.actions = _listCopy(o.actions);
         }
 
         private Builder(Builder o) {
-            this.actions = _mapCopy(o.actions);
+            this.actions = _listCopy(o.actions);
         }
 
         @Override
@@ -145,35 +138,50 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
         }
 
         /**
-         * The alias actions to perform.
+         * Required - The alias actions to perform.
          * <p>
          * API name: {@code actions}
          * </p>
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>actions</code>.
+         * Adds all elements of <code>list</code> to <code>actions</code>.
          * </p>
          */
         @Nonnull
-        public final Builder actions(Map<String, JsonData> map) {
-            this.actions = _mapPutAll(this.actions, map);
+        public final Builder actions(List<ActionAliasAction> list) {
+            this.actions = _listAddAll(this.actions, list);
             return this;
         }
 
         /**
-         * The alias actions to perform.
+         * Required - The alias actions to perform.
          * <p>
          * API name: {@code actions}
          * </p>
          *
          * <p>
-         * Adds an entry to <code>actions</code>.
+         * Adds one or more values to <code>actions</code>.
          * </p>
          */
         @Nonnull
-        public final Builder actions(String key, JsonData value) {
-            this.actions = _mapPut(this.actions, key, value);
+        public final Builder actions(ActionAliasAction value, ActionAliasAction... values) {
+            this.actions = _listAdd(this.actions, value, values);
             return this;
+        }
+
+        /**
+         * Required - The alias actions to perform.
+         * <p>
+         * API name: {@code actions}
+         * </p>
+         *
+         * <p>
+         * Adds a value to <code>actions</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder actions(Function<ActionAliasAction.Builder, ObjectBuilder<ActionAliasAction>> fn) {
+            return actions(fn.apply(new ActionAliasAction.Builder()).build());
         }
 
         /**
@@ -201,13 +209,13 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
     );
 
     protected static void setupActionAliasDeserializer(ObjectDeserializer<ActionAlias.Builder> op) {
-        op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "actions");
+        op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ActionAliasAction._DESERIALIZER), "actions");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.actions);
+        result = 31 * result + this.actions.hashCode();
         return result;
     }
 
@@ -216,6 +224,6 @@ public class ActionAlias implements PlainJsonSerializable, ToCopyableBuilder<Act
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ActionAlias other = (ActionAlias) o;
-        return Objects.equals(this.actions, other.actions);
+        return this.actions.equals(other.actions);
     }
 }

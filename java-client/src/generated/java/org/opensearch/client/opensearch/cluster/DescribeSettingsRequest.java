@@ -39,14 +39,11 @@ package org.opensearch.client.opensearch.cluster;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -57,15 +54,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.describe_settings.Request
 
 /**
- * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or defaults.
+ * Returns the definition of each requested cluster setting: whether it is dynamic, its declared default, its value type and bounds, and its
+ * description. Accepts exact setting names and prefixes ending in <code>.*</code>. Does not return configured values.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class DescribeSettingsRequest extends RequestBase
     implements
         ToCopyableBuilder<DescribeSettingsRequest.Builder, DescribeSettingsRequest> {
-
-    @Nullable
-    private final Time clusterManagerTimeout;
 
     @Nonnull
     private final List<String> settings;
@@ -74,7 +69,6 @@ public final class DescribeSettingsRequest extends RequestBase
 
     private DescribeSettingsRequest(Builder builder) {
         super(builder);
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
     }
 
@@ -83,20 +77,10 @@ public final class DescribeSettingsRequest extends RequestBase
     }
 
     /**
-     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-     * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     * </p>
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
-     * Required - A comma-separated list of exact setting names to describe. Wildcards are not supported; each name must be an exact, valid
-     * setting key. At least one name is required.
+     * Required - A comma-separated list of setting names to describe. Each entry is either an exact setting name or a prefix ending in
+     * <code>.*</code>, such as <code>cluster.routing.allocation.*</code>, which expands to every registered setting under it at any depth.
+     * Exact names and prefixes can be mixed. Other wildcard forms are rejected. Affix and group setting templates and secure (keystore)
+     * settings are not listed under a prefix; their concrete names can still be requested exactly. At least one entry is required.
      * <p>
      * API name: {@code settings}
      * </p>
@@ -123,21 +107,17 @@ public final class DescribeSettingsRequest extends RequestBase
      * Builder for {@link DescribeSettingsRequest}.
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DescribeSettingsRequest> {
-        @Nullable
-        private Time clusterManagerTimeout;
         private List<String> settings;
 
         public Builder() {}
 
         private Builder(DescribeSettingsRequest o) {
             super(o);
-            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.settings = _listCopy(o.settings);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.settings = _listCopy(o.settings);
         }
 
@@ -154,33 +134,11 @@ public final class DescribeSettingsRequest extends RequestBase
         }
 
         /**
-         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-         * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         * </p>
-         */
-        @Nonnull
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
-         * <a href="https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         * </p>
-         */
-        @Nonnull
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Required - A comma-separated list of exact setting names to describe. Wildcards are not supported; each name must be an exact,
-         * valid setting key. At least one name is required.
+         * Required - A comma-separated list of setting names to describe. Each entry is either an exact setting name or a prefix ending in
+         * <code>.*</code>, such as <code>cluster.routing.allocation.*</code>, which expands to every registered setting under it at any
+         * depth. Exact names and prefixes can be mixed. Other wildcard forms are rejected. Affix and group setting templates and secure
+         * (keystore) settings are not listed under a prefix; their concrete names can still be requested exactly. At least one entry is
+         * required.
          * <p>
          * API name: {@code settings}
          * </p>
@@ -196,8 +154,11 @@ public final class DescribeSettingsRequest extends RequestBase
         }
 
         /**
-         * Required - A comma-separated list of exact setting names to describe. Wildcards are not supported; each name must be an exact,
-         * valid setting key. At least one name is required.
+         * Required - A comma-separated list of setting names to describe. Each entry is either an exact setting name or a prefix ending in
+         * <code>.*</code>, such as <code>cluster.routing.allocation.*</code>, which expands to every registered setting under it at any
+         * depth. Exact names and prefixes can be mixed. Other wildcard forms are rejected. Affix and group setting templates and secure
+         * (keystore) settings are not listed under a prefix; their concrete names can still be requested exactly. At least one entry is
+         * required.
          * <p>
          * API name: {@code settings}
          * </p>
@@ -231,9 +192,6 @@ public final class DescribeSettingsRequest extends RequestBase
     @Override
     protected void applyQueryParameters(@Nonnull Map<String, String> params) {
         super.applyQueryParameters(params);
-        if (this.clusterManagerTimeout != null) {
-            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
-        }
         params.put("settings", String.join(",", this.settings));
     }
 
@@ -259,7 +217,6 @@ public final class DescribeSettingsRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + this.settings.hashCode();
         return result;
     }
@@ -269,6 +226,6 @@ public final class DescribeSettingsRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         DescribeSettingsRequest other = (DescribeSettingsRequest) o;
-        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout) && this.settings.equals(other.settings);
+        return this.settings.equals(other.settings);
     }
 }

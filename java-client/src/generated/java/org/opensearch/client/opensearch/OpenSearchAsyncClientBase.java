@@ -273,14 +273,14 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     // ----- Endpoint: create_pit
 
     /**
-     * Creates point in time context.
+     * Creates point in time context. Delete the PIT when done. Until then it counts against <code>search.max_open_pit_context</code>.
      */
     public CompletableFuture<CreatePitResponse> createPit(CreatePitRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, CreatePitRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Creates point in time context.
+     * Creates point in time context. Delete the PIT when done. Until then it counts against <code>search.max_open_pit_context</code>.
      *
      * @param fn a function that initializes a builder to create the {@link CreatePitRequest}
      */
@@ -311,14 +311,18 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     // ----- Endpoint: delete_all_pits
 
     /**
-     * Deletes all active point in time searches.
+     * Deletes all active point in time searches. The response lists each PIT with <code>successful</code>. The server can answer 200 while
+     * some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their <code>keep_alive</code>
+     * runs out.
      */
     public CompletableFuture<DeleteAllPitsResponse> deleteAllPits(DeleteAllPitsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, DeleteAllPitsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Deletes all active point in time searches.
+     * Deletes all active point in time searches. The response lists each PIT with <code>successful</code>. The server can answer 200 while
+     * some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their <code>keep_alive</code>
+     * runs out.
      *
      * @param fn a function that initializes a builder to create the {@link DeleteAllPitsRequest}
      */
@@ -329,7 +333,9 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     }
 
     /**
-     * Deletes all active point in time searches.
+     * Deletes all active point in time searches. The response lists each PIT with <code>successful</code>. The server can answer 200 while
+     * some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their <code>keep_alive</code>
+     * runs out.
      */
     public final CompletableFuture<DeleteAllPitsResponse> deleteAllPits() throws IOException, OpenSearchException {
         return deleteAllPits(new DeleteAllPitsRequest.Builder().build());
@@ -379,14 +385,18 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     // ----- Endpoint: delete_pit
 
     /**
-     * Deletes one or more point in time searches based on the IDs passed.
+     * Deletes one or more point in time searches based on the IDs passed. The response lists each PIT with <code>successful</code>. The
+     * server can answer 200 while some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their
+     * <code>keep_alive</code> runs out.
      */
     public CompletableFuture<DeletePitResponse> deletePit(DeletePitRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, DeletePitRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Deletes one or more point in time searches based on the IDs passed.
+     * Deletes one or more point in time searches based on the IDs passed. The response lists each PIT with <code>successful</code>. The
+     * server can answer 200 while some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their
+     * <code>keep_alive</code> runs out.
      *
      * @param fn a function that initializes a builder to create the {@link DeletePitRequest}
      */

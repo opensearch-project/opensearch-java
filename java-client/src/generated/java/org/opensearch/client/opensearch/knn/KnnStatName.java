@@ -97,6 +97,8 @@ public enum KnnStatName implements JsonEnum {
 
     NmslibInitialized("nmslib_initialized"),
 
+    RemoteVectorIndexBuildStats("remote_vector_index_build_stats"),
+
     ScriptCompilationErrors("script_compilation_errors"),
 
     ScriptCompilations("script_compilations"),

@@ -36,21 +36,11 @@
 
 package org.opensearch.client.opensearch.search_relevance;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -64,118 +54,19 @@ import org.opensearch.client.util.ToCopyableBuilder;
 /**
  * Creates an experiment.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class PutExperimentsRequest extends RequestBase
     implements
-        PlainJsonSerializable,
         ToCopyableBuilder<PutExperimentsRequest.Builder, PutExperimentsRequest> {
-
-    @Nullable
-    private final JsonData judgmentList;
-
-    @Nullable
-    private final String querySetId;
-
-    @Nullable
-    private final JsonData searchConfigurationList;
-
-    @Nullable
-    private final Integer size;
-
-    @Nullable
-    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
     private PutExperimentsRequest(Builder builder) {
         super(builder);
-        this.judgmentList = builder.judgmentList;
-        this.querySetId = builder.querySetId;
-        this.searchConfigurationList = builder.searchConfigurationList;
-        this.size = builder.size;
-        this.type = builder.type;
     }
 
     public static PutExperimentsRequest of(Function<PutExperimentsRequest.Builder, ObjectBuilder<PutExperimentsRequest>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * API name: {@code judgmentList}
-     */
-    @Nullable
-    public final JsonData judgmentList() {
-        return this.judgmentList;
-    }
-
-    /**
-     * API name: {@code querySetId}
-     */
-    @Nullable
-    public final String querySetId() {
-        return this.querySetId;
-    }
-
-    /**
-     * API name: {@code searchConfigurationList}
-     */
-    @Nullable
-    public final JsonData searchConfigurationList() {
-        return this.searchConfigurationList;
-    }
-
-    /**
-     * API name: {@code size}
-     */
-    @Nullable
-    public final Integer size() {
-        return this.size;
-    }
-
-    /**
-     * API name: {@code type}
-     */
-    @Nullable
-    public final String type() {
-        return this.type;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.judgmentList != null) {
-            generator.writeKey("judgmentList");
-            this.judgmentList.serialize(generator, mapper);
-        }
-
-        if (this.querySetId != null) {
-            generator.writeKey("querySetId");
-            generator.write(this.querySetId);
-        }
-
-        if (this.searchConfigurationList != null) {
-            generator.writeKey("searchConfigurationList");
-            this.searchConfigurationList.serialize(generator, mapper);
-        }
-
-        if (this.size != null) {
-            generator.writeKey("size");
-            generator.write(this.size);
-        }
-
-        if (this.type != null) {
-            generator.writeKey("type");
-            generator.write(this.type);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -195,35 +86,15 @@ public final class PutExperimentsRequest extends RequestBase
      * Builder for {@link PutExperimentsRequest}.
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutExperimentsRequest> {
-        @Nullable
-        private JsonData judgmentList;
-        @Nullable
-        private String querySetId;
-        @Nullable
-        private JsonData searchConfigurationList;
-        @Nullable
-        private Integer size;
-        @Nullable
-        private String type;
 
         public Builder() {}
 
         private Builder(PutExperimentsRequest o) {
             super(o);
-            this.judgmentList = o.judgmentList;
-            this.querySetId = o.querySetId;
-            this.searchConfigurationList = o.searchConfigurationList;
-            this.size = o.size;
-            this.type = o.type;
         }
 
         private Builder(Builder o) {
             super(o);
-            this.judgmentList = o.judgmentList;
-            this.querySetId = o.querySetId;
-            this.searchConfigurationList = o.searchConfigurationList;
-            this.size = o.size;
-            this.type = o.type;
         }
 
         @Override
@@ -235,51 +106,6 @@ public final class PutExperimentsRequest extends RequestBase
         @Override
         @Nonnull
         protected Builder self() {
-            return this;
-        }
-
-        /**
-         * API name: {@code judgmentList}
-         */
-        @Nonnull
-        public final Builder judgmentList(@Nullable JsonData value) {
-            this.judgmentList = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code querySetId}
-         */
-        @Nonnull
-        public final Builder querySetId(@Nullable String value) {
-            this.querySetId = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code searchConfigurationList}
-         */
-        @Nonnull
-        public final Builder searchConfigurationList(@Nullable JsonData value) {
-            this.searchConfigurationList = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code size}
-         */
-        @Nonnull
-        public final Builder size(@Nullable Integer value) {
-            this.size = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code type}
-         */
-        @Nonnull
-        public final Builder type(@Nullable String value) {
-            this.type = value;
             return this;
         }
 
@@ -300,24 +126,6 @@ public final class PutExperimentsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link PutExperimentsRequest}
-     */
-    public static final JsonpDeserializer<PutExperimentsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        PutExperimentsRequest::setupPutExperimentsRequestDeserializer
-    );
-
-    protected static void setupPutExperimentsRequestDeserializer(ObjectDeserializer<PutExperimentsRequest.Builder> op) {
-        op.add(Builder::judgmentList, JsonData._DESERIALIZER, "judgmentList");
-        op.add(Builder::querySetId, JsonpDeserializer.stringDeserializer(), "querySetId");
-        op.add(Builder::searchConfigurationList, JsonData._DESERIALIZER, "searchConfigurationList");
-        op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
      * Endpoint "{@code search_relevance.put_experiments}".
      */
     public static final Endpoint<PutExperimentsRequest, PutExperimentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -332,18 +140,13 @@ public final class PutExperimentsRequest extends RequestBase
             return params;
         },
         SimpleEndpoint.emptyMap(),
-        true,
+        false,
         PutExperimentsResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.judgmentList);
-        result = 31 * result + Objects.hashCode(this.querySetId);
-        result = 31 * result + Objects.hashCode(this.searchConfigurationList);
-        result = 31 * result + Objects.hashCode(this.size);
-        result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
@@ -351,11 +154,6 @@ public final class PutExperimentsRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        PutExperimentsRequest other = (PutExperimentsRequest) o;
-        return Objects.equals(this.judgmentList, other.judgmentList)
-            && Objects.equals(this.querySetId, other.querySetId)
-            && Objects.equals(this.searchConfigurationList, other.searchConfigurationList)
-            && Objects.equals(this.size, other.size)
-            && Objects.equals(this.type, other.type);
+        return true;
     }
 }

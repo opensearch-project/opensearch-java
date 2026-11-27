@@ -37,17 +37,16 @@
 package org.opensearch.client.opensearch.ism;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -59,13 +58,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<IncludeState.Builder, IncludeState> {
 
-    @Nullable
+    @Nonnull
     private final String state;
 
     // ---------------------------------------------------------------------------------------------
 
     private IncludeState(Builder builder) {
-        this.state = builder.state;
+        this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
     }
 
     public static IncludeState of(Function<IncludeState.Builder, ObjectBuilder<IncludeState>> fn) {
@@ -73,12 +72,12 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
     }
 
     /**
-     * The name of the state to include.
+     * Required - The name of the state to include.
      * <p>
      * API name: {@code state}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final String state() {
         return this.state;
     }
@@ -94,10 +93,8 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.state != null) {
-            generator.writeKey("state");
-            generator.write(this.state);
-        }
+        generator.writeKey("state");
+        generator.write(this.state);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -117,7 +114,6 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
      * Builder for {@link IncludeState}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IncludeState> {
-        @Nullable
         private String state;
 
         public Builder() {}
@@ -137,13 +133,13 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
         }
 
         /**
-         * The name of the state to include.
+         * Required - The name of the state to include.
          * <p>
          * API name: {@code state}
          * </p>
          */
         @Nonnull
-        public final Builder state(@Nullable String value) {
+        public final Builder state(String value) {
             this.state = value;
             return this;
         }
@@ -179,7 +175,7 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.state);
+        result = 31 * result + this.state.hashCode();
         return result;
     }
 
@@ -188,6 +184,6 @@ public class IncludeState implements PlainJsonSerializable, ToCopyableBuilder<In
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         IncludeState other = (IncludeState) o;
-        return Objects.equals(this.state, other.state);
+        return this.state.equals(other.state);
     }
 }

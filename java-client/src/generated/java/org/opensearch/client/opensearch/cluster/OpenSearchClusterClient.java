@@ -203,16 +203,16 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.describe_settings
 
     /**
-     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
-     * defaults.
+     * Returns the definition of each requested cluster setting: whether it is dynamic, its declared default, its value type and bounds, and
+     * its description. Accepts exact setting names and prefixes ending in <code>.*</code>. Does not return configured values.
      */
     public DescribeSettingsResponse describeSettings(DescribeSettingsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, DescribeSettingsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
-     * defaults.
+     * Returns the definition of each requested cluster setting: whether it is dynamic, its declared default, its value type and bounds, and
+     * its description. Accepts exact setting names and prefixes ending in <code>.*</code>. Does not return configured values.
      *
      * @param fn a function that initializes a builder to create the {@link DescribeSettingsRequest}
      */

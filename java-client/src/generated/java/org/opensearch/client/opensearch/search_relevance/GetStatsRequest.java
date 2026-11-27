@@ -45,6 +45,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
@@ -60,22 +61,25 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public final class GetStatsRequest extends RequestBase implements ToCopyableBuilder<GetStatsRequest.Builder, GetStatsRequest> {
 
     @Nullable
-    private final String flatStatPaths;
+    private final Boolean flatStatPaths;
 
     @Nullable
-    private final String includeAllNodes;
+    private final Boolean includeAllNodes;
 
     @Nullable
-    private final String includeIndividualNodes;
+    private final Boolean includeIndividualNodes;
 
     @Nullable
-    private final String includeInfo;
+    private final Boolean includeInfo;
 
     @Nullable
-    private final String includeMetadata;
+    private final Boolean includeMetadata;
 
     @Nullable
     private final String stat;
+
+    @Nullable
+    private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -87,6 +91,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
         this.includeInfo = builder.includeInfo;
         this.includeMetadata = builder.includeMetadata;
         this.stat = builder.stat;
+        this.timeout = builder.timeout;
     }
 
     public static GetStatsRequest of(Function<GetStatsRequest.Builder, ObjectBuilder<GetStatsRequest>> fn) {
@@ -100,7 +105,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      * </p>
      */
     @Nullable
-    public final String flatStatPaths() {
+    public final Boolean flatStatPaths() {
         return this.flatStatPaths;
     }
 
@@ -111,7 +116,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      * </p>
      */
     @Nullable
-    public final String includeAllNodes() {
+    public final Boolean includeAllNodes() {
         return this.includeAllNodes;
     }
 
@@ -122,7 +127,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      * </p>
      */
     @Nullable
-    public final String includeIndividualNodes() {
+    public final Boolean includeIndividualNodes() {
         return this.includeIndividualNodes;
     }
 
@@ -133,7 +138,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      * </p>
      */
     @Nullable
-    public final String includeInfo() {
+    public final Boolean includeInfo() {
         return this.includeInfo;
     }
 
@@ -144,12 +149,16 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      * </p>
      */
     @Nullable
-    public final String includeMetadata() {
+    public final Boolean includeMetadata() {
         return this.includeMetadata;
     }
 
     /**
-     * The statistic to return
+     * A comma-separated list of statistics to return. Valid values: <code>cluster_version</code>,
+     * <code>import_judgment_rating_generations</code>, <code>llm_judgment_rating_generations</code>,
+     * <code>ubi_judgment_rating_generations</code>, <code>experiment_executions</code>,
+     * <code>experiment_pairwise_comparison_executions</code>, <code>experiment_pointwise_evaluation_executions</code>,
+     * <code>experiment_hybrid_optimizer_executions</code>.
      * <p>
      * API name: {@code stat}
      * </p>
@@ -157,6 +166,17 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
     @Nullable
     public final String stat() {
         return this.stat;
+    }
+
+    /**
+     * The amount of time to wait for a response.
+     * <p>
+     * API name: {@code timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -177,17 +197,19 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetStatsRequest> {
         @Nullable
-        private String flatStatPaths;
+        private Boolean flatStatPaths;
         @Nullable
-        private String includeAllNodes;
+        private Boolean includeAllNodes;
         @Nullable
-        private String includeIndividualNodes;
+        private Boolean includeIndividualNodes;
         @Nullable
-        private String includeInfo;
+        private Boolean includeInfo;
         @Nullable
-        private String includeMetadata;
+        private Boolean includeMetadata;
         @Nullable
         private String stat;
+        @Nullable
+        private Time timeout;
 
         public Builder() {}
 
@@ -199,6 +221,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
             this.includeInfo = o.includeInfo;
             this.includeMetadata = o.includeMetadata;
             this.stat = o.stat;
+            this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
@@ -209,6 +232,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
             this.includeInfo = o.includeInfo;
             this.includeMetadata = o.includeMetadata;
             this.stat = o.stat;
+            this.timeout = o.timeout;
         }
 
         @Override
@@ -230,7 +254,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
          * </p>
          */
         @Nonnull
-        public final Builder flatStatPaths(@Nullable String value) {
+        public final Builder flatStatPaths(@Nullable Boolean value) {
             this.flatStatPaths = value;
             return this;
         }
@@ -242,7 +266,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
          * </p>
          */
         @Nonnull
-        public final Builder includeAllNodes(@Nullable String value) {
+        public final Builder includeAllNodes(@Nullable Boolean value) {
             this.includeAllNodes = value;
             return this;
         }
@@ -254,7 +278,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
          * </p>
          */
         @Nonnull
-        public final Builder includeIndividualNodes(@Nullable String value) {
+        public final Builder includeIndividualNodes(@Nullable Boolean value) {
             this.includeIndividualNodes = value;
             return this;
         }
@@ -266,7 +290,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
          * </p>
          */
         @Nonnull
-        public final Builder includeInfo(@Nullable String value) {
+        public final Builder includeInfo(@Nullable Boolean value) {
             this.includeInfo = value;
             return this;
         }
@@ -278,13 +302,17 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
          * </p>
          */
         @Nonnull
-        public final Builder includeMetadata(@Nullable String value) {
+        public final Builder includeMetadata(@Nullable Boolean value) {
             this.includeMetadata = value;
             return this;
         }
 
         /**
-         * The statistic to return
+         * A comma-separated list of statistics to return. Valid values: <code>cluster_version</code>,
+         * <code>import_judgment_rating_generations</code>, <code>llm_judgment_rating_generations</code>,
+         * <code>ubi_judgment_rating_generations</code>, <code>experiment_executions</code>,
+         * <code>experiment_pairwise_comparison_executions</code>, <code>experiment_pointwise_evaluation_executions</code>,
+         * <code>experiment_hybrid_optimizer_executions</code>.
          * <p>
          * API name: {@code stat}
          * </p>
@@ -293,6 +321,29 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
         public final Builder stat(@Nullable String value) {
             this.stat = value;
             return this;
+        }
+
+        /**
+         * The amount of time to wait for a response.
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
+
+        /**
+         * The amount of time to wait for a response.
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -315,19 +366,22 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
     protected void applyQueryParameters(@Nonnull Map<String, String> params) {
         super.applyQueryParameters(params);
         if (this.flatStatPaths != null) {
-            params.put("flat_stat_paths", this.flatStatPaths);
+            params.put("flat_stat_paths", String.valueOf(this.flatStatPaths));
         }
         if (this.includeAllNodes != null) {
-            params.put("include_all_nodes", this.includeAllNodes);
+            params.put("include_all_nodes", String.valueOf(this.includeAllNodes));
         }
         if (this.includeIndividualNodes != null) {
-            params.put("include_individual_nodes", this.includeIndividualNodes);
+            params.put("include_individual_nodes", String.valueOf(this.includeIndividualNodes));
         }
         if (this.includeInfo != null) {
-            params.put("include_info", this.includeInfo);
+            params.put("include_info", String.valueOf(this.includeInfo));
         }
         if (this.includeMetadata != null) {
-            params.put("include_metadata", this.includeMetadata);
+            params.put("include_metadata", String.valueOf(this.includeMetadata));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
         }
     }
 
@@ -377,6 +431,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
         result = 31 * result + Objects.hashCode(this.includeInfo);
         result = 31 * result + Objects.hashCode(this.includeMetadata);
         result = 31 * result + Objects.hashCode(this.stat);
+        result = 31 * result + Objects.hashCode(this.timeout);
         return result;
     }
 
@@ -390,6 +445,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
             && Objects.equals(this.includeIndividualNodes, other.includeIndividualNodes)
             && Objects.equals(this.includeInfo, other.includeInfo)
             && Objects.equals(this.includeMetadata, other.includeMetadata)
-            && Objects.equals(this.stat, other.stat);
+            && Objects.equals(this.stat, other.stat)
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

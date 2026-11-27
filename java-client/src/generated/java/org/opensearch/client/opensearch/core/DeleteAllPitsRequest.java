@@ -52,7 +52,8 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: _global.delete_all_pits.Request
 
 /**
- * Deletes all active point in time searches.
+ * Deletes all active point in time searches. The response lists each PIT with <code>successful</code>. The server can answer 200 while some
+ * entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their <code>keep_alive</code> runs out.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class DeleteAllPitsRequest extends RequestBase

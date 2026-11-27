@@ -68,6 +68,9 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
     @Nullable
     private final Boolean ignoreUnavailable;
 
+    @Nullable
+    private final Integer limit;
+
     @Deprecated
     @Nullable
     private final Time masterTimeout;
@@ -84,6 +87,7 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.ignoreUnavailable = builder.ignoreUnavailable;
+        this.limit = builder.limit;
         this.masterTimeout = builder.masterTimeout;
         this.repository = ApiTypeHelper.unmodifiable(builder.repository);
         this.time = builder.time;
@@ -113,6 +117,17 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
     @Nullable
     public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
+    }
+
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
     }
 
     /**
@@ -173,6 +188,8 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         @Nullable
         private Boolean ignoreUnavailable;
         @Nullable
+        private Integer limit;
+        @Nullable
         private Time masterTimeout;
         @Nullable
         private List<String> repository;
@@ -185,6 +202,7 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
             super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.ignoreUnavailable = o.ignoreUnavailable;
+            this.limit = o.limit;
             this.masterTimeout = o.masterTimeout;
             this.repository = _listCopy(o.repository);
             this.time = o.time;
@@ -194,6 +212,7 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
             super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.ignoreUnavailable = o.ignoreUnavailable;
+            this.limit = o.limit;
             this.masterTimeout = o.masterTimeout;
             this.repository = _listCopy(o.repository);
             this.time = o.time;
@@ -243,6 +262,18 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         @Nonnull
         public final Builder ignoreUnavailable(@Nullable Boolean value) {
             this.ignoreUnavailable = value;
+            return this;
+        }
+
+        /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
             return this;
         }
 
@@ -343,6 +374,9 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         if (this.ignoreUnavailable != null) {
             params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
         }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
+        }
         if (this.masterTimeout != null) {
             params.put("master_timeout", this.masterTimeout._toJsonString());
         }
@@ -393,6 +427,7 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         int result = 17;
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.masterTimeout);
         result = 31 * result + Objects.hashCode(this.repository);
         result = 31 * result + Objects.hashCode(this.time);
@@ -406,6 +441,7 @@ public final class SnapshotsRequest extends CatRequestBase implements ToCopyable
         SnapshotsRequest other = (SnapshotsRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && Objects.equals(this.limit, other.limit)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
             && Objects.equals(this.repository, other.repository)
             && Objects.equals(this.time, other.time);

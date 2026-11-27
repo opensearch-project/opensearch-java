@@ -75,9 +75,15 @@ public final class TrainModelRequest extends RequestBase
     private final String compressionLevel;
 
     @Nullable
+    private final String dataType;
+
+    @Nullable
     private final String description;
 
     private final int dimension;
+
+    @Nullable
+    private final String engine;
 
     @Nullable
     private final Integer maxTrainingVectorCount;
@@ -111,8 +117,10 @@ public final class TrainModelRequest extends RequestBase
     private TrainModelRequest(Builder builder) {
         super(builder);
         this.compressionLevel = builder.compressionLevel;
+        this.dataType = builder.dataType;
         this.description = builder.description;
         this.dimension = ApiTypeHelper.requireNonNull(builder.dimension, this, "dimension");
+        this.engine = builder.engine;
         this.maxTrainingVectorCount = builder.maxTrainingVectorCount;
         this.method = builder.method;
         this.mode = builder.mode;
@@ -137,6 +145,17 @@ public final class TrainModelRequest extends RequestBase
     }
 
     /**
+     * The vector data type.
+     * <p>
+     * API name: {@code data_type}
+     * </p>
+     */
+    @Nullable
+    public final String dataType() {
+        return this.dataType;
+    }
+
+    /**
      * API name: {@code description}
      */
     @Nullable
@@ -149,6 +168,17 @@ public final class TrainModelRequest extends RequestBase
      */
     public final int dimension() {
         return this.dimension;
+    }
+
+    /**
+     * The k-NN engine to use.
+     * <p>
+     * API name: {@code engine}
+     * </p>
+     */
+    @Nullable
+    public final String engine() {
+        return this.engine;
     }
 
     /**
@@ -206,7 +236,10 @@ public final class TrainModelRequest extends RequestBase
     }
 
     /**
+     * The space type for distance calculation (alias for space_type).
+     * <p>
      * API name: {@code spaceType}
+     * </p>
      */
     @Nullable
     public final String spaceType() {
@@ -245,6 +278,11 @@ public final class TrainModelRequest extends RequestBase
             generator.write(this.compressionLevel);
         }
 
+        if (this.dataType != null) {
+            generator.writeKey("data_type");
+            generator.write(this.dataType);
+        }
+
         if (this.description != null) {
             generator.writeKey("description");
             generator.write(this.description);
@@ -252,6 +290,11 @@ public final class TrainModelRequest extends RequestBase
 
         generator.writeKey("dimension");
         generator.write(this.dimension);
+
+        if (this.engine != null) {
+            generator.writeKey("engine");
+            generator.write(this.engine);
+        }
 
         if (this.maxTrainingVectorCount != null) {
             generator.writeKey("max_training_vector_count");
@@ -305,8 +348,12 @@ public final class TrainModelRequest extends RequestBase
         @Nullable
         private String compressionLevel;
         @Nullable
+        private String dataType;
+        @Nullable
         private String description;
         private Integer dimension;
+        @Nullable
+        private String engine;
         @Nullable
         private Integer maxTrainingVectorCount;
         @Nullable
@@ -329,8 +376,10 @@ public final class TrainModelRequest extends RequestBase
         private Builder(TrainModelRequest o) {
             super(o);
             this.compressionLevel = o.compressionLevel;
+            this.dataType = o.dataType;
             this.description = o.description;
             this.dimension = o.dimension;
+            this.engine = o.engine;
             this.maxTrainingVectorCount = o.maxTrainingVectorCount;
             this.method = o.method;
             this.mode = o.mode;
@@ -345,8 +394,10 @@ public final class TrainModelRequest extends RequestBase
         private Builder(Builder o) {
             super(o);
             this.compressionLevel = o.compressionLevel;
+            this.dataType = o.dataType;
             this.description = o.description;
             this.dimension = o.dimension;
+            this.engine = o.engine;
             this.maxTrainingVectorCount = o.maxTrainingVectorCount;
             this.method = o.method;
             this.mode = o.mode;
@@ -380,6 +431,18 @@ public final class TrainModelRequest extends RequestBase
         }
 
         /**
+         * The vector data type.
+         * <p>
+         * API name: {@code data_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder dataType(@Nullable String value) {
+            this.dataType = value;
+            return this;
+        }
+
+        /**
          * API name: {@code description}
          */
         @Nonnull
@@ -394,6 +457,18 @@ public final class TrainModelRequest extends RequestBase
         @Nonnull
         public final Builder dimension(int value) {
             this.dimension = value;
+            return this;
+        }
+
+        /**
+         * The k-NN engine to use.
+         * <p>
+         * API name: {@code engine}
+         * </p>
+         */
+        @Nonnull
+        public final Builder engine(@Nullable String value) {
+            this.engine = value;
             return this;
         }
 
@@ -466,7 +541,10 @@ public final class TrainModelRequest extends RequestBase
         }
 
         /**
+         * The space type for distance calculation (alias for space_type).
+         * <p>
          * API name: {@code spaceType}
+         * </p>
          */
         @Nonnull
         public final Builder spaceType(@Nullable String value) {
@@ -518,8 +596,10 @@ public final class TrainModelRequest extends RequestBase
 
     protected static void setupTrainModelRequestDeserializer(ObjectDeserializer<TrainModelRequest.Builder> op) {
         op.add(Builder::compressionLevel, JsonpDeserializer.stringDeserializer(), "compression_level");
+        op.add(Builder::dataType, JsonpDeserializer.stringDeserializer(), "data_type");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::dimension, JsonpDeserializer.integerDeserializer(), "dimension");
+        op.add(Builder::engine, JsonpDeserializer.stringDeserializer(), "engine");
         op.add(Builder::maxTrainingVectorCount, JsonpDeserializer.integerDeserializer(), "max_training_vector_count");
         op.add(Builder::method, KnnMethod._DESERIALIZER, "method");
         op.add(Builder::mode, JsonpDeserializer.stringDeserializer(), "mode");
@@ -581,8 +661,10 @@ public final class TrainModelRequest extends RequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.compressionLevel);
+        result = 31 * result + Objects.hashCode(this.dataType);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Integer.hashCode(this.dimension);
+        result = 31 * result + Objects.hashCode(this.engine);
         result = 31 * result + Objects.hashCode(this.maxTrainingVectorCount);
         result = 31 * result + Objects.hashCode(this.method);
         result = 31 * result + Objects.hashCode(this.mode);
@@ -601,8 +683,10 @@ public final class TrainModelRequest extends RequestBase
         if (o == null || this.getClass() != o.getClass()) return false;
         TrainModelRequest other = (TrainModelRequest) o;
         return Objects.equals(this.compressionLevel, other.compressionLevel)
+            && Objects.equals(this.dataType, other.dataType)
             && Objects.equals(this.description, other.description)
             && this.dimension == other.dimension
+            && Objects.equals(this.engine, other.engine)
             && Objects.equals(this.maxTrainingVectorCount, other.maxTrainingVectorCount)
             && Objects.equals(this.method, other.method)
             && Objects.equals(this.mode, other.mode)

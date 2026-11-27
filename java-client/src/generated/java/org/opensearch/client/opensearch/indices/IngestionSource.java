@@ -69,6 +69,12 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     private final Boolean allActive;
 
+    @Nonnull
+    private final Map<String, String> decoderSettings;
+
+    @Nullable
+    private final String decoderType;
+
     @Nullable
     private final ErrorPolicy errorStrategy;
 
@@ -118,6 +124,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
 
     private IngestionSource(Builder builder) {
         this.allActive = builder.allActive;
+        this.decoderSettings = ApiTypeHelper.unmodifiable(builder.decoderSettings);
+        this.decoderType = builder.decoderType;
         this.errorStrategy = builder.errorStrategy;
         this.internalQueueSize = builder.internalQueueSize;
         this.mapperSettings = ApiTypeHelper.unmodifiable(builder.mapperSettings);
@@ -148,6 +156,28 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     public final Boolean allActive() {
         return this.allActive;
+    }
+
+    /**
+     * Configuration settings for the selected decoder type, keyed by setting name. Index settings values are always strings.
+     * <p>
+     * API name: {@code decoder_settings}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, String> decoderSettings() {
+        return this.decoderSettings;
+    }
+
+    /**
+     * The type of payload decoder used to decode ingestion messages.
+     * <p>
+     * API name: {@code decoder_type}
+     * </p>
+     */
+    @Nullable
+    public final String decoderType() {
+        return this.decoderType;
     }
 
     /**
@@ -319,6 +349,21 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
             generator.write(this.allActive);
         }
 
+        if (ApiTypeHelper.isDefined(this.decoderSettings)) {
+            generator.writeKey("decoder_settings");
+            generator.writeStartObject();
+            for (Map.Entry<String, String> item0 : this.decoderSettings.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
+            }
+            generator.writeEnd();
+        }
+
+        if (this.decoderType != null) {
+            generator.writeKey("decoder_type");
+            generator.write(this.decoderType);
+        }
+
         if (this.errorStrategy != null) {
             generator.writeKey("error_strategy");
             this.errorStrategy.serialize(generator, mapper);
@@ -425,6 +470,10 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private Boolean allActive;
         @Nullable
+        private Map<String, String> decoderSettings;
+        @Nullable
+        private String decoderType;
+        @Nullable
         private ErrorPolicy errorStrategy;
         @Nullable
         private Integer internalQueueSize;
@@ -459,6 +508,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
 
         private Builder(IngestionSource o) {
             this.allActive = o.allActive;
+            this.decoderSettings = _mapCopy(o.decoderSettings);
+            this.decoderType = o.decoderType;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
             this.mapperSettings = _mapCopy(o.mapperSettings);
@@ -478,6 +529,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
 
         private Builder(Builder o) {
             this.allActive = o.allActive;
+            this.decoderSettings = _mapCopy(o.decoderSettings);
+            this.decoderType = o.decoderType;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
             this.mapperSettings = _mapCopy(o.mapperSettings);
@@ -510,6 +563,50 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public final Builder allActive(@Nullable Boolean value) {
             this.allActive = value;
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected decoder type, keyed by setting name. Index settings values are always strings.
+         * <p>
+         * API name: {@code decoder_settings}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>decoderSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder decoderSettings(Map<String, String> map) {
+            this.decoderSettings = _mapPutAll(this.decoderSettings, map);
+            return this;
+        }
+
+        /**
+         * Configuration settings for the selected decoder type, keyed by setting name. Index settings values are always strings.
+         * <p>
+         * API name: {@code decoder_settings}
+         * </p>
+         *
+         * <p>
+         * Adds an entry to <code>decoderSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder decoderSettings(String key, String value) {
+            this.decoderSettings = _mapPut(this.decoderSettings, key, value);
+            return this;
+        }
+
+        /**
+         * The type of payload decoder used to decode ingestion messages.
+         * <p>
+         * API name: {@code decoder_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder decoderType(@Nullable String value) {
+            this.decoderType = value;
             return this;
         }
 
@@ -771,6 +868,12 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
 
     protected static void setupIngestionSourceDeserializer(ObjectDeserializer<IngestionSource.Builder> op) {
         op.add(Builder::allActive, JsonpDeserializer.booleanDeserializer(), "all_active");
+        op.add(
+            Builder::decoderSettings,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+            "decoder_settings"
+        );
+        op.add(Builder::decoderType, JsonpDeserializer.stringDeserializer(), "decoder_type");
         op.add(Builder::errorStrategy, ErrorPolicy._DESERIALIZER, "error_strategy");
         op.add(Builder::internalQueueSize, JsonpDeserializer.integerDeserializer(), "internal_queue_size");
         op.add(Builder::mapperSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "mapper_settings");
@@ -792,6 +895,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.allActive);
+        result = 31 * result + Objects.hashCode(this.decoderSettings);
+        result = 31 * result + Objects.hashCode(this.decoderType);
         result = 31 * result + Objects.hashCode(this.errorStrategy);
         result = 31 * result + Objects.hashCode(this.internalQueueSize);
         result = 31 * result + Objects.hashCode(this.mapperSettings);
@@ -816,6 +921,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         if (o == null || this.getClass() != o.getClass()) return false;
         IngestionSource other = (IngestionSource) o;
         return Objects.equals(this.allActive, other.allActive)
+            && Objects.equals(this.decoderSettings, other.decoderSettings)
+            && Objects.equals(this.decoderType, other.decoderType)
             && Objects.equals(this.errorStrategy, other.errorStrategy)
             && Objects.equals(this.internalQueueSize, other.internalQueueSize)
             && Objects.equals(this.mapperSettings, other.mapperSettings)

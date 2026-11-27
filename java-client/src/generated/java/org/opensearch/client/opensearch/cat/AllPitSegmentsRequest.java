@@ -64,11 +64,15 @@ public final class AllPitSegmentsRequest extends CatRequestBase
     @Nullable
     private final Bytes bytes;
 
+    @Nullable
+    private final Integer limit;
+
     // ---------------------------------------------------------------------------------------------
 
     private AllPitSegmentsRequest(Builder builder) {
         super(builder);
         this.bytes = builder.bytes;
+        this.limit = builder.limit;
     }
 
     public static AllPitSegmentsRequest of(Function<AllPitSegmentsRequest.Builder, ObjectBuilder<AllPitSegmentsRequest>> fn) {
@@ -84,6 +88,17 @@ public final class AllPitSegmentsRequest extends CatRequestBase
     @Nullable
     public final Bytes bytes() {
         return this.bytes;
+    }
+
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -105,17 +120,21 @@ public final class AllPitSegmentsRequest extends CatRequestBase
     public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AllPitSegmentsRequest> {
         @Nullable
         private Bytes bytes;
+        @Nullable
+        private Integer limit;
 
         public Builder() {}
 
         private Builder(AllPitSegmentsRequest o) {
             super(o);
             this.bytes = o.bytes;
+            this.limit = o.limit;
         }
 
         private Builder(Builder o) {
             super(o);
             this.bytes = o.bytes;
+            this.limit = o.limit;
         }
 
         @Override
@@ -143,6 +162,18 @@ public final class AllPitSegmentsRequest extends CatRequestBase
         }
 
         /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link AllPitSegmentsRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -163,6 +194,9 @@ public final class AllPitSegmentsRequest extends CatRequestBase
         super.applyQueryParameters(params);
         if (this.bytes != null) {
             params.put("bytes", this.bytes.jsonValue());
+        }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
         }
     }
 
@@ -189,6 +223,7 @@ public final class AllPitSegmentsRequest extends CatRequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.bytes);
+        result = 31 * result + Objects.hashCode(this.limit);
         return result;
     }
 
@@ -197,6 +232,6 @@ public final class AllPitSegmentsRequest extends CatRequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         AllPitSegmentsRequest other = (AllPitSegmentsRequest) o;
-        return Objects.equals(this.bytes, other.bytes);
+        return Objects.equals(this.bytes, other.bytes) && Objects.equals(this.limit, other.limit);
     }
 }

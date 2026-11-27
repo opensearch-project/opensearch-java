@@ -61,7 +61,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: _global.delete_pit.Request
 
 /**
- * Deletes one or more point in time searches based on the IDs passed.
+ * Deletes one or more point in time searches based on the IDs passed. The response lists each PIT with <code>successful</code>. The server
+ * can answer 200 while some entries report <code>successful: false</code>. Those PITs were not deleted and stay open until their
+ * <code>keep_alive</code> runs out.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

@@ -65,7 +65,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
     private final MlTaskType taskType;
 
     @Nonnull
-    private final List<List<String>> workerNode;
+    private final List<String> workerNode;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
      * API name: {@code worker_node}
      */
     @Nonnull
-    public final List<List<String>> workerNode() {
+    public final List<String> workerNode() {
         return this.workerNode;
     }
 
@@ -223,12 +223,8 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         if (ApiTypeHelper.isDefined(this.workerNode)) {
             generator.writeKey("worker_node");
             generator.writeStartArray();
-            for (List<String> item0 : this.workerNode) {
-                generator.writeStartArray();
-                for (String item1 : item0) {
-                    generator.write(item1);
-                }
-                generator.writeEnd();
+            for (String item0 : this.workerNode) {
+                generator.write(item0);
             }
             generator.writeEnd();
         }
@@ -269,7 +265,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         @Nullable
         private MlTaskType taskType;
         @Nullable
-        private List<List<String>> workerNode;
+        private List<String> workerNode;
 
         public Builder() {}
 
@@ -394,7 +390,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
          * </p>
          */
         @Nonnull
-        public final Builder workerNode(List<List<String>> list) {
+        public final Builder workerNode(List<String> list) {
             this.workerNode = _listAddAll(this.workerNode, list);
             return this;
         }
@@ -407,7 +403,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
          * </p>
          */
         @Nonnull
-        public final Builder workerNode(List<String> value, List<String>... values) {
+        public final Builder workerNode(String value, String... values) {
             this.workerNode = _listAdd(this.workerNode, value, values);
             return this;
         }
@@ -443,11 +439,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         op.add(Builder::state, TaskState._DESERIALIZER, "state");
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
         op.add(Builder::taskType, MlTaskType._DESERIALIZER, "task_type");
-        op.add(
-            Builder::workerNode,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
-            "worker_node"
-        );
+        op.add(Builder::workerNode, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "worker_node");
     }
 
     @Override

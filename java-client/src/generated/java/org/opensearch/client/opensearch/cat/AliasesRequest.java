@@ -65,6 +65,9 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
     @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
+    @Nullable
+    private final Integer limit;
+
     @Nonnull
     private final List<String> name;
 
@@ -73,6 +76,7 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
     private AliasesRequest(Builder builder) {
         super(builder);
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+        this.limit = builder.limit;
         this.name = ApiTypeHelper.unmodifiable(builder.name);
     }
 
@@ -89,6 +93,17 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
     @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
+    }
+
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
     }
 
     /**
@@ -123,6 +138,8 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         @Nullable
         private List<ExpandWildcard> expandWildcards;
         @Nullable
+        private Integer limit;
+        @Nullable
         private List<String> name;
 
         public Builder() {}
@@ -130,12 +147,14 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         private Builder(AliasesRequest o) {
             super(o);
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.limit = o.limit;
             this.name = _listCopy(o.name);
         }
 
         private Builder(Builder o) {
             super(o);
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.limit = o.limit;
             this.name = _listCopy(o.name);
         }
 
@@ -180,6 +199,18 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+            return this;
+        }
+
+        /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
             return this;
         }
 
@@ -239,6 +270,9 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         if (ApiTypeHelper.isDefined(this.expandWildcards)) {
             params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
         }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
+        }
     }
 
     /**
@@ -282,6 +316,7 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.limit);
         result = 31 * result + Objects.hashCode(this.name);
         return result;
     }
@@ -291,6 +326,8 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         AliasesRequest other = (AliasesRequest) o;
-        return Objects.equals(this.expandWildcards, other.expandWildcards) && Objects.equals(this.name, other.name);
+        return Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.limit, other.limit)
+            && Objects.equals(this.name, other.name);
     }
 }

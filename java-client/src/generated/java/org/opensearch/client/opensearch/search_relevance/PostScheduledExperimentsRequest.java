@@ -39,11 +39,9 @@ package org.opensearch.client.opensearch.search_relevance;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -54,6 +52,7 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
@@ -70,18 +69,18 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<PostScheduledExperimentsRequest.Builder, PostScheduledExperimentsRequest> {
 
-    @Nullable
+    @Nonnull
     private final String cronExpression;
 
-    @Nullable
+    @Nonnull
     private final String experimentId;
 
     // ---------------------------------------------------------------------------------------------
 
     private PostScheduledExperimentsRequest(Builder builder) {
         super(builder);
-        this.cronExpression = builder.cronExpression;
-        this.experimentId = builder.experimentId;
+        this.cronExpression = ApiTypeHelper.requireNonNull(builder.cronExpression, this, "cronExpression");
+        this.experimentId = ApiTypeHelper.requireNonNull(builder.experimentId, this, "experimentId");
     }
 
     public static PostScheduledExperimentsRequest of(
@@ -91,17 +90,17 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     }
 
     /**
-     * API name: {@code cronExpression}
+     * Required - API name: {@code cronExpression}
      */
-    @Nullable
+    @Nonnull
     public final String cronExpression() {
         return this.cronExpression;
     }
 
     /**
-     * API name: {@code experimentId}
+     * Required - API name: {@code experimentId}
      */
-    @Nullable
+    @Nonnull
     public final String experimentId() {
         return this.experimentId;
     }
@@ -117,15 +116,11 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.cronExpression != null) {
-            generator.writeKey("cronExpression");
-            generator.write(this.cronExpression);
-        }
+        generator.writeKey("cronExpression");
+        generator.write(this.cronExpression);
 
-        if (this.experimentId != null) {
-            generator.writeKey("experimentId");
-            generator.write(this.experimentId);
-        }
+        generator.writeKey("experimentId");
+        generator.write(this.experimentId);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -147,9 +142,7 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder>
         implements
             CopyableBuilder<Builder, PostScheduledExperimentsRequest> {
-        @Nullable
         private String cronExpression;
-        @Nullable
         private String experimentId;
 
         public Builder() {}
@@ -179,19 +172,19 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         }
 
         /**
-         * API name: {@code cronExpression}
+         * Required - API name: {@code cronExpression}
          */
         @Nonnull
-        public final Builder cronExpression(@Nullable String value) {
+        public final Builder cronExpression(String value) {
             this.cronExpression = value;
             return this;
         }
 
         /**
-         * API name: {@code experimentId}
+         * Required - API name: {@code experimentId}
          */
         @Nonnull
-        public final Builder experimentId(@Nullable String value) {
+        public final Builder experimentId(String value) {
             this.experimentId = value;
             return this;
         }
@@ -250,8 +243,8 @@ public final class PostScheduledExperimentsRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.cronExpression);
-        result = 31 * result + Objects.hashCode(this.experimentId);
+        result = 31 * result + this.cronExpression.hashCode();
+        result = 31 * result + this.experimentId.hashCode();
         return result;
     }
 
@@ -260,6 +253,6 @@ public final class PostScheduledExperimentsRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PostScheduledExperimentsRequest other = (PostScheduledExperimentsRequest) o;
-        return Objects.equals(this.cronExpression, other.cronExpression) && Objects.equals(this.experimentId, other.experimentId);
+        return this.cronExpression.equals(other.cronExpression) && this.experimentId.equals(other.experimentId);
     }
 }

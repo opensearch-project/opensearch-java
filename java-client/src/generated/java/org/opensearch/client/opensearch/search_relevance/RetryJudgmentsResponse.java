@@ -34,56 +34,77 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.ism;
+package org.opensearch.client.opensearch.search_relevance;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ism.ActionTimeout
+// typedef: search_relevance.retry_judgments.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ActionTimeout implements PlainJsonSerializable, ToCopyableBuilder<ActionTimeout.Builder, ActionTimeout> {
+public class RetryJudgmentsResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RetryJudgmentsResponse.Builder, RetryJudgmentsResponse> {
 
-    @Nonnull
-    private final Map<String, JsonData> timeout;
+    @Nullable
+    private final String judgmentId;
+
+    @Nullable
+    private final String message;
+
+    @Nullable
+    private final String status;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ActionTimeout(Builder builder) {
-        this.timeout = ApiTypeHelper.unmodifiable(builder.timeout);
+    private RetryJudgmentsResponse(Builder builder) {
+        this.judgmentId = builder.judgmentId;
+        this.message = builder.message;
+        this.status = builder.status;
     }
 
-    public static ActionTimeout of(Function<ActionTimeout.Builder, ObjectBuilder<ActionTimeout>> fn) {
+    public static RetryJudgmentsResponse of(Function<RetryJudgmentsResponse.Builder, ObjectBuilder<RetryJudgmentsResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The timeout configuration for the action.
-     * <p>
-     * API name: {@code timeout}
-     * </p>
+     * API name: {@code judgment_id}
      */
-    @Nonnull
-    public final Map<String, JsonData> timeout() {
-        return this.timeout;
+    @Nullable
+    public final String judgmentId() {
+        return this.judgmentId;
+    }
+
+    /**
+     * API name: {@code message}
+     */
+    @Nullable
+    public final String message() {
+        return this.message;
+    }
+
+    /**
+     * API name: {@code status}
+     */
+    @Nullable
+    public final String status() {
+        return this.status;
     }
 
     /**
@@ -97,14 +118,19 @@ public class ActionTimeout implements PlainJsonSerializable, ToCopyableBuilder<A
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.timeout)) {
-            generator.writeKey("timeout");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.timeout.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
+        if (this.judgmentId != null) {
+            generator.writeKey("judgment_id");
+            generator.write(this.judgmentId);
+        }
+
+        if (this.message != null) {
+            generator.writeKey("message");
+            generator.write(this.message);
+        }
+
+        if (this.status != null) {
+            generator.writeKey("status");
+            generator.write(this.status);
         }
     }
 
@@ -122,20 +148,28 @@ public class ActionTimeout implements PlainJsonSerializable, ToCopyableBuilder<A
     }
 
     /**
-     * Builder for {@link ActionTimeout}.
+     * Builder for {@link RetryJudgmentsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ActionTimeout> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RetryJudgmentsResponse> {
         @Nullable
-        private Map<String, JsonData> timeout;
+        private String judgmentId;
+        @Nullable
+        private String message;
+        @Nullable
+        private String status;
 
         public Builder() {}
 
-        private Builder(ActionTimeout o) {
-            this.timeout = _mapCopy(o.timeout);
+        private Builder(RetryJudgmentsResponse o) {
+            this.judgmentId = o.judgmentId;
+            this.message = o.message;
+            this.status = o.status;
         }
 
         private Builder(Builder o) {
-            this.timeout = _mapCopy(o.timeout);
+            this.judgmentId = o.judgmentId;
+            this.message = o.message;
+            this.status = o.status;
         }
 
         @Override
@@ -145,69 +179,68 @@ public class ActionTimeout implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
-         * The timeout configuration for the action.
-         * <p>
-         * API name: {@code timeout}
-         * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>timeout</code>.
-         * </p>
+         * API name: {@code judgment_id}
          */
         @Nonnull
-        public final Builder timeout(Map<String, JsonData> map) {
-            this.timeout = _mapPutAll(this.timeout, map);
+        public final Builder judgmentId(@Nullable String value) {
+            this.judgmentId = value;
             return this;
         }
 
         /**
-         * The timeout configuration for the action.
-         * <p>
-         * API name: {@code timeout}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>timeout</code>.
-         * </p>
+         * API name: {@code message}
          */
         @Nonnull
-        public final Builder timeout(String key, JsonData value) {
-            this.timeout = _mapPut(this.timeout, key, value);
+        public final Builder message(@Nullable String value) {
+            this.message = value;
             return this;
         }
 
         /**
-         * Builds a {@link ActionTimeout}.
+         * API name: {@code status}
+         */
+        @Nonnull
+        public final Builder status(@Nullable String value) {
+            this.status = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link RetryJudgmentsResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ActionTimeout build() {
+        public RetryJudgmentsResponse build() {
             _checkSingleUse();
 
-            return new ActionTimeout(this);
+            return new RetryJudgmentsResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ActionTimeout}
+     * Json deserializer for {@link RetryJudgmentsResponse}
      */
-    public static final JsonpDeserializer<ActionTimeout> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RetryJudgmentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ActionTimeout::setupActionTimeoutDeserializer
+        RetryJudgmentsResponse::setupRetryJudgmentsResponseDeserializer
     );
 
-    protected static void setupActionTimeoutDeserializer(ObjectDeserializer<ActionTimeout.Builder> op) {
-        op.add(Builder::timeout, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "timeout");
+    protected static void setupRetryJudgmentsResponseDeserializer(ObjectDeserializer<RetryJudgmentsResponse.Builder> op) {
+        op.add(Builder::judgmentId, JsonpDeserializer.stringDeserializer(), "judgment_id");
+        op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
+        op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.timeout);
+        result = 31 * result + Objects.hashCode(this.judgmentId);
+        result = 31 * result + Objects.hashCode(this.message);
+        result = 31 * result + Objects.hashCode(this.status);
         return result;
     }
 
@@ -215,7 +248,9 @@ public class ActionTimeout implements PlainJsonSerializable, ToCopyableBuilder<A
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ActionTimeout other = (ActionTimeout) o;
-        return Objects.equals(this.timeout, other.timeout);
+        RetryJudgmentsResponse other = (RetryJudgmentsResponse) o;
+        return Objects.equals(this.judgmentId, other.judgmentId)
+            && Objects.equals(this.message, other.message)
+            && Objects.equals(this.status, other.status);
     }
 }

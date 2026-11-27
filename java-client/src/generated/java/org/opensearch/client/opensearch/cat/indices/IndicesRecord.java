@@ -567,6 +567,12 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String suggestTotal;
 
     @Nullable
+    private final String system;
+
+    @Nullable
+    private final String systemDescription;
+
+    @Nullable
     private final String uuid;
 
     @Nullable
@@ -750,6 +756,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         this.suggestCurrent = builder.suggestCurrent;
         this.suggestTime = builder.suggestTime;
         this.suggestTotal = builder.suggestTotal;
+        this.system = builder.system;
+        this.systemDescription = builder.systemDescription;
         this.uuid = builder.uuid;
         this.warmerCurrent = builder.warmerCurrent;
         this.warmerTotal = builder.warmerTotal;
@@ -2578,6 +2586,28 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * whether the index is a system index
+     * <p>
+     * API name: {@code system}
+     * </p>
+     */
+    @Nullable
+    public final String system() {
+        return this.system;
+    }
+
+    /**
+     * description from the matching system index descriptor
+     * <p>
+     * API name: {@code system.description}
+     * </p>
+     */
+    @Nullable
+    public final String systemDescription() {
+        return this.systemDescription;
+    }
+
+    /**
      * index UUID
      * <p>
      * API name: {@code uuid}
@@ -3477,6 +3507,16 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             generator.write(this.suggestTotal);
         }
 
+        if (this.system != null) {
+            generator.writeKey("system");
+            generator.write(this.system);
+        }
+
+        if (this.systemDescription != null) {
+            generator.writeKey("system.description");
+            generator.write(this.systemDescription);
+        }
+
         if (this.uuid != null) {
             generator.writeKey("uuid");
             generator.write(this.uuid);
@@ -3854,6 +3894,10 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String suggestTotal;
         @Nullable
+        private String system;
+        @Nullable
+        private String systemDescription;
+        @Nullable
         private String uuid;
         @Nullable
         private String warmerCurrent;
@@ -4034,6 +4078,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.suggestCurrent = o.suggestCurrent;
             this.suggestTime = o.suggestTime;
             this.suggestTotal = o.suggestTotal;
+            this.system = o.system;
+            this.systemDescription = o.systemDescription;
             this.uuid = o.uuid;
             this.warmerCurrent = o.warmerCurrent;
             this.warmerTotal = o.warmerTotal;
@@ -4210,6 +4256,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             this.suggestCurrent = o.suggestCurrent;
             this.suggestTime = o.suggestTime;
             this.suggestTotal = o.suggestTotal;
+            this.system = o.system;
+            this.systemDescription = o.systemDescription;
             this.uuid = o.uuid;
             this.warmerCurrent = o.warmerCurrent;
             this.warmerTotal = o.warmerTotal;
@@ -6211,6 +6259,30 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * whether the index is a system index
+         * <p>
+         * API name: {@code system}
+         * </p>
+         */
+        @Nonnull
+        public final Builder system(@Nullable String value) {
+            this.system = value;
+            return this;
+        }
+
+        /**
+         * description from the matching system index descriptor
+         * <p>
+         * API name: {@code system.description}
+         * </p>
+         */
+        @Nonnull
+        public final Builder systemDescription(@Nullable String value) {
+            this.systemDescription = value;
+            return this;
+        }
+
+        /**
          * index UUID
          * <p>
          * API name: {@code uuid}
@@ -6456,6 +6528,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::suggestCurrent, JsonpDeserializer.stringDeserializer(), "suggest.current");
         op.add(Builder::suggestTime, JsonpDeserializer.stringDeserializer(), "suggest.time");
         op.add(Builder::suggestTotal, JsonpDeserializer.stringDeserializer(), "suggest.total");
+        op.add(Builder::system, JsonpDeserializer.stringDeserializer(), "system");
+        op.add(Builder::systemDescription, JsonpDeserializer.stringDeserializer(), "system.description");
         op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
         op.add(Builder::warmerCurrent, JsonpDeserializer.stringDeserializer(), "warmer.current");
         op.add(Builder::warmerTotal, JsonpDeserializer.stringDeserializer(), "warmer.total");
@@ -6634,6 +6708,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.suggestCurrent);
         result = 31 * result + Objects.hashCode(this.suggestTime);
         result = 31 * result + Objects.hashCode(this.suggestTotal);
+        result = 31 * result + Objects.hashCode(this.system);
+        result = 31 * result + Objects.hashCode(this.systemDescription);
         result = 31 * result + Objects.hashCode(this.uuid);
         result = 31 * result + Objects.hashCode(this.warmerCurrent);
         result = 31 * result + Objects.hashCode(this.warmerTotal);
@@ -6815,6 +6891,8 @@ public class IndicesRecord implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.suggestCurrent, other.suggestCurrent)
             && Objects.equals(this.suggestTime, other.suggestTime)
             && Objects.equals(this.suggestTotal, other.suggestTotal)
+            && Objects.equals(this.system, other.system)
+            && Objects.equals(this.systemDescription, other.systemDescription)
             && Objects.equals(this.uuid, other.uuid)
             && Objects.equals(this.warmerCurrent, other.warmerCurrent)
             && Objects.equals(this.warmerTotal, other.warmerTotal)

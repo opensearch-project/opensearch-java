@@ -84,6 +84,9 @@ public final class ChangePolicyRequest extends RequestBase
     @Nullable
     private final String state;
 
+    @Nullable
+    private final String type;
+
     // ---------------------------------------------------------------------------------------------
 
     private ChangePolicyRequest(Builder builder) {
@@ -92,6 +95,7 @@ public final class ChangePolicyRequest extends RequestBase
         this.index = ApiTypeHelper.unmodifiable(builder.index);
         this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
         this.state = builder.state;
+        this.type = builder.type;
     }
 
     public static ChangePolicyRequest of(Function<ChangePolicyRequest.Builder, ObjectBuilder<ChangePolicyRequest>> fn) {
@@ -141,6 +145,17 @@ public final class ChangePolicyRequest extends RequestBase
     @Nullable
     public final String state() {
         return this.state;
+    }
+
+    /**
+     * The type of the index metadata provider.
+     * <p>
+     * API name: {@code type}
+     * </p>
+     */
+    @Nullable
+    public final String type() {
+        return this.type;
     }
 
     /**
@@ -196,6 +211,8 @@ public final class ChangePolicyRequest extends RequestBase
         private String policyId;
         @Nullable
         private String state;
+        @Nullable
+        private String type;
 
         public Builder() {}
 
@@ -205,6 +222,7 @@ public final class ChangePolicyRequest extends RequestBase
             this.index = _listCopy(o.index);
             this.policyId = o.policyId;
             this.state = o.state;
+            this.type = o.type;
         }
 
         private Builder(Builder o) {
@@ -213,6 +231,7 @@ public final class ChangePolicyRequest extends RequestBase
             this.index = _listCopy(o.index);
             this.policyId = o.policyId;
             this.state = o.state;
+            this.type = o.type;
         }
 
         @Override
@@ -333,6 +352,18 @@ public final class ChangePolicyRequest extends RequestBase
         }
 
         /**
+         * The type of the index metadata provider.
+         * <p>
+         * API name: {@code type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder type(@Nullable String value) {
+            this.type = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link ChangePolicyRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -363,6 +394,14 @@ public final class ChangePolicyRequest extends RequestBase
     }
 
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.type != null) {
+            params.put("type", this.type);
+        }
+    }
 
     /**
      * Endpoint "{@code ism.change_policy}".
@@ -408,6 +447,7 @@ public final class ChangePolicyRequest extends RequestBase
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + this.policyId.hashCode();
         result = 31 * result + Objects.hashCode(this.state);
+        result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
@@ -419,6 +459,7 @@ public final class ChangePolicyRequest extends RequestBase
         return Objects.equals(this.include, other.include)
             && Objects.equals(this.index, other.index)
             && this.policyId.equals(other.policyId)
-            && Objects.equals(this.state, other.state);
+            && Objects.equals(this.state, other.state)
+            && Objects.equals(this.type, other.type);
     }
 }

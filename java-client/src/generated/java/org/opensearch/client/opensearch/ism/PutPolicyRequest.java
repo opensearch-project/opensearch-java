@@ -51,6 +51,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
@@ -72,7 +73,7 @@ public final class PutPolicyRequest extends RequestBase
         ToCopyableBuilder<PutPolicyRequest.Builder, PutPolicyRequest> {
 
     @Nullable
-    private final Number ifPrimaryTerm;
+    private final Long ifPrimaryTerm;
 
     @Nullable
     private final Long ifSeqNo;
@@ -83,6 +84,9 @@ public final class PutPolicyRequest extends RequestBase
     @Nonnull
     private final String policyId;
 
+    @Nullable
+    private final Refresh refresh;
+
     // ---------------------------------------------------------------------------------------------
 
     private PutPolicyRequest(Builder builder) {
@@ -91,6 +95,7 @@ public final class PutPolicyRequest extends RequestBase
         this.ifSeqNo = builder.ifSeqNo;
         this.policy = builder.policy;
         this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
+        this.refresh = builder.refresh;
     }
 
     public static PutPolicyRequest of(Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn) {
@@ -104,7 +109,7 @@ public final class PutPolicyRequest extends RequestBase
      * </p>
      */
     @Nullable
-    public final Number ifPrimaryTerm() {
+    public final Long ifPrimaryTerm() {
         return this.ifPrimaryTerm;
     }
 
@@ -133,6 +138,17 @@ public final class PutPolicyRequest extends RequestBase
     @Nonnull
     public final String policyId() {
         return this.policyId;
+    }
+
+    /**
+     * Whether to refresh the affected shards to make this operation visible to search. Default is <code>true</code>.
+     * <p>
+     * API name: {@code refresh}
+     * </p>
+     */
+    @Nullable
+    public final Refresh refresh() {
+        return this.refresh;
     }
 
     /**
@@ -170,12 +186,14 @@ public final class PutPolicyRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutPolicyRequest> {
         @Nullable
-        private Number ifPrimaryTerm;
+        private Long ifPrimaryTerm;
         @Nullable
         private Long ifSeqNo;
         @Nullable
         private Policy policy;
         private String policyId;
+        @Nullable
+        private Refresh refresh;
 
         public Builder() {}
 
@@ -185,6 +203,7 @@ public final class PutPolicyRequest extends RequestBase
             this.ifSeqNo = o.ifSeqNo;
             this.policy = o.policy;
             this.policyId = o.policyId;
+            this.refresh = o.refresh;
         }
 
         private Builder(Builder o) {
@@ -193,6 +212,7 @@ public final class PutPolicyRequest extends RequestBase
             this.ifSeqNo = o.ifSeqNo;
             this.policy = o.policy;
             this.policyId = o.policyId;
+            this.refresh = o.refresh;
         }
 
         @Override
@@ -214,7 +234,7 @@ public final class PutPolicyRequest extends RequestBase
          * </p>
          */
         @Nonnull
-        public final Builder ifPrimaryTerm(@Nullable Number value) {
+        public final Builder ifPrimaryTerm(@Nullable Long value) {
             this.ifPrimaryTerm = value;
             return this;
         }
@@ -258,6 +278,18 @@ public final class PutPolicyRequest extends RequestBase
         }
 
         /**
+         * Whether to refresh the affected shards to make this operation visible to search. Default is <code>true</code>.
+         * <p>
+         * API name: {@code refresh}
+         * </p>
+         */
+        @Nonnull
+        public final Builder refresh(@Nullable Refresh value) {
+            this.refresh = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link PutPolicyRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -296,6 +328,9 @@ public final class PutPolicyRequest extends RequestBase
         if (this.ifSeqNo != null) {
             params.put("if_seq_no", String.valueOf(this.ifSeqNo));
         }
+        if (this.refresh != null) {
+            params.put("refresh", this.refresh.jsonValue());
+        }
     }
 
     /**
@@ -329,6 +364,7 @@ public final class PutPolicyRequest extends RequestBase
         result = 31 * result + Objects.hashCode(this.ifSeqNo);
         result = 31 * result + Objects.hashCode(this.policy);
         result = 31 * result + this.policyId.hashCode();
+        result = 31 * result + Objects.hashCode(this.refresh);
         return result;
     }
 
@@ -340,6 +376,7 @@ public final class PutPolicyRequest extends RequestBase
         return Objects.equals(this.ifPrimaryTerm, other.ifPrimaryTerm)
             && Objects.equals(this.ifSeqNo, other.ifSeqNo)
             && Objects.equals(this.policy, other.policy)
-            && this.policyId.equals(other.policyId);
+            && this.policyId.equals(other.policyId)
+            && Objects.equals(this.refresh, other.refresh);
     }
 }

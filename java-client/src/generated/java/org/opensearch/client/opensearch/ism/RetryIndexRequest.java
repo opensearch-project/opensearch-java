@@ -53,6 +53,7 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -72,22 +73,46 @@ public final class RetryIndexRequest extends RequestBase
         PlainJsonSerializable,
         ToCopyableBuilder<RetryIndexRequest.Builder, RetryIndexRequest> {
 
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     @Nonnull
     private final List<String> index;
 
-    @Nonnull
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
+
+    @Nullable
     private final String state;
+
+    @Nullable
+    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
     private RetryIndexRequest(Builder builder) {
         super(builder);
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
-        this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+        this.masterTimeout = builder.masterTimeout;
+        this.state = builder.state;
+        this.type = builder.type;
     }
 
     public static RetryIndexRequest of(Function<RetryIndexRequest.Builder, ObjectBuilder<RetryIndexRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
     }
 
     /**
@@ -103,14 +128,37 @@ public final class RetryIndexRequest extends RequestBase
     }
 
     /**
-     * Required - The state to retry.
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code master_timeout}
+     * </p>
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
+
+    /**
+     * The state to transition to before retrying. If omitted, the failed action is retried.
      * <p>
      * API name: {@code state}
      * </p>
      */
-    @Nonnull
+    @Nullable
     public final String state() {
         return this.state;
+    }
+
+    /**
+     * The type of the index metadata provider.
+     * <p>
+     * API name: {@code type}
+     * </p>
+     */
+    @Nullable
+    public final String type() {
+        return this.type;
     }
 
     /**
@@ -124,8 +172,10 @@ public final class RetryIndexRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("state");
-        generator.write(this.state);
+        if (this.state != null) {
+            generator.writeKey("state");
+            generator.write(this.state);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -146,21 +196,34 @@ public final class RetryIndexRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RetryIndexRequest> {
         @Nullable
+        private Time clusterManagerTimeout;
+        @Nullable
         private List<String> index;
+        @Nullable
+        private Time masterTimeout;
+        @Nullable
         private String state;
+        @Nullable
+        private String type;
 
         public Builder() {}
 
         private Builder(RetryIndexRequest o) {
             super(o);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.index = _listCopy(o.index);
+            this.masterTimeout = o.masterTimeout;
             this.state = o.state;
+            this.type = o.type;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.index = _listCopy(o.index);
+            this.masterTimeout = o.masterTimeout;
             this.state = o.state;
+            this.type = o.type;
         }
 
         @Override
@@ -173,6 +236,29 @@ public final class RetryIndexRequest extends RequestBase
         @Nonnull
         protected Builder self() {
             return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -210,14 +296,51 @@ public final class RetryIndexRequest extends RequestBase
         }
 
         /**
-         * Required - The state to retry.
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * The state to transition to before retrying. If omitted, the failed action is retried.
          * <p>
          * API name: {@code state}
          * </p>
          */
         @Nonnull
-        public final Builder state(String value) {
+        public final Builder state(@Nullable String value) {
             this.state = value;
+            return this;
+        }
+
+        /**
+         * The type of the index metadata provider.
+         * <p>
+         * API name: {@code type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder type(@Nullable String value) {
+            this.type = value;
             return this;
         }
 
@@ -250,6 +373,20 @@ public final class RetryIndexRequest extends RequestBase
     }
 
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.type != null) {
+            params.put("type", this.type);
+        }
+    }
 
     /**
      * Endpoint "{@code ism.retry_index}".
@@ -291,8 +428,11 @@ public final class RetryIndexRequest extends RequestBase
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + Objects.hashCode(this.index);
-        result = 31 * result + this.state.hashCode();
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.state);
+        result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
@@ -301,6 +441,10 @@ public final class RetryIndexRequest extends RequestBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         RetryIndexRequest other = (RetryIndexRequest) o;
-        return Objects.equals(this.index, other.index) && this.state.equals(other.state);
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.state, other.state)
+            && Objects.equals(this.type, other.type);
     }
 }

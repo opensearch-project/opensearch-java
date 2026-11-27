@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.transformer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -589,8 +590,8 @@ public class SpecTransformer {
 
         var superShape = shape.extendsOtherShape() ? (ObjectShapeBase) shape.getExtendsType().getTargetShape().orElseThrow() : null;
 
-        final var properties = schema.getProperties().orElseThrow();
-        final var required = schema.getRequired().orElseThrow();
+        final var properties = schema.getProperties().orElseGet(Collections::emptyMap);
+        final var required = schema.getRequired().orElseGet(Collections::emptySet);
 
         final var overrides = this.overrides.getSchema(schema.getPointer());
 

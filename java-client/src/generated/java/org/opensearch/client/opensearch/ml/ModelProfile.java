@@ -65,7 +65,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     private final ModelStats register;
 
     @Nonnull
-    private final List<List<String>> targetWorkerNodes;
+    private final List<String> targetWorkerNodes;
 
     @Nullable
     private final ModelStats train;
@@ -77,7 +77,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     private final ModelStats undeploy;
 
     @Nonnull
-    private final List<List<String>> workerNodes;
+    private final List<String> workerNodes;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
      * API name: {@code target_worker_nodes}
      */
     @Nonnull
-    public final List<List<String>> targetWorkerNodes() {
+    public final List<String> targetWorkerNodes() {
         return this.targetWorkerNodes;
     }
 
@@ -219,7 +219,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
      * API name: {@code worker_nodes}
      */
     @Nonnull
-    public final List<List<String>> workerNodes() {
+    public final List<String> workerNodes() {
         return this.workerNodes;
     }
 
@@ -282,12 +282,8 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         if (ApiTypeHelper.isDefined(this.targetWorkerNodes)) {
             generator.writeKey("target_worker_nodes");
             generator.writeStartArray();
-            for (List<String> item0 : this.targetWorkerNodes) {
-                generator.writeStartArray();
-                for (String item1 : item0) {
-                    generator.write(item1);
-                }
-                generator.writeEnd();
+            for (String item0 : this.targetWorkerNodes) {
+                generator.write(item0);
             }
             generator.writeEnd();
         }
@@ -310,12 +306,8 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         if (ApiTypeHelper.isDefined(this.workerNodes)) {
             generator.writeKey("worker_nodes");
             generator.writeStartArray();
-            for (List<String> item0 : this.workerNodes) {
-                generator.writeStartArray();
-                for (String item1 : item0) {
-                    generator.write(item1);
-                }
-                generator.writeEnd();
+            for (String item0 : this.workerNodes) {
+                generator.write(item0);
             }
             generator.writeEnd();
         }
@@ -357,7 +349,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nullable
         private ModelStats register;
         @Nullable
-        private List<List<String>> targetWorkerNodes;
+        private List<String> targetWorkerNodes;
         @Nullable
         private ModelStats train;
         @Nullable
@@ -365,7 +357,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nullable
         private ModelStats undeploy;
         @Nullable
-        private List<List<String>> workerNodes;
+        private List<String> workerNodes;
 
         public Builder() {}
 
@@ -547,7 +539,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
          * </p>
          */
         @Nonnull
-        public final Builder targetWorkerNodes(List<List<String>> list) {
+        public final Builder targetWorkerNodes(List<String> list) {
             this.targetWorkerNodes = _listAddAll(this.targetWorkerNodes, list);
             return this;
         }
@@ -560,7 +552,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
          * </p>
          */
         @Nonnull
-        public final Builder targetWorkerNodes(List<String> value, List<String>... values) {
+        public final Builder targetWorkerNodes(String value, String... values) {
             this.targetWorkerNodes = _listAdd(this.targetWorkerNodes, value, values);
             return this;
         }
@@ -624,7 +616,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
          * </p>
          */
         @Nonnull
-        public final Builder workerNodes(List<List<String>> list) {
+        public final Builder workerNodes(List<String> list) {
             this.workerNodes = _listAddAll(this.workerNodes, list);
             return this;
         }
@@ -637,7 +629,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
          * </p>
          */
         @Nonnull
-        public final Builder workerNodes(List<String> value, List<String>... values) {
+        public final Builder workerNodes(String value, String... values) {
             this.workerNodes = _listAdd(this.workerNodes, value, values);
             return this;
         }
@@ -678,17 +670,13 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         op.add(Builder::register, ModelStats._DESERIALIZER, "register");
         op.add(
             Builder::targetWorkerNodes,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
+            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
             "target_worker_nodes"
         );
         op.add(Builder::train, ModelStats._DESERIALIZER, "train");
         op.add(Builder::trainPredict, ModelStats._DESERIALIZER, "train_predict");
         op.add(Builder::undeploy, ModelStats._DESERIALIZER, "undeploy");
-        op.add(
-            Builder::workerNodes,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
-            "worker_nodes"
-        );
+        op.add(Builder::workerNodes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "worker_nodes");
     }
 
     @Override

@@ -76,8 +76,8 @@ public class DescribeSettingsResponse
     }
 
     /**
-     * Required - A map of setting names to their definition metadata. Setting names are returned in sorted order. A requested name is
-     * omitted if it is unknown or filtered.
+     * Required - A map of setting names to their definitions. Setting names are returned in ascending order. A requested name is omitted if
+     * it is unknown, filtered, or not the canonical name of a setting.
      * <p>
      * API name: {@code settings}
      * </p>
@@ -143,8 +143,8 @@ public class DescribeSettingsResponse
         }
 
         /**
-         * Required - A map of setting names to their definition metadata. Setting names are returned in sorted order. A requested name is
-         * omitted if it is unknown or filtered.
+         * Required - A map of setting names to their definitions. Setting names are returned in ascending order. A requested name is
+         * omitted if it is unknown, filtered, or not the canonical name of a setting.
          * <p>
          * API name: {@code settings}
          * </p>
@@ -160,8 +160,8 @@ public class DescribeSettingsResponse
         }
 
         /**
-         * Required - A map of setting names to their definition metadata. Setting names are returned in sorted order. A requested name is
-         * omitted if it is unknown or filtered.
+         * Required - A map of setting names to their definitions. Setting names are returned in ascending order. A requested name is
+         * omitted if it is unknown, filtered, or not the canonical name of a setting.
          * <p>
          * API name: {@code settings}
          * </p>
@@ -177,8 +177,8 @@ public class DescribeSettingsResponse
         }
 
         /**
-         * Required - A map of setting names to their definition metadata. Setting names are returned in sorted order. A requested name is
-         * omitted if it is unknown or filtered.
+         * Required - A map of setting names to their definitions. Setting names are returned in ascending order. A requested name is
+         * omitted if it is unknown, filtered, or not the canonical name of a setting.
          * <p>
          * API name: {@code settings}
          * </p>

@@ -67,12 +67,16 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
     @Nonnull
     private final List<String> fields;
 
+    @Nullable
+    private final Integer limit;
+
     // ---------------------------------------------------------------------------------------------
 
     private FielddataRequest(Builder builder) {
         super(builder);
         this.bytes = builder.bytes;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+        this.limit = builder.limit;
     }
 
     public static FielddataRequest of(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn) {
@@ -101,6 +105,17 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         return this.fields;
     }
 
+    /**
+     * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+     * <p>
+     * API name: {@code limit}
+     * </p>
+     */
+    @Nullable
+    public final Integer limit() {
+        return this.limit;
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -122,6 +137,8 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         private Bytes bytes;
         @Nullable
         private List<String> fields;
+        @Nullable
+        private Integer limit;
 
         public Builder() {}
 
@@ -129,12 +146,14 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
             super(o);
             this.bytes = o.bytes;
             this.fields = _listCopy(o.fields);
+            this.limit = o.limit;
         }
 
         private Builder(Builder o) {
             super(o);
             this.bytes = o.bytes;
             this.fields = _listCopy(o.fields);
+            this.limit = o.limit;
         }
 
         @Override
@@ -194,6 +213,18 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         }
 
         /**
+         * The maximum number of rows to return. Must be greater than 0. Applied after sorting (<code>s</code>).
+         * <p>
+         * API name: {@code limit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder limit(@Nullable Integer value) {
+            this.limit = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link FielddataRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -214,6 +245,9 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         super.applyQueryParameters(params);
         if (this.bytes != null) {
             params.put("bytes", this.bytes.jsonValue());
+        }
+        if (this.limit != null) {
+            params.put("limit", String.valueOf(this.limit));
         }
     }
 
@@ -259,6 +293,7 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         int result = 17;
         result = 31 * result + Objects.hashCode(this.bytes);
         result = 31 * result + Objects.hashCode(this.fields);
+        result = 31 * result + Objects.hashCode(this.limit);
         return result;
     }
 
@@ -267,6 +302,8 @@ public final class FielddataRequest extends CatRequestBase implements ToCopyable
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         FielddataRequest other = (FielddataRequest) o;
-        return Objects.equals(this.bytes, other.bytes) && Objects.equals(this.fields, other.fields);
+        return Objects.equals(this.bytes, other.bytes)
+            && Objects.equals(this.fields, other.fields)
+            && Objects.equals(this.limit, other.limit);
     }
 }

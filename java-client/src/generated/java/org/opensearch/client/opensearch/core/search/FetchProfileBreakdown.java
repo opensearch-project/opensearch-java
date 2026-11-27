@@ -63,40 +63,64 @@ public class FetchProfileBreakdown
         ToCopyableBuilder<FetchProfileBreakdown.Builder, FetchProfileBreakdown> {
 
     @Nullable
-    private final Integer loadSource;
+    private final Long buildSubPhaseProcessors;
 
     @Nullable
-    private final Integer loadSourceCount;
+    private final Long buildSubPhaseProcessorsCount;
 
     @Nullable
-    private final Integer loadStoredFields;
+    private final Long createStoredFieldsVisitor;
 
     @Nullable
-    private final Integer loadStoredFieldsCount;
+    private final Long createStoredFieldsVisitorCount;
 
     @Nullable
-    private final Integer nextReader;
+    private final Long getNextReader;
 
     @Nullable
-    private final Integer nextReaderCount;
+    private final Long getNextReaderCount;
 
     @Nullable
-    private final Integer process;
+    private final Long loadSource;
 
     @Nullable
-    private final Integer processCount;
+    private final Long loadSourceCount;
+
+    @Nullable
+    private final Long loadStoredFields;
+
+    @Nullable
+    private final Long loadStoredFieldsCount;
+
+    @Nullable
+    private final Long process;
+
+    @Nullable
+    private final Long processCount;
+
+    @Nullable
+    private final Long setNextReader;
+
+    @Nullable
+    private final Long setNextReaderCount;
 
     // ---------------------------------------------------------------------------------------------
 
     private FetchProfileBreakdown(Builder builder) {
+        this.buildSubPhaseProcessors = builder.buildSubPhaseProcessors;
+        this.buildSubPhaseProcessorsCount = builder.buildSubPhaseProcessorsCount;
+        this.createStoredFieldsVisitor = builder.createStoredFieldsVisitor;
+        this.createStoredFieldsVisitorCount = builder.createStoredFieldsVisitorCount;
+        this.getNextReader = builder.getNextReader;
+        this.getNextReaderCount = builder.getNextReaderCount;
         this.loadSource = builder.loadSource;
         this.loadSourceCount = builder.loadSourceCount;
         this.loadStoredFields = builder.loadStoredFields;
         this.loadStoredFieldsCount = builder.loadStoredFieldsCount;
-        this.nextReader = builder.nextReader;
-        this.nextReaderCount = builder.nextReaderCount;
         this.process = builder.process;
         this.processCount = builder.processCount;
+        this.setNextReader = builder.setNextReader;
+        this.setNextReaderCount = builder.setNextReaderCount;
     }
 
     public static FetchProfileBreakdown of(Function<FetchProfileBreakdown.Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
@@ -104,10 +128,58 @@ public class FetchProfileBreakdown
     }
 
     /**
+     * API name: {@code build_sub_phase_processors}
+     */
+    @Nullable
+    public final Long buildSubPhaseProcessors() {
+        return this.buildSubPhaseProcessors;
+    }
+
+    /**
+     * API name: {@code build_sub_phase_processors_count}
+     */
+    @Nullable
+    public final Long buildSubPhaseProcessorsCount() {
+        return this.buildSubPhaseProcessorsCount;
+    }
+
+    /**
+     * API name: {@code create_stored_fields_visitor}
+     */
+    @Nullable
+    public final Long createStoredFieldsVisitor() {
+        return this.createStoredFieldsVisitor;
+    }
+
+    /**
+     * API name: {@code create_stored_fields_visitor_count}
+     */
+    @Nullable
+    public final Long createStoredFieldsVisitorCount() {
+        return this.createStoredFieldsVisitorCount;
+    }
+
+    /**
+     * API name: {@code get_next_reader}
+     */
+    @Nullable
+    public final Long getNextReader() {
+        return this.getNextReader;
+    }
+
+    /**
+     * API name: {@code get_next_reader_count}
+     */
+    @Nullable
+    public final Long getNextReaderCount() {
+        return this.getNextReaderCount;
+    }
+
+    /**
      * API name: {@code load_source}
      */
     @Nullable
-    public final Integer loadSource() {
+    public final Long loadSource() {
         return this.loadSource;
     }
 
@@ -115,7 +187,7 @@ public class FetchProfileBreakdown
      * API name: {@code load_source_count}
      */
     @Nullable
-    public final Integer loadSourceCount() {
+    public final Long loadSourceCount() {
         return this.loadSourceCount;
     }
 
@@ -123,7 +195,7 @@ public class FetchProfileBreakdown
      * API name: {@code load_stored_fields}
      */
     @Nullable
-    public final Integer loadStoredFields() {
+    public final Long loadStoredFields() {
         return this.loadStoredFields;
     }
 
@@ -131,31 +203,15 @@ public class FetchProfileBreakdown
      * API name: {@code load_stored_fields_count}
      */
     @Nullable
-    public final Integer loadStoredFieldsCount() {
+    public final Long loadStoredFieldsCount() {
         return this.loadStoredFieldsCount;
-    }
-
-    /**
-     * API name: {@code next_reader}
-     */
-    @Nullable
-    public final Integer nextReader() {
-        return this.nextReader;
-    }
-
-    /**
-     * API name: {@code next_reader_count}
-     */
-    @Nullable
-    public final Integer nextReaderCount() {
-        return this.nextReaderCount;
     }
 
     /**
      * API name: {@code process}
      */
     @Nullable
-    public final Integer process() {
+    public final Long process() {
         return this.process;
     }
 
@@ -163,8 +219,24 @@ public class FetchProfileBreakdown
      * API name: {@code process_count}
      */
     @Nullable
-    public final Integer processCount() {
+    public final Long processCount() {
         return this.processCount;
+    }
+
+    /**
+     * API name: {@code set_next_reader}
+     */
+    @Nullable
+    public final Long setNextReader() {
+        return this.setNextReader;
+    }
+
+    /**
+     * API name: {@code set_next_reader_count}
+     */
+    @Nullable
+    public final Long setNextReaderCount() {
+        return this.setNextReaderCount;
     }
 
     /**
@@ -178,6 +250,36 @@ public class FetchProfileBreakdown
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.buildSubPhaseProcessors != null) {
+            generator.writeKey("build_sub_phase_processors");
+            generator.write(this.buildSubPhaseProcessors);
+        }
+
+        if (this.buildSubPhaseProcessorsCount != null) {
+            generator.writeKey("build_sub_phase_processors_count");
+            generator.write(this.buildSubPhaseProcessorsCount);
+        }
+
+        if (this.createStoredFieldsVisitor != null) {
+            generator.writeKey("create_stored_fields_visitor");
+            generator.write(this.createStoredFieldsVisitor);
+        }
+
+        if (this.createStoredFieldsVisitorCount != null) {
+            generator.writeKey("create_stored_fields_visitor_count");
+            generator.write(this.createStoredFieldsVisitorCount);
+        }
+
+        if (this.getNextReader != null) {
+            generator.writeKey("get_next_reader");
+            generator.write(this.getNextReader);
+        }
+
+        if (this.getNextReaderCount != null) {
+            generator.writeKey("get_next_reader_count");
+            generator.write(this.getNextReaderCount);
+        }
+
         if (this.loadSource != null) {
             generator.writeKey("load_source");
             generator.write(this.loadSource);
@@ -198,16 +300,6 @@ public class FetchProfileBreakdown
             generator.write(this.loadStoredFieldsCount);
         }
 
-        if (this.nextReader != null) {
-            generator.writeKey("next_reader");
-            generator.write(this.nextReader);
-        }
-
-        if (this.nextReaderCount != null) {
-            generator.writeKey("next_reader_count");
-            generator.write(this.nextReaderCount);
-        }
-
         if (this.process != null) {
             generator.writeKey("process");
             generator.write(this.process);
@@ -216,6 +308,16 @@ public class FetchProfileBreakdown
         if (this.processCount != null) {
             generator.writeKey("process_count");
             generator.write(this.processCount);
+        }
+
+        if (this.setNextReader != null) {
+            generator.writeKey("set_next_reader");
+            generator.write(this.setNextReader);
+        }
+
+        if (this.setNextReaderCount != null) {
+            generator.writeKey("set_next_reader_count");
+            generator.write(this.setNextReaderCount);
         }
     }
 
@@ -237,44 +339,68 @@ public class FetchProfileBreakdown
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FetchProfileBreakdown> {
         @Nullable
-        private Integer loadSource;
+        private Long buildSubPhaseProcessors;
         @Nullable
-        private Integer loadSourceCount;
+        private Long buildSubPhaseProcessorsCount;
         @Nullable
-        private Integer loadStoredFields;
+        private Long createStoredFieldsVisitor;
         @Nullable
-        private Integer loadStoredFieldsCount;
+        private Long createStoredFieldsVisitorCount;
         @Nullable
-        private Integer nextReader;
+        private Long getNextReader;
         @Nullable
-        private Integer nextReaderCount;
+        private Long getNextReaderCount;
         @Nullable
-        private Integer process;
+        private Long loadSource;
         @Nullable
-        private Integer processCount;
+        private Long loadSourceCount;
+        @Nullable
+        private Long loadStoredFields;
+        @Nullable
+        private Long loadStoredFieldsCount;
+        @Nullable
+        private Long process;
+        @Nullable
+        private Long processCount;
+        @Nullable
+        private Long setNextReader;
+        @Nullable
+        private Long setNextReaderCount;
 
         public Builder() {}
 
         private Builder(FetchProfileBreakdown o) {
+            this.buildSubPhaseProcessors = o.buildSubPhaseProcessors;
+            this.buildSubPhaseProcessorsCount = o.buildSubPhaseProcessorsCount;
+            this.createStoredFieldsVisitor = o.createStoredFieldsVisitor;
+            this.createStoredFieldsVisitorCount = o.createStoredFieldsVisitorCount;
+            this.getNextReader = o.getNextReader;
+            this.getNextReaderCount = o.getNextReaderCount;
             this.loadSource = o.loadSource;
             this.loadSourceCount = o.loadSourceCount;
             this.loadStoredFields = o.loadStoredFields;
             this.loadStoredFieldsCount = o.loadStoredFieldsCount;
-            this.nextReader = o.nextReader;
-            this.nextReaderCount = o.nextReaderCount;
             this.process = o.process;
             this.processCount = o.processCount;
+            this.setNextReader = o.setNextReader;
+            this.setNextReaderCount = o.setNextReaderCount;
         }
 
         private Builder(Builder o) {
+            this.buildSubPhaseProcessors = o.buildSubPhaseProcessors;
+            this.buildSubPhaseProcessorsCount = o.buildSubPhaseProcessorsCount;
+            this.createStoredFieldsVisitor = o.createStoredFieldsVisitor;
+            this.createStoredFieldsVisitorCount = o.createStoredFieldsVisitorCount;
+            this.getNextReader = o.getNextReader;
+            this.getNextReaderCount = o.getNextReaderCount;
             this.loadSource = o.loadSource;
             this.loadSourceCount = o.loadSourceCount;
             this.loadStoredFields = o.loadStoredFields;
             this.loadStoredFieldsCount = o.loadStoredFieldsCount;
-            this.nextReader = o.nextReader;
-            this.nextReaderCount = o.nextReaderCount;
             this.process = o.process;
             this.processCount = o.processCount;
+            this.setNextReader = o.setNextReader;
+            this.setNextReaderCount = o.setNextReaderCount;
         }
 
         @Override
@@ -284,10 +410,64 @@ public class FetchProfileBreakdown
         }
 
         /**
+         * API name: {@code build_sub_phase_processors}
+         */
+        @Nonnull
+        public final Builder buildSubPhaseProcessors(@Nullable Long value) {
+            this.buildSubPhaseProcessors = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code build_sub_phase_processors_count}
+         */
+        @Nonnull
+        public final Builder buildSubPhaseProcessorsCount(@Nullable Long value) {
+            this.buildSubPhaseProcessorsCount = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code create_stored_fields_visitor}
+         */
+        @Nonnull
+        public final Builder createStoredFieldsVisitor(@Nullable Long value) {
+            this.createStoredFieldsVisitor = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code create_stored_fields_visitor_count}
+         */
+        @Nonnull
+        public final Builder createStoredFieldsVisitorCount(@Nullable Long value) {
+            this.createStoredFieldsVisitorCount = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code get_next_reader}
+         */
+        @Nonnull
+        public final Builder getNextReader(@Nullable Long value) {
+            this.getNextReader = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code get_next_reader_count}
+         */
+        @Nonnull
+        public final Builder getNextReaderCount(@Nullable Long value) {
+            this.getNextReaderCount = value;
+            return this;
+        }
+
+        /**
          * API name: {@code load_source}
          */
         @Nonnull
-        public final Builder loadSource(@Nullable Integer value) {
+        public final Builder loadSource(@Nullable Long value) {
             this.loadSource = value;
             return this;
         }
@@ -296,7 +476,7 @@ public class FetchProfileBreakdown
          * API name: {@code load_source_count}
          */
         @Nonnull
-        public final Builder loadSourceCount(@Nullable Integer value) {
+        public final Builder loadSourceCount(@Nullable Long value) {
             this.loadSourceCount = value;
             return this;
         }
@@ -305,7 +485,7 @@ public class FetchProfileBreakdown
          * API name: {@code load_stored_fields}
          */
         @Nonnull
-        public final Builder loadStoredFields(@Nullable Integer value) {
+        public final Builder loadStoredFields(@Nullable Long value) {
             this.loadStoredFields = value;
             return this;
         }
@@ -314,26 +494,8 @@ public class FetchProfileBreakdown
          * API name: {@code load_stored_fields_count}
          */
         @Nonnull
-        public final Builder loadStoredFieldsCount(@Nullable Integer value) {
+        public final Builder loadStoredFieldsCount(@Nullable Long value) {
             this.loadStoredFieldsCount = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code next_reader}
-         */
-        @Nonnull
-        public final Builder nextReader(@Nullable Integer value) {
-            this.nextReader = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code next_reader_count}
-         */
-        @Nonnull
-        public final Builder nextReaderCount(@Nullable Integer value) {
-            this.nextReaderCount = value;
             return this;
         }
 
@@ -341,7 +503,7 @@ public class FetchProfileBreakdown
          * API name: {@code process}
          */
         @Nonnull
-        public final Builder process(@Nullable Integer value) {
+        public final Builder process(@Nullable Long value) {
             this.process = value;
             return this;
         }
@@ -350,8 +512,26 @@ public class FetchProfileBreakdown
          * API name: {@code process_count}
          */
         @Nonnull
-        public final Builder processCount(@Nullable Integer value) {
+        public final Builder processCount(@Nullable Long value) {
             this.processCount = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code set_next_reader}
+         */
+        @Nonnull
+        public final Builder setNextReader(@Nullable Long value) {
+            this.setNextReader = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code set_next_reader_count}
+         */
+        @Nonnull
+        public final Builder setNextReaderCount(@Nullable Long value) {
+            this.setNextReaderCount = value;
             return this;
         }
 
@@ -380,27 +560,39 @@ public class FetchProfileBreakdown
     );
 
     protected static void setupFetchProfileBreakdownDeserializer(ObjectDeserializer<FetchProfileBreakdown.Builder> op) {
-        op.add(Builder::loadSource, JsonpDeserializer.integerDeserializer(), "load_source");
-        op.add(Builder::loadSourceCount, JsonpDeserializer.integerDeserializer(), "load_source_count");
-        op.add(Builder::loadStoredFields, JsonpDeserializer.integerDeserializer(), "load_stored_fields");
-        op.add(Builder::loadStoredFieldsCount, JsonpDeserializer.integerDeserializer(), "load_stored_fields_count");
-        op.add(Builder::nextReader, JsonpDeserializer.integerDeserializer(), "next_reader");
-        op.add(Builder::nextReaderCount, JsonpDeserializer.integerDeserializer(), "next_reader_count");
-        op.add(Builder::process, JsonpDeserializer.integerDeserializer(), "process");
-        op.add(Builder::processCount, JsonpDeserializer.integerDeserializer(), "process_count");
+        op.add(Builder::buildSubPhaseProcessors, JsonpDeserializer.longDeserializer(), "build_sub_phase_processors");
+        op.add(Builder::buildSubPhaseProcessorsCount, JsonpDeserializer.longDeserializer(), "build_sub_phase_processors_count");
+        op.add(Builder::createStoredFieldsVisitor, JsonpDeserializer.longDeserializer(), "create_stored_fields_visitor");
+        op.add(Builder::createStoredFieldsVisitorCount, JsonpDeserializer.longDeserializer(), "create_stored_fields_visitor_count");
+        op.add(Builder::getNextReader, JsonpDeserializer.longDeserializer(), "get_next_reader");
+        op.add(Builder::getNextReaderCount, JsonpDeserializer.longDeserializer(), "get_next_reader_count");
+        op.add(Builder::loadSource, JsonpDeserializer.longDeserializer(), "load_source");
+        op.add(Builder::loadSourceCount, JsonpDeserializer.longDeserializer(), "load_source_count");
+        op.add(Builder::loadStoredFields, JsonpDeserializer.longDeserializer(), "load_stored_fields");
+        op.add(Builder::loadStoredFieldsCount, JsonpDeserializer.longDeserializer(), "load_stored_fields_count");
+        op.add(Builder::process, JsonpDeserializer.longDeserializer(), "process");
+        op.add(Builder::processCount, JsonpDeserializer.longDeserializer(), "process_count");
+        op.add(Builder::setNextReader, JsonpDeserializer.longDeserializer(), "set_next_reader");
+        op.add(Builder::setNextReaderCount, JsonpDeserializer.longDeserializer(), "set_next_reader_count");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.buildSubPhaseProcessors);
+        result = 31 * result + Objects.hashCode(this.buildSubPhaseProcessorsCount);
+        result = 31 * result + Objects.hashCode(this.createStoredFieldsVisitor);
+        result = 31 * result + Objects.hashCode(this.createStoredFieldsVisitorCount);
+        result = 31 * result + Objects.hashCode(this.getNextReader);
+        result = 31 * result + Objects.hashCode(this.getNextReaderCount);
         result = 31 * result + Objects.hashCode(this.loadSource);
         result = 31 * result + Objects.hashCode(this.loadSourceCount);
         result = 31 * result + Objects.hashCode(this.loadStoredFields);
         result = 31 * result + Objects.hashCode(this.loadStoredFieldsCount);
-        result = 31 * result + Objects.hashCode(this.nextReader);
-        result = 31 * result + Objects.hashCode(this.nextReaderCount);
         result = 31 * result + Objects.hashCode(this.process);
         result = 31 * result + Objects.hashCode(this.processCount);
+        result = 31 * result + Objects.hashCode(this.setNextReader);
+        result = 31 * result + Objects.hashCode(this.setNextReaderCount);
         return result;
     }
 
@@ -409,13 +601,19 @@ public class FetchProfileBreakdown
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         FetchProfileBreakdown other = (FetchProfileBreakdown) o;
-        return Objects.equals(this.loadSource, other.loadSource)
+        return Objects.equals(this.buildSubPhaseProcessors, other.buildSubPhaseProcessors)
+            && Objects.equals(this.buildSubPhaseProcessorsCount, other.buildSubPhaseProcessorsCount)
+            && Objects.equals(this.createStoredFieldsVisitor, other.createStoredFieldsVisitor)
+            && Objects.equals(this.createStoredFieldsVisitorCount, other.createStoredFieldsVisitorCount)
+            && Objects.equals(this.getNextReader, other.getNextReader)
+            && Objects.equals(this.getNextReaderCount, other.getNextReaderCount)
+            && Objects.equals(this.loadSource, other.loadSource)
             && Objects.equals(this.loadSourceCount, other.loadSourceCount)
             && Objects.equals(this.loadStoredFields, other.loadStoredFields)
             && Objects.equals(this.loadStoredFieldsCount, other.loadStoredFieldsCount)
-            && Objects.equals(this.nextReader, other.nextReader)
-            && Objects.equals(this.nextReaderCount, other.nextReaderCount)
             && Objects.equals(this.process, other.process)
-            && Objects.equals(this.processCount, other.processCount);
+            && Objects.equals(this.processCount, other.processCount)
+            && Objects.equals(this.setNextReader, other.setNextReader)
+            && Objects.equals(this.setNextReaderCount, other.setNextReaderCount);
     }
 }

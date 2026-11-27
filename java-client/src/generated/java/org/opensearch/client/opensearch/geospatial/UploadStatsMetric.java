@@ -60,7 +60,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
 
     private final long duration;
 
-    private final int failed;
+    private final long failed;
 
     @Nonnull
     private final String id;
@@ -68,12 +68,12 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
     @Nonnull
     private final String nodeId;
 
-    private final int success;
+    private final long success;
 
     @Nonnull
     private final String type;
 
-    private final int upload;
+    private final long upload;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -92,7 +92,10 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code duration}
+     * Required - Duration in milliseconds.
+     * <p>
+     * API name: {@code duration}
+     * </p>
      */
     public final long duration() {
         return this.duration;
@@ -104,7 +107,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
      * API name: {@code failed}
      * </p>
      */
-    public final int failed() {
+    public final long failed() {
         return this.failed;
     }
 
@@ -130,7 +133,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
      * API name: {@code success}
      * </p>
      */
-    public final int success() {
+    public final long success() {
         return this.success;
     }
 
@@ -151,7 +154,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
      * API name: {@code upload}
      * </p>
      */
-    public final int upload() {
+    public final long upload() {
         return this.upload;
     }
 
@@ -206,12 +209,12 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UploadStatsMetric> {
         private Long duration;
-        private Integer failed;
+        private Long failed;
         private String id;
         private String nodeId;
-        private Integer success;
+        private Long success;
         private String type;
-        private Integer upload;
+        private Long upload;
 
         public Builder() {}
 
@@ -242,7 +245,10 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code duration}
+         * Required - Duration in milliseconds.
+         * <p>
+         * API name: {@code duration}
+         * </p>
          */
         @Nonnull
         public final Builder duration(long value) {
@@ -257,7 +263,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
          * </p>
          */
         @Nonnull
-        public final Builder failed(int value) {
+        public final Builder failed(long value) {
             this.failed = value;
             return this;
         }
@@ -287,7 +293,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
          * </p>
          */
         @Nonnull
-        public final Builder success(int value) {
+        public final Builder success(long value) {
             this.success = value;
             return this;
         }
@@ -311,7 +317,7 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
          * </p>
          */
         @Nonnull
-        public final Builder upload(int value) {
+        public final Builder upload(long value) {
             this.upload = value;
             return this;
         }
@@ -342,24 +348,24 @@ public class UploadStatsMetric implements PlainJsonSerializable, ToCopyableBuild
 
     protected static void setupUploadStatsMetricDeserializer(ObjectDeserializer<UploadStatsMetric.Builder> op) {
         op.add(Builder::duration, JsonpDeserializer.longDeserializer(), "duration");
-        op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
+        op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
-        op.add(Builder::success, JsonpDeserializer.integerDeserializer(), "success");
+        op.add(Builder::success, JsonpDeserializer.longDeserializer(), "success");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-        op.add(Builder::upload, JsonpDeserializer.integerDeserializer(), "upload");
+        op.add(Builder::upload, JsonpDeserializer.longDeserializer(), "upload");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Long.hashCode(this.duration);
-        result = 31 * result + Integer.hashCode(this.failed);
+        result = 31 * result + Long.hashCode(this.failed);
         result = 31 * result + this.id.hashCode();
         result = 31 * result + this.nodeId.hashCode();
-        result = 31 * result + Integer.hashCode(this.success);
+        result = 31 * result + Long.hashCode(this.success);
         result = 31 * result + this.type.hashCode();
-        result = 31 * result + Integer.hashCode(this.upload);
+        result = 31 * result + Long.hashCode(this.upload);
         return result;
     }
 

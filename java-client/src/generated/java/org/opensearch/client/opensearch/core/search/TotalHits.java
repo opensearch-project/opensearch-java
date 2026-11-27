@@ -46,6 +46,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.TotalHitsRelation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;

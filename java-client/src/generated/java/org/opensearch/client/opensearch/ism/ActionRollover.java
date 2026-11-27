@@ -63,7 +63,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
     private final Boolean copyAlias;
 
     @Nullable
-    private final Number minDocCount;
+    private final Long minDocCount;
 
     @Nullable
     private final String minIndexAge;
@@ -106,7 +106,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
      * </p>
      */
     @Nullable
-    public final Number minDocCount() {
+    public final Long minDocCount() {
         return this.minDocCount;
     }
 
@@ -161,7 +161,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
 
         if (this.minDocCount != null) {
             generator.writeKey("min_doc_count");
-            generator.write(this.minDocCount.doubleValue());
+            generator.write(this.minDocCount);
         }
 
         if (this.minIndexAge != null) {
@@ -200,7 +200,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Boolean copyAlias;
         @Nullable
-        private Number minDocCount;
+        private Long minDocCount;
         @Nullable
         private String minIndexAge;
         @Nullable
@@ -251,7 +251,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder minDocCount(@Nullable Number value) {
+        public final Builder minDocCount(@Nullable Long value) {
             this.minDocCount = value;
             return this;
         }
@@ -318,7 +318,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
 
     protected static void setupActionRolloverDeserializer(ObjectDeserializer<ActionRollover.Builder> op) {
         op.add(Builder::copyAlias, JsonpDeserializer.booleanDeserializer(), "copy_alias");
-        op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+        op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
         op.add(Builder::minIndexAge, JsonpDeserializer.stringDeserializer(), "min_index_age");
         op.add(Builder::minPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "min_primary_shard_size");
         op.add(Builder::minSize, JsonpDeserializer.stringDeserializer(), "min_size");

@@ -206,8 +206,8 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
     // ----- Endpoint: cluster.describe_settings
 
     /**
-     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
-     * defaults.
+     * Returns the definition of each requested cluster setting: whether it is dynamic, its declared default, its value type and bounds, and
+     * its description. Accepts exact setting names and prefixes ending in <code>.*</code>. Does not return configured values.
      */
     public CompletableFuture<DescribeSettingsResponse> describeSettings(DescribeSettingsRequest request) throws IOException,
         OpenSearchException {
@@ -215,8 +215,8 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
     }
 
     /**
-     * Returns definition metadata for cluster settings, including whether each setting is dynamic. Does not return setting values or
-     * defaults.
+     * Returns the definition of each requested cluster setting: whether it is dynamic, its declared default, its value type and bounds, and
+     * its description. Accepts exact setting names and prefixes ending in <code>.*</code>. Does not return configured values.
      *
      * @param fn a function that initializes a builder to create the {@link DescribeSettingsRequest}
      */

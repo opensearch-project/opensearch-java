@@ -76,7 +76,7 @@ public final class PutQuerySetsRequest extends RequestBase
     @Nullable
     private final String description;
 
-    @Nullable
+    @Nonnull
     private final String name;
 
     @Nonnull
@@ -90,7 +90,7 @@ public final class PutQuerySetsRequest extends RequestBase
     private PutQuerySetsRequest(Builder builder) {
         super(builder);
         this.description = builder.description;
-        this.name = builder.name;
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.querySetQueries = ApiTypeHelper.unmodifiable(builder.querySetQueries);
         this.sampling = builder.sampling;
     }
@@ -108,9 +108,9 @@ public final class PutQuerySetsRequest extends RequestBase
     }
 
     /**
-     * API name: {@code name}
+     * Required - API name: {@code name}
      */
-    @Nullable
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -147,10 +147,8 @@ public final class PutQuerySetsRequest extends RequestBase
             generator.write(this.description);
         }
 
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
-        }
+        generator.writeKey("name");
+        generator.write(this.name);
 
         if (ApiTypeHelper.isDefined(this.querySetQueries)) {
             generator.writeKey("querySetQueries");
@@ -193,7 +191,6 @@ public final class PutQuerySetsRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutQuerySetsRequest> {
         @Nullable
         private String description;
-        @Nullable
         private String name;
         @Nullable
         private List<Map<String, JsonData>> querySetQueries;
@@ -240,10 +237,10 @@ public final class PutQuerySetsRequest extends RequestBase
         }
 
         /**
-         * API name: {@code name}
+         * Required - API name: {@code name}
          */
         @Nonnull
-        public final Builder name(@Nullable String value) {
+        public final Builder name(String value) {
             this.name = value;
             return this;
         }
@@ -343,7 +340,7 @@ public final class PutQuerySetsRequest extends RequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.description);
-        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + this.name.hashCode();
         result = 31 * result + Objects.hashCode(this.querySetQueries);
         result = 31 * result + Objects.hashCode(this.sampling);
         return result;
@@ -355,7 +352,7 @@ public final class PutQuerySetsRequest extends RequestBase
         if (o == null || this.getClass() != o.getClass()) return false;
         PutQuerySetsRequest other = (PutQuerySetsRequest) o;
         return Objects.equals(this.description, other.description)
-            && Objects.equals(this.name, other.name)
+            && this.name.equals(other.name)
             && Objects.equals(this.querySetQueries, other.querySetQueries)
             && Objects.equals(this.sampling, other.sampling);
     }
