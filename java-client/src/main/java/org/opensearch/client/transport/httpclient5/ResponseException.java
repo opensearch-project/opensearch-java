@@ -33,6 +33,8 @@
 package org.opensearch.client.transport.httpclient5;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.ParseException;
@@ -44,6 +46,12 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
  * Holds the response that was returned.
  */
 public final class ResponseException extends IOException {
+
+    /**
+     * Media types of the binary formats a response body can be requested in (through the {@code Accept} header).
+     * Their bytes are not human readable, so they are described in the message instead of being decoded as text.
+     */
+    private static final List<String> BINARY_TYPES = Arrays.asList("application/cbor", "application/smile", "application/octet-stream");
 
     private final Response response;
 
@@ -77,13 +85,36 @@ public final class ResponseException extends IOException {
                 entity = new BufferedHttpEntity(entity);
                 response.getHttpResponse().setEntity(entity);
             }
-            try {
-                message += "\n" + EntityUtils.toString(entity);
-            } catch (final ParseException ex) {
-                throw new IOException(ex);
+            final String mediaType = mediaTypeOf(entity);
+            if (BINARY_TYPES.contains(mediaType)) {
+                message += "\n" + describeBinaryBody(mediaType, entity);
+            } else {
+                try {
+                    message += "\n" + EntityUtils.toString(entity);
+                } catch (final ParseException ex) {
+                    throw new IOException(ex);
+                }
             }
         }
         return message;
+    }
+
+    /**
+     * Returns the lower-cased media type of the entity without its parameters, or {@code null} if it has no content type.
+     */
+    private static String mediaTypeOf(HttpEntity entity) {
+        final String contentType = entity.getContentType();
+        if (contentType == null) {
+            return null;
+        }
+        final int parameters = contentType.indexOf(';');
+        return (parameters < 0 ? contentType : contentType.substring(0, parameters)).trim().toLowerCase(Locale.ROOT);
+    }
+
+    private static String describeBinaryBody(String mediaType, HttpEntity entity) {
+        final long length = entity.getContentLength();
+        final String size = length < 0 ? "" : ", " + length + " bytes";
+        return "[binary " + mediaType + " content omitted" + size + "]";
     }
 
     /**
