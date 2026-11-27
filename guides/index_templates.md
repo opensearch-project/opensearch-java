@@ -76,4 +76,4 @@ client.indices().create(CreateIndexRequest.of(c -> c.index(indexName)));
 
 The index will be created with the index settings and mappings defined by the `my-index-template` index template.
 
-You can find a working sample of the above code in [IndexTemplates.java](../samples/src/main/java/org/opensearch/client/samples/IndexTemplates.java).
+You can find a working sample of the above code in [IndexTemplates.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/IndexTemplates.java).

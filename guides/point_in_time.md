@@ -50,4 +50,4 @@ DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
 DeletePitResponse deletePitResponse = client.deletePit(deletePitRequest);
 ```
 
-You can find a working sample of the above code in [PointInTime.java](../samples/src/main/java/org/opensearch/client/samples/PointInTime.java).
+You can find a working sample of the above code in [PointInTime.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/PointInTime.java).

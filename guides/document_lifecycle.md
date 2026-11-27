@@ -20,7 +20,7 @@
 
 This guide covers common document lifecycle operations with the OpenSearch Java client:  indexing, retrieving, updating, reindexing, and deleting documents.
 
-You can find a working version of the code in [DocumentLifecycle.java](../samples/src/main/java/org/opensearch/client/samples/DocumentLifecycle.java).
+You can find a working version of the code in [DocumentLifecycle.java](../samples/samples-java/src/main/java/org/opensearch/client/samples/DocumentLifecycle.java).
 
 ## Setup
 
