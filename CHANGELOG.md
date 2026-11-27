@@ -25,7 +25,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Send the headers declared by an `Endpoint` (e.g. the headers of a generic client `Request`) from `RestClientTransport`, `ApacheHttpClient5Transport` and `AwsSdk2Transport`; they were silently dropped ([#1234](https://github.com/opensearch-project/opensearch-java/issues/1234))
 - Restore the typed buckets of the `terms` aggregates (`StringTermsAggregate` etc. extended `TermsAggregateBase<JsonData>` since the October regeneration) by binding a generic type parameter from the narrowed union branch of an instantiation; `TermsBucketBase` regains `doc_count_error_upper_bound` ([#2302](https://github.com/opensearch-project/opensearch-java/issues/2302))
 - Declare the dependencies the streaming support of `ApacheHttpClient5Transport` needs, without which building the transport failed with `NoClassDefFoundError: org/reactivestreams/Publisher` ([#2294](https://github.com/opensearch-project/opensearch-java/issues/2294))
-- Make `AwsSdk2Transport` and the gRPC `GrpcSigV4Interceptor` work with AWS SDK versions older than 2.26.0, where they failed with `NoSuchMethodError: ContentStreamProvider.fromByteArrayUnsafe`, and document the supported AWS SDK versions ([#1783](https://github.com/opensearch-project/opensearch-java/issues/1783))
+- Make `AwsSdk2Transport` and the gRPC `GrpcSigV4Interceptor` work with AWS SDK versions older than 2.26.0, where they failed with `NoSuchMethodError: ContentStreamProvider.fromByteArrayUnsafe`, and document the supported AWS SDK versions ([#2339](https://github.com/opensearch-project/opensearch-java/issues/2339))
 
 ### Security
 
