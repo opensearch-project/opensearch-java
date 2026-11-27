@@ -216,7 +216,7 @@ dependencies {
     }
     api("org.apache.httpcomponents.core5:httpcore5:5.5")
     api("org.apache.httpcomponents.core5:httpcore5-h2:5.4.4")
-    api("org.apache.httpcomponents.core5:httpcore5-reactive:5.4.4")
+    api("org.apache.httpcomponents.core5:httpcore5-reactive:5.5")
 
     // Used by the streaming support of ApacheHttpClient5Transport
     // MIT-0
