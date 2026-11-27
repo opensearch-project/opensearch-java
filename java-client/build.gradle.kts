@@ -43,7 +43,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.9.0")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.10.0")
     }
 }
 
