@@ -5,7 +5,7 @@
 
 ## Amazon OpenSearch Service
 
-Requests to [OpenSearch Service and OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/index.html) must be signed using the AWS signing protocol. Use `AwsSdk2Transport` to send signed requests.
+Requests to [OpenSearch Service and OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/index.html) must be signed using the AWS signing protocol. Use `AwsSdk2Transport` to send signed requests. See [Compatibility](../COMPATIBILITY.md#compatibility-with-the-aws-sdk-for-java) for the supported versions of the AWS SDK.
 
 > ⚠️ **Warning** ⚠️  
 > Using `software.amazon.awssdk.http.apache.ApacheHttpClient` is discouraged as it does not support request bodies on GET or DELETE requests.  
