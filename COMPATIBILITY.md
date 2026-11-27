@@ -1,5 +1,6 @@
 - [Compatibility with OpenSearch](#compatibility-with-opensearch)
 - [Compatibility with JDK](#compatibility-with-jdk)
+- [Compatibility with the AWS SDK for Java](#compatibility-with-the-aws-sdk-for-java)
 - [Upgrading](#upgrading)
 
 ## Compatibility with OpenSearch
@@ -21,6 +22,10 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 | 1.0.0          | 8                  |
 | 2.x.0          | 8 / 11 / 17 / 21   |
 | 3.x.0          | 8 / 11 / 17 / 21   |
+
+## Compatibility with the AWS SDK for Java
+
+The `AwsSdk2Transport` and the SigV4 signing of the gRPC transport works with [AWS SDK for Java 2.x](https://github.com/aws/aws-sdk-java-v2) version 2.21.0 and newer. 
 
 ## Upgrading
 

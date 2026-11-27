@@ -365,7 +365,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             throw new IllegalArgumentException("Invalid request URI: " + url.toString());
         }
 
-        ContentStreamProvider bodyProvider = body != null ? ContentStreamProvider.fromByteArrayUnsafe(body.getByteArray()) : null;
+        ContentStreamProvider bodyProvider = body != null ? byteArrayProvider(body.getByteArray()) : null;
 
         applyHeadersPreSigning(req, endpoint.headers(request), options, body);
 
@@ -389,7 +389,16 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
         applyHeadersPostSigning(httpRequest, body);
 
-        return signedReq.toBuilder().request(httpRequest.build()).build();
+        // Not signedReq.toBuilder(): it only exists since AWS SDK 2.22.0, while the supported versions start at 2.21
+        return SignedRequest.builder().request(httpRequest.build()).payload(signedReq.payload().orElse(null)).build();
+    }
+
+    /**
+     * Provides the given array, without copying it, like {@code ContentStreamProvider.fromByteArrayUnsafe(bytes)}. That method only exists
+     * since AWS SDK 2.26.0, while the supported versions start at 2.21, hence the explicit implementation.
+     */
+    private static ContentStreamProvider byteArrayProvider(byte[] bytes) {
+        return () -> new ByteArrayInputStream(bytes);
     }
 
     private void applyHeadersPreSigning(
