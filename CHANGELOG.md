@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add the `semantic` value to the `FieldType` enum ([#2317](https://github.com/opensearch-project/opensearch-java/pull/2317))
 
 ### Dependencies
+- Bump Jackson to 2.23.0 / 3.3.0 ([#2292](https://github.com/opensearch-project/opensearch-java/pull/2292))
 
 ### Changed
 
